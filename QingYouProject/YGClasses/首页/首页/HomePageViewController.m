@@ -58,8 +58,13 @@
 #import "LoginViewController.h"
 
 
-
-@interface HomePageViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate,YGVideoPickerControllerDelegate,HomePageTableViewCellDelegate,CLLocationManagerDelegate>
+@interface HomePageViewController()
+<UITableViewDelegate,
+UITableViewDataSource,
+SDCycleScrollViewDelegate,
+//YGVideoPickerControllerDelegate,
+HomePageTableViewCellDelegate,
+CLLocationManagerDelegate>
 {
     NSMutableArray *_listArray;
     UITableView *_tableView;
@@ -69,7 +74,7 @@
 
     NSMutableArray *_advertiseArray;
     NSMutableArray *_neswArray;
-    YGVideoPickerController *_videoPicker;
+//    YGVideoPickerController *_videoPicker;
     NSArray         *_sectionHeaderArray;
     NSMutableArray *_projectDecorationFundNetModelArray;
     NSArray *_PlaySlideshowList;
@@ -87,61 +92,36 @@
 
 @implementation HomePageViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [_adScrollview  adjustWhenControllerViewWillAppera];
+    [_playTogetherScrollview  adjustWhenControllerViewWillAppera];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //引导页
-    if (![YGUserDefaults objectForKey:USERDEF_FIRSTOPENAPP])
-    {
+    [self loadLaunches];//引导页
+    [self configUI];//ui层
+}
+
+- (void)loadLaunches {
+    if (![YGUserDefaults objectForKey:USERDEF_FIRSTOPENAPP]) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lastPage) name:@"last" object:nil];
         NSMutableArray *imageNameArray = @[].mutableCopy;
-        for (int i = 0; i<4; i++)
-        {
+        for (int i = 0; i<4; i++) {
             [imageNameArray addObject:[NSString stringWithFormat:@"%d_%.0f", i+1, YGScreenHeight]];
         }
         [YGStartPageView showWithLocalPhotoNamesArray:imageNameArray];
     }
-    [self configUI];
-
 }
-- (void)lastPage
-{
-    [self locatemap];
-    [_locationManager startUpdatingLocation];
+- (void)lastPage {
+    [self.locationManager startUpdatingLocation];
     [YGUserDefaults setObject:@"1" forKey:USERDEF_FIRSTOPENAPP];
-
-}
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [_adScrollview  adjustWhenControllerViewWillAppera];
-    [_playTogetherScrollview  adjustWhenControllerViewWillAppera];
-    if ([YGUserDefaults objectForKey:USERDEF_FIRSTOPENAPP])
-    {
-        if (_locationManager == nil) {
-            [self locatemap];
-        }
-    }
-    if (_locationManager != nil) {
-        [_locationManager startUpdatingLocation];
-
-    }
-
-
-}
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
 
-}
 
-- (void)configAttribute
-{
+- (void)configAttribute {
     self.automaticallyAdjustsScrollViewInsets = NO;
     _listArray = [[NSMutableArray alloc]init];
     _sectionHeaderArray = @[@"一起玩",@"为您推荐",@"新鲜事"];
@@ -159,13 +139,9 @@
     _coverLeftNaviButton.frame =  CGRectMake(0, 0, YGScreenWidth, 40);
     self.navigationItem.titleView = _coverLeftNaviButton;
     [_coverLeftNaviButton setTitle:@"青网欢迎您" forState:UIControlStateNormal];
-
-
-    
 }
 
-- (void)configUI
-{
+- (void)configUI {
     
     //头部视图
     UIView *tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, YGScreenWidth, 0)];
@@ -312,8 +288,7 @@
 
 }
 
-- (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction
-{
+- (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
 
     [YGNetService YGPOST:REQUEST_IndexInformationDetail parameters:@{} showLoadingView:NO scrollView:nil success:^(id responseObject) {
         [self endRefreshWithScrollView:_tableView];
@@ -468,8 +443,6 @@
 
 
 #pragma mark ------------tabelView相关
-
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return _listArray.count;
@@ -914,11 +887,10 @@
 }
 
 #pragma mark-----dingwei
-- (void)locatemap{
-    
+
+- (CLLocationManager    *)locationManager {
     if ([CLLocationManager locationServicesEnabled]) {
-        if (_locationManager == nil)
-        {
+        if (_locationManager == nil) {
             _locationManager = [[CLLocationManager alloc]init];
             _locationManager.delegate = self;
             _currentCity = [[NSString alloc]init];
@@ -927,11 +899,11 @@
             _locationManager.distanceFilter = 5.0;
         }
     }
+    return _locationManager;
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 
-{
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     [_locationManager stopUpdatingLocation];
     CLLocation *currentLocation = [locations lastObject];
     CLGeocoder *geoCoder = [[CLGeocoder alloc]init];

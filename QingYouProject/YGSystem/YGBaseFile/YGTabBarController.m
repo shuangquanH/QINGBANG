@@ -22,23 +22,20 @@
     [self configUI];
 }
 
-- (void)viewDidLayoutSubviews{
-         YGSingletonMarco.tabBarHeight = self.tabBar.frame.size.height;
-    
+- (void)viewDidLayoutSubviews{ YGSingletonMarco.tabBarHeight = self.tabBar.frame.size.height;
 }
--(void)configUI
-{
+-(void)configUI {
     YGTabbar *myTabBar = [[YGTabbar alloc] init];
     [self setValue:myTabBar forKey:@"tabBar"];
-
+    
     //取出plist里大数组
     NSArray *tabbarArray = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"tabbar" ofType:@"plist"]];
     //装4个navi的数组
     NSMutableArray *viewControllersArray = [[NSMutableArray alloc]init];
     
     self.tabBar.tintColor = colorWithMainColor;
-//    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:YGUIColorFromRGB(0x888, 1),NSForegroundColorAttributeName, [UIFont fontWithName:@"Helvetica" size:12.0f],NSFontAttributeName,nil]forState:UIControlStateNormal];
-//    self.tabBar.barTintColor = colorWithBlack;
+    //    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:YGUIColorFromRGB(0x888, 1),NSForegroundColorAttributeName, [UIFont fontWithName:@"Helvetica" size:12.0f],NSFontAttributeName,nil]forState:UIControlStateNormal];
+    //    self.tabBar.barTintColor = colorWithBlack;
     
     
     self.tabBar.translucent = NO;
@@ -50,7 +47,7 @@
     self.tabBar.layer.shadowOpacity = 0.15;
     self.tabBar.shadowImage = [UIImage imageNamed:@"tranimg"];
     self.tabBar.backgroundImage = [UIImage imageNamed:@"tranimg"];
-
+    
     
     //循环取item数据
     for (NSDictionary *tabbarItemDic in tabbarArray)

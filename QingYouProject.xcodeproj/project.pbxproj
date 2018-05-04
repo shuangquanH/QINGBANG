@@ -1007,6 +1007,8 @@
 		E2E5B39A1FB0675B00205F70 /* xianzhi_luzhi_shanguang_yellow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2E5B1101FB0675900205F70 /* xianzhi_luzhi_shanguang_yellow@3x.png */; };
 		E2E5B39B1FB0675B00205F70 /* YGPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E5B1121FB0675900205F70 /* YGPreviewViewController.m */; };
 		E2E5B39C1FB0675B00205F70 /* YGVideoPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E5B1141FB0675900205F70 /* YGVideoPickerController.m */; };
+		E94137A0209C3891003F3649 /* AppStartManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E941379F209C3891003F3649 /* AppStartManager.m */; };
+		E94137A7209C4295003F3649 /* SQLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E94137A6209C4295003F3649 /* SQLocationManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -2881,6 +2883,10 @@
 		E2E5B1121FB0675900205F70 /* YGPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGPreviewViewController.m; sourceTree = "<group>"; };
 		E2E5B1131FB0675900205F70 /* YGVideoPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGVideoPickerController.h; sourceTree = "<group>"; };
 		E2E5B1141FB0675900205F70 /* YGVideoPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGVideoPickerController.m; sourceTree = "<group>"; };
+		E941379E209C3891003F3649 /* AppStartManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppStartManager.h; sourceTree = "<group>"; };
+		E941379F209C3891003F3649 /* AppStartManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppStartManager.m; sourceTree = "<group>"; };
+		E94137A5209C4295003F3649 /* SQLocationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQLocationManager.h; sourceTree = "<group>"; };
+		E94137A6209C4295003F3649 /* SQLocationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQLocationManager.m; sourceTree = "<group>"; };
 		F883056FA3AE70A8E2E8FFA5 /* Pods-QingYouProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QingYouProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-QingYouProject/Pods-QingYouProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -6850,6 +6856,8 @@
 			children = (
 				E2E5ACC61FB0675800205F70 /* AppDelegate.h */,
 				E2E5ACC71FB0675800205F70 /* AppDelegate.m */,
+				E941379E209C3891003F3649 /* AppStartManager.h */,
+				E941379F209C3891003F3649 /* AppStartManager.m */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -6884,6 +6892,7 @@
 		E2E5B0461FB0675900205F70 /* YGTools */ = {
 			isa = PBXGroup;
 			children = (
+				E94137A1209C3D89003F3649 /* SQTools */,
 				E2E5B0471FB0675900205F70 /* LDTools */,
 				E2E5B06A1FB0675900205F70 /* YGAppTool */,
 				E2E5B06D1FB0675900205F70 /* YGConnectionService */,
@@ -7358,6 +7367,15 @@
 				E2E5B1101FB0675900205F70 /* xianzhi_luzhi_shanguang_yellow@3x.png */,
 			);
 			path = resource;
+			sourceTree = "<group>";
+		};
+		E94137A1209C3D89003F3649 /* SQTools */ = {
+			isa = PBXGroup;
+			children = (
+				E94137A5209C4295003F3649 /* SQLocationManager.h */,
+				E94137A6209C4295003F3649 /* SQLocationManager.m */,
+			);
+			path = SQTools;
 			sourceTree = "<group>";
 		};
 		F73D53F056E2247CD4A548BF /* Frameworks */ = {
@@ -8245,6 +8263,7 @@
 				18C15A881FC8208B0010ACD3 /* ReserveChooseCell.m in Sources */,
 				18C15A341FC8208A0010ACD3 /* SubscribeSumOfMoneyModel.m in Sources */,
 				183AC1981FDA349F009FCAA3 /* RushPurchaseOrderListWaitToGoodsViewController.m in Sources */,
+				E94137A7209C4295003F3649 /* SQLocationManager.m in Sources */,
 				18C159941FC8208A0010ACD3 /* YGCityPikerView1.m in Sources */,
 				18C159281FC820890010ACD3 /* OrderDeatilBottomPictureView.m in Sources */,
 				E2E5B1831FB0675A00205F70 /* YYAnimatedImageView.m in Sources */,
@@ -8277,6 +8296,7 @@
 				1809E2A41FEB983C006C54EC /* SecondhandReplacementMyFansTableViewCell.m in Sources */,
 				18C15A581FC8208B0010ACD3 /* RoadShowHallApplyViewController.m in Sources */,
 				18C1594A1FC8208A0010ACD3 /* LDVipImageView.m in Sources */,
+				E94137A0209C3891003F3649 /* AppStartManager.m in Sources */,
 				2C9DB70D1FE9F5410044819D /* MineIntergralViewController.m in Sources */,
 				E2E5B11A1FB0675900205F70 /* AFURLSessionManager.m in Sources */,
 				18C159F01FC8208A0010ACD3 /* NewThingsDetailController.m in Sources */,
