@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RecommendCollectionCell" id="gTV-IL-0wX" customClass="RecommendCollectionCell">
+            <rect key="frame" x="0.0" y="0.0" width="183" height="134"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="183" height="134"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderfigure_rectangle_230x172_4_3" translatesAutoresizingMaskIntoConstraints="NO" id="526-gm-PUI">
+                        <rect key="frame" x="10" y="5" width="173" height="124"/>
+                    </imageView>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lgr-Fa-qfj">
+                        <rect key="frame" x="0.0" y="55" width="183" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="tnJ-3Q-y8f"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="lgr-Fa-qfj" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" constant="0.5" id="71e-na-Jmk"/>
+                <constraint firstAttribute="trailing" secondItem="lgr-Fa-qfj" secondAttribute="trailing" id="IU1-lg-729"/>
+                <constraint firstItem="526-gm-PUI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="OFZ-ag-kpl"/>
+                <constraint firstItem="526-gm-PUI" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="X6F-tG-y6o"/>
+                <constraint firstItem="lgr-Fa-qfj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="c6Y-tN-ehv"/>
+                <constraint firstAttribute="bottom" secondItem="526-gm-PUI" secondAttribute="bottom" constant="5" id="ceC-BC-afA"/>
+                <constraint firstAttribute="trailing" secondItem="526-gm-PUI" secondAttribute="trailing" id="gtZ-pS-eSr"/>
+            </constraints>
+            <size key="customSize" width="183" height="134"/>
+            <connections>
+                <outlet property="recommendImageView" destination="526-gm-PUI" id="KlD-BN-9zy"/>
+                <outlet property="recommendLabel" destination="lgr-Fa-qfj" id="NN1-bN-rUr"/>
+            </connections>
+            <point key="canvasLocation" x="-69" y="11"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="placeholderfigure_rectangle_230x172_4_3" width="115" height="86"/>
+    </resources>
+</document>

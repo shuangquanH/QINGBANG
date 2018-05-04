@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CooperateClientCell" rowHeight="170" id="KGk-i7-Jjw" customClass="CooperateClientCell">
+            <rect key="frame" x="0.0" y="0.0" width="344" height="170"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="344" height="169.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我们的合作客户" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qTH-tg-smv">
+                        <rect key="frame" x="15" y="0.0" width="319" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="KJE-5g-cQq"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DUd-vu-UmL">
+                        <rect key="frame" x="0.0" y="40" width="344" height="0.5"/>
+                        <color key="backgroundColor" white="0.81393771701388884" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="RdO-4y-Tth"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderfigure_rectangle_230x172_4_3" translatesAutoresizingMaskIntoConstraints="NO" id="BIy-vA-lM2">
+                        <rect key="frame" x="0.0" y="41.5" width="344" height="128"/>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="qTH-tg-smv" secondAttribute="trailing" constant="10" id="1Az-NI-Ho7"/>
+                    <constraint firstItem="BIy-vA-lM2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="5VQ-LJ-aS7"/>
+                    <constraint firstAttribute="trailing" secondItem="BIy-vA-lM2" secondAttribute="trailing" id="9q7-Wa-RuZ"/>
+                    <constraint firstItem="DUd-vu-UmL" firstAttribute="top" secondItem="qTH-tg-smv" secondAttribute="bottom" id="CyZ-FG-wrj"/>
+                    <constraint firstItem="qTH-tg-smv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="FeK-zN-H6Q"/>
+                    <constraint firstAttribute="trailing" secondItem="DUd-vu-UmL" secondAttribute="trailing" id="FsX-ZX-88u"/>
+                    <constraint firstItem="BIy-vA-lM2" firstAttribute="top" secondItem="DUd-vu-UmL" secondAttribute="bottom" constant="1" id="HLh-Xi-0fS"/>
+                    <constraint firstItem="DUd-vu-UmL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="WGL-gY-KRV"/>
+                    <constraint firstItem="qTH-tg-smv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="XgG-Uo-Ilp"/>
+                    <constraint firstAttribute="bottom" secondItem="BIy-vA-lM2" secondAttribute="bottom" id="sfu-4n-KBB"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="clientImageView" destination="BIy-vA-lM2" id="FD4-qP-O7d"/>
+                <outlet property="titleLabel" destination="qTH-tg-smv" id="9Hn-Ml-1Q2"/>
+            </connections>
+            <point key="canvasLocation" x="-49" y="3"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="placeholderfigure_rectangle_230x172_4_3" width="115" height="86"/>
+    </resources>
+</document>

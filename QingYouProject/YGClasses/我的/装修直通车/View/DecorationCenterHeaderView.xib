@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="K08-CE-ZtQ" customClass="DecorationCenterHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="364" height="216"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="steward_rencai_bg" translatesAutoresizingMaskIntoConstraints="NO" id="qPo-Ev-NXn">
+                    <rect key="frame" x="0.0" y="0.0" width="364" height="216"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fli-IA-jZj">
+                    <rect key="frame" x="152.5" y="57" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="GkZ-WK-8MO"/>
+                        <constraint firstAttribute="height" constant="60" id="vr3-yN-ptl"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" image="defaultavatar"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="路白" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xPU-wA-hJ2">
+                    <rect key="frame" x="0.0" y="127" width="364" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="qPo-Ev-NXn" secondAttribute="trailing" id="AnC-fp-OBy"/>
+                <constraint firstItem="qPo-Ev-NXn" firstAttribute="top" secondItem="K08-CE-ZtQ" secondAttribute="top" id="J6Z-ns-DKw"/>
+                <constraint firstItem="fli-IA-jZj" firstAttribute="centerY" secondItem="K08-CE-ZtQ" secondAttribute="centerY" multiplier="0.8" constant="0.5" id="JPq-yH-9f9"/>
+                <constraint firstItem="xPU-wA-hJ2" firstAttribute="top" secondItem="fli-IA-jZj" secondAttribute="bottom" constant="10" id="JoD-fy-8uC"/>
+                <constraint firstAttribute="trailing" secondItem="xPU-wA-hJ2" secondAttribute="trailing" id="Wmr-ne-hEB"/>
+                <constraint firstItem="xPU-wA-hJ2" firstAttribute="leading" secondItem="K08-CE-ZtQ" secondAttribute="leading" id="Z1G-Yb-w6j"/>
+                <constraint firstAttribute="bottom" secondItem="qPo-Ev-NXn" secondAttribute="bottom" id="bST-yt-Idz"/>
+                <constraint firstItem="fli-IA-jZj" firstAttribute="centerX" secondItem="K08-CE-ZtQ" secondAttribute="centerX" constant="0.5" id="wb3-g3-S2f"/>
+                <constraint firstItem="qPo-Ev-NXn" firstAttribute="leading" secondItem="K08-CE-ZtQ" secondAttribute="leading" id="z17-xI-eNi"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="bgImageView" destination="qPo-Ev-NXn" id="yIY-90-sEj"/>
+                <outlet property="headImageButton" destination="fli-IA-jZj" id="Aev-IP-Aok"/>
+                <outlet property="nameLabel" destination="xPU-wA-hJ2" id="yhz-83-WbC"/>
+            </connections>
+            <point key="canvasLocation" x="-121" y="115"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="defaultavatar" width="100" height="100"/>
+        <image name="steward_rencai_bg" width="375" height="187"/>
+    </resources>
+</document>

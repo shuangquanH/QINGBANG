@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="75" id="KGk-i7-Jjw" customClass="BuyOrderTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="349" height="75"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="349" height="74.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="center" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9tu-WZ-hm9">
+                        <rect key="frame" x="306" y="26.5" width="40" height="40"/>
+                        <state key="normal" image="nochoice_btn_gray"/>
+                        <state key="selected" image="choice_btn_green"/>
+                        <connections>
+                            <action selector="selectButtonClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="l6z-z5-fXj"/>
+                        </connections>
+                    </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_wechat" translatesAutoresizingMaskIntoConstraints="NO" id="dh4-vJ-Xou">
+                        <rect key="frame" x="10" y="15" width="45" height="45"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jP-ww-q20">
+                        <rect key="frame" x="67" y="28.5" width="39.5" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="dh4-vJ-Xou" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="6qe-3L-obz"/>
+                    <constraint firstItem="9tu-WZ-hm9" firstAttribute="centerY" secondItem="dh4-vJ-Xou" secondAttribute="centerY" id="R7V-AZ-dU0"/>
+                    <constraint firstItem="4jP-ww-q20" firstAttribute="leading" secondItem="dh4-vJ-Xou" secondAttribute="trailing" constant="12" id="V9f-oB-rPg"/>
+                    <constraint firstItem="dh4-vJ-Xou" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hmD-f8-XvA"/>
+                    <constraint firstAttribute="trailing" secondItem="9tu-WZ-hm9" secondAttribute="trailing" constant="10" id="s5f-LV-HbA"/>
+                    <constraint firstItem="4jP-ww-q20" firstAttribute="centerY" secondItem="dh4-vJ-Xou" secondAttribute="centerY" id="tVq-O7-fvw"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="headImageView" destination="dh4-vJ-Xou" id="eaZ-bG-1JR"/>
+                <outlet property="selectButton" destination="9tu-WZ-hm9" id="Xw7-Wu-Okm"/>
+                <outlet property="titleLabel" destination="4jP-ww-q20" id="MUq-ud-tzb"/>
+            </connections>
+            <point key="canvasLocation" x="-579" y="-65"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="choice_btn_green" width="18" height="18"/>
+        <image name="login_wechat" width="45" height="45"/>
+        <image name="nochoice_btn_gray" width="18" height="18"/>
+    </resources>
+</document>

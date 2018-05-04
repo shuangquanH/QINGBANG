@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" rowHeight="99" id="KGk-i7-Jjw" customClass="MyCollectionTextCell">
+            <rect key="frame" x="0.0" y="0.0" width="354" height="99"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="354" height="98.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r8X-LK-gIX">
+                        <rect key="frame" x="15" y="10" width="329" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vi5-xu-cbH">
+                        <rect key="frame" x="284" y="58.5" width="60" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="Iw7-TL-EF7"/>
+                            <constraint firstAttribute="height" constant="25" id="xnp-5j-Au9"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <state key="normal" title="取消收藏">
+                            <color key="titleColor" red="0.1764705882" green="0.74509803919999995" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="r8X-LK-gIX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Bqk-1w-c0K"/>
+                    <constraint firstItem="r8X-LK-gIX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="KLn-Or-W55"/>
+                    <constraint firstAttribute="trailing" secondItem="vi5-xu-cbH" secondAttribute="trailing" constant="10" id="Tu9-H6-bhi"/>
+                    <constraint firstAttribute="trailing" secondItem="r8X-LK-gIX" secondAttribute="trailing" constant="10" id="lCn-5Q-75r"/>
+                    <constraint firstAttribute="bottom" secondItem="vi5-xu-cbH" secondAttribute="bottom" constant="15" id="tXz-jO-HUu"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="cancelButton" destination="vi5-xu-cbH" id="xu8-3u-yWv"/>
+                <outlet property="nameLabel" destination="r8X-LK-gIX" id="3Xj-eL-mKz"/>
+            </connections>
+            <point key="canvasLocation" x="51" y="81.5"/>
+        </tableViewCell>
+    </objects>
+</document>

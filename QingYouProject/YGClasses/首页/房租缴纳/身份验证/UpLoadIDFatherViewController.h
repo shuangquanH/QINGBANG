@@ -1,0 +1,13 @@
+//
+//  UpLoadIDFatherViewController.h
+//  FrienDo
+//
+//  Created by apple on 2017/10/19.
+//  Copyright © 2017年 ccyouge. All rights reserved.
+//
+
+#import "RootViewController.h"
+
+@interface UpLoadIDFatherViewController : RootViewController
+@property (nonatomic, copy) NSString            *notioceString;
+@end

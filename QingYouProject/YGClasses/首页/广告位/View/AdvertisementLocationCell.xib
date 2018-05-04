@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" reuseIdentifier="AdvertisementLocationCell" rowHeight="131" id="KGk-i7-Jjw" customClass="AdvertisementLocationCell">
+            <rect key="frame" x="0.0" y="0.0" width="410" height="131"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="410" height="130.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderfigure_rectangle_230x172_4_3" translatesAutoresizingMaskIntoConstraints="NO" id="5iD-qc-54e">
+                        <rect key="frame" x="15" y="5" width="380" height="120.5"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="azh-Xx-JxV">
+                        <rect key="frame" x="20" y="90" width="375" height="35"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="合肥园区东门口广告位" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hjG-Wc-CCK">
+                                <rect key="frame" x="10" y="0.0" width="340" height="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="steward_capital_right_white" translatesAutoresizingMaskIntoConstraints="NO" id="8kq-Jb-Oc2">
+                                <rect key="frame" x="360" y="10" width="15" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="7hY-pf-SQq"/>
+                                    <constraint firstAttribute="width" constant="15" id="gHj-Rk-gg6"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="8kq-Jb-Oc2" secondAttribute="bottom" constant="10" id="2LV-Ye-QBX"/>
+                            <constraint firstAttribute="bottom" secondItem="hjG-Wc-CCK" secondAttribute="bottom" id="4uM-LG-jZm"/>
+                            <constraint firstItem="hjG-Wc-CCK" firstAttribute="leading" secondItem="azh-Xx-JxV" secondAttribute="leading" constant="10" id="Pn1-bq-MF6"/>
+                            <constraint firstItem="hjG-Wc-CCK" firstAttribute="top" secondItem="azh-Xx-JxV" secondAttribute="top" id="dsR-Tb-czM"/>
+                            <constraint firstAttribute="height" constant="35" id="gVH-38-kah"/>
+                            <constraint firstAttribute="trailing" secondItem="8kq-Jb-Oc2" secondAttribute="trailing" constant="5" id="mUM-N8-pez"/>
+                            <constraint firstItem="8kq-Jb-Oc2" firstAttribute="leading" secondItem="hjG-Wc-CCK" secondAttribute="trailing" constant="10" id="piX-vw-zmV"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="5iD-qc-54e" secondAttribute="bottom" constant="5" id="FjK-EH-74x"/>
+                    <constraint firstAttribute="trailing" secondItem="5iD-qc-54e" secondAttribute="trailing" constant="15" id="HeZ-NW-QcK"/>
+                    <constraint firstItem="azh-Xx-JxV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="JI5-y0-dHN"/>
+                    <constraint firstItem="5iD-qc-54e" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="YxX-Fe-j52"/>
+                    <constraint firstItem="5iD-qc-54e" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="e9e-kb-iCI"/>
+                    <constraint firstAttribute="trailing" secondItem="azh-Xx-JxV" secondAttribute="trailing" constant="15" id="fHS-kE-qJk"/>
+                    <constraint firstAttribute="bottom" secondItem="azh-Xx-JxV" secondAttribute="bottom" constant="5" id="hpo-Dv-jl1"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="areaImageView" destination="5iD-qc-54e" id="Cke-lA-MCi"/>
+                <outlet property="areaLabel" destination="hjG-Wc-CCK" id="rfU-HI-059"/>
+                <outlet property="blackView" destination="azh-Xx-JxV" id="vdf-l6-3aU"/>
+            </connections>
+            <point key="canvasLocation" x="-8" y="-9.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="placeholderfigure_rectangle_230x172_4_3" width="115" height="86"/>
+        <image name="steward_capital_right_white" width="14" height="14"/>
+    </resources>
+</document>

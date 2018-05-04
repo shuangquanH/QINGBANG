@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" rowHeight="193" id="KGk-i7-Jjw" customClass="SecondClassifyGoodsCell">
+            <rect key="frame" x="0.0" y="0.0" width="178" height="193"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="178" height="192.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderfigure_square_750x750" translatesAutoresizingMaskIntoConstraints="NO" id="J5F-pq-r4i">
+                        <rect key="frame" x="0.0" y="0.0" width="178" height="137.5"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unused_local" translatesAutoresizingMaskIntoConstraints="NO" id="Lrm-js-Eww">
+                        <rect key="frame" x="10" y="175.5" width="12" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="12" id="Hok-yU-Us1"/>
+                            <constraint firstAttribute="width" constant="12" id="gqg-FS-Cer"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="安徽 合肥" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T4O-yg-Gks">
+                        <rect key="frame" x="27" y="175.5" width="141" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="12" id="DA3-tw-bje"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="皮鞋" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qmh-XN-0GO">
+                        <rect key="frame" x="10" y="147.5" width="158" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="dSs-Bc-Zei"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="Lrm-js-Eww" firstAttribute="top" secondItem="qmh-XN-0GO" secondAttribute="bottom" constant="10" id="31h-2Y-Tik"/>
+                    <constraint firstItem="T4O-yg-Gks" firstAttribute="leading" secondItem="Lrm-js-Eww" secondAttribute="trailing" constant="5" id="3oS-yr-VRI"/>
+                    <constraint firstItem="J5F-pq-r4i" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="7Ox-lt-HGx"/>
+                    <constraint firstAttribute="trailing" secondItem="qmh-XN-0GO" secondAttribute="trailing" constant="10" id="7c4-W9-OlA"/>
+                    <constraint firstItem="qmh-XN-0GO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="KKh-Q4-2bu"/>
+                    <constraint firstItem="qmh-XN-0GO" firstAttribute="top" secondItem="J5F-pq-r4i" secondAttribute="bottom" constant="10" id="VDG-bD-Rtn"/>
+                    <constraint firstAttribute="bottom" secondItem="Lrm-js-Eww" secondAttribute="bottom" constant="5" id="W7J-ec-tdF"/>
+                    <constraint firstItem="J5F-pq-r4i" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Xx1-Ri-91g"/>
+                    <constraint firstAttribute="bottom" secondItem="T4O-yg-Gks" secondAttribute="bottom" constant="5" id="g4v-VG-ung"/>
+                    <constraint firstAttribute="trailing" secondItem="J5F-pq-r4i" secondAttribute="trailing" id="kcW-eS-U3R"/>
+                    <constraint firstItem="Lrm-js-Eww" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="un7-fa-wxQ"/>
+                    <constraint firstAttribute="trailing" secondItem="T4O-yg-Gks" secondAttribute="trailing" constant="10" id="xfR-x0-xD1"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="addressLabel" destination="T4O-yg-Gks" id="CIX-ox-Ocs"/>
+                <outlet property="goodsNameLabel" destination="qmh-XN-0GO" id="hrG-1l-ovT"/>
+                <outlet property="picImageView" destination="J5F-pq-r4i" id="9Nn-JR-ezM"/>
+            </connections>
+            <point key="canvasLocation" x="-37" y="128.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="placeholderfigure_square_750x750" width="375" height="375"/>
+        <image name="unused_local" width="11" height="11"/>
+    </resources>
+</document>

@@ -1,0 +1,37 @@
+//
+//  YoGeeLiveShop.pch
+//  YogeeLiveShop
+//
+//  Created by zhangkaifeng on 16/7/27.
+//  Copyright © 2016年 ccyouge. All rights reserved.
+//
+
+#ifndef YoGeeLiveShop_pch
+#define YoGeeLiveShop_pch
+#import "LDPrefix.h"
+#import "UIView+LG.h"
+#import "YGCommon.h"
+#import "AppDelegate.h"
+#import "YGAppTool.h"
+#import "UILabel+SizeToFit.h"
+#import "UITableView+FDTemplateLayoutCell.h"
+//#import "UIImageView+FadeAnimate.h"
+#import "UIButton+WebCache.h"
+#import "UIImageView+WebCache.h"
+#import "YGAlertView.h"
+#import "Masonry.h"
+#import "YGSingleton.h"
+#import "YGUser.h"
+#import "UIView+Animate.h"
+#import "YGConnectionService.h"
+#import "MJExtension.h"
+#import "YGButton.h"
+#import "SDCycleScrollView.h"
+#import "FSCalendar.h"
+
+
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* YoGeeLiveShop_pch */

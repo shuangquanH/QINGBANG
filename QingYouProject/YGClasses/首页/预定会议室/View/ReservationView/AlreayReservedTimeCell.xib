@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlreayReservedTimeCell" rowHeight="53" id="KGk-i7-Jjw" customClass="AlreayReservedTimeCell">
+            <rect key="frame" x="0.0" y="0.0" width="385" height="53"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="385" height="52.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="08:30~09:30 被预定" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyi-co-S4H">
+                        <rect key="frame" x="15" y="0.0" width="177.5" height="52.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.98039215686274506" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17：00~18：00 被预定" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JbG-wv-ZFM">
+                        <rect key="frame" x="192.5" y="0.0" width="177.5" height="52.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.98039215690000003" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="uyi-co-S4H" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="6g0-0X-W5w"/>
+                    <constraint firstItem="uyi-co-S4H" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="JRl-Te-sWl"/>
+                    <constraint firstItem="JbG-wv-ZFM" firstAttribute="leading" secondItem="uyi-co-S4H" secondAttribute="trailing" id="P1B-At-6nU"/>
+                    <constraint firstAttribute="trailing" secondItem="JbG-wv-ZFM" secondAttribute="trailing" constant="15" id="XaI-IF-UuU"/>
+                    <constraint firstItem="JbG-wv-ZFM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="c5a-s1-hCC"/>
+                    <constraint firstAttribute="bottom" secondItem="uyi-co-S4H" secondAttribute="bottom" id="jke-QH-bcu"/>
+                    <constraint firstAttribute="bottom" secondItem="JbG-wv-ZFM" secondAttribute="bottom" id="k6A-9b-54b"/>
+                    <constraint firstItem="uyi-co-S4H" firstAttribute="width" secondItem="JbG-wv-ZFM" secondAttribute="width" id="y37-q1-OCi"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="leftTimeLabel" destination="uyi-co-S4H" id="lxS-RC-T64"/>
+                <outlet property="rightTimeLabel" destination="JbG-wv-ZFM" id="cFv-j1-4c6"/>
+            </connections>
+            <point key="canvasLocation" x="66.5" y="58.5"/>
+        </tableViewCell>
+    </objects>
+</document>

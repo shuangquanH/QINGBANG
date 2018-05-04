@@ -1,0 +1,13 @@
+//
+//  AdvertisementPageViewController.h
+//  QingYouProject
+//
+//  Created by zhaoao on 2017/9/21.
+//  Copyright © 2017年 ccyouge. All rights reserved.
+//
+
+#import "RootViewController.h"
+
+@interface AdvertisementPageViewController : RootViewController
+
+@end

@@ -1,0 +1,91 @@
+PODS:
+  - AMapFoundation (1.4.2)
+  - AMapLocation (2.4.0):
+    - AMapFoundation (~> 1.4)
+  - FDFullscreenPopGesture (1.1)
+  - FSCalendar (2.7.9)
+  - HappyDNS (0.3.12)
+  - IQKeyboardManager (5.0.6)
+  - Masonry (1.0.2)
+  - MBProgressHUD (1.0.0)
+  - MOBFoundation (3.0.2)
+  - Pingpp (2.2.17):
+    - Pingpp/Alipay (= 2.2.17)
+    - Pingpp/Core (= 2.2.17)
+    - Pingpp/UnionPay (= 2.2.17)
+  - Pingpp/Alipay (2.2.17):
+    - Pingpp/Core
+  - Pingpp/Core (2.2.17)
+  - Pingpp/UnionPay (2.2.17):
+    - Pingpp/Core
+  - SDCycleScrollView (1.73):
+    - SDWebImage (~> 4.0.0)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
+  - SMSSDK (3.0.1):
+    - MOBFoundation
+  - UITableView+FDTemplateLayoutCell (1.6)
+  - UMengAnalytics (4.2.4)
+  - UMengUShare/Core (6.4.5):
+    - UMengUShare/Network
+  - UMengUShare/Network (6.4.5)
+  - UMengUShare/Social/QQ (6.4.5):
+    - UMengUShare/Core
+    - UMengUShare/Social/ReducedQQ
+  - UMengUShare/Social/ReducedQQ (6.4.5):
+    - UMengUShare/Core
+  - UMengUShare/Social/ReducedSina (6.4.5):
+    - UMengUShare/Core
+  - UMengUShare/Social/ReducedWeChat (6.4.5):
+    - UMengUShare/Core
+  - UMengUShare/Social/Sina (6.4.5):
+    - UMengUShare/Core
+    - UMengUShare/Social/ReducedSina
+  - UMengUShare/Social/WeChat (6.4.5):
+    - UMengUShare/Core
+    - UMengUShare/Social/ReducedWeChat
+  - ZFPlayer (2.1.5):
+    - Masonry
+
+DEPENDENCIES:
+  - AMapLocation
+  - FDFullscreenPopGesture
+  - FSCalendar
+  - HappyDNS (~> 0.2)
+  - IQKeyboardManager (~> 5.0.0)
+  - Masonry
+  - MBProgressHUD
+  - Pingpp (~> 2.2.17)
+  - SDCycleScrollView
+  - SDWebImage
+  - SMSSDK
+  - UITableView+FDTemplateLayoutCell
+  - UMengAnalytics
+  - UMengUShare/Social/QQ
+  - UMengUShare/Social/Sina
+  - UMengUShare/Social/WeChat
+  - ZFPlayer
+
+SPEC CHECKSUMS:
+  AMapFoundation: 6c0471c9a6a0ad17dad46e3d800ad56ca170f82a
+  AMapLocation: 47b62b5381a66e4d0c2931b70ffde72682427896
+  FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
+  FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
+  HappyDNS: 691a3041128055d09866f86e6e9ca90f24da1f18
+  IQKeyboardManager: 077b7f691dfa9d69db9cff66f2bed68ebfc02d9b
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  MOBFoundation: d5e27c4638d911d3c7501aa5df458955d4814359
+  Pingpp: 166fc31888e8639c8a9a287330ba49dd5c5a250d
+  SDCycleScrollView: d0fd5fe40a80918371fd8939214eb3be81033d83
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  SMSSDK: a811c8ea6e89393097037b7cf6493248a40e50f0
+  UITableView+FDTemplateLayoutCell: 5c949b4a5059c404b442926c0e80f81d10a2d66f
+  UMengAnalytics: ef8d45f94c0e5771dc364cf6a5731d9d3b101da2
+  UMengUShare: a5711c54e640b04e3048e931d2b88d50f9cfa55c
+  ZFPlayer: 8a80bf8eb4638b97fbceaefcd3ca9978e9f17c9d
+
+PODFILE CHECKSUM: 8d3a60cde0ab9ad41aa8e124ff8c8813f1a44694
+
+COCOAPODS: 1.2.1

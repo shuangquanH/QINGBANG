@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CompanyTextView" rowHeight="58" id="KGk-i7-Jjw" customClass="CompanyTextViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="364" height="58"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="364" height="57.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="企业/个人名称" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8F1-ZU-IQG">
+                        <rect key="frame" x="15" y="0.0" width="100" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="0zH-tY-kHJ"/>
+                            <constraint firstAttribute="width" constant="100" id="jB2-42-Vje"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ciZ-dX-TOR">
+                        <rect key="frame" x="5" y="0.0" width="10" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="9y4-qA-2fB"/>
+                            <constraint firstAttribute="width" constant="10" id="Clk-KB-niC"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="1" green="0.34588090519999998" blue="0.42019368689999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="MLn-Xa-BEm">
+                        <rect key="frame" x="125" y="10.5" width="234" height="37"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="Qvo-35-CHf"/>
+                        </constraints>
+                        <color key="textColor" red="0.086274509803921567" green="0.10980392156862745" blue="0.086274509803921567" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="MLn-Xa-BEm" secondAttribute="bottom" constant="10" id="1LU-wy-nsN"/>
+                    <constraint firstItem="MLn-Xa-BEm" firstAttribute="leading" secondItem="8F1-ZU-IQG" secondAttribute="trailing" constant="10" id="2cc-xG-uop"/>
+                    <constraint firstItem="8F1-ZU-IQG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="d9b-qY-h5E"/>
+                    <constraint firstItem="ciZ-dX-TOR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="dj7-CJ-lVV"/>
+                    <constraint firstItem="MLn-Xa-BEm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="hXY-ir-KDW"/>
+                    <constraint firstAttribute="trailing" secondItem="MLn-Xa-BEm" secondAttribute="trailing" constant="5" id="jtw-M6-Nib"/>
+                    <constraint firstItem="8F1-ZU-IQG" firstAttribute="leading" secondItem="ciZ-dX-TOR" secondAttribute="trailing" id="kab-jQ-5Tp"/>
+                    <constraint firstItem="ciZ-dX-TOR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="mI0-4z-DJG"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="applyTitleLabel" destination="8F1-ZU-IQG" id="upp-LS-ZF4"/>
+                <outlet property="companyTextView" destination="MLn-Xa-BEm" id="4g5-T4-4VE"/>
+                <outlet property="xingLabel" destination="ciZ-dX-TOR" id="Sov-8t-nXh"/>
+            </connections>
+            <point key="canvasLocation" x="-123" y="37"/>
+        </tableViewCell>
+    </objects>
+</document>

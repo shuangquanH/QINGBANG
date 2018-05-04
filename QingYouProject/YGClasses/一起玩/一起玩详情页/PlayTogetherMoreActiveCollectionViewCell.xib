@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PlayTogetherMoreActiveCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="226" height="174"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="226" height="174"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nva-eO-YZ7">
+                        <rect key="frame" x="0.0" y="0.0" width="226" height="94"/>
+                        <color key="backgroundColor" red="1" green="0.44212257579999997" blue="0.40654580060000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="94" id="Xsm-gA-jTh"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小鸟音箱，来自北欧的生活情趣" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SGv-od-gov">
+                        <rect key="frame" x="0.0" y="94" width="226" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="PYv-QN-CVf"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="情网科技园合肥区" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kfa-jR-hZj">
+                        <rect key="frame" x="0.0" y="124" width="226" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="LeA-6t-Lpx"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-08-09 19:00 开始" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZvD-nE-8Jm">
+                        <rect key="frame" x="0.0" y="149" width="226" height="25"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="SGv-od-gov" secondAttribute="trailing" id="3ct-Uw-mcd"/>
+                <constraint firstItem="ZvD-nE-8Jm" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ExH-3J-WAA"/>
+                <constraint firstAttribute="bottom" secondItem="ZvD-nE-8Jm" secondAttribute="bottom" id="Nwa-Ac-Ds7"/>
+                <constraint firstItem="Kfa-jR-hZj" firstAttribute="top" secondItem="SGv-od-gov" secondAttribute="bottom" id="PGf-oV-fRf"/>
+                <constraint firstAttribute="trailing" secondItem="Kfa-jR-hZj" secondAttribute="trailing" id="RK9-a9-oAz"/>
+                <constraint firstItem="nva-eO-YZ7" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Tru-FR-5e7"/>
+                <constraint firstAttribute="trailing" secondItem="ZvD-nE-8Jm" secondAttribute="trailing" id="fXO-CH-WyV"/>
+                <constraint firstItem="nva-eO-YZ7" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="lg2-1G-2sD"/>
+                <constraint firstItem="Kfa-jR-hZj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="pjw-ak-8Gw"/>
+                <constraint firstItem="ZvD-nE-8Jm" firstAttribute="top" secondItem="Kfa-jR-hZj" secondAttribute="bottom" id="qbS-oC-wzZ"/>
+                <constraint firstItem="SGv-od-gov" firstAttribute="top" secondItem="nva-eO-YZ7" secondAttribute="bottom" id="sV5-JF-o3H"/>
+                <constraint firstAttribute="trailing" secondItem="nva-eO-YZ7" secondAttribute="trailing" id="tNN-k7-ro5"/>
+                <constraint firstItem="SGv-od-gov" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="zjq-GD-Spv"/>
+            </constraints>
+            <size key="customSize" width="226" height="174"/>
+            <connections>
+                <outlet property="activeAddress" destination="Kfa-jR-hZj" id="TNB-Ko-oKT"/>
+                <outlet property="activeImage" destination="nva-eO-YZ7" id="3f6-Zi-DwA"/>
+                <outlet property="activeTime" destination="ZvD-nE-8Jm" id="xWC-N7-DZo"/>
+                <outlet property="activeTitle" destination="SGv-od-gov" id="Cqx-U5-rM8"/>
+            </connections>
+            <point key="canvasLocation" x="128" y="116"/>
+        </collectionViewCell>
+    </objects>
+</document>

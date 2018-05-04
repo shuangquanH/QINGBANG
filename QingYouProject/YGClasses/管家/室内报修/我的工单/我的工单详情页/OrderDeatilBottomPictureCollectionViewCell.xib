@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="OrderDeatilBottomPictureCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="276" height="182"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="276" height="182"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SN0-Wx-h3m">
+                        <rect key="frame" x="0.0" y="0.0" width="276" height="182"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="SN0-Wx-h3m" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="12b-IR-Eji"/>
+                <constraint firstItem="SN0-Wx-h3m" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="KWh-pU-ian"/>
+                <constraint firstAttribute="bottom" secondItem="SN0-Wx-h3m" secondAttribute="bottom" id="OLI-hB-Xjo"/>
+                <constraint firstAttribute="trailing" secondItem="SN0-Wx-h3m" secondAttribute="trailing" id="VVe-l6-Vfe"/>
+            </constraints>
+            <size key="customSize" width="276" height="182"/>
+            <connections>
+                <outlet property="pictureView" destination="SN0-Wx-h3m" id="3nn-Rt-Su3"/>
+            </connections>
+            <point key="canvasLocation" x="-82" y="-69"/>
+        </collectionViewCell>
+    </objects>
+</document>

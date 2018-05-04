@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" reuseIdentifier="TextTopPictureBottomCell" rowHeight="220" id="KGk-i7-Jjw" customClass="TextTopPictureBottomCell">
+            <rect key="frame" x="0.0" y="0.0" width="433" height="220"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="433" height="219.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18年后成小春5个老婆凑一桌，梁小冰最美，最惨的是她！" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75Z-3K-QlD">
+                        <rect key="frame" x="15" y="15" width="403" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.086274509799999996" green="0.10980392160000001" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderfigure_rectangle_230x172_4_3" translatesAutoresizingMaskIntoConstraints="NO" id="4Fg-Us-SxJ">
+                        <rect key="frame" x="15" y="48" width="124.5" height="90.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="4Fg-Us-SxJ" secondAttribute="height" multiplier="11:8" id="acO-1x-rOV"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderfigure_rectangle_230x172_4_3" translatesAutoresizingMaskIntoConstraints="NO" id="9QX-aw-Tle">
+                        <rect key="frame" x="154.5" y="48" width="124" height="90.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="9QX-aw-Tle" secondAttribute="height" multiplier="11:8" id="dn8-qX-tRs"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderfigure_rectangle_230x172_4_3" translatesAutoresizingMaskIntoConstraints="NO" id="CNq-Qw-vzl">
+                        <rect key="frame" x="293.5" y="48" width="124.5" height="90.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="CNq-Qw-vzl" secondAttribute="height" multiplier="11:8" id="fca-KP-VWL"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="青网 2017-07-29 14:12:34" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ARZ-VV-a0B">
+                        <rect key="frame" x="15" y="153.5" width="403" height="51"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="ARZ-VV-a0B" secondAttribute="bottom" constant="15" id="0FR-Dr-dut"/>
+                    <constraint firstItem="9QX-aw-Tle" firstAttribute="top" secondItem="75Z-3K-QlD" secondAttribute="bottom" constant="15" id="Dwd-Yy-0JN"/>
+                    <constraint firstItem="4Fg-Us-SxJ" firstAttribute="top" secondItem="75Z-3K-QlD" secondAttribute="bottom" constant="15" id="EI0-NF-zZs"/>
+                    <constraint firstAttribute="trailing" secondItem="CNq-Qw-vzl" secondAttribute="trailing" constant="15" id="LDw-tN-nY4"/>
+                    <constraint firstItem="CNq-Qw-vzl" firstAttribute="leading" secondItem="9QX-aw-Tle" secondAttribute="trailing" constant="15" id="M34-bS-bPO"/>
+                    <constraint firstItem="4Fg-Us-SxJ" firstAttribute="width" secondItem="9QX-aw-Tle" secondAttribute="width" id="McW-ec-Ll1"/>
+                    <constraint firstAttribute="trailing" secondItem="75Z-3K-QlD" secondAttribute="trailing" constant="15" id="PAw-0C-ylw"/>
+                    <constraint firstAttribute="trailing" secondItem="ARZ-VV-a0B" secondAttribute="trailing" constant="15" id="d0R-9k-ggz"/>
+                    <constraint firstItem="4Fg-Us-SxJ" firstAttribute="width" secondItem="CNq-Qw-vzl" secondAttribute="width" id="h5H-xJ-mer"/>
+                    <constraint firstItem="75Z-3K-QlD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="jr4-YF-Amz"/>
+                    <constraint firstItem="9QX-aw-Tle" firstAttribute="leading" secondItem="4Fg-Us-SxJ" secondAttribute="trailing" constant="15" id="naA-pX-Ga3"/>
+                    <constraint firstItem="75Z-3K-QlD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="oee-y1-2Ch"/>
+                    <constraint firstItem="ARZ-VV-a0B" firstAttribute="top" secondItem="4Fg-Us-SxJ" secondAttribute="bottom" constant="15" id="pT8-mp-g9K"/>
+                    <constraint firstItem="4Fg-Us-SxJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="qpM-VL-KTI"/>
+                    <constraint firstItem="CNq-Qw-vzl" firstAttribute="top" secondItem="75Z-3K-QlD" secondAttribute="bottom" constant="15" id="v9k-Y4-j1P"/>
+                    <constraint firstItem="ARZ-VV-a0B" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="ybR-Jd-XiA"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="leftImageView" destination="4Fg-Us-SxJ" id="6MW-Bj-dbd"/>
+                <outlet property="middleImageView" destination="9QX-aw-Tle" id="uxK-ag-5HX"/>
+                <outlet property="nameLabel" destination="75Z-3K-QlD" id="wS0-24-t9y"/>
+                <outlet property="rightImageView" destination="CNq-Qw-vzl" id="glv-Ho-m1J"/>
+                <outlet property="timeLabel" destination="ARZ-VV-a0B" id="2Zh-0A-Y6i"/>
+            </connections>
+            <point key="canvasLocation" x="129.5" y="97"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="placeholderfigure_rectangle_230x172_4_3" width="115" height="86"/>
+    </resources>
+</document>
