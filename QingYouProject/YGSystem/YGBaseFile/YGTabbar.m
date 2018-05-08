@@ -19,12 +19,12 @@
     }
 }
 
-- (void)tabBarButtonClick:(UIControl *)tabBarButton
-{
+- (void)tabBarButtonClick:(UIControl *)tabBarButton {
     for (UIView *imageView in tabBarButton.subviews) {
-        if ([imageView isKindOfClass:NSClassFromString(@"UITabBarSwappableImageView")]) {
-            [imageView showQAnimate];                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
-        }
+        NSLog(@"%@", imageView);
+//        if ([imageView isKindOfClass:NSClassFromString(@"UITabBarSwappableImageView")]) {
+            [imageView showQAnimate];
+//        }
     }
 }
 

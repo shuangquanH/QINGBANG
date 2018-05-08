@@ -34,9 +34,6 @@
     NSMutableArray *viewControllersArray = [[NSMutableArray alloc]init];
     
     self.tabBar.tintColor = colorWithMainColor;
-    //    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:YGUIColorFromRGB(0x888, 1),NSForegroundColorAttributeName, [UIFont fontWithName:@"Helvetica" size:12.0f],NSFontAttributeName,nil]forState:UIControlStateNormal];
-    //    self.tabBar.barTintColor = colorWithBlack;
-    
     
     self.tabBar.translucent = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -50,11 +47,15 @@
     
     
     //循环取item数据
-    for (NSDictionary *tabbarItemDic in tabbarArray)
-    {
-        UIImage *nomalImage = [[UIImage imageNamed:tabbarItemDic[@"normalImage"]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        UIImage *selectedImage = [[UIImage imageNamed:tabbarItemDic[@"selectedImage"]] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        UITabBarItem *tabbarItem = [[UITabBarItem alloc]initWithTitle:tabbarItemDic[@"title"] image:nomalImage selectedImage:selectedImage];
+    for (NSDictionary *tabbarItemDic in tabbarArray) {
+        UIImage *nomalImage = [[UIImage imageNamed:tabbarItemDic[@"normalImage"]]
+                               imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        
+        UIImage *selectedImage = [[UIImage imageNamed:tabbarItemDic[@"selectedImage"]]
+                                  imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        
+        UITabBarItem *tabbarItem = [[UITabBarItem alloc]initWithTitle:tabbarItemDic[@"title"]
+                                                                image:nomalImage selectedImage:selectedImage];
         
         UIViewController *viewController = [[NSClassFromString(tabbarItemDic[@"viewController"]) alloc] init];
         viewController.tabBarItem = tabbarItem;
