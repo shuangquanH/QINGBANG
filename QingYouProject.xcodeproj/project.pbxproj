@@ -5950,8 +5950,8 @@
 		2CA6867E1F68D57A00B6B74A /* QingYouProject */ = {
 			isa = PBXGroup;
 			children = (
-				18C154071FC820880010ACD3 /* YGClasses */,
 				2C8451E41FBD434200F037DE /* QingYouProject.entitlements */,
+				18C154071FC820880010ACD3 /* YGClasses */,
 				E2E5B08A1FB0675900205F70 /* YGOwnLib */,
 				E2E5ACC41FB0675800205F70 /* YGSystem */,
 				E2E5AB7E1FB0675700205F70 /* YGThirdLib */,
