@@ -92,8 +92,7 @@
     
 }
 
--(void)back
-{
+-(void)back {
 
     if ([self.confimDone isEqualToString:@"done"])
     {
@@ -104,28 +103,9 @@
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
-- (void)confirmToCertifyButtonAction
-{
-    // @"createAllaince" 一起玩儿创建联盟  @“SeccondHandExchangeMain” @“addSeccondHandExchange”
+- (void)confirmToCertifyButtonAction {
     if ([self.confimDone isEqualToString:@"done"]) {
         
-//        if ([self.createFieldsType isEqualToString:@"createAllaince"]) {
-//            TobeLeaderOfAllianceViewController *vc = [[TobeLeaderOfAllianceViewController alloc] init];
-//            [self.navigationController pushViewController:vc animated:YES];
-//
-//        }else if([self.createFieldsType isEqualToString:@"SeccondHandExchangeMain"] || [self.createFieldsType isEqualToString:@"addSeccondHandExchange"])
-//        {
-//            SeccondCertifyProfileViewController *vc = [[SeccondCertifyProfileViewController alloc] init];
-//            vc.pageType = @"SeccondHandExchangeCertify";
-//            [self.navigationController pushViewController:vc animated:YES];
-//
-//        }
-//        else if ([self.createFieldsType isEqualToString:@"addSeccondHandExchange"])
-//        {
-//            SeccondCertifyProfileViewController *vc = [[SeccondCertifyProfileViewController alloc] init];
-//            vc.pageType = @"addSeccondHandExchange";
-//            [self.navigationController pushViewController:vc animated:YES];
-//        }
         if ([self.pageType isEqualToString:@"createAllaince"]) {
             TobeLeaderOfAllianceViewController *vc = [[TobeLeaderOfAllianceViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];

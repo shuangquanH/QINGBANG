@@ -245,43 +245,34 @@ showLoadingView:(BOOL)flag
     //    {
     //        requestKey = [NSData getEncryptValueWithDic:parameters];
     //    }
-    [self.requestManager POST:[NSString stringWithFormat:@"%@app/%@", Debug_Server, URLString] parameters:parameters progress:^(NSProgress *_Nonnull uploadProgress)
-    {
-
-    }                 success:^(NSURLSessionDataTask *_Nonnull task, id _Nullable responseObject)
-    {
-        NSLog(@"%@",responseObject);
+    [self.requestManager POST:[NSString stringWithFormat:@"%@app/%@", Debug_Server, URLString] parameters:parameters progress:^(NSProgress *_Nonnull uploadProgress) {
+} success:^(NSURLSessionDataTask *_Nonnull task, id _Nullable responseObject) {
+//        NSLog(@"%@",responseObject);
         [scrollView.mj_header endRefreshing];
         [scrollView.mj_footer endRefreshing];
-        if (flag)
-        {
+        if (flag) {
             [self dissmissLoadingView];
         }
         //如果失败就toast
-        if ([responseObject[@"state"] isEqualToString:@"error"])
-        {
+        if ([responseObject[@"state"] isEqualToString:@"error"]) {
             [YGAppTool showToastWithText:responseObject[@"msg"]];
             NSDictionary *userInfo = @{NSLocalizedDescriptionKey: responseObject[@"msg"]};
             NSError *error = [NSError errorWithDomain:@"" code:99999 userInfo:userInfo];
-            if (failure)
-            {
+            if (failure) {
                 failure(error);
             }
             return;
         }
 
         //如果responseObject[@"data"]下含有result键
-        if ([[responseObject[@"data"] allKeys] containsObject:@"result"])
-        {
+        if ([[responseObject[@"data"] allKeys] containsObject:@"result"]) {
           
             //如果result是0就toast并return
-            if ([responseObject[@"data"][@"result"] isEqualToString:@"0"])
-            {
+            if ([responseObject[@"data"][@"result"] isEqualToString:@"0"]) {
                 [YGAppTool showToastWithText:responseObject[@"msg"]];
                 NSDictionary *userInfo = @{NSLocalizedDescriptionKey: responseObject[@"msg"]};
                 NSError *error = [NSError errorWithDomain:@"" code:9999 userInfo:userInfo];
-                if (failure)
-                {
+                if (failure) {
                     failure(error);
                 }
                 return;
@@ -290,35 +281,27 @@ showLoadingView:(BOOL)flag
 
 
         //写缓存，先判断有没有total键
-        if ([[parameters allKeys] containsObject:@"total"])
-        {
-            if ([parameters[@"total"] intValue] == 0)
-            {
+        if ([[parameters allKeys] containsObject:@"total"]) {
+            if ([parameters[@"total"] intValue] == 0) {
                 NSString *jsonString = ((NSDictionary *) parameters).mj_JSONString;
-                if (!jsonString)
-                {
+                if (!jsonString) {
                     jsonString = @"";
                 }
                 [_myCache setObject:responseObject[@"data"] forKey:[URLString stringByAppendingString:jsonString]];
             }
-        }
-        else
-        {
+        } else {
             NSString *jsonString = ((NSDictionary *) parameters).mj_JSONString;
-            if (!jsonString)
-            {
+            if (!jsonString) {
                 jsonString = @"";
             }
             [_myCache setObject:responseObject[@"data"] forKey:[URLString stringByAppendingString:jsonString]];
         }
 
         //成功block
-        if (success)
-        {
+        if (success) {
             success(responseObject[@"data"]);
         }
-    }                 failure:^(NSURLSessionDataTask *_Nullable task, NSError *_Nonnull error)
-    {
+    } failure:^(NSURLSessionDataTask *_Nullable task, NSError *_Nonnull error) {
 
         [scrollView.mj_header endRefreshing];
         [scrollView.mj_footer endRefreshing];
@@ -328,34 +311,29 @@ showLoadingView:(BOOL)flag
         }
         [YGAppTool showToastWithText:@"服务器开小差了哦"];
         //失败block
-        if (failure)
-        {
+        if (failure) {
             failure(error);
         }
         [self printErrorLogWithURLString:URLString parameters:parameters reason:error.localizedDescription];
-
     }];
 }
 
 /**
  *  带图片优格post封装方法(不用写state为error的toast，不用写failure的toast，不用写result为0的toast，回调的responseObject是接收到的responseObject[@"data"]，不用再取data，不用写结束刷新)
  */
-- (void)           YGPOST:(NSString *)URLString
+- (void)YGPOST:(NSString *)URLString
                parameters:(id)parameters
           showLoadingView:(BOOL)flag
                scrollView:(UIScrollView *)scrollView
 constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
                   success:(void (^)(id responseObject))success
-                  failure:(void (^)(NSError *error))failure
-{
-    if (_netWorkStatus == NotReachable)
-    {
+                  failure:(void (^)(NSError *error))failure {
+    if (_netWorkStatus == NotReachable) {
         [scrollView.mj_header endRefreshing];
         [scrollView.mj_footer endRefreshing];
         [YGAppTool showToastWithText:@"当前暂无网络，请检查网络设置"];
         [self dissmissLoadingView];
-        if (failure)
-        {
+        if (failure) {
             NSDictionary *userInfo = @{NSLocalizedDescriptionKey: @"当前暂无网络，请检查网络设置"};
             NSError *error = [NSError errorWithDomain:@"" code:404 userInfo:userInfo];
             failure(error);
@@ -363,59 +341,39 @@ constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
         }
         return;
     }
-    if (flag)
-    {
+    if (flag) {
         [self showLoadingViewWithSuperView:YGAppDelegate.window];
     }
 
-    //    NSString *requestKey;
-    //    if (parameters == nil)
-    //    {
-    //        requestKey = nil;
-    //    }
-    //    else
-    //    {
-    //        requestKey = [NSData getEncryptValueWithDic:parameters];
-    //    }
-
-    [self.requestManager POST:[NSString stringWithFormat:@"%@app/%@", Debug_Server, URLString] parameters:parameters constructingBodyWithBlock:^(id <AFMultipartFormData> _Nonnull formData)
-    {
+    [self.requestManager POST:[NSString stringWithFormat:@"%@app/%@", Debug_Server, URLString] parameters:parameters constructingBodyWithBlock:^(id <AFMultipartFormData> _Nonnull formData) {
         block(formData);
-    }                progress:^(NSProgress *_Nonnull uploadProgress)
-    {
-
-    }                 success:^(NSURLSessionDataTask *_Nonnull task, id _Nullable responseObject)
-    {
+    } progress:^(NSProgress *_Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask *_Nonnull task, id _Nullable responseObject) {
         [scrollView.mj_header endRefreshing];
         [scrollView.mj_footer endRefreshing];
-        if (flag)
-        {
+        if (flag) {
             [self dissmissLoadingView];
         }
         //如果失败就toast
-        if ([responseObject[@"state"] isEqualToString:@"error"])
-        {
+        if ([responseObject[@"state"] isEqualToString:@"error"]) {
             [YGAppTool showToastWithText:responseObject[@"msg"]];
             NSDictionary *userInfo = @{NSLocalizedDescriptionKey: responseObject[@"msg"]};
             NSError *error = [NSError errorWithDomain:@"" code:99999 userInfo:userInfo];
-            if (failure)
-            {
+            if (failure) {
                 failure(error);
             }
             return;
         }
 
         //如果responseObject[@"data"]下含有result键
-        if ([[responseObject[@"data"] allKeys] containsObject:@"result"])
-        {
+        if ([[responseObject[@"data"] allKeys] containsObject:@"result"]) {
             //如果result是0就toast并return
-            if ([responseObject[@"data"][@"result"] isEqualToString:@"0"])
-            {
+            if ([responseObject[@"data"][@"result"] isEqualToString:@"0"]) {
                 [YGAppTool showToastWithText:responseObject[@"msg"]];
                 NSDictionary *userInfo = @{NSLocalizedDescriptionKey: responseObject[@"msg"]};
                 NSError *error = [NSError errorWithDomain:@"" code:9999 userInfo:userInfo];
-                if (failure)
-                {
+                if (failure) {
                     failure(error);
                 }
                 return;
@@ -424,23 +382,19 @@ constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block
 
 
         //成功block
-        if (success)
-        {
+        if (success) {
             success(responseObject[@"data"]);
         }
-    }                 failure:^(NSURLSessionDataTask *_Nullable task, NSError *_Nonnull error)
-    {
+    } failure:^(NSURLSessionDataTask *_Nullable task, NSError *_Nonnull error) {
 
         [scrollView.mj_header endRefreshing];
         [scrollView.mj_footer endRefreshing];
-        if (flag)
-        {
+        if (flag) {
             [self dissmissLoadingView];
         }
         [YGAppTool showToastWithText:@"服务器开小差了哦"];
         //失败block
-        if (failure)
-        {
+        if (failure) {
             failure(error);
         }
         [self printErrorLogWithURLString:URLString parameters:parameters reason:error.localizedDescription];
