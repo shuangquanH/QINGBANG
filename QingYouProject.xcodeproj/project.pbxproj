@@ -7435,6 +7435,7 @@
 				TargetAttributes = {
 					2CA6867B1F68D57A00B6B74A = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = C4WP4QR8QG;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -8640,7 +8641,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CODE_SIGN_ENTITLEMENTS = QingYouProject/QingYouProject.entitlements;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = C4WP4QR8QG;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -8752,7 +8753,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LIBRARY = "libstdc++";
 				CODE_SIGN_ENTITLEMENTS = QingYouProject/QingYouProject.entitlements;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = C4WP4QR8QG;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
