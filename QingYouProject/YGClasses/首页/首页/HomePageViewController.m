@@ -135,7 +135,6 @@ CLLocationManagerDelegate>
     [_coverLeftNaviButton setTitle:[YGUserDefaults objectForKey:USERDEF_NOWCITY] forState:UIControlStateNormal];
     _coverLeftNaviButton.titleLabel.font = [UIFont systemFontOfSize:YGFontSizeNormal];
     [_coverLeftNaviButton setTitleColor:colorWithBlack forState:UIControlStateNormal];
-//    [_coverLeftNaviButton addTarget:self action:@selector(cityButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     _coverLeftNaviButton.frame =  CGRectMake(0, 0, YGScreenWidth, 40);
     self.navigationItem.titleView = _coverLeftNaviButton;
     [_coverLeftNaviButton setTitle:@"青网欢迎您" forState:UIControlStateNormal];
@@ -143,7 +142,7 @@ CLLocationManagerDelegate>
 
 - (void)configUI {
     
-    //头部视图
+    //头部视图容器
     UIView *tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, YGScreenWidth, 0)];
     tableHeaderView.backgroundColor = colorWithTable;
     
@@ -165,8 +164,7 @@ CLLocationManagerDelegate>
                                 @{@"title":@"二手置换",@"image":@"home_secondhand"}
                                 ];
     
-    for (int i = 0; i<imageNameArray.count; i++)
-    {
+    for (int i = 0; i<imageNameArray.count; i++) {
         UIView *baseView = [[UIView alloc]initWithFrame:CGRectMake(YGScreenWidth/4*i, 0, YGScreenWidth/4, 0)];
         [topBaseView addSubview:baseView];
         
@@ -177,7 +175,7 @@ CLLocationManagerDelegate>
         imageView.centerx = baseView.width/2;
         [baseView addSubview:imageView];
         
-        //小蚊子
+        //小文字
         UILabel *label = [[UILabel alloc]init];
         label.font = [UIFont systemFontOfSize:YGFontSizeNormal];
         label.textColor = colorWithBlack;

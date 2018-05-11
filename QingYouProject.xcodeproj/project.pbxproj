@@ -1009,6 +1009,7 @@
 		E2E5B39C1FB0675B00205F70 /* YGVideoPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E5B1141FB0675900205F70 /* YGVideoPickerController.m */; };
 		E94137A0209C3891003F3649 /* AppStartManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E941379F209C3891003F3649 /* AppStartManager.m */; };
 		E94137A7209C4295003F3649 /* SQLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E94137A6209C4295003F3649 /* SQLocationManager.m */; };
+		E94137EF20A53151003F3649 /* SQHomePageTableviewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = E94137EE20A53151003F3649 /* SQHomePageTableviewHeader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -2887,6 +2888,8 @@
 		E941379F209C3891003F3649 /* AppStartManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppStartManager.m; sourceTree = "<group>"; };
 		E94137A5209C4295003F3649 /* SQLocationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQLocationManager.h; sourceTree = "<group>"; };
 		E94137A6209C4295003F3649 /* SQLocationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQLocationManager.m; sourceTree = "<group>"; };
+		E94137ED20A53151003F3649 /* SQHomePageTableviewHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQHomePageTableviewHeader.h; sourceTree = "<group>"; };
+		E94137EE20A53151003F3649 /* SQHomePageTableviewHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQHomePageTableviewHeader.m; sourceTree = "<group>"; };
 		F883056FA3AE70A8E2E8FFA5 /* Pods-QingYouProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QingYouProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-QingYouProject/Pods-QingYouProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -5531,6 +5534,8 @@
 				18C158801FC820890010ACD3 /* ProgressView.m */,
 				18C158811FC820890010ACD3 /* SelectCityPopView.h */,
 				18C158821FC820890010ACD3 /* SelectCityPopView.m */,
+				E94137ED20A53151003F3649 /* SQHomePageTableviewHeader.h */,
+				E94137EE20A53151003F3649 /* SQHomePageTableviewHeader.m */,
 			);
 			path = "首页";
 			sourceTree = "<group>";
@@ -8437,6 +8442,7 @@
 				18C159741FC8208A0010ACD3 /* JobOutsourceTradeRecoredDealingViewController.m in Sources */,
 				18C158EC1FC820890010ACD3 /* LoginView.m in Sources */,
 				E2E5B1991FB0675A00205F70 /* PGIndexBannerSubiew.m in Sources */,
+				E94137EF20A53151003F3649 /* SQHomePageTableviewHeader.m in Sources */,
 				18C159911FC8208A0010ACD3 /* MyIntroduceViewController.m in Sources */,
 				E2E5B1851FB0675A00205F70 /* YYImage.m in Sources */,
 				2C7D866B1FECB34700A75C27 /* RushPurchaseClassifyView.m in Sources */,

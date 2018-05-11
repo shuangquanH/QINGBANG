@@ -110,15 +110,11 @@
             TobeLeaderOfAllianceViewController *vc = [[TobeLeaderOfAllianceViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
             
-        }else if([self.pageType isEqualToString:@"SeccondHandExchangeMain"] || [self.pageType isEqualToString:@"addSeccondHandExchange"])
-        {
+        }else if([self.pageType isEqualToString:@"SeccondHandExchangeMain"] || [self.pageType isEqualToString:@"addSeccondHandExchange"]) {
             SeccondCertifyProfileViewController *vc = [[SeccondCertifyProfileViewController alloc] init];
             vc.pageType = @"SeccondHandExchangeCertify";
             [self.navigationController pushViewController:vc animated:YES];
-            
-        }
-        else
-        {
+        } else {
             UINavigationController *navc = self.navigationController;
             NSMutableArray *viewControllers = [[NSMutableArray alloc] init];
             for (UIViewController *vc in [navc viewControllers]) {
@@ -129,8 +125,7 @@
             }
             [navc setViewControllers:viewControllers];
         }
-    }else
-    {
+    } else {
         [YGNetService YGPOST:REQUEST_YiJianYanZheng parameters:@{} showLoadingView:NO scrollView:nil success:^(id responseObject) {
             [self doVerify:responseObject[@"url"]];
         

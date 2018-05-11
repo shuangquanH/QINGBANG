@@ -27,18 +27,20 @@
 
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    viewController.hidesBottomBarWhenPushed = YES;
-    // 左边返回按钮
-    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    backButton.frame = CGRectMake(0, 0, 40, 40);
-    backButton.backgroundColor = [UIColor clearColor];
-    [backButton setImage:[UIImage imageNamed:@"back_black"] forState:UIControlStateNormal];
-    backButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
-    backButton.imageView.clipsToBounds = YES;
-    [backButton setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 0)];
-    [backButton addTarget:viewController action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-    [viewController.navigationItem setLeftBarButtonItem:leftItem];
+    if (self.viewControllers.count>0) {    
+        viewController.hidesBottomBarWhenPushed = YES;
+        // 左边返回按钮
+        UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        backButton.frame = CGRectMake(0, 0, 40, 40);
+        backButton.backgroundColor = [UIColor clearColor];
+        [backButton setImage:[UIImage imageNamed:@"back_black"] forState:UIControlStateNormal];
+        backButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        backButton.imageView.clipsToBounds = YES;
+        [backButton setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 0)];
+        [backButton addTarget:viewController action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+        [viewController.navigationItem setLeftBarButtonItem:leftItem];
+    }
     
     
     [super pushViewController:viewController animated:animated];
