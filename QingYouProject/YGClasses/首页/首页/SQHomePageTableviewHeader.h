@@ -8,6 +8,26 @@
 
 #import <UIKit/UIKit.h>
 
+
+@protocol SQHomeTableViewHeaderDelegate
+
+- (void)clickedBannerWithModel:(NSString    *)model;
+
+- (void)clickedProjectsIconWithModel:(NSString  *)model;
+
+- (void)clickedTodyNewsWithModel:(NSString  *)model;
+
+@end
+
+
+
 @interface SQHomePageTableviewHeader : UIView
+
+@property (nonatomic, weak) SQHomePageTableviewHeader       *delegate;
+
+@property (nonatomic, strong) SDCycleScrollView     *homeBannerView;
+@property (nonatomic, strong) UIView                *homeTopProjectsIcon;
+@property (nonatomic, strong) UIView                *todayNews;
+@property (nonatomic, strong) UIView                *subProjectsIcon;
 
 @end
