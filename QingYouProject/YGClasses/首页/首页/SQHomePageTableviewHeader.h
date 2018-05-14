@@ -7,23 +7,26 @@
 //  首页tableview的headerview，包含顶部轮播图，轮播图下面四个icon，今日头条轮播，今日头条下面三个子项目
 
 #import <UIKit/UIKit.h>
-
+#import "HomePageModel.h"
 
 @protocol SQHomeTableViewHeaderDelegate
 
-- (void)clickedBannerWithModel:(NSString    *)model;
+//点击首页录播图
+- (void)clickedBannerWithModel:(HomePageModel    *)model;
 
-- (void)clickedProjectsIconWithModel:(NSString  *)model;
+/** 点击项目跳转  */
+- (void)clickedProjectsIconWithModel:(HomePageModel  *)model;
 
-- (void)clickedTodyNewsWithModel:(NSString  *)model;
+/** 点击新闻  */
+- (void)clickedTodyNewsWithModel:(HomePageModel  *)model;
 
 @end
 
 
 
-@interface SQHomePageTableviewHeader : UIView
+@interface SQHomePageTableviewHeader : UIView <SDCycleScrollViewDelegate>
 
-@property (nonatomic, weak) SQHomePageTableviewHeader       *delegate;
+@property (nonatomic, weak) id<SQHomeTableViewHeaderDelegate>       delegate;
 
 @property (nonatomic, strong) SDCycleScrollView     *homeBannerView;
 @property (nonatomic, strong) UIView                *homeTopProjectsIcon;
@@ -31,3 +34,10 @@
 @property (nonatomic, strong) UIView                *subProjectsIcon;
 
 @end
+
+
+
+
+
+
+

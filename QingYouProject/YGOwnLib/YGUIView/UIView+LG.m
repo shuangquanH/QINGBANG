@@ -91,6 +91,13 @@
     return  self.frame.size.height;
 }
 
+- (CGFloat)sqright {
+    return self.x+self.width;
+}
+- (CGFloat)sqbottom {
+    return self.y+self.height;
+}
+
 -(float)rightMarginWithView:(UIView *)view width:(float)width margin:(float)margin
 {
     self.width = width;

@@ -60,6 +60,10 @@
 #import "LoginViewController.h"
 
 
+
+#import "SQHomePageTableviewHeader.h"
+
+
 @interface HomePageViewController()
 <UITableViewDelegate,
 UITableViewDataSource,
@@ -103,7 +107,29 @@ CLLocationManagerDelegate>
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadLaunches];//引导页
-    [self configUI];//ui层
+//    [self configUI];//ui层
+    
+    SQHomePageTableviewHeader   *tableHeaderView = [[SQHomePageTableviewHeader alloc] initWithFrame:CGRectMake(0, 0, YGScreenWidth, 0)];
+    
+    //tableview
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, YGScreenWidth, YGScreenHeight- YGNaviBarHeight-YGStatusBarHeight-YGTabBarHeight) style:UITableViewStyleGrouped];
+    _tableView.showsVerticalScrollIndicator = NO;
+    _tableView.tableHeaderView = tableHeaderView;
+    [_tableView registerClass:[HomePageTableViewCell class] forCellReuseIdentifier:@"HomePageTableViewCell"];
+    [_tableView registerClass:[HomePageSeccondTableViewCell class] forCellReuseIdentifier:@"HomePageSeccondTableViewCell"];
+    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    _tableView.backgroundColor = colorWithTable;
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    [self.view addSubview:_tableView];
+    [self createRefreshWithScrollView:_tableView containFooter:NO];
+    [self refreshActionWithIsRefreshHeaderAction:YES];
+    if (@available(iOS 11.0, *)) {
+        _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        // Fallback on earlier versions
+    }
+    
 }
 
 - (void)loadLaunches {

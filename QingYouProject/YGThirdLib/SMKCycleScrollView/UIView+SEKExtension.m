@@ -94,6 +94,8 @@
     return self.frame.origin.y;
 }
 
+
+
 - (BOOL)isShowingOnKeyWindow
 {
     // 主窗口

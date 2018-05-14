@@ -176,6 +176,7 @@
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.scrollEnabled = NO;
         _tableView.pagingEnabled = YES;
+        _tableView.backgroundColor = self.backColor;
         
         [_tableView registerClass:[CycleViewCell class] forCellReuseIdentifier:@"cell"];
         _tableView.tableFooterView = [[UIView alloc]init];
