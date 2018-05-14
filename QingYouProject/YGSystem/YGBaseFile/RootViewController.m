@@ -44,46 +44,34 @@
 - (void)startPostWithURLString:(NSString *)URLString
                     parameters:(id)parameters
                showLoadingView:(BOOL)flag
-                    scrollView:(UIScrollView *)scrollView
-{
-    [YGNetService YGPOST:URLString parameters:parameters showLoadingView:flag scrollView:scrollView success:^(id responseObject)
-    {
+                    scrollView:(UIScrollView *)scrollView {
+    [YGNetService YGPOST:URLString parameters:parameters showLoadingView:flag scrollView:scrollView success:^(id responseObject) {
         [self didReceiveSuccessResponeseWithURLString:URLString parameters:parameters responeseObject:responseObject];
-    }            failure:^(NSError *error)
-    {
+    }   failure:^(NSError *error) {
         [self didReceiveFailureResponeseWithURLString:URLString parameters:parameters error:error];
     }];
 }
 
-- (void)didReceiveSuccessResponeseWithURLString:(NSString *)URLString parameters:(id)parameters responeseObject:(id)responseObject
-{
-
+- (void)didReceiveSuccessResponeseWithURLString:(NSString *)URLString parameters:(id)parameters responeseObject:(id)responseObject {
 }
 
-- (void)didReceiveFailureResponeseWithURLString:(NSString *)URLString parameters:(id)parameters error:(NSError *)error
-{
-
+- (void)didReceiveFailureResponeseWithURLString:(NSString *)URLString parameters:(id)parameters error:(NSError *)error {
 }
 
 //设置属性
-- (void)configAttribute
-{
-
+- (void)configAttribute {
 }
 
 //状态栏颜色
-- (void)setStatusBarStyle:(UIStatusBarStyle)statusBarStyle
-{
+- (void)setStatusBarStyle:(UIStatusBarStyle)statusBarStyle {
     _statusBarStyle = statusBarStyle;
     [[UIApplication sharedApplication] setStatusBarStyle:statusBarStyle animated:YES];
 }
 
 //一键创建普通navigation
-- (void)setNaviTitle:(NSString *)naviTitle
-{
+- (void)setNaviTitle:(NSString *)naviTitle {
     _naviTitle = naviTitle;
-    if (!_naviTitleLabel)
-    {
+    if (!_naviTitleLabel) {
         _naviTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(75, 0, YGScreenWidth - 150, 20)];
         _naviTitleLabel.textColor = colorWithBlack;
         _naviTitleLabel.textAlignment = NSTextAlignmentCenter;
