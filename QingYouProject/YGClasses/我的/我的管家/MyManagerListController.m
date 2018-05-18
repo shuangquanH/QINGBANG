@@ -185,7 +185,6 @@
         
     }
     if ([cell.textLabel.text isEqualToString:@"房租缴纳"]) {
-
         //房租缴纳审核
         [YGNetService YGPOST:REQUEST_HouserAudit parameters:@{@"userid":YGSingletonMarco.user.userId} showLoadingView:YES scrollView:nil success:^(id responseObject) {
             //返回值state ==0是请提交审核材料 ==1待审核 ==2审核通过直接跳到房租缴纳首页 ==3审核不通过跳到传身份证页面并提示请重新上传资料审核
@@ -212,12 +211,9 @@
                 controller.notioceString = @"请上传资料进行审核，审核通过后可进行房租缴纳";
                 [self.navigationController pushViewController:controller animated:YES];
             }
-            
-            
-        } failure:^(NSError *error) {
-            
-        }];
+        } failure: nil];
     }
+    
 }
 
 - (void)didReceiveMemoryWarning {

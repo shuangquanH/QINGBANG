@@ -58,6 +58,7 @@
     _loginView = [[LoginView alloc]init];
     _loginView.loginWithType = self.loginWithType;
     _loginView.delegate = self;
+    _loginView.canClose = self.canClose;
     [self.view addSubview:_loginView];
 }
 
@@ -155,12 +156,15 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)registAction
-{
-    LoginViewController *vc = [[LoginViewController alloc] init];
-    vc.loginWithType = loginWithRegistType;
-    vc.naviTitle = @"注册";
-    [self.navigationController pushViewController:vc animated:YES];
+- (void)registAction {
+    if (self.canClose) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        LoginViewController *vc = [[LoginViewController alloc] init];
+        vc.loginWithType = loginWithRegistType;
+        vc.naviTitle = @"注册";
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (void)getVerifyCode

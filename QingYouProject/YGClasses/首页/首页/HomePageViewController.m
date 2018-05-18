@@ -8,14 +8,10 @@
 //
 
 #import "HomePageViewController.h"
-#import "HomePageTableViewCell.h"
 #import "SelectCityPopView.h"
-#import "ManagerViewController.h"
+
 #import "YGStartPageView.h"
-#import "RushPurchaseViewController.h"
-#import "YGGravityImageView.h"
 #import "HomePageSeccondTableViewCell.h"
-#import "SMKCycleScrollView.h"
 #import <AMapFoundationKit/AMapFoundationKit.h>
 
 
@@ -24,12 +20,10 @@
 #import "OrderCheckHouseViewController.h"
 
 #import <AMapLocationKit/AMapLocationKit.h>
-#import "CommentViewController.h"
-#import "YGVideoPickerController.h"
 
 //项目申报等等
+#import "YGVideoPickerController.h"
 #import "PlayTogetherViewController.h"
-#import "PlayTogetherDetailViewController.h"//详情
 #import "NewThingsViewController.h"
 #import "NewThingsDetailController.h" //详情
 #import "OfficePurchaseViewController.h"
@@ -39,7 +33,6 @@
 #import "SeccondHandExchangeViewController.h"//详情页
 #import "BabyDetailsController.h"
 
-#import "ProjectApplyForWebDetailViewController.h"
 #import "ProjectApplyForViewController.h"
 #import "DecorationCarMainController.h"
 #import "FundSupportViewController.h"
@@ -51,46 +44,34 @@
 #define CHANGE_RANGE 146
 
 
-#import "PayRentViewController.h"
 #import "HouseRentAuditViewController.h"
 #import "CheckUserInfoViewController.h"
-#import "AdvertisesForViewController.h"
 #import "UpLoadIDFatherViewController.h"
-#import "YGCityPikerView1.h"
-#import "LoginViewController.h"
 
 
-
+/** 新增内容  */
 #import "SQHomePageTableviewHeader.h"
 
 
 @interface HomePageViewController()
 <UITableViewDelegate,
 UITableViewDataSource,
-HomePageTableViewCellDelegate,
+SQHomeTableViewHeaderDelegate,
 //YGVideoPickerControllerDelegate,
 CLLocationManagerDelegate> {
     //    YGVideoPickerController *_videoPicker;
-    NSMutableArray *_listArray;
-    UITableView *_tableView;
-    NSArray *_coverArray;
-    
-    NSMutableArray *_advertiseArray;
-    NSMutableArray *_neswArray;
-    
+    NSMutableArray  *_listArray;
     NSArray         *_sectionHeaderArray;
-    NSMutableArray *_projectDecorationFundNetModelArray;
-    NSArray *_PlaySlideshowList;
-    NSArray *_IndexSlideshowList;
-    NSArray *_freshNewsList;
-    UIButton *_coverLeftNaviButton;
+    UITableView     *_tableView;
+    
+    NSMutableArray  *_projectDecorationFundNetModelArray;
+    NSArray         *_IndexSlideshowList;
+    NSArray         *_freshNewsList;
+    UIButton        *_coverLeftNaviButton;
 }
-
-@property (nonatomic, strong) SMKCycleScrollView *cycleScrollView;
 @property(nonatomic,strong)CLLocationManager *locationManager;
 @property(nonatomic,strong)NSString *currentCity;//长春市
 @property(nonatomic,strong)NSString *nowLocalAddress;//吉林省长春市
-@property(nonatomic,strong)NSString *locateAddress;//传给后台的地址
 
 @end
 
@@ -107,13 +88,29 @@ CLLocationManagerDelegate> {
     [self.locationManager startUpdatingLocation];
 }
 
+
+- (void)loadLaunches {
+    if (![YGUserDefaults objectForKey:USERDEF_FIRSTOPENAPP]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lastPage) name:@"last" object:nil];
+        NSMutableArray *imageNameArray = [NSMutableArray    array];
+        for (int i = 0; i<4; i++) {
+            [imageNameArray addObject:[NSString stringWithFormat:@"%d_%.0f", i+1, YGScreenHeight]];
+        }
+        [YGStartPageView showWithLocalPhotoNamesArray:imageNameArray];
+    }
+}
+- (void)lastPage {
+    [YGUserDefaults setObject:@"1" forKey:USERDEF_FIRSTOPENAPP];
+    [self loginOrNotCanClose];
+}
+
 - (void)sqConfigureUi {
     SQHomePageTableviewHeader   *tableHeaderView = [[SQHomePageTableviewHeader alloc] initWithFrame:CGRectMake(0, 0, YGScreenWidth, 0)];
+    tableHeaderView.delegate = self;
     //tableview
     _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, YGScreenWidth, YGScreenHeight- YGNaviBarHeight-YGStatusBarHeight-YGTabBarHeight) style:UITableViewStyleGrouped];
     _tableView.showsVerticalScrollIndicator = NO;
     _tableView.tableHeaderView = tableHeaderView;
-    [_tableView registerClass:[HomePageTableViewCell class] forCellReuseIdentifier:@"HomePageTableViewCell"];
     [_tableView registerClass:[HomePageSeccondTableViewCell class] forCellReuseIdentifier:@"HomePageSeccondTableViewCell"];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.backgroundColor = colorWithTable;
@@ -127,29 +124,9 @@ CLLocationManagerDelegate> {
     }
 }
 
-- (void)loadLaunches {
-    if (![YGUserDefaults objectForKey:USERDEF_FIRSTOPENAPP]) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(lastPage) name:@"last" object:nil];
-        NSMutableArray *imageNameArray = @[].mutableCopy;
-        for (int i = 0; i<4; i++) {
-            [imageNameArray addObject:[NSString stringWithFormat:@"%d_%.0f", i+1, YGScreenHeight]];
-        }
-        [YGStartPageView showWithLocalPhotoNamesArray:imageNameArray];
-    }
-}
-- (void)lastPage {
-    [YGUserDefaults setObject:@"1" forKey:USERDEF_FIRSTOPENAPP];
-}
-
-
 
 - (void)configAttribute {
     self.automaticallyAdjustsScrollViewInsets = NO;
-    _listArray = [[NSMutableArray alloc]init];
-    _sectionHeaderArray = @[@"为您推荐",@"新鲜事"];
-    _projectDecorationFundNetModelArray = [[NSMutableArray alloc] init];
-    
-    // 左边城市
     _coverLeftNaviButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [_coverLeftNaviButton setImage:[UIImage imageNamed:@"home_address_ico_black"] forState:UIControlStateNormal];
     [_coverLeftNaviButton setImageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
@@ -159,6 +136,11 @@ CLLocationManagerDelegate> {
     _coverLeftNaviButton.frame =  CGRectMake(0, 0, YGScreenWidth, 40);
     self.navigationItem.titleView = _coverLeftNaviButton;
     [_coverLeftNaviButton setTitle:@"青网欢迎您" forState:UIControlStateNormal];
+    
+    
+    _listArray = [[NSMutableArray alloc]init];
+    _sectionHeaderArray = @[@"为您推荐",@"新鲜事"];
+    _projectDecorationFundNetModelArray = [[NSMutableArray alloc] init];
 }
 
 
@@ -177,11 +159,11 @@ CLLocationManagerDelegate> {
         }
         
         //一起玩滚动图
-        _PlaySlideshowList = [NSMutableArray arrayWithArray:[HomePageModel mj_objectArrayWithKeyValuesArray:responseObject[@"PlaySlideshowList"]]];
-        NSMutableArray *PlaySlideScrollArray = [[NSMutableArray alloc] init];
-        for (HomePageModel *model in _PlaySlideshowList) {
-            [PlaySlideScrollArray addObject:model.img];
-        }
+//        _PlaySlideshowList = [NSMutableArray arrayWithArray:[HomePageModel mj_objectArrayWithKeyValuesArray:responseObject[@"PlaySlideshowList"]]];
+//        NSMutableArray *PlaySlideScrollArray = [[NSMutableArray alloc] init];
+//        for (HomePageModel *model in _PlaySlideshowList) {
+//            [PlaySlideScrollArray addObject:model.img];
+//        }
         
         
         //新鲜事
@@ -223,34 +205,34 @@ CLLocationManagerDelegate> {
             [newsScrollArray addObject:newsScrollArray[0]];
             
         }
-        self.cycleScrollView.titleArray = newsScrollArray;
+//        self.cycleScrollView.titleArray = newsScrollArray;
         
         __weak typeof(self) weakSelf = self;
         
         __weak typeof (NSArray *)weakArray = _freshNewsList;
         
-        [self.cycleScrollView setSelectedBlock:^(NSInteger index, NSString *title) {
-            
-            if (![weakSelf loginOrNot])
-            {
-                return;
-            }
-            if ([title isEqualToString:@"新闻公告"]) {
-                return ;
-            }
-            HomePageModel *model;
-            if (weakArray.count == 1) {
-                model = weakArray[0];
-            }else
-            {
-                model = weakArray[index];
-            }
-            
-            NewThingsDetailController *vc = [[NewThingsDetailController alloc] init];
-            vc.idString = model.id;
-            [weakSelf.navigationController pushViewController:vc animated:YES];
-            NSLog(@"%zd-----%@",index,title);
-        }];
+//        [self.cycleScrollView setSelectedBlock:^(NSInteger index, NSString *title) {
+//
+//            if (![weakSelf loginOrNot])
+//            {
+//                return;
+//            }
+//            if ([title isEqualToString:@"新闻公告"]) {
+//                return ;
+//            }
+//            HomePageModel *model;
+//            if (weakArray.count == 1) {
+//                model = weakArray[0];
+//            }else
+//            {
+//                model = weakArray[index];
+//            }
+//
+//            NewThingsDetailController *vc = [[NewThingsDetailController alloc] init];
+//            vc.idString = model.id;
+//            [weakSelf.navigationController pushViewController:vc animated:YES];
+//            NSLog(@"%zd-----%@",index,title);
+//        }];
         
         
         //图片 type判断1234566.。。
@@ -402,8 +384,8 @@ CLLocationManagerDelegate> {
     if (![self loginOrNot]) {
         return;
     }
-    
-    if (indexPath.section ==0) {
+    //第一分区点击cell
+    if (indexPath.section==0) {
         if (indexPath.row == 0) {
             IntegrationIndustryCommerceController *vc = [[IntegrationIndustryCommerceController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
@@ -414,19 +396,31 @@ CLLocationManagerDelegate> {
             HomePageLegalServiceViewController * legalService = [[HomePageLegalServiceViewController alloc]init];
             [self.navigationController pushViewController:legalService animated:YES];
         }
-    }
-    if (indexPath.section ==1) {
+    } else {
         HomePageModel *model = _listArray[indexPath.section][indexPath.row];
         NewThingsDetailController *vc = [[NewThingsDetailController alloc] init];
         vc.idString = model.id;
         [self.navigationController pushViewController:vc animated:YES];
     }
-    
 }
 
 
 
 #pragma mark  ------------点击事件响应
+//点击首页录播图
+- (void)clickedBannerWithModel:(HomePageModel    *)model {
+    
+}
+
+/** 点击项目跳转  */
+- (void)clickedProjectsIconWithModel:(HomePageModel  *)model {
+    
+}
+
+/** 点击新闻  */
+- (void)clickedTodyNewsWithModel:(HomePageModel  *)model {
+    
+}
 //四个图标点击
 - (void)coverButtonClick:(UIButton *)button
 {

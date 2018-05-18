@@ -9,18 +9,27 @@
 #ifndef YGToolProject_YGCommon_h
 #define YGToolProject_YGCommon_h
 
+/**弱引用weakself*/
+#define WeakSelf(weakSelf)  __weak __typeof(&*self)weakSelf = self;
+
 
 /*************************** 常用的 IPHONE 属性 *******************************************/
 #define YGScreenWidth   ([[UIScreen mainScreen] bounds].size.width) // 屏幕宽度
 #define YGScreenHeight  ([[UIScreen mainScreen] bounds].size.height)// 屏幕高度
+
 #define YGAppDelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])   // 系统的AppleDelegate
+
 #define YGSingletonMarco [YGSingleton sharedManager]
 #define YGNetService [YGConnectionService sharedConnectionService]
 #define YGUserDefaults [NSUserDefaults standardUserDefaults]
+
 #define YGStatusBarHeight               [UIApplication sharedApplication].statusBarFrame.size.height    // 状态栏高度
 #define YGNaviBarHeight                   44                                                            // 工具栏高度 
 #define YGTabBarHeight                    YGSingletonMarco.tabBarHeight                                 // 底部工具栏高度 
 #define YGBottomMargin                   ((YGTabBarHeight - 49)/2)
+
+#define KNAVHEIGHT                      (YGStatusBarHeight+YGNaviBarHeight)
+#define KTABHEIGHT                      YGTabBarHeight
 
 #define USERFILEPATH [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"user.data"]
 
@@ -41,9 +50,9 @@
 #define APPKEY_UMENG_QQAPPID                            @"1106446191"
 #define APPKEY_UMENG_QQAPPKEY                           @"8VIXImbukJU2CzZd"
 #define APPKEY_UMENG_QQURL                              @"http://www.huobanchina.com"
-#define APPKEY_UMENG_SINAAPPID                            @"3373427159"
-#define APPKEY_UMENG_SINAAPPKEY                           @"1e1bee3ffee765259bce5e97a4ee216f"
-#define APPKEY_UMENG_SINAURL                              @"http://sns.whalecloud.com/sina/callback"
+#define APPKEY_UMENG_SINAAPPID                          @"3373427159"
+#define APPKEY_UMENG_SINAAPPKEY                         @"1e1bee3ffee765259bce5e97a4ee216f"
+#define APPKEY_UMENG_SINAURL                            @"http://sns.whalecloud.com/sina/callback"
 
 #define APPKEY_BAIDUMAP                                 @"3on3q0U6E9FQ1j7maqyTbSi1Eu8q0WnF"
 
@@ -111,17 +120,17 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:rgbAlpha]
 #define YGPageSize @"10" // Table每页数据的条数
 
 // 默认头像
-#define YGDefaultImgAvatar      [UIImage imageNamed:@"defaultavatar.png"]
+#define YGDefaultImgAvatar          [UIImage imageNamed:@"defaultavatar.png"]
 
-#define YGDefaultImgSquare      [UIImage imageNamed:@"placeholderfigure_square_750x750"] //正方形
+#define YGDefaultImgSquare          [UIImage imageNamed:@"placeholderfigure_square_750x750"] //正方形
 
 #define YGDefaultImgFour_Three      [UIImage imageNamed:@"placeholderfigure_rectangle_230x172_4_3"] //4：3
 
-#define YGDefaultImgTwo_One      [UIImage imageNamed:@"placeholderfigure_rectangle_750x375_2_1"] //2：1
+#define YGDefaultImgTwo_One         [UIImage imageNamed:@"placeholderfigure_rectangle_750x375_2_1"] //2：1
 
 #define YGDefaultImgThree_Four      [UIImage imageNamed:@"placeholderfigure_rectangle_214x284_3_4"] //3：4
 
-#define YGDefaultImgSixteen_Nine      [UIImage imageNamed:@"placeholderfigure_rectangle_698x392_16_9"] //16：9
+#define YGDefaultImgSixteen_Nine    [UIImage imageNamed:@"placeholderfigure_rectangle_698x392_16_9"] //16：9
 
 #define YGDefaultImgHorizontal      [UIImage imageNamed:@"placeholderfigure_rectangle_698x110"] //横条
 

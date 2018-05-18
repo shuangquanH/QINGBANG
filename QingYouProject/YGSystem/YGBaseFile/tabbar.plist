@@ -24,9 +24,9 @@
 	</dict>
 	<dict>
 		<key>title</key>
-		<string>抢购</string>
+		<string>订单</string>
 		<key>viewController</key>
-		<string>RushPurchaseViewController</string>
+		<string>SQOrderViewController</string>
 		<key>selectedImage</key>
 		<string>snapup_green</string>
 		<key>normalImage</key>
@@ -36,7 +36,7 @@
 		<key>title</key>
 		<string>我的</string>
 		<key>viewController</key>
-		<string>MyCenterViewController</string>
+		<string>SQUserCenterViewController</string>
 		<key>selectedImage</key>
 		<string>mine_green</string>
 		<key>normalImage</key>

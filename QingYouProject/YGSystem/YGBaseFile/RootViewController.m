@@ -255,6 +255,16 @@
     }
     return YES;
 }
+- (BOOL)loginOrNotCanClose {
+    if (![[NSFileManager defaultManager] fileExistsAtPath:USERFILEPATH]) {
+        LoginViewController *controller = [[LoginViewController alloc] init];
+        controller.hidesBottomBarWhenPushed = YES;
+        controller.canClose = YES;
+        [self.navigationController pushViewController:controller animated:YES];
+        return NO;
+    }
+    return YES;
+}
 
 - (void)registerTimerNotification
 {

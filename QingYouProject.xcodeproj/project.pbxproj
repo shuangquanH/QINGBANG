@@ -1010,6 +1010,24 @@
 		E94137A0209C3891003F3649 /* AppStartManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E941379F209C3891003F3649 /* AppStartManager.m */; };
 		E94137A7209C4295003F3649 /* SQLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E94137A6209C4295003F3649 /* SQLocationManager.m */; };
 		E94137EF20A53151003F3649 /* SQHomePageTableviewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = E94137EE20A53151003F3649 /* SQHomePageTableviewHeader.m */; };
+		E99DE1C020AC4FAF009CEF88 /* SQBaseHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1AE20AC4FAF009CEF88 /* SQBaseHeaderFooterView.m */; };
+		E99DE1C120AC4FAF009CEF88 /* SQBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1B120AC4FAF009CEF88 /* SQBaseTableViewCell.m */; };
+		E99DE1C220AC4FAF009CEF88 /* SQBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1B320AC4FAF009CEF88 /* SQBaseTableView.m */; };
+		E99DE1C320AC4FAF009CEF88 /* SQBaseImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1B420AC4FAF009CEF88 /* SQBaseImageView.m */; };
+		E99DE1C420AC4FAF009CEF88 /* SQBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1B720AC4FAF009CEF88 /* SQBaseTableViewController.m */; };
+		E99DE1C520AC4FAF009CEF88 /* SQBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1B820AC4FAF009CEF88 /* SQBaseViewController.m */; };
+		E99DE1C620AC4FAF009CEF88 /* SQBaseWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1B920AC4FAF009CEF88 /* SQBaseWebViewController.m */; };
+		E99DE1C720AC4FAF009CEF88 /* SQBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1BE20AC4FAF009CEF88 /* SQBaseModel.m */; };
+		E99DE1CC20AC5015009CEF88 /* SQUserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1CB20AC5015009CEF88 /* SQUserCenterViewController.m */; };
+		E99DE1CF20AC5400009CEF88 /* SQUserCenterTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1CE20AC5400009CEF88 /* SQUserCenterTableViewHeader.m */; };
+		E99DE1D120AC5EC3009CEF88 /* SQUserCenterMenuPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = E99DE1D020AC5EC3009CEF88 /* SQUserCenterMenuPlist.plist */; };
+		E99DE1D520AC646B009CEF88 /* SQOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1D420AC646B009CEF88 /* SQOrderViewController.m */; };
+		E99DE1D820AC64C7009CEF88 /* SQOrderTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1D720AC64C7009CEF88 /* SQOrderTableHeaderView.m */; };
+		E99DE1DA20AD23B2009CEF88 /* SQOrderFormListPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = E99DE1D920AD23B2009CEF88 /* SQOrderFormListPlist.plist */; };
+		E99DE1DD20AD50AC009CEF88 /* SQDecorationOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1DC20AD50AC009CEF88 /* SQDecorationOrderVC.m */; };
+		E99DE1E020AD5182009CEF88 /* SQDecorationOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1DF20AD5182009CEF88 /* SQDecorationOrderCell.m */; };
+		E99DE1E320AD54CC009CEF88 /* SQDecorationCellPayButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1E220AD54CC009CEF88 /* SQDecorationCellPayButtonView.m */; };
+		E99DE1E720AE6473009CEF88 /* SQDecorationOrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1E620AE6473009CEF88 /* SQDecorationOrderDetailVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -2890,6 +2908,40 @@
 		E94137A6209C4295003F3649 /* SQLocationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQLocationManager.m; sourceTree = "<group>"; };
 		E94137ED20A53151003F3649 /* SQHomePageTableviewHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQHomePageTableviewHeader.h; sourceTree = "<group>"; };
 		E94137EE20A53151003F3649 /* SQHomePageTableviewHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQHomePageTableviewHeader.m; sourceTree = "<group>"; };
+		E99DE1AE20AC4FAF009CEF88 /* SQBaseHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQBaseHeaderFooterView.m; sourceTree = "<group>"; };
+		E99DE1AF20AC4FAF009CEF88 /* SQBaseImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQBaseImageView.h; sourceTree = "<group>"; };
+		E99DE1B020AC4FAF009CEF88 /* SQBaseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQBaseTableView.h; sourceTree = "<group>"; };
+		E99DE1B120AC4FAF009CEF88 /* SQBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQBaseTableViewCell.m; sourceTree = "<group>"; };
+		E99DE1B220AC4FAF009CEF88 /* SQBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQBaseTableViewCell.h; sourceTree = "<group>"; };
+		E99DE1B320AC4FAF009CEF88 /* SQBaseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQBaseTableView.m; sourceTree = "<group>"; };
+		E99DE1B420AC4FAF009CEF88 /* SQBaseImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQBaseImageView.m; sourceTree = "<group>"; };
+		E99DE1B520AC4FAF009CEF88 /* SQBaseHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQBaseHeaderFooterView.h; sourceTree = "<group>"; };
+		E99DE1B720AC4FAF009CEF88 /* SQBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQBaseTableViewController.m; sourceTree = "<group>"; };
+		E99DE1B820AC4FAF009CEF88 /* SQBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQBaseViewController.m; sourceTree = "<group>"; };
+		E99DE1B920AC4FAF009CEF88 /* SQBaseWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQBaseWebViewController.m; sourceTree = "<group>"; };
+		E99DE1BA20AC4FAF009CEF88 /* SQBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQBaseViewController.h; sourceTree = "<group>"; };
+		E99DE1BB20AC4FAF009CEF88 /* SQBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQBaseTableViewController.h; sourceTree = "<group>"; };
+		E99DE1BC20AC4FAF009CEF88 /* SQBaseWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQBaseWebViewController.h; sourceTree = "<group>"; };
+		E99DE1BE20AC4FAF009CEF88 /* SQBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQBaseModel.m; sourceTree = "<group>"; };
+		E99DE1BF20AC4FAF009CEF88 /* SQBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQBaseModel.h; sourceTree = "<group>"; };
+		E99DE1CA20AC5015009CEF88 /* SQUserCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQUserCenterViewController.h; sourceTree = "<group>"; };
+		E99DE1CB20AC5015009CEF88 /* SQUserCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQUserCenterViewController.m; sourceTree = "<group>"; };
+		E99DE1CD20AC5400009CEF88 /* SQUserCenterTableViewHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQUserCenterTableViewHeader.h; sourceTree = "<group>"; };
+		E99DE1CE20AC5400009CEF88 /* SQUserCenterTableViewHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQUserCenterTableViewHeader.m; sourceTree = "<group>"; };
+		E99DE1D020AC5EC3009CEF88 /* SQUserCenterMenuPlist.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SQUserCenterMenuPlist.plist; sourceTree = "<group>"; };
+		E99DE1D320AC646B009CEF88 /* SQOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQOrderViewController.h; sourceTree = "<group>"; };
+		E99DE1D420AC646B009CEF88 /* SQOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQOrderViewController.m; sourceTree = "<group>"; };
+		E99DE1D620AC64C7009CEF88 /* SQOrderTableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQOrderTableHeaderView.h; sourceTree = "<group>"; };
+		E99DE1D720AC64C7009CEF88 /* SQOrderTableHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQOrderTableHeaderView.m; sourceTree = "<group>"; };
+		E99DE1D920AD23B2009CEF88 /* SQOrderFormListPlist.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SQOrderFormListPlist.plist; sourceTree = "<group>"; };
+		E99DE1DB20AD50AC009CEF88 /* SQDecorationOrderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationOrderVC.h; sourceTree = "<group>"; };
+		E99DE1DC20AD50AC009CEF88 /* SQDecorationOrderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationOrderVC.m; sourceTree = "<group>"; };
+		E99DE1DE20AD5182009CEF88 /* SQDecorationOrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationOrderCell.h; sourceTree = "<group>"; };
+		E99DE1DF20AD5182009CEF88 /* SQDecorationOrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationOrderCell.m; sourceTree = "<group>"; };
+		E99DE1E120AD54CC009CEF88 /* SQDecorationCellPayButtonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationCellPayButtonView.h; sourceTree = "<group>"; };
+		E99DE1E220AD54CC009CEF88 /* SQDecorationCellPayButtonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationCellPayButtonView.m; sourceTree = "<group>"; };
+		E99DE1E520AE6473009CEF88 /* SQDecorationOrderDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationOrderDetailVC.h; sourceTree = "<group>"; };
+		E99DE1E620AE6473009CEF88 /* SQDecorationOrderDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationOrderDetailVC.m; sourceTree = "<group>"; };
 		F883056FA3AE70A8E2E8FFA5 /* Pods-QingYouProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QingYouProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-QingYouProject/Pods-QingYouProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -3240,6 +3292,8 @@
 		18C154071FC820880010ACD3 /* YGClasses */ = {
 			isa = PBXGroup;
 			children = (
+				E99DE1C820AC4FDA009CEF88 /* Classes */,
+				E99DE1AC20AC4FAF009CEF88 /* Bases */,
 				18C154081FC820880010ACD3 /* 一起玩 */,
 				18C154581FC820880010ACD3 /* 合作案例类似的界面 */,
 				18C1545B1FC820880010ACD3 /* 我的 */,
@@ -7383,6 +7437,102 @@
 			path = SQTools;
 			sourceTree = "<group>";
 		};
+		E99DE1AC20AC4FAF009CEF88 /* Bases */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE1AD20AC4FAF009CEF88 /* BaseView */,
+				E99DE1B620AC4FAF009CEF88 /* BaseController */,
+				E99DE1BD20AC4FAF009CEF88 /* BaseModel */,
+			);
+			path = Bases;
+			sourceTree = "<group>";
+		};
+		E99DE1AD20AC4FAF009CEF88 /* BaseView */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE1AE20AC4FAF009CEF88 /* SQBaseHeaderFooterView.m */,
+				E99DE1AF20AC4FAF009CEF88 /* SQBaseImageView.h */,
+				E99DE1B020AC4FAF009CEF88 /* SQBaseTableView.h */,
+				E99DE1B120AC4FAF009CEF88 /* SQBaseTableViewCell.m */,
+				E99DE1B220AC4FAF009CEF88 /* SQBaseTableViewCell.h */,
+				E99DE1B320AC4FAF009CEF88 /* SQBaseTableView.m */,
+				E99DE1B420AC4FAF009CEF88 /* SQBaseImageView.m */,
+				E99DE1B520AC4FAF009CEF88 /* SQBaseHeaderFooterView.h */,
+			);
+			path = BaseView;
+			sourceTree = "<group>";
+		};
+		E99DE1B620AC4FAF009CEF88 /* BaseController */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE1B720AC4FAF009CEF88 /* SQBaseTableViewController.m */,
+				E99DE1B820AC4FAF009CEF88 /* SQBaseViewController.m */,
+				E99DE1B920AC4FAF009CEF88 /* SQBaseWebViewController.m */,
+				E99DE1BA20AC4FAF009CEF88 /* SQBaseViewController.h */,
+				E99DE1BB20AC4FAF009CEF88 /* SQBaseTableViewController.h */,
+				E99DE1BC20AC4FAF009CEF88 /* SQBaseWebViewController.h */,
+			);
+			path = BaseController;
+			sourceTree = "<group>";
+		};
+		E99DE1BD20AC4FAF009CEF88 /* BaseModel */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE1BE20AC4FAF009CEF88 /* SQBaseModel.m */,
+				E99DE1BF20AC4FAF009CEF88 /* SQBaseModel.h */,
+			);
+			path = BaseModel;
+			sourceTree = "<group>";
+		};
+		E99DE1C820AC4FDA009CEF88 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE1D220AC644B009CEF88 /* OrderForm */,
+				E99DE1C920AC4FE3009CEF88 /* UserCenter */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		E99DE1C920AC4FE3009CEF88 /* UserCenter */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE1D020AC5EC3009CEF88 /* SQUserCenterMenuPlist.plist */,
+				E99DE1CA20AC5015009CEF88 /* SQUserCenterViewController.h */,
+				E99DE1CB20AC5015009CEF88 /* SQUserCenterViewController.m */,
+				E99DE1CD20AC5400009CEF88 /* SQUserCenterTableViewHeader.h */,
+				E99DE1CE20AC5400009CEF88 /* SQUserCenterTableViewHeader.m */,
+			);
+			path = UserCenter;
+			sourceTree = "<group>";
+		};
+		E99DE1D220AC644B009CEF88 /* OrderForm */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE1D920AD23B2009CEF88 /* SQOrderFormListPlist.plist */,
+				E99DE1D320AC646B009CEF88 /* SQOrderViewController.h */,
+				E99DE1D420AC646B009CEF88 /* SQOrderViewController.m */,
+				E99DE1D620AC64C7009CEF88 /* SQOrderTableHeaderView.h */,
+				E99DE1D720AC64C7009CEF88 /* SQOrderTableHeaderView.m */,
+				E99DE1E420AE6446009CEF88 /* DecorationOrder */,
+			);
+			path = OrderForm;
+			sourceTree = "<group>";
+		};
+		E99DE1E420AE6446009CEF88 /* DecorationOrder */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE1DB20AD50AC009CEF88 /* SQDecorationOrderVC.h */,
+				E99DE1DC20AD50AC009CEF88 /* SQDecorationOrderVC.m */,
+				E99DE1DE20AD5182009CEF88 /* SQDecorationOrderCell.h */,
+				E99DE1DF20AD5182009CEF88 /* SQDecorationOrderCell.m */,
+				E99DE1E120AD54CC009CEF88 /* SQDecorationCellPayButtonView.h */,
+				E99DE1E220AD54CC009CEF88 /* SQDecorationCellPayButtonView.m */,
+				E99DE1E520AE6473009CEF88 /* SQDecorationOrderDetailVC.h */,
+				E99DE1E620AE6473009CEF88 /* SQDecorationOrderDetailVC.m */,
+			);
+			path = DecorationOrder;
+			sourceTree = "<group>";
+		};
 		F73D53F056E2247CD4A548BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -7549,6 +7699,7 @@
 				18C15A791FC8208B0010ACD3 /* MeetingDetailCell.xib in Resources */,
 				E2E5B3771FB0675B00205F70 /* share_qq@3x.png in Resources */,
 				E2E5B37C1FB0675B00205F70 /* share_weixin@2x.png in Resources */,
+				E99DE1D120AC5EC3009CEF88 /* SQUserCenterMenuPlist.plist in Resources */,
 				18C159C31FC8208A0010ACD3 /* CooperateClientCell.xib in Resources */,
 				18C159631FC8208A0010ACD3 /* LDPendingCell.xib in Resources */,
 				18C158D21FC820890010ACD3 /* DecorationOrderDetailCell.xib in Resources */,
@@ -7608,6 +7759,7 @@
 				E2E5B38F1FB0675B00205F70 /* xianzhi_luzhi_quxiao.png in Resources */,
 				18C159F91FC8208A0010ACD3 /* TextOnlyCell.xib in Resources */,
 				18C158901FC820890010ACD3 /* ActivityInputCell.xib in Resources */,
+				E99DE1DA20AD23B2009CEF88 /* SQOrderFormListPlist.plist in Resources */,
 				18C1592C1FC820890010ACD3 /* AlreadyReplayCell.xib in Resources */,
 				E2E5B3621FB0675B00205F70 /* area.plist in Resources */,
 				18C159C11FC8208A0010ACD3 /* CompanyTextViewCell.xib in Resources */,
@@ -7825,6 +7977,7 @@
 				2CBCF41C1FF0C0A100450E4D /* RushPurchaseDetailPopView.m in Sources */,
 				18C15A241FC8208A0010ACD3 /* CrowdFundingHallTableViewCell.m in Sources */,
 				2C8254541FD00019003F742A /* AllianceCircleTrendsCommentDetailViewController.m in Sources */,
+				E99DE1CF20AC5400009CEF88 /* SQUserCenterTableViewHeader.m in Sources */,
 				E2E5B36A1FB0675B00205F70 /* YGGravityImageView.m in Sources */,
 				18C15A8E1FC8208B0010ACD3 /* ReserveRemarkCell.m in Sources */,
 				18C15A2B1FC8208A0010ACD3 /* CrowdFundingAddProjectChooseTypeModel.m in Sources */,
@@ -7836,9 +7989,11 @@
 				E2E5B1A11FB0675A00205F70 /* RootViewController.m in Sources */,
 				E2E5B1371FB0675A00205F70 /* MJProperty.m in Sources */,
 				E2E5B3541FB0675B00205F70 /* SocketNoTalkModel.m in Sources */,
+				E99DE1C120AC4FAF009CEF88 /* SQBaseTableViewCell.m in Sources */,
 				18C159521FC8208A0010ACD3 /* DealedNetManagerViewController.m in Sources */,
 				18C1588F1FC820890010ACD3 /* ActivityInputCell.m in Sources */,
 				1812F30B2021BE0B00EEC1CE /* HomePageLegalServiceWaitTorViewController.m in Sources */,
+				E99DE1E320AD54CC009CEF88 /* SQDecorationCellPayButtonView.m in Sources */,
 				18C1591D1FC820890010ACD3 /* IndoorMaintenanceViewController.m in Sources */,
 				18C158C71FC820890010ACD3 /* DecorationApplyCell.m in Sources */,
 				18C1598B1FC8208A0010ACD3 /* AdvertisesForInfoModel.m in Sources */,
@@ -8005,14 +8160,18 @@
 				18C159641FC8208A0010ACD3 /* LDPendingVC.m in Sources */,
 				18C159541FC8208A0010ACD3 /* NetManagerJudgeViewController.m in Sources */,
 				18C15A3F1FC8208B0010ACD3 /* BussinessPlanTableViewCell.m in Sources */,
+				E99DE1C220AC4FAF009CEF88 /* SQBaseTableView.m in Sources */,
 				18C159F41FC8208A0010ACD3 /* PictureLeftTextRightCell.m in Sources */,
 				18C158DC1FC820890010ACD3 /* AddressAskViewController.m in Sources */,
 				E2E5B17E1FB0675A00205F70 /* CALayer+YYWebImage.m in Sources */,
 				E2E5B17C1FB0675A00205F70 /* YYMemoryCache.m in Sources */,
 				2C9DB72B1FEA30FF0044819D /* MineIntergralRecordConvertSubViewController.m in Sources */,
+				E99DE1C620AC4FAF009CEF88 /* SQBaseWebViewController.m in Sources */,
 				18C158BF1FC820890010ACD3 /* MyDecorationApplyOrderController.m in Sources */,
 				18C1599E1FC8208A0010ACD3 /* MyIntegrationIndustryCommerceController.m in Sources */,
 				E2E5B14E1FB0675A00205F70 /* MJRefreshConst.m in Sources */,
+				E99DE1C020AC4FAF009CEF88 /* SQBaseHeaderFooterView.m in Sources */,
+				E99DE1C720AC4FAF009CEF88 /* SQBaseModel.m in Sources */,
 				2CF9B6AC1FE74D7800D279F3 /* OrderManagerController.m in Sources */,
 				E2E5B35B1FB0675B00205F70 /* UploadImageTool.m in Sources */,
 				525D00681FE2B0CF009BD9BF /* SeccondHandExchangePublishViewController.m in Sources */,
@@ -8063,11 +8222,13 @@
 				2C9BCDC71FE25AFC00831716 /* SeccondHandExchangeChooseTypeCell.m in Sources */,
 				18C159CA1FC8208A0010ACD3 /* HistoryPayRecoredViewController.m in Sources */,
 				18C1588A1FC820890010ACD3 /* ActivityChooseCell.m in Sources */,
+				E99DE1D520AC646B009CEF88 /* SQOrderViewController.m in Sources */,
 				18C1595A1FC8208A0010ACD3 /* AreaSelectDetailViewController.m in Sources */,
 				18C158951FC820890010ACD3 /* AddPosterHeaderView.m in Sources */,
 				18C159B21FC8208A0010ACD3 /* AdvertisementInstructionCell.m in Sources */,
 				18C15A171FC8208A0010ACD3 /* FinacialAccountPopView.m in Sources */,
 				18C15A411FC8208B0010ACD3 /* MyRoadShowFinishViewController.m in Sources */,
+				E99DE1C520AC4FAF009CEF88 /* SQBaseViewController.m in Sources */,
 				18C159C81FC8208A0010ACD3 /* HistoryPayRecordModel.m in Sources */,
 				2CF9B6B51FE74D7900D279F3 /* OrderDetailFooterView.m in Sources */,
 				E2E5B35F1FB0675B00205F70 /* YGAnimatePlayerView.m in Sources */,
@@ -8081,6 +8242,7 @@
 				2C9DB71F1FEA04B50044819D /* MineIntergralRecordOrderTableViewCell.m in Sources */,
 				18C1598F1FC8208A0010ACD3 /* MyIntroduceModel.m in Sources */,
 				18C15A711FC8208B0010ACD3 /* MyOrderModel.m in Sources */,
+				E99DE1C320AC4FAF009CEF88 /* SQBaseImageView.m in Sources */,
 				E2E5B3691FB0675B00205F70 /* YGGravity.m in Sources */,
 				E2E5B36D1FB0675B00205F70 /* YGPikerView.m in Sources */,
 				E2E5B1981FB0675A00205F70 /* UIView+ZYDraggable.m in Sources */,
@@ -8128,6 +8290,7 @@
 				181EE1E01FE21943002BE515 /* SecondhandReplacementPersonalHomePageViewController.m in Sources */,
 				18C159731FC8208A0010ACD3 /* JobOutSourceRecoredModel.m in Sources */,
 				1812F2FE2021A9F500EEC1CE /* HomePageLegalServiceIntroduceViewController.m in Sources */,
+				E99DE1C420AC4FAF009CEF88 /* SQBaseTableViewController.m in Sources */,
 				E2E5B33A1FB0675B00205F70 /* NSDictionary+HYBUnicodeReadable.m in Sources */,
 				18C159831FC8208A0010ACD3 /* CheckAdvertisesViewController.m in Sources */,
 				18C159B01FC8208A0010ACD3 /* AdvertisementApplyCell.m in Sources */,
@@ -8190,6 +8353,7 @@
 				18C158BD1FC820890010ACD3 /* DecorationOrderDetailsController.m in Sources */,
 				18C1594F1FC8208A0010ACD3 /* NetVIPDetailVC.m in Sources */,
 				18C158F81FC820890010ACD3 /* ChooseGoodsChildView.m in Sources */,
+				E99DE1D820AC64C7009CEF88 /* SQOrderTableHeaderView.m in Sources */,
 				E2E5B15D1FB0675A00205F70 /* QNSystem.m in Sources */,
 				18C159101FC820890010ACD3 /* DeliveredCell.m in Sources */,
 				18EF7E8F1FE26FA600A7CC7A /* SecondhandReplacementSubstitutionWaitToPayViewController.m in Sources */,
@@ -8298,6 +8462,7 @@
 				E2E5B16A1FB0675A00205F70 /* UIView+SEKExtension.m in Sources */,
 				E2CD938C1FF0D43500CC7D13 /* MyCollectionTextCell.m in Sources */,
 				E2E5B14A1FB0675A00205F70 /* MJRefreshGifHeader.m in Sources */,
+				E99DE1CC20AC5015009CEF88 /* SQUserCenterViewController.m in Sources */,
 				1809E2A41FEB983C006C54EC /* SecondhandReplacementMyFansTableViewCell.m in Sources */,
 				18C15A581FC8208B0010ACD3 /* RoadShowHallApplyViewController.m in Sources */,
 				18C1594A1FC8208A0010ACD3 /* LDVipImageView.m in Sources */,
@@ -8405,6 +8570,7 @@
 				E2E5B1811FB0675A00205F70 /* UIImage+YYWebImage.m in Sources */,
 				18C15A901FC8208B0010ACD3 /* OrderCheckHouseDetailTableViewCell.m in Sources */,
 				18C15A601FC8208B0010ACD3 /* TakePicturesSubmitSuccessController.m in Sources */,
+				E99DE1E720AE6473009CEF88 /* SQDecorationOrderDetailVC.m in Sources */,
 				E2E5B1461FB0675A00205F70 /* MJRefreshAutoStateFooter.m in Sources */,
 				1809E2A11FEB97F3006C54EC /* SecondhangReplacementMyFansViewController.m in Sources */,
 				18C159CD1FC8208A0010ACD3 /* InvoiceHistoryModel.m in Sources */,
@@ -8460,6 +8626,7 @@
 				18C158A41FC820890010ACD3 /* AllAllianceViewController.m in Sources */,
 				18C1595E1FC8208A0010ACD3 /* LDTextView.m in Sources */,
 				18C15A551FC8208B0010ACD3 /* RoadShowHallViewController.m in Sources */,
+				E99DE1E020AD5182009CEF88 /* SQDecorationOrderCell.m in Sources */,
 				18C15A461FC8208B0010ACD3 /* SubscribeDetailViewController.m in Sources */,
 				18C1598D1FC8208A0010ACD3 /* AdvertisesForInfoTableViewCell.m in Sources */,
 				18C158B31FC820890010ACD3 /* MyCenterViewController.m in Sources */,
@@ -8513,6 +8680,7 @@
 				18EF7E741FE2672A00A7CC7A /* SecondhandReplacementISelloutViewController.m in Sources */,
 				2CF9B6AF1FE74D7900D279F3 /* OrderModel.m in Sources */,
 				1827B3701FD7924D0050BBAB /* PlayTogetherSignupTableViewCell.m in Sources */,
+				E99DE1DD20AD50AC009CEF88 /* SQDecorationOrderVC.m in Sources */,
 				18C15A981FC8208B0010ACD3 /* CommentViewController.m in Sources */,
 				18C15A8C1FC8208B0010ACD3 /* ReserveInputCell.m in Sources */,
 				E2E5B3451FB0675B00205F70 /* UIImage+LDImage.m in Sources */,

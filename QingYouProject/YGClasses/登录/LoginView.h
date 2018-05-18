@@ -47,5 +47,6 @@ typedef enum : NSUInteger {
 @property (nonatomic,strong) UITextField *inviteCodeTextField;
 @property (nonatomic, assign) LoginWithTypes            loginWithType;
 @property (nonatomic, strong) UIButton      *verifyButton;
+@property (nonatomic, assign) BOOL       canClose;
 
 @end

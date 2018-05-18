@@ -154,6 +154,9 @@ typedef enum : NSUInteger {
  */
 - (BOOL)loginOrNot;
 
+/**  判断是否登录方法（未登录返回NO，自动跳转登录页）,可以关闭  */
+- (BOOL)loginOrNotCanClose;
+
 
 #pragma 计时器 倒计时
 
