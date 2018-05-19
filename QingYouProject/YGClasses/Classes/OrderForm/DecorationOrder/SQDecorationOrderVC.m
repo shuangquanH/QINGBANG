@@ -67,7 +67,6 @@
 - (SQBaseTableView  *)tableview {
     if (!_tableview) {
         _tableview = [[SQBaseTableView   alloc] initWithFrame:CGRectMake(0, 0, YGScreenWidth, YGScreenHeight-KNAVHEIGHT)];
-        _tableview.backgroundColor = kLightGrayColor;
         _tableview.estimatedRowHeight = 600;
         _tableview.rowHeight = UITableViewAutomaticDimension;
         _tableview.delegate = self;

@@ -4,9 +4,9 @@
 <array>
 	<dict>
 		<key>title</key>
-		<string>推荐</string>
+		<string>首页</string>
 		<key>viewController</key>
-		<string>HomePageViewController</string>
+		<string>SQHomeViewController</string>
 		<key>selectedImage</key>
 		<string>home_green</string>
 		<key>normalImage</key>

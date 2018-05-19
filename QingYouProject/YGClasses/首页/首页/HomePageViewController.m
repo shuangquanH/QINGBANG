@@ -52,6 +52,8 @@
 /** 新增内容  */
 #import "SQHomePageTableviewHeader.h"
 
+#import "SQDecorationServeVC.h"
+
 
 @interface HomePageViewController()
 <UITableViewDelegate,
@@ -387,8 +389,14 @@ CLLocationManagerDelegate> {
     //第一分区点击cell
     if (indexPath.section==0) {
         if (indexPath.row == 0) {
-            IntegrationIndustryCommerceController *vc = [[IntegrationIndustryCommerceController alloc] init];
+//            IntegrationIndustryCommerceController *vc = [[IntegrationIndustryCommerceController alloc] init];
+//            [self.navigationController pushViewController:vc animated:YES];
+            
+            //装修直通车
+            SQDecorationServeVC *vc = [[SQDecorationServeVC alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
+            
+            
         }else if (indexPath.row == 1) {
             FinancialAccountingViewController *vc = [[FinancialAccountingViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];

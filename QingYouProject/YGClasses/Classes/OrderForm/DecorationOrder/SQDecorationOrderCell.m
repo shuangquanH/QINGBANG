@@ -46,10 +46,15 @@
         orderPrice = [[UILabel alloc] init];
         [self.contentView addSubview:orderPrice];
         
+        /** 定金  */
         paymentLabel = [[UILabel alloc] init];
         [self.contentView addSubview:paymentLabel];
+        
+        /** 定金金额  */
         paymentPrice = [[UILabel alloc] init];
         [self.contentView addSubview:paymentPrice];
+        
+        /** 定金状态  */
         paymentState = [[SQDecorationCellPayButtonView alloc] init];
         [self.contentView addSubview:paymentState];
         
