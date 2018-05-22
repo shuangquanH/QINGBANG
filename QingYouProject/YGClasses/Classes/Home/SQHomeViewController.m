@@ -9,9 +9,9 @@
 #import "SQHomeViewController.h"
 
 #import "SQCustomView.h"
-#import "SQHomeTopFunBtns.h"
+#import "SQOvalFuncButtons.h"
 
-@interface SQHomeViewController ()
+@interface SQHomeViewController () <SQOvalFuncButtonDelegate>
 
 @property (nonatomic, strong) UICollectionView        *collectionView;
 
@@ -28,12 +28,41 @@
 //
     
     
-//    SQCustomView *customView = [[SQCustomView alloc]initWithFrame:self.view.bounds];
-//    [self.view addSubview:customView];
-    
-    CGRect frame = CGRectMake((YGScreenWidth-260)/2.0, 60, 260, 260);
-    SQHomeTopFunBtns    *topBtn = [[SQHomeTopFunBtns alloc] initWithFrame:frame withCenterSize:CGSizeMake(140, 140)];
-    [self.view addSubview:topBtn];
+//    [self needtestVeiw];
+    [self usedOvalView];
+
 }
+
+
+- (void)needtestVeiw {
+    SQCustomView *customView = [[SQCustomView alloc]initWithFrame:self.view.bounds];
+    [self.view addSubview:customView];
+
+}
+
+- (void)usedOvalView {
+    CGRect frame = CGRectMake((YGScreenWidth-260)/2.0, 60, 280, 220);
+    SQOvalFuncButtons   *view = [[SQOvalFuncButtons alloc] initWithFrame:frame centBtnSize:CGSizeMake(30, 30) backImage:[UIImage imageNamed:@"ovalimage"]];
+    view.delegate = self;
+    [self.view addSubview:view];
+}
+- (void)didselectWithClicktype:(ClickType)type {
+    NSLog(@"%lu", (unsigned long)type);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @end
