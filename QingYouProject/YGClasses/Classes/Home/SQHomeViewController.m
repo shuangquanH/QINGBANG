@@ -7,9 +7,8 @@
 //
 
 #import "SQHomeViewController.h"
-
-#import "SQCustomView.h"
 #import "SQOvalFuncButtons.h"
+#import "SQCardScrollView.h"
 
 @interface SQHomeViewController () <SQOvalFuncButtonDelegate>
 
@@ -21,23 +20,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    UICollectionViewLayout *layout = [[UICollectionViewLayout alloc] init];
-//    self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
-//    self.collectionView.delegate = self;
-//    self.collectionView.dataSource = self;
-//
+    self.naviTitle = @"首页";
+    [self.view addSubview:self.collectionView];
     
     
-//    [self needtestVeiw];
     [self usedOvalView];
-
+    
+    
+    NSMutableArray  *btnArr = [NSMutableArray array];
+    NSArray *btnTitle = @[@"水电缴费", @"会议室预定", @"办公耗材",
+                          @"财税代理", @"办公室装修", @"人才招聘",
+                          @"工商代办", @"项目申报", @"办公",
+                          @"物业服务", @"资金扶持", @"广告位招商"];
+    for (NSString *title in btnTitle) {
+        UIButton    *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button setTitle:title forState:UIControlStateNormal];
+        button.backgroundColor = colorWithMainColor;
+        [button setImage:[UIImage imageNamed:@"ovalimage"] forState:UIControlStateNormal];
+        [btnArr addObject:button];
+        [button addTarget:self action:@selector(btnaction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    CGRect frame = CGRectMake(0, 400, YGScreenWidth, 100);
+    SQCardScrollView    *scrollview = [[SQCardScrollView alloc] initWithFrame:frame];
+    [self.view addSubview:scrollview];
+    [scrollview setItemArr:btnArr alongAxis:SQSAxisTypeHorizontal spacing:20 leadSpace:0 tailSpace:0 itemSize:CGSizeMake(200, 100)];
 }
-
-
-- (void)needtestVeiw {
-    SQCustomView *customView = [[SQCustomView alloc]initWithFrame:self.view.bounds];
-    [self.view addSubview:customView];
-
+- (void)btnaction {
+    NSLog(@"dd");
 }
 
 - (void)usedOvalView {
@@ -54,6 +64,15 @@
 
 
 
+
+#pragma lazyLoad
+- (UICollectionView *)collectionView {
+    if (!_collectionView) {
+        UICollectionViewLayout *layout = [[UICollectionViewLayout alloc] init];
+        _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
+    }
+    return _collectionView;
+}
 
 
 
