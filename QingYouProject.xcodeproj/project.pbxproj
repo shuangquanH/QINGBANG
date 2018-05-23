@@ -1036,6 +1036,9 @@
 		E99DE20D20B4013B009CEF88 /* SQOvalFuncButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE20B20B4013A009CEF88 /* SQOvalFuncButtons.m */; };
 		E99DE20F20B40B34009CEF88 /* ovalimage.png in Resources */ = {isa = PBXBuildFile; fileRef = E99DE20E20B40B33009CEF88 /* ovalimage.png */; };
 		E99DE21220B40D82009CEF88 /* SQCardScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE21020B40D82009CEF88 /* SQCardScrollView.m */; };
+		E99DE21820B561A0009CEF88 /* SQCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE21720B561A0009CEF88 /* SQCollectionViewLayout.m */; };
+		E99DE21B20B57BA6009CEF88 /* SQBaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE21A20B57BA6009CEF88 /* SQBaseCollectionViewCell.m */; };
+		E99DE21E20B582F5009CEF88 /* SQBaseCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE21D20B582F5009CEF88 /* SQBaseCollectionView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -2965,6 +2968,12 @@
 		E99DE20E20B40B33009CEF88 /* ovalimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ovalimage.png; sourceTree = "<group>"; };
 		E99DE21020B40D82009CEF88 /* SQCardScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQCardScrollView.m; sourceTree = "<group>"; };
 		E99DE21120B40D82009CEF88 /* SQCardScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQCardScrollView.h; sourceTree = "<group>"; };
+		E99DE21620B561A0009CEF88 /* SQCollectionViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQCollectionViewLayout.h; sourceTree = "<group>"; };
+		E99DE21720B561A0009CEF88 /* SQCollectionViewLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQCollectionViewLayout.m; sourceTree = "<group>"; };
+		E99DE21920B57BA6009CEF88 /* SQBaseCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQBaseCollectionViewCell.h; sourceTree = "<group>"; };
+		E99DE21A20B57BA6009CEF88 /* SQBaseCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQBaseCollectionViewCell.m; sourceTree = "<group>"; };
+		E99DE21C20B582F5009CEF88 /* SQBaseCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQBaseCollectionView.h; sourceTree = "<group>"; };
+		E99DE21D20B582F5009CEF88 /* SQBaseCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQBaseCollectionView.m; sourceTree = "<group>"; };
 		F883056FA3AE70A8E2E8FFA5 /* Pods-QingYouProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QingYouProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-QingYouProject/Pods-QingYouProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -3315,9 +3324,7 @@
 		18C154071FC820880010ACD3 /* YGClasses */ = {
 			isa = PBXGroup;
 			children = (
-				E99DE1FC20B25C32009CEF88 /* Categories */,
 				E99DE1C820AC4FDA009CEF88 /* Classes */,
-				E99DE1AC20AC4FAF009CEF88 /* Bases */,
 				18C154081FC820880010ACD3 /* 一起玩 */,
 				18C154581FC820880010ACD3 /* 合作案例类似的界面 */,
 				18C1545B1FC820880010ACD3 /* 我的 */,
@@ -6034,6 +6041,8 @@
 			isa = PBXGroup;
 			children = (
 				2C8451E41FBD434200F037DE /* QingYouProject.entitlements */,
+				E99DE1FC20B25C32009CEF88 /* Categories */,
+				E99DE1AC20AC4FAF009CEF88 /* Bases */,
 				18C154071FC820880010ACD3 /* YGClasses */,
 				E2E5B08A1FB0675900205F70 /* YGOwnLib */,
 				E2E5ACC41FB0675800205F70 /* YGSystem */,
@@ -7474,14 +7483,18 @@
 		E99DE1AD20AC4FAF009CEF88 /* BaseView */ = {
 			isa = PBXGroup;
 			children = (
-				E99DE1AE20AC4FAF009CEF88 /* SQBaseHeaderFooterView.m */,
-				E99DE1AF20AC4FAF009CEF88 /* SQBaseImageView.h */,
 				E99DE1B020AC4FAF009CEF88 /* SQBaseTableView.h */,
-				E99DE1B120AC4FAF009CEF88 /* SQBaseTableViewCell.m */,
-				E99DE1B220AC4FAF009CEF88 /* SQBaseTableViewCell.h */,
 				E99DE1B320AC4FAF009CEF88 /* SQBaseTableView.m */,
-				E99DE1B420AC4FAF009CEF88 /* SQBaseImageView.m */,
+				E99DE1B220AC4FAF009CEF88 /* SQBaseTableViewCell.h */,
+				E99DE1B120AC4FAF009CEF88 /* SQBaseTableViewCell.m */,
 				E99DE1B520AC4FAF009CEF88 /* SQBaseHeaderFooterView.h */,
+				E99DE1AE20AC4FAF009CEF88 /* SQBaseHeaderFooterView.m */,
+				E99DE21C20B582F5009CEF88 /* SQBaseCollectionView.h */,
+				E99DE21D20B582F5009CEF88 /* SQBaseCollectionView.m */,
+				E99DE21920B57BA6009CEF88 /* SQBaseCollectionViewCell.h */,
+				E99DE21A20B57BA6009CEF88 /* SQBaseCollectionViewCell.m */,
+				E99DE1AF20AC4FAF009CEF88 /* SQBaseImageView.h */,
+				E99DE1B420AC4FAF009CEF88 /* SQBaseImageView.m */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -7568,6 +7581,8 @@
 				E99DE20B20B4013A009CEF88 /* SQOvalFuncButtons.m */,
 				E99DE21120B40D82009CEF88 /* SQCardScrollView.h */,
 				E99DE21020B40D82009CEF88 /* SQCardScrollView.m */,
+				E99DE21620B561A0009CEF88 /* SQCollectionViewLayout.h */,
+				E99DE21720B561A0009CEF88 /* SQCollectionViewLayout.m */,
 				E99DE1E920AE9D97009CEF88 /* DecorationServe */,
 			);
 			path = Home;
@@ -8079,6 +8094,7 @@
 				1809E2B01FEBA3B8006C54EC /* SecondhandReplaceOtherHomePageModel.m in Sources */,
 				18C159ED1FC8208A0010ACD3 /* BreakContractBillTableViewCell.m in Sources */,
 				E286755B1FEB82B800403A87 /* MineIntergralOrderDetailsController.m in Sources */,
+				E99DE21E20B582F5009CEF88 /* SQBaseCollectionView.m in Sources */,
 				E2E5B1391FB0675A00205F70 /* MJPropertyType.m in Sources */,
 				18C159DB1FC8208A0010ACD3 /* IssueInvoiceModel.m in Sources */,
 				18C158C41FC820890010ACD3 /* QuotePlanViewController.m in Sources */,
@@ -8122,6 +8138,7 @@
 				18C15A051FC8208A0010ACD3 /* CooperationCustomCaseCell.m in Sources */,
 				E2E5B1421FB0675A00205F70 /* MJRefreshFooter.m in Sources */,
 				18C159D71FC8208A0010ACD3 /* MyHouseRentPayDetailViewController.m in Sources */,
+				E99DE21820B561A0009CEF88 /* SQCollectionViewLayout.m in Sources */,
 				183073A41FEA5C1500618479 /* SecondhandReplacementAddExpressViewController.m in Sources */,
 				18C158CF1FC820890010ACD3 /* DecorationOrderCell.m in Sources */,
 				E2E5B3411FB0675B00205F70 /* LDVerticalButton.m in Sources */,
@@ -8409,6 +8426,7 @@
 				183AC1921FDA342B009FCAA3 /* AllRushPurchaseOrderListViewController.m in Sources */,
 				18C159451FC8208A0010ACD3 /* LDManagerHeaderCell.m in Sources */,
 				18C159991FC8208A0010ACD3 /* SeeAndSaveViewController.m in Sources */,
+				E99DE21B20B57BA6009CEF88 /* SQBaseCollectionViewCell.m in Sources */,
 				1809E29D1FEB8F34006C54EC /* SecondhandReplacementMyFollowModel.m in Sources */,
 				18C1599A1FC8208A0010ACD3 /* AdvertisesForViewController.m in Sources */,
 				E2E5B12B1FB0675A00205F70 /* GiftModel.m in Sources */,
