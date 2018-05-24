@@ -10,6 +10,6 @@
 
 @interface SQDecorationServeCell : SQBaseTableViewCell
 
-@property (nonatomic, strong) NSArray       *model;
+@property (nonatomic, copy) NSString       *model;
 
 @end

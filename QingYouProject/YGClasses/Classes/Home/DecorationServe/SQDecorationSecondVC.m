@@ -1,37 +1,32 @@
 //
-//  SQDecorationServeVC.m
+//  SQDecorationSecondVC.m
 //  QingYouProject
 //
-//  Created by qwuser on 2018/5/18.
+//  Created by qwuser on 2018/5/24.
 //  Copyright © 2018年 ccyouge. All rights reserved.
 //
 
-#import "SQDecorationServeVC.h"
-
-#import "SQDecorationServeCell.h"
-#import "SQDecorationSeveTableHeader.h"
-
 #import "SQDecorationSecondVC.h"
+#import "SQDecorationServeCell.h"
+#import "SQDecorationDetailVC.h"
 
-@interface SQDecorationServeVC () <UITableViewDelegate, UITableViewDataSource>
+@interface SQDecorationSecondVC () <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) SQDecorationSeveTableHeader       *header;
 @property (nonatomic, strong) SQBaseTableView       *tableview;
 @property (nonatomic, strong) NSMutableArray       *dataArr;
 
 @end
 
-@implementation SQDecorationServeVC
+@implementation SQDecorationSecondVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.naviTitle = @"装修直通车";
+    self.naviTitle = @"装修风格";
     UIBarButtonItem *itme = [self createBarbuttonWithNormalImageName:@"mine_instashot"
                                                    selectedImageName:@"mine_instashot"
                                                             selector:@selector(rightButtonItemAciton)];
     self.navigationItem.rightBarButtonItem = itme;
     
-    self.tableview.tableHeaderView = self.header;
     [self.view addSubview:self.tableview];
     [self createRefreshWithScrollView:self.tableview containFooter:YES];
     
@@ -53,7 +48,6 @@
                          @"http://img5.duitang.com/uploads/item/201411/25/20141125120243_mn8dR.gif",
                          @"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3413067445,3734096099&fm=27&gp=0.jpg"];
     self.dataArr = [NSMutableArray arrayWithArray:userarr];
-    [_header loadImage];
     [self.tableview reloadData];
     [self endRefreshWithScrollView:self.tableview];
 }
@@ -70,8 +64,9 @@
 - (void)rightButtonItemAciton {
     [self contactWithCustomerServerWithType:ContactServerPropertyRepair button:nil];
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.navigationController pushViewController:[SQDecorationSecondVC new] animated:YES];
+    [self.navigationController pushViewController:[SQDecorationDetailVC new] animated:YES];
 }
 
 
@@ -86,14 +81,6 @@
     }
     return _tableview;
 }
-- (SQDecorationSeveTableHeader *)header {
-    if (!_header) {
-        _header = [[SQDecorationSeveTableHeader alloc] initWithFrame:CGRectMake(0, 0, YGScreenWidth, 200)];
-    }
-    return _header;
-}
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

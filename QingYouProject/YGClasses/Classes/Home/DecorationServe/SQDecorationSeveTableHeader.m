@@ -37,8 +37,10 @@
         }
         
         NSArray *userarr = @[@"http://img2.3lian.com/2014/f4/171/71.jpg",
-                             @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526636729682&di=17cb24dba05e69286d92f16606b23ad8&imgtype=0&src=http%3A%2F%2Fup.enterdesk.com%2Fedpic_source%2Ff7%2Ffb%2F1b%2Ff7fb1bd224c27f43d2ec3eaebedcf064.jpg",
-                             @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526636696555&di=83e1c6e9c6b34c4bc83436139c1426be&imgtype=0&src=http%3A%2F%2Fi-4.yxdown.com%2F2016%2F8%2F11%2Feabfb887-a961-4c5f-8fc8-3b62272594ee.jpg"];
+                             @"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1765474568,392718820&fm=27&gp=0.jpg",
+                              @"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3900680988,3018369610&fm=27&gp=0.jpg",
+                              @"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3413067445,3734096099&fm=27&gp=0.jpg",
+                             @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526636729682&di=17cb24dba05e69286d92f16606b23ad8&imgtype=0&src=http%3A%2F%2Fup.enterdesk.com%2Fedpic_source%2Ff7%2Ffb%2F1b%2Ff7fb1bd224c27f43d2ec3eaebedcf064.jpg"];
         cycleScrollView.imageURLStringsGroup = userarr;
         
     } failure: nil];

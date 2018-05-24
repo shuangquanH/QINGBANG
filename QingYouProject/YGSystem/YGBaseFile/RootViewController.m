@@ -19,15 +19,13 @@
 
 @implementation RootViewController
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     //友盟统计
     [MobClick beginLogPageView:NSStringFromClass([self class])];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     //友盟统计
     [MobClick endLogPageView:NSStringFromClass([self class])];
@@ -106,13 +104,11 @@
 }
 
 //一键刷新加载
-- (void)createRefreshWithScrollView:(UITableView *)tableView containFooter:(BOOL)containFooter
-{
+- (void)createRefreshWithScrollView:(UITableView *)tableView containFooter:(BOOL)containFooter {
     _refreshGifHeader = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeaderAction)];
     NSMutableArray *gifArray = [[NSMutableArray alloc] init];
     for (int i = 1; i <= 10; ++i)
     {
-    
         [gifArray addObject:[UIImage imageNamed:[NSString stringWithFormat:@"loading_animation_refresh_%d",i]]];
     }
     [_refreshGifHeader setImages:gifArray duration:1 forState:MJRefreshStateIdle];
@@ -127,8 +123,7 @@
     _refreshGifHeader.lastUpdatedTimeLabel.hidden = YES;
     tableView.mj_header = _refreshGifHeader;
     _refreshGifHeader.stateLabel.hidden = YES;
-    if (containFooter)
-    {
+    if (containFooter) {
         tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooterAction)];
         tableView.mj_footer.automaticallyHidden = YES;
     }
@@ -140,8 +135,7 @@
 }
 
 //下拉方法（无需重写）
-- (void)refreshHeaderAction
-{
+- (void)refreshHeaderAction {
     [_noNetBaseView removeFromSuperview];
     //记录条数
     _totalString = @"0";
@@ -149,32 +143,27 @@
 }
 
 //上拉方法（无需重写）
-- (void)refreshFooterAction
-{
+- (void)refreshFooterAction {
     //记录条数
     _totalString = [NSString stringWithFormat:@"%d", _totalString.intValue + _countString.intValue];
     [self refreshActionWithIsRefreshHeaderAction:NO];
 }
 
 //上拉下拉都走的方法，headerAction为YES时为下拉，否则为上拉。上拉加载时total和count直接传self.total和self.count
-- (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction
-{
-    if (headerAction)
-    {
+- (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
+    if (headerAction) {
         _totalString = @"0";
     }
 }
 
 //停止刷新
-- (void)endRefreshWithScrollView:(UIScrollView *)scrollView
-{
+- (void)endRefreshWithScrollView:(UIScrollView *)scrollView {
     [scrollView.mj_header endRefreshing];
     [scrollView.mj_footer endRefreshing];
 }
 
 //如果刷新数据为空搞一下事情
-- (void)noMoreDataFormatWithScrollView:(UITableView *)scrollView
-{
+- (void)noMoreDataFormatWithScrollView:(UITableView *)scrollView {
     if (_totalString.intValue >10) {
         _totalString = [NSString stringWithFormat:@"%d", _totalString.intValue - YGPageSize.intValue];
     }
@@ -184,10 +173,8 @@
 //自动加未加载图片
 - (void)addNoDataImageViewWithArray:(NSArray *)array shouldAddToView:(UIView *)view headerAction:(BOOL)headerAction
 {
-    if (headerAction)
-    {
-        if (array.count == 0)
-        {
+    if (headerAction) {
+        if (array.count == 0) {
             [_noDataImageView removeFromSuperview];
             _noDataImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"nodata"]];
             [_noDataImageView sizeToFit];
@@ -195,19 +182,15 @@
 
             _noDataImageView.centerx = view.width / 2;
             _noDataImageView.centery = view.width / 2;
-        }
-        else
-        {
+        } else {
             [_noDataImageView removeFromSuperview];
         }
     }
 }
 
-- (void)addNoNetRetryButtonWithFrame:(CGRect)frame listArray:(NSArray *)listArray
-{
+- (void)addNoNetRetryButtonWithFrame:(CGRect)frame listArray:(NSArray *)listArray {
     [_noNetBaseView removeFromSuperview];
-    if (listArray.count != 0)
-    {
+    if (listArray.count != 0) {
         return;
     }
     _noNetBaseView = [[UIView alloc] init];
@@ -220,12 +203,10 @@
     _noNetBaseView.frame = frame;
     [self.view addSubview:_noNetBaseView];
 
-    if (listArray)
-    {
+    if (listArray) {
         [noNetButton addTarget:_refreshGifHeader action:@selector(beginRefreshing) forControlEvents:UIControlEventTouchUpInside];
     }
-    else
-    {
+    else {
         NSString *sourceString = [NSThread callStackSymbols][1];
         NSCharacterSet *separatorSet = [NSCharacterSet characterSetWithCharactersInString:@" -[]+?.,"];
         NSMutableArray *array = [NSMutableArray arrayWithArray:[sourceString componentsSeparatedByCharactersInSet:separatorSet]];
@@ -237,29 +218,15 @@
     noNetButton.center = CGPointMake(_noNetBaseView.width / 2, _noNetBaseView.height / 2);
 }
 
-- (void)noNetAction:(UIButton *)button
-{
+- (void)noNetAction:(UIButton *)button {
     [_noNetBaseView removeFromSuperview];
     [self performSelector:_superCmd];
 }
 
-- (BOOL)loginOrNot
-{
-    //未登录
-    if (![[NSFileManager defaultManager] fileExistsAtPath:USERFILEPATH])
-    {
-        LoginViewController *controller = [[LoginViewController alloc] init];
-        controller.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:controller animated:YES];
-        return NO;
-    }
-    return YES;
-}
-- (BOOL)loginOrNotCanClose {
+- (BOOL)loginOrNot {
     if (![[NSFileManager defaultManager] fileExistsAtPath:USERFILEPATH]) {
         LoginViewController *controller = [[LoginViewController alloc] init];
         controller.hidesBottomBarWhenPushed = YES;
-        controller.canClose = YES;
         [self.navigationController pushViewController:controller animated:YES];
         return NO;
     }

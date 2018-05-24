@@ -10,8 +10,9 @@
 #import "SQCollectionViewLayout.h"
 #import "SQHomeCollectionHeader.h"
 #import "SQHomeCollectionViewCell.h"
-
 #import "YGAlertView.h"
+/** 装修板块  */
+#import "SQDecorationServeVC.h"
 
 
 @interface SQHomeViewController () <SQCollectionViewLayoutDelegate, UICollectionViewDataSource, UICollectionViewDelegate, SQHomeCollectionHeaderDeleage>
@@ -30,18 +31,14 @@
     self.collectionView.headerView = self.headerView;
     self.headerView.delegate = self;
     self.headerView.scrollViewData = @[@"ahc", @"hahah"];
-    [self createRefreshWithScrollView:self.collectionView containFooter:YES];
+    [self createRefreshWithScrollView:self.collectionView containFooter:NO];
     self.collectionView.mj_header.ignoredScrollViewContentInsetTop=self.headerView.height;
     
     [self requestData];
 }
 
 - (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
-    if (headerAction) {
-        [self.collectionView.mj_header endRefreshing];
-    } else {
-        [self.collectionView.mj_footer endRefreshingWithNoMoreData];
-    }
+    [self.collectionView.mj_header endRefreshing];
 }
 
 - (void)requestData {
@@ -74,6 +71,7 @@
     [self tapedFuncsWithModel:string];
 }
 - (void)tapedFuncsWithModel:(NSString *)model {
+    [self.navigationController pushViewController:[SQDecorationServeVC new] animated:YES];
     [YGAlertView showAlertWithTitle:model buttonTitlesArray:@[@"YES", @"NO"] buttonColorsArray:@[[UIColor blueColor], [UIColor redColor]] handler:nil];
 }
 
@@ -84,7 +82,7 @@
 - (SQBaseCollectionView *)collectionView {
     if (!_collectionView) {
         SQCollectionViewLayout *layout = [SQCollectionViewLayout waterFallLayoutWithColumnCount:2];
-        [layout setColumnSpacing:10 rowSpacing:10 sectionInset:UIEdgeInsetsMake(0, 10, 10, 10)];
+        [layout setColumnSpacing:10 rowSpacing:10 sectionInset:UIEdgeInsetsMake(0, 15, 10, 15)];
         CGRect collectFrame = CGRectMake(0, 0, YGScreenWidth, KAPP_HEIGHT-KNAV_HEIGHT-KTAB_HEIGHT);
         _collectionView = [[SQBaseCollectionView alloc] initWithFrame:collectFrame collectionViewLayout:layout];
         _collectionView.backgroundColor = self.view.backgroundColor;

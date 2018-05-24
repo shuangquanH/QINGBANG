@@ -7,18 +7,19 @@
 //
 
 #import "SQDecorationServeCell.h"
+#import "SQBaseImageView.h"
 
 #define KSPACE 10
 
 @implementation SQDecorationServeCell {
-    UIImageView *productImage;
+    SQBaseImageView *productImage;
     UILabel *productTitle;
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        productImage    = [[UIImageView alloc] init];
+        productImage    = [[SQBaseImageView alloc] init];
         productImage.backgroundColor = colorWithMainColor;
         [self.contentView addSubview:productImage];
         
@@ -53,8 +54,9 @@
     
 }
 
-- (void)setModel:(NSArray *)model {
-    productTitle.text = @"产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称";
+- (void)setModel:(NSString *)model {
+    productTitle.text = model;
+    [productImage setImageWithURL:[NSURL URLWithString:model]];
     [self layoutIfNeeded];
 }
 

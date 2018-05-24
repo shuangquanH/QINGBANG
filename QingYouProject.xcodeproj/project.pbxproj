@@ -1043,6 +1043,8 @@
 		E99DE22A20B595F0009CEF88 /* SQIphonePx.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE22920B595F0009CEF88 /* SQIphonePx.m */; };
 		E99DE23020B65A11009CEF88 /* SQRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE22F20B65A11009CEF88 /* SQRequest.m */; };
 		E99DE23320B665E4009CEF88 /* SQHomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE23220B665E4009CEF88 /* SQHomeCollectionViewCell.m */; };
+		E99DE23A20B6AA61009CEF88 /* SQDecorationSecondVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE23920B6AA61009CEF88 /* SQDecorationSecondVC.m */; };
+		E99DE23D20B6AB22009CEF88 /* SQDecorationDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE23C20B6AB22009CEF88 /* SQDecorationDetailVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -2988,6 +2990,10 @@
 		E99DE22F20B65A11009CEF88 /* SQRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQRequest.m; sourceTree = "<group>"; };
 		E99DE23120B665E4009CEF88 /* SQHomeCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQHomeCollectionViewCell.h; sourceTree = "<group>"; };
 		E99DE23220B665E4009CEF88 /* SQHomeCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQHomeCollectionViewCell.m; sourceTree = "<group>"; };
+		E99DE23820B6AA61009CEF88 /* SQDecorationSecondVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationSecondVC.h; sourceTree = "<group>"; };
+		E99DE23920B6AA61009CEF88 /* SQDecorationSecondVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationSecondVC.m; sourceTree = "<group>"; };
+		E99DE23B20B6AB22009CEF88 /* SQDecorationDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationDetailVC.h; sourceTree = "<group>"; };
+		E99DE23C20B6AB22009CEF88 /* SQDecorationDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationDetailVC.m; sourceTree = "<group>"; };
 		F883056FA3AE70A8E2E8FFA5 /* Pods-QingYouProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QingYouProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-QingYouProject/Pods-QingYouProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -7620,6 +7626,10 @@
 				E99DE1EE20AEA207009CEF88 /* SQDecorationServeCell.m */,
 				E99DE1F020AEA6AB009CEF88 /* SQDecorationSeveTableHeader.h */,
 				E99DE1F120AEA6AB009CEF88 /* SQDecorationSeveTableHeader.m */,
+				E99DE23820B6AA61009CEF88 /* SQDecorationSecondVC.h */,
+				E99DE23920B6AA61009CEF88 /* SQDecorationSecondVC.m */,
+				E99DE23B20B6AB22009CEF88 /* SQDecorationDetailVC.h */,
+				E99DE23C20B6AB22009CEF88 /* SQDecorationDetailVC.m */,
 			);
 			path = DecorationServe;
 			sourceTree = "<group>";
@@ -8293,6 +8303,7 @@
 				18C158891FC820890010ACD3 /* AboutRecommendController.m in Sources */,
 				E2E5B15F1FB0675A00205F70 /* QNResponseInfo.m in Sources */,
 				18C159341FC8208A0010ACD3 /* WaitReplyModel.m in Sources */,
+				E99DE23D20B6AB22009CEF88 /* SQDecorationDetailVC.m in Sources */,
 				18C159701FC8208A0010ACD3 /* IssueAdvertiseViewSpreadTableViewCell.m in Sources */,
 				18C15A211FC8208A0010ACD3 /* YGBirthdayDataPickerView.m in Sources */,
 				E2E5B19D1FB0675A00205F70 /* HXTagCollectionViewFlowLayout.m in Sources */,
@@ -8588,6 +8599,7 @@
 				E2E5B11A1FB0675900205F70 /* AFURLSessionManager.m in Sources */,
 				18C159F01FC8208A0010ACD3 /* NewThingsDetailController.m in Sources */,
 				18C1592D1FC820890010ACD3 /* AlreadyReplayModel.m in Sources */,
+				E99DE23A20B6AA61009CEF88 /* SQDecorationSecondVC.m in Sources */,
 				E2E5B16B1FB0675A00205F70 /* LxGridViewFlowLayout.m in Sources */,
 				18C159781FC8208A0010ACD3 /* JobOutsourceTradeRecoredWaitViewController.m in Sources */,
 				18C158B41FC820890010ACD3 /* MyHeaderView.m in Sources */,

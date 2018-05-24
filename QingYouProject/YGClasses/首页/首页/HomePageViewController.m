@@ -103,7 +103,7 @@ CLLocationManagerDelegate> {
 }
 - (void)lastPage {
     [YGUserDefaults setObject:@"1" forKey:USERDEF_FIRSTOPENAPP];
-    [self loginOrNotCanClose];
+    [self loginOrNot];
 }
 
 - (void)sqConfigureUi {
