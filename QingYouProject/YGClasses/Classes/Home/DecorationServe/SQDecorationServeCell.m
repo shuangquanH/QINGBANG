@@ -60,6 +60,10 @@
     [self layoutIfNeeded];
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

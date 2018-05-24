@@ -7,12 +7,14 @@
 //
 
 #import "SQDecorationDetailVC.h"
+#import "YGSegmentView.h"
 
-@interface SQDecorationDetailVC ()
+
+@interface SQDecorationDetailVC () <YGSegmentViewDelegate>
 
 @end
 
-@implementation SQDecorationDetailVC
+@implementation SQDecorationDetailVC 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,7 +26,19 @@
     
     
 }
+- (void)configAttribute {
+    CGRect frame = CGRectMake(0, 0, YGScreenWidth - 150, 22);
+    NSArray *titleArr = @[@"商品", @"详情", @"报价单"];
+    YGSegmentView   *seg = [[YGSegmentView alloc] initWithFrame:frame titlesArray:titleArr lineColor:colorWithMainColor delegate:self];
+    [seg setTitleFont:[UIFont systemFontOfSize:18]];
+    [seg hiddenBottomLine];
+    self.navigationItem.titleView = seg;
+}
 
+
+- (void)segmentButtonClickWithIndex:(int)buttonIndex {
+    NSLog(@"%d", buttonIndex);
+}
 - (void)rightButtonItemAciton {
     [YGAlertView showAlertWithTitle:@"分享" buttonTitlesArray:@[@"YES", @"NO"] buttonColorsArray:@[colorWithMainColor, kBlueColor] handler:nil];
 }

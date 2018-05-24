@@ -332,7 +332,6 @@
     //选择页面按钮
     _tableSegmentView = [[YGSegmentView alloc]initWithFrame:CGRectMake(0, YGScreenWidth * 1.27 + 20, YGScreenWidth, 40) titlesArray:@[@"值得换",@"附近的"] lineColor:colorWithMainColor delegate:self];
     _tableSegmentView.backgroundColor = colorWithYGWhite;
-    _tableSegmentView.lineColor = colorWithMainColor;
     [_headerView addSubview:_tableSegmentView];
     
     //默认第0页
