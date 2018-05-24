@@ -29,7 +29,8 @@
 
 + (void)showAlertWithTitlesArray:(NSArray *)titlesArray handler:(void (^)(NSInteger selectedIndex, NSString *selectedString))handler
 {
-    [[self alloc] initWithTitlesArray:titlesArray handler:handler];
+    YGActionSheetView *view = [[self alloc] initWithTitlesArray:titlesArray handler:handler];
+    [view show];
 }
 
 - (void)setSelectedIndex:(int)selectedIndex

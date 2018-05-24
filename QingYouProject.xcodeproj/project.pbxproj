@@ -1041,6 +1041,8 @@
 		E99DE21E20B582F5009CEF88 /* SQBaseCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE21D20B582F5009CEF88 /* SQBaseCollectionView.m */; };
 		E99DE22720B59286009CEF88 /* SQHomeCollectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE22620B59286009CEF88 /* SQHomeCollectionHeader.m */; };
 		E99DE22A20B595F0009CEF88 /* SQIphonePx.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE22920B595F0009CEF88 /* SQIphonePx.m */; };
+		E99DE23020B65A11009CEF88 /* SQRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE22F20B65A11009CEF88 /* SQRequest.m */; };
+		E99DE23320B665E4009CEF88 /* SQHomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE23220B665E4009CEF88 /* SQHomeCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -2982,6 +2984,10 @@
 		E99DE22920B595F0009CEF88 /* SQIphonePx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQIphonePx.m; sourceTree = "<group>"; };
 		E99DE22B20B59629009CEF88 /* SQMacroFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQMacroFile.h; sourceTree = "<group>"; };
 		E99DE22C20B59728009CEF88 /* SQApiUrlFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQApiUrlFile.h; sourceTree = "<group>"; };
+		E99DE22E20B65A11009CEF88 /* SQRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQRequest.h; sourceTree = "<group>"; };
+		E99DE22F20B65A11009CEF88 /* SQRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQRequest.m; sourceTree = "<group>"; };
+		E99DE23120B665E4009CEF88 /* SQHomeCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQHomeCollectionViewCell.h; sourceTree = "<group>"; };
+		E99DE23220B665E4009CEF88 /* SQHomeCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQHomeCollectionViewCell.m; sourceTree = "<group>"; };
 		F883056FA3AE70A8E2E8FFA5 /* Pods-QingYouProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QingYouProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-QingYouProject/Pods-QingYouProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -6049,6 +6055,7 @@
 			isa = PBXGroup;
 			children = (
 				2C8451E41FBD434200F037DE /* QingYouProject.entitlements */,
+				E99DE22D20B658C9009CEF88 /* Utils */,
 				E99DE1FC20B25C32009CEF88 /* Categories */,
 				E99DE1AC20AC4FAF009CEF88 /* Bases */,
 				18C154071FC820880010ACD3 /* YGClasses */,
@@ -7597,6 +7604,8 @@
 				E99DE21020B40D82009CEF88 /* SQCardScrollView.m */,
 				E99DE21620B561A0009CEF88 /* SQCollectionViewLayout.h */,
 				E99DE21720B561A0009CEF88 /* SQCollectionViewLayout.m */,
+				E99DE23120B665E4009CEF88 /* SQHomeCollectionViewCell.h */,
+				E99DE23220B665E4009CEF88 /* SQHomeCollectionViewCell.m */,
 				E99DE1E920AE9D97009CEF88 /* DecorationServe */,
 			);
 			path = Home;
@@ -7622,6 +7631,15 @@
 				E99DE1FE20B25C57009CEF88 /* NSString+SQStringSize.m */,
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		E99DE22D20B658C9009CEF88 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE22E20B65A11009CEF88 /* SQRequest.h */,
+				E99DE22F20B65A11009CEF88 /* SQRequest.m */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		F73D53F056E2247CD4A548BF /* Frameworks */ = {
@@ -8021,6 +8039,7 @@
 				E2E5B1801FB0675A00205F70 /* UIButton+YYWebImage.m in Sources */,
 				183AC1A41FDA7C3C009FCAA3 /* RushPurchaseOrderListPayDetailViewController.m in Sources */,
 				E2E5B33F1FB0675B00205F70 /* LDExchangeButton.m in Sources */,
+				E99DE23320B665E4009CEF88 /* SQHomeCollectionViewCell.m in Sources */,
 				181EE2041FE24632002BE515 /* SecondhandReplacementIBoughtWaitToDelivergoodsOrderViewController.m in Sources */,
 				E2E5B35D1FB0675B00205F70 /* YGAnimatePlayer.m in Sources */,
 				18C15A561FC8208B0010ACD3 /* GCMAssetModel.m in Sources */,
@@ -8771,6 +8790,7 @@
 				E99DE22A20B595F0009CEF88 /* SQIphonePx.m in Sources */,
 				18C159041FC820890010ACD3 /* OfficePurchaseOrderListViewController.m in Sources */,
 				18C159481FC8208A0010ACD3 /* LDPayItemView.m in Sources */,
+				E99DE23020B65A11009CEF88 /* SQRequest.m in Sources */,
 				18C159CB1FC8208A0010ACD3 /* InvoiceManagerViewController.m in Sources */,
 				183AC19E1FDA34FD009FCAA3 /* RushPurchaseOrderListAfterSaleViewController.m in Sources */,
 				E2E5B11D1FB0675900205F70 /* DALabeledCircularProgressView.m in Sources */,

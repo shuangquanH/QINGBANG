@@ -28,9 +28,6 @@
 #define YGTabBarHeight                    YGSingletonMarco.tabBarHeight                                 // 底部工具栏高度 
 #define YGBottomMargin                   ((YGTabBarHeight - 49)/2)
 
-#define KNAVHEIGHT                      (YGStatusBarHeight+YGNaviBarHeight)
-#define KTABHEIGHT                      YGTabBarHeight
-
 #define USERFILEPATH [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"user.data"]
 
 ////去版本警告

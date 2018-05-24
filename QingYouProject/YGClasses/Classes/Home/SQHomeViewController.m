@@ -9,10 +9,15 @@
 #import "SQHomeViewController.h"
 #import "SQCollectionViewLayout.h"
 #import "SQHomeCollectionHeader.h"
+#import "SQHomeCollectionViewCell.h"
 
-@interface SQHomeViewController () <SQCollectionViewLayoutDelegate, UICollectionViewDataSource>
+#import "YGAlertView.h"
+
+
+@interface SQHomeViewController () <SQCollectionViewLayoutDelegate, UICollectionViewDataSource, UICollectionViewDelegate, SQHomeCollectionHeaderDeleage>
 
 @property (nonatomic, strong) SQBaseCollectionView        *collectionView;
+@property (nonatomic, strong) SQHomeCollectionHeader       *headerView;
 
 @end
 
@@ -22,10 +27,29 @@
     [super viewDidLoad];
     self.naviTitle = @"首页";
     [self.view addSubview:self.collectionView];
-    CGRect headerFrame = CGRectMake(0, 0, YGScreenWidth, 570);
-    SQHomeCollectionHeader *headerView = [[SQHomeCollectionHeader alloc] initWithFrame:headerFrame];
-    self.collectionView.headerView = headerView;
-    headerView.scrollViewData = @[@"ahc", @"hahah"];
+    self.collectionView.headerView = self.headerView;
+    self.headerView.delegate = self;
+    self.headerView.scrollViewData = @[@"ahc", @"hahah"];
+    [self createRefreshWithScrollView:self.collectionView containFooter:YES];
+    self.collectionView.mj_header.ignoredScrollViewContentInsetTop=self.headerView.height;
+    
+    [self requestData];
+}
+
+- (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
+    if (headerAction) {
+        [self.collectionView.mj_header endRefreshing];
+    } else {
+        [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+    }
+}
+
+- (void)requestData {
+    [SQRequest post:@"getIndexPage" param:@{@"type":@"waitForPay"} success:^(id response) {
+        NSLog(@"dd");
+    } failure:^(NSError *error) {
+        NSLog(@"dd");
+    }];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -33,24 +57,25 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    SQBaseCollectionViewCell *cell = [SQBaseCollectionViewCell cellWithCollectionView:collectionView forIndexPath:indexPath];
-    UILabel *label = [[UILabel alloc] initWithFrame:cell.bounds];
-    label.textAlignment = NSTextAlignmentCenter;
-    label.text = [NSString stringWithFormat:@"%ld", indexPath.row];
-    [cell addSubview:label];
-    cell.backgroundColor = colorWithMainColor;
+    SQHomeCollectionViewCell *cell = [SQHomeCollectionViewCell cellWithCollectionView:collectionView forIndexPath:indexPath];
     return cell;
 }
 - (CGSize)waterfallLayout:(SQCollectionViewLayout *)waterfallLayout atIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row%3==0) {
-        return CGSizeMake(100, 100);
+        return CGSizeMake(168, 210);
     } else if (indexPath.row%7==0) {
-        return CGSizeMake(100, 50);
+        return CGSizeMake(168, 210);
     } else {
-        return CGSizeMake(100, 200);
+        return CGSizeMake(168, 100);
     }
 }
-
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSString    *string = [NSString stringWithFormat:@"点击了第%ld个按钮", indexPath.row];
+    [self tapedFuncsWithModel:string];
+}
+- (void)tapedFuncsWithModel:(NSString *)model {
+    [YGAlertView showAlertWithTitle:model buttonTitlesArray:@[@"YES", @"NO"] buttonColorsArray:@[[UIColor blueColor], [UIColor redColor]] handler:nil];
+}
 
 
 
@@ -59,14 +84,22 @@
 - (SQBaseCollectionView *)collectionView {
     if (!_collectionView) {
         SQCollectionViewLayout *layout = [SQCollectionViewLayout waterFallLayoutWithColumnCount:2];
-        [layout setColumnSpacing:10 rowSpacing:10 sectionInset:UIEdgeInsetsMake(10, 10, 10, 10)];
-        
-        _collectionView = [[SQBaseCollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
-        _collectionView.backgroundColor = kWhiteColor;
+        [layout setColumnSpacing:10 rowSpacing:10 sectionInset:UIEdgeInsetsMake(0, 10, 10, 10)];
+        CGRect collectFrame = CGRectMake(0, 0, YGScreenWidth, KAPP_HEIGHT-KNAV_HEIGHT-KTAB_HEIGHT);
+        _collectionView = [[SQBaseCollectionView alloc] initWithFrame:collectFrame collectionViewLayout:layout];
+        _collectionView.backgroundColor = self.view.backgroundColor;
         _collectionView.dataSource = self;
+        _collectionView.delegate = self;
         layout.delegate = self;
     }
     return _collectionView;
+}
+- (SQHomeCollectionHeader *)headerView {
+    if (!_headerView) {
+        CGRect headerFrame = CGRectMake(0, 0, YGScreenWidth, 570);
+        _headerView = [[SQHomeCollectionHeader alloc] initWithFrame:headerFrame];
+    }
+    return _headerView;
 }
 
 

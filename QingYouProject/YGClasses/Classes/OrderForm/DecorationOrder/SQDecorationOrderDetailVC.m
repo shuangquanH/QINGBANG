@@ -80,7 +80,7 @@
     
     [functionView mas_makeConstraints:^(MASConstraintMaker *make) {
        make.left.right.equalTo(self.contentView);
-        make.top.mas_equalTo(YGScreenHeight-KNAVHEIGHT-40);
+        make.top.mas_equalTo(YGScreenHeight-KNAV_HEIGHT-40);
         make.height.mas_equalTo(40);
     }];
     
@@ -114,7 +114,7 @@
     
     if (offset > 0 && contentOffset > 0) {
         [UIView animateWithDuration:0.3 animations:^{//上拉
-           self.contentScrollView.contentOffset=CGPointMake(0, YGScreenHeight-KNAVHEIGHT);
+           self.contentScrollView.contentOffset=CGPointMake(0, YGScreenHeight-KNAV_HEIGHT);
         }];
     }
     if (offset < 0 && distanceFromBottom > hight) {
@@ -133,7 +133,7 @@
 #pragma mark LazyLoad
 - (UIScrollView *)contentScrollView {
     if (!_contentScrollView) {
-        CGRect frame = CGRectMake(0, 0, YGScreenWidth, YGScreenHeight-KNAVHEIGHT);
+        CGRect frame = CGRectMake(0, 0, YGScreenWidth, YGScreenHeight-KNAV_HEIGHT);
         _contentScrollView = [[UIScrollView alloc] initWithFrame:frame];
         _contentScrollView.delegate = self;
     }
@@ -141,7 +141,7 @@
 }
 - (UIView *)contentView {
     if (!_contentView) {
-        CGRect frame = CGRectMake(0, 0, YGScreenWidth, (YGScreenHeight-KNAVHEIGHT)*2);
+        CGRect frame = CGRectMake(0, 0, YGScreenWidth, (YGScreenHeight-KNAV_HEIGHT)*2);
         _contentView = [[UIView alloc] initWithFrame:frame];
     }
     return _contentView;

@@ -17,7 +17,7 @@
          tailSpace:(CGFloat)tail
           itemSize:(CGSize) itemsize {
     UIView  *contentview = [[UIView alloc] init];
-    contentview.backgroundColor = [UIColor orangeColor];
+    contentview.backgroundColor = [UIColor whiteColor];
     [self addSubview:contentview];
     [contentview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self);

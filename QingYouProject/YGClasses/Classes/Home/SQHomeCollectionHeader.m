@@ -40,11 +40,11 @@
     
 }
 - (void)addOvalFuncView {
-    
     CGRect frame = CGRectMake(0, self.cycleView.sqbottom+10, KAPP_WIDTH, 225);
     CGSize centerSize = CGSizeMake(30, 30);
     UIImage *backImage = [UIImage imageNamed:@"ovalimage"];
     self.ovalView = [[SQOvalFuncButtons alloc] initWithFrame:frame centBtnSize:centerSize backImage:backImage];
+    self.ovalView.backgroundColor = kWhiteColor;
     self.ovalView.delegate = self;
     [self addSubview:self.ovalView];
 }
@@ -71,30 +71,46 @@
                           @"财税代理", @"办公室装修", @"人才招聘",
                           @"工商代办", @"项目申报", @"办公",
                           @"物业服务", @"资金扶持", @"广告位招商"];
-    for (NSString *title in btnTitle) {
+    for (int i = 0; i<btnTitle.count; i++) {
         UIButton    *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button setTitle:title forState:UIControlStateNormal];
+        button.tag = 1000+i;
+        [button setTitle:btnTitle[i] forState:UIControlStateNormal];
         button.backgroundColor = colorWithMainColor;
         [button setBackgroundImage:[UIImage imageNamed:@"ovalimage"] forState:UIControlStateNormal];
         [btnArr addObject:button];
-        [button addTarget:self action:@selector(btnaction) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(btnaction:) forControlEvents:UIControlEventTouchUpInside];
         [self.scrollview addSubview:button];
     }
-    [self.scrollview setItemArr:btnArr alongAxis:SQSAxisTypeHorizontal spacing:20 leadSpace:0 tailSpace:0 itemSize:CGSizeMake(200, 100)];
+    [self.scrollview setItemArr:btnArr alongAxis:SQSAxisTypeHorizontal spacing:10 leadSpace:0 tailSpace:0 itemSize:CGSizeMake(290, 100)];
     
 }
 
 
 
 #pragma actions
-- (void)btnaction {
-    NSLog(@"c");
+- (void)btnaction:(UIButton *)sender {
+    NSString    *string = [NSString stringWithFormat:@"点击了第%ld个个性定制", sender.tag-1000];
+    [self.delegate tapedFuncsWithModel:string];
 }
 #pragma delegates
-- (void)didselectWithClicktype:(ClickType)type {
-    NSLog(@"b");
-}
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
-    NSLog(@"a");
+    NSString    *string = [NSString stringWithFormat:@"点击了第%ld个轮播图", index];
+    [self.delegate tapedFuncsWithModel:string];
 }
+- (void)didselectWithClicktype:(ClickType)type {
+    NSString *str;
+    if (type==0) {
+        str = @"点击了上面";
+    } else if (type==1) {
+        str = @"点击了下面";
+    } else if (type==2) {
+        str = @"点击了左面";
+    } else if (type==3) {
+        str = @"点击了右面";
+    } else {
+        str = @"点击了中间";
+    }
+    [self.delegate tapedFuncsWithModel:str];
+}
+
 @end

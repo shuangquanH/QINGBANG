@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol SQHomeCollectionHeaderDeleage
+
+- (void)tapedFuncsWithModel:(NSString   *)model;
+
+@end
+
 @interface SQHomeCollectionHeader : UIView
+
+@property (nonatomic, weak) id <SQHomeCollectionHeaderDeleage> delegate;
 
 //轮播图数据
 @property (nonatomic, strong) NSArray       *cycleViewData;

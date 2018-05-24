@@ -6,6 +6,9 @@
 //  Copyright © 2016年 韩伟. All rights reserved.
 //
 
+//按钮为 上下排版 的弹出框
+
+
 #import <UIKit/UIKit.h>
 
 @interface YGVerticalAlertView : UIView
