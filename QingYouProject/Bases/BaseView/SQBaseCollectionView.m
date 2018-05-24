@@ -16,7 +16,6 @@
     self.contentInset = UIEdgeInsetsMake(headerView.frame.size.height, 0, 0, 0);
     headerView.frame = CGRectMake(viewFrame.origin.x, -viewFrame.size.height+viewFrame.origin.y, viewFrame.size.width, viewFrame.size.height);
     [self addSubview:headerView];
-    
 }
 
 - (void)setFooterView:(UIView *)footerView {

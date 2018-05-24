@@ -33,7 +33,7 @@
     self.headerView.scrollViewData = @[@"ahc", @"hahah"];
     [self createRefreshWithScrollView:self.collectionView containFooter:NO];
     self.collectionView.mj_header.ignoredScrollViewContentInsetTop=self.headerView.height;
-    
+    self.collectionView.contentOffset=CGPointMake(0, -self.headerView.height);
     [self requestData];
 }
 

@@ -94,7 +94,9 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self loginOrNot];
+    if (![self loginOrNot]) {
+        return;
+    }
     NSString    *titlestr = self.orderFormArr[indexPath.section][@"title"];
     
     if ([titlestr isEqualToString:@"我的装修"]) {

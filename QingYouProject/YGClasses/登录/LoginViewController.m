@@ -41,24 +41,21 @@
     self.statusBarStyle = UIStatusBarStyleDefault;
 }
 
-- (void)configAttribute
-{
-    self.fd_interactivePopDisabled = YES;
-    if (self.loginWithType == loginWithCommonPageType) {
-        self.fd_prefersNavigationBarHidden = YES;
-    }else
-    {
-        self.fd_prefersNavigationBarHidden = NO;
-    }
-    
-}
-
 -(void)configUI
 {
     _loginView = [[LoginView alloc]init];
     _loginView.loginWithType = self.loginWithType;
     _loginView.delegate = self;
     [self.view addSubview:_loginView];
+    if (self.loginWithType == loginWithCommonPageType) {
+        self.fd_prefersNavigationBarHidden = YES;
+        UIButton    *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 20, 40, 40)];
+        [backButton setImage:[UIImage imageNamed:@"back_black"] forState:UIControlStateNormal];
+        [backButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
+        [_loginView addSubview:backButton];
+    } else {
+        self.fd_prefersNavigationBarHidden = NO;
+    }
 }
 
 
