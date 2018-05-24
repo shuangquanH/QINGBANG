@@ -26,6 +26,8 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, weak) id <SQOvalFuncButtonDelegate>       delegate;
 
+@property (nonatomic, strong) UIImage       *backImage;
+
 - (instancetype)initWithFrame:(CGRect)frame centBtnSize:(CGSize)centerSize backImage:(UIImage   *)image;
 
 @end

@@ -10,18 +10,24 @@
 
 @implementation SQOvalFuncButtons {
     CGSize theSize;
+    UIImageView *backImageView;
 }
 - (instancetype)initWithFrame:(CGRect)frame centBtnSize:(CGSize)centerSize backImage:(UIImage   *)image {
     self = [super initWithFrame:frame];
     if (self) {
-        UIImageView *backImage = [[UIImageView alloc] initWithFrame:self.bounds];
-        [self addSubview:backImage];
-        backImage.image = image;
+        backImageView = [[UIImageView alloc] initWithFrame:self.bounds];
+        [self addSubview:backImageView];
+        backImageView.image = image;
         theSize = centerSize;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
         [self addGestureRecognizer:tap];
     }
     return self;
+}
+- (void)setBackImage:(UIImage *)backImage {
+    _backImage = backImage;
+    backImageView.image = backImage;
+    
 }
 #pragma mark 触发代理方法:
 - (void)didselectWithDistance:(CGFloat)distance rads:(CGFloat)rads {

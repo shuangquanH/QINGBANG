@@ -7,11 +7,10 @@
 //
 
 #import "SQHomeViewController.h"
-#import "SQOvalFuncButtons.h"
-#import "SQCardScrollView.h"
 #import "SQCollectionViewLayout.h"
+#import "SQHomeCollectionHeader.h"
 
-@interface SQHomeViewController () <SQOvalFuncButtonDelegate, SQCollectionViewLayoutDelegate, UICollectionViewDataSource>
+@interface SQHomeViewController () <SQCollectionViewLayoutDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, strong) SQBaseCollectionView        *collectionView;
 
@@ -23,53 +22,11 @@
     [super viewDidLoad];
     self.naviTitle = @"首页";
     [self.view addSubview:self.collectionView];
-    [self usedOvalView];
-    
-    
-    
-}
-
-
-- (void)usedOvalView {
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 400, YGScreenWidth)];
-    
-    CGRect frame = CGRectMake((YGScreenWidth-260)/2.0, 20, 280, 220);
-    SQOvalFuncButtons   *view = [[SQOvalFuncButtons alloc] initWithFrame:frame centBtnSize:CGSizeMake(30, 30) backImage:[UIImage imageNamed:@"ovalimage"]];
-    view.delegate = self;
-    [headerView addSubview:view];
-    
-    NSMutableArray  *btnArr = [NSMutableArray array];
-    NSArray *btnTitle = @[@"水电缴费", @"会议室预定", @"办公耗材",
-                          @"财税代理", @"办公室装修", @"人才招聘",
-                          @"工商代办", @"项目申报", @"办公",
-                          @"物业服务", @"资金扶持", @"广告位招商"];
-    for (NSString *title in btnTitle) {
-        UIButton    *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button setTitle:title forState:UIControlStateNormal];
-        button.backgroundColor = colorWithMainColor;
-        [button setImage:[UIImage imageNamed:@"ovalimage"] forState:UIControlStateNormal];
-        [btnArr addObject:button];
-        [button addTarget:self action:@selector(btnaction) forControlEvents:UIControlEventTouchUpInside];
-    }
-    
-    CGRect frame2 = CGRectMake(0, view.sqbottom+20, YGScreenWidth, 100);
-    SQCardScrollView    *scrollview = [[SQCardScrollView alloc] initWithFrame:frame2];
-    [self.view addSubview:scrollview];
-    [scrollview setItemArr:btnArr alongAxis:SQSAxisTypeHorizontal spacing:20 leadSpace:0 tailSpace:0 itemSize:CGSizeMake(200, 100)];
-
-    [headerView addSubview:scrollview];
-    
+    CGRect headerFrame = CGRectMake(0, 0, YGScreenWidth, 570);
+    SQHomeCollectionHeader *headerView = [[SQHomeCollectionHeader alloc] initWithFrame:headerFrame];
     self.collectionView.headerView = headerView;
+    headerView.scrollViewData = @[@"ahc", @"hahah"];
 }
-- (void)didselectWithClicktype:(ClickType)type {
-    NSLog(@"%lu", (unsigned long)type);
-}
-
-
-- (void)btnaction {
-    NSLog(@"dd");
-}
-
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return 20;
