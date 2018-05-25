@@ -26,8 +26,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.naviTitle = @"装修直通车";
-    UIBarButtonItem *itme = [self createBarbuttonWithNormalImageName:@"mine_instashot"
-                                                   selectedImageName:@"mine_instashot"
+    UIBarButtonItem *itme = [self createBarbuttonWithNormalImageName:@"service_black"
+                                                   selectedImageName:@"service_black"
                                                             selector:@selector(rightButtonItemAciton)];
     self.navigationItem.rightBarButtonItem = itme;
     

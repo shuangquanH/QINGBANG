@@ -8,9 +8,11 @@
 
 #import "SQDecorationDetailVC.h"
 #import "YGSegmentView.h"
+#import "SQDecorationDetailBottomView.h"
+#import "SQConfirmDecorationOrderVC.h"
 
 
-@interface SQDecorationDetailVC () <YGSegmentViewDelegate>
+@interface SQDecorationDetailVC () <YGSegmentViewDelegate, decorationDetailBottomViewDelegate>
 
 @end
 
@@ -19,20 +21,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIBarButtonItem *itme = [self createBarbuttonWithNormalImageName:@"mine_instashot"
-                                                   selectedImageName:@"mine_instashot"
+}
+- (void)configAttribute {
+    UIBarButtonItem *itme = [self createBarbuttonWithNormalImageName:@"service_black"
+                                                   selectedImageName:@"service_black"
                                                             selector:@selector(rightButtonItemAciton)];
     self.navigationItem.rightBarButtonItem = itme;
     
-    
-}
-- (void)configAttribute {
     CGRect frame = CGRectMake(0, 0, YGScreenWidth - 150, 22);
     NSArray *titleArr = @[@"商品", @"详情", @"报价单"];
     YGSegmentView   *seg = [[YGSegmentView alloc] initWithFrame:frame titlesArray:titleArr lineColor:colorWithMainColor delegate:self];
     [seg setTitleFont:[UIFont systemFontOfSize:18]];
     [seg hiddenBottomLine];
     self.navigationItem.titleView = seg;
+    
+    CGRect bottomFrame = CGRectMake(0, KAPP_HEIGHT-68-KNAV_HEIGHT, KAPP_WIDTH, 68);
+    SQDecorationDetailBottomView    *bottomView = [[SQDecorationDetailBottomView alloc] initWithFrame: bottomFrame];
+    bottomView.delegate = self;
+    [self.view addSubview:bottomView];
 }
 
 
@@ -42,6 +48,19 @@
 - (void)rightButtonItemAciton {
     [YGAlertView showAlertWithTitle:@"分享" buttonTitlesArray:@[@"YES", @"NO"] buttonColorsArray:@[colorWithMainColor, kBlueColor] handler:nil];
 }
+
+
+- (void)clickedCollectionBtn {
+    
+}
+-(void)clickedContactButton {
+    
+}
+- (void)clickedPayButton {
+    SQConfirmDecorationOrderVC  *vc = [[SQConfirmDecorationOrderVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
