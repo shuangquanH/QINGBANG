@@ -189,7 +189,7 @@
 {
 
     //注册
-    _registButton = [[UIButton alloc] initWithFrame:CGRectMake(YGScreenWidth-50, 30, 40, 40)];
+    _registButton = [[UIButton alloc] initWithFrame:CGRectMake(YGScreenWidth-50, 20, 40, 40)];
     [_registButton setTitle:@"注册" forState:UIControlStateNormal];
     [_registButton setTitleColor:colorWithMainColor forState:UIControlStateNormal];
     _nimbleButton.titleLabel.font = [UIFont systemFontOfSize:YGFontSizeBigTwo];

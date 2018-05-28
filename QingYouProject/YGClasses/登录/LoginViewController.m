@@ -41,24 +41,21 @@
     self.statusBarStyle = UIStatusBarStyleDefault;
 }
 
-- (void)configAttribute
-{
-    self.fd_interactivePopDisabled = YES;
-    if (self.loginWithType == loginWithCommonPageType) {
-        self.fd_prefersNavigationBarHidden = YES;
-    }else
-    {
-        self.fd_prefersNavigationBarHidden = NO;
-    }
-    
-}
-
 -(void)configUI
 {
     _loginView = [[LoginView alloc]init];
     _loginView.loginWithType = self.loginWithType;
     _loginView.delegate = self;
     [self.view addSubview:_loginView];
+    if (self.loginWithType == loginWithCommonPageType) {
+        self.fd_prefersNavigationBarHidden = YES;
+        UIButton    *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 20, 40, 40)];
+        [backButton setImage:[UIImage imageNamed:@"back_black"] forState:UIControlStateNormal];
+        [backButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
+        [_loginView addSubview:backButton];
+    } else {
+        self.fd_prefersNavigationBarHidden = NO;
+    }
 }
 
 
@@ -99,7 +96,7 @@
             // 授权数据
             
             self.thirdLoginDict = [[NSMutableDictionary alloc] init];
-
+            
             // 用户数据
             NSLog(@" name: %@", resp.name);
             NSLog(@" iconurl: %@", resp.iconurl);
@@ -120,16 +117,16 @@
                 NSLog(@" refreshToken: %@", resp.refreshToken);
                 NSLog(@" expiration: %@", resp.expiration);
                 
-            
+                
                 NSLog(@" gender: %@", resp.gender);
                 openid = resp.openid;
                 [self.thirdLoginDict setValue:resp.openid forKey:@"openid"];
             }
-
+            
             [self.thirdLoginDict setValue:resp.name forKey:@"name"];
             [self.thirdLoginDict setValue:resp.iconurl forKey:@"img"];
             [self.thirdLoginDict setValue:type forKey:@"type"];
-
+            
             //没有错误，请求服务器
             [self startPostWithURLString:REQUEST_otherLogin parameters:@{@"openid":openid,@"name":resp.name,@"img":resp.iconurl,@"type":type} showLoadingView:NO scrollView:nil];
             
@@ -155,8 +152,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)registAction
-{
+- (void)registAction {
     LoginViewController *vc = [[LoginViewController alloc] init];
     vc.loginWithType = loginWithRegistType;
     vc.naviTitle = @"注册";
@@ -167,7 +163,7 @@
 {
     [YGNetService showLoadingViewWithSuperView:self.view];
     _loginView.verifyButton.enabled = NO;
-
+    
     if (self.loginWithType == loginWithThirdSubType ) {
         [self startPostWithURLString:REQUEST_sendSMS parameters:@{@"phone":self.phoneString,@"type":@"2"} showLoadingView:NO scrollView:nil];
         
@@ -202,7 +198,7 @@
     if (self.loginWithType == loginWithThirdSubType)
     {
         [self startPostWithURLString:REQUEST_checkSMS parameters:@{@"phone":self.phoneString,@"code":_loginView.verifyTextField.text,@"type":type} showLoadingView:NO scrollView:nil];
-
+        
     }
     
     //无账号三方登录
@@ -247,7 +243,7 @@
             //拿到新的就归档到本地
             [YGSingletonMarco archiveUser];
             [YGPushSDK registerSDKWithUserId:YGSingletonMarco.user.userId options:^(NSError *error) {
-       
+                
                 
             }];
             [YGAppTool showToastWithText:@"登录成功"];
@@ -299,7 +295,7 @@
             }
             
             [self startPostWithURLString:REQUEST_sendSMS parameters:@{@"phone":_loginView.phoneTextField.text,@"type":type} showLoadingView:NO scrollView:nil];
-//            [self startPostWithURLString:REQUEST_checkSMS parameters:@{@"phone":_loginView.phoneTextField.text,@"code":_loginView.verifyTextField.text,@"type":type} showLoadingView:NO scrollView:nil];
+            //            [self startPostWithURLString:REQUEST_checkSMS parameters:@{@"phone":_loginView.phoneTextField.text,@"code":_loginView.verifyTextField.text,@"type":type} showLoadingView:NO scrollView:nil];
         }
     }
     
@@ -332,9 +328,9 @@
         if (self.loginWithType == loginWithThirdSubType)//三方子页面
         {
             [self.thirdLoginDict setValue:self.phoneString forKey:@"phone"];
-
+            
             [self startPostWithURLString:REQUEST_Binding parameters:self.thirdLoginDict showLoadingView:NO scrollView:nil];
-
+            
         }else if (self.loginWithType == loginWithGetBackPasswordSubType) //找回密码子页面
         {
             //请求服务器后如果请求成功
@@ -359,7 +355,7 @@
             
             [YGPushSDK registerSDKWithUserId:YGSingletonMarco.user.userId options:^(NSError *error) {
                 [YGAppTool showToastWithText:@"登录成功"];
-
+                
             }];
             NSInteger index = [[self.navigationController viewControllers] indexOfObject:self];
             [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:index - 2]animated:YES];
@@ -376,7 +372,7 @@
                 [YGAppTool showToastWithText:@"登录成功"];
             }];
             [self back];
-
+            
         }
     }
     
@@ -439,7 +435,7 @@
             
             [self startPostWithURLString:REQUEST_Binding parameters:self.thirdLoginDict showLoadingView:NO scrollView:nil];
             
-
+            
         }else
         {
             
@@ -454,7 +450,7 @@
         [YGSingletonMarco archiveUser];
         [YGPushSDK registerSDKWithUserId:YGSingletonMarco.user.userId options:^(NSError *error) {
             [YGAppTool showToastWithText:@"登录成功"];
-        
+            
         }];
         
         NSInteger index = [[self.navigationController viewControllers] indexOfObject:self];
@@ -494,6 +490,6 @@
     } failure:^(NSError *error) {
         
     }];
-
+    
 }
 @end

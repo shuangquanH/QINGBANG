@@ -214,7 +214,6 @@
 
     _segmentView = [[YGSegmentView alloc]initWithFrame:CGRectMake(30, 0, YGScreenWidth-60, 40) titlesArray:@[@"进行中的活动",@"全部活动"] lineColor:colorWithMainColor delegate:self];
     _segmentView.backgroundColor = colorWithYGWhite;
-    _segmentView.lineColor = colorWithMainColor;
     [_segmentBaseView addSubview:_segmentView];
     
     

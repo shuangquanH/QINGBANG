@@ -280,7 +280,6 @@
     //选择页面按钮
     YGSegmentView *segmentView = [[YGSegmentView alloc]initWithFrame:CGRectMake(0, 0, YGScreenWidth, 40) titlesArray:@[@"看动态",@"看活动"] lineColor:colorWithMainColor delegate:self];
     segmentView.backgroundColor = colorWithYGWhite;
-    segmentView.lineColor = colorWithMainColor;
     [headerBottomView addSubview:segmentView];
     
     /********************* _scrollView ***************/

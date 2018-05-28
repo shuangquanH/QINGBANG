@@ -44,25 +44,18 @@ static YGConnectionService *sConnectionService;
 }
 #pragma mark 单例模式获取 ConnectionService 对象
 
-+ (instancetype)sharedConnectionService
-{
++ (instancetype)sharedConnectionService {
     static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^
-    {
-
+    dispatch_once(&onceToken, ^ {
         sConnectionService = [[self alloc] init];
-
     });
     sConnectionService.netWorkStatus = [[Reachability reachabilityForInternetConnection] currentReachabilityStatus];
-
     return sConnectionService;
 }
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
-    if (self)
-    {
+    if (self) {
         // 1.首先实例化一个请求管理器
         self.requestManager = [AFHTTPSessionManager manager];
         self.requestManager.requestSerializer = [AFJSONRequestSerializer serializer];

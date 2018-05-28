@@ -42,6 +42,9 @@ target 'QingYouProject' do
   pod 'FSCalendar'
   pod 'HappyDNS', '~> 0.2'
   pod 'Pingpp', '~> 2.2.17'
+
+  #yymodel
+  pod 'YYModel'
   
   
   #测试一下哈哈哈哈哈

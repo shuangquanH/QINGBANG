@@ -230,7 +230,6 @@
     
     _segmentView = [[YGSegmentView alloc]initWithFrame:CGRectMake(15,headerMiddleView.y+headerMiddleView.height, YGScreenWidth-30, 40) titlesArray:_controllersArray lineColor:colorWithMainColor delegate:self];
     _segmentView.backgroundColor = colorWithYGWhite;
-    _segmentView.lineColor = colorWithMainColor;
     [_scrollView addSubview:_segmentView];
 
     

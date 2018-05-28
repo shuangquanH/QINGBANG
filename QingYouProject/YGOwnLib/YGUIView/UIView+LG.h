@@ -18,6 +18,12 @@
 @property(assign,nonatomic)CGSize size;
 @property(assign,nonatomic)CGPoint origin;
 
+
+@property (nonatomic, assign) CGFloat sqbottom;
+@property (nonatomic, assign) CGFloat sqright;
+
+
+
 /**
  *  距右多少
  *

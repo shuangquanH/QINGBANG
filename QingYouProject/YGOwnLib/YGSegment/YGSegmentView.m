@@ -9,16 +9,19 @@
 #import "YGSegmentView.h"
 
 #define lineViewHeight 2
-@implementation YGSegmentView
-{
+
+@interface YGSegmentView ()
+@property (nonatomic, strong) NSArray * titlesArray;
+@property (nonatomic, strong) UIColor * lineColor;
+@end
+
+@implementation YGSegmentView {
     UIView *_lineView;
     UIScrollView *_topScrollView;
 }
-- (instancetype)initWithFrame:(CGRect)frame titlesArray:(NSArray *)titlesArray lineColor:(UIColor *)lineColor delegate:(id)delegate
-{
+- (instancetype)initWithFrame:(CGRect)frame titlesArray:(NSArray *)titlesArray lineColor:(UIColor *)lineColor delegate:(id)delegate {
     self = [super initWithFrame:frame];
-    if (self)
-    {
+    if (self) {
         self.frame=frame;
         self.titlesArray= titlesArray;
         self.lineColor = lineColor;
@@ -28,8 +31,7 @@
     return self;
 }
 
--(void)configUI
-{
+-(void)configUI {
     _topScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.width, self.height)];
     _topScrollView.showsVerticalScrollIndicator = NO;
     _topScrollView.showsHorizontalScrollIndicator = NO;
@@ -42,8 +44,7 @@
     _lineView.backgroundColor = _lineColor;
     [_topScrollView addSubview:_lineView];
     
-    for (int i=0; i<_titlesArray.count; i++)
-    {
+    for (int i=0; i<_titlesArray.count; i++) {
         UIButton *segmentButton=[UIButton buttonWithType:UIButtonTypeCustom];
         segmentButton.tag=100+i;
         [segmentButton setTitle:_titlesArray[i] forState:UIControlStateNormal];
@@ -54,42 +55,28 @@
         segmentButton.frame=CGRectMake(baseViewWidth * i, 0, baseViewWidth,self.height-lineViewHeight);
         [_topScrollView addSubview:segmentButton];
         segmentButton.backgroundColor = kWhiteColor;
-        if (i==0)
-        {
+        if (i==0) {
             _lineView.width = [UILabel calculateWidthWithString:_titlesArray[i] textFont:segmentButton.titleLabel.font numerOfLines:1].width + 8;
             _lineView.centerx=segmentButton.centerx;
             segmentButton.selected=YES;
         }
         
-        if (i == _titlesArray.count - 1)
-        {
+        if (i == _titlesArray.count - 1) {
             _topScrollView.contentSize = CGSizeMake(self.width,self.height);
-        }
-        else
-        {
-//            UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(segmentButton.width - 0.5, 0, 0.5, segmentButton.height)];
-//            lineView.backgroundColor = YGUIColorFromRGB(0xF7F6F7, 1);
-//            [segmentButton addSubview:lineView];
         }
     }
 }
 
--(void)segmentButtonClick:(UIButton*)segBtn
-{
-    
+-(void)segmentButtonClick:(UIButton*)segBtn {
     [self selectButtonWithIndex:(int)segBtn.tag-100];
     [_delegate segmentButtonClickWithIndex:(int)segBtn.tag-100];
 }
 
--(void)selectButtonWithIndex:(int)buttonIndex
-{
-   
+-(void)selectButtonWithIndex:(int)buttonIndex {
     [self disSelectAllButton];
-    
     UIButton *segBtn=[self viewWithTag:100+buttonIndex];
     segBtn.selected=!segBtn.selected;
     _lineView.width = [UILabel calculateWidthWithString:_titlesArray[buttonIndex] textFont:segBtn.titleLabel.font numerOfLines:1].width + 8;
-    
     [UIView animateWithDuration:0.25 animations:^{
         _lineView.centerx = segBtn.centerx;
     }];
@@ -97,14 +84,26 @@
 
 }
 
--(void)disSelectAllButton
-{
-    for (int i =0; i<_titlesArray.count; i++)
-    {
+-(void)disSelectAllButton {
+    for (int i =0; i<_titlesArray.count; i++) {
         UIButton *segBtn = [self viewWithTag:100+i];
         segBtn.selected = NO;
     }
 }
 
+
+
+/** 隐藏下划线  */
+- (void)hiddenBottomLine {
+    [_lineView removeFromSuperview];
+}
+/** 设置标题font  */
+- (void)setTitleFont:(UIFont    *)font {
+    for (UIView *view in _topScrollView.subviews) {
+        if ([view isKindOfClass:[UIButton class]]) {
+            ((UIButton   *)view).titleLabel.font = font;
+        }
+    }
+}
 
 @end

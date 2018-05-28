@@ -154,7 +154,6 @@ typedef enum : NSUInteger {
  */
 - (BOOL)loginOrNot;
 
-
 #pragma 计时器 倒计时
 
 /**

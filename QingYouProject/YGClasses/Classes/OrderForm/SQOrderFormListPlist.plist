@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>title</key>
+		<string>我的装修</string>
+		<key>vc</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>房租缴纳</string>
+		<key>vc</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>办公采购</string>
+		<key>vc</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>项目申报</string>
+		<key>vc</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>工商代办</string>
+		<key>vc</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>财税代理</string>
+		<key>vc</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>会议室预定</string>
+		<key>vc</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>广告位招商</string>
+		<key>vc</key>
+		<string></string>
+	</dict>
+</array>
+</plist>

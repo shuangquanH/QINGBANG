@@ -89,28 +89,16 @@
     [YGAppDelegate.window addSubview:self];
     
     self.alpha = 0;
-    _baseView.frame = CGRectMake(_baseView.x, _baseView.y, _baseView.width, _baseView.height/10);
-    
     [UIView animateWithDuration:0.4 animations:^{
         self.alpha = 1;
     }];
-    
-    
-    [UIView animateWithDuration:1 // 动画时长
-                          delay:0.0 // 动画延迟
-         usingSpringWithDamping:0.2 // 类似弹簧振动效果 0~1
-          initialSpringVelocity:0 // 初始速度
-                        options:UIViewAnimationOptionCurveEaseInOut // 动画过渡效果
-                     animations:^{
-                         _baseView.frame = CGRectMake(_baseView.x, _baseView.y, _baseView.width, _baseView.height*10);
-                     } completion:nil];
 }
 
 -(void)dismiss
 {
     [UIView animateWithDuration:0.4 animations:^{
         self.alpha = 0;
-        _baseView.frame = CGRectMake(_baseView.x, _baseView.y, _baseView.width, 0);
+//        _baseView.frame = CGRectMake(_baseView.x, _baseView.y, _baseView.width, 0);
     }];
     
     [self performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:0.4];

@@ -57,6 +57,7 @@
         UITabBarItem *tabbarItem = [[UITabBarItem alloc]initWithTitle:tabbarItemDic[@"title"]
                                                                 image:nomalImage selectedImage:selectedImage];
         
+        //根据字符串创建控制器
         UIViewController *viewController = [[NSClassFromString(tabbarItemDic[@"viewController"]) alloc] init];
         viewController.tabBarItem = tabbarItem;
         

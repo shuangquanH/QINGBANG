@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+
+//按钮为 左右排版 的弹出框
 @interface YGAlertView : UIView
 
 @property (nonatomic, strong) NSArray *buttonTitlesArray; //按钮数组

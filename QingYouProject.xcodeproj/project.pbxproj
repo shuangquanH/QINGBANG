@@ -1010,6 +1010,45 @@
 		E94137A0209C3891003F3649 /* AppStartManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E941379F209C3891003F3649 /* AppStartManager.m */; };
 		E94137A7209C4295003F3649 /* SQLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E94137A6209C4295003F3649 /* SQLocationManager.m */; };
 		E94137EF20A53151003F3649 /* SQHomePageTableviewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = E94137EE20A53151003F3649 /* SQHomePageTableviewHeader.m */; };
+		E99DE1C020AC4FAF009CEF88 /* SQBaseHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1AE20AC4FAF009CEF88 /* SQBaseHeaderFooterView.m */; };
+		E99DE1C120AC4FAF009CEF88 /* SQBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1B120AC4FAF009CEF88 /* SQBaseTableViewCell.m */; };
+		E99DE1C220AC4FAF009CEF88 /* SQBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1B320AC4FAF009CEF88 /* SQBaseTableView.m */; };
+		E99DE1C320AC4FAF009CEF88 /* SQBaseImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1B420AC4FAF009CEF88 /* SQBaseImageView.m */; };
+		E99DE1C420AC4FAF009CEF88 /* SQBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1B720AC4FAF009CEF88 /* SQBaseTableViewController.m */; };
+		E99DE1C520AC4FAF009CEF88 /* SQBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1B820AC4FAF009CEF88 /* SQBaseViewController.m */; };
+		E99DE1C620AC4FAF009CEF88 /* SQBaseWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1B920AC4FAF009CEF88 /* SQBaseWebViewController.m */; };
+		E99DE1C720AC4FAF009CEF88 /* SQBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1BE20AC4FAF009CEF88 /* SQBaseModel.m */; };
+		E99DE1CC20AC5015009CEF88 /* SQUserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1CB20AC5015009CEF88 /* SQUserCenterViewController.m */; };
+		E99DE1CF20AC5400009CEF88 /* SQUserCenterTableViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1CE20AC5400009CEF88 /* SQUserCenterTableViewHeader.m */; };
+		E99DE1D120AC5EC3009CEF88 /* SQUserCenterMenuPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = E99DE1D020AC5EC3009CEF88 /* SQUserCenterMenuPlist.plist */; };
+		E99DE1D520AC646B009CEF88 /* SQOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1D420AC646B009CEF88 /* SQOrderViewController.m */; };
+		E99DE1D820AC64C7009CEF88 /* SQOrderTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1D720AC64C7009CEF88 /* SQOrderTableHeaderView.m */; };
+		E99DE1DA20AD23B2009CEF88 /* SQOrderFormListPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = E99DE1D920AD23B2009CEF88 /* SQOrderFormListPlist.plist */; };
+		E99DE1DD20AD50AC009CEF88 /* SQDecorationOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1DC20AD50AC009CEF88 /* SQDecorationOrderVC.m */; };
+		E99DE1E020AD5182009CEF88 /* SQDecorationOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1DF20AD5182009CEF88 /* SQDecorationOrderCell.m */; };
+		E99DE1E320AD54CC009CEF88 /* SQDecorationCellPayButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1E220AD54CC009CEF88 /* SQDecorationCellPayButtonView.m */; };
+		E99DE1E720AE6473009CEF88 /* SQDecorationOrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1E620AE6473009CEF88 /* SQDecorationOrderDetailVC.m */; };
+		E99DE1EC20AE9DE4009CEF88 /* SQDecorationServeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1EB20AE9DE4009CEF88 /* SQDecorationServeVC.m */; };
+		E99DE1EF20AEA207009CEF88 /* SQDecorationServeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1EE20AEA207009CEF88 /* SQDecorationServeCell.m */; };
+		E99DE1F220AEA6AB009CEF88 /* SQDecorationSeveTableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1F120AEA6AB009CEF88 /* SQDecorationSeveTableHeader.m */; };
+		E99DE1F520AEB9C9009CEF88 /* SQHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1F420AEB9C9009CEF88 /* SQHomeViewController.m */; };
+		E99DE1FF20B25C57009CEF88 /* NSString+SQStringSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1FE20B25C57009CEF88 /* NSString+SQStringSize.m */; };
+		E99DE20D20B4013B009CEF88 /* SQOvalFuncButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE20B20B4013A009CEF88 /* SQOvalFuncButtons.m */; };
+		E99DE20F20B40B34009CEF88 /* ovalimage.png in Resources */ = {isa = PBXBuildFile; fileRef = E99DE20E20B40B33009CEF88 /* ovalimage.png */; };
+		E99DE21220B40D82009CEF88 /* SQCardScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE21020B40D82009CEF88 /* SQCardScrollView.m */; };
+		E99DE21820B561A0009CEF88 /* SQCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE21720B561A0009CEF88 /* SQCollectionViewLayout.m */; };
+		E99DE21B20B57BA6009CEF88 /* SQBaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE21A20B57BA6009CEF88 /* SQBaseCollectionViewCell.m */; };
+		E99DE21E20B582F5009CEF88 /* SQBaseCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE21D20B582F5009CEF88 /* SQBaseCollectionView.m */; };
+		E99DE22720B59286009CEF88 /* SQHomeCollectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE22620B59286009CEF88 /* SQHomeCollectionHeader.m */; };
+		E99DE22A20B595F0009CEF88 /* SQIphonePx.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE22920B595F0009CEF88 /* SQIphonePx.m */; };
+		E99DE23020B65A11009CEF88 /* SQRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE22F20B65A11009CEF88 /* SQRequest.m */; };
+		E99DE23320B665E4009CEF88 /* SQHomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE23220B665E4009CEF88 /* SQHomeCollectionViewCell.m */; };
+		E99DE23A20B6AA61009CEF88 /* SQDecorationSecondVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE23920B6AA61009CEF88 /* SQDecorationSecondVC.m */; };
+		E99DE23D20B6AB22009CEF88 /* SQDecorationDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE23C20B6AB22009CEF88 /* SQDecorationDetailVC.m */; };
+		E99DE24020B7B7C9009CEF88 /* SQDecorationDetailBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE23F20B7B7C9009CEF88 /* SQDecorationDetailBottomView.m */; };
+		E99DE24320B7BEDA009CEF88 /* SQConfirmDecorationOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE24220B7BEDA009CEF88 /* SQConfirmDecorationOrderVC.m */; };
+		E99DE24920B7DE87009CEF88 /* UIButton+SQImagePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE24820B7DE87009CEF88 /* UIButton+SQImagePosition.m */; };
+		E99DE24C20BBDD68009CEF88 /* SQHomeIndexPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE24B20BBDD68009CEF88 /* SQHomeIndexPageModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -2890,6 +2929,83 @@
 		E94137A6209C4295003F3649 /* SQLocationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQLocationManager.m; sourceTree = "<group>"; };
 		E94137ED20A53151003F3649 /* SQHomePageTableviewHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQHomePageTableviewHeader.h; sourceTree = "<group>"; };
 		E94137EE20A53151003F3649 /* SQHomePageTableviewHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQHomePageTableviewHeader.m; sourceTree = "<group>"; };
+		E99DE1AE20AC4FAF009CEF88 /* SQBaseHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQBaseHeaderFooterView.m; sourceTree = "<group>"; };
+		E99DE1AF20AC4FAF009CEF88 /* SQBaseImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQBaseImageView.h; sourceTree = "<group>"; };
+		E99DE1B020AC4FAF009CEF88 /* SQBaseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQBaseTableView.h; sourceTree = "<group>"; };
+		E99DE1B120AC4FAF009CEF88 /* SQBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQBaseTableViewCell.m; sourceTree = "<group>"; };
+		E99DE1B220AC4FAF009CEF88 /* SQBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQBaseTableViewCell.h; sourceTree = "<group>"; };
+		E99DE1B320AC4FAF009CEF88 /* SQBaseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQBaseTableView.m; sourceTree = "<group>"; };
+		E99DE1B420AC4FAF009CEF88 /* SQBaseImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQBaseImageView.m; sourceTree = "<group>"; };
+		E99DE1B520AC4FAF009CEF88 /* SQBaseHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQBaseHeaderFooterView.h; sourceTree = "<group>"; };
+		E99DE1B720AC4FAF009CEF88 /* SQBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQBaseTableViewController.m; sourceTree = "<group>"; };
+		E99DE1B820AC4FAF009CEF88 /* SQBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQBaseViewController.m; sourceTree = "<group>"; };
+		E99DE1B920AC4FAF009CEF88 /* SQBaseWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQBaseWebViewController.m; sourceTree = "<group>"; };
+		E99DE1BA20AC4FAF009CEF88 /* SQBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQBaseViewController.h; sourceTree = "<group>"; };
+		E99DE1BB20AC4FAF009CEF88 /* SQBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQBaseTableViewController.h; sourceTree = "<group>"; };
+		E99DE1BC20AC4FAF009CEF88 /* SQBaseWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQBaseWebViewController.h; sourceTree = "<group>"; };
+		E99DE1BE20AC4FAF009CEF88 /* SQBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQBaseModel.m; sourceTree = "<group>"; };
+		E99DE1BF20AC4FAF009CEF88 /* SQBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQBaseModel.h; sourceTree = "<group>"; };
+		E99DE1CA20AC5015009CEF88 /* SQUserCenterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQUserCenterViewController.h; sourceTree = "<group>"; };
+		E99DE1CB20AC5015009CEF88 /* SQUserCenterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQUserCenterViewController.m; sourceTree = "<group>"; };
+		E99DE1CD20AC5400009CEF88 /* SQUserCenterTableViewHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQUserCenterTableViewHeader.h; sourceTree = "<group>"; };
+		E99DE1CE20AC5400009CEF88 /* SQUserCenterTableViewHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQUserCenterTableViewHeader.m; sourceTree = "<group>"; };
+		E99DE1D020AC5EC3009CEF88 /* SQUserCenterMenuPlist.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SQUserCenterMenuPlist.plist; sourceTree = "<group>"; };
+		E99DE1D320AC646B009CEF88 /* SQOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQOrderViewController.h; sourceTree = "<group>"; };
+		E99DE1D420AC646B009CEF88 /* SQOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQOrderViewController.m; sourceTree = "<group>"; };
+		E99DE1D620AC64C7009CEF88 /* SQOrderTableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQOrderTableHeaderView.h; sourceTree = "<group>"; };
+		E99DE1D720AC64C7009CEF88 /* SQOrderTableHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQOrderTableHeaderView.m; sourceTree = "<group>"; };
+		E99DE1D920AD23B2009CEF88 /* SQOrderFormListPlist.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SQOrderFormListPlist.plist; sourceTree = "<group>"; };
+		E99DE1DB20AD50AC009CEF88 /* SQDecorationOrderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationOrderVC.h; sourceTree = "<group>"; };
+		E99DE1DC20AD50AC009CEF88 /* SQDecorationOrderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationOrderVC.m; sourceTree = "<group>"; };
+		E99DE1DE20AD5182009CEF88 /* SQDecorationOrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationOrderCell.h; sourceTree = "<group>"; };
+		E99DE1DF20AD5182009CEF88 /* SQDecorationOrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationOrderCell.m; sourceTree = "<group>"; };
+		E99DE1E120AD54CC009CEF88 /* SQDecorationCellPayButtonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationCellPayButtonView.h; sourceTree = "<group>"; };
+		E99DE1E220AD54CC009CEF88 /* SQDecorationCellPayButtonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationCellPayButtonView.m; sourceTree = "<group>"; };
+		E99DE1E520AE6473009CEF88 /* SQDecorationOrderDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationOrderDetailVC.h; sourceTree = "<group>"; };
+		E99DE1E620AE6473009CEF88 /* SQDecorationOrderDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationOrderDetailVC.m; sourceTree = "<group>"; };
+		E99DE1EA20AE9DE4009CEF88 /* SQDecorationServeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationServeVC.h; sourceTree = "<group>"; };
+		E99DE1EB20AE9DE4009CEF88 /* SQDecorationServeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationServeVC.m; sourceTree = "<group>"; };
+		E99DE1ED20AEA207009CEF88 /* SQDecorationServeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationServeCell.h; sourceTree = "<group>"; };
+		E99DE1EE20AEA207009CEF88 /* SQDecorationServeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationServeCell.m; sourceTree = "<group>"; };
+		E99DE1F020AEA6AB009CEF88 /* SQDecorationSeveTableHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationSeveTableHeader.h; sourceTree = "<group>"; };
+		E99DE1F120AEA6AB009CEF88 /* SQDecorationSeveTableHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationSeveTableHeader.m; sourceTree = "<group>"; };
+		E99DE1F320AEB9C9009CEF88 /* SQHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQHomeViewController.h; sourceTree = "<group>"; };
+		E99DE1F420AEB9C9009CEF88 /* SQHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQHomeViewController.m; sourceTree = "<group>"; };
+		E99DE1FD20B25C57009CEF88 /* NSString+SQStringSize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+SQStringSize.h"; sourceTree = "<group>"; };
+		E99DE1FE20B25C57009CEF88 /* NSString+SQStringSize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+SQStringSize.m"; sourceTree = "<group>"; };
+		E99DE20B20B4013A009CEF88 /* SQOvalFuncButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQOvalFuncButtons.m; sourceTree = "<group>"; };
+		E99DE20C20B4013A009CEF88 /* SQOvalFuncButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQOvalFuncButtons.h; sourceTree = "<group>"; };
+		E99DE20E20B40B33009CEF88 /* ovalimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ovalimage.png; sourceTree = "<group>"; };
+		E99DE21020B40D82009CEF88 /* SQCardScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQCardScrollView.m; sourceTree = "<group>"; };
+		E99DE21120B40D82009CEF88 /* SQCardScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQCardScrollView.h; sourceTree = "<group>"; };
+		E99DE21620B561A0009CEF88 /* SQCollectionViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQCollectionViewLayout.h; sourceTree = "<group>"; };
+		E99DE21720B561A0009CEF88 /* SQCollectionViewLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQCollectionViewLayout.m; sourceTree = "<group>"; };
+		E99DE21920B57BA6009CEF88 /* SQBaseCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQBaseCollectionViewCell.h; sourceTree = "<group>"; };
+		E99DE21A20B57BA6009CEF88 /* SQBaseCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQBaseCollectionViewCell.m; sourceTree = "<group>"; };
+		E99DE21C20B582F5009CEF88 /* SQBaseCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQBaseCollectionView.h; sourceTree = "<group>"; };
+		E99DE21D20B582F5009CEF88 /* SQBaseCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQBaseCollectionView.m; sourceTree = "<group>"; };
+		E99DE22520B59286009CEF88 /* SQHomeCollectionHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQHomeCollectionHeader.h; sourceTree = "<group>"; };
+		E99DE22620B59286009CEF88 /* SQHomeCollectionHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQHomeCollectionHeader.m; sourceTree = "<group>"; };
+		E99DE22820B595EF009CEF88 /* SQIphonePx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQIphonePx.h; sourceTree = "<group>"; };
+		E99DE22920B595F0009CEF88 /* SQIphonePx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQIphonePx.m; sourceTree = "<group>"; };
+		E99DE22B20B59629009CEF88 /* SQMacroFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQMacroFile.h; sourceTree = "<group>"; };
+		E99DE22C20B59728009CEF88 /* SQApiUrlFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQApiUrlFile.h; sourceTree = "<group>"; };
+		E99DE22E20B65A11009CEF88 /* SQRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQRequest.h; sourceTree = "<group>"; };
+		E99DE22F20B65A11009CEF88 /* SQRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQRequest.m; sourceTree = "<group>"; };
+		E99DE23120B665E4009CEF88 /* SQHomeCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQHomeCollectionViewCell.h; sourceTree = "<group>"; };
+		E99DE23220B665E4009CEF88 /* SQHomeCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQHomeCollectionViewCell.m; sourceTree = "<group>"; };
+		E99DE23820B6AA61009CEF88 /* SQDecorationSecondVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationSecondVC.h; sourceTree = "<group>"; };
+		E99DE23920B6AA61009CEF88 /* SQDecorationSecondVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationSecondVC.m; sourceTree = "<group>"; };
+		E99DE23B20B6AB22009CEF88 /* SQDecorationDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationDetailVC.h; sourceTree = "<group>"; };
+		E99DE23C20B6AB22009CEF88 /* SQDecorationDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationDetailVC.m; sourceTree = "<group>"; };
+		E99DE23E20B7B7C9009CEF88 /* SQDecorationDetailBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationDetailBottomView.h; sourceTree = "<group>"; };
+		E99DE23F20B7B7C9009CEF88 /* SQDecorationDetailBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationDetailBottomView.m; sourceTree = "<group>"; };
+		E99DE24120B7BEDA009CEF88 /* SQConfirmDecorationOrderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQConfirmDecorationOrderVC.h; sourceTree = "<group>"; };
+		E99DE24220B7BEDA009CEF88 /* SQConfirmDecorationOrderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQConfirmDecorationOrderVC.m; sourceTree = "<group>"; };
+		E99DE24720B7DE87009CEF88 /* UIButton+SQImagePosition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+SQImagePosition.h"; sourceTree = "<group>"; };
+		E99DE24820B7DE87009CEF88 /* UIButton+SQImagePosition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SQImagePosition.m"; sourceTree = "<group>"; };
+		E99DE24A20BBDD68009CEF88 /* SQHomeIndexPageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQHomeIndexPageModel.h; sourceTree = "<group>"; };
+		E99DE24B20BBDD68009CEF88 /* SQHomeIndexPageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQHomeIndexPageModel.m; sourceTree = "<group>"; };
 		F883056FA3AE70A8E2E8FFA5 /* Pods-QingYouProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QingYouProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-QingYouProject/Pods-QingYouProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -3240,6 +3356,7 @@
 		18C154071FC820880010ACD3 /* YGClasses */ = {
 			isa = PBXGroup;
 			children = (
+				E99DE1C820AC4FDA009CEF88 /* Classes */,
 				18C154081FC820880010ACD3 /* 一起玩 */,
 				18C154581FC820880010ACD3 /* 合作案例类似的界面 */,
 				18C1545B1FC820880010ACD3 /* 我的 */,
@@ -5956,6 +6073,9 @@
 			isa = PBXGroup;
 			children = (
 				2C8451E41FBD434200F037DE /* QingYouProject.entitlements */,
+				E99DE22D20B658C9009CEF88 /* Utils */,
+				E99DE1FC20B25C32009CEF88 /* Categories */,
+				E99DE1AC20AC4FAF009CEF88 /* Bases */,
 				18C154071FC820880010ACD3 /* YGClasses */,
 				E2E5B08A1FB0675900205F70 /* YGOwnLib */,
 				E2E5ACC41FB0675800205F70 /* YGSystem */,
@@ -6888,8 +7008,12 @@
 		E2E5ACD41FB0675800205F70 /* YGHeaderFile */ = {
 			isa = PBXGroup;
 			children = (
-				E2E5ACD51FB0675800205F70 /* YGCommon.h */,
 				E2E5ACD61FB0675800205F70 /* YoGee.pch */,
+				E99DE22820B595EF009CEF88 /* SQIphonePx.h */,
+				E99DE22920B595F0009CEF88 /* SQIphonePx.m */,
+				E2E5ACD51FB0675800205F70 /* YGCommon.h */,
+				E99DE22B20B59629009CEF88 /* SQMacroFile.h */,
+				E99DE22C20B59728009CEF88 /* SQApiUrlFile.h */,
 			);
 			path = YGHeaderFile;
 			sourceTree = "<group>";
@@ -7383,6 +7507,171 @@
 			path = SQTools;
 			sourceTree = "<group>";
 		};
+		E99DE1AC20AC4FAF009CEF88 /* Bases */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE1AD20AC4FAF009CEF88 /* BaseView */,
+				E99DE1B620AC4FAF009CEF88 /* BaseController */,
+				E99DE1BD20AC4FAF009CEF88 /* BaseModel */,
+			);
+			path = Bases;
+			sourceTree = "<group>";
+		};
+		E99DE1AD20AC4FAF009CEF88 /* BaseView */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE1B020AC4FAF009CEF88 /* SQBaseTableView.h */,
+				E99DE1B320AC4FAF009CEF88 /* SQBaseTableView.m */,
+				E99DE1B220AC4FAF009CEF88 /* SQBaseTableViewCell.h */,
+				E99DE1B120AC4FAF009CEF88 /* SQBaseTableViewCell.m */,
+				E99DE1B520AC4FAF009CEF88 /* SQBaseHeaderFooterView.h */,
+				E99DE1AE20AC4FAF009CEF88 /* SQBaseHeaderFooterView.m */,
+				E99DE21C20B582F5009CEF88 /* SQBaseCollectionView.h */,
+				E99DE21D20B582F5009CEF88 /* SQBaseCollectionView.m */,
+				E99DE21920B57BA6009CEF88 /* SQBaseCollectionViewCell.h */,
+				E99DE21A20B57BA6009CEF88 /* SQBaseCollectionViewCell.m */,
+				E99DE1AF20AC4FAF009CEF88 /* SQBaseImageView.h */,
+				E99DE1B420AC4FAF009CEF88 /* SQBaseImageView.m */,
+			);
+			path = BaseView;
+			sourceTree = "<group>";
+		};
+		E99DE1B620AC4FAF009CEF88 /* BaseController */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE1B720AC4FAF009CEF88 /* SQBaseTableViewController.m */,
+				E99DE1B820AC4FAF009CEF88 /* SQBaseViewController.m */,
+				E99DE1B920AC4FAF009CEF88 /* SQBaseWebViewController.m */,
+				E99DE1BA20AC4FAF009CEF88 /* SQBaseViewController.h */,
+				E99DE1BB20AC4FAF009CEF88 /* SQBaseTableViewController.h */,
+				E99DE1BC20AC4FAF009CEF88 /* SQBaseWebViewController.h */,
+			);
+			path = BaseController;
+			sourceTree = "<group>";
+		};
+		E99DE1BD20AC4FAF009CEF88 /* BaseModel */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE1BF20AC4FAF009CEF88 /* SQBaseModel.h */,
+				E99DE1BE20AC4FAF009CEF88 /* SQBaseModel.m */,
+			);
+			path = BaseModel;
+			sourceTree = "<group>";
+		};
+		E99DE1C820AC4FDA009CEF88 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE1E820AE9D7D009CEF88 /* Home */,
+				E99DE1D220AC644B009CEF88 /* OrderForm */,
+				E99DE1C920AC4FE3009CEF88 /* UserCenter */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		E99DE1C920AC4FE3009CEF88 /* UserCenter */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE1D020AC5EC3009CEF88 /* SQUserCenterMenuPlist.plist */,
+				E99DE1CA20AC5015009CEF88 /* SQUserCenterViewController.h */,
+				E99DE1CB20AC5015009CEF88 /* SQUserCenterViewController.m */,
+				E99DE1CD20AC5400009CEF88 /* SQUserCenterTableViewHeader.h */,
+				E99DE1CE20AC5400009CEF88 /* SQUserCenterTableViewHeader.m */,
+			);
+			path = UserCenter;
+			sourceTree = "<group>";
+		};
+		E99DE1D220AC644B009CEF88 /* OrderForm */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE1D920AD23B2009CEF88 /* SQOrderFormListPlist.plist */,
+				E99DE1D320AC646B009CEF88 /* SQOrderViewController.h */,
+				E99DE1D420AC646B009CEF88 /* SQOrderViewController.m */,
+				E99DE1D620AC64C7009CEF88 /* SQOrderTableHeaderView.h */,
+				E99DE1D720AC64C7009CEF88 /* SQOrderTableHeaderView.m */,
+				E99DE1E420AE6446009CEF88 /* DecorationOrder */,
+			);
+			path = OrderForm;
+			sourceTree = "<group>";
+		};
+		E99DE1E420AE6446009CEF88 /* DecorationOrder */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE1DB20AD50AC009CEF88 /* SQDecorationOrderVC.h */,
+				E99DE1DC20AD50AC009CEF88 /* SQDecorationOrderVC.m */,
+				E99DE1DE20AD5182009CEF88 /* SQDecorationOrderCell.h */,
+				E99DE1DF20AD5182009CEF88 /* SQDecorationOrderCell.m */,
+				E99DE1E120AD54CC009CEF88 /* SQDecorationCellPayButtonView.h */,
+				E99DE1E220AD54CC009CEF88 /* SQDecorationCellPayButtonView.m */,
+				E99DE1E520AE6473009CEF88 /* SQDecorationOrderDetailVC.h */,
+				E99DE1E620AE6473009CEF88 /* SQDecorationOrderDetailVC.m */,
+			);
+			path = DecorationOrder;
+			sourceTree = "<group>";
+		};
+		E99DE1E820AE9D7D009CEF88 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE20E20B40B33009CEF88 /* ovalimage.png */,
+				E99DE1F320AEB9C9009CEF88 /* SQHomeViewController.h */,
+				E99DE1F420AEB9C9009CEF88 /* SQHomeViewController.m */,
+				E99DE24A20BBDD68009CEF88 /* SQHomeIndexPageModel.h */,
+				E99DE24B20BBDD68009CEF88 /* SQHomeIndexPageModel.m */,
+				E99DE22520B59286009CEF88 /* SQHomeCollectionHeader.h */,
+				E99DE22620B59286009CEF88 /* SQHomeCollectionHeader.m */,
+				E99DE20C20B4013A009CEF88 /* SQOvalFuncButtons.h */,
+				E99DE20B20B4013A009CEF88 /* SQOvalFuncButtons.m */,
+				E99DE21120B40D82009CEF88 /* SQCardScrollView.h */,
+				E99DE21020B40D82009CEF88 /* SQCardScrollView.m */,
+				E99DE21620B561A0009CEF88 /* SQCollectionViewLayout.h */,
+				E99DE21720B561A0009CEF88 /* SQCollectionViewLayout.m */,
+				E99DE23120B665E4009CEF88 /* SQHomeCollectionViewCell.h */,
+				E99DE23220B665E4009CEF88 /* SQHomeCollectionViewCell.m */,
+				E99DE1E920AE9D97009CEF88 /* DecorationServe */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		E99DE1E920AE9D97009CEF88 /* DecorationServe */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE1EA20AE9DE4009CEF88 /* SQDecorationServeVC.h */,
+				E99DE1EB20AE9DE4009CEF88 /* SQDecorationServeVC.m */,
+				E99DE1ED20AEA207009CEF88 /* SQDecorationServeCell.h */,
+				E99DE1EE20AEA207009CEF88 /* SQDecorationServeCell.m */,
+				E99DE1F020AEA6AB009CEF88 /* SQDecorationSeveTableHeader.h */,
+				E99DE1F120AEA6AB009CEF88 /* SQDecorationSeveTableHeader.m */,
+				E99DE23820B6AA61009CEF88 /* SQDecorationSecondVC.h */,
+				E99DE23920B6AA61009CEF88 /* SQDecorationSecondVC.m */,
+				E99DE23B20B6AB22009CEF88 /* SQDecorationDetailVC.h */,
+				E99DE23C20B6AB22009CEF88 /* SQDecorationDetailVC.m */,
+				E99DE23E20B7B7C9009CEF88 /* SQDecorationDetailBottomView.h */,
+				E99DE23F20B7B7C9009CEF88 /* SQDecorationDetailBottomView.m */,
+				E99DE24120B7BEDA009CEF88 /* SQConfirmDecorationOrderVC.h */,
+				E99DE24220B7BEDA009CEF88 /* SQConfirmDecorationOrderVC.m */,
+			);
+			path = DecorationServe;
+			sourceTree = "<group>";
+		};
+		E99DE1FC20B25C32009CEF88 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE1FD20B25C57009CEF88 /* NSString+SQStringSize.h */,
+				E99DE1FE20B25C57009CEF88 /* NSString+SQStringSize.m */,
+				E99DE24720B7DE87009CEF88 /* UIButton+SQImagePosition.h */,
+				E99DE24820B7DE87009CEF88 /* UIButton+SQImagePosition.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		E99DE22D20B658C9009CEF88 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE22E20B65A11009CEF88 /* SQRequest.h */,
+				E99DE22F20B65A11009CEF88 /* SQRequest.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		F73D53F056E2247CD4A548BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -7417,7 +7706,6 @@
 				2CA686781F68D57A00B6B74A /* Sources */,
 				2CA686791F68D57A00B6B74A /* Frameworks */,
 				2CA6867A1F68D57A00B6B74A /* Resources */,
-				80B17B6E22C49DDF19C71B6F /* [CP] Embed Pods Frameworks */,
 				B39BE25F61A7BCD6D422C50D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -7502,6 +7790,7 @@
 				18C159AE1FC8208A0010ACD3 /* Default-568h@2x.png in Resources */,
 				18C159B91FC8208A0010ACD3 /* AdvertisementRemarkCell.xib in Resources */,
 				E2502B141FF32ADB0080BA49 /* MyPushInformationCell.xib in Resources */,
+				E99DE20F20B40B34009CEF88 /* ovalimage.png in Resources */,
 				18C159B11FC8208A0010ACD3 /* AdvertisementApplyCell.xib in Resources */,
 				18C159231FC820890010ACD3 /* WaitToDealCell.xib in Resources */,
 				18C1594C1FC8208A0010ACD3 /* NetManagerCell.xib in Resources */,
@@ -7549,6 +7838,7 @@
 				18C15A791FC8208B0010ACD3 /* MeetingDetailCell.xib in Resources */,
 				E2E5B3771FB0675B00205F70 /* share_qq@3x.png in Resources */,
 				E2E5B37C1FB0675B00205F70 /* share_weixin@2x.png in Resources */,
+				E99DE1D120AC5EC3009CEF88 /* SQUserCenterMenuPlist.plist in Resources */,
 				18C159C31FC8208A0010ACD3 /* CooperateClientCell.xib in Resources */,
 				18C159631FC8208A0010ACD3 /* LDPendingCell.xib in Resources */,
 				18C158D21FC820890010ACD3 /* DecorationOrderDetailCell.xib in Resources */,
@@ -7608,6 +7898,7 @@
 				E2E5B38F1FB0675B00205F70 /* xianzhi_luzhi_quxiao.png in Resources */,
 				18C159F91FC8208A0010ACD3 /* TextOnlyCell.xib in Resources */,
 				18C158901FC820890010ACD3 /* ActivityInputCell.xib in Resources */,
+				E99DE1DA20AD23B2009CEF88 /* SQOrderFormListPlist.plist in Resources */,
 				18C1592C1FC820890010ACD3 /* AlreadyReplayCell.xib in Resources */,
 				E2E5B3621FB0675B00205F70 /* area.plist in Resources */,
 				18C159C11FC8208A0010ACD3 /* CompanyTextViewCell.xib in Resources */,
@@ -7620,30 +7911,30 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		80B17B6E22C49DDF19C71B6F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QingYouProject/Pods-QingYouProject-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B39BE25F61A7BCD6D422C50D /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-QingYouProject/Pods-QingYouProject-resources.sh",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				"${PODS_ROOT}/Pingpp/lib/Channels/Alipay/AlipaySDK.bundle",
+				"${PODS_ROOT}/Pingpp/lib/Pingpp.bundle",
+				"${PODS_ROOT}/UMengUShare/UShareSDK/UMSocialSDK/UMSocialSDKPromptResources.bundle",
+				"${PODS_ROOT}/UMengUShare/UShareSDK/SocialLibraries/QQ/QQSDK/TencentOpenApi_IOS_Bundle.bundle",
+				"${PODS_ROOT}/UMengUShare/UShareSDK/SocialLibraries/Sina/SinaSDK/WeiboSDK.bundle",
+				"${PODS_ROOT}/ZFPlayer/ZFPlayer/ZFPlayer.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AlipaySDK.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Pingpp.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/UMSocialSDKPromptResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TencentOpenApi_IOS_Bundle.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WeiboSDK.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ZFPlayer.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -7656,13 +7947,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-QingYouProject-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -7715,6 +8009,7 @@
 				18C159261FC820890010ACD3 /* OrderDeatilBottomPictureCollectionViewCell.m in Sources */,
 				E26B4ED81FCEACDD00DDD2F5 /* CommentModel.m in Sources */,
 				182091271FF48D4600283071 /* SecondhandReplaceLogisticeInforTableViewCell.m in Sources */,
+				E99DE21220B40D82009CEF88 /* SQCardScrollView.m in Sources */,
 				18C158F01FC820890010ACD3 /* playTogetherJudgeViewController.m in Sources */,
 				18C15A101FC8208A0010ACD3 /* MyFinancialAccountDealedViewController.m in Sources */,
 				18C158AE1FC820890010ACD3 /* AllianceCircleTrendsViewController.m in Sources */,
@@ -7776,6 +8071,7 @@
 				E2E5B1801FB0675A00205F70 /* UIButton+YYWebImage.m in Sources */,
 				183AC1A41FDA7C3C009FCAA3 /* RushPurchaseOrderListPayDetailViewController.m in Sources */,
 				E2E5B33F1FB0675B00205F70 /* LDExchangeButton.m in Sources */,
+				E99DE23320B665E4009CEF88 /* SQHomeCollectionViewCell.m in Sources */,
 				181EE2041FE24632002BE515 /* SecondhandReplacementIBoughtWaitToDelivergoodsOrderViewController.m in Sources */,
 				E2E5B35D1FB0675B00205F70 /* YGAnimatePlayer.m in Sources */,
 				18C15A561FC8208B0010ACD3 /* GCMAssetModel.m in Sources */,
@@ -7825,6 +8121,7 @@
 				2CBCF41C1FF0C0A100450E4D /* RushPurchaseDetailPopView.m in Sources */,
 				18C15A241FC8208A0010ACD3 /* CrowdFundingHallTableViewCell.m in Sources */,
 				2C8254541FD00019003F742A /* AllianceCircleTrendsCommentDetailViewController.m in Sources */,
+				E99DE1CF20AC5400009CEF88 /* SQUserCenterTableViewHeader.m in Sources */,
 				E2E5B36A1FB0675B00205F70 /* YGGravityImageView.m in Sources */,
 				18C15A8E1FC8208B0010ACD3 /* ReserveRemarkCell.m in Sources */,
 				18C15A2B1FC8208A0010ACD3 /* CrowdFundingAddProjectChooseTypeModel.m in Sources */,
@@ -7836,9 +8133,12 @@
 				E2E5B1A11FB0675A00205F70 /* RootViewController.m in Sources */,
 				E2E5B1371FB0675A00205F70 /* MJProperty.m in Sources */,
 				E2E5B3541FB0675B00205F70 /* SocketNoTalkModel.m in Sources */,
+				E99DE1C120AC4FAF009CEF88 /* SQBaseTableViewCell.m in Sources */,
 				18C159521FC8208A0010ACD3 /* DealedNetManagerViewController.m in Sources */,
 				18C1588F1FC820890010ACD3 /* ActivityInputCell.m in Sources */,
 				1812F30B2021BE0B00EEC1CE /* HomePageLegalServiceWaitTorViewController.m in Sources */,
+				E99DE1FF20B25C57009CEF88 /* NSString+SQStringSize.m in Sources */,
+				E99DE1E320AD54CC009CEF88 /* SQDecorationCellPayButtonView.m in Sources */,
 				18C1591D1FC820890010ACD3 /* IndoorMaintenanceViewController.m in Sources */,
 				18C158C71FC820890010ACD3 /* DecorationApplyCell.m in Sources */,
 				18C1598B1FC8208A0010ACD3 /* AdvertisesForInfoModel.m in Sources */,
@@ -7859,6 +8159,7 @@
 				1809E2B01FEBA3B8006C54EC /* SecondhandReplaceOtherHomePageModel.m in Sources */,
 				18C159ED1FC8208A0010ACD3 /* BreakContractBillTableViewCell.m in Sources */,
 				E286755B1FEB82B800403A87 /* MineIntergralOrderDetailsController.m in Sources */,
+				E99DE21E20B582F5009CEF88 /* SQBaseCollectionView.m in Sources */,
 				E2E5B1391FB0675A00205F70 /* MJPropertyType.m in Sources */,
 				18C159DB1FC8208A0010ACD3 /* IssueInvoiceModel.m in Sources */,
 				18C158C41FC820890010ACD3 /* QuotePlanViewController.m in Sources */,
@@ -7902,6 +8203,7 @@
 				18C15A051FC8208A0010ACD3 /* CooperationCustomCaseCell.m in Sources */,
 				E2E5B1421FB0675A00205F70 /* MJRefreshFooter.m in Sources */,
 				18C159D71FC8208A0010ACD3 /* MyHouseRentPayDetailViewController.m in Sources */,
+				E99DE21820B561A0009CEF88 /* SQCollectionViewLayout.m in Sources */,
 				183073A41FEA5C1500618479 /* SecondhandReplacementAddExpressViewController.m in Sources */,
 				18C158CF1FC820890010ACD3 /* DecorationOrderCell.m in Sources */,
 				E2E5B3411FB0675B00205F70 /* LDVerticalButton.m in Sources */,
@@ -8004,21 +8306,27 @@
 				18C1592A1FC820890010ACD3 /* OrderDetailModel.m in Sources */,
 				18C159641FC8208A0010ACD3 /* LDPendingVC.m in Sources */,
 				18C159541FC8208A0010ACD3 /* NetManagerJudgeViewController.m in Sources */,
+				E99DE24C20BBDD68009CEF88 /* SQHomeIndexPageModel.m in Sources */,
 				18C15A3F1FC8208B0010ACD3 /* BussinessPlanTableViewCell.m in Sources */,
+				E99DE1C220AC4FAF009CEF88 /* SQBaseTableView.m in Sources */,
 				18C159F41FC8208A0010ACD3 /* PictureLeftTextRightCell.m in Sources */,
 				18C158DC1FC820890010ACD3 /* AddressAskViewController.m in Sources */,
 				E2E5B17E1FB0675A00205F70 /* CALayer+YYWebImage.m in Sources */,
 				E2E5B17C1FB0675A00205F70 /* YYMemoryCache.m in Sources */,
 				2C9DB72B1FEA30FF0044819D /* MineIntergralRecordConvertSubViewController.m in Sources */,
+				E99DE1C620AC4FAF009CEF88 /* SQBaseWebViewController.m in Sources */,
 				18C158BF1FC820890010ACD3 /* MyDecorationApplyOrderController.m in Sources */,
 				18C1599E1FC8208A0010ACD3 /* MyIntegrationIndustryCommerceController.m in Sources */,
 				E2E5B14E1FB0675A00205F70 /* MJRefreshConst.m in Sources */,
+				E99DE1C020AC4FAF009CEF88 /* SQBaseHeaderFooterView.m in Sources */,
+				E99DE1C720AC4FAF009CEF88 /* SQBaseModel.m in Sources */,
 				2CF9B6AC1FE74D7800D279F3 /* OrderManagerController.m in Sources */,
 				E2E5B35B1FB0675B00205F70 /* UploadImageTool.m in Sources */,
 				525D00681FE2B0CF009BD9BF /* SeccondHandExchangePublishViewController.m in Sources */,
 				18C158891FC820890010ACD3 /* AboutRecommendController.m in Sources */,
 				E2E5B15F1FB0675A00205F70 /* QNResponseInfo.m in Sources */,
 				18C159341FC8208A0010ACD3 /* WaitReplyModel.m in Sources */,
+				E99DE23D20B6AB22009CEF88 /* SQDecorationDetailVC.m in Sources */,
 				18C159701FC8208A0010ACD3 /* IssueAdvertiseViewSpreadTableViewCell.m in Sources */,
 				18C15A211FC8208A0010ACD3 /* YGBirthdayDataPickerView.m in Sources */,
 				E2E5B19D1FB0675A00205F70 /* HXTagCollectionViewFlowLayout.m in Sources */,
@@ -8047,6 +8355,7 @@
 				E2E5B39C1FB0675B00205F70 /* YGVideoPickerController.m in Sources */,
 				E2E5B1501FB0675A00205F70 /* UIScrollView+MJExtension.m in Sources */,
 				18C158FB1FC820890010ACD3 /* OfficePurchaseDetailModel.m in Sources */,
+				E99DE24920B7DE87009CEF88 /* UIButton+SQImagePosition.m in Sources */,
 				E2E5B11E1FB0675900205F70 /* EBBannerView.m in Sources */,
 				18C158BB1FC820890010ACD3 /* MyCollectionViewController.m in Sources */,
 				18C159091FC820890010ACD3 /* AfterSaleCell.m in Sources */,
@@ -8063,11 +8372,13 @@
 				2C9BCDC71FE25AFC00831716 /* SeccondHandExchangeChooseTypeCell.m in Sources */,
 				18C159CA1FC8208A0010ACD3 /* HistoryPayRecoredViewController.m in Sources */,
 				18C1588A1FC820890010ACD3 /* ActivityChooseCell.m in Sources */,
+				E99DE1D520AC646B009CEF88 /* SQOrderViewController.m in Sources */,
 				18C1595A1FC8208A0010ACD3 /* AreaSelectDetailViewController.m in Sources */,
 				18C158951FC820890010ACD3 /* AddPosterHeaderView.m in Sources */,
 				18C159B21FC8208A0010ACD3 /* AdvertisementInstructionCell.m in Sources */,
 				18C15A171FC8208A0010ACD3 /* FinacialAccountPopView.m in Sources */,
 				18C15A411FC8208B0010ACD3 /* MyRoadShowFinishViewController.m in Sources */,
+				E99DE1C520AC4FAF009CEF88 /* SQBaseViewController.m in Sources */,
 				18C159C81FC8208A0010ACD3 /* HistoryPayRecordModel.m in Sources */,
 				2CF9B6B51FE74D7900D279F3 /* OrderDetailFooterView.m in Sources */,
 				E2E5B35F1FB0675B00205F70 /* YGAnimatePlayerView.m in Sources */,
@@ -8081,6 +8392,7 @@
 				2C9DB71F1FEA04B50044819D /* MineIntergralRecordOrderTableViewCell.m in Sources */,
 				18C1598F1FC8208A0010ACD3 /* MyIntroduceModel.m in Sources */,
 				18C15A711FC8208B0010ACD3 /* MyOrderModel.m in Sources */,
+				E99DE1C320AC4FAF009CEF88 /* SQBaseImageView.m in Sources */,
 				E2E5B3691FB0675B00205F70 /* YGGravity.m in Sources */,
 				E2E5B36D1FB0675B00205F70 /* YGPikerView.m in Sources */,
 				E2E5B1981FB0675A00205F70 /* UIView+ZYDraggable.m in Sources */,
@@ -8128,6 +8440,7 @@
 				181EE1E01FE21943002BE515 /* SecondhandReplacementPersonalHomePageViewController.m in Sources */,
 				18C159731FC8208A0010ACD3 /* JobOutSourceRecoredModel.m in Sources */,
 				1812F2FE2021A9F500EEC1CE /* HomePageLegalServiceIntroduceViewController.m in Sources */,
+				E99DE1C420AC4FAF009CEF88 /* SQBaseTableViewController.m in Sources */,
 				E2E5B33A1FB0675B00205F70 /* NSDictionary+HYBUnicodeReadable.m in Sources */,
 				18C159831FC8208A0010ACD3 /* CheckAdvertisesViewController.m in Sources */,
 				18C159B01FC8208A0010ACD3 /* AdvertisementApplyCell.m in Sources */,
@@ -8141,6 +8454,7 @@
 				18C159141FC820890010ACD3 /* OrderDetailBottomView.m in Sources */,
 				18C159761FC8208A0010ACD3 /* JobOutsourceTradeRecoredTableViewCell.m in Sources */,
 				18C1599F1FC8208A0010ACD3 /* MyIntegrationIndustryDealingController.m in Sources */,
+				E99DE1F220AEA6AB009CEF88 /* SQDecorationSeveTableHeader.m in Sources */,
 				18C159161FC820890010ACD3 /* ShipAndSuccessViewController.m in Sources */,
 				E2E5B3581FB0675B00205F70 /* UITextField+YG.m in Sources */,
 				18C158F11FC820890010ACD3 /* PlayTogetherMoreActiveCollectionViewCell.m in Sources */,
@@ -8180,6 +8494,7 @@
 				183AC1921FDA342B009FCAA3 /* AllRushPurchaseOrderListViewController.m in Sources */,
 				18C159451FC8208A0010ACD3 /* LDManagerHeaderCell.m in Sources */,
 				18C159991FC8208A0010ACD3 /* SeeAndSaveViewController.m in Sources */,
+				E99DE21B20B57BA6009CEF88 /* SQBaseCollectionViewCell.m in Sources */,
 				1809E29D1FEB8F34006C54EC /* SecondhandReplacementMyFollowModel.m in Sources */,
 				18C1599A1FC8208A0010ACD3 /* AdvertisesForViewController.m in Sources */,
 				E2E5B12B1FB0675A00205F70 /* GiftModel.m in Sources */,
@@ -8190,6 +8505,7 @@
 				18C158BD1FC820890010ACD3 /* DecorationOrderDetailsController.m in Sources */,
 				18C1594F1FC8208A0010ACD3 /* NetVIPDetailVC.m in Sources */,
 				18C158F81FC820890010ACD3 /* ChooseGoodsChildView.m in Sources */,
+				E99DE1D820AC64C7009CEF88 /* SQOrderTableHeaderView.m in Sources */,
 				E2E5B15D1FB0675A00205F70 /* QNSystem.m in Sources */,
 				18C159101FC820890010ACD3 /* DeliveredCell.m in Sources */,
 				18EF7E8F1FE26FA600A7CC7A /* SecondhandReplacementSubstitutionWaitToPayViewController.m in Sources */,
@@ -8211,6 +8527,7 @@
 				E2E5B3391FB0675B00205F70 /* NSArray+HYBUnicodeReadable.m in Sources */,
 				18C15A5D1FC8208B0010ACD3 /* TakePicturesOrderDetailController.m in Sources */,
 				1812F3112021BF2C00EEC1CE /* HomePageLegalDealedViewController.m in Sources */,
+				E99DE24320B7BEDA009CEF88 /* SQConfirmDecorationOrderVC.m in Sources */,
 				18C159901FC8208A0010ACD3 /* MyIntroduceTableViewCell.m in Sources */,
 				18C15A781FC8208B0010ACD3 /* MeetingDetailCell.m in Sources */,
 				18C15A911FC8208B0010ACD3 /* OrderCheckHouseDetailViewController.m in Sources */,
@@ -8298,6 +8615,7 @@
 				E2E5B16A1FB0675A00205F70 /* UIView+SEKExtension.m in Sources */,
 				E2CD938C1FF0D43500CC7D13 /* MyCollectionTextCell.m in Sources */,
 				E2E5B14A1FB0675A00205F70 /* MJRefreshGifHeader.m in Sources */,
+				E99DE1CC20AC5015009CEF88 /* SQUserCenterViewController.m in Sources */,
 				1809E2A41FEB983C006C54EC /* SecondhandReplacementMyFansTableViewCell.m in Sources */,
 				18C15A581FC8208B0010ACD3 /* RoadShowHallApplyViewController.m in Sources */,
 				18C1594A1FC8208A0010ACD3 /* LDVipImageView.m in Sources */,
@@ -8306,6 +8624,8 @@
 				E2E5B11A1FB0675900205F70 /* AFURLSessionManager.m in Sources */,
 				18C159F01FC8208A0010ACD3 /* NewThingsDetailController.m in Sources */,
 				18C1592D1FC820890010ACD3 /* AlreadyReplayModel.m in Sources */,
+				E99DE23A20B6AA61009CEF88 /* SQDecorationSecondVC.m in Sources */,
+				E99DE24020B7B7C9009CEF88 /* SQDecorationDetailBottomView.m in Sources */,
 				E2E5B16B1FB0675A00205F70 /* LxGridViewFlowLayout.m in Sources */,
 				18C159781FC8208A0010ACD3 /* JobOutsourceTradeRecoredWaitViewController.m in Sources */,
 				18C158B41FC820890010ACD3 /* MyHeaderView.m in Sources */,
@@ -8389,6 +8709,7 @@
 				2C9DB71C1FEA04710044819D /* MineIntergralRecordOrderViewController.m in Sources */,
 				E2E5B33B1FB0675B00205F70 /* NSSet+HYBUnicodeReadable.m in Sources */,
 				183AC1951FDA3453009FCAA3 /* RushPurchaseOrderListWaitToPayViewController.m in Sources */,
+				E99DE1EC20AE9DE4009CEF88 /* SQDecorationServeVC.m in Sources */,
 				18C1597F1FC8208A0010ACD3 /* MyRecruitBeCheckedTableViewCell.m in Sources */,
 				E2E5B12A1FB0675A00205F70 /* AnimOperationManager.m in Sources */,
 				18C159821FC8208A0010ACD3 /* MyRecruitBeInviteInterviewViewController.m in Sources */,
@@ -8405,6 +8726,7 @@
 				E2E5B1811FB0675A00205F70 /* UIImage+YYWebImage.m in Sources */,
 				18C15A901FC8208B0010ACD3 /* OrderCheckHouseDetailTableViewCell.m in Sources */,
 				18C15A601FC8208B0010ACD3 /* TakePicturesSubmitSuccessController.m in Sources */,
+				E99DE1E720AE6473009CEF88 /* SQDecorationOrderDetailVC.m in Sources */,
 				E2E5B1461FB0675A00205F70 /* MJRefreshAutoStateFooter.m in Sources */,
 				1809E2A11FEB97F3006C54EC /* SecondhangReplacementMyFansViewController.m in Sources */,
 				18C159CD1FC8208A0010ACD3 /* InvoiceHistoryModel.m in Sources */,
@@ -8432,6 +8754,7 @@
 				E2E5B34F1FB0675B00205F70 /* SocketAddGoodModel.m in Sources */,
 				2CF9B6AE1FE74D7800D279F3 /* RefundsOrderController.m in Sources */,
 				18C15A511FC8208B0010ACD3 /* FundSupportViewController.m in Sources */,
+				E99DE1F520AEB9C9009CEF88 /* SQHomeViewController.m in Sources */,
 				2CF9B6B21FE74D7900D279F3 /* OrderFooterView.m in Sources */,
 				18C158E51FC820890010ACD3 /* AddressAskTableViewCell.m in Sources */,
 				E2E5B13B1FB0675A00205F70 /* NSObject+MJCoding.m in Sources */,
@@ -8460,6 +8783,7 @@
 				18C158A41FC820890010ACD3 /* AllAllianceViewController.m in Sources */,
 				18C1595E1FC8208A0010ACD3 /* LDTextView.m in Sources */,
 				18C15A551FC8208B0010ACD3 /* RoadShowHallViewController.m in Sources */,
+				E99DE1E020AD5182009CEF88 /* SQDecorationOrderCell.m in Sources */,
 				18C15A461FC8208B0010ACD3 /* SubscribeDetailViewController.m in Sources */,
 				18C1598D1FC8208A0010ACD3 /* AdvertisesForInfoTableViewCell.m in Sources */,
 				18C158B31FC820890010ACD3 /* MyCenterViewController.m in Sources */,
@@ -8489,23 +8813,28 @@
 				E2E5B1151FB0675900205F70 /* AFHTTPSessionManager.m in Sources */,
 				E2888BBC1FE75E34009954E5 /* WorthInModel.m in Sources */,
 				18C158EB1FC820890010ACD3 /* ShopItemModel.m in Sources */,
+				E99DE1EF20AEA207009CEF88 /* SQDecorationServeCell.m in Sources */,
 				18C158E11FC820890010ACD3 /* CommercialRegistrationModel.m in Sources */,
 				18C15A9F1FC8208B0010ACD3 /* SelectCityPopView.m in Sources */,
 				E2502B0F1FF31F680080BA49 /* MyPushInformationController.m in Sources */,
 				18C1597C1FC8208A0010ACD3 /* MyRecruitEnterpriseMessageViewController.m in Sources */,
 				E2E5B19B1FB0675A00205F70 /* HXTagAttribute.m in Sources */,
 				E2E5B1761FB0675A00205F70 /* TZVideoPlayerController.m in Sources */,
+				E99DE22720B59286009CEF88 /* SQHomeCollectionHeader.m in Sources */,
 				E2E5B1671FB0675A00205F70 /* QNUploadOption.m in Sources */,
 				2C82545A1FD002F8003F742A /* AllianceCircleTrendsCommentDetailModel.m in Sources */,
 				2C7CDCDE1FCEB107005437C6 /* AllianceMainSettingViewController.m in Sources */,
 				18C159C91FC8208A0010ACD3 /* HistoryPayRecoredTableViewCell.m in Sources */,
+				E99DE22A20B595F0009CEF88 /* SQIphonePx.m in Sources */,
 				18C159041FC820890010ACD3 /* OfficePurchaseOrderListViewController.m in Sources */,
 				18C159481FC8208A0010ACD3 /* LDPayItemView.m in Sources */,
+				E99DE23020B65A11009CEF88 /* SQRequest.m in Sources */,
 				18C159CB1FC8208A0010ACD3 /* InvoiceManagerViewController.m in Sources */,
 				183AC19E1FDA34FD009FCAA3 /* RushPurchaseOrderListAfterSaleViewController.m in Sources */,
 				E2E5B11D1FB0675900205F70 /* DALabeledCircularProgressView.m in Sources */,
 				E2E5B1721FB0675A00205F70 /* TZPhotoPickerController.m in Sources */,
 				18C159361FC8208A0010ACD3 /* ServiceIntroduceModel.m in Sources */,
+				E99DE20D20B4013B009CEF88 /* SQOvalFuncButtons.m in Sources */,
 				E2E5B1311FB0675A00205F70 /* KSPhotoView.m in Sources */,
 				183AC1AA1FDA8BF0009FCAA3 /* RushPurchaseOrderListDispatchEdGoodsDetailViewController.m in Sources */,
 				E2E5B18A1FB0675A00205F70 /* YYWebImageOperation.m in Sources */,
@@ -8513,6 +8842,7 @@
 				18EF7E741FE2672A00A7CC7A /* SecondhandReplacementISelloutViewController.m in Sources */,
 				2CF9B6AF1FE74D7900D279F3 /* OrderModel.m in Sources */,
 				1827B3701FD7924D0050BBAB /* PlayTogetherSignupTableViewCell.m in Sources */,
+				E99DE1DD20AD50AC009CEF88 /* SQDecorationOrderVC.m in Sources */,
 				18C15A981FC8208B0010ACD3 /* CommentViewController.m in Sources */,
 				18C15A8C1FC8208B0010ACD3 /* ReserveInputCell.m in Sources */,
 				E2E5B3451FB0675B00205F70 /* UIImage+LDImage.m in Sources */,

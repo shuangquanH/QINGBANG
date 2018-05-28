@@ -267,7 +267,6 @@
     
     _segmentView = [[YGSegmentView alloc]initWithFrame:CGRectMake(0,headerMiddleView.y+headerMiddleView.height, YGScreenWidth, 40) titlesArray:_controllersArray lineColor:colorWithMainColor delegate:self];
     _segmentView.backgroundColor = colorWithYGWhite;
-    _segmentView.lineColor = colorWithMainColor;
     [_baseView addSubview:_segmentView];
     
     _headerHeight = _segmentView.y+_segmentView.height;
@@ -343,7 +342,6 @@
     }
     _movingSegmentView = [[YGSegmentView alloc]initWithFrame:CGRectMake(0,0, YGScreenWidth, 40) titlesArray:_controllersArray lineColor:colorWithMainColor delegate:self];
     _movingSegmentView.backgroundColor = colorWithYGWhite;
-    _movingSegmentView.lineColor = colorWithMainColor;
     [self.view addSubview:_movingSegmentView];
     _movingSegmentView.hidden = YES;
     

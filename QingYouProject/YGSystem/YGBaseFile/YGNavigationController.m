@@ -36,7 +36,7 @@
         [backButton setImage:[UIImage imageNamed:@"back_black"] forState:UIControlStateNormal];
         backButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
         backButton.imageView.clipsToBounds = YES;
-        [backButton setImageEdgeInsets:UIEdgeInsetsMake(0, -15, 0, 0)];
+        [backButton setImageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
         [backButton addTarget:viewController action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
         [viewController.navigationItem setLeftBarButtonItem:leftItem];
