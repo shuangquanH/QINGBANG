@@ -78,7 +78,8 @@
 #pragma mark LazyLoad
 - (SQBaseTableView  *)tableview {
     if (!_tableview) {
-        _tableview = [[SQBaseTableView   alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, KAPP_HEIGHT-KNAV_HEIGHT)];
+        CGRect  frame = CGRectMake(0, 0, KAPP_WIDTH, KAPP_HEIGHT-KNAV_HEIGHT);
+        _tableview = [[SQBaseTableView   alloc] initWithFrame: frame];
         _tableview.estimatedRowHeight = 600;
         _tableview.rowHeight = UITableViewAutomaticDimension;
         _tableview.delegate = self;

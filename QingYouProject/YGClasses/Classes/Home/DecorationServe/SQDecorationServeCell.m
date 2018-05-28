@@ -56,7 +56,7 @@
 
 - (void)setModel:(NSString *)model {
     productTitle.text = model;
-    [productImage setImageWithURL:[NSURL URLWithString:model]];
+    [productImage setImageWithUrl:model placeHolder:[UIImage imageNamed:@"placeholderfigure_square_750x750"]];
     [self layoutIfNeeded];
 }
 

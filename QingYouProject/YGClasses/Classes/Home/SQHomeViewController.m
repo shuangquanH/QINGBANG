@@ -14,11 +14,15 @@
 /** 装修板块  */
 #import "SQDecorationServeVC.h"
 
+/** Model  */
+#import "SQHomeIndexPageModel.h"
+
 
 @interface SQHomeViewController () <SQCollectionViewLayoutDelegate, UICollectionViewDataSource, UICollectionViewDelegate, SQHomeCollectionHeaderDeleage>
 
 @property (nonatomic, strong) SQBaseCollectionView        *collectionView;
 @property (nonatomic, strong) SQHomeCollectionHeader       *headerView;
+@property (nonatomic, strong) SQHomeIndexPageModel       *model;
 
 @end
 
@@ -44,6 +48,7 @@
 - (void)requestData {
     [SQRequest post:@"getIndexPage" param:@{@"type":@"waitForPay"} success:^(id response) {
         NSLog(@"dd");
+//        self.model = [SQHomeIndexPageModel model]
     } failure:^(NSError *error) {
         NSLog(@"dd");
     }];

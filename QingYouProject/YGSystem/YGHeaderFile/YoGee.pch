@@ -33,6 +33,7 @@
 #import "SQApiUrlFile.h"
 #import "SQMacroFile.h"
 #import "SQIphonePx.h"
+#import "SQBaseModel.h"
 #import "SQBaseTableView.h"
 #import "SQBaseTableViewCell.h"
 #import "SQBaseCollectionView.h"
