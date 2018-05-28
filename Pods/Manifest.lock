@@ -25,7 +25,7 @@ PODS:
   - SDWebImage/Core (4.0.0)
   - SMSSDK (3.0.1):
     - MOBFoundation
-  - UITableView+FDTemplateLayoutCell (1.6)
+  - "UITableView+FDTemplateLayoutCell (1.6)"
   - UMengAnalytics (4.2.4)
   - UMengUShare/Core (6.4.5):
     - UMengUShare/Network
@@ -45,6 +45,7 @@ PODS:
   - UMengUShare/Social/WeChat (6.4.5):
     - UMengUShare/Core
     - UMengUShare/Social/ReducedWeChat
+  - YYModel (1.0.4)
   - ZFPlayer (2.1.5):
     - Masonry
 
@@ -60,12 +61,34 @@ DEPENDENCIES:
   - SDCycleScrollView
   - SDWebImage
   - SMSSDK
-  - UITableView+FDTemplateLayoutCell
+  - "UITableView+FDTemplateLayoutCell"
   - UMengAnalytics
   - UMengUShare/Social/QQ
   - UMengUShare/Social/Sina
   - UMengUShare/Social/WeChat
+  - YYModel
   - ZFPlayer
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AMapFoundation
+    - AMapLocation
+    - FDFullscreenPopGesture
+    - FSCalendar
+    - HappyDNS
+    - IQKeyboardManager
+    - Masonry
+    - MBProgressHUD
+    - MOBFoundation
+    - Pingpp
+    - SDCycleScrollView
+    - SDWebImage
+    - SMSSDK
+    - "UITableView+FDTemplateLayoutCell"
+    - UMengAnalytics
+    - UMengUShare
+    - YYModel
+    - ZFPlayer
 
 SPEC CHECKSUMS:
   AMapFoundation: 6c0471c9a6a0ad17dad46e3d800ad56ca170f82a
@@ -81,11 +104,12 @@ SPEC CHECKSUMS:
   SDCycleScrollView: d0fd5fe40a80918371fd8939214eb3be81033d83
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SMSSDK: a811c8ea6e89393097037b7cf6493248a40e50f0
-  UITableView+FDTemplateLayoutCell: 5c949b4a5059c404b442926c0e80f81d10a2d66f
+  "UITableView+FDTemplateLayoutCell": 5c949b4a5059c404b442926c0e80f81d10a2d66f
   UMengAnalytics: ef8d45f94c0e5771dc364cf6a5731d9d3b101da2
   UMengUShare: a5711c54e640b04e3048e931d2b88d50f9cfa55c
+  YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
   ZFPlayer: 8a80bf8eb4638b97fbceaefcd3ca9978e9f17c9d
 
-PODFILE CHECKSUM: 8d3a60cde0ab9ad41aa8e124ff8c8813f1a44694
+PODFILE CHECKSUM: baf0b1eee4e521ddca6174c951aa02045032c963
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.5.0
