@@ -25,7 +25,7 @@
     if (!sizeDic[@"width"]||!sizeDic[@"height"]) {
         return NO;
     }
-    CGFloat widthFloat = [sizeDic[@"widht"] floatValue];
+    CGFloat widthFloat = [sizeDic[@"width"] floatValue];
     CGFloat heightFloat = [sizeDic[@"height"] floatValue];
     
     _funcsSize = CGSizeMake(widthFloat, heightFloat);

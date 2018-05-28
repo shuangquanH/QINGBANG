@@ -18,9 +18,9 @@
 @end
 
 @interface SQHomeFuncsModel : NSObject
-@property (nonatomic, copy) NSString       *banner_target;
-@property (nonatomic, copy) NSString       *banner_target_params;
-@property (nonatomic, copy) NSString       *banner_image_url;
+@property (nonatomic, copy) NSString       *funcs_target;
+@property (nonatomic, copy) NSString       *funcs_target_params;
+@property (nonatomic, copy) NSString       *funcs_image_url;
 @property (nonatomic, assign) CGSize       funcsSize;
 
 
@@ -28,9 +28,9 @@
 
 @interface SQHomeHeadsModel : NSObject
 
-@property (nonatomic, copy) NSString       *banner_target;
-@property (nonatomic, copy) NSString       *banner_target_params;
-@property (nonatomic, copy) NSString       *banner_image_url;
+@property (nonatomic, copy) NSString       *funcs_target;
+@property (nonatomic, copy) NSString       *funcs_target_params;
+@property (nonatomic, copy) NSString       *funcs_image_url;
 
 @end
 

@@ -1049,6 +1049,7 @@
 		E99DE24320B7BEDA009CEF88 /* SQConfirmDecorationOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE24220B7BEDA009CEF88 /* SQConfirmDecorationOrderVC.m */; };
 		E99DE24920B7DE87009CEF88 /* UIButton+SQImagePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE24820B7DE87009CEF88 /* UIButton+SQImagePosition.m */; };
 		E99DE24C20BBDD68009CEF88 /* SQHomeIndexPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE24B20BBDD68009CEF88 /* SQHomeIndexPageModel.m */; };
+		E99DE24F20BBF8BA009CEF88 /* UIButton+SQWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE24E20BBF8BA009CEF88 /* UIButton+SQWebImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -3006,6 +3007,8 @@
 		E99DE24820B7DE87009CEF88 /* UIButton+SQImagePosition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SQImagePosition.m"; sourceTree = "<group>"; };
 		E99DE24A20BBDD68009CEF88 /* SQHomeIndexPageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQHomeIndexPageModel.h; sourceTree = "<group>"; };
 		E99DE24B20BBDD68009CEF88 /* SQHomeIndexPageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQHomeIndexPageModel.m; sourceTree = "<group>"; };
+		E99DE24D20BBF8BA009CEF88 /* UIButton+SQWebImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+SQWebImage.h"; sourceTree = "<group>"; };
+		E99DE24E20BBF8BA009CEF88 /* UIButton+SQWebImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SQWebImage.m"; sourceTree = "<group>"; };
 		F883056FA3AE70A8E2E8FFA5 /* Pods-QingYouProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QingYouProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-QingYouProject/Pods-QingYouProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -6077,8 +6080,8 @@
 				E99DE1FC20B25C32009CEF88 /* Categories */,
 				E99DE1AC20AC4FAF009CEF88 /* Bases */,
 				18C154071FC820880010ACD3 /* YGClasses */,
-				E2E5B08A1FB0675900205F70 /* YGOwnLib */,
 				E2E5ACC41FB0675800205F70 /* YGSystem */,
+				E2E5B08A1FB0675900205F70 /* YGOwnLib */,
 				E2E5AB7E1FB0675700205F70 /* YGThirdLib */,
 				E2E5B0461FB0675900205F70 /* YGTools */,
 				D210B6A41FA3622600C4574B /* Assets.xcassets */,
@@ -7659,6 +7662,8 @@
 				E99DE1FE20B25C57009CEF88 /* NSString+SQStringSize.m */,
 				E99DE24720B7DE87009CEF88 /* UIButton+SQImagePosition.h */,
 				E99DE24820B7DE87009CEF88 /* UIButton+SQImagePosition.m */,
+				E99DE24D20BBF8BA009CEF88 /* UIButton+SQWebImage.h */,
+				E99DE24E20BBF8BA009CEF88 /* UIButton+SQWebImage.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -8736,6 +8741,7 @@
 				E2E5B1591FB0675A00205F70 /* QNEtag.m in Sources */,
 				E2E5B3881FB0675B00205F70 /* YGVerticalPopView.m in Sources */,
 				18C159561FC8208A0010ACD3 /* WaitToNetManagerModel.m in Sources */,
+				E99DE24F20BBF8BA009CEF88 /* UIButton+SQWebImage.m in Sources */,
 				E28675501FEA0E5D00403A87 /* SecondPaySuccessViewController.m in Sources */,
 				18C15A741FC8208B0010ACD3 /* AreaChooseCollectionCell.m in Sources */,
 				18C159CC1FC8208A0010ACD3 /* ChoosePostInvoiceAddressViewController.m in Sources */,

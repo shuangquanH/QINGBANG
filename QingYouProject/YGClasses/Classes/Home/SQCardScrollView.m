@@ -35,6 +35,8 @@
         make.size.mas_equalTo(itemsize);
     }];
     
+    [self setShowsHorizontalScrollIndicator:NO];
+    
 }
 
 @end

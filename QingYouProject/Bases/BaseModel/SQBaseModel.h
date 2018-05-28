@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "YYModel.h"
 
 @interface SQBaseModel : NSObject
 

@@ -14,8 +14,7 @@
 /** 装修板块  */
 #import "SQDecorationServeVC.h"
 
-/** Model  */
-#import "SQHomeIndexPageModel.h"
+
 
 
 @interface SQHomeViewController () <SQCollectionViewLayoutDelegate, UICollectionViewDataSource, UICollectionViewDelegate, SQHomeCollectionHeaderDeleage>
@@ -34,7 +33,6 @@
     [self.view addSubview:self.collectionView];
     self.collectionView.headerView = self.headerView;
     self.headerView.delegate = self;
-    self.headerView.scrollViewData = @[@"ahc", @"hahah"];
     [self createRefreshWithScrollView:self.collectionView containFooter:NO];
     self.collectionView.mj_header.ignoredScrollViewContentInsetTop=self.headerView.height;
     self.collectionView.contentOffset=CGPointMake(0, -self.headerView.height);
@@ -42,39 +40,43 @@
 }
 
 - (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
-    [self.collectionView.mj_header endRefreshing];
+    [self requestData];
 }
 
 - (void)requestData {
     [SQRequest post:@"getIndexPage" param:@{@"type":@"waitForPay"} success:^(id response) {
-        NSLog(@"dd");
-//        self.model = [SQHomeIndexPageModel model]
+        self.model = [SQHomeIndexPageModel yy_modelWithDictionary:response];
     } failure:^(NSError *error) {
-        NSLog(@"dd");
+        [self endRefreshWithScrollView:self.collectionView];
     }];
 }
 
+- (void)setModel:(SQHomeIndexPageModel *)model {
+    _model = model;
+    self.headerView.model = model;
+    [self.collectionView reloadData];
+    [self endRefreshWithScrollView:self.collectionView];
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 20;
+    return self.model.funcs.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     SQHomeCollectionViewCell *cell = [SQHomeCollectionViewCell cellWithCollectionView:collectionView forIndexPath:indexPath];
+    cell.model = self.model.funcs[indexPath.row];
     return cell;
 }
 - (CGSize)waterfallLayout:(SQCollectionViewLayout *)waterfallLayout atIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row%3==0) {
-        return CGSizeMake(168, 210);
-    } else if (indexPath.row%7==0) {
-        return CGSizeMake(168, 210);
-    } else {
-        return CGSizeMake(168, 100);
-    }
+    SQHomeFuncsModel    *funmodel = self.model.funcs[indexPath.row];
+    return funmodel.funcsSize;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSString    *string = [NSString stringWithFormat:@"点击了第%ld个按钮", indexPath.row];
     [self tapedFuncsWithModel:string];
 }
+
+//点击了功能按钮
 - (void)tapedFuncsWithModel:(NSString *)model {
     [self.navigationController pushViewController:[SQDecorationServeVC new] animated:YES];
     [YGAlertView showAlertWithTitle:model buttonTitlesArray:@[@"YES", @"NO"] buttonColorsArray:@[[UIColor blueColor], [UIColor redColor]] handler:nil];
@@ -99,7 +101,7 @@
 }
 - (SQHomeCollectionHeader *)headerView {
     if (!_headerView) {
-        CGRect headerFrame = CGRectMake(0, 0, YGScreenWidth, 570);
+        CGRect headerFrame = CGRectMake(0, 0, YGScreenWidth, 475);
         _headerView = [[SQHomeCollectionHeader alloc] initWithFrame:headerFrame];
     }
     return _headerView;

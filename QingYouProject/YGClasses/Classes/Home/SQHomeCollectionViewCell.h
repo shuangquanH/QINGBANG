@@ -7,7 +7,15 @@
 //
 
 #import "SQBaseCollectionViewCell.h"
+/** Model  */
+#import "SQHomeIndexPageModel.h"
+
+
 
 @interface SQHomeCollectionViewCell : SQBaseCollectionViewCell
+
+@property (nonatomic, strong) SQHomeIndexPageModel       *model;
+
+
 @property (nonatomic, strong) UIImageView       *imageView;
 @end
