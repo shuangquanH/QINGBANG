@@ -21,10 +21,7 @@
 
 - (void)tabBarButtonClick:(UIControl *)tabBarButton {
     for (UIView *imageView in tabBarButton.subviews) {
-        NSLog(@"%@", imageView);
-//        if ([imageView isKindOfClass:NSClassFromString(@"UITabBarSwappableImageView")]) {
-            [imageView showQAnimate];
-//        }
+        [imageView showQAnimate];
     }
 }
 

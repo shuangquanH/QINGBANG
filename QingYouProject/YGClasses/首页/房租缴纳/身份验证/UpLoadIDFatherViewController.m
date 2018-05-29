@@ -136,7 +136,7 @@
     [self.view addSubview:lineView];
     
     //_scrollView
-    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(lineView.frame), YGScreenWidth, YGScreenHeight - YGNaviBarHeight - YGStatusBarHeight - YGTabBarHeight - _headerView.height)];
+    _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(lineView.frame), KAPP_WIDTH, KAPP_HEIGHT - KNAV_HEIGHT - KTAB_HEIGHT - _headerView.height)];
     _scrollView.contentSize = CGSizeMake(YGScreenWidth * 2, _scrollView.height);
     _scrollView.showsVerticalScrollIndicator = NO;
     _scrollView.showsHorizontalScrollIndicator = NO;

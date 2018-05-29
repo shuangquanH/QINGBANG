@@ -15,7 +15,7 @@
     if(self = [super init])
     {
         _orderType = orderType;
-        self.frame = CGRectMake(0, YGScreenHeight - YGTabBarHeight - YGNaviBarHeight - YGStatusBarHeight, YGScreenWidth, YGTabBarHeight);
+        self.frame = CGRectMake(0, KAPP_HEIGHT - KTAB_HEIGHT - KNAV_HEIGHT, KAPP_WIDTH, KTAB_HEIGHT);
         self.backgroundColor = colorWithYGWhite;
         [self configUI];
     }

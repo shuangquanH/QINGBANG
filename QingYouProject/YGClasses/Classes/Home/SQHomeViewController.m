@@ -44,11 +44,13 @@
 }
 
 - (void)requestData {
+    //获取首页收据
     [SQRequest post:KAPI_INDEXPAGE param:@{@"isInner":@"yes"} success:^(id response) {
         self.model = [SQHomeIndexPageModel yy_modelWithDictionary:response];
     } failure:^(NSError *error) {
         [self endRefreshWithScrollView:self.collectionView];
     }];
+    //获取定制功能数据
     [SQRequest post:KAPI_CUSBANN param:@{@"userid":@"1"} success:^(id response) {
         self.headerView.cusModel = [SQHomeCustomModel yy_modelWithDictionary:response];
     } failure:nil];
@@ -104,12 +106,8 @@
                       buttonTitlesArray:@[@"YES", @"NO"]
                       buttonColorsArray:@[[UIColor blueColor],
                                           [UIColor redColor]] handler:nil];
-        
     }
-
-    
     [self.navigationController pushViewController:[SQDecorationServeVC new] animated:YES];
-
 }
 
 

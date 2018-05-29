@@ -6077,9 +6077,9 @@
 			isa = PBXGroup;
 			children = (
 				2C8451E41FBD434200F037DE /* QingYouProject.entitlements */,
+				E99DE1AC20AC4FAF009CEF88 /* Bases */,
 				E99DE22D20B658C9009CEF88 /* Utils */,
 				E99DE1FC20B25C32009CEF88 /* Categories */,
-				E99DE1AC20AC4FAF009CEF88 /* Bases */,
 				18C154071FC820880010ACD3 /* YGClasses */,
 				E2E5ACC41FB0675800205F70 /* YGSystem */,
 				E2E5B08A1FB0675900205F70 /* YGOwnLib */,
@@ -6996,13 +6996,13 @@
 			children = (
 				E2E5ACC91FB0675800205F70 /* RootViewController.h */,
 				E2E5ACCA1FB0675800205F70 /* RootViewController.m */,
-				E2E5ACCB1FB0675800205F70 /* tabbar.plist */,
 				E2E5ACCC1FB0675800205F70 /* YGNavigationController.h */,
 				E2E5ACCD1FB0675800205F70 /* YGNavigationController.m */,
-				E2E5ACCE1FB0675800205F70 /* YGTabbar.h */,
-				E2E5ACCF1FB0675800205F70 /* YGTabbar.m */,
+				E2E5ACCB1FB0675800205F70 /* tabbar.plist */,
 				E2E5ACD01FB0675800205F70 /* YGTabBarController.h */,
 				E2E5ACD11FB0675800205F70 /* YGTabBarController.m */,
+				E2E5ACCE1FB0675800205F70 /* YGTabbar.h */,
+				E2E5ACCF1FB0675800205F70 /* YGTabbar.m */,
 				E2E5ACD21FB0675800205F70 /* YGUser.h */,
 				E2E5ACD31FB0675800205F70 /* YGUser.m */,
 			);

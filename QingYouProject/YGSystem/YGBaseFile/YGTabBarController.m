@@ -10,7 +10,7 @@
 #import "YGNavigationController.h"
 #import "YGTabbar.h"
 
-@interface YGTabBarController ()
+@interface YGTabBarController () <UITabBarControllerDelegate>
 
 @end
 
@@ -18,34 +18,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self configUI];
 }
 
-- (void)viewDidLayoutSubviews{ YGSingletonMarco.tabBarHeight = self.tabBar.frame.size.height;
-}
+
 -(void)configUI {
+    self.delegate = self;
     YGTabbar *myTabBar = [[YGTabbar alloc] init];
+    myTabBar.tintColor = KCOLOR_SELET;
+    myTabBar.translucent = NO;
+    myTabBar.layer.masksToBounds = NO;
+    myTabBar.layer.shadowOffset = CGSizeMake(0, -3);
+    myTabBar.layer.shadowRadius = 5;
+    myTabBar.layer.shadowOpacity = 0.15;
+    myTabBar.shadowImage = [UIImage imageNamed:@"tranimg"];
+    myTabBar.backgroundImage = [UIImage imageNamed:@"tranimg"];
+    
     [self setValue:myTabBar forKey:@"tabBar"];
-    
-    //取出plist里大数组
-    NSArray *tabbarArray = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"tabbar" ofType:@"plist"]];
-    //装4个navi的数组
-    NSMutableArray *viewControllersArray = [[NSMutableArray alloc]init];
-    
-    self.tabBar.tintColor = colorWithMainColor;
-    
-    self.tabBar.translucent = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    self.tabBar.layer.masksToBounds = NO;
-    self.tabBar.layer.shadowOffset = CGSizeMake(0, -3);
-    self.tabBar.layer.shadowRadius = 5;
-    self.tabBar.layer.shadowOpacity = 0.15;
-    self.tabBar.shadowImage = [UIImage imageNamed:@"tranimg"];
-    self.tabBar.backgroundImage = [UIImage imageNamed:@"tranimg"];
-    
-    
+    //取出plist里大数组
+    NSString    *plistFile = [[NSBundle mainBundle]pathForResource:@"tabbar" ofType:@"plist"];
+    NSArray *tabbarArray = [NSArray arrayWithContentsOfFile: plistFile];
+    //装4个navi的数组
+    NSMutableArray *viewControllersArray = [[NSMutableArray alloc] init];
     //循环取item数据
     for (NSDictionary *tabbarItemDic in tabbarArray) {
         UIImage *nomalImage = [[UIImage imageNamed:tabbarItemDic[@"normalImage"]]
@@ -58,17 +54,31 @@
                                                                 image:nomalImage selectedImage:selectedImage];
         
         //根据字符串创建控制器
-        UIViewController *viewController = [[NSClassFromString(tabbarItemDic[@"viewController"]) alloc] init];
+        Class controllerClass = NSClassFromString(tabbarItemDic[@"viewController"]);
+        UIViewController *viewController = [[controllerClass alloc] init];
         viewController.tabBarItem = tabbarItem;
         
         YGNavigationController *navigationController = [[YGNavigationController alloc]initWithRootViewController:viewController];
         [viewControllersArray addObject:navigationController];
         
     }
+    
     //把装navi的数组赋给tabbar的viewcontrollers
-    
     self.viewControllers = viewControllersArray;
-    
+}
+
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    YGNavigationController  *nav = (YGNavigationController  *)viewController;
+    NSString    *controllerstr = NSStringFromClass([nav.viewControllers.firstObject class]);
+    if ([controllerstr isEqualToString:@"MyCenterViewController"]) {
+        [YGAlertView showAlertWithTitle:@"是否要拨打客服电话?"
+                      buttonTitlesArray:@[@"YES", @"NO"]
+                      buttonColorsArray:@[[UIColor blueColor],
+                                          [UIColor redColor]] handler:nil];
+        return NO;
+    } else {
+        return YES;
+    }
 }
 
 

@@ -25,8 +25,7 @@
 
 #define YGStatusBarHeight               [UIApplication sharedApplication].statusBarFrame.size.height    // 状态栏高度
 #define YGNaviBarHeight                   44                                                            // 工具栏高度 
-#define YGTabBarHeight                    YGSingletonMarco.tabBarHeight                                 // 底部工具栏高度 
-#define YGBottomMargin                   ((YGTabBarHeight - 49)/2)
+#define YGBottomMargin                   ((KTAB_HEIGHT - 49)/2)
 
 #define USERFILEPATH [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"user.data"]
 

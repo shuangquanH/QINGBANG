@@ -110,7 +110,7 @@ CLLocationManagerDelegate> {
     SQHomePageTableviewHeader   *tableHeaderView = [[SQHomePageTableviewHeader alloc] initWithFrame:CGRectMake(0, 0, YGScreenWidth, 0)];
     tableHeaderView.delegate = self;
     //tableview
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, YGScreenWidth, YGScreenHeight- YGNaviBarHeight-YGStatusBarHeight-YGTabBarHeight) style:UITableViewStyleGrouped];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, KAPP_HEIGHT- KNAV_HEIGHT-KTAB_HEIGHT) style:UITableViewStyleGrouped];
     _tableView.showsVerticalScrollIndicator = NO;
     _tableView.tableHeaderView = tableHeaderView;
     [_tableView registerClass:[HomePageSeccondTableViewCell class] forCellReuseIdentifier:@"HomePageSeccondTableViewCell"];

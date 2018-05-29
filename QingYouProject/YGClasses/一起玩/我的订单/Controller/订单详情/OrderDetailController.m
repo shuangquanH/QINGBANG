@@ -51,7 +51,7 @@
 }
 - (void)configUI
 {
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 1, YGScreenWidth, YGScreenHeight - YGNaviBarHeight - YGStatusBarHeight - YGTabBarHeight - 1) style:UITableViewStyleGrouped];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 1, YGScreenWidth, KAPP_HEIGHT - KNAV_HEIGHT - KTAB_HEIGHT - 1) style:UITableViewStyleGrouped];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

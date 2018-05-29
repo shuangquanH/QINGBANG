@@ -44,11 +44,14 @@
 
 
 /** app主色调 */
-#define KMAIN_COLOR         [UIColor hexStringToColor:@"43c5ff"]
+#define KCOLOR_MAIN         [UIColor hexStringToColor:@"43c5ff"]
 /** 白色 */
-#define KWHIT_COLOR         [UIColor hexStringToColor:@"ffffff"]
+#define KCOLOR_WHITE         [UIColor hexStringToColor:@"ffffff"]
+/** 按钮选中颜色  */
+#define KCOLOR_SELET        [UIColor hexStringToColor:@"f39700"]
 /** 颜色(传string格式) */
 #define KCOLOR(a)           [UIColor hexStringToColor:a]
+
 /** 颜色和透明度(颜色为string格式，透明度为float格式) */
 #define KCOLOR_ALPHA(a,b)   [UIColor hexStringToColor:a andAlpha:b]
 

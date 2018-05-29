@@ -51,7 +51,7 @@
     [self addSubview:self.ovalFuncsView];
     
     self.infoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.infoButton.titleLabel.textColor = KWHIT_COLOR;
+    self.infoButton.titleLabel.textColor = KCOLOR_WHITE;
     self.infoButton.titleLabel.font = KFONT(24);
     [self.ovalFuncsView addSubview:self.infoButton];
     [self.infoButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -118,18 +118,18 @@
         [headsBtnArr addObject:button];
     }
     if (headsBtnArr.count>1) {
-        [self.scrollview setItemArr:headsBtnArr alongAxis:SQSAxisTypeHorizontal
-                            spacing:10 leadSpace:0 tailSpace:0 itemSize:CGSizeMake(KSCAL(580), KSCAL(200))];
+        [self.scrollview setItemArr:headsBtnArr
+                          alongAxis:SQSAxisTypeHorizontal spacing:10
+                          leadSpace:0 tailSpace:0
+                           itemSize:CGSizeMake(KSCAL(580), KSCAL(200))];
     } else {
         UIButton    *cusbutton = headsBtnArr.firstObject;
         [self.scrollview addSubview:cusbutton];
         [cusbutton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.bottom.equalTo(self.scrollview);
+            make.edges.equalTo(self.scrollview);
+            make.width.equalTo(self.scrollview);
             make.height.mas_equalTo(KSCAL(200));
-            make.width.mas_equalTo(KSCAL(580));
-            make.centerX.equalTo(self.scrollview);
         }];
-        
     }
 }
 

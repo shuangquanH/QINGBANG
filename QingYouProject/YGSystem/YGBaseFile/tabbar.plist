@@ -8,39 +8,29 @@
 		<key>viewController</key>
 		<string>SQHomeViewController</string>
 		<key>selectedImage</key>
-		<string>home_green</string>
+		<string>tab__icon1-1</string>
 		<key>normalImage</key>
-		<string>home_gray</string>
+		<string>tab__icon1</string>
 	</dict>
 	<dict>
 		<key>title</key>
-		<string>管家</string>
-		<key>viewController</key>
-		<string>ManagerViewController</string>
-		<key>selectedImage</key>
-		<string>steward_green</string>
-		<key>normalImage</key>
-		<string>steward_gray</string>
-	</dict>
-	<dict>
-		<key>title</key>
-		<string>订单</string>
-		<key>viewController</key>
-		<string>SQOrderViewController</string>
-		<key>selectedImage</key>
-		<string>snapup_green</string>
-		<key>normalImage</key>
-		<string>snapup_gray</string>
-	</dict>
-	<dict>
-		<key>title</key>
-		<string>我的</string>
+		<string>个人中心</string>
 		<key>viewController</key>
 		<string>SQUserCenterViewController</string>
 		<key>selectedImage</key>
-		<string>mine_green</string>
+		<string>tab__icon2-2</string>
 		<key>normalImage</key>
-		<string>mine_gray</string>
+		<string>tab__icon2</string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>联系客服</string>
+		<key>viewController</key>
+		<string>MyCenterViewController</string>
+		<key>selectedImage</key>
+		<string>tab__icon3-3</string>
+		<key>normalImage</key>
+		<string>tab__icon3</string>
 	</dict>
 </array>
 </plist>

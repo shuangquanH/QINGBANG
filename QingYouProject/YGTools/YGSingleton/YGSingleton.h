@@ -23,8 +23,6 @@
 
 @property (nonatomic,strong) RootViewController * roadShowHallAddImageViewController;
 
-//tabbar高度 
-@property (nonatomic, assign) float tabBarHeight;
 //单例
 + (YGSingleton *)sharedManager;
 

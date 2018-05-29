@@ -46,13 +46,13 @@
 {
     UIView  *baseView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, YGScreenWidth, YGScreenWidth*0.613)];
     
-    UIImageView *tableViewBackGroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, YGScreenWidth, YGScreenHeight-YGStatusBarHeight-YGTabBarHeight)];
+    UIImageView *tableViewBackGroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, KAPP_HEIGHT-KSTATU_HEIGHT-KTAB_HEIGHT)];
     tableViewBackGroundImageView.image = [UIImage imageNamed:@"purchase_bg"];
     tableViewBackGroundImageView.contentMode = UIViewContentModeScaleAspectFill;
     tableViewBackGroundImageView.clipsToBounds = YES;
     
     //tableview
-    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, YGStatusBarHeight, YGScreenWidth, YGScreenHeight-YGTabBarHeight-YGStatusBarHeight) style:UITableViewStyleGrouped];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, KSTATU_HEIGHT, KAPP_WIDTH, KAPP_HEIGHT-KTAB_HEIGHT-KSTATU_HEIGHT) style:UITableViewStyleGrouped];
     _tableView.showsVerticalScrollIndicator = NO;
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
