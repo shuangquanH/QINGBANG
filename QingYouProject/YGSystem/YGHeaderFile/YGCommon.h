@@ -117,7 +117,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:rgbAlpha]
 #define YGPageSize @"10" // Table每页数据的条数
 
 // 默认头像
-#define YGDefaultImgAvatar          [UIImage imageNamed:@"defaultavatar.png"]
+#define YGDefaultImgAvatar          [UIImage imageNamed:@"defaultavatar.png"]               //默认头像
 
 #define YGDefaultImgSquare          [UIImage imageNamed:@"placeholderfigure_square_750x750"] //正方形
 
@@ -129,7 +129,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:rgbAlpha]
 
 #define YGDefaultImgSixteen_Nine    [UIImage imageNamed:@"placeholderfigure_rectangle_698x392_16_9"] //16：9
 
-#define YGDefaultImgHorizontal      [UIImage imageNamed:@"placeholderfigure_rectangle_698x110"] //横条
+#define YGDefaultImgHorizontal      [UIImage imageNamed:@"placeholderfigure_rectangle_698x110"]     //横条
 
 
 

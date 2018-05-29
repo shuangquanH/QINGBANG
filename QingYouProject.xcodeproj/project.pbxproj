@@ -1034,7 +1034,6 @@
 		E99DE1F520AEB9C9009CEF88 /* SQHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1F420AEB9C9009CEF88 /* SQHomeViewController.m */; };
 		E99DE1FF20B25C57009CEF88 /* NSString+SQStringSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1FE20B25C57009CEF88 /* NSString+SQStringSize.m */; };
 		E99DE20D20B4013B009CEF88 /* SQOvalFuncButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE20B20B4013A009CEF88 /* SQOvalFuncButtons.m */; };
-		E99DE20F20B40B34009CEF88 /* ovalimage.png in Resources */ = {isa = PBXBuildFile; fileRef = E99DE20E20B40B33009CEF88 /* ovalimage.png */; };
 		E99DE21220B40D82009CEF88 /* SQCardScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE21020B40D82009CEF88 /* SQCardScrollView.m */; };
 		E99DE21820B561A0009CEF88 /* SQCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE21720B561A0009CEF88 /* SQCollectionViewLayout.m */; };
 		E99DE21B20B57BA6009CEF88 /* SQBaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE21A20B57BA6009CEF88 /* SQBaseCollectionViewCell.m */; };
@@ -1050,6 +1049,7 @@
 		E99DE24920B7DE87009CEF88 /* UIButton+SQImagePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE24820B7DE87009CEF88 /* UIButton+SQImagePosition.m */; };
 		E99DE24C20BBDD68009CEF88 /* SQHomeIndexPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE24B20BBDD68009CEF88 /* SQHomeIndexPageModel.m */; };
 		E99DE24F20BBF8BA009CEF88 /* UIButton+SQWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE24E20BBF8BA009CEF88 /* UIButton+SQWebImage.m */; };
+		E99DE25220BCF517009CEF88 /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE25120BCF517009CEF88 /* UIColor+Extension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -2976,7 +2976,6 @@
 		E99DE1FE20B25C57009CEF88 /* NSString+SQStringSize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+SQStringSize.m"; sourceTree = "<group>"; };
 		E99DE20B20B4013A009CEF88 /* SQOvalFuncButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQOvalFuncButtons.m; sourceTree = "<group>"; };
 		E99DE20C20B4013A009CEF88 /* SQOvalFuncButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQOvalFuncButtons.h; sourceTree = "<group>"; };
-		E99DE20E20B40B33009CEF88 /* ovalimage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ovalimage.png; sourceTree = "<group>"; };
 		E99DE21020B40D82009CEF88 /* SQCardScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQCardScrollView.m; sourceTree = "<group>"; };
 		E99DE21120B40D82009CEF88 /* SQCardScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQCardScrollView.h; sourceTree = "<group>"; };
 		E99DE21620B561A0009CEF88 /* SQCollectionViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQCollectionViewLayout.h; sourceTree = "<group>"; };
@@ -3009,6 +3008,8 @@
 		E99DE24B20BBDD68009CEF88 /* SQHomeIndexPageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQHomeIndexPageModel.m; sourceTree = "<group>"; };
 		E99DE24D20BBF8BA009CEF88 /* UIButton+SQWebImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+SQWebImage.h"; sourceTree = "<group>"; };
 		E99DE24E20BBF8BA009CEF88 /* UIButton+SQWebImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SQWebImage.m"; sourceTree = "<group>"; };
+		E99DE25020BCF516009CEF88 /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
+		E99DE25120BCF517009CEF88 /* UIColor+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extension.m"; sourceTree = "<group>"; };
 		F883056FA3AE70A8E2E8FFA5 /* Pods-QingYouProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QingYouProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-QingYouProject/Pods-QingYouProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -7614,7 +7615,6 @@
 		E99DE1E820AE9D7D009CEF88 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				E99DE20E20B40B33009CEF88 /* ovalimage.png */,
 				E99DE1F320AEB9C9009CEF88 /* SQHomeViewController.h */,
 				E99DE1F420AEB9C9009CEF88 /* SQHomeViewController.m */,
 				E99DE24A20BBDD68009CEF88 /* SQHomeIndexPageModel.h */,
@@ -7664,6 +7664,8 @@
 				E99DE24820B7DE87009CEF88 /* UIButton+SQImagePosition.m */,
 				E99DE24D20BBF8BA009CEF88 /* UIButton+SQWebImage.h */,
 				E99DE24E20BBF8BA009CEF88 /* UIButton+SQWebImage.m */,
+				E99DE25020BCF516009CEF88 /* UIColor+Extension.h */,
+				E99DE25120BCF517009CEF88 /* UIColor+Extension.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -7795,7 +7797,6 @@
 				18C159AE1FC8208A0010ACD3 /* Default-568h@2x.png in Resources */,
 				18C159B91FC8208A0010ACD3 /* AdvertisementRemarkCell.xib in Resources */,
 				E2502B141FF32ADB0080BA49 /* MyPushInformationCell.xib in Resources */,
-				E99DE20F20B40B34009CEF88 /* ovalimage.png in Resources */,
 				18C159B11FC8208A0010ACD3 /* AdvertisementApplyCell.xib in Resources */,
 				18C159231FC820890010ACD3 /* WaitToDealCell.xib in Resources */,
 				18C1594C1FC8208A0010ACD3 /* NetManagerCell.xib in Resources */,
@@ -8164,6 +8165,7 @@
 				1809E2B01FEBA3B8006C54EC /* SecondhandReplaceOtherHomePageModel.m in Sources */,
 				18C159ED1FC8208A0010ACD3 /* BreakContractBillTableViewCell.m in Sources */,
 				E286755B1FEB82B800403A87 /* MineIntergralOrderDetailsController.m in Sources */,
+				E99DE25220BCF517009CEF88 /* UIColor+Extension.m in Sources */,
 				E99DE21E20B582F5009CEF88 /* SQBaseCollectionView.m in Sources */,
 				E2E5B1391FB0675A00205F70 /* MJPropertyType.m in Sources */,
 				18C159DB1FC8208A0010ACD3 /* IssueInvoiceModel.m in Sources */,

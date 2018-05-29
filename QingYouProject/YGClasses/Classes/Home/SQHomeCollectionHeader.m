@@ -15,8 +15,12 @@
 
 @property (nonatomic, strong) SDCycleScrollView       *cycleView;
 //@property (nonatomic, strong) SQOvalFuncButtons       *ovalView;
-@property (nonatomic, strong) UIView                *ovalFuncsView;
+@property (nonatomic, strong) SQBaseImageView                *ovalFuncsView;
 @property (nonatomic, strong) SQCardScrollView       *scrollview;
+@property (nonatomic, strong) UIButton       *infoButton;
+
+//选中的model,有三种可能
+@property (nonatomic, assign) id       selectedModel;
 
 @end
 
@@ -35,20 +39,32 @@
 
 
 - (void)addCycleView {
-    UIImage *backImage = [UIImage imageNamed:@"ovalimage"];
-    CGRect frame = CGRectMake(0, 0, YGScreenWidth, 225);
-    self.cycleView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:backImage];
+    CGRect frame = CGRectMake(0, 0, YGScreenWidth, KSCAL(320));
+    self.cycleView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:YGDefaultImgSixteen_Nine];
     [self addSubview:self.cycleView];
     
 }
 - (void)addOvalFuncView {
-    CGRect frame = CGRectMake(0, self.cycleView.sqbottom+10, KAPP_WIDTH, 120);
-    self.ovalFuncsView = [[UIView alloc] initWithFrame:frame];
+    CGRect frame = CGRectMake(0, self.cycleView.sqbottom+KSCAL(20), KAPP_WIDTH, KSCAL(320));
+    self.ovalFuncsView = [[SQBaseImageView alloc] initWithFrame:frame];
+    self.ovalFuncsView.userInteractionEnabled = YES;
     [self addSubview:self.ovalFuncsView];
+    
+    self.infoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.infoButton.titleLabel.textColor = KWHIT_COLOR;
+    self.infoButton.titleLabel.font = KFONT(24);
+    [self.ovalFuncsView addSubview:self.infoButton];
+    [self.infoButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(KSCAL(495));
+        make.height.mas_equalTo(KSCAL(80));
+        make.top.mas_equalTo(KSCAL(60)+50+10);
+        make.centerX.equalTo(self.ovalFuncsView);
+    }];
+    [self.infoButton addTarget:self action:@selector(didselectButtonToPushNextPage) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)addScrollView {
-    CGRect frame = CGRectMake(0, self.ovalFuncsView.sqbottom+10, KAPP_WIDTH, 100);
+    CGRect frame = CGRectMake(0, self.ovalFuncsView.sqbottom+KSCAL(20), KAPP_WIDTH, KSCAL(200));
     self.scrollview = [[SQCardScrollView alloc] initWithFrame:frame];
     [self addSubview:self.scrollview];
 }
@@ -63,39 +79,58 @@
     _cycleView.imageURLStringsGroup = bannerImageArr;
     
     //头部功能性按钮
+    [self.ovalFuncsView setImageWithUrl:self.model.bgimg_url];
     NSMutableArray  *funcsBtnArr = [NSMutableArray array];
-    for (int i = 0; i<model.funcs.count; i++) {
-        SQHomeFuncsModel    *funcsModel = model.funcs[i];
+    for (int i = 0; i<model.heads.count; i++) {
+        SQHomeHeadsModel    *headModel = model.heads[i];
         UIButton    *funcsBtn = [UIButton   buttonWithType:UIButtonTypeCustom];
-        funcsBtn.backgroundColor = colorWithMainColor;
-        [funcsBtn sq_setButtonImageWithUrl:funcsModel.funcs_image_url];
+        [funcsBtn sq_setButtonImageWithUrl:headModel.funcs_image_url];
+        [funcsBtn sq_setSelectButtonImageWithUrl:headModel.funcs_image_url_sel];
         funcsBtn.tag = 1000+i;
         [funcsBtn addTarget:self action:@selector(btnaction:) forControlEvents:UIControlEventTouchUpInside];
         [funcsBtnArr addObject:funcsBtn];
         [self.ovalFuncsView addSubview:funcsBtn];
     }
     if (funcsBtnArr.count==4) {
-        [funcsBtnArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:100 leadSpacing:20 tailSpacing:20];
+        [funcsBtnArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:50 leadSpacing:20 tailSpacing:20];
     } else {
-        [funcsBtnArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:100 leadSpacing:60 tailSpacing:60];
+        [funcsBtnArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:50 leadSpacing:60 tailSpacing:60];
     }
     [funcsBtnArr mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.ovalFuncsView);
-        make.height.equalTo(@100);
+        make.top.mas_equalTo(KSCAL(60));
+        make.height.equalTo(@50);
     }];
-    
+
+    [self.infoButton setBackgroundImage:[UIImage imageNamed:@"rectangle"] forState:UIControlStateNormal];
+    [self.infoButton setTitle:@"hello,XXX欢迎来到青邦!" forState:UIControlStateNormal];
+}
+
+- (void)setCusModel:(SQHomeCustomModel *)cusModel {
+    _cusModel = cusModel;
     //功能定制按钮数据
     NSMutableArray  *headsBtnArr = [NSMutableArray array];
-    for (int i = 0; i<model.heads.count; i++) {
-        SQHomeHeadsModel *headModel = model.heads[i];
+    for (int i = 0; i<cusModel.banners.count; i++) {
+        SQHomeBannerModel *bannerModel = cusModel.banners[i];
         UIButton    *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.backgroundColor = colorWithMainColor;
-        [button sq_setButtonImageWithUrl:headModel.funcs_image_url];
+        [button sq_setButtonImageWithUrl:bannerModel.banner_image_url];
         button.tag = 2000+i;
         [button addTarget:self action:@selector(btnaction:) forControlEvents:UIControlEventTouchUpInside];
         [headsBtnArr addObject:button];
     }
-    [self.scrollview setItemArr:headsBtnArr alongAxis:SQSAxisTypeHorizontal spacing:10 leadSpace:0 tailSpace:0 itemSize:CGSizeMake(290, 100)];
+    if (headsBtnArr.count>1) {
+        [self.scrollview setItemArr:headsBtnArr alongAxis:SQSAxisTypeHorizontal
+                            spacing:10 leadSpace:0 tailSpace:0 itemSize:CGSizeMake(KSCAL(580), KSCAL(200))];
+    } else {
+        UIButton    *cusbutton = headsBtnArr.firstObject;
+        [self.scrollview addSubview:cusbutton];
+        [cusbutton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.bottom.equalTo(self.scrollview);
+            make.height.mas_equalTo(KSCAL(200));
+            make.width.mas_equalTo(KSCAL(580));
+            make.centerX.equalTo(self.scrollview);
+        }];
+        
+    }
 }
 
 
@@ -103,16 +138,28 @@
 - (void)btnaction:(UIButton *)sender {
     if (sender.tag>=2000) {
         //定制功能按钮
+        SQHomeBannerModel   *cusModel = self.cusModel.banners[sender.tag-2000];
+        [self.delegate tapedFuncsWithModel:cusModel];
+        
     } else {
         //头部功能按钮
+        self.selectedModel = self.model.heads[sender.tag-1000];
+        for (UIButton *button in self.ovalFuncsView.subviews) {
+            if (button==sender) {
+                sender.selected = YES;
+            } else {
+                button.selected = NO;
+            }
+        }
     }
-    NSString    *string = [NSString stringWithFormat:@"点击了第%ld个个性定制", sender.tag-1000];
-    [self.delegate tapedFuncsWithModel:string];
+
 }
 #pragma delegates
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
-    NSString    *string = [NSString stringWithFormat:@"点击了第%ld个轮播图", index];
-    [self.delegate tapedFuncsWithModel:string];
+    [self.delegate tapedFuncsWithModel:self.model.banners[index]];
+}
+- (void)didselectButtonToPushNextPage {
+    [self.delegate tapedFuncsWithModel:self.selectedModel];
 }
 
 

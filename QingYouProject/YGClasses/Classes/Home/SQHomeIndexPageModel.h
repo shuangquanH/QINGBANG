@@ -9,12 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface SQHomeBannerModel : NSObject
-
 @property (nonatomic, copy) NSString       *banner_target;
 @property (nonatomic, copy) NSString       *banner_target_params;
 @property (nonatomic, copy) NSString       *banner_image_url;
-
-
 @end
 
 @interface SQHomeFuncsModel : NSObject
@@ -22,24 +19,23 @@
 @property (nonatomic, copy) NSString       *funcs_target_params;
 @property (nonatomic, copy) NSString       *funcs_image_url;
 @property (nonatomic, assign) CGSize       funcsSize;
-
-
 @end
 
 @interface SQHomeHeadsModel : NSObject
-
 @property (nonatomic, copy) NSString       *funcs_target;
 @property (nonatomic, copy) NSString       *funcs_target_params;
 @property (nonatomic, copy) NSString       *funcs_image_url;
-
+@property (nonatomic, copy) NSString       *funcs_image_url_sel;
 @end
 
 
-@interface SQHomeIndexPageModel : NSObject
-
+@interface SQHomeIndexPageModel : SQBaseModel
 @property (nonatomic, strong) NSArray       *banners;
 @property (nonatomic, strong) NSArray       *funcs;
 @property (nonatomic, strong) NSArray       *heads;
+@property (nonatomic, copy) NSString       *bgimg_url;
+@end
 
-
+@interface SQHomeCustomModel : SQBaseModel
+@property (nonatomic, strong) NSArray       *banners;
 @end

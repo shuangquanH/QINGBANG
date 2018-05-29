@@ -14,10 +14,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.layer.borderColor = kGrayColor.CGColor;
-        self.layer.borderWidth = 1;
-        self.imageView = [[UIImageView alloc] init];
-        self.imageView.image = [UIImage imageNamed:@"ovalimage"];
+        self.imageView = [[SQBaseImageView alloc] init];
         [self addSubview:self.imageView];
         [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self);
@@ -26,5 +23,10 @@
     return self;
 }
 
+
+- (void)setModel:(SQHomeFuncsModel *)model {
+    _model = model;
+    [self.imageView setImageWithUrl:model.funcs_image_url];
+}
 
 @end

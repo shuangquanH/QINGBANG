@@ -334,4 +334,11 @@
 #define REQUEST_getUserAgreement                       @"getUserAgreement"                        //清网协议
 
 
+
+
+/********************************************* 新版本新增接口  ********************************************/
+#define KAPI_INDEXPAGE      @"getIndexPage"//首页
+#define KAPI_CUSBANN        @"getCusBann"//首页定制功能
+
+
 #endif /* SQApiUrlFile_h */

@@ -10,7 +10,7 @@
 #ifndef SQMacroFile_h
 #define SQMacroFile_h
 
-
+#import "UIColor+Extension.h"
 //所有的宏定义 放在该文件
 
 #ifndef SQMacroFile_h

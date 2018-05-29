@@ -12,4 +12,6 @@
 
 - (void)sq_setButtonImageWithUrl:(NSString *)imageUrl;
 
+- (void)sq_setSelectButtonImageWithUrl:(NSString *)imageUrl;
+
 @end

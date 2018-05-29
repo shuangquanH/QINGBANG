@@ -12,5 +12,7 @@
 @interface SQBaseModel : NSObject
 
 @property (nonatomic, copy) NSString        *mid;
+@property (nonatomic, copy) NSString       *msg;
+@property (nonatomic, copy) NSString       *code;
 
 @end

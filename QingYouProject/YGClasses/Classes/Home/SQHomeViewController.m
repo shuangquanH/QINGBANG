@@ -44,11 +44,14 @@
 }
 
 - (void)requestData {
-    [SQRequest post:@"getIndexPage" param:@{@"type":@"waitForPay"} success:^(id response) {
+    [SQRequest post:KAPI_INDEXPAGE param:@{@"isInner":@"yes"} success:^(id response) {
         self.model = [SQHomeIndexPageModel yy_modelWithDictionary:response];
     } failure:^(NSError *error) {
         [self endRefreshWithScrollView:self.collectionView];
     }];
+    [SQRequest post:KAPI_CUSBANN param:@{@"userid":@"1"} success:^(id response) {
+        self.headerView.cusModel = [SQHomeCustomModel yy_modelWithDictionary:response];
+    } failure:nil];
 }
 
 - (void)setModel:(SQHomeIndexPageModel *)model {
@@ -77,9 +80,36 @@
 }
 
 //点击了功能按钮
-- (void)tapedFuncsWithModel:(NSString *)model {
+- (void)tapedFuncsWithModel:(id)model {
+    if ([model isKindOfClass:[SQHomeBannerModel class]]) {
+        //点击了banner或者功能定制按钮
+        SQHomeBannerModel   *sqmodel = model;
+        [YGAlertView showAlertWithTitle:sqmodel.banner_image_url
+                      buttonTitlesArray:@[@"YES", @"NO"]
+                      buttonColorsArray:@[[UIColor blueColor],
+                                          [UIColor redColor]] handler:nil];
+        
+    } else if ([model isKindOfClass:SQHomeHeadsModel.class]) {
+        //点击了头部按钮
+        SQHomeHeadsModel   *sqmodel = model;
+        [YGAlertView showAlertWithTitle:sqmodel.funcs_image_url
+                      buttonTitlesArray:@[@"YES", @"NO"]
+                      buttonColorsArray:@[[UIColor blueColor],
+                                          [UIColor redColor]] handler:nil];
+        
+    } else if ([model isKindOfClass:SQHomeFuncsModel.class]) {
+        //点击collectionView上的按钮
+        SQHomeFuncsModel   *sqmodel = model;
+        [YGAlertView showAlertWithTitle:sqmodel.funcs_image_url
+                      buttonTitlesArray:@[@"YES", @"NO"]
+                      buttonColorsArray:@[[UIColor blueColor],
+                                          [UIColor redColor]] handler:nil];
+        
+    }
+
+    
     [self.navigationController pushViewController:[SQDecorationServeVC new] animated:YES];
-    [YGAlertView showAlertWithTitle:model buttonTitlesArray:@[@"YES", @"NO"] buttonColorsArray:@[[UIColor blueColor], [UIColor redColor]] handler:nil];
+
 }
 
 
@@ -89,7 +119,7 @@
 - (SQBaseCollectionView *)collectionView {
     if (!_collectionView) {
         SQCollectionViewLayout *layout = [SQCollectionViewLayout waterFallLayoutWithColumnCount:2];
-        [layout setColumnSpacing:10 rowSpacing:10 sectionInset:UIEdgeInsetsMake(0, 15, 10, 15)];
+        [layout setColumnSpacing:0 rowSpacing:0 sectionInset:UIEdgeInsetsMake(0, 0, 0, 0)];
         CGRect collectFrame = CGRectMake(0, 0, YGScreenWidth, KAPP_HEIGHT-KNAV_HEIGHT-KTAB_HEIGHT);
         _collectionView = [[SQBaseCollectionView alloc] initWithFrame:collectFrame collectionViewLayout:layout];
         _collectionView.backgroundColor = self.view.backgroundColor;
@@ -101,7 +131,7 @@
 }
 - (SQHomeCollectionHeader *)headerView {
     if (!_headerView) {
-        CGRect headerFrame = CGRectMake(0, 0, YGScreenWidth, 475);
+        CGRect headerFrame = CGRectMake(0, 0, YGScreenWidth, KSCAL(900));
         _headerView = [[SQHomeCollectionHeader alloc] initWithFrame:headerFrame];
     }
     return _headerView;

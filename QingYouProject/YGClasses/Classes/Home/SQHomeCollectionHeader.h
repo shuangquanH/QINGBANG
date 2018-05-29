@@ -24,8 +24,10 @@
 
 @property (nonatomic, weak) id <SQHomeCollectionHeaderDeleage> delegate;
 
-
+//首页模块model
 @property (nonatomic, strong) SQHomeIndexPageModel       *model;
+//定制功能model
+@property (nonatomic, strong) SQHomeCustomModel       *cusModel;
 
 
 @end

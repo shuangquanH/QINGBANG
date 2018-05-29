@@ -34,6 +34,8 @@
 #import "SQMacroFile.h"
 #import "SQIphonePx.h"
 #import "SQBaseModel.h"
+#import "SQBaseImageView.h"
+#import "SQBaseImageView.h"
 #import "SQBaseTableView.h"
 #import "SQBaseTableViewCell.h"
 #import "SQBaseCollectionView.h"
