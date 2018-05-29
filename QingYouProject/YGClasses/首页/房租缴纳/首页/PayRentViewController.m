@@ -44,7 +44,7 @@
 }
 - (void)configUI
 {
-    self.naviTitle = @"房租缴纳";
+    self.naviTitle = @"水电缴费";
     _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, YGScreenWidth, YGScreenHeight-64)];
     _mainScrollView.backgroundColor = colorWithYGWhite;
     _mainScrollView.contentSize = CGSizeMake(YGScreenWidth, YGScreenHeight);
