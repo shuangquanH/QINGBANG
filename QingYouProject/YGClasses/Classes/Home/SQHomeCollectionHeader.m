@@ -57,7 +57,7 @@
     [self.infoButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(KSCAL(495));
         make.height.mas_equalTo(KSCAL(80));
-        make.top.mas_equalTo(KSCAL(60)+50+10);
+        make.top.mas_equalTo(KSCAL(60)+KSCAL(100)+14);
         make.centerX.equalTo(self.ovalFuncsView);
     }];
     [self.infoButton addTarget:self action:@selector(didselectButtonToPushNextPage) forControlEvents:UIControlEventTouchUpInside];
@@ -91,14 +91,14 @@
         [funcsBtnArr addObject:funcsBtn];
         [self.ovalFuncsView addSubview:funcsBtn];
     }
-    if (funcsBtnArr.count==4) {
-        [funcsBtnArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:50 leadSpacing:20 tailSpacing:20];
+    if (funcsBtnArr.count>3) {
+        [funcsBtnArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:KSCAL(126) leadSpacing:20 tailSpacing:20];
     } else {
-        [funcsBtnArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:50 leadSpacing:60 tailSpacing:60];
+        [funcsBtnArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:KSCAL(126) leadSpacing:60 tailSpacing:60];
     }
     [funcsBtnArr mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(KSCAL(60));
-        make.height.equalTo(@50);
+        make.height.mas_equalTo(KSCAL(100));
     }];
 
     [self.infoButton setBackgroundImage:[UIImage imageNamed:@"rectangle"] forState:UIControlStateNormal];
@@ -107,6 +107,7 @@
 
 - (void)setCusModel:(SQHomeCustomModel *)cusModel {
     _cusModel = cusModel;
+    self.selectedModel = nil;
     //功能定制按钮数据
     NSMutableArray  *headsBtnArr = [NSMutableArray array];
     for (int i = 0; i<cusModel.banners.count; i++) {
@@ -159,7 +160,9 @@
     [self.delegate tapedFuncsWithModel:self.model.banners[index]];
 }
 - (void)didselectButtonToPushNextPage {
-    [self.delegate tapedFuncsWithModel:self.selectedModel];
+    if (self.selectedModel) {
+        [self.delegate tapedFuncsWithModel:self.selectedModel];
+    }
 }
 
 

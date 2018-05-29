@@ -8,7 +8,7 @@
 
 #import "YGVideoPickerController.h"
 #import "YGPreviewViewController.h"
-#import "HomePageViewController.h"
+#import "SQHomeViewController.h"
 
 @interface YGVideoPickerController ()<AVCaptureFileOutputRecordingDelegate,YGPreviewViewControllerDelegate>
 
@@ -402,7 +402,7 @@
     [_delegate YGVideoPickerController:self didPressYesButtonWithMP4FilePath:path thumbImage:thumbImage];
     
     //关闭自己
-    HomePageViewController *replyController = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+    SQHomeViewController *replyController = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
     [self.navigationController popToViewController:replyController animated:YES];}
 
 @end

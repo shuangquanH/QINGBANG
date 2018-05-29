@@ -7,7 +7,6 @@
 //
 
 #import "ServiceEvaluationViewController.h"
-#import "HomePageSeccondTableViewCell.h"
 #import "ServiceEvalutionModel.h"
 #import "ServiceEvalutionCell.h"
 #define heraderHeight           (YGScreenWidth/2+40+5)
