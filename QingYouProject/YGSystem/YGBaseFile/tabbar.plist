@@ -26,7 +26,7 @@
 		<key>title</key>
 		<string>联系客服</string>
 		<key>viewController</key>
-		<string>MyCenterViewController</string>
+		<string>SQUserCenterViewController</string>
 		<key>selectedImage</key>
 		<string>tab__icon3-3</string>
 		<key>normalImage</key>

@@ -81,8 +81,8 @@
     return funmodel.funcsSize;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSString    *string = [NSString stringWithFormat:@"点击了第%ld个按钮", indexPath.row];
-    [self tapedFuncsWithModel:string];
+    SQHomeFuncsModel    *funmodel = self.model.funcs[indexPath.row];
+    [self tapedFuncsWithModel:funmodel];
 }
 
 //点击了功能按钮
@@ -130,7 +130,6 @@
                 [self.navigationController pushViewController:controller animated:YES];
             }
         } failure:nil];
-        return;
     } else {
         
         NSString    *plistFile = [[NSBundle mainBundle]pathForResource:@"SQPushTypePlist" ofType:@"plist"];

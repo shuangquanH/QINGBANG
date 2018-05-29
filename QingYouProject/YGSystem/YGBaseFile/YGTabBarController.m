@@ -68,9 +68,7 @@
 }
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
-    YGNavigationController  *nav = (YGNavigationController  *)viewController;
-    NSString    *controllerstr = NSStringFromClass([nav.viewControllers.firstObject class]);
-    if ([controllerstr isEqualToString:@"MyCenterViewController"]) {
+    if (viewController==self.viewControllers.lastObject) {
         [YGAlertView showAlertWithTitle:@"是否要拨打客服电话?"
                       buttonTitlesArray:@[@"YES", @"NO"]
                       buttonColorsArray:@[[UIColor blueColor],
@@ -80,6 +78,7 @@
         return YES;
     }
 }
+
 
 
 //// 哪些页面支持自动转屏

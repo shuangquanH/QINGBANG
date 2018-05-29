@@ -6,7 +6,7 @@
 		<key>title</key>
 		<string>我的订单</string>
 		<key>vc</key>
-		<string></string>
+		<string>SQOrderViewController</string>
 	</dict>
 	<dict>
 		<key>title</key>

@@ -69,6 +69,10 @@
     [self addSubview:self.scrollview];
 }
 
+
+
+
+#pragma mark addModels:
 - (void)setModel:(SQHomeIndexPageModel *)model {
     _model = model;
     //轮播图数据
@@ -79,6 +83,12 @@
     _cycleView.imageURLStringsGroup = bannerImageArr;
     
     //头部功能性按钮
+    for (UIView *view in self.ovalFuncsView.subviews) {
+        if (view!=self.infoButton) {
+            [view removeFromSuperview];
+        }
+    }
+    
     [self.ovalFuncsView setImageWithUrl:self.model.bgimg_url];
     NSMutableArray  *funcsBtnArr = [NSMutableArray array];
     for (int i = 0; i<model.heads.count; i++) {
@@ -91,10 +101,12 @@
         [funcsBtnArr addObject:funcsBtn];
         [self.ovalFuncsView addSubview:funcsBtn];
     }
+
+    
     if (funcsBtnArr.count>3) {
-        [funcsBtnArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:KSCAL(126) leadSpacing:20 tailSpacing:20];
+        [funcsBtnArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:KSCAL(128) leadSpacing:20 tailSpacing:20];
     } else {
-        [funcsBtnArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:KSCAL(126) leadSpacing:60 tailSpacing:60];
+        [funcsBtnArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:KSCAL(128) leadSpacing:60 tailSpacing:60];
     }
     [funcsBtnArr mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(KSCAL(60));
@@ -108,6 +120,7 @@
 - (void)setCusModel:(SQHomeCustomModel *)cusModel {
     _cusModel = cusModel;
     self.selectedModel = nil;
+    [self.scrollview.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     //功能定制按钮数据
     NSMutableArray  *headsBtnArr = [NSMutableArray array];
     for (int i = 0; i<cusModel.banners.count; i++) {
@@ -133,6 +146,9 @@
         }];
     }
 }
+
+
+
 
 
 #pragma actions

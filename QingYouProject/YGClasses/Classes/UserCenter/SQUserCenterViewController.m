@@ -10,6 +10,8 @@
 
 #import "SQUserCenterTableViewHeader.h"
 
+#import "SQOrderViewController.h"
+
 @interface SQUserCenterViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSArray       *userCenterArr;
@@ -51,14 +53,10 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section==0) {
-        [self.tabBarController setSelectedIndex:2];
-    } else {
-        if ([self loginOrNot]) {
-            Class theclass = NSClassFromString(self.userCenterArr[indexPath.section][@"vc"]);
-            RootViewController  *vc = [[theclass alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
-        }
+    if ([self loginOrNot]) {
+        Class theclass = NSClassFromString(self.userCenterArr[indexPath.section][@"vc"]);
+        RootViewController  *vc = [[theclass alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

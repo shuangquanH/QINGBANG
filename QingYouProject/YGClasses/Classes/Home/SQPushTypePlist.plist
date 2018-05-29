@@ -22,7 +22,7 @@
 		<key>targetTpye</key>
 		<string>2</string>
 		<key>targetController</key>
-		<string>MeetingAreaChooseViewController.h</string>
+		<string>MeetingAreaChooseViewController</string>
 		<key>controllerTitle</key>
 		<string>会议室预定(选择区域)</string>
 	</dict>
