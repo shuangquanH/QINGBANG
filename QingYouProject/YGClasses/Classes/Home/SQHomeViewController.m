@@ -14,6 +14,10 @@
 /** 装修板块  */
 #import "SQDecorationServeVC.h"
 
+#import "HouseRentAuditViewController.h"
+#import "CheckUserInfoViewController.h"
+#import "UpLoadIDFatherViewController.h"
+
 
 
 
@@ -83,31 +87,63 @@
 
 //点击了功能按钮
 - (void)tapedFuncsWithModel:(id)model {
+    NSString    *pushType = [NSString string];
     if ([model isKindOfClass:[SQHomeBannerModel class]]) {
         //点击了banner或者功能定制按钮
         SQHomeBannerModel   *sqmodel = model;
-        [YGAlertView showAlertWithTitle:sqmodel.banner_image_url
-                      buttonTitlesArray:@[@"YES", @"NO"]
-                      buttonColorsArray:@[[UIColor blueColor],
-                                          [UIColor redColor]] handler:nil];
+        pushType = sqmodel.banner_target;
         
     } else if ([model isKindOfClass:SQHomeHeadsModel.class]) {
         //点击了头部按钮
         SQHomeHeadsModel   *sqmodel = model;
-        [YGAlertView showAlertWithTitle:sqmodel.funcs_image_url
-                      buttonTitlesArray:@[@"YES", @"NO"]
-                      buttonColorsArray:@[[UIColor blueColor],
-                                          [UIColor redColor]] handler:nil];
+        pushType = sqmodel.funcs_target;
         
     } else if ([model isKindOfClass:SQHomeFuncsModel.class]) {
         //点击collectionView上的按钮
         SQHomeFuncsModel   *sqmodel = model;
-        [YGAlertView showAlertWithTitle:sqmodel.funcs_image_url
-                      buttonTitlesArray:@[@"YES", @"NO"]
-                      buttonColorsArray:@[[UIColor blueColor],
-                                          [UIColor redColor]] handler:nil];
+        pushType = sqmodel.funcs_target;
     }
-    [self.navigationController pushViewController:[SQDecorationServeVC new] animated:YES];
+    
+    [self pushToPageWithPushType:pushType];
+}
+
+
+
+- (void)pushToPageWithPushType:(NSString    *)pushType {
+    if ([pushType isEqualToString:@"1"]) {
+        //房租缴纳审核
+        [YGNetService YGPOST:REQUEST_HouserAudit parameters:@{@"userid":YGSingletonMarco.user.userId} showLoadingView:YES scrollView:nil success:^(id responseObject) {
+            //返回值state=0是请提交审核材料,=1待审核,=2审核通过直接跳到房租缴纳首页,=3审核不通过跳到传身份证页面并提示请重新上传资料审核
+            if ([responseObject[@"state"] isEqualToString:@"1"]) {
+                HouseRentAuditViewController *controller = [[HouseRentAuditViewController alloc]init];
+                [self.navigationController pushViewController:controller animated:YES];
+            } else if([responseObject[@"state"] isEqualToString:@"2"]) {
+                CheckUserInfoViewController *controller = [[CheckUserInfoViewController alloc]init];
+                [self.navigationController pushViewController:controller animated:YES];
+            } else if ([responseObject[@"state"] isEqualToString:@"3"]) {
+                UpLoadIDFatherViewController *controller = [[UpLoadIDFatherViewController alloc]init];
+                controller.notioceString = @"您的资料未通过审核,请重新上传资料";
+                [self.navigationController pushViewController:controller animated:YES];
+            } else {
+                UpLoadIDFatherViewController *controller = [[UpLoadIDFatherViewController alloc]init];
+                controller.notioceString = @"请上传资料进行审核，审核通过后可进行房租缴纳";
+                [self.navigationController pushViewController:controller animated:YES];
+            }
+        } failure:nil];
+        return;
+    } else {
+        
+        NSString    *plistFile = [[NSBundle mainBundle]pathForResource:@"SQPushTypePlist" ofType:@"plist"];
+        NSArray     *pushControlArray = [NSArray arrayWithContentsOfFile: plistFile];
+        for (NSDictionary *dic in pushControlArray) {
+            if ([pushType isEqualToString:dic[@"targetTpye"]]) {
+                Class controllerClass = NSClassFromString(dic[@"targetController"]);
+                UIViewController *viewController = [[controllerClass alloc] init];
+                [self.navigationController pushViewController:viewController animated:YES];
+            }
+        }
+        
+    }
 }
 
 

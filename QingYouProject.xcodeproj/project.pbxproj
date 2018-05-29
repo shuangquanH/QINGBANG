@@ -1043,6 +1043,7 @@
 		E99DE24C20BBDD68009CEF88 /* SQHomeIndexPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE24B20BBDD68009CEF88 /* SQHomeIndexPageModel.m */; };
 		E99DE24F20BBF8BA009CEF88 /* UIButton+SQWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE24E20BBF8BA009CEF88 /* UIButton+SQWebImage.m */; };
 		E99DE25220BCF517009CEF88 /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE25120BCF517009CEF88 /* UIColor+Extension.m */; };
+		E99DE25720BD3777009CEF88 /* SQPushTypePlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = E99DE25620BD3777009CEF88 /* SQPushTypePlist.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -2989,6 +2990,7 @@
 		E99DE24E20BBF8BA009CEF88 /* UIButton+SQWebImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SQWebImage.m"; sourceTree = "<group>"; };
 		E99DE25020BCF516009CEF88 /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
 		E99DE25120BCF517009CEF88 /* UIColor+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extension.m"; sourceTree = "<group>"; };
+		E99DE25620BD3777009CEF88 /* SQPushTypePlist.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SQPushTypePlist.plist; sourceTree = "<group>"; };
 		F883056FA3AE70A8E2E8FFA5 /* Pods-QingYouProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QingYouProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-QingYouProject/Pods-QingYouProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -7568,6 +7570,7 @@
 		E99DE1E820AE9D7D009CEF88 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				E99DE25620BD3777009CEF88 /* SQPushTypePlist.plist */,
 				E99DE1F320AEB9C9009CEF88 /* SQHomeViewController.h */,
 				E99DE1F420AEB9C9009CEF88 /* SQHomeViewController.m */,
 				E99DE24A20BBDD68009CEF88 /* SQHomeIndexPageModel.h */,
@@ -7784,6 +7787,7 @@
 				E2E5B38D1FB0675B00205F70 /* xianzhi_luzhi_fanzhuan@2x.png in Resources */,
 				1809E2AD1FEBA00C006C54EC /* SecondhandReplaceOtherHomePageTableViewCell.xib in Resources */,
 				18C15A831FC8208B0010ACD3 /* PointsPayCell.xib in Resources */,
+				E99DE25720BD3777009CEF88 /* SQPushTypePlist.plist in Resources */,
 				18C1593E1FC8208A0010ACD3 /* DeailingRepairOrderTableViewCell.xib in Resources */,
 				E2E5B37B1FB0675B00205F70 /* share_weixin.png in Resources */,
 				E2E5B39A1FB0675B00205F70 /* xianzhi_luzhi_shanguang_yellow@3x.png in Resources */,
