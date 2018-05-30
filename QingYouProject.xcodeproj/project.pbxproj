@@ -1044,6 +1044,9 @@
 		E99DE24F20BBF8BA009CEF88 /* UIButton+SQWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE24E20BBF8BA009CEF88 /* UIButton+SQWebImage.m */; };
 		E99DE25220BCF517009CEF88 /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE25120BCF517009CEF88 /* UIColor+Extension.m */; };
 		E99DE25720BD3777009CEF88 /* SQPushTypePlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = E99DE25620BD3777009CEF88 /* SQPushTypePlist.plist */; };
+		E99DE25A20BEA557009CEF88 /* UIControl+SQBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE25920BEA557009CEF88 /* UIControl+SQBlock.m */; };
+		E99DE25D20BEAFB1009CEF88 /* UIControl+SQSound.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE25C20BEAFB1009CEF88 /* UIControl+SQSound.m */; };
+		E99DE26020BEB0EF009CEF88 /* UIView+SQGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE25F20BEB0EF009CEF88 /* UIView+SQGesture.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -2991,6 +2994,12 @@
 		E99DE25020BCF516009CEF88 /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
 		E99DE25120BCF517009CEF88 /* UIColor+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extension.m"; sourceTree = "<group>"; };
 		E99DE25620BD3777009CEF88 /* SQPushTypePlist.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SQPushTypePlist.plist; sourceTree = "<group>"; };
+		E99DE25820BEA557009CEF88 /* UIControl+SQBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIControl+SQBlock.h"; sourceTree = "<group>"; };
+		E99DE25920BEA557009CEF88 /* UIControl+SQBlock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIControl+SQBlock.m"; sourceTree = "<group>"; };
+		E99DE25B20BEAFB1009CEF88 /* UIControl+SQSound.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIControl+SQSound.h"; sourceTree = "<group>"; };
+		E99DE25C20BEAFB1009CEF88 /* UIControl+SQSound.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIControl+SQSound.m"; sourceTree = "<group>"; };
+		E99DE25E20BEB0EF009CEF88 /* UIView+SQGesture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+SQGesture.h"; sourceTree = "<group>"; };
+		E99DE25F20BEB0EF009CEF88 /* UIView+SQGesture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+SQGesture.m"; sourceTree = "<group>"; };
 		F883056FA3AE70A8E2E8FFA5 /* Pods-QingYouProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QingYouProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-QingYouProject/Pods-QingYouProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -7577,14 +7586,14 @@
 				E99DE24B20BBDD68009CEF88 /* SQHomeIndexPageModel.m */,
 				E99DE22520B59286009CEF88 /* SQHomeCollectionHeader.h */,
 				E99DE22620B59286009CEF88 /* SQHomeCollectionHeader.m */,
-				E99DE20C20B4013A009CEF88 /* SQOvalFuncButtons.h */,
-				E99DE20B20B4013A009CEF88 /* SQOvalFuncButtons.m */,
 				E99DE21120B40D82009CEF88 /* SQCardScrollView.h */,
 				E99DE21020B40D82009CEF88 /* SQCardScrollView.m */,
 				E99DE21620B561A0009CEF88 /* SQCollectionViewLayout.h */,
 				E99DE21720B561A0009CEF88 /* SQCollectionViewLayout.m */,
 				E99DE23120B665E4009CEF88 /* SQHomeCollectionViewCell.h */,
 				E99DE23220B665E4009CEF88 /* SQHomeCollectionViewCell.m */,
+				E99DE20C20B4013A009CEF88 /* SQOvalFuncButtons.h */,
+				E99DE20B20B4013A009CEF88 /* SQOvalFuncButtons.m */,
 				E99DE1E920AE9D97009CEF88 /* DecorationServe */,
 			);
 			path = Home;
@@ -7622,6 +7631,12 @@
 				E99DE24E20BBF8BA009CEF88 /* UIButton+SQWebImage.m */,
 				E99DE25020BCF516009CEF88 /* UIColor+Extension.h */,
 				E99DE25120BCF517009CEF88 /* UIColor+Extension.m */,
+				E99DE25820BEA557009CEF88 /* UIControl+SQBlock.h */,
+				E99DE25920BEA557009CEF88 /* UIControl+SQBlock.m */,
+				E99DE25B20BEAFB1009CEF88 /* UIControl+SQSound.h */,
+				E99DE25C20BEAFB1009CEF88 /* UIControl+SQSound.m */,
+				E99DE25E20BEB0EF009CEF88 /* UIView+SQGesture.h */,
+				E99DE25F20BEB0EF009CEF88 /* UIView+SQGesture.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -8084,6 +8099,7 @@
 				2CF9B6B41FE74D7900D279F3 /* OrderDetailToolBarView.m in Sources */,
 				18C15A071FC8208A0010ACD3 /* CutomCollectionViewLayout.m in Sources */,
 				1812F2F22021A27100EEC1CE /* HomePageLegalServiceManagerDetailViewController.m in Sources */,
+				E99DE26020BEB0EF009CEF88 /* UIView+SQGesture.m in Sources */,
 				2CBCF41C1FF0C0A100450E4D /* RushPurchaseDetailPopView.m in Sources */,
 				18C15A241FC8208A0010ACD3 /* CrowdFundingHallTableViewCell.m in Sources */,
 				2C8254541FD00019003F742A /* AllianceCircleTrendsCommentDetailViewController.m in Sources */,
@@ -8529,6 +8545,8 @@
 				2C9BCDCA1FE25E0800831716 /* SeccondHandExchangeTypeModel.m in Sources */,
 				2CB40DA41FBA8C8000133211 /* UIAlertController+supportedInterfaceOrientations.m in Sources */,
 				18C159F31FC8208A0010ACD3 /* NewThingsCommentCell.m in Sources */,
+				E99DE25A20BEA557009CEF88 /* UIControl+SQBlock.m in Sources */,
+				E99DE25D20BEAFB1009CEF88 /* UIControl+SQSound.m in Sources */,
 				E2E5B3831FB0675B00205F70 /* YGStartPageView.m in Sources */,
 				18C15A5A1FC8208B0010ACD3 /* RoadShowHallDetailViewController.m in Sources */,
 				18C158AB1FC820890010ACD3 /* AllianceCircleIntroduceViewController.m in Sources */,

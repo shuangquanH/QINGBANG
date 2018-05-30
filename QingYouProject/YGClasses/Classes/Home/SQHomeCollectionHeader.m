@@ -10,6 +10,8 @@
 //#import "SQOvalFuncButtons.h"
 #import "SQCardScrollView.h"
 #import "UIButton+SQWebImage.h"
+#import "UIView+SQGesture.h"
+
 
 @interface SQHomeCollectionHeader () <SDCycleScrollViewDelegate>
 
@@ -78,6 +80,7 @@
 #pragma mark addModels:
 - (void)setModel:(SQHomeIndexPageModel *)model {
     _model = model;
+    self.selectedModel = nil;
     //轮播图数据
     NSMutableArray  *bannerImageArr = [NSMutableArray array];
     for (SQHomeBannerModel *bannerModel in model.banners) {
@@ -114,19 +117,24 @@
     [self.infoButton setTitle:@"hello,XXX欢迎来到青邦!" forState:UIControlStateNormal];
 }
 
+//功能定制按钮数据
 - (void)setCusModel:(SQHomeCustomModel *)cusModel {
     _cusModel = cusModel;
-    self.selectedModel = nil;
     [self.scrollview.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    //功能定制按钮数据
     NSMutableArray  *headsBtnArr = [NSMutableArray array];
+    
     for (int i = 0; i<cusModel.banners.count; i++) {
         SQHomeBannerModel *bannerModel = cusModel.banners[i];
-        UIButton    *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button sq_setButtonImageWithUrl:bannerModel.banner_image_url];
+        SQBaseImageView *button = [[SQBaseImageView alloc] init];
+        button.userInteractionEnabled = YES;
+        [button setImageWithUrl:bannerModel.banner_image_url];
         button.tag = 2000+i;
-        [button addTarget:self action:@selector(btnaction:) forControlEvents:UIControlEventTouchUpInside];
         [headsBtnArr addObject:button];
+        
+        WeakSelf(weakself);
+        [button sq_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+            [weakself cusBanTap:gestureRecoginzer];
+        }];
     }
     if (headsBtnArr.count>1) {
         [self.scrollview setItemArr:headsBtnArr
@@ -138,7 +146,7 @@
         [self.scrollview addSubview:cusbutton];
         [cusbutton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.scrollview);
-            make.width.equalTo(self.scrollview);
+            make.width.mas_equalTo(KAPP_WIDTH);
             make.height.mas_equalTo(KSCAL(200));
         }];
     }
@@ -149,25 +157,23 @@
 
 
 #pragma actions
+//头部功能按钮
 - (void)btnaction:(UIButton *)sender {
-    if (sender.tag>=2000) {
-        //定制功能按钮
-        SQHomeBannerModel   *cusModel = self.cusModel.banners[sender.tag-2000];
-        [self.delegate tapedFuncsWithModel:cusModel];
-        
-    } else {
-        //头部功能按钮
-        self.selectedModel = self.model.heads[sender.tag-1000];
-        for (UIButton *button in self.ovalContentView.subviews) {
-            if (button==sender) {
-                sender.selected = YES;
-            } else {
-                button.selected = NO;
-            }
+    self.selectedModel = self.model.heads[sender.tag-1000];
+    for (UIButton *button in self.ovalContentView.subviews) {
+        if (button==sender) {
+            sender.selected = YES;
+        } else {
+            button.selected = NO;
         }
     }
-
 }
+//定制功能按钮
+- (void)cusBanTap:(UIGestureRecognizer   *)tap {
+    SQHomeBannerModel   *cusModel = self.cusModel.banners[tap.view.tag-2000];
+    [self.delegate tapedFuncsWithModel:cusModel];
+}
+
 #pragma delegates
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
     [self.delegate tapedFuncsWithModel:self.model.banners[index]];

@@ -10,7 +10,14 @@
 #import "YYWebImage.h"
 
 @implementation SQBaseImageView
-
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.contentMode = UIViewContentModeScaleAspectFill;
+    }
+    return self;
+}
 - (void)setImageWithUrl:(NSString *)url {
     [self setImageWithUrl:url placeHolder:nil];
 }

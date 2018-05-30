@@ -68,7 +68,9 @@
     _leftImageView.backgroundColor = colorWithMainColor;
     //    _leftImageView.contentMode = UIViewContentModeScaleAspectFill;
     [_baseView addSubview:_leftImageView];
-    [_leftImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",_labelList[0][@"img"]]] placeholderImage:YGDefaultImgSquare];
+    if (_labelList.count>0) {
+        [_leftImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",_labelList[0][@"img"]]] placeholderImage:YGDefaultImgSquare];        
+    }
 
     //新鲜事标题label
     _titleLabel= [[UILabel alloc]init];

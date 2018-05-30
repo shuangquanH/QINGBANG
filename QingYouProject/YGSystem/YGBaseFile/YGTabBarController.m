@@ -9,6 +9,7 @@
 #import "YGTabBarController.h"
 #import "YGNavigationController.h"
 #import "YGTabbar.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 @interface YGTabBarController () <UITabBarControllerDelegate>
 
@@ -68,6 +69,7 @@
 }
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    AudioServicesPlaySystemSound(1103);
     if (viewController==self.viewControllers.lastObject) {
         [YGAlertView showAlertWithTitle:@"是否要拨打客服电话?"
                       buttonTitlesArray:@[@"YES", @"NO"]
