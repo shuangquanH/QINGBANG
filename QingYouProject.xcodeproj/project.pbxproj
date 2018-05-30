@@ -7521,7 +7521,6 @@
 			isa = PBXGroup;
 			children = (
 				E99DE1E820AE9D7D009CEF88 /* Home */,
-				E99DE1D220AC644B009CEF88 /* OrderForm */,
 				E99DE1C920AC4FE3009CEF88 /* UserCenter */,
 			);
 			path = Classes;
@@ -7535,6 +7534,7 @@
 				E99DE1CB20AC5015009CEF88 /* SQUserCenterViewController.m */,
 				E99DE1CD20AC5400009CEF88 /* SQUserCenterTableViewHeader.h */,
 				E99DE1CE20AC5400009CEF88 /* SQUserCenterTableViewHeader.m */,
+				E99DE1D220AC644B009CEF88 /* OrderForm */,
 			);
 			path = UserCenter;
 			sourceTree = "<group>";

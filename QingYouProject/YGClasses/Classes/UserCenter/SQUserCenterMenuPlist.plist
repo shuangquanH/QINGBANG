@@ -7,11 +7,15 @@
 		<string>我的订单</string>
 		<key>vc</key>
 		<string>SQOrderViewController</string>
+		<key>icon</key>
+		<string></string>
 	</dict>
 	<dict>
 		<key>title</key>
-		<string>我的服务单</string>
+		<string>我的申请单</string>
 		<key>vc</key>
+		<string></string>
+		<key>icon</key>
 		<string></string>
 	</dict>
 	<dict>
@@ -19,11 +23,7 @@
 		<string>我的收藏</string>
 		<key>vc</key>
 		<string>MyCollectionListController</string>
-	</dict>
-	<dict>
-		<key>title</key>
-		<string>我的售后</string>
-		<key>vc</key>
+		<key>icon</key>
 		<string></string>
 	</dict>
 	<dict>
@@ -31,17 +31,15 @@
 		<string>设置</string>
 		<key>vc</key>
 		<string>SetupViewController</string>
+		<key>icon</key>
+		<string></string>
 	</dict>
 	<dict>
 		<key>title</key>
 		<string>客服热线</string>
 		<key>vc</key>
 		<string></string>
-	</dict>
-	<dict>
-		<key>title</key>
-		<string>清除缓存</string>
-		<key>vc</key>
+		<key>icon</key>
 		<string></string>
 	</dict>
 </array>
