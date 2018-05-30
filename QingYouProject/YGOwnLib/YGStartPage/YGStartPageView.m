@@ -82,7 +82,7 @@
     //如果是最后一页,把自己干掉
     else
     {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"last" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:KNOTI_LASTLAUNCHPAGE object:nil];
         [self removeFromSuperview];
     }
 }
@@ -110,7 +110,7 @@
 }
 - (void)clickToPush
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"last" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:KNOTI_LASTLAUNCHPAGE object:nil];
     [self removeFromSuperview];
 }
 @end

@@ -15,6 +15,7 @@
     
     NSString    *apiString = [NSString stringWithFormat:@"%@%@", KAPI_ADDRESS, api];
     NSMutableDictionary *muParam = [NSMutableDictionary dictionaryWithDictionary:param];
+    
     if ([YGSingleton sharedManager].user.userId) {
         [muParam setValue:[YGSingleton sharedManager].user.userId forKey:@"userid"];
     }
@@ -28,7 +29,9 @@
     }
                                                                failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
     {
-        failure(error);
+        if (failure) {
+            failure(error);
+        }
     }];
 }
 

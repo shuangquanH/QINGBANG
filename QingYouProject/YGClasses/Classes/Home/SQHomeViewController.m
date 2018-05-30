@@ -13,11 +13,12 @@
 #import "YGAlertView.h"
 /** 装修板块  */
 #import "SQDecorationServeVC.h"
-
+/** 水电缴费相关  */
 #import "HouseRentAuditViewController.h"
 #import "CheckUserInfoViewController.h"
 #import "UpLoadIDFatherViewController.h"
-
+/** 引导页相关  */
+#import "YGStartPageView.h"
 
 
 
@@ -33,6 +34,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadLaunches];
+    [self requestData];
+}
+- (void)loadLaunches {
+    if (![YGUserDefaults objectForKey:USERDEF_FIRSTOPENAPP]) {
+        [KNOTI_CENTER addObserver:self selector:@selector(lastPage) name:KNOTI_LASTLAUNCHPAGE object:nil];
+        NSMutableArray *imageNameArray = [NSMutableArray array];
+        for (int i = 0; i<4; i++) {
+            [imageNameArray addObject:[NSString stringWithFormat:@"%d_%.0f", i+1, YGScreenHeight]];
+        }
+        [YGStartPageView showWithLocalPhotoNamesArray:imageNameArray];
+        [self loginOrNot];
+    }
+}
+- (void)lastPage {
+    [YGUserDefaults setObject:@"1" forKey:USERDEF_FIRSTOPENAPP];
+}
+
+- (void)configAttribute {
     self.naviTitle = @"首页";
     [self.view addSubview:self.collectionView];
     self.collectionView.headerView = self.headerView;
@@ -40,7 +60,6 @@
     [self createRefreshWithScrollView:self.collectionView containFooter:NO];
     self.collectionView.mj_header.ignoredScrollViewContentInsetTop=self.headerView.height;
     self.collectionView.contentOffset=CGPointMake(0, -self.headerView.height);
-    [self requestData];
 }
 
 - (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
@@ -55,7 +74,7 @@
         [self endRefreshWithScrollView:self.collectionView];
     }];
     //获取定制功能数据
-    [SQRequest post:KAPI_CUSBANN param:@{@"userid":@"1"} success:^(id response) {
+    [SQRequest post:KAPI_CUSBANN param:nil  success:^(id response) {
         self.headerView.cusModel = [SQHomeCustomModel yy_modelWithDictionary:response];
     } failure:nil];
 }
@@ -110,6 +129,9 @@
 
 
 - (void)pushToPageWithPushType:(NSString    *)pushType {
+    if (![self loginOrNot]) {
+        return;
+    }
     if ([pushType isEqualToString:@"1"]) {
         //房租缴纳审核
         [YGNetService YGPOST:REQUEST_HouserAudit parameters:@{@"userid":YGSingletonMarco.user.userId} showLoadingView:YES scrollView:nil success:^(id responseObject) {

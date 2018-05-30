@@ -24,6 +24,8 @@
 # define NSLog(...) {}
 #endif
 
+/** 通知中心单利  */
+#define KNOTI_CENTER        [NSNotificationCenter defaultCenter]
 
 /** 屏幕宽度 */
 #define KAPP_WIDTH          ([SQIphonePx shareInstance].phoneWidth)

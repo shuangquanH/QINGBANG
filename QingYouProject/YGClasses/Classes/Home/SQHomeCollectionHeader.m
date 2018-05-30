@@ -16,6 +16,8 @@
 @property (nonatomic, strong) SDCycleScrollView       *cycleView;
 //@property (nonatomic, strong) SQOvalFuncButtons       *ovalView;
 @property (nonatomic, strong) SQBaseImageView                *ovalFuncsView;
+@property (nonatomic, strong) UIView       *ovalContentView;
+
 @property (nonatomic, strong) SQCardScrollView       *scrollview;
 @property (nonatomic, strong) UIButton       *infoButton;
 
@@ -41,6 +43,7 @@
 - (void)addCycleView {
     CGRect frame = CGRectMake(0, 0, YGScreenWidth, KSCAL(320));
     self.cycleView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:YGDefaultImgSixteen_Nine];
+    self.cycleView.backgroundColor = kWhiteColor;
     [self addSubview:self.cycleView];
     
 }
@@ -83,13 +86,10 @@
     _cycleView.imageURLStringsGroup = bannerImageArr;
     
     //头部功能性按钮
-    for (UIView *view in self.ovalFuncsView.subviews) {
-        if (view!=self.infoButton) {
-            [view removeFromSuperview];
-        }
-    }
-    
     [self.ovalFuncsView setImageWithUrl:self.model.bgimg_url];
+    UIView  *tempView = [[UIView alloc] initWithFrame:self.ovalFuncsView.bounds];
+    [self.ovalFuncsView addSubview:tempView];
+    
     NSMutableArray  *funcsBtnArr = [NSMutableArray array];
     for (int i = 0; i<model.heads.count; i++) {
         SQHomeHeadsModel    *headModel = model.heads[i];
@@ -99,20 +99,17 @@
         funcsBtn.tag = 1000+i;
         [funcsBtn addTarget:self action:@selector(btnaction:) forControlEvents:UIControlEventTouchUpInside];
         [funcsBtnArr addObject:funcsBtn];
-        [self.ovalFuncsView addSubview:funcsBtn];
+        [tempView addSubview:funcsBtn];
     }
-
     
-    if (funcsBtnArr.count>3) {
-        [funcsBtnArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:KSCAL(128) leadSpacing:20 tailSpacing:20];
-    } else {
-        [funcsBtnArr mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedItemLength:KSCAL(128) leadSpacing:60 tailSpacing:60];
+    for (int i = 0; i<funcsBtnArr.count; i++) {
+        UIButton    *btn = funcsBtnArr[i];
+        CGFloat eachContentWidth = (KAPP_WIDTH-KSCAL(80))/funcsBtnArr.count;
+        CGFloat btnOrginX = KSCAL(40)+i*eachContentWidth+(eachContentWidth-KSCAL(128))/2.0;
+        [btn setFrame:CGRectMake(btnOrginX, KSCAL(60), KSCAL(128), KSCAL(100))];
     }
-    [funcsBtnArr mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(KSCAL(60));
-        make.height.mas_equalTo(KSCAL(100));
-    }];
-
+    [self.ovalContentView removeFromSuperview];
+    self.ovalContentView = tempView;
     [self.infoButton setBackgroundImage:[UIImage imageNamed:@"rectangle"] forState:UIControlStateNormal];
     [self.infoButton setTitle:@"hello,XXX欢迎来到青邦!" forState:UIControlStateNormal];
 }
@@ -161,7 +158,7 @@
     } else {
         //头部功能按钮
         self.selectedModel = self.model.heads[sender.tag-1000];
-        for (UIButton *button in self.ovalFuncsView.subviews) {
+        for (UIButton *button in self.ovalContentView.subviews) {
             if (button==sender) {
                 sender.selected = YES;
             } else {

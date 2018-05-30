@@ -58,7 +58,9 @@
 /***************************   RGB 颜色生成器  *******************************************/
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
-#define HEXCOLOR(rgbValue)    [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]                                //16进制color 使用方法：HEXCOLOR(0xffffff)
+//16进制color 使用方法：HEXCOLOR(0xffffff)
+#define HEXCOLOR(rgbValue)    [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
 
 
 // 生成RGB颜色值
@@ -140,5 +142,19 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:rgbAlpha]
 #define USERDEF_NOWCITY                         @"nowCity"                          //城市
 #define USERDEF_NOWCITYINDEX                    @"nowCityIndex"                     //城市序号
 #define USERDEF_LOGINPHONE                      @"phone"                            //电话号
+
+
+
+
+
+/** 黄双全新增  */
+
+/*************************** 通知中心key *****************************************************/
+
+#define KNOTI_LASTLAUNCHPAGE        @"NOTIFICATION_LASTLAUNCHPAGE_KEY"
+
+
+
+
 
 #endif

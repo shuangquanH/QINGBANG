@@ -46,7 +46,7 @@
 		<key>targetTpye</key>
 		<string>5</string>
 		<key>targetController</key>
-		<string>DecorationCarMainController</string>
+		<string>SQDecorationServeVC</string>
 		<key>controllerTitle</key>
 		<string>办公装修</string>
 	</dict>
