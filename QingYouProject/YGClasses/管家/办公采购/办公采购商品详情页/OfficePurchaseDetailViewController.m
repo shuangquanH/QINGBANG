@@ -413,23 +413,13 @@ static NSString * const  OfficePurchaseTableViewCellId = @"OfficePurchaseTableVi
     }];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
-//- (void)viewWillDisappear:(BOOL)animated
-//{
-//    [super viewWillDisappear:animated];
-//    [self setStatusBarStyle:UIStatusBarStyleDefault];
-//    
-//}
 
--(void)viewDidDisappear:(BOOL)animated
-{
+-(void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    [self setStatusBarStyle:UIStatusBarStyleDefault];
 }
 
 - (NSMutableArray *)dataArray{
@@ -554,13 +544,8 @@ static NSString * const  OfficePurchaseTableViewCellId = @"OfficePurchaseTableVi
         _alpha = alpha;
         _naviTitleLabel.hidden = YES;
         _navLineView.hidden = YES;
-
-        [self setStatusBarStyle:UIStatusBarStyleLightContent];
-        _statusbarStayle = UIStatusBarStyleLightContent;
         
-        
-    }else if (offsetY>0 && offsetY<= 45)
-    {
+    } else if (offsetY>0 && offsetY<= 45) {
         CGFloat alpha = 1;
         [_backButton setImage:[[UIImage imageNamed:@"back_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
         [_shareButton setImage:[[UIImage imageNamed:@"share_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
@@ -575,13 +560,7 @@ static NSString * const  OfficePurchaseTableViewCellId = @"OfficePurchaseTableVi
         _alpha = alpha;
         _naviTitleLabel.hidden = NO;
         _navLineView.hidden = NO;
-
-        [self setStatusBarStyle:UIStatusBarStyleDefault];
-        _statusbarStayle = UIStatusBarStyleDefault;
-        
-    }
-    else if (offsetY>=45)
-    {
+    } else if (offsetY>=45) {
         CGFloat alpha = 1;
         [_backButton setImage:[[UIImage imageNamed:@"back_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
         [_shareButton setImage:[[UIImage imageNamed:@"share_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
@@ -595,15 +574,8 @@ static NSString * const  OfficePurchaseTableViewCellId = @"OfficePurchaseTableVi
         _alpha = alpha;
         _naviTitleLabel.hidden = NO;
         _navLineView.hidden = NO;
-
-        
-        [self setStatusBarStyle:UIStatusBarStyleDefault];
-        _statusbarStayle = UIStatusBarStyleDefault;
-        
     }
-    
     _fadeNavibar.backgroundColor  = [colorWithYGWhite colorWithAlphaComponent:_alpha];
-    
 }
 
 -(void)reloadDataWithisCollect:(NSString *)isCollect

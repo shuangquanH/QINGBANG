@@ -19,25 +19,52 @@
 
 @implementation RootViewController
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    //友盟统计
-    [MobClick beginLogPageView:NSStringFromClass([self class])];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    //友盟统计
-    [MobClick endLogPageView:NSStringFromClass([self class])];
-}
-
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = colorWithTable;
     [self configAttribute];
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];//友盟统计
+    [MobClick beginLogPageView:NSStringFromClass([self class])];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];//友盟统计
+    [MobClick endLogPageView:NSStringFromClass([self class])];
+}
+
+/** 设置属性  */
+- (void)configAttribute {
+}
+//状态栏颜色
+- (void)setStatusBarStyle:(UIStatusBarStyle)statusBarStyle {
+    _statusBarStyle = statusBarStyle;
+    [[UIApplication sharedApplication] setStatusBarStyle:statusBarStyle animated:YES];
+}
+//一键创建普通navigation
+- (void)setNaviTitle:(NSString *)naviTitle {
+    _naviTitle = naviTitle;
+    if (!_naviTitleLabel) {
+        _naviTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, YGScreenWidth - 100, 20)];
+        _naviTitleLabel.textColor = kWhiteColor;
+        _naviTitleLabel.textAlignment = NSTextAlignmentCenter;
+        self.navigationItem.titleView = _naviTitleLabel;
+    }
+    _naviTitleLabel.text = _naviTitle;
+}
+- (void)setAttriTitle:(NSMutableAttributedString *)attriTitle {
+    _attriTitle = attriTitle;
+    if (!_naviTitleLabel) {
+        _naviTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, YGScreenWidth - 100, 20)];
+        _naviTitleLabel.textAlignment = NSTextAlignmentCenter;
+        self.navigationItem.titleView = _naviTitleLabel;
+    }
+    [attriTitle addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, attriTitle.length)];
+    _naviTitleLabel.attributedText = attriTitle;
+}
+
 
 - (void)startPostWithURLString:(NSString *)URLString
                     parameters:(id)parameters
@@ -49,33 +76,9 @@
         [self didReceiveFailureResponeseWithURLString:URLString parameters:parameters error:error];
     }];
 }
-
 - (void)didReceiveSuccessResponeseWithURLString:(NSString *)URLString parameters:(id)parameters responeseObject:(id)responseObject {
 }
-
 - (void)didReceiveFailureResponeseWithURLString:(NSString *)URLString parameters:(id)parameters error:(NSError *)error {
-}
-
-//设置属性
-- (void)configAttribute {
-}
-
-//状态栏颜色
-- (void)setStatusBarStyle:(UIStatusBarStyle)statusBarStyle {
-    _statusBarStyle = statusBarStyle;
-    [[UIApplication sharedApplication] setStatusBarStyle:statusBarStyle animated:YES];
-}
-
-//一键创建普通navigation
-- (void)setNaviTitle:(NSString *)naviTitle {
-    _naviTitle = naviTitle;
-    if (!_naviTitleLabel) {
-        _naviTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, YGScreenWidth - 100, 20)];
-        _naviTitleLabel.textColor = colorWithBlack;
-        _naviTitleLabel.textAlignment = NSTextAlignmentCenter;
-        self.navigationItem.titleView = _naviTitleLabel;
-    }
-    _naviTitleLabel.text = _naviTitle;
 }
 
 - (UIBarButtonItem *)createBarbuttonWithNormalImageName:(NSString *)imageName selectedImageName:(NSString *)selectImageName selector:(SEL)selector
@@ -107,8 +110,7 @@
 - (void)createRefreshWithScrollView:(UITableView *)tableView containFooter:(BOOL)containFooter {
     _refreshGifHeader = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeaderAction)];
     NSMutableArray *gifArray = [[NSMutableArray alloc] init];
-    for (int i = 1; i <= 10; ++i)
-    {
+    for (int i = 1; i <= 10; ++i) {
         [gifArray addObject:[UIImage imageNamed:[NSString stringWithFormat:@"loading_animation_refresh_%d",i]]];
     }
     [_refreshGifHeader setImages:gifArray duration:1 forState:MJRefreshStateIdle];
@@ -171,8 +173,7 @@
 }
 
 //自动加未加载图片
-- (void)addNoDataImageViewWithArray:(NSArray *)array shouldAddToView:(UIView *)view headerAction:(BOOL)headerAction
-{
+- (void)addNoDataImageViewWithArray:(NSArray *)array shouldAddToView:(UIView *)view headerAction:(BOOL)headerAction {
     if (headerAction) {
         if (array.count == 0) {
             [_noDataImageView removeFromSuperview];
@@ -233,42 +234,35 @@
     return YES;
 }
 
-- (void)registerTimerNotification
-{
+- (void)registerTimerNotification {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timerCountingDown:) name:NC_TIMER_COUNT_DOWN object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(commonTimerDidFinishCountDown) name:NC_TIMER_FINISH object:nil];
 }
 
-- (void)timerCountingDown:(NSNotification *)notification
-{
+- (void)timerCountingDown:(NSNotification *)notification {
     NSString *key = NC_TIMER_COUNT_DOWN;
     [self commonTimerCountingDownWithLeftSeconds:[notification.userInfo[key] integerValue]];
 }
 
-- (void)commonTimerCountingDownWithLeftSeconds:(NSInteger)seconds
-{
+- (void)commonTimerCountingDownWithLeftSeconds:(NSInteger)seconds {
     
 }
 
-- (void)commonTimerDidFinishCountDown
-{
+- (void)commonTimerDidFinishCountDown {
     
 }
 
 //没dealloc就有内存泄露了需注意
-- (void)dealloc
-{
+- (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     NSLog(@"%@ dealloc", NSStringFromClass([self class]));
 }
 //返回
-- (void)back
-{
+- (void)back {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)contactWithCustomerServerWithType:(ContactWithServerType)type button:(UIButton *)btn
-{
+- (void)contactWithCustomerServerWithType:(ContactWithServerType)type button:(UIButton *)btn {
     btn.userInteractionEnabled = NO;
     [YGNetService YGPOST:@"IndoorCall" parameters:@{@"rank":[NSString stringWithFormat:@"%ld",type]} showLoadingView:NO scrollView:nil success:^(id responseObject) {
         
@@ -276,20 +270,21 @@
         [YGAlertView showAlertWithTitle:@"是否拨打客服电话？" buttonTitlesArray:@[@"取消",@"确定"] buttonColorsArray:@[colorWithBlack,colorWithMainColor] handler:^(NSInteger buttonIndex) {
             if (buttonIndex == 0) {
                 return ;
-            }else
-            {
+            } else {
                 NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",[NSString stringWithFormat:@"%@",responseObject[@"callNum"]]];
                 UIWebView * callWebview = [[UIWebView alloc] init];
                 [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
                 [self.view addSubview:callWebview];
             }
         }];
-        
-        
-        
+
     } failure:^(NSError *error) {
         btn.userInteractionEnabled = YES;
         [YGAppTool showToastWithText:@"电话号码获取失败"];
     }];
 }
+
+
+
+
 @end

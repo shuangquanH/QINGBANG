@@ -44,6 +44,7 @@ typedef enum : NSUInteger {
 //用我设置导航栏标题
 @property (nonatomic, strong) NSString *naviTitle;
 
+@property (nonatomic, strong) NSMutableAttributedString       *attriTitle;
 
 /**
  网络请求方法，根据自己的喜好选择用此方法还是YGNetService

@@ -60,18 +60,12 @@
     [self loadDataFromServer];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self setStatusBarStyle:_statusbarStayle];
-    
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self setStatusBarStyle:UIStatusBarStyleDefault];
-    
 }
 
 #pragma mark ---- 重写导航条
@@ -368,9 +362,6 @@
         _alpha = alpha;
         _naviTitleLabel.hidden = YES;
         _navLineView.hidden = YES;
-        [self setStatusBarStyle:UIStatusBarStyleLightContent];
-        _statusbarStayle = UIStatusBarStyleLightContent;
-        
         
     }else if (offsetY>0 && offsetY<= 45)
     {
@@ -388,12 +379,7 @@
         _alpha = alpha;
         _naviTitleLabel.hidden = NO;
         _navLineView.hidden = NO;
-        [self setStatusBarStyle:UIStatusBarStyleDefault];
-        _statusbarStayle = UIStatusBarStyleDefault;
-        
-    }
-    else if (offsetY>=45)
-    {
+    } else if (offsetY>=45) {
         CGFloat alpha = 1;
         [_backButton setImage:[[UIImage imageNamed:@"back_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
         [_shareButton setImage:[[UIImage imageNamed:@"share_black"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
@@ -407,11 +393,6 @@
         _alpha = alpha;
         _naviTitleLabel.hidden = NO;
         _navLineView.hidden = NO;
-        
-        
-        [self setStatusBarStyle:UIStatusBarStyleDefault];
-        _statusbarStayle = UIStatusBarStyleDefault;
-        
     }
     
     _fadeNavibar.backgroundColor  = [colorWithYGWhite colorWithAlphaComponent:_alpha];

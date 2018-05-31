@@ -28,15 +28,7 @@
     self.view.backgroundColor = colorWithTable;
     
     [self.view addSubview:self.collectionView];
-//    [self.collectionView.mj_header beginRefreshing];
-
 }
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//    [super viewWillAppear:animated];
-//    [self setStatusBarStyle:UIStatusBarStyleDefault];
-//
-//}
 
 #pragma mark - 网络请求
 - (void)setDataType:(NSString *)dataType{

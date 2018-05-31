@@ -91,7 +91,7 @@ JFSearchViewDelegate>
 - (void)backBarButtonItem {
     UIButton *leftButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 30)];
     [leftButton addTarget:self action:@selector(backrootTableViewController) forControlEvents:UIControlEventTouchUpInside];
-    [leftButton setImage:[UIImage imageNamed:@"back_black"] forState:UIControlStateNormal];
+    [leftButton setImage:[UIImage imageNamed:@"popup_back_gray"] forState:UIControlStateNormal];
     leftButton.imageEdgeInsets=UIEdgeInsetsMake(0, -10, 0, 10);
     [leftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:leftButton];

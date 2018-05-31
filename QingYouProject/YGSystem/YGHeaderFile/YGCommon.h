@@ -69,21 +69,23 @@ colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0xFF))/255.0 alpha:rgbAlpha]
 
+
+// 主色调
+#define colorWithMainColor YGUIColorFromRGB(0x2dbe50, 1)
+
 // 黑色字体颜色
 #define colorWithBlack YGUIColorFromRGB(0x161c16, 1)
 // 深灰字体颜色
 #define colorWithDeepGray YGUIColorFromRGB(0x737773, 1)
 // 浅灰字体颜色
 #define colorWithLightGray YGUIColorFromRGB(0x9a9a9a, 1)
-// 主色调
-#define colorWithMainColor YGUIColorFromRGB(0x2dbe50, 1)
 //橙红色金额
 #define colorWithOrangeColor YGUIColorFromRGB(0xff6130, 1)
 //红色金额
 #define colorWithRedColor YGUIColorFromRGB(0xff2020, 1)
 // placeholder
 #define colorWithPlaceholder YGUIColorFromRGB(0xaaaaaa, 1)
-
+// placeholder2
 #define colorWithTextPlaceholder YGUIColorFromRGB(0xc7c7cd, 1)
 
 // table背景色

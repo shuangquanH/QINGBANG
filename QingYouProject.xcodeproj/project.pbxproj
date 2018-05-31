@@ -1057,6 +1057,7 @@
 		E99DE28020BED24F009CEF88 /* JFCityCollectionFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE27020BED24F009CEF88 /* JFCityCollectionFlowLayout.m */; };
 		E99DE28120BED24F009CEF88 /* JFButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE27220BED24F009CEF88 /* JFButton.m */; };
 		E99DE28220BED24F009CEF88 /* shop_area.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E99DE27620BED24F009CEF88 /* shop_area.sqlite */; };
+		E99DE28520BFD2C2009CEF88 /* NSMutableAttributedString+AppendImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE28420BFD2C2009CEF88 /* NSMutableAttributedString+AppendImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -3029,6 +3030,8 @@
 		E99DE27620BED24F009CEF88 /* shop_area.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = shop_area.sqlite; sourceTree = "<group>"; };
 		E99DE27720BED24F009CEF88 /* JFSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFSearchView.h; sourceTree = "<group>"; };
 		E99DE27820BED24F009CEF88 /* JFCityHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCityHeaderView.h; sourceTree = "<group>"; };
+		E99DE28320BFD2C2009CEF88 /* NSMutableAttributedString+AppendImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+AppendImage.h"; sourceTree = "<group>"; };
+		E99DE28420BFD2C2009CEF88 /* NSMutableAttributedString+AppendImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+AppendImage.m"; sourceTree = "<group>"; };
 		F883056FA3AE70A8E2E8FFA5 /* Pods-QingYouProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QingYouProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-QingYouProject/Pods-QingYouProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -7655,6 +7658,8 @@
 			children = (
 				E99DE1FD20B25C57009CEF88 /* NSString+SQStringSize.h */,
 				E99DE1FE20B25C57009CEF88 /* NSString+SQStringSize.m */,
+				E99DE28320BFD2C2009CEF88 /* NSMutableAttributedString+AppendImage.h */,
+				E99DE28420BFD2C2009CEF88 /* NSMutableAttributedString+AppendImage.m */,
 				E99DE24720B7DE87009CEF88 /* UIButton+SQImagePosition.h */,
 				E99DE24820B7DE87009CEF88 /* UIButton+SQImagePosition.m */,
 				E99DE24D20BBF8BA009CEF88 /* UIButton+SQWebImage.h */,
@@ -8524,6 +8529,7 @@
 				18C158DF1FC820890010ACD3 /* AddressAskModel.m in Sources */,
 				18C15A671FC8208B0010ACD3 /* MeetingChildDetailsController.m in Sources */,
 				18C159311FC8208A0010ACD3 /* MyComplaintsViewController.m in Sources */,
+				E99DE28520BFD2C2009CEF88 /* NSMutableAttributedString+AppendImage.m in Sources */,
 				E2E5B36E1FB0675B00205F70 /* YGPopCycleView.m in Sources */,
 				18C159141FC820890010ACD3 /* OrderDetailBottomView.m in Sources */,
 				18C159761FC8208A0010ACD3 /* JobOutsourceTradeRecoredTableViewCell.m in Sources */,

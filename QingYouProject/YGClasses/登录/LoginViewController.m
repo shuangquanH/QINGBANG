@@ -29,20 +29,24 @@
     
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
+- (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
 }
-
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (self.loginWithType == loginWithCommonPageType) {
+        self.statusBarStyle = UIStatusBarStyleDefault;
+    } else {
+        self.statusBarStyle = UIStatusBarStyleLightContent;
+    }
+}
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    self.statusBarStyle = UIStatusBarStyleDefault;
+    self.statusBarStyle = UIStatusBarStyleLightContent;
 }
 
--(void)configUI
-{
+-(void)configUI {
     _loginView = [[LoginView alloc]init];
     _loginView.loginWithType = self.loginWithType;
     _loginView.delegate = self;

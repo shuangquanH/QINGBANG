@@ -16,13 +16,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.navigationBar.barTintColor = colorWithYGWhite;
     self.navigationBar.translucent = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.navigationBar.barTintColor = kBlackColor;
     
-    self.navigationBar.shadowImage = [UIImage imageNamed:@"tranimg"];
-    [self.navigationBar setBackgroundImage:[UIImage imageNamed:@"tranimg"] forBarMetrics:UIBarMetricsDefault];
+    UIColor * color = [UIColor whiteColor];
+    NSMutableDictionary *dict=[NSMutableDictionary dictionary];
+    [dict setObject:color forKey:NSForegroundColorAttributeName];
+    self.navigationBar.titleTextAttributes = dict;
 }
 
 
@@ -33,7 +34,7 @@
         UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         backButton.frame = CGRectMake(0, 0, 40, 40);
         backButton.backgroundColor = [UIColor clearColor];
-        [backButton setImage:[UIImage imageNamed:@"back_black"] forState:UIControlStateNormal];
+        [backButton setImage:[UIImage imageNamed:@"popup_back_gray"] forState:UIControlStateNormal];
         backButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
         backButton.imageView.clipsToBounds = YES;
         [backButton setImageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
