@@ -12,6 +12,9 @@
 @implementation UIButton (SQWebImage)
 
 - (void)sq_setButtonImageWithUrl:(NSString *)imageUrl {
+     self.contentHorizontalAlignment= UIControlContentHorizontalAlignmentFill;
+     self.contentVerticalAlignment = UIControlContentVerticalAlignmentFill;
+    
     // 获取缓存图片
     UIImage *cacheImage = [[SDImageCache sharedImageCache] imageFromCacheForKey:imageUrl];
     

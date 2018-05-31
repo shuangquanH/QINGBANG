@@ -56,15 +56,10 @@
     [self addSubview:self.ovalFuncsView];
     
     self.infoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.infoButton.frame = CGRectMake((self.width-KSCAL(495))/2.0, KSCAL(60)+KSCAL(100)+14, KSCAL(495), KSCAL(80));
     self.infoButton.titleLabel.textColor = KCOLOR_WHITE;
     self.infoButton.titleLabel.font = KFONT(24);
     [self.ovalFuncsView addSubview:self.infoButton];
-    [self.infoButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(KSCAL(495));
-        make.height.mas_equalTo(KSCAL(80));
-        make.top.mas_equalTo(KSCAL(60)+KSCAL(100)+14);
-        make.centerX.equalTo(self.ovalFuncsView);
-    }];
     [self.infoButton addTarget:self action:@selector(didselectButtonToPushNextPage) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -90,7 +85,7 @@
     
     //头部功能性按钮
     [self.ovalFuncsView setImageWithUrl:self.model.bgimg_url];
-    UIView  *tempView = [[UIView alloc] initWithFrame:self.ovalFuncsView.bounds];
+    UIView  *tempView = [[UIView alloc] initWithFrame:CGRectMake(0, KSCAL(60), self.width, KSCAL(100))];
     [self.ovalFuncsView addSubview:tempView];
     
     NSMutableArray  *funcsBtnArr = [NSMutableArray array];
@@ -108,8 +103,8 @@
     for (int i = 0; i<funcsBtnArr.count; i++) {
         UIButton    *btn = funcsBtnArr[i];
         CGFloat eachContentWidth = (KAPP_WIDTH-KSCAL(80))/funcsBtnArr.count;
-        CGFloat btnOrginX = KSCAL(40)+i*eachContentWidth+(eachContentWidth-KSCAL(128))/2.0;
-        [btn setFrame:CGRectMake(btnOrginX, KSCAL(60), KSCAL(128), KSCAL(100))];
+        CGFloat btnOrginX = KSCAL(40)+i*eachContentWidth+(eachContentWidth-KSCAL(124))/2.0;
+        [btn setFrame:CGRectMake(btnOrginX, 0, KSCAL(124), KSCAL(100))];
     }
     [self.ovalContentView removeFromSuperview];
     self.ovalContentView = tempView;
