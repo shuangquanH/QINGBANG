@@ -34,7 +34,7 @@
         UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         backButton.frame = CGRectMake(0, 0, 40, 40);
         backButton.backgroundColor = [UIColor clearColor];
-        [backButton setImage:[UIImage imageNamed:@"popup_back_gray"] forState:UIControlStateNormal];
+        [backButton setImage:[UIImage imageNamed:@"home_back_icon"] forState:UIControlStateNormal];
         backButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
         backButton.imageView.clipsToBounds = YES;
         [backButton setImageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
