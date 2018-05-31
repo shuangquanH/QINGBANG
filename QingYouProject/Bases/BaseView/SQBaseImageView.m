@@ -14,7 +14,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.contentMode = UIViewContentModeScaleAspectFill;
+//        self.contentMode = UIViewContentModeScaleAspectFill;
     }
     return self;
 }

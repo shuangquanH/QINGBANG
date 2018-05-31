@@ -87,7 +87,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:rgbAlpha]
 #define colorWithTextPlaceholder YGUIColorFromRGB(0xc7c7cd, 1)
 
 // table背景色
-#define colorWithTable YGUIColorFromRGB(0xf7f7f7, 1)
+#define colorWithTable YGUIColorFromRGB(0xf0f0f0, 1)
 // 白色
 #define colorWithYGWhite [UIColor whiteColor]
 // 亮色table

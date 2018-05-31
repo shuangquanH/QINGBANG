@@ -69,7 +69,7 @@
 }
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
-    AudioServicesPlaySystemSound(1103);
+    AudioServicesPlaySystemSound(1104);
     if (viewController==self.viewControllers.lastObject) {
         [YGAlertView showAlertWithTitle:@"是否要拨打客服电话?"
                       buttonTitlesArray:@[@"YES", @"NO"]

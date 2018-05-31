@@ -46,6 +46,8 @@ target 'QingYouProject' do
   #yymodel
   pod 'YYModel'
   
+  pod 'FMDB'
+  
   
   #测试一下哈哈哈哈哈
 end

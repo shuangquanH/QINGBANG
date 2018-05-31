@@ -1047,6 +1047,16 @@
 		E99DE25A20BEA557009CEF88 /* UIControl+SQBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE25920BEA557009CEF88 /* UIControl+SQBlock.m */; };
 		E99DE25D20BEAFB1009CEF88 /* UIControl+SQSound.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE25C20BEAFB1009CEF88 /* UIControl+SQSound.m */; };
 		E99DE26020BEB0EF009CEF88 /* UIView+SQGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE25F20BEB0EF009CEF88 /* UIView+SQGesture.m */; };
+		E99DE27920BED24F009CEF88 /* JFCityCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE26420BED24F009CEF88 /* JFCityCollectionViewCell.m */; };
+		E99DE27A20BED24F009CEF88 /* JFLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE26620BED24F009CEF88 /* JFLocation.m */; };
+		E99DE27B20BED24F009CEF88 /* JFAreaDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE26A20BED24F009CEF88 /* JFAreaDataManager.m */; };
+		E99DE27C20BED24F009CEF88 /* JFCityHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE26C20BED24F009CEF88 /* JFCityHeaderView.m */; };
+		E99DE27D20BED24F009CEF88 /* JFSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE26D20BED24F009CEF88 /* JFSearchView.m */; };
+		E99DE27E20BED24F009CEF88 /* JFCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE26E20BED24F009CEF88 /* JFCityViewController.m */; };
+		E99DE27F20BED24F009CEF88 /* JFCityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE26F20BED24F009CEF88 /* JFCityTableViewCell.m */; };
+		E99DE28020BED24F009CEF88 /* JFCityCollectionFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE27020BED24F009CEF88 /* JFCityCollectionFlowLayout.m */; };
+		E99DE28120BED24F009CEF88 /* JFButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE27220BED24F009CEF88 /* JFButton.m */; };
+		E99DE28220BED24F009CEF88 /* shop_area.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E99DE27620BED24F009CEF88 /* shop_area.sqlite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -3000,6 +3010,25 @@
 		E99DE25C20BEAFB1009CEF88 /* UIControl+SQSound.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIControl+SQSound.m"; sourceTree = "<group>"; };
 		E99DE25E20BEB0EF009CEF88 /* UIView+SQGesture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+SQGesture.h"; sourceTree = "<group>"; };
 		E99DE25F20BEB0EF009CEF88 /* UIView+SQGesture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+SQGesture.m"; sourceTree = "<group>"; };
+		E99DE26320BED24F009CEF88 /* JFCityCollectionFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCityCollectionFlowLayout.h; sourceTree = "<group>"; };
+		E99DE26420BED24F009CEF88 /* JFCityCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCityCollectionViewCell.m; sourceTree = "<group>"; };
+		E99DE26620BED24F009CEF88 /* JFLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFLocation.m; sourceTree = "<group>"; };
+		E99DE26720BED24F009CEF88 /* JFLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFLocation.h; sourceTree = "<group>"; };
+		E99DE26920BED24F009CEF88 /* JFAreaDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFAreaDataManager.h; sourceTree = "<group>"; };
+		E99DE26A20BED24F009CEF88 /* JFAreaDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFAreaDataManager.m; sourceTree = "<group>"; };
+		E99DE26B20BED24F009CEF88 /* JFButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFButton.h; sourceTree = "<group>"; };
+		E99DE26C20BED24F009CEF88 /* JFCityHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCityHeaderView.m; sourceTree = "<group>"; };
+		E99DE26D20BED24F009CEF88 /* JFSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFSearchView.m; sourceTree = "<group>"; };
+		E99DE26E20BED24F009CEF88 /* JFCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCityViewController.m; sourceTree = "<group>"; };
+		E99DE26F20BED24F009CEF88 /* JFCityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCityTableViewCell.m; sourceTree = "<group>"; };
+		E99DE27020BED24F009CEF88 /* JFCityCollectionFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFCityCollectionFlowLayout.m; sourceTree = "<group>"; };
+		E99DE27120BED24F009CEF88 /* JFCityCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCityCollectionViewCell.h; sourceTree = "<group>"; };
+		E99DE27220BED24F009CEF88 /* JFButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFButton.m; sourceTree = "<group>"; };
+		E99DE27320BED24F009CEF88 /* JFCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCityViewController.h; sourceTree = "<group>"; };
+		E99DE27420BED24F009CEF88 /* JFCityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCityTableViewCell.h; sourceTree = "<group>"; };
+		E99DE27620BED24F009CEF88 /* shop_area.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = shop_area.sqlite; sourceTree = "<group>"; };
+		E99DE27720BED24F009CEF88 /* JFSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFSearchView.h; sourceTree = "<group>"; };
+		E99DE27820BED24F009CEF88 /* JFCityHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCityHeaderView.h; sourceTree = "<group>"; };
 		F883056FA3AE70A8E2E8FFA5 /* Pods-QingYouProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QingYouProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-QingYouProject/Pods-QingYouProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -6041,6 +6070,7 @@
 			isa = PBXGroup;
 			children = (
 				2C8451E41FBD434200F037DE /* QingYouProject.entitlements */,
+				E99DE26120BED238009CEF88 /* Vendor */,
 				E99DE1AC20AC4FAF009CEF88 /* Bases */,
 				E99DE22D20B658C9009CEF88 /* Utils */,
 				E99DE1FC20B25C32009CEF88 /* Categories */,
@@ -7654,6 +7684,64 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		E99DE26120BED238009CEF88 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE26220BED24F009CEF88 /* JFCityViewController */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		E99DE26220BED24F009CEF88 /* JFCityViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE27320BED24F009CEF88 /* JFCityViewController.h */,
+				E99DE26E20BED24F009CEF88 /* JFCityViewController.m */,
+				E99DE26520BED24F009CEF88 /* Location */,
+				E99DE26820BED24F009CEF88 /* AreaDataManager */,
+				E99DE26B20BED24F009CEF88 /* JFButton.h */,
+				E99DE27220BED24F009CEF88 /* JFButton.m */,
+				E99DE27720BED24F009CEF88 /* JFSearchView.h */,
+				E99DE26D20BED24F009CEF88 /* JFSearchView.m */,
+				E99DE27820BED24F009CEF88 /* JFCityHeaderView.h */,
+				E99DE26C20BED24F009CEF88 /* JFCityHeaderView.m */,
+				E99DE27120BED24F009CEF88 /* JFCityCollectionViewCell.h */,
+				E99DE26420BED24F009CEF88 /* JFCityCollectionViewCell.m */,
+				E99DE27420BED24F009CEF88 /* JFCityTableViewCell.h */,
+				E99DE26F20BED24F009CEF88 /* JFCityTableViewCell.m */,
+				E99DE26320BED24F009CEF88 /* JFCityCollectionFlowLayout.h */,
+				E99DE27020BED24F009CEF88 /* JFCityCollectionFlowLayout.m */,
+				E99DE27520BED24F009CEF88 /* AreaDB */,
+			);
+			path = JFCityViewController;
+			sourceTree = "<group>";
+		};
+		E99DE26520BED24F009CEF88 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE26620BED24F009CEF88 /* JFLocation.m */,
+				E99DE26720BED24F009CEF88 /* JFLocation.h */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		E99DE26820BED24F009CEF88 /* AreaDataManager */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE26920BED24F009CEF88 /* JFAreaDataManager.h */,
+				E99DE26A20BED24F009CEF88 /* JFAreaDataManager.m */,
+			);
+			path = AreaDataManager;
+			sourceTree = "<group>";
+		};
+		E99DE27520BED24F009CEF88 /* AreaDB */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE27620BED24F009CEF88 /* shop_area.sqlite */,
+			);
+			path = AreaDB;
+			sourceTree = "<group>";
+		};
 		F73D53F056E2247CD4A548BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -7887,6 +7975,7 @@
 				18C159AC1FC8208A0010ACD3 /* button-screen-double.png in Resources */,
 				E2E5B11F1FB0675900205F70 /* EBBannerView.xib in Resources */,
 				18C159581FC8208A0010ACD3 /* WaitToNetManagerTableViewCell.xib in Resources */,
+				E99DE28220BED24F009CEF88 /* shop_area.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7979,6 +8068,7 @@
 				E2E5B3471FB0675B00205F70 /* UISearchBar+LDSesrchBar.m in Sources */,
 				18C159971FC8208A0010ACD3 /* SeeAndSaveTableViewCell.m in Sources */,
 				18EF7E7E1FE267CD00A7CC7A /* SecondhandReplacementISelloutWaitToDelivergoodsOrderViewController.m in Sources */,
+				E99DE27A20BED24F009CEF88 /* JFLocation.m in Sources */,
 				18C15A5E1FC8208B0010ACD3 /* TakePicturesOrderListController.m in Sources */,
 				18C15A321FC8208A0010ACD3 /* AddSubscribeSumOfMoneyViewController.m in Sources */,
 				18C15A7A1FC8208B0010ACD3 /* MeetingOrderCell.m in Sources */,
@@ -8161,6 +8251,7 @@
 				18C158C31FC820890010ACD3 /* MyDecorationOrderController.m in Sources */,
 				E2CD939B1FF1D15600CC7D13 /* MyCollectionModel.m in Sources */,
 				18C15A2D1FC8208A0010ACD3 /* CrowdFundingAddProjectDescriptionViewController.m in Sources */,
+				E99DE27C20BED24F009CEF88 /* JFCityHeaderView.m in Sources */,
 				E2E5B1351FB0675A00205F70 /* MJExtensionConst.m in Sources */,
 				E2E5B1271FB0675A00205F70 /* UIDevice+FCUUID.m in Sources */,
 				18C158AF1FC820890010ACD3 /* CooperationCaseViewController.m in Sources */,
@@ -8199,6 +8290,7 @@
 				18C15A4C1FC8208B0010ACD3 /* ServiceHallViewController.m in Sources */,
 				18C15A451FC8208B0010ACD3 /* RealNameCertifyViewController.m in Sources */,
 				2C9DB7251FEA28F10044819D /* MineIntergralRecordOrderSubViewController.m in Sources */,
+				E99DE28120BED24F009CEF88 /* JFButton.m in Sources */,
 				18C159871FC8208A0010ACD3 /* AdvertisesForStaffViewController.m in Sources */,
 				2CC3A37B1FD4FF7A008188BA /* TobeLeaderOfAllianceViewController.m in Sources */,
 				18C159851FC8208A0010ACD3 /* SearchAdvertieseTableViewCell.m in Sources */,
@@ -8241,6 +8333,7 @@
 				18C159A41FC8208A0010ACD3 /* AdvertisementLocationApplyController.m in Sources */,
 				18C15A481FC8208B0010ACD3 /* ChoiceCaseViewController.m in Sources */,
 				1825867E1FE7AD9D004C1A71 /* PlayTogetherSignUpPayViewController.m in Sources */,
+				E99DE28020BED24F009CEF88 /* JFCityCollectionFlowLayout.m in Sources */,
 				18C158A91FC820890010ACD3 /* AllianceCircleActivityModel.m in Sources */,
 				18C15A2A1FC8208A0010ACD3 /* RSCrowFundingSubscribeViewController.m in Sources */,
 				18C158D91FC820890010ACD3 /* SetupViewController.m in Sources */,
@@ -8332,6 +8425,7 @@
 				18C158D71FC820890010ACD3 /* PasswordModifilyViewController.m in Sources */,
 				18C15A4E1FC8208B0010ACD3 /* ServiceResonModel.m in Sources */,
 				18C15A661FC8208B0010ACD3 /* MeetingChildBookingViewController.m in Sources */,
+				E99DE27D20BED24F009CEF88 /* JFSearchView.m in Sources */,
 				18C15A6E1FC8208B0010ACD3 /* ReservationController.m in Sources */,
 				E2E5B39C1FB0675B00205F70 /* YGVideoPickerController.m in Sources */,
 				E2E5B1501FB0675A00205F70 /* UIScrollView+MJExtension.m in Sources */,
@@ -8383,6 +8477,7 @@
 				E28675571FEB622200403A87 /* IntegralExchangeCell.m in Sources */,
 				E2502B131FF32ADB0080BA49 /* MyPushInformationCell.m in Sources */,
 				18C158E31FC820890010ACD3 /* NetManagerModel.m in Sources */,
+				E99DE27B20BED24F009CEF88 /* JFAreaDataManager.m in Sources */,
 				18C159811FC8208A0010ACD3 /* MyRecruitBeInviteInterviewTableViewCell.m in Sources */,
 				18C15A3B1FC8208B0010ACD3 /* MyInvestSubViewController.m in Sources */,
 				183AC18F1FDA33CB009FCAA3 /* RushPurchaseOrderListViewController.m in Sources */,
@@ -8581,6 +8676,7 @@
 				18C158ED1FC820890010ACD3 /* LoginViewController.m in Sources */,
 				18C159CE1FC8208A0010ACD3 /* InvoiceHistoryTableViewCell.m in Sources */,
 				18C159711FC8208A0010ACD3 /* IssueAdvertiseViewTableViewCell.m in Sources */,
+				E99DE27E20BED24F009CEF88 /* JFCityViewController.m in Sources */,
 				18C1590E1FC820890010ACD3 /* PendingPaymentOfficePurchaseCell.m in Sources */,
 				E25128091FF4E4160055F5D0 /* PlayTogetherAgreementController.m in Sources */,
 				1824E2E81FD0F3F900769A6A /* IntegrationtryJudgeViewController.m in Sources */,
@@ -8655,6 +8751,7 @@
 				1809E29A1FEB8CA1006C54EC /* SecondhandReplacementMyFollowTableViewCell.m in Sources */,
 				2CF9B6AA1FE74D7800D279F3 /* AwaitingPayMentController.m in Sources */,
 				182091241FF4894600283071 /* SecondhandReplaceLogisticeInforViewController.m in Sources */,
+				E99DE27920BED24F009CEF88 /* JFCityCollectionViewCell.m in Sources */,
 				18C15A841FC8208B0010ACD3 /* RefundHearderView.m in Sources */,
 				18C158C51FC820890010ACD3 /* MyDecorationOrderModel.m in Sources */,
 				2C9DB7191FEA02E60044819D /* MineIntergralRecordModel.m in Sources */,
@@ -8802,6 +8899,7 @@
 				E2E5B19B1FB0675A00205F70 /* HXTagAttribute.m in Sources */,
 				E2E5B1761FB0675A00205F70 /* TZVideoPlayerController.m in Sources */,
 				E99DE22720B59286009CEF88 /* SQHomeCollectionHeader.m in Sources */,
+				E99DE27F20BED24F009CEF88 /* JFCityTableViewCell.m in Sources */,
 				E2E5B1671FB0675A00205F70 /* QNUploadOption.m in Sources */,
 				2C82545A1FD002F8003F742A /* AllianceCircleTrendsCommentDetailModel.m in Sources */,
 				2C7CDCDE1FCEB107005437C6 /* AllianceMainSettingViewController.m in Sources */,
