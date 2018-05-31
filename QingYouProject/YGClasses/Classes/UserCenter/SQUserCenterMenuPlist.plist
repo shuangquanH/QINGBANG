@@ -9,6 +9,8 @@
 		<string>SQOrderViewController</string>
 		<key>icon</key>
 		<string></string>
+		<key>needLogin</key>
+		<true/>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -17,6 +19,8 @@
 		<string></string>
 		<key>icon</key>
 		<string></string>
+		<key>needLogin</key>
+		<true/>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -25,6 +29,8 @@
 		<string>MyCollectionListController</string>
 		<key>icon</key>
 		<string></string>
+		<key>needLogin</key>
+		<true/>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -33,6 +39,8 @@
 		<string>SetupViewController</string>
 		<key>icon</key>
 		<string></string>
+		<key>needLogin</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -41,6 +49,8 @@
 		<string></string>
 		<key>icon</key>
 		<string></string>
+		<key>needLogin</key>
+		<false/>
 	</dict>
 </array>
 </plist>

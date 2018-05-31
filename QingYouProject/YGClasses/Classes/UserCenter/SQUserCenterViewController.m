@@ -53,9 +53,14 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([self loginOrNot]) {
-        Class theclass = NSClassFromString(self.userCenterArr[indexPath.section][@"vc"]);
-        RootViewController  *vc = [[theclass alloc] init];
+    Class theclass = NSClassFromString(self.userCenterArr[indexPath.section][@"vc"]);
+    RootViewController  *vc = [[theclass alloc] init];
+    bool    needlogin = [self.userCenterArr[indexPath.section][@"needLogin"] boolValue];
+    if (needlogin) {
+        if ([self loginOrNot]) {
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    } else {
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

@@ -155,49 +155,60 @@
 
 
 - (void)pushToPageWithPushType:(NSString    *)pushType {
-    if (![self loginOrNot]) {
-        return;
-    }
     if ([pushType isEqualToString:@"1"]) {
-        //房租缴纳审核
-        [YGNetService YGPOST:REQUEST_HouserAudit parameters:@{@"userid":YGSingletonMarco.user.userId} showLoadingView:YES scrollView:nil success:^(id responseObject) {
-            //返回值state=0是请提交审核材料,=1待审核,=2审核通过直接跳到房租缴纳首页,=3审核不通过跳到传身份证页面并提示请重新上传资料审核
-            if ([responseObject[@"state"] isEqualToString:@"1"]) {
-                HouseRentAuditViewController *controller = [[HouseRentAuditViewController alloc]init];
-                [self.navigationController pushViewController:controller animated:YES];
-            } else if([responseObject[@"state"] isEqualToString:@"2"]) {
-                CheckUserInfoViewController *controller = [[CheckUserInfoViewController alloc]init];
-                [self.navigationController pushViewController:controller animated:YES];
-            } else if ([responseObject[@"state"] isEqualToString:@"3"]) {
-                UpLoadIDFatherViewController *controller = [[UpLoadIDFatherViewController alloc]init];
-                controller.notioceString = @"您的资料未通过审核,请重新上传资料";
-                [self.navigationController pushViewController:controller animated:YES];
-            } else {
-                UpLoadIDFatherViewController *controller = [[UpLoadIDFatherViewController alloc]init];
-                controller.notioceString = @"请上传资料进行审核，审核通过后可进行房租缴纳";
-                [self.navigationController pushViewController:controller animated:YES];
-            }
-        } failure:nil];
+        if ([self loginOrNot]) {
+            [YGNetService YGPOST:REQUEST_HouserAudit parameters:@{@"userid":YGSingletonMarco.user.userId} showLoadingView:YES scrollView:nil success:^(id responseObject) {
+                //返回值state=0是请提交审核材料,=1待审核,=2审核通过直接跳到房租缴纳首页,=3审核不通过跳到传身份证页面并提示请重新上传资料审核
+                if ([responseObject[@"state"] isEqualToString:@"1"]) {
+                    HouseRentAuditViewController *controller = [[HouseRentAuditViewController alloc]init];
+                    [self.navigationController pushViewController:controller animated:YES];
+                } else if([responseObject[@"state"] isEqualToString:@"2"]) {
+                    CheckUserInfoViewController *controller = [[CheckUserInfoViewController alloc]init];
+                    [self.navigationController pushViewController:controller animated:YES];
+                } else if ([responseObject[@"state"] isEqualToString:@"3"]) {
+                    UpLoadIDFatherViewController *controller = [[UpLoadIDFatherViewController alloc]init];
+                    controller.notioceString = @"您的资料未通过审核,请重新上传资料";
+                    [self.navigationController pushViewController:controller animated:YES];
+                } else {
+                    UpLoadIDFatherViewController *controller = [[UpLoadIDFatherViewController alloc]init];
+                    controller.notioceString = @"请上传资料进行审核，审核通过后可进行房租缴纳";
+                    [self.navigationController pushViewController:controller animated:YES];
+                }
+            } failure:nil];
+        }
+        
+        
     } else {
         
         NSString    *plistFile = [[NSBundle mainBundle]pathForResource:@"SQPushTypePlist" ofType:@"plist"];
         NSArray     *pushControlArray = [NSArray arrayWithContentsOfFile: plistFile];
+        
         for (NSDictionary *dic in pushControlArray) {
+            
             if ([pushType isEqualToString:dic[@"targetTpye"]]) {
                 Class controllerClass = NSClassFromString(dic[@"targetController"]);
                 UIViewController *viewController = [[controllerClass alloc] init];
-                [self.navigationController pushViewController:viewController animated:YES];
+                
+                bool    needlogin = [dic[@"needLogin"] boolValue];
+                if (needlogin) {
+                    if ([self loginOrNot]) {
+                        [self.navigationController pushViewController:viewController animated:YES];
+                    }
+                } else {
+                    [self.navigationController pushViewController:viewController animated:YES];
+                }
             }
         }
-        
     }
+    
+    
 }
 
 
 #pragma mark - JFCityViewControllerDelegate
 - (void)cityName:(NSString *)name {
     [SQRequest post:KAPI_WEATHER param:@{@"city":name} success:^(id response) {
-        NSString    *titlestring = [NSString stringWithFormat:@"%@ %@℃ %@", name, response[@"temp2"], response[@"weatherinfo"]];
+        NSString    *titlestring = [NSString stringWithFormat:@"%@ %@℃ %@", name, response[@"temp"], response[@"weatherinfo"]];
         self.naviTitle = titlestring;
     } failure:^(NSError *error) {
        self.naviTitle = name;
@@ -229,7 +240,7 @@
         [KCURRENTCITYINFODEFAULTS setObject:cityNumber forKey:@"cityNumber"];
     }];
     [SQRequest post:KAPI_WEATHER param:@{@"city":city} success:^(id response) {
-        NSString    *titlestring = [NSString stringWithFormat:@"%@ %@℃ %@", city, response[@"temp2"], response[@"weatherinfo"]];
+        NSString    *titlestring = [NSString stringWithFormat:@"%@ %@℃ %@", city, response[@"temp"], response[@"weatherinfo"]];
         self.naviTitle = titlestring;
     } failure:^(NSError *error) {
         self.naviTitle = city;

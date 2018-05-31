@@ -17,6 +17,8 @@
 		<string>PayRentViewController</string>
 		<key>controllerTitle</key>
 		<string>水电缴费</string>
+		<key>needLogin</key>
+		<true/>
 	</dict>
 	<dict>
 		<key>targetTpye</key>
@@ -25,6 +27,8 @@
 		<string>MeetingAreaChooseViewController</string>
 		<key>controllerTitle</key>
 		<string>会议室预定(选择区域)</string>
+		<key>needLogin</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>targetTpye</key>
@@ -33,6 +37,8 @@
 		<string>OfficePurchaseViewController</string>
 		<key>controllerTitle</key>
 		<string>办公耗材</string>
+		<key>needLogin</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>targetTpye</key>
@@ -41,6 +47,8 @@
 		<string>FinancialAccountingViewController</string>
 		<key>controllerTitle</key>
 		<string>财税代理</string>
+		<key>needLogin</key>
+		<true/>
 	</dict>
 	<dict>
 		<key>targetTpye</key>
@@ -49,6 +57,8 @@
 		<string>SQDecorationServeVC</string>
 		<key>controllerTitle</key>
 		<string>办公装修</string>
+		<key>needLogin</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>targetTpye</key>
@@ -57,6 +67,8 @@
 		<string>AdvertisesForViewController</string>
 		<key>controllerTitle</key>
 		<string>人才服务</string>
+		<key>needLogin</key>
+		<false/>
 	</dict>
 	<dict>
 		<key>targetTpye</key>
@@ -65,6 +77,8 @@
 		<string>IntegrationIndustryCommerceController</string>
 		<key>controllerTitle</key>
 		<string>工商代办</string>
+		<key>needLogin</key>
+		<true/>
 	</dict>
 	<dict>
 		<key>targetTpye</key>
@@ -73,6 +87,8 @@
 		<string>ProjectApplyForViewController</string>
 		<key>controllerTitle</key>
 		<string>政府补贴申请</string>
+		<key>needLogin</key>
+		<true/>
 	</dict>
 	<dict>
 		<key>targetTpye</key>
@@ -81,6 +97,8 @@
 		<string>OfficePurchaseViewController</string>
 		<key>controllerTitle</key>
 		<string>办公家具</string>
+		<key>needLogin</key>
+		<true/>
 	</dict>
 	<dict>
 		<key>targetTpye</key>
@@ -89,6 +107,8 @@
 		<string>PropertyRepairViewController</string>
 		<key>controllerTitle</key>
 		<string>物业服务</string>
+		<key>needLogin</key>
+		<true/>
 	</dict>
 	<dict>
 		<key>targetTpye</key>
@@ -97,6 +117,8 @@
 		<string>FundSupportViewController</string>
 		<key>controllerTitle</key>
 		<string>资金扶持</string>
+		<key>needLogin</key>
+		<true/>
 	</dict>
 	<dict>
 		<key>targetTpye</key>
@@ -105,6 +127,8 @@
 		<string>AdvertisementPageViewController</string>
 		<key>controllerTitle</key>
 		<string>广告招商</string>
+		<key>needLogin</key>
+		<false/>
 	</dict>
 </array>
 </plist>
