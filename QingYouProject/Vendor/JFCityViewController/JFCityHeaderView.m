@@ -75,7 +75,7 @@
         make.width.offset(40);
         make.height.offset(21);
         make.left.equalTo(self.mas_left).offset(10);
-        make.bottom.equalTo(self.mas_bottom).offset(-10);
+        make.top.equalTo(self.searchBar.mas_bottom).offset(12);
     }];
     
     self.currentCityLabel = [[UILabel alloc] init];
@@ -87,17 +87,17 @@
         make.width.offset(200);
         make.height.offset(21);
         make.left.equalTo(currentLabel.mas_right).offset(0);
-        make.bottom.equalTo(self.mas_bottom).offset(-10);
+        make.top.equalTo(self.searchBar.mas_bottom).offset(12);
     }];
 }
 
 - (void)addJFButton {
     self.button = [[JFButton alloc] initWithFrame:CGRectMake(self.frame.size.width - 95, self.frame.size.height - 31, 75, 21)];
-    [_button addTarget:self action:@selector(touchUpJFButtonEnevt:) forControlEvents:UIControlEventTouchUpInside];
-    _button.imageName = @"down_arrow_icon1";
-//    _button.title = @"选择区县";
     _button.titleColor = JFRGBAColor(155, 155, 155, 1.0);
+//    _button.imageName = @"down_arrow_icon1";
+//    _button.title = @"选择区县";
     [self addSubview:_button];
+    [_button addTarget:self action:@selector(touchUpJFButtonEnevt:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)touchUpJFButtonEnevt:(JFButton *)sender {
@@ -138,7 +138,6 @@
     if (self.delegate && [self.delegate respondsToSelector:@selector(searchResult:)]) {
         [self.delegate searchResult:searchBar.text];
     }
-
     NSLog(@"点击搜索按钮编辑的结果是%@",searchBar.text);
 }
 

@@ -70,7 +70,7 @@
 - (void)setNaviTitle:(NSString *)naviTitle {
     _naviTitle = naviTitle;
     if (!_naviTitleLabel) {
-        _naviTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(75, 0, YGScreenWidth - 150, 20)];
+        _naviTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, YGScreenWidth - 100, 20)];
         _naviTitleLabel.textColor = colorWithBlack;
         _naviTitleLabel.textAlignment = NSTextAlignmentCenter;
         self.navigationItem.titleView = _naviTitleLabel;

@@ -7719,8 +7719,8 @@
 		E99DE26520BED24F009CEF88 /* Location */ = {
 			isa = PBXGroup;
 			children = (
-				E99DE26620BED24F009CEF88 /* JFLocation.m */,
 				E99DE26720BED24F009CEF88 /* JFLocation.h */,
+				E99DE26620BED24F009CEF88 /* JFLocation.m */,
 			);
 			path = Location;
 			sourceTree = "<group>";

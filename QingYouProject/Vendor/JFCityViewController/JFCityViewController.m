@@ -157,10 +157,16 @@ JFSearchViewDelegate>
 
 - (JFCityHeaderView *)headerView {
     if (!_headerView) {
-        _headerView = [[JFCityHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 80)];
+        _headerView = [[JFCityHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 80+20)];
         _headerView.backgroundColor = [UIColor whiteColor];
-//        _headerView.delegate = self;
         _headerView.cityName = [kCurrentCityInfoDefaults objectForKey:@"currentCity"] ? [kCurrentCityInfoDefaults objectForKey:@"currentCity"] : [kCurrentCityInfoDefaults objectForKey:@"locationCity"];
+        _headerView.delegate = self;
+        
+        UILabel *tishilabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 76, KAPP_WIDTH-20, 20)];
+        tishilabel.text = @"各城市服务内容不同,请选择您的服务城市";
+        tishilabel.textColor = kRedColor;
+        tishilabel.font = [UIFont systemFontOfSize:14];
+        [_headerView addSubview:tishilabel];
     }
     return _headerView;
 }
@@ -168,7 +174,7 @@ JFSearchViewDelegate>
 - (JFSearchView *)searchView {
     if (!_searchView) {
         CGRect frame = [UIScreen mainScreen].bounds;
-        _searchView = [[JFSearchView alloc] initWithFrame:CGRectMake(0, 104, frame.size.width, frame.size.height  - 104)];
+        _searchView = [[JFSearchView alloc] initWithFrame:CGRectMake(0, 76, frame.size.width, frame.size.height-KNAV_HEIGHT-76)];
         _searchView.backgroundColor = [UIColor colorWithRed:155 / 255.0 green:155 / 255.0 blue:155 / 255.0 alpha:0.5];
         _searchView.delegate = self;
     }
@@ -411,7 +417,6 @@ JFSearchViewDelegate>
 }
 
 #pragma mark --- JFCityHeaderViewDelegate
-
 - (void)cityNameWithSelected:(BOOL)selected {
     //获取当前城市的所有辖区
     if (selected) {
@@ -474,8 +479,8 @@ JFSearchViewDelegate>
         [self.delegate cityName:nameStr];
     }
     [self.navigationController popViewControllerAnimated:YES];
-//    [self dismissViewControllerAnimated:YES completion:nil];
     [self historyCity:[dic valueForKey:@"city"]];
+    //    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)touchViewToExit {

@@ -144,11 +144,7 @@
     } else {
         UIButton    *cusbutton = headsBtnArr.firstObject;
         [self.scrollview addSubview:cusbutton];
-        [cusbutton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.scrollview);
-            make.width.mas_equalTo(KAPP_WIDTH);
-            make.height.mas_equalTo(KSCAL(200));
-        }];
+        cusbutton.frame = self.scrollview.bounds;
     }
 }
 

@@ -76,7 +76,7 @@
     [self.navigationItem.titleView sq_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
         JFCityViewController *cityViewController = [[JFCityViewController alloc] init];
         cityViewController.delegate = sqselfweak;
-        cityViewController.title = @"城市";
+        cityViewController.title = @"选择城市";
         [sqselfweak.navigationController pushViewController:cityViewController animated:YES];
     }];
     
@@ -96,13 +96,13 @@
     //获取首页收据
     [SQRequest post:KAPI_INDEXPAGE param:@{@"isInner":@"yes"} success:^(id response) {
         self.model = [SQHomeIndexPageModel yy_modelWithDictionary:response];
+        //获取定制功能数据
+        [SQRequest post:KAPI_CUSBANN param:nil  success:^(id response) {
+            self.headerView.cusModel = [SQHomeCustomModel yy_modelWithDictionary:response];
+        } failure:nil];
     } failure:^(NSError *error) {
         [self endRefreshWithScrollView:self.collectionView];
     }];
-    //获取定制功能数据
-    [SQRequest post:KAPI_CUSBANN param:nil  success:^(id response) {
-        self.headerView.cusModel = [SQHomeCustomModel yy_modelWithDictionary:response];
-    } failure:nil];
 }
 
 - (void)setModel:(SQHomeIndexPageModel *)model {
@@ -195,38 +195,19 @@
 
 
 #pragma mark - JFCityViewControllerDelegate
-
 - (void)cityName:(NSString *)name {
-    self.naviTitle = name;
+    [SQRequest post:KAPI_WEATHER param:@{@"city":name} success:^(id response) {
+        NSString    *titlestring = [NSString stringWithFormat:@"%@ %@℃ %@", name, response[@"temp2"], response[@"weatherinfo"]];
+        self.naviTitle = titlestring;
+    } failure:^(NSError *error) {
+       self.naviTitle = name;
+    }];
 }
 
 #pragma mark --- JFLocationDelegate
 //定位中...
 - (void)locating {
     NSLog(@"定位中...");
-}
-
-//定位成功
-- (void)currentLocation:(NSDictionary *)locationDictionary {
-    NSString *city = [locationDictionary valueForKey:@"City"];
-    [KCURRENTCITYINFODEFAULTS setObject:city forKey:@"locationCity"];
-    [KCURRENTCITYINFODEFAULTS setObject:city forKey:@"currentCity"];
-    [self.manager cityNumberWithCity:city cityNumber:^(NSString *cityNumber) {
-        [KCURRENTCITYINFODEFAULTS setObject:cityNumber forKey:@"cityNumber"];
-    }];
-    self.naviTitle = city;
-    
-//        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:[NSString stringWithFormat:@"您定位到%@，确定切换城市吗？",city] preferredStyle:UIAlertControllerStyleAlert];
-//        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-//        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//
-//        }];
-//        [alertController addAction:cancelAction];
-//        [alertController addAction:okAction];
-//        [self presentViewController:alertController animated:YES completion:nil];
-    
-    
-    
 }
 
 /// 拒绝定位
@@ -239,6 +220,21 @@
     NSLog(@"%@",message);
 }
 
+//定位成功
+- (void)currentLocation:(NSDictionary *)locationDictionary {
+    NSString *city = [locationDictionary valueForKey:@"City"];
+    [KCURRENTCITYINFODEFAULTS setObject:city forKey:@"locationCity"];
+    [KCURRENTCITYINFODEFAULTS setObject:city forKey:@"currentCity"];
+    [self.manager cityNumberWithCity:city cityNumber:^(NSString *cityNumber) {
+        [KCURRENTCITYINFODEFAULTS setObject:cityNumber forKey:@"cityNumber"];
+    }];
+    [SQRequest post:KAPI_WEATHER param:@{@"city":city} success:^(id response) {
+        NSString    *titlestring = [NSString stringWithFormat:@"%@ %@℃ %@", city, response[@"temp2"], response[@"weatherinfo"]];
+        self.naviTitle = titlestring;
+    } failure:^(NSError *error) {
+        self.naviTitle = city;
+    }];
+}
 
 
 #pragma lazyLoad
