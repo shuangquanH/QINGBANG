@@ -4,37 +4,31 @@
 <array>
 	<dict>
 		<key>title</key>
-		<string>水电缴费</string>
+		<string>项目申报</string>
 		<key>vc</key>
 		<string></string>
 	</dict>
 	<dict>
 		<key>title</key>
-		<string>工商代办</string>
+		<string>资金扶持</string>
 		<key>vc</key>
 		<string></string>
 	</dict>
 	<dict>
 		<key>title</key>
-		<string>财税代理</string>
+		<string>物业服务</string>
 		<key>vc</key>
 		<string></string>
 	</dict>
 	<dict>
 		<key>title</key>
-		<string>办公采购</string>
+		<string>广告位招商</string>
 		<key>vc</key>
 		<string></string>
 	</dict>
 	<dict>
 		<key>title</key>
-		<string>办公装修</string>
-		<key>vc</key>
-		<string></string>
-	</dict>
-	<dict>
-		<key>title</key>
-		<string>会议室预定</string>
+		<string>人才招聘</string>
 		<key>vc</key>
 		<string></string>
 	</dict>

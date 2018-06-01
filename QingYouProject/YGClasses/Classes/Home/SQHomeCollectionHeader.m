@@ -109,7 +109,14 @@
     [self.ovalContentView removeFromSuperview];
     self.ovalContentView = tempView;
     [self.infoButton setBackgroundImage:[UIImage imageNamed:@"rectangle"] forState:UIControlStateNormal];
-    [self.infoButton setTitle:@"hello,XXX欢迎来到青邦!" forState:UIControlStateNormal];
+    NSString    *name = [YGSingleton sharedManager].user.userName;
+    NSString    *title = [NSString string];
+    if (name) {
+        title = [NSString stringWithFormat:@"hello,%@欢迎来到青邦!", name];
+    } else {
+        title = [NSString stringWithFormat:@"hello,欢迎来到青邦!"];
+    }
+    [self.infoButton setTitle:title forState:UIControlStateNormal];
 }
 
 //功能定制按钮数据
@@ -159,6 +166,19 @@
         }
     }
 }
+
+- (void)setSelectedModel:(id)selectedModel {
+    _selectedModel = selectedModel;
+    if ([YGSingleton sharedManager].user&&selectedModel) {
+        [SQRequest post:KAPI_ORDERNUM param:@{@"type":@"home", @"userid":[YGSingleton sharedManager].user.userid} success:^(id response) {
+            NSString    *titlestr = [NSString stringWithFormat:@"您有%@笔订单待支付,去看看", response[@"ordernum"]];
+            [self.infoButton setTitle:titlestr forState:UIControlStateNormal];
+        } failure:nil];
+        
+    }
+    
+}
+
 //定制功能按钮
 - (void)cusBanTap:(UIGestureRecognizer   *)tap {
     SQHomeBannerModel   *cusModel = self.cusModel.banners[tap.view.tag-2000];
