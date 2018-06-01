@@ -28,6 +28,8 @@
 #import "YGButton.h"
 #import "SDCycleScrollView.h"
 #import "FSCalendar.h"
+#import "UILabel+Factory.h"
+#import "RACEXTScope.h"
 
 //新增文件:
 #import "SQApiUrlFile.h"

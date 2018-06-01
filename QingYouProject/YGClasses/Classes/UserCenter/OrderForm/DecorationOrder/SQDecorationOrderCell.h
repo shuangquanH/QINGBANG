@@ -7,7 +7,7 @@
 //
 
 #import "SQBaseTableViewCell.h"
-
+#import "SQDecorationDetailViewModel.h"
 
 @protocol decorationOrderCellDelegate
 
@@ -39,7 +39,7 @@
 
 
 
-@interface SQDecorationOrderCellWithThreeStage : SQDecorationOrderCell
+@interface SQDecorationOrderCellWithThreeStage : SQDecorationOrderCell<SQDecorationDetailViewProtocol>
 
 
 @end

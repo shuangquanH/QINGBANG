@@ -8,7 +8,7 @@
 
 #import "SQDecorationOrderCell.h"
 #import "SQDecorationCellPayButtonView.h"
-
+#import "NSString+SQStringSize.h"
 
 #define KSPACE 10
 
@@ -251,6 +251,17 @@
     threeStageState.backgroundColor = colorWithMainColor;
 }
 
+- (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo {
+    [self setModel:nil];
+}
+
+- (CGSize)viewSize {
+    
+    NSString *singleH = @"单行高度";
+    CGFloat height = 8 * KSPACE + 100 + 5 * [singleH sizeWithFont:threeStageLabel.font andMaxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)].height;
+    
+    return CGSizeMake(kScreenW, height);
+}
 
 @end
 

@@ -7,6 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0470A40220C0F712003F23C6 /* SQDecorationDetailStagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A40120C0F712003F23C6 /* SQDecorationDetailStagesView.m */; };
+		0470A40520C0FB93003F23C6 /* SQDecorationDetailFunctionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A40420C0FB93003F23C6 /* SQDecorationDetailFunctionView.m */; };
+		0470A40820C11548003F23C6 /* SQDecorationDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A40720C11548003F23C6 /* SQDecorationDetailModel.m */; };
+		0470A40B20C115D2003F23C6 /* SQDecorationDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A40A20C115D2003F23C6 /* SQDecorationDetailViewModel.m */; };
+		0470A40F20C119A1003F23C6 /* SQDecorationDetailServerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A40E20C119A1003F23C6 /* SQDecorationDetailServerView.m */; };
+		0470A41220C11B70003F23C6 /* SQDecorationDetailOrderNumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A41120C11B70003F23C6 /* SQDecorationDetailOrderNumberView.m */; };
+		0470A41520C11D68003F23C6 /* UILabel+Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A41420C11D67003F23C6 /* UILabel+Factory.m */; };
+		0470A41820C1206A003F23C6 /* SQDecorationDetailAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A41720C1206A003F23C6 /* SQDecorationDetailAddressView.m */; };
+		0470A41B20C135E9003F23C6 /* SQDecorationDetailStateHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A41A20C135E9003F23C6 /* SQDecorationDetailStateHeadView.m */; };
+		0470A42020C13DBB003F23C6 /* SQTicketApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A41F20C13DBB003F23C6 /* SQTicketApplyViewController.m */; };
+		0470A42420C14594003F23C6 /* SQTicketApplyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A42320C14594003F23C6 /* SQTicketApplyListViewController.m */; };
+		0470A42720C1467A003F23C6 /* SQTicketApplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A42620C1467A003F23C6 /* SQTicketApplyCell.m */; };
+		0470A42A20C148D1003F23C6 /* SQAddTicketApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A42920C148D1003F23C6 /* SQAddTicketApplyViewController.m */; };
+		0470A42D20C14B56003F23C6 /* SQAddTicketApplyInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A42C20C14B56003F23C6 /* SQAddTicketApplyInputCell.m */; };
+		0470A43120C150F5003F23C6 /* SQApplyAfterSaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A43020C150F5003F23C6 /* SQApplyAfterSaleViewController.m */; };
+		0470A43420C152DF003F23C6 /* SQAfterSaleListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A43320C152DF003F23C6 /* SQAfterSaleListViewController.m */; };
 		1809E27C1FEB3A85006C54EC /* SecondhandReplacementICreateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809E27B1FEB3A85006C54EC /* SecondhandReplacementICreateViewController.m */; };
 		1809E27F1FEB3DBF006C54EC /* SecondhandReplacementICreateTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809E27E1FEB3DBF006C54EC /* SecondhandReplacementICreateTableViewCell.m */; };
 		1809E2831FEB4FDD006C54EC /* SecondhandReplacementICollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809E2821FEB4FDD006C54EC /* SecondhandReplacementICollectViewController.m */; };
@@ -1063,6 +1079,40 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0470A40020C0F712003F23C6 /* SQDecorationDetailStagesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationDetailStagesView.h; sourceTree = "<group>"; };
+		0470A40120C0F712003F23C6 /* SQDecorationDetailStagesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationDetailStagesView.m; sourceTree = "<group>"; };
+		0470A40320C0FB93003F23C6 /* SQDecorationDetailFunctionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationDetailFunctionView.h; sourceTree = "<group>"; };
+		0470A40420C0FB93003F23C6 /* SQDecorationDetailFunctionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationDetailFunctionView.m; sourceTree = "<group>"; };
+		0470A40620C11548003F23C6 /* SQDecorationDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationDetailModel.h; sourceTree = "<group>"; };
+		0470A40720C11548003F23C6 /* SQDecorationDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationDetailModel.m; sourceTree = "<group>"; };
+		0470A40920C115D2003F23C6 /* SQDecorationDetailViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationDetailViewModel.h; sourceTree = "<group>"; };
+		0470A40A20C115D2003F23C6 /* SQDecorationDetailViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationDetailViewModel.m; sourceTree = "<group>"; };
+		0470A40D20C119A1003F23C6 /* SQDecorationDetailServerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationDetailServerView.h; sourceTree = "<group>"; };
+		0470A40E20C119A1003F23C6 /* SQDecorationDetailServerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationDetailServerView.m; sourceTree = "<group>"; };
+		0470A41020C11B70003F23C6 /* SQDecorationDetailOrderNumberView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationDetailOrderNumberView.h; sourceTree = "<group>"; };
+		0470A41120C11B70003F23C6 /* SQDecorationDetailOrderNumberView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationDetailOrderNumberView.m; sourceTree = "<group>"; };
+		0470A41320C11D67003F23C6 /* UILabel+Factory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+Factory.h"; sourceTree = "<group>"; };
+		0470A41420C11D67003F23C6 /* UILabel+Factory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Factory.m"; sourceTree = "<group>"; };
+		0470A41620C1206A003F23C6 /* SQDecorationDetailAddressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationDetailAddressView.h; sourceTree = "<group>"; };
+		0470A41720C1206A003F23C6 /* SQDecorationDetailAddressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationDetailAddressView.m; sourceTree = "<group>"; };
+		0470A41920C135E9003F23C6 /* SQDecorationDetailStateHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationDetailStateHeadView.h; sourceTree = "<group>"; };
+		0470A41A20C135E9003F23C6 /* SQDecorationDetailStateHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationDetailStateHeadView.m; sourceTree = "<group>"; };
+		0470A41C20C1383B003F23C6 /* RACEXTScope.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RACEXTScope.h; sourceTree = "<group>"; };
+		0470A41D20C1383B003F23C6 /* RACmetamacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RACmetamacros.h; sourceTree = "<group>"; };
+		0470A41E20C13DBB003F23C6 /* SQTicketApplyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQTicketApplyViewController.h; sourceTree = "<group>"; };
+		0470A41F20C13DBB003F23C6 /* SQTicketApplyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQTicketApplyViewController.m; sourceTree = "<group>"; };
+		0470A42220C14594003F23C6 /* SQTicketApplyListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQTicketApplyListViewController.h; sourceTree = "<group>"; };
+		0470A42320C14594003F23C6 /* SQTicketApplyListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQTicketApplyListViewController.m; sourceTree = "<group>"; };
+		0470A42520C1467A003F23C6 /* SQTicketApplyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQTicketApplyCell.h; sourceTree = "<group>"; };
+		0470A42620C1467A003F23C6 /* SQTicketApplyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQTicketApplyCell.m; sourceTree = "<group>"; };
+		0470A42820C148D1003F23C6 /* SQAddTicketApplyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQAddTicketApplyViewController.h; sourceTree = "<group>"; };
+		0470A42920C148D1003F23C6 /* SQAddTicketApplyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQAddTicketApplyViewController.m; sourceTree = "<group>"; };
+		0470A42B20C14B56003F23C6 /* SQAddTicketApplyInputCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQAddTicketApplyInputCell.h; sourceTree = "<group>"; };
+		0470A42C20C14B56003F23C6 /* SQAddTicketApplyInputCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQAddTicketApplyInputCell.m; sourceTree = "<group>"; };
+		0470A42F20C150F5003F23C6 /* SQApplyAfterSaleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQApplyAfterSaleViewController.h; sourceTree = "<group>"; };
+		0470A43020C150F5003F23C6 /* SQApplyAfterSaleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQApplyAfterSaleViewController.m; sourceTree = "<group>"; };
+		0470A43220C152DF003F23C6 /* SQAfterSaleListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQAfterSaleListViewController.h; sourceTree = "<group>"; };
+		0470A43320C152DF003F23C6 /* SQAfterSaleListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQAfterSaleListViewController.m; sourceTree = "<group>"; };
 		1809E27A1FEB3A85006C54EC /* SecondhandReplacementICreateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondhandReplacementICreateViewController.h; sourceTree = "<group>"; };
 		1809E27B1FEB3A85006C54EC /* SecondhandReplacementICreateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondhandReplacementICreateViewController.m; sourceTree = "<group>"; };
 		1809E27D1FEB3DBF006C54EC /* SecondhandReplacementICreateTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondhandReplacementICreateTableViewCell.h; sourceTree = "<group>"; };
@@ -3068,6 +3118,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0470A40C20C116CC003F23C6 /* DecorationDetailViews */ = {
+			isa = PBXGroup;
+			children = (
+				0470A40020C0F712003F23C6 /* SQDecorationDetailStagesView.h */,
+				0470A40120C0F712003F23C6 /* SQDecorationDetailStagesView.m */,
+				0470A40320C0FB93003F23C6 /* SQDecorationDetailFunctionView.h */,
+				0470A40420C0FB93003F23C6 /* SQDecorationDetailFunctionView.m */,
+				0470A40D20C119A1003F23C6 /* SQDecorationDetailServerView.h */,
+				0470A40E20C119A1003F23C6 /* SQDecorationDetailServerView.m */,
+				0470A41020C11B70003F23C6 /* SQDecorationDetailOrderNumberView.h */,
+				0470A41120C11B70003F23C6 /* SQDecorationDetailOrderNumberView.m */,
+				0470A41620C1206A003F23C6 /* SQDecorationDetailAddressView.h */,
+				0470A41720C1206A003F23C6 /* SQDecorationDetailAddressView.m */,
+				0470A41920C135E9003F23C6 /* SQDecorationDetailStateHeadView.h */,
+				0470A41A20C135E9003F23C6 /* SQDecorationDetailStateHeadView.m */,
+			);
+			path = DecorationDetailViews;
+			sourceTree = "<group>";
+		};
+		0470A42120C1453C003F23C6 /* SQTicketApply */ = {
+			isa = PBXGroup;
+			children = (
+				0470A41E20C13DBB003F23C6 /* SQTicketApplyViewController.h */,
+				0470A41F20C13DBB003F23C6 /* SQTicketApplyViewController.m */,
+				0470A42220C14594003F23C6 /* SQTicketApplyListViewController.h */,
+				0470A42320C14594003F23C6 /* SQTicketApplyListViewController.m */,
+				0470A42820C148D1003F23C6 /* SQAddTicketApplyViewController.h */,
+				0470A42920C148D1003F23C6 /* SQAddTicketApplyViewController.m */,
+				0470A42520C1467A003F23C6 /* SQTicketApplyCell.h */,
+				0470A42620C1467A003F23C6 /* SQTicketApplyCell.m */,
+				0470A42B20C14B56003F23C6 /* SQAddTicketApplyInputCell.h */,
+				0470A42C20C14B56003F23C6 /* SQAddTicketApplyInputCell.m */,
+			);
+			path = SQTicketApply;
+			sourceTree = "<group>";
+		};
+		0470A42E20C150D4003F23C6 /* AfterSale */ = {
+			isa = PBXGroup;
+			children = (
+				0470A42F20C150F5003F23C6 /* SQApplyAfterSaleViewController.h */,
+				0470A43020C150F5003F23C6 /* SQApplyAfterSaleViewController.m */,
+				0470A43220C152DF003F23C6 /* SQAfterSaleListViewController.h */,
+				0470A43320C152DF003F23C6 /* SQAfterSaleListViewController.m */,
+			);
+			path = AfterSale;
+			sourceTree = "<group>";
+		};
 		0689741FD22BD91624E78C41 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -7014,6 +7111,8 @@
 		E2E5ACD41FB0675800205F70 /* YGHeaderFile */ = {
 			isa = PBXGroup;
 			children = (
+				0470A41C20C1383B003F23C6 /* RACEXTScope.h */,
+				0470A41D20C1383B003F23C6 /* RACmetamacros.h */,
 				E2E5ACD61FB0675800205F70 /* YoGee.pch */,
 				E99DE22820B595EF009CEF88 /* SQIphonePx.h */,
 				E99DE22920B595F0009CEF88 /* SQIphonePx.m */,
@@ -7603,6 +7702,8 @@
 		E99DE1E420AE6446009CEF88 /* DecorationOrder */ = {
 			isa = PBXGroup;
 			children = (
+				0470A42E20C150D4003F23C6 /* AfterSale */,
+				0470A42120C1453C003F23C6 /* SQTicketApply */,
 				E99DE1DB20AD50AC009CEF88 /* SQDecorationOrderVC.h */,
 				E99DE1DC20AD50AC009CEF88 /* SQDecorationOrderVC.m */,
 				E99DE1DE20AD5182009CEF88 /* SQDecorationOrderCell.h */,
@@ -7611,6 +7712,11 @@
 				E99DE1E220AD54CC009CEF88 /* SQDecorationCellPayButtonView.m */,
 				E99DE1E520AE6473009CEF88 /* SQDecorationOrderDetailVC.h */,
 				E99DE1E620AE6473009CEF88 /* SQDecorationOrderDetailVC.m */,
+				0470A40C20C116CC003F23C6 /* DecorationDetailViews */,
+				0470A40620C11548003F23C6 /* SQDecorationDetailModel.h */,
+				0470A40720C11548003F23C6 /* SQDecorationDetailModel.m */,
+				0470A40920C115D2003F23C6 /* SQDecorationDetailViewModel.h */,
+				0470A40A20C115D2003F23C6 /* SQDecorationDetailViewModel.m */,
 			);
 			path = DecorationOrder;
 			sourceTree = "<group>";
@@ -7662,6 +7768,8 @@
 		E99DE1FC20B25C32009CEF88 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				0470A41320C11D67003F23C6 /* UILabel+Factory.h */,
+				0470A41420C11D67003F23C6 /* UILabel+Factory.m */,
 				E99DE1FD20B25C57009CEF88 /* NSString+SQStringSize.h */,
 				E99DE1FE20B25C57009CEF88 /* NSString+SQStringSize.m */,
 				E99DE28320BFD2C2009CEF88 /* NSMutableAttributedString+AppendImage.h */,
@@ -8134,6 +8242,7 @@
 				181314F71FD546200070CD6D /* MyFinancialAccountDetailModel.m in Sources */,
 				18C158B61FC820890010ACD3 /* EditNameViewController.m in Sources */,
 				18C159AA1FC8208A0010ACD3 /* PanoramicViewController.m in Sources */,
+				0470A40B20C115D2003F23C6 /* SQDecorationDetailViewModel.m in Sources */,
 				18C15A1D1FC8208A0010ACD3 /* TradeRecordCell.m in Sources */,
 				18EF7E701FE24EC900A7CC7A /* SecondhandReplacementIBoughtTableViewCell.m in Sources */,
 				E2E5B19A1FB0675A00205F70 /* NewPagedFlowView.m in Sources */,
@@ -8187,6 +8296,7 @@
 				18C158E71FC820890010ACD3 /* BuyOrderPayWayModel.m in Sources */,
 				E2E5B1341FB0675A00205F70 /* LXScrollContentView.m in Sources */,
 				18C158E21FC820890010ACD3 /* FinancialAccountingOrderModel.m in Sources */,
+				0470A42420C14594003F23C6 /* SQTicketApplyListViewController.m in Sources */,
 				18C159801FC8208A0010ACD3 /* MyRecruitBeCheckedViewController.m in Sources */,
 				1809E2931FEB7D05006C54EC /* SecondhandReplacementMyInteractionModel.m in Sources */,
 				E2E5B3711FB0675B00205F70 /* YGSegmentView.m in Sources */,
@@ -8200,7 +8310,9 @@
 				2CA16F551FCBB61300BE7CAD /* ProjectApplyModel.m in Sources */,
 				18C15A091FC8208A0010ACD3 /* DecorationCommonSense.m in Sources */,
 				18C159921FC8208A0010ACD3 /* MyResumeModel.m in Sources */,
+				0470A41820C1206A003F23C6 /* SQDecorationDetailAddressView.m in Sources */,
 				18C159F21FC8208A0010ACD3 /* RecommendNewsViewController.m in Sources */,
+				0470A42A20C148D1003F23C6 /* SQAddTicketApplyViewController.m in Sources */,
 				18C1598E1FC8208A0010ACD3 /* AdvertisesForInfoViewController.m in Sources */,
 				E2E5B13D1FB0675A00205F70 /* NSObject+MJProperty.m in Sources */,
 				18C159721FC8208A0010ACD3 /* IssueChooseWellBeingView.m in Sources */,
@@ -8246,6 +8358,7 @@
 				18C15A651FC8208B0010ACD3 /* MeetingBookViewController.m in Sources */,
 				18C158B11FC820890010ACD3 /* MyCenterCell.m in Sources */,
 				E2E5B3841FB0675B00205F70 /* YGAlertView.m in Sources */,
+				0470A42D20C14B56003F23C6 /* SQAddTicketApplyInputCell.m in Sources */,
 				1809E2B61FED05BB006C54EC /* SecondhandReplacementIBoughtModel.m in Sources */,
 				E2E5B1231FB0675900205F70 /* UIImage+ColorAtPoint.m in Sources */,
 				2CC3A3771FD4D43A008188BA /* AlliancePopView.m in Sources */,
@@ -8277,6 +8390,7 @@
 				E2E5B1351FB0675A00205F70 /* MJExtensionConst.m in Sources */,
 				E2E5B1271FB0675A00205F70 /* UIDevice+FCUUID.m in Sources */,
 				18C158AF1FC820890010ACD3 /* CooperationCaseViewController.m in Sources */,
+				0470A40520C0FB93003F23C6 /* SQDecorationDetailFunctionView.m in Sources */,
 				18C159A81FC8208A0010ACD3 /* ApplyImmediatelyController.m in Sources */,
 				18C158C01FC820890010ACD3 /* MyDecorationApplyStatusController.m in Sources */,
 				2C9DB7281FEA2FF30044819D /* MineIntergralRecordConvertViewController.m in Sources */,
@@ -8345,6 +8459,8 @@
 				18C15A0F1FC8208A0010ACD3 /* FinancialAccountingViewController.m in Sources */,
 				2CA019211FCD5BCB00B21863 /* ProjectApplySuccessModel.m in Sources */,
 				521C9E2A1FCEDBCB00E1D37F /* AllianceMainSignViewController.m in Sources */,
+				0470A43420C152DF003F23C6 /* SQAfterSaleListViewController.m in Sources */,
+				0470A40820C11548003F23C6 /* SQDecorationDetailModel.m in Sources */,
 				E2E5B3671FB0675B00205F70 /* YGFlyCommentManager.m in Sources */,
 				E28E2BE61FCD36F400060811 /* NewThingsModel.m in Sources */,
 				18C159531FC8208A0010ACD3 /* DealingNetManagerViewController.m in Sources */,
@@ -8412,6 +8528,7 @@
 				2C9DB72B1FEA30FF0044819D /* MineIntergralRecordConvertSubViewController.m in Sources */,
 				E99DE1C620AC4FAF009CEF88 /* SQBaseWebViewController.m in Sources */,
 				18C158BF1FC820890010ACD3 /* MyDecorationApplyOrderController.m in Sources */,
+				0470A43120C150F5003F23C6 /* SQApplyAfterSaleViewController.m in Sources */,
 				18C1599E1FC8208A0010ACD3 /* MyIntegrationIndustryCommerceController.m in Sources */,
 				E2E5B14E1FB0675A00205F70 /* MJRefreshConst.m in Sources */,
 				E99DE1C020AC4FAF009CEF88 /* SQBaseHeaderFooterView.m in Sources */,
@@ -8461,6 +8578,7 @@
 				18C159A11FC8208A0010ACD3 /* MyIntegrationIndustryTableViewCell.m in Sources */,
 				1809E2B31FECA642006C54EC /* PlayTogetherDetailSignUpTableViewCell.m in Sources */,
 				18C158AC1FC820890010ACD3 /* AllianceCircleTrendsCell.m in Sources */,
+				0470A41B20C135E9003F23C6 /* SQDecorationDetailStateHeadView.m in Sources */,
 				18C15A9E1FC8208B0010ACD3 /* ProgressView.m in Sources */,
 				E2C45AC81FDA879500593774 /* ActivityListModel.m in Sources */,
 				E2CD93901FF0E62600CC7D13 /* MyPlayTogetherCollectionController.m in Sources */,
@@ -8505,6 +8623,7 @@
 				183AC18F1FDA33CB009FCAA3 /* RushPurchaseOrderListViewController.m in Sources */,
 				E2E5B3521FB0675B00205F70 /* SocketEnterRoomModel.m in Sources */,
 				E2E5B3481FB0675B00205F70 /* UIView+LDFrame.m in Sources */,
+				0470A40F20C119A1003F23C6 /* SQDecorationDetailServerView.m in Sources */,
 				18C159A71FC8208A0010ACD3 /* AlreadyProcessedViewController.m in Sources */,
 				18C159E41FC8208A0010ACD3 /* UpLoadPersonViewController.m in Sources */,
 				2C7BE8AC1FD69877000080A0 /* RushPurchaseSubModel.m in Sources */,
@@ -8556,9 +8675,11 @@
 				18C159161FC820890010ACD3 /* ShipAndSuccessViewController.m in Sources */,
 				E2E5B3581FB0675B00205F70 /* UITextField+YG.m in Sources */,
 				18C158F11FC820890010ACD3 /* PlayTogetherMoreActiveCollectionViewCell.m in Sources */,
+				0470A42020C13DBB003F23C6 /* SQTicketApplyViewController.m in Sources */,
 				18C158E41FC820890010ACD3 /* VIPServiceManagerModel.m in Sources */,
 				18C15A431FC8208B0010ACD3 /* CertifyBaseProfileViewController.m in Sources */,
 				18C1599D1FC8208A0010ACD3 /* MyIntegrationIndustryBuyedController.m in Sources */,
+				0470A42720C1467A003F23C6 /* SQTicketApplyCell.m in Sources */,
 				E2E5B16C1FB0675A00205F70 /* NSBundle+TZImagePicker.m in Sources */,
 				18C159171FC820890010ACD3 /* WaitPaidViewController.m in Sources */,
 				1809E2861FEB502A006C54EC /* SecondhandReplacementICollectTableViewCell.m in Sources */,
@@ -8567,6 +8688,7 @@
 				18C158BE1FC820890010ACD3 /* DecorationPayNowController.m in Sources */,
 				182F021E1FCFD16F00C63376 /* MyIntegrationIndustryWtihCategoryTableViewCell.m in Sources */,
 				E2E5B15A1FB0675A00205F70 /* QNFile.m in Sources */,
+				0470A41520C11D68003F23C6 /* UILabel+Factory.m in Sources */,
 				2C9DB7161FEA00060044819D /* MineIntergralRecordTableViewCell.m in Sources */,
 				18C15A491FC8208B0010ACD3 /* ServiceContentCollectionViewCell.m in Sources */,
 				E2E5B1181FB0675900205F70 /* AFURLRequestSerialization.m in Sources */,
@@ -8574,6 +8696,7 @@
 				18C159111FC820890010ACD3 /* DeliveredViewController.m in Sources */,
 				E2E5B1491FB0675A00205F70 /* MJRefreshBackStateFooter.m in Sources */,
 				18C159DE1FC8208A0010ACD3 /* PayConfirmViewController.m in Sources */,
+				0470A40220C0F712003F23C6 /* SQDecorationDetailStagesView.m in Sources */,
 				18C15A351FC8208A0010ACD3 /* SubscribeSumOfMoneyTableViewCell.m in Sources */,
 				18C1593C1FC8208A0010ACD3 /* DeailedRepairOrderViewController.m in Sources */,
 				E2E5B3641FB0675B00205F70 /* CommetTableViewCell.m in Sources */,
@@ -8821,6 +8944,7 @@
 				18C159321FC8208A0010ACD3 /* WaitReplyCell.m in Sources */,
 				18EF7E7B1FE2678F00A7CC7A /* SecondhandReplacementISelloutAllOrderViewController.m in Sources */,
 				18C158A71FC820890010ACD3 /* MyAllianceViewController.m in Sources */,
+				0470A41220C11B70003F23C6 /* SQDecorationDetailOrderNumberView.m in Sources */,
 				18C159291FC820890010ACD3 /* OrderDetailListViewController.m in Sources */,
 				E28675531FEA15D400403A87 /* SecondPayNotesViewController.m in Sources */,
 				18C158CB1FC820890010ACD3 /* DecorationCenterHeaderView.m in Sources */,
