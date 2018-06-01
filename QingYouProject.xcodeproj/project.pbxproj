@@ -1058,6 +1058,8 @@
 		E99DE28120BED24F009CEF88 /* JFButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE27220BED24F009CEF88 /* JFButton.m */; };
 		E99DE28220BED24F009CEF88 /* shop_area.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E99DE27620BED24F009CEF88 /* shop_area.sqlite */; };
 		E99DE28520BFD2C2009CEF88 /* NSMutableAttributedString+AppendImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE28420BFD2C2009CEF88 /* NSMutableAttributedString+AppendImage.m */; };
+		E99DE28820C0E72A009CEF88 /* SQServiceFormListPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = E99DE28720C0E72A009CEF88 /* SQServiceFormListPlist.plist */; };
+		E99DE28B20C0E7D0009CEF88 /* SQServiceFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE28A20C0E7D0009CEF88 /* SQServiceFormViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -3032,6 +3034,9 @@
 		E99DE27820BED24F009CEF88 /* JFCityHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCityHeaderView.h; sourceTree = "<group>"; };
 		E99DE28320BFD2C2009CEF88 /* NSMutableAttributedString+AppendImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+AppendImage.h"; sourceTree = "<group>"; };
 		E99DE28420BFD2C2009CEF88 /* NSMutableAttributedString+AppendImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+AppendImage.m"; sourceTree = "<group>"; };
+		E99DE28720C0E72A009CEF88 /* SQServiceFormListPlist.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SQServiceFormListPlist.plist; sourceTree = "<group>"; };
+		E99DE28920C0E7D0009CEF88 /* SQServiceFormViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQServiceFormViewController.h; sourceTree = "<group>"; };
+		E99DE28A20C0E7D0009CEF88 /* SQServiceFormViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQServiceFormViewController.m; sourceTree = "<group>"; };
 		F883056FA3AE70A8E2E8FFA5 /* Pods-QingYouProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QingYouProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-QingYouProject/Pods-QingYouProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -7577,6 +7582,7 @@
 				E99DE1CD20AC5400009CEF88 /* SQUserCenterTableViewHeader.h */,
 				E99DE1CE20AC5400009CEF88 /* SQUserCenterTableViewHeader.m */,
 				E99DE1D220AC644B009CEF88 /* OrderForm */,
+				E99DE28620C0E6E8009CEF88 /* ServiceForm */,
 			);
 			path = UserCenter;
 			sourceTree = "<group>";
@@ -7747,6 +7753,16 @@
 			path = AreaDB;
 			sourceTree = "<group>";
 		};
+		E99DE28620C0E6E8009CEF88 /* ServiceForm */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE28720C0E72A009CEF88 /* SQServiceFormListPlist.plist */,
+				E99DE28920C0E7D0009CEF88 /* SQServiceFormViewController.h */,
+				E99DE28A20C0E7D0009CEF88 /* SQServiceFormViewController.m */,
+			);
+			path = ServiceForm;
+			sourceTree = "<group>";
+		};
 		F73D53F056E2247CD4A548BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -7852,6 +7868,7 @@
 				18C158C81FC820890010ACD3 /* DecorationApplyCell.xib in Resources */,
 				E2E5B3921FB0675B00205F70 /* xianzhi_luzhi_right.png in Resources */,
 				18C158E91FC820890010ACD3 /* BuyOrderTableViewCell.xib in Resources */,
+				E99DE28820C0E72A009CEF88 /* SQServiceFormListPlist.plist in Resources */,
 				18C159AF1FC8208A0010ACD3 /* equirectangular-projection-lines.png in Resources */,
 				E2E5B3951FB0675B00205F70 /* xianzhi_luzhi_shanguang.png in Resources */,
 				18C15A731FC8208B0010ACD3 /* time.plist in Resources */,
@@ -8530,6 +8547,7 @@
 				18C15A671FC8208B0010ACD3 /* MeetingChildDetailsController.m in Sources */,
 				18C159311FC8208A0010ACD3 /* MyComplaintsViewController.m in Sources */,
 				E99DE28520BFD2C2009CEF88 /* NSMutableAttributedString+AppendImage.m in Sources */,
+				E99DE28B20C0E7D0009CEF88 /* SQServiceFormViewController.m in Sources */,
 				E2E5B36E1FB0675B00205F70 /* YGPopCycleView.m in Sources */,
 				18C159141FC820890010ACD3 /* OrderDetailBottomView.m in Sources */,
 				18C159761FC8208A0010ACD3 /* JobOutsourceTradeRecoredTableViewCell.m in Sources */,

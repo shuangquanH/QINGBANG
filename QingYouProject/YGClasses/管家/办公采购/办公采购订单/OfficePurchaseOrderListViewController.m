@@ -22,6 +22,18 @@
 
 @implementation OfficePurchaseOrderListViewController
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        NSArray * titleArray = @[@"全部",@"待付款",@"待发货",@"已发货",@"售后"];
+        NSArray * classArray = @[@"AllOfficePurchaseOrderListViewController",@"PendingPaymentOfficePurchaseViewController",@"DeliveredViewController",@"ShippedViewController",@"AfterSaleViewController"];
+        self = [self initWithTitleArray:titleArray viewControllerClassStringArray:classArray navgationTitle:@"办公采购订单"];
+        
+    }
+    return self;
+}
+
 
 - (instancetype)initWithTitleArray:(NSArray *)titleArray viewControllerClassStringArray:(NSArray *)classArray navgationTitle : (NSString *)title{
     self.naviTitle = title;

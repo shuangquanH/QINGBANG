@@ -28,6 +28,20 @@
 @implementation AdvertisementLocationApplyController
 
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        NSArray * titleArr = @[@"待处理",@"处理中",@"已处理"];
+        NSArray * classArr = @[@"AlreadyProcessedViewController",@"AlreadyProcessedViewController",@"AlreadyProcessedViewController"];
+        self = [self initWithTitleArray:titleArr viewControllerClassStringArray:classArr navgationTitle:@"广告位置"];
+        
+    }
+    return self;
+}
+
+
+
 - (instancetype)initWithTitleArray:(NSArray *)titleArray viewControllerClassStringArray:(NSArray *)classArray navgationTitle : (NSString *)title{
     self.navigationItem.title = title;
     self.childArray = [classArray copy];

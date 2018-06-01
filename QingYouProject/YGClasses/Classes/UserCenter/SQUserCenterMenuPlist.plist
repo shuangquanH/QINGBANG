@@ -16,7 +16,7 @@
 		<key>title</key>
 		<string>我的申请单</string>
 		<key>vc</key>
-		<string></string>
+		<string>SQServiceFormViewController</string>
 		<key>icon</key>
 		<string></string>
 		<key>needLogin</key>

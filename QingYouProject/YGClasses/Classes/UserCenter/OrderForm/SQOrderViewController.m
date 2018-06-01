@@ -10,48 +10,23 @@
 
 #import "SQOrderTableHeaderView.h"
 
-/** 会议室预定  */
-#import "MeetingOrderViewController.h"
-/** 广告位招商  */
-#import "AdvertisementLocationApplyController.h"
-/** 室内报修  */
-#import "RepairOrderViewController.h"
-/** 网络管家  */
-#import "NetManagerWithVIPServiceViewController.h"
-
-/** 办公采购订单  */
-#import "OfficePurchaseOrderListViewController.h"
-
-/** 我的装修  */
-#import "MyDecorationCenterViewController.h"
-
-/** 项目申报  */
-#import "MineProjectApplyViewController.h"
-
 /** 房租缴纳 待审核状态  */
 #import "HouseRentAuditViewController.h"
-
-/** 房租缴纳 审核通过状态 */
+/** 房租缴纳 审核通过状态(水电缴费首页) */
 #import "CheckUserInfoViewController.h"
-
-/** 用户资料审核  */
+/** 房租缴纳 用户资料审核  */
 #import "UpLoadIDFatherViewController.h"
-
-/** 预约看房  */
-#import "MyOrderCheckHouseViewController.h"
-
-/** 法律服务  */
-#import "HomePageLegalServiceWithVIPServiceViewController.h"
 
 /** 工商一体化  */
 #import "MyIntegrationIndustryCommerceController.h"
 /** 财税代理  */
 #import "MyFinancialAccountViewController.h"
-
+/** 办公采购订单  */
+#import "OfficePurchaseOrderListViewController.h"
 /** 装修订单  */
 #import "SQDecorationOrderVC.h"
-
-
+/** 会议室预定  */
+#import "MeetingOrderViewController.h"
 
 @interface SQOrderViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -99,20 +74,9 @@
     }
     NSString    *titlestr = self.orderFormArr[indexPath.section][@"title"];
     
-    if ([titlestr isEqualToString:@"我的装修"]) {
-        SQDecorationOrderVC *vc = [[SQDecorationOrderVC alloc] init];
-//        MyDecorationCenterViewController *vc = [[MyDecorationCenterViewController alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    
-    if ([titlestr isEqualToString:@"房租缴纳"]) {
+    if ([titlestr isEqualToString:@"水电缴费"]) {
         [YGNetService YGPOST:REQUEST_HouserAudit parameters:@{@"userid":YGSingletonMarco.user.userId} showLoadingView:YES scrollView:nil success:^(id responseObject) {
-            
-            //返回值state      ==0是请提交审核材料
-            //                ==1待审核
-            //                ==2审核通过直接跳到房租缴纳首页
-            //                ==3审核不通过跳到传身份证页面并提示请重新上传资料审核
-            
+            //返回值state=0是请提交审核材料,=1待审核,=2审核通过直接跳到房租缴纳首页,=3审核不通过跳到传身份证页面并提示请重新上传资料审核
             if ([responseObject[@"state"] isEqualToString:@"1"]) {
                 HouseRentAuditViewController *controller = [[HouseRentAuditViewController alloc]init];
                 [self.navigationController pushViewController:controller animated:YES];
@@ -133,62 +97,29 @@
             }
         } failure: nil];
     }
-    
-    if ([titlestr isEqualToString:@"办公采购"]) {
-        NSArray * titleArray = @[@"全部",@"待付款",@"待发货",@"已发货",@"售后"];
-        NSArray * classArray = @[@"AllOfficePurchaseOrderListViewController",@"PendingPaymentOfficePurchaseViewController",@"DeliveredViewController",@"ShippedViewController",@"AfterSaleViewController"];
-        OfficePurchaseOrderListViewController * vc = [[OfficePurchaseOrderListViewController alloc] initWithTitleArray:titleArray viewControllerClassStringArray:classArray navgationTitle:@"办公采购订单"];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    
-    if ([titlestr isEqualToString:@"项目申报"]) {
-        MineProjectApplyViewController *mineProjectVC = [[MineProjectApplyViewController alloc] init];
-        [self.navigationController pushViewController:mineProjectVC animated:YES];
-    }
-    
     if ([titlestr isEqualToString:@"工商代办"]) {
         MyIntegrationIndustryCommerceController * myIntegrationIndustry = [[MyIntegrationIndustryCommerceController alloc]init];
         [self.navigationController pushViewController:myIntegrationIndustry animated:YES];
     }
-    
     if ([titlestr isEqualToString:@"财税代理"]) {
         MyFinancialAccountViewController * myFinancialAccount = [[MyFinancialAccountViewController alloc]init];
         [self.navigationController pushViewController:myFinancialAccount animated:YES];
+    }
+    
+    if ([titlestr isEqualToString:@"办公采购"]) {
+        OfficePurchaseOrderListViewController * vc = [[OfficePurchaseOrderListViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+    if ([titlestr isEqualToString:@"办公装修"]) {
+        SQDecorationOrderVC *vc = [[SQDecorationOrderVC alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     
     if ([titlestr isEqualToString:@"会议室预定"]) {
         MeetingOrderViewController *vc = [[MeetingOrderViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
-    
-    if ([titlestr isEqualToString:@"广告位招商"]) {
-        NSArray * titleArr = @[@"待处理",@"处理中",@"已处理"];
-        NSArray * classArr = @[@"AlreadyProcessedViewController",@"AlreadyProcessedViewController",@"AlreadyProcessedViewController"];
-        AdvertisementLocationApplyController * alVC= [[AdvertisementLocationApplyController alloc] initWithTitleArray:titleArr viewControllerClassStringArray:classArr navgationTitle:@"广告位置"];
-        [self.navigationController pushViewController:alVC animated:YES];
-    }
-    
-    
-    /** 暂时不用的功能页面  */
-    if ([titlestr isEqualToString:@"网络管家"]) {
-        NetManagerWithVIPServiceViewController * netManager = [[NetManagerWithVIPServiceViewController alloc]init];
-        [self.navigationController pushViewController:netManager animated:YES];
-    }
-
-    if ([titlestr isEqualToString:@"预约看房"]) {
-        MyOrderCheckHouseViewController * repaire =[[MyOrderCheckHouseViewController alloc]init];
-        [self.navigationController pushViewController:repaire animated:YES];
-    }
-    if ([titlestr isEqualToString:@"室内报修"]) {
-        RepairOrderViewController * repaire =[[RepairOrderViewController alloc]init];
-        [self.navigationController pushViewController:repaire animated:YES];
-    }
-
-    if ([titlestr isEqualToString:@"法律服务"]) {
-        HomePageLegalServiceWithVIPServiceViewController * orderView  = [[HomePageLegalServiceWithVIPServiceViewController alloc]init];
-        [self.navigationController pushViewController:orderView animated:YES];
-    }
-    
 }
 
 
