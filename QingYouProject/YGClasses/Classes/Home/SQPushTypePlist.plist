@@ -190,5 +190,65 @@
 		<key>needLogin</key>
 		<true/>
 	</dict>
+	<dict>
+		<key>targetTpye</key>
+		<string>19</string>
+		<key>targetController</key>
+		<string>MyIntegrationIndustryCommerceController</string>
+		<key>controllerTitle</key>
+		<string>项目申报申请单</string>
+		<key>needLogin</key>
+		<true/>
+	</dict>
+	<dict>
+		<key>targetTpye</key>
+		<string>20</string>
+		<key>targetController</key>
+		<string>MyIntegrationIndustryCommerceController</string>
+		<key>controllerTitle</key>
+		<string>资金扶持申请单</string>
+		<key>needLogin</key>
+		<true/>
+	</dict>
+	<dict>
+		<key>targetTpye</key>
+		<string>21</string>
+		<key>targetController</key>
+		<string>MyIntegrationIndustryCommerceController</string>
+		<key>controllerTitle</key>
+		<string>物业服务申请单</string>
+		<key>needLogin</key>
+		<true/>
+	</dict>
+	<dict>
+		<key>targetTpye</key>
+		<string>22</string>
+		<key>targetController</key>
+		<string>MyIntegrationIndustryCommerceController</string>
+		<key>controllerTitle</key>
+		<string>广告位招商申请单</string>
+		<key>needLogin</key>
+		<true/>
+	</dict>
+	<dict>
+		<key>targetTpye</key>
+		<string>23</string>
+		<key>targetController</key>
+		<string>MyIntegrationIndustryCommerceController</string>
+		<key>controllerTitle</key>
+		<string>人才招聘申请单</string>
+		<key>needLogin</key>
+		<true/>
+	</dict>
+	<dict>
+		<key>targetTpye</key>
+		<string>24</string>
+		<key>targetController</key>
+		<string>MyIntegrationIndustryCommerceController</string>
+		<key>controllerTitle</key>
+		<string>个性化定制首页</string>
+		<key>needLogin</key>
+		<true/>
+	</dict>
 </array>
 </plist>
