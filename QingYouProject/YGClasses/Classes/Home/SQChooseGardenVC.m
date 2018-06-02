@@ -28,10 +28,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.fd_prefersNavigationBarHidden = YES;
     [self configureUI];
-    
 }
 
 - (void)configureUI {
