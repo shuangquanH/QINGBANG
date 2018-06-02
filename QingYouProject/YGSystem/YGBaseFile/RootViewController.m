@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 #import <UMMobClick/MobClick.h>
 #import "LoginViewController.h"
+#import "SQChooseGardenVC.h"
 
 @interface RootViewController ()
 {
@@ -228,6 +229,18 @@
     if (![[NSFileManager defaultManager] fileExistsAtPath:USERFILEPATH]) {
         LoginViewController *controller = [[LoginViewController alloc] init];
         controller.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:controller animated:YES];
+        return NO;
+    }
+    return YES;
+}
+- (BOOL)isLoginWithParam:(id)param {
+    if (![[NSFileManager defaultManager] fileExistsAtPath:USERFILEPATH]) {
+        LoginViewController *controller = [[LoginViewController alloc] init];
+        controller.hidesBottomBarWhenPushed = YES;
+        if ([param isKindOfClass:[SQChooseGardenVC class]]) {
+            controller.chooseGardenVC = param;
+        }
         [self.navigationController pushViewController:controller animated:YES];
         return NO;
     }

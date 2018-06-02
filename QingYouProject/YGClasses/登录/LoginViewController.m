@@ -239,22 +239,11 @@
 {
     [YGNetService dissmissLoadingView];
     NSString *type = (self.loginWithType == loginWithRegistType )?@"0":(self.loginWithType == loginWithGetBackPasswordType?@"4":@"2");
-    if ([URLString isEqualToString:REQUEST_otherLogin])
-    {
-        if ([responseObject[@"result"] isEqualToString:@"1"])
-        {
-            YGSingletonMarco.user = [YGUser mj_objectWithKeyValues:responseObject[@"user"]];
-            //拿到新的就归档到本地
-            [YGSingletonMarco archiveUser];
-            [YGPushSDK registerSDKWithUserId:YGSingletonMarco.user.userId options:^(NSError *error) {
-                
-                
-            }];
-            [YGAppTool showToastWithText:@"登录成功"];
+    if ([URLString isEqualToString:REQUEST_otherLogin]) {
+        if ([responseObject[@"result"] isEqualToString:@"1"]) {
+            [self loginSuccefullWithResponse:responseObject];
             
-            [self back];
-        }else
-        {
+        } else {
             LoginViewController *vc = [[LoginViewController alloc] init];
             vc.loginWithType = loginWithThirdType;
             vc.thirdLoginDict = self.thirdLoginDict;
@@ -265,20 +254,17 @@
         }
     }
     //查询用户是否已存在
-    if ([URLString isEqualToString:REQUEST_userCheck])
-    {
+    if ([URLString isEqualToString:REQUEST_userCheck]) {
         //三方第一页面检查用户是否存在 存在的话跳下一夜 其他页面检查用户后发送验证码
         if (self.loginWithType == loginWithThirdType) {
-            if ([responseObject[@"state"] isEqualToString:@"1"])
-            {
+            if ([responseObject[@"state"] isEqualToString:@"1"]) {
                 LoginViewController *vc = [[LoginViewController alloc] init];
                 vc.loginWithType = loginWithThirdSubType;
                 vc.thirdLoginDict = self.thirdLoginDict;
                 vc.naviTitle = @"登录";
                 vc.phoneString = parameters[@"phone"];
                 [self.navigationController pushViewController:vc animated:YES];
-            }else
-            {
+            } else {
                 LoginViewController *vc = [[LoginViewController alloc] init];
                 vc.loginWithType = loginWithThirdSubTypeNoAccountType;
                 vc.thirdLoginDict = self.thirdLoginDict;
@@ -286,9 +272,7 @@
                 vc.phoneString = parameters[@"phone"];
                 [self.navigationController pushViewController:vc animated:YES];
             }
-            
-        }
-        else{
+        } else {
             if (self.loginWithType == loginWithRegistType)
             {
                 if ([responseObject[@"state"] isEqualToString:@"1"])
@@ -304,30 +288,17 @@
     }
     
     //发送验证码
-    if ([URLString isEqualToString:REQUEST_sendSMS])
-    {
+    if ([URLString isEqualToString:REQUEST_sendSMS]) {
         [[YGSingleton sharedManager] startTimerWithTime:60];
         [YGAppTool showToastWithText:@"验证码发送成功，请注意查收"];
         [_loginView.verifyTextField becomeFirstResponder];
     }
     //三方登录后返回进入页
-    if ([URLString isEqualToString:REQUEST_Binding])
-    {
-        //请求服务器后如果请求成功
-        //模拟点击登录成功
-        YGSingletonMarco.user = [YGUser mj_objectWithKeyValues:responseObject[@"user"]];
-        //拿到新的就归档到本地
-        [YGSingletonMarco archiveUser];
-        
-        [YGPushSDK registerSDKWithUserId:YGSingletonMarco.user.userId options:^(NSError *error) {
-            [YGAppTool showToastWithText:@"登录成功"];
-        }];
-        
-        NSInteger index = [[self.navigationController viewControllers] indexOfObject:self];
-        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:index - 3]animated:YES];
+    if ([URLString isEqualToString:REQUEST_Binding]) {
+        [self loginSuccefullWithResponse:responseObject];
     }
-    if ([URLString isEqualToString:REQUEST_userLogin])
-    {
+    
+    if ([URLString isEqualToString:REQUEST_userLogin]) {
         //三方账号存在验证码正确登录后 绑定
         if (self.loginWithType == loginWithThirdSubType)//三方子页面
         {
@@ -337,46 +308,16 @@
             
         }else if (self.loginWithType == loginWithGetBackPasswordSubType) //找回密码子页面
         {
-            //请求服务器后如果请求成功
-            //模拟点击登录成功
-            YGSingletonMarco.user = [YGUser mj_objectWithKeyValues:responseObject[@"user"]];
-            //拿到新的就归档到本地
-            [YGSingletonMarco archiveUser];
-            
-            [YGPushSDK registerSDKWithUserId:YGSingletonMarco.user.userId options:^(NSError *error) {
-                [YGAppTool showToastWithText:@"登录成功"];
-            }];
-            NSInteger index = [[self.navigationController viewControllers] indexOfObject:self];
-            [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:index - 3]animated:YES];
+            [self loginSuccefullWithResponse:responseObject];
         }
-        else  if (self.loginWithType == loginWithRegistType)
-        {
-            //请求服务器后如果请求成功
-            //模拟点击登录成功
-            YGSingletonMarco.user = [YGUser mj_objectWithKeyValues:responseObject[@"user"]];
-            //拿到新的就归档到本地
-            [YGSingletonMarco archiveUser];
-            
-            [YGPushSDK registerSDKWithUserId:YGSingletonMarco.user.userId options:^(NSError *error) {
-                [YGAppTool showToastWithText:@"登录成功"];
-                
-            }];
-            NSInteger index = [[self.navigationController viewControllers] indexOfObject:self];
-            [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:index - 2]animated:YES];
+        else  if (self.loginWithType == loginWithRegistType) {
+            [self loginSuccefullWithResponse:responseObject];
             
         }else//正常登录存储用户信息
         {
             //请求服务器后如果请求成功
             //模拟点击登录成功
-            YGSingletonMarco.user = [YGUser mj_objectWithKeyValues:responseObject[@"user"]];
-            //拿到新的就归档到本地
-            [YGSingletonMarco archiveUser];
-            
-            [YGPushSDK registerSDKWithUserId:YGSingletonMarco.user.userId options:^(NSError *error) {
-                [YGAppTool showToastWithText:@"登录成功"];
-            }];
-            [self back];
-            
+            [self loginSuccefullWithResponse:responseObject];
         }
     }
     
@@ -424,14 +365,12 @@
         }
     }
     //忘记密码接口 之后调登录
-    if ([URLString isEqualToString:REQUEST_forgetPassword])
-    {
+    if ([URLString isEqualToString:REQUEST_forgetPassword]) {
         [self startPostWithURLString:REQUEST_userLogin parameters:@{@"phone":self.phoneString,@"passWord":_loginView.passwordTextField.text} showLoadingView:NO scrollView:nil];
         
     }
     //新用户注册
-    if ([URLString isEqualToString:REQUEST_newUserRegistration])
-    {
+    if ([URLString isEqualToString:REQUEST_newUserRegistration]) {
         if (self.loginWithType == loginWithThirdSubTypeNoAccountType) {
             //三方没账号注册之后先绑定  绑定之后三方登录
             
@@ -440,27 +379,29 @@
             [self startPostWithURLString:REQUEST_Binding parameters:self.thirdLoginDict showLoadingView:NO scrollView:nil];
             
             
-        }else
-        {
+        }else {
             
             [self startPostWithURLString:REQUEST_userLogin parameters:@{@"phone":_loginView.phoneTextField.text,@"passWord":_loginView.passwordTextField.text} showLoadingView:NO scrollView:nil];
         }
         
     }
-    if ([URLString isEqualToString:REQUEST_smsLogin])
-    {
-        YGSingletonMarco.user = [YGUser mj_objectWithKeyValues:responseObject[@"user"]];
-        //拿到新的就归档到本地
-        [YGSingletonMarco archiveUser];
-        [YGPushSDK registerSDKWithUserId:YGSingletonMarco.user.userId options:^(NSError *error) {
-            [YGAppTool showToastWithText:@"登录成功"];
-            
-        }];
-        
-        NSInteger index = [[self.navigationController viewControllers] indexOfObject:self];
-        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:index - 2]animated:YES];
+    if ([URLString isEqualToString:REQUEST_smsLogin]) {
+        [self loginSuccefullWithResponse:responseObject];
     }
-    
+}
+
+- (void)loginSuccefullWithResponse:(id)responseObject {
+    YGSingletonMarco.user = [YGUser mj_objectWithKeyValues:responseObject[@"user"]];
+    //拿到新的就归档到本地
+    [YGSingletonMarco archiveUser];
+    [YGPushSDK registerSDKWithUserId:YGSingletonMarco.user.userId options:^(NSError *error) {
+        [YGAppTool showToastWithText:@"登录成功"];
+    }];
+    if (self.chooseGardenVC) {
+        [self.navigationController pushViewController:self.chooseGardenVC animated:YES];
+    } else {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
 }
 
 - (void)didReceiveFailureResponeseWithURLString:(NSString *)URLString parameters:(id)parameters error:(NSError *)error

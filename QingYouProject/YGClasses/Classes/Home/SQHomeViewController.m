@@ -10,7 +10,7 @@
 #import "SQCollectionViewLayout.h"
 #import "SQHomeCollectionHeader.h"
 #import "SQHomeCollectionViewCell.h"
-#import "YGAlertView.h"
+
 /** 装修板块  */
 #import "SQDecorationServeVC.h"
 /** 水电缴费相关  */
@@ -25,10 +25,15 @@
 
 /** 引导页相关  */
 #import "YGStartPageView.h"
-
+/** 手势相关  */
 #import "UIView+SQGesture.h"
 
 #import "NSMutableAttributedString+AppendImage.h"
+/** 选择园区  */
+#import "SQChooseGardenVC.h"
+
+
+
 
 #define KCURRENTCITYINFODEFAULTS [NSUserDefaults standardUserDefaults]
 
@@ -50,8 +55,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadLaunches];
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self requestData];
 }
+
+
 - (void)loadLaunches {
     if (![YGUserDefaults objectForKey:USERDEF_FIRSTOPENAPP]) {
         [KNOTI_CENTER addObserver:self selector:@selector(lastPage) name:KNOTI_LASTLAUNCHPAGE object:nil];
@@ -60,7 +70,7 @@
             [imageNameArray addObject:[NSString stringWithFormat:@"%d_%.0f", i+1, YGScreenHeight]];
         }
         [YGStartPageView showWithLocalPhotoNamesArray:imageNameArray];
-        [self loginOrNot];
+        [self isLoginWithParam:[SQChooseGardenVC new]];
     }
 }
 - (void)lastPage {
@@ -97,7 +107,7 @@
 
 - (void)requestData {
     //获取首页收据
-    [SQRequest post:KAPI_INDEXPAGE param:@{@"isInner":@"yes"} success:^(id response) {
+    [SQRequest post:KAPI_INDEXPAGE param:nil success:^(id response) {
         self.model = [SQHomeIndexPageModel yy_modelWithDictionary:response];
         //获取定制功能数据
         [SQRequest post:KAPI_CUSBANN param:nil  success:^(id response) {

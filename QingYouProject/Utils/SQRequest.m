@@ -19,6 +19,11 @@
     if ([YGSingleton sharedManager].user.userId) {
         [muParam setValue:[YGSingleton sharedManager].user.userId forKey:@"userid"];
     }
+    if ([[YGSingleton sharedManager].user.isInGarden isEqualToString:@"yes"]) {
+        [muParam setValue:@"yes" forKey:@"isInner"];
+    } else {
+        [muParam setValue:@"no" forKey:@"isInner"];
+    }
     
     [[YGConnectionService sharedConnectionService].requestManager POST:apiString
                                                             parameters:muParam

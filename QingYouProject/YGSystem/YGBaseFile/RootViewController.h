@@ -155,6 +155,9 @@ typedef enum : NSUInteger {
  */
 - (BOOL)loginOrNot;
 
+/** 判断是否登录带参数,（未登录返回NO，自动跳转登录页）  */
+- (BOOL)isLoginWithParam:(id)param;
+
 #pragma 计时器 倒计时
 
 /**

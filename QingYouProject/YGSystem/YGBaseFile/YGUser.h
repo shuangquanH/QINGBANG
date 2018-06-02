@@ -46,4 +46,7 @@
 //合同预留手机号
 @property (nonatomic,copy) NSString * myContractPhoneNumber;
 
+/** 是否在园区中  yes  /  no */ 
+@property (nonatomic, copy) NSString       *isInGarden;
+
 @end

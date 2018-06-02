@@ -1076,6 +1076,7 @@
 		E99DE28520BFD2C2009CEF88 /* NSMutableAttributedString+AppendImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE28420BFD2C2009CEF88 /* NSMutableAttributedString+AppendImage.m */; };
 		E99DE28820C0E72A009CEF88 /* SQServiceFormListPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = E99DE28720C0E72A009CEF88 /* SQServiceFormListPlist.plist */; };
 		E99DE28B20C0E7D0009CEF88 /* SQServiceFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE28A20C0E7D0009CEF88 /* SQServiceFormViewController.m */; };
+		E99DE28E20C23941009CEF88 /* SQChooseGardenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE28D20C23941009CEF88 /* SQChooseGardenVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -3087,6 +3088,8 @@
 		E99DE28720C0E72A009CEF88 /* SQServiceFormListPlist.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SQServiceFormListPlist.plist; sourceTree = "<group>"; };
 		E99DE28920C0E7D0009CEF88 /* SQServiceFormViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQServiceFormViewController.h; sourceTree = "<group>"; };
 		E99DE28A20C0E7D0009CEF88 /* SQServiceFormViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQServiceFormViewController.m; sourceTree = "<group>"; };
+		E99DE28C20C23941009CEF88 /* SQChooseGardenVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQChooseGardenVC.h; sourceTree = "<group>"; };
+		E99DE28D20C23941009CEF88 /* SQChooseGardenVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQChooseGardenVC.m; sourceTree = "<group>"; };
 		F883056FA3AE70A8E2E8FFA5 /* Pods-QingYouProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QingYouProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-QingYouProject/Pods-QingYouProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -7727,6 +7730,8 @@
 				E99DE25620BD3777009CEF88 /* SQPushTypePlist.plist */,
 				E99DE1F320AEB9C9009CEF88 /* SQHomeViewController.h */,
 				E99DE1F420AEB9C9009CEF88 /* SQHomeViewController.m */,
+				E99DE28C20C23941009CEF88 /* SQChooseGardenVC.h */,
+				E99DE28D20C23941009CEF88 /* SQChooseGardenVC.m */,
 				E99DE24A20BBDD68009CEF88 /* SQHomeIndexPageModel.h */,
 				E99DE24B20BBDD68009CEF88 /* SQHomeIndexPageModel.m */,
 				E99DE22520B59286009CEF88 /* SQHomeCollectionHeader.h */,
@@ -8251,6 +8256,7 @@
 				18C1591E1FC820890010ACD3 /* DeailedViewController.m in Sources */,
 				18C15A951FC8208B0010ACD3 /* OrderCheckHouseTableViewCell.m in Sources */,
 				18C159441FC8208A0010ACD3 /* WaitToDealRepairOrderViewController.m in Sources */,
+				E99DE28E20C23941009CEF88 /* SQChooseGardenVC.m in Sources */,
 				5201C1681FCC49B40049F22C /* ProjectApplyDetailViewController.m in Sources */,
 				18C15A1A1FC8208A0010ACD3 /* ServiceEvalutionModel.m in Sources */,
 				18C15A7E1FC8208B0010ACD3 /* PayHeaderView.m in Sources */,
