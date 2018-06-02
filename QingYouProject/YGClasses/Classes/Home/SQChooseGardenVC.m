@@ -47,10 +47,13 @@
     titleLabel.textColor = KCOLOR(@"666666");
     titleLabel.text = @"请选择企业办公地址";
     [self.view addSubview:titleLabel];
+    
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(KSCAL(120));
         make.centerX.equalTo(self.view);
     }];
+    
+    
     
     UILabel *descLabel = [[UILabel alloc] init];
     descLabel.font = KFONT(32);
@@ -62,6 +65,8 @@
         make.centerX.equalTo(titleLabel);
     }];
     
+    
+    
     UIImageView *topImage = [[UIImageView alloc] init];
     topImage.image = [UIImage imageNamed:@"login_Choose_park_nor_1"];
 
@@ -70,6 +75,9 @@
         make.top.equalTo(descLabel.mas_bottom).offset(KSCAL(75));
         make.centerX.equalTo(titleLabel);
     }];
+    
+    
+    
     UILabel *topTilte = [[UILabel alloc] init];
     topTilte.text = @"已入驻青网科技园";
     topTilte.font = KFONT(24);
@@ -80,6 +88,9 @@
         make.centerX.equalTo(titleLabel);
     }];
     
+    
+    
+    
     UILabel *topDesc = [[UILabel alloc] init];
     topDesc.text = @"汇聚青年力量,成就创业梦想.";
     topDesc.font = KFONT(24);
@@ -89,6 +100,9 @@
         make.top.equalTo(topTilte.mas_bottom).offset(KSCAL(20));
         make.centerX.equalTo(titleLabel);
     }];
+    
+    
+    
     
     UIButton    *enterButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [enterButton setBackgroundImage:[UIImage imageNamed:@"login_Choose_park_btn"] forState:UIControlStateNormal];
@@ -105,6 +119,9 @@
         make.height.mas_equalTo(KSCAL(70));
     }];
     
+    
+    
+    
     UILabel *bottomDes = [[UILabel alloc] init];
     bottomDes.text = @"青网城邀行走在梦想路上的人,不破不立,与创业者同行......";
     bottomDes.font = KFONT(24);
@@ -114,6 +131,9 @@
         make.bottom.equalTo(enterButton.mas_top).offset(-KSCAL(125));
         make.centerX.equalTo(titleLabel);
     }];
+    
+    
+    
     
     UILabel *bottomTitle = [[UILabel alloc] init];
     bottomTitle.text = @"已入驻其他园区";
@@ -125,10 +145,12 @@
         make.centerX.equalTo(titleLabel);
     }];
     
+    
+    
+    
     UIImageView *bottomImage = [[UIImageView alloc] init];
     bottomImage.image = [UIImage imageNamed:@"login_Choose_park_nor_2"];
 
-    
     [self.view addSubview:bottomImage];
     [bottomImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(bottomTitle.mas_top).offset(-KSCAL(20));
@@ -137,8 +159,9 @@
     
     
     
-    enterButton.hidden = YES;
     
+    
+    enterButton.hidden = YES;
     topImage.userInteractionEnabled = YES;
     bottomImage.userInteractionEnabled = YES;
     
