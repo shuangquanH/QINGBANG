@@ -7,7 +7,6 @@
 //
 
 #import "SQBaseCollectionViewCell.h"
-#import "SQBaseImageView.h"
 /** Model  */
 #import "SQHomeIndexPageModel.h"
 
