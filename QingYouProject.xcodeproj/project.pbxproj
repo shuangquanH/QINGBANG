@@ -3124,6 +3124,12 @@
 		0470A40C20C116CC003F23C6 /* DecorationDetailViews */ = {
 			isa = PBXGroup;
 			children = (
+				E99DE1E520AE6473009CEF88 /* SQDecorationOrderDetailVC.h */,
+				E99DE1E620AE6473009CEF88 /* SQDecorationOrderDetailVC.m */,
+				0470A40620C11548003F23C6 /* SQDecorationDetailModel.h */,
+				0470A40720C11548003F23C6 /* SQDecorationDetailModel.m */,
+				0470A40920C115D2003F23C6 /* SQDecorationDetailViewModel.h */,
+				0470A40A20C115D2003F23C6 /* SQDecorationDetailViewModel.m */,
 				0470A40020C0F712003F23C6 /* SQDecorationDetailStagesView.h */,
 				0470A40120C0F712003F23C6 /* SQDecorationDetailStagesView.m */,
 				0470A40320C0FB93003F23C6 /* SQDecorationDetailFunctionView.h */,
@@ -7705,6 +7711,7 @@
 		E99DE1E420AE6446009CEF88 /* DecorationOrder */ = {
 			isa = PBXGroup;
 			children = (
+				0470A40C20C116CC003F23C6 /* DecorationDetailViews */,
 				0470A42E20C150D4003F23C6 /* AfterSale */,
 				0470A42120C1453C003F23C6 /* SQTicketApply */,
 				E99DE1DB20AD50AC009CEF88 /* SQDecorationOrderVC.h */,
@@ -7713,13 +7720,6 @@
 				E99DE1DF20AD5182009CEF88 /* SQDecorationOrderCell.m */,
 				E99DE1E120AD54CC009CEF88 /* SQDecorationCellPayButtonView.h */,
 				E99DE1E220AD54CC009CEF88 /* SQDecorationCellPayButtonView.m */,
-				E99DE1E520AE6473009CEF88 /* SQDecorationOrderDetailVC.h */,
-				E99DE1E620AE6473009CEF88 /* SQDecorationOrderDetailVC.m */,
-				0470A40C20C116CC003F23C6 /* DecorationDetailViews */,
-				0470A40620C11548003F23C6 /* SQDecorationDetailModel.h */,
-				0470A40720C11548003F23C6 /* SQDecorationDetailModel.m */,
-				0470A40920C115D2003F23C6 /* SQDecorationDetailViewModel.h */,
-				0470A40A20C115D2003F23C6 /* SQDecorationDetailViewModel.m */,
 			);
 			path = DecorationOrder;
 			sourceTree = "<group>";

@@ -64,18 +64,24 @@
     [self.view addSubview:_tableView];
     
     _addButton = [UIButton new];
-    [_addButton setTitle:@"提交申请" forState:UIControlStateNormal];
+    [_addButton setBackgroundColor:[UIColor redColor]];
+    [_addButton setTitle:@"添加新抬头" forState:UIControlStateNormal];
     [_addButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_addButton addTarget:self action:@selector(click_confirm) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_addButton];
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
     
     [_addButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.mas_equalTo(0);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(55);
         if (@available(iOS 11.0, *)) {
-            make.height.mas_equalTo(55+self.view.safeAreaInsets.bottom);
+            make.bottom.mas_equalTo(-self.view.safeAreaInsets.bottom);
         }
         else {
-            make.height.mas_equalTo(55);
+            make.bottom.mas_equalTo(-self.view.layoutMargins.bottom);
         }
     }];
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -86,6 +92,7 @@
 
 #pragma mark - action
 - (void)click_confirm {
+    
     SQAddTicketApplyViewController *next = [SQAddTicketApplyViewController new];
     [self.navigationController pushViewController:next animated:YES];
 }
