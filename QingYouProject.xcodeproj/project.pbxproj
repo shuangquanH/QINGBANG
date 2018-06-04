@@ -7653,12 +7653,12 @@
 		E99DE1B620AC4FAF009CEF88 /* BaseController */ = {
 			isa = PBXGroup;
 			children = (
-				E99DE1B720AC4FAF009CEF88 /* SQBaseTableViewController.m */,
-				E99DE1B820AC4FAF009CEF88 /* SQBaseViewController.m */,
-				E99DE1B920AC4FAF009CEF88 /* SQBaseWebViewController.m */,
 				E99DE1BA20AC4FAF009CEF88 /* SQBaseViewController.h */,
+				E99DE1B820AC4FAF009CEF88 /* SQBaseViewController.m */,
 				E99DE1BB20AC4FAF009CEF88 /* SQBaseTableViewController.h */,
+				E99DE1B720AC4FAF009CEF88 /* SQBaseTableViewController.m */,
 				E99DE1BC20AC4FAF009CEF88 /* SQBaseWebViewController.h */,
+				E99DE1B920AC4FAF009CEF88 /* SQBaseWebViewController.m */,
 			);
 			path = BaseController;
 			sourceTree = "<group>";
