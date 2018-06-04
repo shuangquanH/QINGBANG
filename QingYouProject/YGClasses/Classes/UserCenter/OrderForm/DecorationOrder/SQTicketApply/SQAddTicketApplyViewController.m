@@ -51,17 +51,25 @@
     [self.view addSubview:_tableView];
     
     _confirmButton = [UIButton new];
+    [_confirmButton setBackgroundColor:[UIColor redColor]];
     [_confirmButton setTitle:@"提交" forState:UIControlStateNormal];
     [_confirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.view addSubview:_confirmButton];
     
+   
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    
     [_confirmButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.mas_equalTo(0);
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(55);
         if (@available(iOS 11.0, *)) {
-            make.height.mas_equalTo(55+self.view.safeAreaInsets.bottom);
+            make.bottom.mas_equalTo(-self.view.safeAreaInsets.bottom);
         }
         else {
-            make.height.mas_equalTo(55);
+            make.bottom.mas_equalTo(-self.view.layoutMargins.bottom);
         }
     }];
     [_selectView mas_makeConstraints:^(MASConstraintMaker *make) {

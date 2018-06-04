@@ -15,7 +15,7 @@
 
 @property (nonatomic, strong) UISwitch *sendSwitch;
 
-@property (nonatomic, strong) UIButton *confimButton;
+@property (nonatomic, strong) UIButton *confirmButton;
 
 @property (nonatomic, strong) NSArray<NSArray *> *tableData;
 
@@ -48,23 +48,29 @@
     _tableView.separatorInset = UIEdgeInsetsZero;
     [self.view addSubview:_tableView];
     
-    _confimButton = [UIButton new];
-    [_confimButton setTitle:@"提交申请" forState:UIControlStateNormal];
-    [_confimButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.view addSubview:_confimButton];
+    _confirmButton = [UIButton new];
+    [_confirmButton setBackgroundColor:[UIColor redColor]];
+    [_confirmButton setTitle:@"提交申请" forState:UIControlStateNormal];
+    [_confirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.view addSubview:_confirmButton];
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
     
-    [_confimButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.mas_equalTo(0);
+    [_confirmButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(55);
         if (@available(iOS 11.0, *)) {
-            make.height.mas_equalTo(55+self.view.safeAreaInsets.bottom);
+            make.bottom.mas_equalTo(-self.view.safeAreaInsets.bottom);
         }
         else {
-            make.height.mas_equalTo(55);
+            make.bottom.mas_equalTo(-self.view.layoutMargins.bottom);
         }
     }];
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.right.mas_equalTo(0);
-        make.bottom.equalTo(self.confimButton.mas_top);
+        make.bottom.equalTo(self.confirmButton.mas_top);
     }];
 }
 

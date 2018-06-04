@@ -89,6 +89,7 @@
 
 #pragma mark - SQDecorationDetailViewModelDelegate
 - (void)serviceView:(SQDecorationDetailServerView *)serviceView didClickServiceType:(NSInteger)serviceType {
+    /** 0：联系客服 1：申请售后 */
     if (serviceType == 0) {
         NSString *url = @"tel:057812345";
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
@@ -99,6 +100,7 @@
     }
 }
 - (void)functionView:(SQDecorationDetailFunctionView *)functionView didClickFunctionType:(NSInteger)functionType {
+    /** 0：下载报价单 1：查看合同 2：开票申请 */
     if (functionType == 0) {
         
     }
