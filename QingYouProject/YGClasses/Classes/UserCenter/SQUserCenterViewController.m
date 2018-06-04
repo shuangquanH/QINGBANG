@@ -40,7 +40,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.userCenterArr.count;
 }
-- (UIView   *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     return [[UIView alloc] init];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

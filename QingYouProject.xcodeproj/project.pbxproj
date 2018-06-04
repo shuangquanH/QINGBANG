@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		040084EA20C521150094CF22 /* WKDecorationRepairViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040084E920C521150094CF22 /* WKDecorationRepairViewController.m */; };
+		040084ED20C52C520094CF22 /* WKAfterSaleRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040084EC20C52C520094CF22 /* WKAfterSaleRecordCell.m */; };
 		0470A40220C0F712003F23C6 /* SQDecorationDetailStagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A40120C0F712003F23C6 /* SQDecorationDetailStagesView.m */; };
 		0470A40520C0FB93003F23C6 /* SQDecorationDetailFunctionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A40420C0FB93003F23C6 /* SQDecorationDetailFunctionView.m */; };
 		0470A40820C11548003F23C6 /* SQDecorationDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A40720C11548003F23C6 /* SQDecorationDetailModel.m */; };
@@ -1083,6 +1084,8 @@
 /* Begin PBXFileReference section */
 		040084E820C521150094CF22 /* WKDecorationRepairViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKDecorationRepairViewController.h; sourceTree = "<group>"; };
 		040084E920C521150094CF22 /* WKDecorationRepairViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKDecorationRepairViewController.m; sourceTree = "<group>"; };
+		040084EB20C52C520094CF22 /* WKAfterSaleRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKAfterSaleRecordCell.h; sourceTree = "<group>"; };
+		040084EC20C52C520094CF22 /* WKAfterSaleRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKAfterSaleRecordCell.m; sourceTree = "<group>"; };
 		0470A40020C0F712003F23C6 /* SQDecorationDetailStagesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationDetailStagesView.h; sourceTree = "<group>"; };
 		0470A40120C0F712003F23C6 /* SQDecorationDetailStagesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationDetailStagesView.m; sourceTree = "<group>"; };
 		0470A40320C0FB93003F23C6 /* SQDecorationDetailFunctionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationDetailFunctionView.h; sourceTree = "<group>"; };
@@ -3182,6 +3185,8 @@
 				0470A43020C150F5003F23C6 /* SQApplyAfterSaleViewController.m */,
 				0470A43220C152DF003F23C6 /* SQAfterSaleListViewController.h */,
 				0470A43320C152DF003F23C6 /* SQAfterSaleListViewController.m */,
+				040084EB20C52C520094CF22 /* WKAfterSaleRecordCell.h */,
+				040084EC20C52C520094CF22 /* WKAfterSaleRecordCell.m */,
 			);
 			path = AfterSale;
 			sourceTree = "<group>";
@@ -8293,6 +8298,7 @@
 				18C159B81FC8208A0010ACD3 /* AdvertisementRemarkCell.m in Sources */,
 				E2E5B1801FB0675A00205F70 /* UIButton+YYWebImage.m in Sources */,
 				183AC1A41FDA7C3C009FCAA3 /* RushPurchaseOrderListPayDetailViewController.m in Sources */,
+				040084ED20C52C520094CF22 /* WKAfterSaleRecordCell.m in Sources */,
 				E2E5B33F1FB0675B00205F70 /* LDExchangeButton.m in Sources */,
 				E99DE23320B665E4009CEF88 /* SQHomeCollectionViewCell.m in Sources */,
 				181EE2041FE24632002BE515 /* SecondhandReplacementIBoughtWaitToDelivergoodsOrderViewController.m in Sources */,
