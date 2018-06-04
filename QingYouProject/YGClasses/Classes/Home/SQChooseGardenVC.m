@@ -185,6 +185,7 @@
 - (void)enterButton {
     YGSingletonMarco.user.isInGarden = self.isInGarden;
     [YGSingletonMarco archiveUser];
+    [KNOTI_CENTER postNotificationName:kNOTI_DIDICHOOSEINNER object:nil];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

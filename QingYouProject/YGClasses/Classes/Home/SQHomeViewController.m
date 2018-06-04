@@ -55,12 +55,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadLaunches];
-}
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
     [self requestData];
 }
-
 
 - (void)loadLaunches {
     if (![YGUserDefaults objectForKey:USERDEF_FIRSTOPENAPP]) {
@@ -72,6 +68,7 @@
         [YGStartPageView showWithLocalPhotoNamesArray:imageNameArray];
         [self isLoginWithParam:[SQChooseGardenVC new]];
     }
+    [KNOTI_CENTER addObserver:self selector:@selector(requestData) name:kNOTI_DIDICHOOSEINNER object:nil];
 }
 - (void)lastPage {
     [YGUserDefaults setObject:@"1" forKey:USERDEF_FIRSTOPENAPP];
@@ -109,20 +106,16 @@
     //获取首页收据
     [SQRequest post:KAPI_INDEXPAGE param:nil success:^(id response) {
         self.model = [SQHomeIndexPageModel yy_modelWithDictionary:response];
+        self.headerView.model = self.model;
         //获取定制功能数据
         [SQRequest post:KAPI_CUSBANN param:nil  success:^(id response) {
             self.headerView.cusModel = [SQHomeCustomModel yy_modelWithDictionary:response];
+            [self.collectionView reloadData];
+            [self endRefreshWithScrollView:self.collectionView];
         } failure:nil];
     } failure:^(NSError *error) {
         [self endRefreshWithScrollView:self.collectionView];
     }];
-}
-
-- (void)setModel:(SQHomeIndexPageModel *)model {
-    _model = model;
-    self.headerView.model = model;
-    [self.collectionView reloadData];
-    [self endRefreshWithScrollView:self.collectionView];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
