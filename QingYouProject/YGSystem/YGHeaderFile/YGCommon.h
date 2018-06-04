@@ -153,7 +153,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:rgbAlpha]
 
 /*************************** 通知中心key *****************************************************/
 
-#define KNOTI_LASTLAUNCHPAGE        @"NOTIFICATION_LASTLAUNCHPAGE_KEY"
+#define KNOTI_LASTLAUNCHPAGE        @"NOTIFICATION_LASTLAUNCHPAGE_KEY"//引导图最后一张
+#define kNOTI_DIDICHOOSEINNER       @"kNOTIFICATION_DIDICHOOSEINNER_KEY"//选择是否是园区
 
 
 
