@@ -9,7 +9,6 @@
 #import "SQDecorationCellPayButtonView.h"
 
 const CGFloat kFunctionButtonWidth = 60.0;
-const CGFloat kFunctionButtonHeight = 35.0;
 const CGFloat kFunctionButtonLeftMargin = 10.0;
 const CGFloat kFunctionButtonTopMargin = 0.0;
 
@@ -59,11 +58,24 @@ const CGFloat kFunctionButtonTopMargin = 0.0;
             else if (orderInfo.orderState == 2) {//已关闭
                 [self reSetFunctionButtonsWithTitles:@[@"删除订单"] types:@[@(WKDecorationOrderActionTypeDelete)]];
             }
-            else {//已支付
+            else {//受理中
                 [self showAlreadyPayLabelWithTitle:@"已支付"];
+                if (self.isInDetail) {//在详情中，未申请退款则显示申请退款按钮，否则显示查看退款详情
+                    UIButton *btn = [self setupButtonWithTitle:@"申请退款"];
+                    btn.tag = WKDecorationOrderActionTypeRefund;
+                    [btn addTarget:self action:@selector(click_typeButton:) forControlEvents:UIControlEventTouchUpInside];
+                    [self addSubview:btn];
+                    [_buttons addObject:btn];
+                    
+                    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+                        make.left.centerY.mas_equalTo(0);
+                        make.width.mas_equalTo(kFunctionButtonWidth);
+                        make.top.mas_equalTo(kFunctionButtonTopMargin);
+                    }];
+                }
             }
         }
-        else {//无其他阶段
+        else {//订单状态1\2\3，无其他阶段
             [_buttons makeObjectsPerformSelector:@selector(removeFromSuperview) withObject:nil];
             [_buttons removeAllObjects];
         }
@@ -85,14 +97,16 @@ const CGFloat kFunctionButtonTopMargin = 0.0;
         UIButton *btn;
         if (_buttons.count > i) {
             btn = [_buttons objectAtIndex:i];
+            [btn setTitle:titles[i] forState:UIControlStateNormal];
         }
         else {
             btn = [self setupButtonWithTitle:titles[i]];
             [btn addTarget:self action:@selector(click_typeButton:) forControlEvents:UIControlEventTouchUpInside];
-            [_buttons insertObject:btn atIndex:0];
             [self addSubview:btn];
+            
+            [_buttons addObject:btn];
         }
-        
+
         btn.tag = [types objectAtIndex:i].integerValue;
         
         [btn mas_remakeConstraints:^(MASConstraintMaker *make) {

@@ -137,6 +137,10 @@ static CGFloat singleLineHeight() {
 
 }
 
+- (void)setIsInDetail:(BOOL)isInDetail {
+    paymentState.isInDetail = isInDetail;
+}
+
 - (CGSize)intrinsicContentSize {
     return [self viewSize];
 }

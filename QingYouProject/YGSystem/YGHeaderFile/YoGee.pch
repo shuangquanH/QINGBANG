@@ -28,8 +28,6 @@
 #import "YGButton.h"
 #import "SDCycleScrollView.h"
 #import "FSCalendar.h"
-#import "UILabel+Factory.h"
-#import "RACEXTScope.h"
 
 //新增文件:
 #import "SQApiUrlFile.h"
@@ -43,6 +41,9 @@
 #import "SQBaseCollectionView.h"
 #import "SQBaseCollectionViewCell.h"
 #import "SQRequest.h"
+
+#import "UILabel+Factory.h"
+#import "RACEXTScope.h"
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.

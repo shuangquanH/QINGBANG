@@ -55,7 +55,17 @@
     [tmp addObject:section_0];
     
     //订单详情
-    SQDecorationOrderCellWithThreeStage *detailCell = [[SQDecorationOrderCellWithThreeStage alloc] init];
+    SQDecorationOrderCell *detailCell;
+    if (orderInfo.orderState == 4 || orderInfo.orderState == 5) {
+       detailCell = [[SQDecorationOrderCellWithThreeStage alloc] init];
+    }
+    else if (orderInfo.orderState == 3) {
+        detailCell = [[WKDecorationDealingOrderCell alloc] init];
+    }
+    else {
+        detailCell = [[SQDecorationOrderCell alloc] init];
+    }
+    detailCell.isInDetail = YES;
     detailCell.backgroundColor = [UIColor whiteColor];
     [tmp addObject:detailCell];
     

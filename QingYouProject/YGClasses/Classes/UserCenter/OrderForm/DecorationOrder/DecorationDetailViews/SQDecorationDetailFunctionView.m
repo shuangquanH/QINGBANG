@@ -42,7 +42,8 @@ const CGFloat kContentLeftMargin = 40.0;
             }
             
             _downLoadPriceFormBtn.hidden = NO;
-            _downLoadPriceFormBtn.frame = CGRectMake(kContentLeftMargin + 2 * (itemW + kItemMargin), 5, itemW, 34);
+            _downLoadPriceFormBtn.frame = CGRectMake((kScreenW-itemW)/2.0, 5, itemW, 34);
+            
             _ticketApplyBtn.hidden = YES;
             _checkContractBtn.hidden = YES;
         }
@@ -60,11 +61,15 @@ const CGFloat kContentLeftMargin = 40.0;
                 [self addSubview:_checkContractBtn];
             }
             
+            CGFloat leftMargin = (kScreenW - 2 * itemW - kItemMargin) / 2.0;
+            
             _downLoadPriceFormBtn.hidden = NO;
-            _downLoadPriceFormBtn.frame = CGRectMake(kContentLeftMargin + 1 * (itemW + kItemMargin), 5, itemW, 34);
+            _downLoadPriceFormBtn.frame = CGRectMake(leftMargin + 0 * (itemW + kItemMargin), 5, itemW, 34);
+            
             _checkContractBtn.hidden = NO;
-            _checkContractBtn.frame = CGRectMake(kContentLeftMargin + 2 * (itemW + kItemMargin), 5, itemW, 34);
-            _checkContractBtn.hidden = YES;
+            _checkContractBtn.frame = CGRectMake(leftMargin + 1 * (itemW + kItemMargin), 5, itemW, 34);
+            
+            _ticketApplyBtn.hidden = YES;
         }
             break;
         case 5:

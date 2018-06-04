@@ -34,7 +34,6 @@
     [super viewDidLoad];
 
     [self layoutNavigation];
-    
     [self setupSubviews];
 }
 
@@ -44,6 +43,7 @@
     }
     else {
         self.naviTitle = @"发票抬头";
+
         UIBarButtonItem *managerItem = [self createBarbuttonWithNormalTitleString:@"管理" selectedTitleString:@"管理" selector:@selector(click_managerBtn)];
         self.navigationItem.rightBarButtonItem = managerItem;
     }
@@ -109,7 +109,8 @@
         cell = [[SQTicketApplyCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
         cell.accessoryType = (self.isTicketApplyManager ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone);
     }
-
+    cell.textLabel.text = @"张三";
+    cell.detailTextLabel.text = @"个人";
     return cell;
 }
 

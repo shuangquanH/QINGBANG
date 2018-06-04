@@ -47,6 +47,13 @@
     self.tableview.tableHeaderView = self.tableHeader;
 }
 
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    [self.tableview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(0);
+    }];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
@@ -72,7 +79,7 @@
     if (![self loginOrNot]) {
         return;
     }
-    NSString    *titlestr = self.orderFormArr[indexPath.section][@"title"];
+    NSString  *titlestr = self.orderFormArr[indexPath.section][@"title"];
     
     if ([titlestr isEqualToString:@"水电缴费"]) {
         [YGNetService YGPOST:REQUEST_HouserAudit parameters:@{@"userid":YGSingletonMarco.user.userId} showLoadingView:YES scrollView:nil success:^(id responseObject) {
@@ -126,7 +133,7 @@
 #pragma mark LazyLoad
 - (SQBaseTableView  *)tableview {
     if (!_tableview) {
-        _tableview = [[SQBaseTableView   alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, KAPP_HEIGHT-KNAV_HEIGHT)];
+        _tableview = [[SQBaseTableView alloc] initWithFrame:CGRectZero];
         _tableview.rowHeight = 60;
         _tableview.delegate = self;
         _tableview.dataSource = self;

@@ -22,43 +22,49 @@
 @end
 
 @implementation SQUserCenterViewController
-
+#pragma mark - life circle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.naviTitle = @"我的";
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"SQUserCenterMenuPlist" ofType:@"plist"];
-    self.userCenterArr = [NSArray arrayWithContentsOfFile:path];
-    [self.view addSubview:self.tableview];
     
-    [self.tableHeader configUserInfo:YGSingletonMarco.user];
-    self.tableview.tableHeaderView = self.tableHeader;
+    self.naviTitle = @"我的";
+    
+    [self readViewControllerByPlistFile];
+    [self.view addSubview:self.tableview];
 }
 
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    
+    [self.tableview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.mas_equalTo(0);
+        if (@available(iOS 11.0, *)) {
+            make.bottom.mas_equalTo(-self.view.safeAreaInsets.bottom);
+        }
+        else {
+            make.bottom.mas_equalTo(-self.view.layoutMargins.bottom);
+        }
+    }];
+}
+#pragma mark - load data
+- (void)readViewControllerByPlistFile {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"SQUserCenterMenuPlist" ofType:@"plist"];
+    self.userCenterArr = [NSArray arrayWithContentsOfFile:path];
+}
+
+#pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
-}
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.userCenterArr.count;
-}
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return [[UIView alloc] init];
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 10;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return CGFLOAT_MIN;
 }
 - (UITableViewCell  *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SQBaseTableViewCell *cell = [SQBaseTableViewCell cellWithTableView:tableView];
     cell.imageView.image = [UIImage imageNamed:@"mine_instashot"];
-    cell.textLabel.text = self.userCenterArr[indexPath.section][@"title"];
+    cell.textLabel.text = self.userCenterArr[indexPath.row][@"title"];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Class theclass = NSClassFromString(self.userCenterArr[indexPath.section][@"vc"]);
     RootViewController  *vc = [[theclass alloc] init];
-    bool needlogin = [self.userCenterArr[indexPath.section][@"needLogin"] boolValue];
+    bool needlogin = [self.userCenterArr[indexPath.row][@"needLogin"] boolValue];
     if (needlogin) {
         if ([self loginOrNot]) {
             [self.navigationController pushViewController:vc animated:YES];
@@ -71,10 +77,11 @@
 #pragma mark LazyLoad
 - (SQBaseTableView  *)tableview {
     if (!_tableview) {
-        _tableview = [[SQBaseTableView   alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, KAPP_HEIGHT-KNAV_HEIGHT-KTAB_HEIGHT)];
+        _tableview = [[SQBaseTableView alloc] initWithFrame:CGRectZero];
         _tableview.rowHeight = 60;
         _tableview.delegate = self;
         _tableview.dataSource = self;
+        _tableview.tableHeaderView = self.tableHeader;
     }
     return _tableview;
 }
@@ -82,6 +89,7 @@
 - (SQUserCenterTableViewHeader *)tableHeader {
     if (!_tableHeader) {
         _tableHeader = [[SQUserCenterTableViewHeader alloc] initWithFrame:CGRectMake(0, 0, YGScreenWidth, 220)];
+        [_tableHeader configUserInfo:YGSingletonMarco.user];
     }
     return _tableHeader;
 }

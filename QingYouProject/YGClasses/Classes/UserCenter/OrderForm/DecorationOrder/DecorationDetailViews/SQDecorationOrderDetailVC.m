@@ -39,7 +39,7 @@
 - (void)sqaddSubVies {
     
     SQDecorationDetailModel *model = [SQDecorationDetailModel new];
-    model.orderState = 5;
+    model.orderState = 3;
     
     self.orderDetailVM = [SQDecorationDetailViewModel new];
     self.orderDetailVM.orderDetailDelegate = self;

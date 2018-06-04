@@ -39,7 +39,7 @@
 }
 
 - (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo {
-    _stateLab.text = @"已完成";
+    _stateLab.text = orderInfo.orderTitle;
 }
 - (CGSize)viewSize {
     return CGSizeMake(kScreenW, 55);

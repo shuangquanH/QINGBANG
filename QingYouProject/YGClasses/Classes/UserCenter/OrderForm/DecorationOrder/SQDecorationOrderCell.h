@@ -45,6 +45,8 @@
 @property (nonatomic, weak  ) id <decorationOrderCellDelegate>       delegate;
 
 @property (nonatomic, assign) id       model;
+/** 是否在详情中，详情中会多出申请退款和查看退款详情入口 */
+@property (nonatomic, assign) BOOL isInDetail;
 
 + (CGFloat)cellHeight;
 

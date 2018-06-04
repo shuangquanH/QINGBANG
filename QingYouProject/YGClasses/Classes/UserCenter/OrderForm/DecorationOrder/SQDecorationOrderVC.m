@@ -13,11 +13,15 @@
 #import "SQDecorationOrderCell.h"
 #import "SQDecorationDetailModel.h"
 
+#import "WKAnimationAlert.h"
+
 @interface SQDecorationOrderVC () <UITableViewDataSource, UITableViewDelegate, decorationOrderCellDelegate>
 
 @property (nonatomic, strong) UITableView       *tableview;
 
 @property (nonatomic, strong) NSMutableArray<SQDecorationDetailModel *> *orderList;
+
+@property (nonatomic, strong) UIView *bottomPayView;
 
 @end
 
@@ -32,6 +36,20 @@
     self.naviTitle = @"我的装修订单";
     [self.view addSubview:self.tableview];
     [self createRefreshWithScrollView:self.tableview containFooter:YES];
+}
+
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    
+    [self.tableview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.mas_equalTo(0);
+        if (@available(iOS 11.0, *)) {
+            make.bottom.mas_equalTo(-self.view.safeAreaInsets.bottom);
+        }
+        else {
+            make.bottom.mas_equalTo(-self.view.layoutMargins.bottom);
+        }
+    }];
 }
 
 - (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
@@ -94,12 +112,45 @@
 
 #pragma mark - decorationOrderCellDelegate
 - (void)decorationCell:(SQDecorationOrderCell *)decorationCell tapedOrderActionType:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage {
+    NSIndexPath *targetIndex = [self.tableview indexPathForCell:decorationCell];
+    if (!targetIndex) return;
+    
     switch (actionType) {
         case WKDecorationOrderActionTypePay://支付
+        {
+            CGFloat offset;
+            if (@available(iOS 11.0, *)) {
+                offset = self.view.safeAreaInsets.bottom;
+            }
+            else {
+                offset = self.view.layoutMargins.bottom;
+            }
+            [WKAnimationAlert showAlertWithInsideView:self.bottomPayView animation:WKAlertAnimationTypeBottom canTouchDissmiss:YES superView:nil offset:offset];
+        }
             break;
         case WKDecorationOrderActionTypeCancel://取消订单
+        {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"确认取消订单" preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                SQDecorationDetailModel *m = [self.orderList objectAtIndex:targetIndex.row];
+                m.orderTitle = nil;
+                m.orderState = 2;
+                [decorationCell configOrderInfo:m];
+            }]];
+            [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil]];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
             break;
         case WKDecorationOrderActionTypeDelete://删除订单
+        {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"确认删除订单" preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self.orderList removeObjectAtIndex:targetIndex.row];
+                [self.tableview deleteRowsAtIndexPaths:@[targetIndex] withRowAnimation:UITableViewRowAnimationLeft];
+            }]];
+            [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil]];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
             break;
         case WKDecorationOrderActionTypeRepair://补登
         {
@@ -115,11 +166,19 @@
 #pragma mark LazyLoad
 - (UITableView  *)tableview {
     if (!_tableview) {
-        _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, KAPP_HEIGHT-KNAV_HEIGHT)];
+        _tableview = [[UITableView alloc] initWithFrame:CGRectZero];
         _tableview.delegate = self;
         _tableview.dataSource = self;
     }
     return _tableview;
+}
+
+- (UIView  *)bottomPayView {
+    if (!_bottomPayView) {
+        _bottomPayView = [[UIView alloc] initWithFrame:CGRectMake(0, KAPP_HEIGHT-KNAV_HEIGHT-60, KAPP_WIDTH, 200)];
+        _bottomPayView.backgroundColor = colorWithMainColor;
+    }
+    return _bottomPayView;
 }
 
 - (void)fakeList {
