@@ -7927,6 +7927,7 @@
 		2CA686741F68D57900B6B74A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = "";
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = ccyouge;
 				TargetAttributes = {

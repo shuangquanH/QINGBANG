@@ -44,8 +44,8 @@
 
 - (void)addCycleView {
     CGRect frame = CGRectMake(0, 0, YGScreenWidth, KSCAL(320));
-    self.cycleView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:YGDefaultImgSixteen_Nine];
-    self.cycleView.backgroundColor = kWhiteColor;
+    self.cycleView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:nil];
+    self.cycleView.backgroundColor = colorWithTable;
     [self addSubview:self.cycleView];
     
 }
