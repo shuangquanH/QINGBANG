@@ -7,12 +7,17 @@
 //
 
 #import "SQDecorationOrderVC.h"
-#import "SQDecorationOrderCell.h"
 #import "SQDecorationOrderDetailVC.h"
+#import "WKDecorationRepairViewController.h"
 
-@interface SQDecorationOrderVC () <UITableViewDataSource, UITableViewDelegate>
+#import "SQDecorationOrderCell.h"
+#import "SQDecorationDetailModel.h"
 
-@property (nonatomic, strong) SQBaseTableView       *tableview;
+@interface SQDecorationOrderVC () <UITableViewDataSource, UITableViewDelegate, decorationOrderCellDelegate>
+
+@property (nonatomic, strong) UITableView       *tableview;
+
+@property (nonatomic, strong) NSMutableArray<SQDecorationDetailModel *> *orderList;
 
 @end
 
@@ -20,6 +25,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    [self fakeList];
+    
     self.naviTitle = @"我的装修订单";
     [self.view addSubview:self.tableview];
     [self createRefreshWithScrollView:self.tableview containFooter:YES];
@@ -35,12 +44,46 @@
     }
 }
 
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+#pragma mark - UITableViewDataSource
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section {
+    return self.orderList.count;
 }
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+- (UITableViewCell  *)tableView:(UITableView *)tableView
+          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    SQDecorationDetailModel *order = [self.orderList objectAtIndex:indexPath.row];
+    
+    SQDecorationOrderCell *cell;
+    if (order.orderState == 3) {//受理中
+        cell = [WKDecorationDealingOrderCell cellWithTableView:tableView];
+    }
+    else if (order.orderState == 4 || order.orderState == 5 ) {//装修中、已完成
+        cell = [SQDecorationOrderCellWithThreeStage cellWithTableView:tableView];
+    }
+    else {
+        cell = [SQDecorationOrderCell cellWithTableView:tableView];
+    }
+    cell.delegate = self;
+    [cell configOrderInfo:order];
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    SQDecorationOrderDetailVC *vc = [[SQDecorationOrderDetailVC alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    SQDecorationDetailModel *order = [self.orderList objectAtIndex:indexPath.row];
+    if (order.orderState == 3) {//受理中
+        return [WKDecorationDealingOrderCell cellHeight];
+    }
+    else if (order.orderState == 4 || order.orderState == 5 ) {//装修中、已完成
+        return [SQDecorationOrderCellWithThreeStage cellHeight];
+    }
+    else {
+        return [SQDecorationOrderCell cellHeight];
+    }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return CGFLOAT_MIN;
@@ -48,47 +91,62 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return CGFLOAT_MIN;
 }
-- (UITableViewCell  *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SQDecorationOrderCell *cell;
-    if (indexPath.row%2==0) {
-        cell = [SQDecorationOrderCell cellWithTableView:tableView];
-    } else {
-        cell = [SQDecorationOrderCellWithThreeStage cellWithTableView:tableView];
+
+#pragma mark - decorationOrderCellDelegate
+- (void)decorationCell:(SQDecorationOrderCell *)decorationCell tapedOrderActionType:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage {
+    switch (actionType) {
+        case WKDecorationOrderActionTypePay://支付
+            break;
+        case WKDecorationOrderActionTypeCancel://取消订单
+            break;
+        case WKDecorationOrderActionTypeDelete://删除订单
+            break;
+        case WKDecorationOrderActionTypeRepair://补登
+        {
+            WKDecorationRepairViewController *next = [WKDecorationRepairViewController new];
+            [self.navigationController pushViewController:next animated:YES];
+        }
+            break;
+        case WKDecorationOrderActionTypeCallService://联系客服
+            break;
     }
-    cell.model = @"dd";
-    return cell;
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    SQDecorationOrderDetailVC   *vc = [[SQDecorationOrderDetailVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark LazyLoad
-- (SQBaseTableView  *)tableview {
+- (UITableView  *)tableview {
     if (!_tableview) {
-        _tableview = [[SQBaseTableView   alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, KAPP_HEIGHT-KNAV_HEIGHT)];
-        _tableview.estimatedRowHeight = 600;
-        _tableview.rowHeight = UITableViewAutomaticDimension;
+        _tableview = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, KAPP_HEIGHT-KNAV_HEIGHT)];
         _tableview.delegate = self;
         _tableview.dataSource = self;
     }
     return _tableview;
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)fakeList {
+    self.orderList = [NSMutableArray array];
+    
+    SQDecorationDetailModel *m1 = [SQDecorationDetailModel new];
+    m1.orderState = 1;
+    [self.orderList addObject:m1];
+    
+    SQDecorationDetailModel *m2 = [SQDecorationDetailModel new];
+    m2.orderState = 2;
+    [self.orderList addObject:m2];
+    
+    SQDecorationDetailModel *m3 = [SQDecorationDetailModel new];
+    m3.orderState = 3;
+    [self.orderList addObject:m3];
+    
+    SQDecorationDetailModel *m4 = [SQDecorationDetailModel new];
+    m4.orderState = 4;
+    m4.stageOneState = 1;
+    m4.stageTwoState = 2;
+    m4.stageThreeState = 3;
+    [self.orderList addObject:m4];
+    
+    SQDecorationDetailModel *m5 = [SQDecorationDetailModel new];
+    m5.orderState = 5;
+    [self.orderList addObject:m5];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

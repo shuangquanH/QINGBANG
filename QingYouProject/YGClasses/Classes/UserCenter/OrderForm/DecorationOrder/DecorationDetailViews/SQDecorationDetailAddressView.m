@@ -37,6 +37,7 @@
     
     _phoneLab = [UILabel labelWithFont:13.0 textColor:[UIColor blackColor]];
     [_phoneLab setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
+    _phoneLab.preferredMaxLayoutWidth = 0.0;
     [self addSubview:_phoneLab];
     
     _addressLab = [UILabel labelWithFont:13.0 textColor:[UIColor blackColor]];
@@ -62,7 +63,7 @@
     [_addressLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self->_nameLab);
         make.right.equalTo(self->_phoneLab);
-        make.top.equalTo(self->_nameLab.mas_bottom).offset(8);
+        make.top.equalTo(self->_phoneLab.mas_bottom).offset(8);
     }];
 }
 

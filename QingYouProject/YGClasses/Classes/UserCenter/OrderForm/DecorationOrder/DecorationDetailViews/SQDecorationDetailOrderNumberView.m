@@ -34,8 +34,7 @@
     _createTimeLab.text = @"订单编号：21414352453452431";
     _payTimeLab.text  = @"订单编号：21414352453452431";
     _finishedLab.text = @"订单编号：21414352453452431";
-
-    [self layoutIfNeeded];
+    
 }
 
 - (void)setupSubviews {

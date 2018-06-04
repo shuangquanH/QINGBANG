@@ -26,9 +26,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.naviTitle = @"我的";
-    NSString *path = [[NSBundle mainBundle]pathForResource:@"SQUserCenterMenuPlist" ofType:@"plist"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"SQUserCenterMenuPlist" ofType:@"plist"];
     self.userCenterArr = [NSArray arrayWithContentsOfFile:path];
     [self.view addSubview:self.tableview];
+    
+    [self.tableHeader configUserInfo:YGSingletonMarco.user];
     self.tableview.tableHeaderView = self.tableHeader;
 }
 
@@ -56,7 +58,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Class theclass = NSClassFromString(self.userCenterArr[indexPath.section][@"vc"]);
     RootViewController  *vc = [[theclass alloc] init];
-    bool    needlogin = [self.userCenterArr[indexPath.section][@"needLogin"] boolValue];
+    bool needlogin = [self.userCenterArr[indexPath.section][@"needLogin"] boolValue];
     if (needlogin) {
         if ([self loginOrNot]) {
             [self.navigationController pushViewController:vc animated:YES];

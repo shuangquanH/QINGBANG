@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040084EA20C521150094CF22 /* WKDecorationRepairViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040084E920C521150094CF22 /* WKDecorationRepairViewController.m */; };
 		0470A40220C0F712003F23C6 /* SQDecorationDetailStagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A40120C0F712003F23C6 /* SQDecorationDetailStagesView.m */; };
 		0470A40520C0FB93003F23C6 /* SQDecorationDetailFunctionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A40420C0FB93003F23C6 /* SQDecorationDetailFunctionView.m */; };
 		0470A40820C11548003F23C6 /* SQDecorationDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A40720C11548003F23C6 /* SQDecorationDetailModel.m */; };
@@ -1080,6 +1081,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		040084E820C521150094CF22 /* WKDecorationRepairViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKDecorationRepairViewController.h; sourceTree = "<group>"; };
+		040084E920C521150094CF22 /* WKDecorationRepairViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKDecorationRepairViewController.m; sourceTree = "<group>"; };
 		0470A40020C0F712003F23C6 /* SQDecorationDetailStagesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationDetailStagesView.h; sourceTree = "<group>"; };
 		0470A40120C0F712003F23C6 /* SQDecorationDetailStagesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationDetailStagesView.m; sourceTree = "<group>"; };
 		0470A40320C0FB93003F23C6 /* SQDecorationDetailFunctionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationDetailFunctionView.h; sourceTree = "<group>"; };
@@ -3121,6 +3124,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		040084E720C520F90094CF22 /* Repair */ = {
+			isa = PBXGroup;
+			children = (
+				040084E820C521150094CF22 /* WKDecorationRepairViewController.h */,
+				040084E920C521150094CF22 /* WKDecorationRepairViewController.m */,
+			);
+			path = Repair;
+			sourceTree = "<group>";
+		};
 		0470A40C20C116CC003F23C6 /* DecorationDetailViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -7711,6 +7723,7 @@
 		E99DE1E420AE6446009CEF88 /* DecorationOrder */ = {
 			isa = PBXGroup;
 			children = (
+				040084E720C520F90094CF22 /* Repair */,
 				0470A40C20C116CC003F23C6 /* DecorationDetailViews */,
 				0470A42E20C150D4003F23C6 /* AfterSale */,
 				0470A42120C1453C003F23C6 /* SQTicketApply */,
@@ -7927,6 +7940,7 @@
 		2CA686741F68D57900B6B74A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = WK;
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = ccyouge;
 				TargetAttributes = {
@@ -8663,6 +8677,7 @@
 				1812F2FE2021A9F500EEC1CE /* HomePageLegalServiceIntroduceViewController.m in Sources */,
 				E99DE1C420AC4FAF009CEF88 /* SQBaseTableViewController.m in Sources */,
 				E2E5B33A1FB0675B00205F70 /* NSDictionary+HYBUnicodeReadable.m in Sources */,
+				040084EA20C521150094CF22 /* WKDecorationRepairViewController.m in Sources */,
 				18C159831FC8208A0010ACD3 /* CheckAdvertisesViewController.m in Sources */,
 				18C159B01FC8208A0010ACD3 /* AdvertisementApplyCell.m in Sources */,
 				18C15A521FC8208B0010ACD3 /* RoadShowHallAllTableViewCell.m in Sources */,

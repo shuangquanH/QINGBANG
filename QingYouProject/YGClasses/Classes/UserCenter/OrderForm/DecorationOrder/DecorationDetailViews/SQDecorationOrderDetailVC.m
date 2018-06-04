@@ -39,7 +39,7 @@
 - (void)sqaddSubVies {
     
     SQDecorationDetailModel *model = [SQDecorationDetailModel new];
-    model.orderState = 5;
+    model.orderState = 4;
     
     self.orderDetailVM = [SQDecorationDetailViewModel new];
     self.orderDetailVM.orderDetailDelegate = self;
@@ -77,7 +77,7 @@
                 [v mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.left.right.mas_equalTo(0);
                     make.top.equalTo(lastView.mas_bottom);
-                    make.height.mas_equalTo([v viewSize].height);
+                    make.height.mas_equalTo([v viewSize].height).priorityHigh();
                 }];
             }
         }
