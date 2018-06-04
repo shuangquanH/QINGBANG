@@ -10,4 +10,6 @@
 
 @interface SQUserCenterTableViewHeader : UIView
 
+- (void)configUserInfo:(YGUser *)user;
+
 @end

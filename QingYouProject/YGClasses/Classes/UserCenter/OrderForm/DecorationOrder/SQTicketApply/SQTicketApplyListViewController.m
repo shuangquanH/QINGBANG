@@ -44,12 +44,8 @@
     }
     else {
         self.naviTitle = @"发票抬头";
-        UIButton *managerBtn = [UIButton new];
-        [managerBtn setTitle:@"管理" forState:UIControlStateNormal];
-        [managerBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        UIBarButtonItem *managerItem = [[UIBarButtonItem alloc] initWithCustomView:managerBtn];
+        UIBarButtonItem *managerItem = [self createBarbuttonWithNormalTitleString:@"管理" selectedTitleString:@"管理" selector:@selector(click_managerBtn)];
         self.navigationItem.rightBarButtonItem = managerItem;
-        [managerBtn addTarget:self action:@selector(click_managerBtn) forControlEvents:UIControlEventTouchUpInside];
     }
 }
 
@@ -111,11 +107,9 @@
     SQTicketApplyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
         cell = [[SQTicketApplyCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
-        cell.textLabel.textColor = [UIColor blackColor];
         cell.accessoryType = (self.isTicketApplyManager ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone);
     }
-    cell.textLabel.text = @"朱玲";
-    cell.detailTextLabel.text = @"个人";
+
     return cell;
 }
 

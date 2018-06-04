@@ -77,7 +77,7 @@
                 [v mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.left.right.mas_equalTo(0);
                     make.top.equalTo(lastView.mas_bottom);
-                    make.height.mas_equalTo([v viewSize].height);
+                    make.height.mas_equalTo([v viewSize].height).priorityHigh();
                 }];
             }
         }

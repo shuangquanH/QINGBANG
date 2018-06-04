@@ -113,7 +113,7 @@
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 5) {
+    if (indexPath.row == 6) {
         cell.separatorInset = UIEdgeInsetsMake(0, kScreenW, 0, 0);
     }
     else {

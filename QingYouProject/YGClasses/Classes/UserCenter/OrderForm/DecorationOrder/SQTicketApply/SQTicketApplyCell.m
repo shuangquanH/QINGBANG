@@ -9,7 +9,11 @@
 #import "SQTicketApplyCell.h"
 
 @implementation SQTicketApplyCell
-
-
+{
+    UILabel *_nameLab;
+    UILabel *_numberLab;
+    UILabel *_organizationLab;
+    UILabel *_defaultLabel;
+}
 
 @end

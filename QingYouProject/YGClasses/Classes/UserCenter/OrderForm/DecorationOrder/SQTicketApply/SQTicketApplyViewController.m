@@ -8,6 +8,7 @@
 
 #import "SQTicketApplyViewController.h"
 #import "SQTicketApplyListViewController.h"
+#import "ManageMailPostViewController.h"
 
 @interface SQTicketApplyViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -93,6 +94,8 @@
     NSDictionary *dict = [[self.tableData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     cell.textLabel.text = dict[@"title"];
     cell.detailTextLabel.text = dict[@"detail"];
+    
+    
     NSInteger accessoryType = [dict[@"accessoryType"] integerValue];
     if (accessoryType == 0) {
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -111,9 +114,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    if (indexPath.section == 0 && indexPath.row == 2) {
+    
+    if (indexPath.section == 0 && indexPath.row == 2) {//发票抬头列表
         SQTicketApplyListViewController *next = [SQTicketApplyListViewController new];
         [self.navigationController pushViewController:next animated:YES];
+        return;
+    }
+    
+    if (indexPath.section == 1 && indexPath.row == 1) {//邮寄地址管理
+        ManageMailPostViewController *vc = [[ManageMailPostViewController alloc] init];
+        vc.pageType = @"personCenter";
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {

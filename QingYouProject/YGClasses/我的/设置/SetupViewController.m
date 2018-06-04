@@ -7,6 +7,7 @@
 //
 
 #import "SetupViewController.h"
+#import "SQTicketApplyListViewController.h"
 #import "LoginViewController.h"
 #import "PasswordSetValidateController.h"
 #import "AboutusViewController.h"
@@ -35,7 +36,7 @@
 {
     if(YGSingletonMarco.user.userId.length)
     {
-         _titleArray = [NSArray arrayWithObjects:@"手机号",@"密码设置",@"收货地址",@"清除缓存",@"反馈",@"关于我们", nil];
+         _titleArray = [NSArray arrayWithObjects:@"手机号",@"密码设置",@"收货地址",@"发票抬头",@"清除缓存",@"反馈",@"关于我们", nil];
     }
     else
     {
@@ -125,24 +126,34 @@
         if (indexPath.row == 1) {
             PasswordSetValidateController *vc = [[PasswordSetValidateController alloc]init];
             [self.navigationController pushViewController:vc animated:YES];
+            return;
         }
         if(indexPath.row == 2)
         {
             ManageMailPostViewController *vc = [[ManageMailPostViewController alloc] init];
             vc.pageType = @"personCenter";
             [self.navigationController pushViewController:vc animated:YES];
+            return;
         }
-        if(indexPath.row == 3)
+        if (indexPath.row == 3) {
+            SQTicketApplyListViewController *next = [[SQTicketApplyListViewController alloc] initWithIsTicketApplyManager:YES];
+            [self.navigationController pushViewController:next animated:YES];
+            return;
+        }
+        if(indexPath.row == 4)
         {
             [self clearFile];
-        }
-        if (indexPath.row == 4) {
-            EvaluateViewController *vc = [[EvaluateViewController alloc]init];
-            [self.navigationController pushViewController:vc animated:YES];
+            return;
         }
         if (indexPath.row == 5) {
+            EvaluateViewController *vc = [[EvaluateViewController alloc]init];
+            [self.navigationController pushViewController:vc animated:YES];
+            return;
+        }
+        if (indexPath.row == 6) {
             AboutusViewController *vc = [[AboutusViewController alloc]init];
             [self.navigationController pushViewController:vc animated:YES];
+            return;
         }
     }
 }
