@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.naviTitle = @"装修风格";
-    UIBarButtonItem *itme = [self createBarbuttonWithNormalImageName:@"service_black"
+    UIBarButtonItem *itme = [self createBarbuttonWithNormalImageName:@"decorate_nav_icon"
                                                    selectedImageName:@"service_black"
                                                             selector:@selector(rightButtonItemAciton)];
     self.navigationItem.rightBarButtonItem = itme;

@@ -23,7 +23,7 @@
     
 }
 - (void)configAttribute {
-    UIBarButtonItem *itme = [self createBarbuttonWithNormalImageName:@"service_black"
+    UIBarButtonItem *itme = [self createBarbuttonWithNormalImageName:@"decorate_nav_icon"
                                                    selectedImageName:@"service_black"
                                                             selector:@selector(rightButtonItemAciton)];
     self.navigationItem.rightBarButtonItem = itme;
@@ -31,6 +31,8 @@
     CGRect frame = CGRectMake(0, 0, YGScreenWidth - 150, 22);
     NSArray *titleArr = @[@"商品", @"详情", @"报价单"];
     YGSegmentView   *seg = [[YGSegmentView alloc] initWithFrame:frame titlesArray:titleArr lineColor:colorWithMainColor delegate:self];
+    seg.backgroundColor = kBlackColor;
+    seg.normalTitleColor = kWhiteColor;
     [seg setTitleFont:[UIFont systemFontOfSize:18]];
     [seg hiddenBottomLine];
     self.navigationItem.titleView = seg;

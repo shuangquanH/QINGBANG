@@ -109,7 +109,7 @@
     contactServiceButton.titleLabel.font = [UIFont systemFontOfSize:15.0];
     contactServiceButton.backgroundColor = [UIColor whiteColor];
     [contactServiceButton setTitleColor:colorWithBlack forState:UIControlStateNormal];
-    [contactServiceButton setImage:[UIImage imageNamed:@"service_black"] forState:UIControlStateNormal];
+    [contactServiceButton setImage:[UIImage imageNamed:@"decorate_nav_icon"] forState:UIControlStateNormal];
     contactServiceButton.contentEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
     // 重点位置开始
     contactServiceButton.imageEdgeInsets = UIEdgeInsetsMake(0, contactServiceButton.titleLabel.width + 2.5, 0, -contactServiceButton.titleLabel.width - 2.5);

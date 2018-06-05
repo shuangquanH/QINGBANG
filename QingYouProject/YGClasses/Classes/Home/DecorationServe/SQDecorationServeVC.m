@@ -11,7 +11,7 @@
 #import "SQDecorationServeCell.h"
 #import "SQDecorationSeveTableHeader.h"
 
-#import "SQDecorationSecondVC.h"
+#import "SQDecorationDetailVC.h"
 
 @interface SQDecorationServeVC () <UITableViewDelegate, UITableViewDataSource>
 
@@ -26,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.naviTitle = @"装修直通车";
-    UIBarButtonItem *itme = [self createBarbuttonWithNormalImageName:@"service_black"
+    UIBarButtonItem *itme = [self createBarbuttonWithNormalImageName:@"decorate_nav_icon"
                                                    selectedImageName:@"service_black"
                                                             selector:@selector(rightButtonItemAciton)];
     self.navigationItem.rightBarButtonItem = itme;
@@ -71,7 +71,7 @@
     [self contactWithCustomerServerWithType:ContactServerPropertyRepair button:nil];
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.navigationController pushViewController:[SQDecorationSecondVC new] animated:YES];
+    [self.navigationController pushViewController:[SQDecorationDetailVC new] animated:YES];
 }
 
 
@@ -80,6 +80,7 @@
     if (!_tableview) {
         CGRect  frame = CGRectMake(0, 0, KAPP_WIDTH, KAPP_HEIGHT-KNAV_HEIGHT);
         _tableview = [[SQBaseTableView   alloc] initWithFrame: frame];
+        _tableview.backgroundColor = self.view.backgroundColor;
         _tableview.estimatedRowHeight = 600;
         _tableview.rowHeight = UITableViewAutomaticDimension;
         _tableview.delegate = self;
@@ -89,7 +90,7 @@
 }
 - (SQDecorationSeveTableHeader *)header {
     if (!_header) {
-        _header = [[SQDecorationSeveTableHeader alloc] initWithFrame:CGRectMake(0, 0, YGScreenWidth, 200)];
+        _header = [[SQDecorationSeveTableHeader alloc] initWithFrame:CGRectMake(0, 0, YGScreenWidth, KSCAL(320))];
     }
     return _header;
 }

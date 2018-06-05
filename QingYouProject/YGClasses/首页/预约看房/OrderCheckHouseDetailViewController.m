@@ -218,7 +218,7 @@
                 coverButton.backgroundColor = colorWithYGWhite;
                 [coverButton setTitleColor:colorWithBlack forState:UIControlStateNormal];
                 [coverButton setTitle:@"联系客服" forState:UIControlStateNormal];
-                [coverButton setImage:[UIImage imageNamed:@"service_black"] forState:UIControlStateNormal];
+                [coverButton setImage:[UIImage imageNamed:@"decorate_nav_icon"] forState:UIControlStateNormal];
                 coverButton.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
             }else
             {

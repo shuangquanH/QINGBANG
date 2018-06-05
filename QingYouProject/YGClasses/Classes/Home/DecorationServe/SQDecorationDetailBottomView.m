@@ -23,7 +23,8 @@
         
         collectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [collectBtn setTitle:@"收藏" forState:UIControlStateNormal];
-        [collectBtn setImage:[UIImage imageNamed:@"service_black"] forState:UIControlStateNormal];
+        collectBtn.titleLabel.font = KFONT(22);
+        [collectBtn setImage:[UIImage imageNamed:@"collect_icon_black"] forState:UIControlStateNormal];
         [self addSubview:collectBtn];
         collectBtn.layer.borderWidth = 1;
         collectBtn.layer.borderColor = kGrayColor.CGColor;
@@ -31,6 +32,7 @@
         
         contactBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [contactBtn setTitle:@"咨询" forState:UIControlStateNormal];
+        contactBtn.titleLabel.font = KFONT(22);
         [contactBtn setImage:[UIImage imageNamed:@"service_black"] forState:UIControlStateNormal];
         [self addSubview:contactBtn];
         contactBtn.layer.borderWidth = 1;
