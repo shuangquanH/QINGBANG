@@ -11,7 +11,6 @@
 #import "AdvertisementInstructionCell.h"
 #import "ApplyImmediatelyController.h"
 #import "AdvertisementLocationApplyController.h"
-#import "RecommendNewsViewController.h"
 #import "CooperateThingViewController.h"
 #import "PanoramicViewController.h"
 

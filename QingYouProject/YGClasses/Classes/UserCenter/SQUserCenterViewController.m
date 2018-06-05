@@ -62,7 +62,7 @@
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Class theclass = NSClassFromString(self.userCenterArr[indexPath.section][@"vc"]);
+    Class theclass = NSClassFromString(self.userCenterArr[indexPath.row][@"vc"]);
     RootViewController  *vc = [[theclass alloc] init];
     bool needlogin = [self.userCenterArr[indexPath.row][@"needLogin"] boolValue];
     if (needlogin) {
