@@ -160,6 +160,8 @@
             break;
         case WKDecorationOrderActionTypeCallService://联系客服
             break;
+        default:
+            break;
     }
 }
 
