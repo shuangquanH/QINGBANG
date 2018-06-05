@@ -19,48 +19,76 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = colorWithMainColor;
+        self.backgroundColor = kWhiteColor;
+        self.layer.masksToBounds = NO;
+        self.layer.shadowOffset = CGSizeMake(0, -3);
+        self.layer.shadowRadius = 5;
+        self.layer.shadowOpacity = 0.15;
+        
         
         collectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [collectBtn setTitle:@"收藏" forState:UIControlStateNormal];
-        collectBtn.titleLabel.font = KFONT(22);
-        [collectBtn setImage:[UIImage imageNamed:@"collect_icon_black"] forState:UIControlStateNormal];
+        collectBtn.titleLabel.font = KFONT(20);
+        collectBtn.titleLabel.textColor = kGrayColor;
+        [collectBtn setImage:[UIImage imageNamed:@"Details_page_tab__icon1"] forState:UIControlStateNormal];
+        [collectBtn setImage:[UIImage imageNamed:@"Details_page_tab__icon1_down"] forState:UIControlStateSelected];
         [self addSubview:collectBtn];
-        collectBtn.layer.borderWidth = 1;
-        collectBtn.layer.borderColor = kGrayColor.CGColor;
+        [collectBtn setTitleColor:kGrayColor forState:UIControlStateNormal];
         
         
         contactBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [contactBtn setTitle:@"咨询" forState:UIControlStateNormal];
-        contactBtn.titleLabel.font = KFONT(22);
-        [contactBtn setImage:[UIImage imageNamed:@"service_black"] forState:UIControlStateNormal];
+        contactBtn.titleLabel.font = KFONT(20);
+        contactBtn.titleLabel.textColor = kGrayColor;
+        [contactBtn setImage:[UIImage imageNamed:@"Details_page_tab__icon2"] forState:UIControlStateNormal];
+        [contactBtn setImage:[UIImage imageNamed:@"Details_page_tab__icon2_down"] forState:UIControlStateSelected];
         [self addSubview:contactBtn];
-        contactBtn.layer.borderWidth = 1;
-        contactBtn.layer.borderColor = kGrayColor.CGColor;
+        [contactBtn setTitleColor:kGrayColor forState:UIControlStateNormal];
         
-        [collectBtn sq_setImagePosition:SQImagePositionBottom spacing:0];
-        [contactBtn sq_setImagePosition:SQImagePositionBottom spacing:0];
+        [collectBtn sq_setImagePosition:SQImagePositionTop spacing:2];
+        [contactBtn sq_setImagePosition:SQImagePositionTop spacing:2];
+        
+        SQBaseImageView *lefLine = [[SQBaseImageView alloc] init];
+        lefLine.image = [UIImage imageNamed:@"tab_line"];
+        [self addSubview:lefLine];
+        SQBaseImageView *rightLine = [[SQBaseImageView alloc] init];
+        rightLine.image = [UIImage imageNamed:@"tab_line"];
+        [self addSubview:rightLine];
+        [lefLine mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(collectBtn.mas_right);
+            make.centerY.equalTo(collectBtn);
+        }];
+        [rightLine mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(contactBtn.mas_right);
+            make.centerY.equalTo(collectBtn);
+        }];
+        
         
         
         payButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [payButton setBackgroundImage:[UIImage imageNamed:@"Details_page_tab_but_nor"] forState:UIControlStateNormal];
         [payButton setTitle:@"支付定金" forState:UIControlStateNormal];
+        [payButton setTitleColor:kGrayColor forState:UIControlStateNormal];
+        payButton.titleLabel.font = KFONT(30);
         [self addSubview:payButton];
-        payButton.layer.borderWidth = 1;
-        payButton.layer.borderColor = kGrayColor.CGColor;
         
         [collectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.top.height.equalTo(self);
-            make.width.equalTo(collectBtn.mas_height);
+            make.top.equalTo(self).offset(KSCAL(10));
+            make.left.equalTo(self);
+            make.height.equalTo(self).offset(KSCAL(-10));
+            make.width.mas_equalTo(KSCAL(150));
         }];
         
         [contactBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(collectBtn.mas_right);
             make.top.height.width.equalTo(collectBtn);
         }];
+        
         [payButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(contactBtn.mas_right);
-            make.right.equalTo(self);
-            make.top.height.equalTo(contactBtn);
+            make.width.mas_equalTo(KSCAL(330));
+            make.height.mas_equalTo(KSCAL(60));
+            make.right.equalTo(self.mas_right).offset(-KSCAL(52));
+            make.centerY.equalTo(self);
         }];
         
         

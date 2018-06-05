@@ -790,6 +790,7 @@
 		E9E1E59620C65D1D00A807BE /* MyCollectionTextCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9E1E59320C65D1C00A807BE /* MyCollectionTextCell.xib */; };
 		E9E1E59720C65D1D00A807BE /* MyCollectionTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E59420C65D1C00A807BE /* MyCollectionTextCell.m */; };
 		E9E1E59A20C65D3800A807BE /* MyCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E59920C65D3700A807BE /* MyCollectionModel.m */; };
+		E9E1E59E20C6B61C00A807BE /* SQLinkJSWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E59D20C6B61C00A807BE /* SQLinkJSWebView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -2267,6 +2268,8 @@
 		E9E1E59520C65D1D00A807BE /* MyCollectionTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionTextCell.h; sourceTree = "<group>"; };
 		E9E1E59820C65D3700A807BE /* MyCollectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionModel.h; sourceTree = "<group>"; };
 		E9E1E59920C65D3700A807BE /* MyCollectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionModel.m; sourceTree = "<group>"; };
+		E9E1E59C20C6B61C00A807BE /* SQLinkJSWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQLinkJSWebView.h; sourceTree = "<group>"; };
+		E9E1E59D20C6B61C00A807BE /* SQLinkJSWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQLinkJSWebView.m; sourceTree = "<group>"; };
 		F883056FA3AE70A8E2E8FFA5 /* Pods-QingYouProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QingYouProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-QingYouProject/Pods-QingYouProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -5536,6 +5539,8 @@
 				18C158801FC820890010ACD3 /* ProgressView.m */,
 				18C158811FC820890010ACD3 /* SelectCityPopView.h */,
 				18C158821FC820890010ACD3 /* SelectCityPopView.m */,
+				E9E1E59C20C6B61C00A807BE /* SQLinkJSWebView.h */,
+				E9E1E59D20C6B61C00A807BE /* SQLinkJSWebView.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -6041,6 +6046,7 @@
 				E2E5B3871FB0675B00205F70 /* YGVerticalAlertView.m in Sources */,
 				18C15A1E1FC8208A0010ACD3 /* TradeRecordViewController.m in Sources */,
 				18C159791FC8208A0010ACD3 /* JobOutsourceViewController.m in Sources */,
+				E9E1E59E20C6B61C00A807BE /* SQLinkJSWebView.m in Sources */,
 				18C1597E1FC8208A0010ACD3 /* MyRecruitViewController.m in Sources */,
 				18C158F51FC820890010ACD3 /* OfficePurchaseDetailViewController.m in Sources */,
 				2C8D78421FD1569300078C35 /* MyOrderCheckOrderViewController.m in Sources */,

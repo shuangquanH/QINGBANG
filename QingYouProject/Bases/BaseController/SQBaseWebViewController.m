@@ -41,6 +41,10 @@
 
 
 #pragma delegates
+// 页面加载完毕时调用
+- (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation {
+}
+
 //页面跳转时调用
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
     if (navigationAction.navigationType == WKNavigationTypeLinkActivated){
@@ -48,10 +52,6 @@
     }else{
         decisionHandler(WKNavigationActionPolicyAllow);
     }
-}
-
-// 页面加载完毕时调用
-- (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation {
 }
 
 //前端调用js方法的回调
