@@ -507,7 +507,7 @@ static NSString * const  OfficePurchaseTableViewCellId = @"OfficePurchaseTableVi
         UIButton * contactButton = [UIButton buttonWithType:UIButtonTypeCustom normalImage:nil selectedImage:nil normalTitle:@"联系客服" selectedTitle:@"联系客服" normalTitleColor:LD16TextColor selectedTitleColor:LD16TextColor backGroundColor:kWhiteColor normalBackGroundImageStr:nil selectedBackGroundImageStr:nil titleFont:14];
         [contactButton setTitleColor:colorWithBlack forState:UIControlStateNormal];
 //        [coverButton setTitle:@"联系客服" forState:UIControlStateNormal];
-        [contactButton setImage:[UIImage imageNamed:@"service_black"] forState:UIControlStateNormal];
+        [contactButton setImage:[UIImage imageNamed:@"decorate_nav_icon"] forState:UIControlStateNormal];
         [contactButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
         
         [contactButton addTarget:self action:@selector(contactButtonClick:) forControlEvents:UIControlEventTouchUpInside];

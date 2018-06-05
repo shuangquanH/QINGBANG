@@ -18,11 +18,14 @@
 @implementation YGSegmentView {
     UIView *_lineView;
     UIScrollView *_topScrollView;
+    NSMutableArray  *buttonsArr;
 }
 - (instancetype)initWithFrame:(CGRect)frame titlesArray:(NSArray *)titlesArray lineColor:(UIColor *)lineColor delegate:(id)delegate {
     self = [super initWithFrame:frame];
     if (self) {
         self.frame=frame;
+        buttonsArr = [NSMutableArray array];
+        self.backgroundColor = [UIColor whiteColor];
         self.titlesArray= titlesArray;
         self.lineColor = lineColor;
         self.delegate = delegate;
@@ -46,15 +49,16 @@
     
     for (int i=0; i<_titlesArray.count; i++) {
         UIButton *segmentButton=[UIButton buttonWithType:UIButtonTypeCustom];
+        [buttonsArr addObject:segmentButton];
         segmentButton.tag=100+i;
+        segmentButton.titleLabel.font = [UIFont systemFontOfSize:YGFontSizeNormal];
         [segmentButton setTitle:_titlesArray[i] forState:UIControlStateNormal];
         [segmentButton setTitleColor:colorWithBlack forState:UIControlStateNormal];
         [segmentButton setTitleColor:_lineColor forState:UIControlStateSelected];
-        [segmentButton addTarget:self action:@selector(segmentButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-        segmentButton.titleLabel.font = [UIFont systemFontOfSize:YGFontSizeNormal];
         segmentButton.frame=CGRectMake(baseViewWidth * i, 0, baseViewWidth,self.height-lineViewHeight);
+        
         [_topScrollView addSubview:segmentButton];
-        segmentButton.backgroundColor = kWhiteColor;
+        [segmentButton addTarget:self action:@selector(segmentButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         if (i==0) {
             _lineView.width = [UILabel calculateWidthWithString:_titlesArray[i] textFont:segmentButton.titleLabel.font numerOfLines:1].width + 8;
             _lineView.centerx=segmentButton.centerx;
@@ -67,6 +71,13 @@
     }
 }
 
+- (void)setNormalTitleColor:(UIColor *)normalTitleColor {
+    _normalTitleColor = normalTitleColor;
+    for (UIButton *button in buttonsArr) {
+        [button setTitleColor:normalTitleColor forState:UIControlStateNormal];
+    }
+    
+}
 -(void)segmentButtonClick:(UIButton*)segBtn {
     [self selectButtonWithIndex:(int)segBtn.tag-100];
     [_delegate segmentButtonClickWithIndex:(int)segBtn.tag-100];

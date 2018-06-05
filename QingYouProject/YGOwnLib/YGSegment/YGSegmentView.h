@@ -32,7 +32,7 @@
 
 
 
-
+@property (nonatomic, strong) UIColor       *normalTitleColor;
 
 @property (nonatomic, readonly, strong) NSArray * titlesArray;
 @property (nonatomic, readonly, strong) UIColor * lineColor;
