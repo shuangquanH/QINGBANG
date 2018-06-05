@@ -8,8 +8,7 @@
 
 #import "MyCollectionListController.h"
 #import "MyCollectionViewController.h"
-//#import "MyPlayTogetherCollectionController.h"
-//#import "MyTabPlayTogetherViewController.h"
+
 
 @interface MyCollectionListController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -28,10 +27,6 @@
     _titleArray = [NSArray arrayWithObjects:@"资金扶持",@"财务代记账",@"工商一体化",@"广告位置",@"办公采购", nil];
     
     _imageArray = [NSArray arrayWithObjects:@"mine_nursery_finance_little",@"mine_finance_little",@"mine_industry_little",@"mine_steward_ad",@"mine_steward_purchasing", nil];
-    
-    //    _titleArray = [NSArray arrayWithObjects:@"资金扶持",@"抢购",@"财务代记账",@"工商一体化",@"广告位置",@"办公采购",@"网络管家",@"新鲜事",@"一起玩",@"法律服务", nil];
-    //
-    //    _imageArray = [NSArray arrayWithObjects:@"mine_nursery_finance_little",@"mine_purchase_little",@"mine_finance_little",@"mine_industry_little",@"mine_steward_ad",@"mine_steward_purchasing",@"mine_steward_internet",@"mine_collect_freshnews",@"mine_havefun_little",@"mine_steward_legal", nil];
     
     _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, YGScreenWidth, YGScreenHeight) style:UITableViewStyleGrouped];
     _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, YGScreenWidth, 0.001)];
