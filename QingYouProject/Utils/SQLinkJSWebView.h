@@ -4,7 +4,7 @@
 //
 //  Created by qwuser on 2018/6/5.
 //  Copyright © 2018年 ccyouge. All rights reserved.
-//
+//  只用webview与前端交互
 
 #import <WebKit/WebKit.h>
 
@@ -24,7 +24,7 @@ typedef void(^jsCallBack)(NSString *, _Nullable id);
 /** 原生应用调用js方法及回调 */
 //eg:@"remarkCount(0)",()内必须传值
 //bklock回调方法名,返回值
-- (void)ocCallJsWithMethodName:(NSString    *)method back:(void(^)(NSString*, id))block;
+- (void)ocCallJsWithMethodName:(NSString    *)method back:(void(^)(NSString*, _Nullable id))block;
 
 /** html调用js方法  */
 //bklock回调方法名,参数
