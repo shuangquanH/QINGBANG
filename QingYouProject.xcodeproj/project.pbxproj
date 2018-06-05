@@ -1120,6 +1120,10 @@
 		0470A43020C150F5003F23C6 /* SQApplyAfterSaleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQApplyAfterSaleViewController.m; sourceTree = "<group>"; };
 		0470A43220C152DF003F23C6 /* SQAfterSaleListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQAfterSaleListViewController.h; sourceTree = "<group>"; };
 		0470A43320C152DF003F23C6 /* SQAfterSaleListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQAfterSaleListViewController.m; sourceTree = "<group>"; };
+		04FD9BFB20C61AA300B3D153 /* WKAnimationAlert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKAnimationAlert.h; sourceTree = "<group>"; };
+		04FD9BFC20C61AA300B3D153 /* AnimationUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationUtils.h; sourceTree = "<group>"; };
+		04FD9BFD20C61AA300B3D153 /* WKAnimationAlert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKAnimationAlert.m; sourceTree = "<group>"; };
+		04FD9BFE20C61AA300B3D153 /* AnimationUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationUtils.m; sourceTree = "<group>"; };
 		1809E27A1FEB3A85006C54EC /* SecondhandReplacementICreateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondhandReplacementICreateViewController.h; sourceTree = "<group>"; };
 		1809E27B1FEB3A85006C54EC /* SecondhandReplacementICreateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondhandReplacementICreateViewController.m; sourceTree = "<group>"; };
 		1809E27D1FEB3DBF006C54EC /* SecondhandReplacementICreateTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondhandReplacementICreateTableViewCell.h; sourceTree = "<group>"; };
@@ -3189,6 +3193,17 @@
 				040084EC20C52C520094CF22 /* WKAfterSaleRecordCell.m */,
 			);
 			path = AfterSale;
+			sourceTree = "<group>";
+		};
+		04FD9BFA20C61AA300B3D153 /* WKAlert */ = {
+			isa = PBXGroup;
+			children = (
+				04FD9BFB20C61AA300B3D153 /* WKAnimationAlert.h */,
+				04FD9BFC20C61AA300B3D153 /* AnimationUtils.h */,
+				04FD9BFD20C61AA300B3D153 /* WKAnimationAlert.m */,
+				04FD9BFE20C61AA300B3D153 /* AnimationUtils.m */,
+			);
+			path = WKAlert;
 			sourceTree = "<group>";
 		};
 		0689741FD22BD91624E78C41 /* Pods */ = {
@@ -7816,6 +7831,7 @@
 		E99DE22D20B658C9009CEF88 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				04FD9BFA20C61AA300B3D153 /* WKAlert */,
 				E99DE22E20B65A11009CEF88 /* SQRequest.h */,
 				E99DE22F20B65A11009CEF88 /* SQRequest.m */,
 				18C1587F1FC820890010ACD3 /* ProgressView.h */,
