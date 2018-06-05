@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class WKInvoiceModel;
+
 @interface SQTicketApplyCell : UITableViewCell
+
+- (void)configInvoiceInfo:(WKInvoiceModel *)invoiceInfo;
 
 @end

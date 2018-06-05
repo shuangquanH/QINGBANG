@@ -10,7 +10,7 @@
 #import "SQTicketApplyListViewController.h"
 #import "ManageMailPostViewController.h"
 
-@interface SQTicketApplyViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface SQTicketApplyViewController ()<UITableViewDelegate, UITableViewDataSource, ManageMailPostViewControllerDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -18,8 +18,11 @@
 
 @property (nonatomic, strong) UIButton *confirmButton;
 
-@property (nonatomic, strong) NSArray<NSArray *> *tableData;
+@property (nonatomic, strong) UIView *footerView;
 
+@property (nonatomic, strong) NSArray<NSMutableArray *> *tableData;
+
+@property (nonatomic, assign) BOOL isNeedPostMail;
 
 @end
 
@@ -27,19 +30,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.naviTitle = @"开票申请";
+    
     [self setupSubviews];
 }
 
 - (void)setupSubviews {
     
+    _isNeedPostMail = YES;
+    
     _tableData = @[
                    @[@{@"title": @"发票类型", @"detail": @"纸质发票", @"accessoryType": @(0)},
                      @{@"title": @"发票内容", @"detail": @"明细", @"accessoryType": @(0)},
-                     @{@"title": @"发票抬头", @"detail": @"",    @"accessoryType": @(1)}],
+                     @{@"title": @"发票抬头", @"detail": @"",    @"accessoryType": @(1)}].mutableCopy,
                    
                    @[@{@"title": @"是否邮寄", @"detail": @"", @"accessoryType": @(2)},
-                     @{@"title": @"邮寄地址", @"detail": @"", @"accessoryType": @(1)}]
+                     @{@"title": @"邮寄地址", @"detail": @"", @"accessoryType": @(1)}].mutableCopy
                    ];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
@@ -75,6 +82,18 @@
     }];
 }
 
+#pragma mark - action
+- (void)postMailValueChanged:(UISwitch *)switcher {
+    _isNeedPostMail = !_isNeedPostMail;
+    if (_isNeedPostMail) {
+        [self.tableData[1] addObject:@{@"title": @"邮寄地址", @"detail": @"", @"accessoryType": @(1)}];
+    }
+    else {
+        [self.tableData[1] removeLastObject];
+    }
+    [self.tableView reloadData];
+}
+
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.tableData.count;
@@ -94,7 +113,6 @@
     NSDictionary *dict = [[self.tableData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     cell.textLabel.text = dict[@"title"];
     cell.detailTextLabel.text = dict[@"detail"];
-    
     
     NSInteger accessoryType = [dict[@"accessoryType"] integerValue];
     if (accessoryType == 0) {
@@ -123,12 +141,20 @@
     
     if (indexPath.section == 1 && indexPath.row == 1) {//邮寄地址管理
         ManageMailPostViewController *vc = [[ManageMailPostViewController alloc] init];
+        vc.shippingAddressViewControllerdelegate = self;
         vc.pageType = @"personCenter";
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    return [UIView new];
+    if (!_isNeedPostMail && section == 1) {
+        return self.footerView;
+    }
+    UIView *view = [tableView dequeueReusableCellWithIdentifier:@"footer"];
+    if (!view) {
+        view = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"footer"];
+    }
+    return view;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     return nil;
@@ -137,7 +163,15 @@
     return 0.1;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if (!_isNeedPostMail && section == 1) {
+        return 44.0;
+    }
     return 15.0;
+}
+
+#pragma mark - ManageMailPostViewControllerDelegate
+- (void)passModel:(ManageMailPostModel *)model {
+    
 }
 
 #pragma mark - lazy load
@@ -145,8 +179,24 @@
     if (!_sendSwitch) {
         _sendSwitch = [[UISwitch alloc] init];
         _sendSwitch.on = YES;
+        [_sendSwitch addTarget:self action:@selector(postMailValueChanged:) forControlEvents:UIControlEventValueChanged];
     }
     return _sendSwitch;
+}
+
+- (UIView *)footerView {
+    if (!_footerView) {
+        _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, 44)];
+        
+        UILabel *tipLab = [UILabel labelWithFont:15.0 textColor:[UIColor grayColor] text:@"*可联系客户经理索取"];
+        [_footerView addSubview:tipLab];
+        [tipLab sizeToFit];
+        
+        tipLab.x = 15.0;
+        tipLab.centery = 22;
+        
+    }
+    return _footerView;
 }
 
 @end

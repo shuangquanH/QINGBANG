@@ -42,25 +42,36 @@ static CGFloat singleLineHeight() {
         [self.contentView addSubview:orderStateLabel];
         
         orderImage = [[UIImageView alloc] init];
+        orderImage.contentMode = UIViewContentModeScaleAspectFill;
         [self.contentView addSubview:orderImage];
         
         orderTitle = [[UILabel alloc] init];
+        orderTitle.font = KFONT(28.0);
+        orderTitle.textColor = KCOLOR(@"666666");
         orderTitle.numberOfLines = 2;
         [self.contentView addSubview:orderTitle];
         
         orderDesc = [[UILabel alloc] init];
+        orderDesc.font = KFONT(28.0);
+        orderDesc.textColor = KCOLOR(@"666666");
         orderDesc.numberOfLines = 1;
         [self.contentView addSubview:orderDesc];
         
         orderPrice = [[UILabel alloc] init];
+        orderPrice.font = KFONT(28.0);
+        orderPrice.textColor = KCOLOR(@"333333");
         [self.contentView addSubview:orderPrice];
         
         /** 定金  */
         paymentLabel = [[UILabel alloc] init];
+        paymentLabel.font = KFONT(28.0);
+        paymentLabel.textColor = KCOLOR(@"333333");
         [self.contentView addSubview:paymentLabel];
         
         /** 定金金额  */
         paymentPrice = [[UILabel alloc] init];
+        paymentPrice.font = KFONT(28.0);
+        paymentPrice.textColor = KCOLOR(@"e60012");
         [paymentPrice setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
         [self.contentView addSubview:paymentPrice];
         
@@ -68,7 +79,9 @@ static CGFloat singleLineHeight() {
         paymentState = [[SQDecorationCellPayButtonView alloc] init];
         paymentState.actionDelegate = self;
         [self.contentView addSubview:paymentState];
-        
+    
+        paymentLabel.text = @"定金:";
+
         [self sqlayoutSubviews];
         
     }
@@ -83,16 +96,16 @@ static CGFloat singleLineHeight() {
     }];
     
     [orderImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView).offset(KSPACE);
-        make.top.equalTo(orderStateLabel.mas_bottom).offset(KSPACE);
-        make.width.mas_equalTo(100);
-        make.height.mas_equalTo(100);
+        make.left.equalTo(self.contentView).offset(KSCAL(30));
+        make.top.equalTo(orderStateLabel.mas_bottom).offset(KSCAL(20));
+        make.width.mas_equalTo(KSCAL(240));
+        make.height.mas_equalTo(KSCAL(170));
     }];
     
     [orderTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(orderImage.mas_right).offset(KSPACE);
+        make.left.equalTo(orderImage.mas_right).offset(KSCAL(20));
         make.top.equalTo(orderImage);
-        make.right.equalTo(self.contentView).offset(-KSPACE);
+        make.right.equalTo(self.contentView).offset(-KSCAL(30));
     }];
     
     [orderDesc mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -147,16 +160,16 @@ static CGFloat singleLineHeight() {
 
 #pragma mark - SQDecorationDetailViewProtocol
 - (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo {
+    
     [paymentState configOrderInfo:orderInfo stage:0];
     
     orderStateLabel.text = orderInfo.orderTitle;
     orderImage.backgroundColor = [UIColor orangeColor];
-    orderImage.image = [UIImage imageNamed:@"mine_instashot"];
-    orderTitle.text = @"产品名称产品名称产品名称产品名称产品名称产品名称产品名称";
-    orderDesc.text = @"产品描述产品描述产品描述产品描述产品描述产品描述产品描述";
-    orderPrice.text = @"189230元";
-    paymentLabel.text = @"定金:";
-    paymentPrice.text = @"100元";
+    [orderImage sd_setImageWithURL:[NSURL URLWithString:orderInfo.decorate_icon] placeholderImage:nil];
+    orderTitle.text = orderInfo.decorateName;
+    orderDesc.text = orderInfo.decorateDescribe;
+    orderPrice.text = [NSString stringWithFormat:@"¥ %@", orderInfo.estimate];
+    paymentPrice.text = [NSString stringWithFormat:@"¥ %@", orderInfo.depositPrice];
     paymentState.backgroundColor = colorWithMainColor;
 }
 

@@ -29,13 +29,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    [self fakeList];
-    
+
     self.naviTitle = @"我的装修订单";
     [self.view addSubview:self.tableview];
+    
+    self.orderList = [NSMutableArray array];
     [self createRefreshWithScrollView:self.tableview containFooter:YES];
+    [self.tableview.mj_header beginRefreshing];
 }
 
 - (void)viewWillLayoutSubviews {
@@ -54,10 +54,16 @@
 
 - (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
     if (headerAction) {
-        NSLog(@"下拉刷新");
-        [self.tableview.mj_header endRefreshing];
+        [YGNetService YGPOST:@"getOrderList" parameters:@{@"userId": YGSingletonMarco.user.userId} showLoadingView:NO scrollView:self.tableview success:^(id responseObject) {
+            NSArray<SQDecorationDetailModel *> *tmp = [NSArray yy_modelArrayWithClass:[SQDecorationDetailModel class] json:responseObject[@"order_list"]];
+            [self.orderList removeAllObjects];
+            [self.orderList addObjectsFromArray:tmp];
+            [self.tableview reloadData];
+        } failure:^(NSError *error) {
+            
+        }];
     } else {
-        NSLog(@"上拉加载");
+
         [self.tableview.mj_footer endRefreshing];
     }
 }
@@ -89,6 +95,7 @@
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     SQDecorationOrderDetailVC *vc = [[SQDecorationOrderDetailVC alloc] init];
+    vc.orderNum = [self.orderList objectAtIndex:indexPath.row].orderNum;
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -171,6 +178,7 @@
         _tableview = [[UITableView alloc] initWithFrame:CGRectZero];
         _tableview.delegate = self;
         _tableview.dataSource = self;
+        _tableview.tableFooterView = [UIView new];
     }
     return _tableview;
 }
@@ -183,31 +191,5 @@
     return _bottomPayView;
 }
 
-- (void)fakeList {
-    self.orderList = [NSMutableArray array];
-    
-    SQDecorationDetailModel *m1 = [SQDecorationDetailModel new];
-    m1.orderState = 1;
-    [self.orderList addObject:m1];
-    
-    SQDecorationDetailModel *m2 = [SQDecorationDetailModel new];
-    m2.orderState = 2;
-    [self.orderList addObject:m2];
-    
-    SQDecorationDetailModel *m3 = [SQDecorationDetailModel new];
-    m3.orderState = 3;
-    [self.orderList addObject:m3];
-    
-    SQDecorationDetailModel *m4 = [SQDecorationDetailModel new];
-    m4.orderState = 4;
-    m4.stageOneState = 1;
-    m4.stageTwoState = 2;
-    m4.stageThreeState = 3;
-    [self.orderList addObject:m4];
-    
-    SQDecorationDetailModel *m5 = [SQDecorationDetailModel new];
-    m5.orderState = 5;
-    [self.orderList addObject:m5];
-}
 
 @end

@@ -10,14 +10,14 @@
 #import "SQAddTicketApplyViewController.h"
 
 #import "SQTicketApplyCell.h"
+#import "WKInvoiceModel.h"
 
 @interface SQTicketApplyListViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, assign) BOOL isTicketApplyManager;
-
 @property (nonatomic, strong) UITableView *tableView;
-
 @property (nonatomic, strong) UIButton *addButton;
+@property (nonatomic, strong) NSMutableArray<WKInvoiceModel *> *invoiceList;
 
 @end
 
@@ -34,37 +34,12 @@
     [super viewDidLoad];
 
     [self layoutNavigation];
+    
     [self setupSubviews];
-}
-
-- (void)layoutNavigation {
-    if (self.isTicketApplyManager) {
-        self.naviTitle = @"发票抬头管理";
-    }
-    else {
-        self.naviTitle = @"发票抬头";
-
-        UIBarButtonItem *managerItem = [self createBarbuttonWithNormalTitleString:@"管理" selectedTitleString:@"管理" selector:@selector(click_managerBtn)];
-        self.navigationItem.rightBarButtonItem = managerItem;
-    }
-}
-
-- (void)setupSubviews {
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-    _tableView.rowHeight = 50;
-    _tableView.tableFooterView = [UIView new];
-    _tableView.separatorInset = UIEdgeInsetsZero;
-    [self.view addSubview:_tableView];
+    self.invoiceList = [NSMutableArray array];
     
-    _addButton = [UIButton new];
-    [_addButton setBackgroundColor:[UIColor redColor]];
-    [_addButton setTitle:@"添加新抬头" forState:UIControlStateNormal];
-    [_addButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [_addButton addTarget:self action:@selector(click_confirm) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_addButton];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)viewWillLayoutSubviews {
@@ -86,9 +61,57 @@
     }];
 }
 
+- (void)layoutNavigation {
+    if (self.isTicketApplyManager) {
+        self.naviTitle = @"发票抬头管理";
+    }
+    else {
+        self.naviTitle = @"发票抬头";
+        UIBarButtonItem *managerItem = [self createBarbuttonWithNormalTitleString:@"管理" selectedTitleString:@"管理" selector:@selector(click_managerBtn)];
+        self.navigationItem.rightBarButtonItem = managerItem;
+    }
+}
+
+- (void)setupSubviews {
+    
+    _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.rowHeight = 50;
+    _tableView.tableFooterView = [UIView new];
+    _tableView.separatorInset = UIEdgeInsetsZero;
+    [self.view addSubview:_tableView];
+    
+    _addButton = [UIButton new];
+    [_addButton setBackgroundColor:[UIColor redColor]];
+    [_addButton setTitle:@"添加新抬头" forState:UIControlStateNormal];
+    [_addButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_addButton addTarget:self action:@selector(click_confirm) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_addButton];
+    
+    [self createRefreshWithScrollView:self.tableView containFooter:YES];
+}
+
+- (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
+    if (headerAction) {
+        [YGNetService YGPOST:@"getInvoiceInfo" parameters:@{@"userId": YGSingletonMarco.user.userId} showLoadingView:NO scrollView:self.tableView success:^(id responseObject) {
+            NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKInvoiceModel class] json:responseObject[@"invoice_list"]];
+            [self.invoiceList removeAllObjects];
+            [self.invoiceList addObjectsFromArray:tmp];
+            [self.tableView reloadData];
+        } failure:nil];
+    }
+    else {
+//        [YGNetService YGPOST:@"" parameters:@{@"userId": YGSingletonMarco.user.userId} showLoadingView:NO scrollView:self.tableView success:^(id responseObject) {
+//            NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKInvoiceModel class] json:responseObject];
+//            [self.invoiceList addObjectsFromArray:tmp];
+//            [self.tableView reloadData];
+//        } failure:nil];
+    }
+}
+
 #pragma mark - action
 - (void)click_confirm {
-    
     SQAddTicketApplyViewController *next = [SQAddTicketApplyViewController new];
     [self.navigationController pushViewController:next animated:YES];
 }
@@ -101,7 +124,7 @@
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return self.invoiceList.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SQTicketApplyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
@@ -109,9 +132,21 @@
         cell = [[SQTicketApplyCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
         cell.accessoryType = (self.isTicketApplyManager ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone);
     }
-    cell.textLabel.text = @"张三";
-    cell.detailTextLabel.text = @"个人";
+    [cell configInvoiceInfo:[self.invoiceList objectAtIndex:indexPath.row]];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.isTicketApplyManager) {
+        SQAddTicketApplyViewController *next = [SQAddTicketApplyViewController new];
+        next.invoiceInfo = [self.invoiceList objectAtIndex:indexPath.row];
+        [self.navigationController pushViewController:next animated:YES];
+    }
+    else {
+        if (self.selectInvoiceBlock) {
+            self.selectInvoiceBlock([self.invoiceList objectAtIndex:indexPath.row]);
+        }
+    }
 }
 
 @end

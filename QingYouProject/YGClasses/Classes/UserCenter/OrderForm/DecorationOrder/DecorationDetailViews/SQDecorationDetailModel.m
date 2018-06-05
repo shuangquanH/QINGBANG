@@ -29,7 +29,14 @@
                 _orderTitle = @"已关闭";
                 break;
             case 3:
-                _orderTitle = @"受理中";
+            {
+                if (_isInRefund) {
+                    _orderTitle = @"受理中（待退款）";
+                }
+                else {
+                    _orderTitle = @"受理中";
+                }
+            }
                 break;
             case 4:
                 _orderTitle = @"装修中,待付款";
@@ -43,3 +50,8 @@
 }
 
 @end
+
+@implementation WKDecorationOrderDetailModel
+
+@end
+

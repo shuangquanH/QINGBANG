@@ -10,4 +10,6 @@
 
 @interface SQDecorationOrderDetailVC : RootViewController
 
+@property (nonatomic, copy) NSString *orderNum;
+
 @end

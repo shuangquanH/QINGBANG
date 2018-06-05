@@ -10,8 +10,8 @@
 #import "ManageMailPostModel.h"
 
 @protocol ManageMailPostTableViewCellDelegate <NSObject>
-
--(void)modifyButtonClickWithIndexPath:(NSIndexPath *)indexPath;
+@optional
+- (void)modifyButtonClickWithIndexPath:(NSIndexPath *)indexPath;
 
 @end
 @interface ManageMailPostTableViewCell : UITableViewCell

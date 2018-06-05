@@ -8,7 +8,11 @@
 
 #import "RootViewController.h"
 
+@class WKInvoiceModel;
+
 @interface SQTicketApplyListViewController : RootViewController
+
+@property (nonatomic, copy) void (^ selectInvoiceBlock)(WKInvoiceModel *invoiceInfo);
 
 - (instancetype)initWithIsTicketApplyManager:(BOOL)isTicketApplyManager;
 

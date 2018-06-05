@@ -61,19 +61,36 @@ const CGFloat kFunctionButtonTopMargin = 0.0;
             else {//受理中
                 [self showAlreadyPayLabelWithTitle:@"已支付"];
                 if (self.isInDetail) {//在详情中，未申请退款则显示申请退款按钮，否则显示查看退款详情
-                    UIButton *btn = [self setupButtonWithTitle:@"申请退款"];
-                    btn.tag = WKDecorationOrderActionTypeRefund;
-                    [btn addTarget:self action:@selector(click_typeButton:) forControlEvents:UIControlEventTouchUpInside];
-                    [self addSubview:btn];
-                    [_buttons addObject:btn];
+                    if (orderInfo.canRefund) {//可以申请退款
+                        UIButton *btn = [self setupButtonWithTitle:@"申请退款"];
+                        btn.tag = WKDecorationOrderActionTypeRefund;
+                        [btn addTarget:self action:@selector(click_typeButton:) forControlEvents:UIControlEventTouchUpInside];
+                        [self addSubview:btn];
+                        [_buttons addObject:btn];
+                        
+                        [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+                            make.left.centerY.mas_equalTo(0);
+                            make.width.mas_equalTo(kFunctionButtonWidth);
+                            make.top.mas_equalTo(kFunctionButtonTopMargin);
+                        }];
+                    }
+                    else if (orderInfo.isInRefund) {//正在申请退款
+                        UIButton *btn = [self setupButtonWithTitle:@"查看退款详情"];
+                        btn.tag = WKDecorationOrderActionTypeRefundDetail;
+                        [btn addTarget:self action:@selector(click_typeButton:) forControlEvents:UIControlEventTouchUpInside];
+                        [self addSubview:btn];
+                        [_buttons addObject:btn];
+                        
+                        [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+                            make.left.centerY.mas_equalTo(0);
+                            make.width.mas_equalTo(kFunctionButtonWidth);
+                            make.top.mas_equalTo(kFunctionButtonTopMargin);
+                        }];
+                    }
                     
-                    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-                        make.left.centerY.mas_equalTo(0);
-                        make.width.mas_equalTo(kFunctionButtonWidth);
-                        make.top.mas_equalTo(kFunctionButtonTopMargin);
-                    }];
                 }
             }
+        
         }
         else {//订单状态1\2\3，无其他阶段
             [_buttons makeObjectsPerformSelector:@selector(removeFromSuperview) withObject:nil];

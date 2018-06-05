@@ -26,60 +26,80 @@
 
 - (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo {
     
-    if (!_numberLab) {
-        [self setupSubviews];
-    }
+    [self setupSubviewsByOrderInfo:orderInfo];
     
-    _numberLab.text     = @"订单编号：21414352453452431";
-    _createTimeLab.text = @"订单编号：21414352453452431";
-    _payTimeLab.text  = @"订单编号：21414352453452431";
-    _finishedLab.text = @"订单编号：21414352453452431";
-    
+    _numberLab.text     = [NSString stringWithFormat:@"订单编号：%@", orderInfo.orderNum];
+    _createTimeLab.text = [NSString stringWithFormat:@"创建时间：%@", orderInfo.createTime];
+    _payTimeLab.text  = [NSString stringWithFormat:@"付款时间：%@", orderInfo.payTime];
+    _finishedLab.text = [NSString stringWithFormat:@"完成时间：%@", orderInfo.finishTime];
 }
 
-- (void)setupSubviews {
+- (void)setupSubviewsByOrderInfo:(SQDecorationDetailModel *)orderInfo {
     
-    _numberLab = [UILabel labelWithFont:14 textColor:[UIColor blackColor]];
-    [self addSubview:_numberLab];
+    if (!_numberLab) {
+        _numberLab = [UILabel labelWithFont:14 textColor:[UIColor blackColor]];
+        [self addSubview:_numberLab];
+        
+        _createTimeLab = [UILabel labelWithFont:14 textColor:[UIColor blackColor]];
+        [self addSubview:_createTimeLab];
+        
+        [_numberLab mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(15);
+            make.top.mas_equalTo(10);
+            make.centerX.mas_equalTo(0);
+        }];
+        
+        [_createTimeLab mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.centerX.equalTo(self->_numberLab);
+            make.top.equalTo(self->_numberLab.mas_bottom).offset(8);
+        }];
+    }
 
-    _createTimeLab = [UILabel labelWithFont:14 textColor:[UIColor blackColor]];
-    [self addSubview:_createTimeLab];
+    if (orderInfo.orderState == 3 || orderInfo.orderState == 4 || orderInfo.orderState == 5) {
+        if (!_payTimeLab) {
+            _payTimeLab = [UILabel labelWithFont:14 textColor:[UIColor blackColor]];
+            [self addSubview:_payTimeLab];
+            
+            [_payTimeLab mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.centerX.equalTo(self->_numberLab);
+                make.top.equalTo(self->_createTimeLab.mas_bottom).offset(8);
+            }];
+        }
+        _payTimeLab.hidden = NO;
+    }
+    else {
+        _payTimeLab.hidden = YES;
+    }
     
-    _payTimeLab = [UILabel labelWithFont:14 textColor:[UIColor blackColor]];
-    [self addSubview:_payTimeLab];
-    
-    _finishedLab = [UILabel labelWithFont:14 textColor:[UIColor blackColor]];
-    [self addSubview:_finishedLab];
-                   
-    [_numberLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(15);
-        make.top.mas_equalTo(10);
-        make.centerX.mas_equalTo(0);
-    }];
-    
-    [_createTimeLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.centerX.equalTo(self->_numberLab);
-        make.top.equalTo(self->_numberLab.mas_bottom).offset(8);
-    }];
-    
-    [_payTimeLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.centerX.equalTo(self->_numberLab);
-        make.top.equalTo(self->_createTimeLab.mas_bottom).offset(8);
-    }];
-    
-    [_finishedLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.centerX.equalTo(self->_numberLab);
-        make.top.equalTo(self->_payTimeLab.mas_bottom).offset(8);
-    }];
-    
+    if (orderInfo.orderState == 5) {
+        if (!_finishedLab) {
+            _finishedLab = [UILabel labelWithFont:14 textColor:[UIColor blackColor]];
+            [self addSubview:_finishedLab];
+            [_finishedLab mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.centerX.equalTo(self->_numberLab);
+                make.top.equalTo(self->_payTimeLab.mas_bottom).offset(8);
+            }];
+        }
+        _finishedLab.hidden = NO;
+    }
+    else {
+        _finishedLab.hidden = YES;
+    }
+ 
 }
 
 - (CGSize)viewSize {
     
     if (!_numberLab.text.length) return CGSizeMake(kScreenW, 44);
     
-    CGFloat height = 4 * [_numberLab.text sizeWithFont:[UIFont systemFontOfSize:14.0] andMaxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)].height + 3 * 8 + 20;
+    NSInteger count = 0;
+    for (UIView *v in self.subviews) {
+        if (!v.hidden) {
+            count += 1;
+        }
+    }
     
+    CGFloat height = count * [_numberLab.text sizeWithFont:[UIFont systemFontOfSize:14.0] andMaxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)].height + (count - 1) * 8 + 20;
     return CGSizeMake(kScreenW, height);
 }
 
