@@ -8,14 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import "SQDecorationDetailModel.h"
+#import "ManageMailPostModel.h"
+#import "SQDecorationCellPayButtonView.h"
 
-@class SQDecorationDetailViewModel, SQDecorationDetailFunctionView, SQDecorationDetailServerView;
+@class SQDecorationDetailViewModel, SQDecorationDetailFunctionView, SQDecorationDetailServerView, SQDecorationOrderCell;
 
 @protocol SQDecorationDetailViewProtocol<NSObject>
 
 - (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo;
 
 - (CGSize)viewSize;
+
+@optional
+- (void)configAddressInfo:(ManageMailPostModel *)addressInfo;
 
 @end
 
@@ -26,6 +31,8 @@
 - (void)serviceView:(SQDecorationDetailServerView *)serviceView didClickServiceType:(NSInteger)serviceType;
 /** 0：下载报价单 1：查看合同 2：开票申请 */
 - (void)functionView:(SQDecorationDetailFunctionView *)functionView didClickFunctionType:(NSInteger)functionType;
+/** 点击了按钮动作 */
+- (void)orderCell:(SQDecorationOrderCell *)orderCell didClickAction:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage;
 
 @end
 
@@ -38,5 +45,6 @@
 
 - (void)setupByOrderInfo:(SQDecorationDetailModel *)orderInfo;
 
+- (void)sendOrderDetailRequestWithOrderNum:(NSString *)orderNum completed:(void(^)(WKDecorationOrderDetailModel *order, NSError *error))completed;
 
 @end

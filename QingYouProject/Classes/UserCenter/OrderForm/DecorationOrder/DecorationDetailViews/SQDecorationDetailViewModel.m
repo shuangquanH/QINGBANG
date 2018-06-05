@@ -30,6 +30,24 @@
 
 @implementation SQDecorationDetailViewModel
 
+- (void)sendOrderDetailRequestWithOrderNum:(NSString *)orderNum completed:(void (^)(WKDecorationOrderDetailModel *, NSError *))completed {
+    
+    if (!orderNum.length) {
+        [YGAppTool showToastWithText:@"找不到该订单信息"];
+        completed(nil, nil);
+        return;
+    }
+    
+    [YGNetService YGPOST:@"getOrderInfo" parameters:@{@"orderNum": orderNum} showLoadingView:YES scrollView:nil success:^(id responseObject) {
+        WKDecorationOrderDetailModel *order = [WKDecorationOrderDetailModel yy_modelWithJSON:responseObject];
+        order.order_info.orderState = 5;
+        [self setupByOrderInfo:order.order_info];
+        completed(order, nil);
+    } failure:^(NSError *error) {
+        completed(nil, error);
+    }];
+}
+
 - (void)setupByOrderInfo:(SQDecorationDetailModel *)orderInfo {
     if (!orderInfo) {
         return;
@@ -66,6 +84,7 @@
         detailCell = [[SQDecorationOrderCell alloc] init];
     }
     detailCell.isInDetail = YES;
+    detailCell.delegate = self;
     detailCell.backgroundColor = [UIColor whiteColor];
     [tmp addObject:detailCell];
     
@@ -112,6 +131,11 @@
 }
 
 #pragma mark - decorationOrderCellDelegate
+- (void)decorationCell:(SQDecorationOrderCell *)decorationCell tapedOrderActionType:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage {
+    if ([self.orderDetailDelegate respondsToSelector:@selector(orderCell:didClickAction:forStage:)]) {
+        [self.orderDetailDelegate orderCell:decorationCell didClickAction:actionType forStage:stage];
+    }
+}
 /** 点击了取消订单  */
 - (void)tapedCancelOrderWithModel:(NSString *)model {
     

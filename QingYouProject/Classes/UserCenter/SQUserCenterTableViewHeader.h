@@ -10,6 +10,8 @@
 
 @interface SQUserCenterTableViewHeader : UIView
 
+@property (nonatomic, copy) void (^ tapToPersonalInfo)(void);
+
 - (void)configUserInfo:(YGUser *)user;
 
 @end

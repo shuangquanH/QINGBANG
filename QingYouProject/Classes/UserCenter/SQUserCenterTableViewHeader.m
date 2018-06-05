@@ -30,6 +30,8 @@
     _iconImageView.contentMode = UIViewContentModeScaleAspectFit;
     _iconImageView.layer.cornerRadius = 40;
     _iconImageView.layer.masksToBounds = YES;
+    _iconImageView.userInteractionEnabled = YES;
+    [_iconImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap_icon)]];
     [self addSubview:_iconImageView];
     
     _nameLab = [UILabel labelWithFont:15.0 textColor:[UIColor whiteColor]];
@@ -53,6 +55,12 @@
         make.left.equalTo(self->_nameLab);
         make.top.equalTo(self->_iconImageView.mas_centerY).offset(4);
     }];
+}
+
+- (void)tap_icon {
+    if (self.tapToPersonalInfo) {
+        self.tapToPersonalInfo();
+    }
 }
 
 - (void)configUserInfo:(YGUser *)user {

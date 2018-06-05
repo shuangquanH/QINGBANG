@@ -7,21 +7,19 @@
 //
 
 #import "SQUserCenterViewController.h"
+//#import "PersonalInformationViewController.h"
+#import "SQOrderViewController.h"
 
 #import "SQUserCenterTableViewHeader.h"
 
-#import "SQOrderViewController.h"
-
-
 @interface SQUserCenterViewController () <UITableViewDelegate, UITableViewDataSource>
-
-@property (nonatomic, strong) NSArray       *userCenterArr;
-@property (nonatomic, strong) SQBaseTableView       *tableview;
+@property (nonatomic, strong) NSArray                           *userCenterArr;
+@property (nonatomic, strong) SQBaseTableView                   *tableview;
 @property (nonatomic, strong) SQUserCenterTableViewHeader       *tableHeader;
-
 @end
 
 @implementation SQUserCenterViewController
+
 #pragma mark - life circle
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,7 +45,8 @@
 }
 #pragma mark - load data
 - (void)readViewControllerByPlistFile {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"SQUserCenterMenuPlist" ofType:@"plist"];
+    NSString *path = [[NSBundle mainBundle]
+                      pathForResource:@"SQUserCenterMenuPlist" ofType:@"plist"];
     self.userCenterArr = [NSArray arrayWithContentsOfFile:path];
 }
 
@@ -90,6 +89,13 @@
     if (!_tableHeader) {
         _tableHeader = [[SQUserCenterTableViewHeader alloc] initWithFrame:CGRectMake(0, 0, YGScreenWidth, 220)];
         [_tableHeader configUserInfo:YGSingletonMarco.user];
+        
+        @weakify(self)
+        _tableHeader.tapToPersonalInfo = ^{
+            @strongify(self)
+//            PersonalInformationViewController *next = [PersonalInformationViewController new];
+//            [self.navigationController pushViewController:next animated:YES];
+        };
     }
     return _tableHeader;
 }

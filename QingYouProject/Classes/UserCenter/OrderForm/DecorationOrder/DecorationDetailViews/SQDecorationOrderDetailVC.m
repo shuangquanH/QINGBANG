@@ -12,13 +12,15 @@
 
 #import "SQDecorationDetailViewModel.h"
 
-@interface SQDecorationOrderDetailVC () <UIScrollViewDelegate, SQDecorationDetailViewModelDelegate>
+@interface SQDecorationOrderDetailVC () < SQDecorationDetailViewModelDelegate>
 
 @property (nonatomic, strong) UIScrollView  *contentScrollView;
 @property (nonatomic, strong) UIView        *contentView;
-@property (nonatomic, assign) CGFloat       lastcontentOffset;
 
 @property (nonatomic, strong) SQDecorationDetailViewModel *orderDetailVM;
+
+@property (nonatomic, strong) WKDecorationOrderDetailModel *orderInfo;
+
 @end
 
 @implementation SQDecorationOrderDetailVC
@@ -26,27 +28,39 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.naviTitle = @"订单详情";
-    [self.view addSubview:self.contentScrollView];
-    [self.contentScrollView addSubview:self.contentView];
-
-    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.contentScrollView);
-    }];
     
-    [self sqaddSubVies];
-    
+    [self sendReqeust];
 }
-- (void)sqaddSubVies {
-    
-    SQDecorationDetailModel *model = [SQDecorationDetailModel new];
-    model.orderState = 3;
+
+- (void)sendReqeust {
     
     self.orderDetailVM = [SQDecorationDetailViewModel new];
     self.orderDetailVM.orderDetailDelegate = self;
-    [self.orderDetailVM setupByOrderInfo:model];
     
+    @weakify(self)
+    [self.orderDetailVM sendOrderDetailRequestWithOrderNum:self.orderNum completed:^(WKDecorationOrderDetailModel *order, NSError *error) {
+        if (order) {
+            @strongify(self)
+            self.orderInfo = order;
+            [self sqaddSubVies];
+        }
+    }];
+}
+
+- (void)sqaddSubVies {
+    
+    [self.view addSubview:self.contentScrollView];
+    [self.contentScrollView addSubview:self.contentView];
+    
+    [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.contentScrollView);
+    }];
+
     for (UIView<SQDecorationDetailViewProtocol> *v in self.orderDetailVM.subviewArray) {
-        [v configOrderInfo:model];
+        [v configOrderInfo:self.orderInfo.order_info];
+        if ([v respondsToSelector:@selector(configAddressInfo:)]) {
+            [v configAddressInfo:self.orderInfo.address_info];
+        }
         [self.contentView addSubview:v];
     }
     
@@ -113,31 +127,52 @@
     }
 }
 
-#pragma mark - UIScrollViewDelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-//    CGFloat hight = scrollView.frame.size.height;
-//    CGFloat contentOffset = scrollView.contentOffset.y;
-//    CGFloat distanceFromBottom = scrollView.contentSize.height - contentOffset;
-//    CGFloat offset = contentOffset - self.lastcontentOffset;
-//    self.lastcontentOffset = contentOffset;
-//    
-//    if (offset > 0 && contentOffset > 0) {
-//        [UIView animateWithDuration:0.3 animations:^{//上拉
-//           self.contentScrollView.contentOffset=CGPointMake(0, YGScreenHeight-KNAV_HEIGHT);
-//        }];
-//    }
-//    if (offset < 0 && distanceFromBottom > hight) {
-//        [UIView animateWithDuration:0.3 animations:^{//下拉
-//            self.contentScrollView.contentOffset=CGPointZero;
-//        }];
-//    }
-//    if (contentOffset == 0) {//滑动到顶部
-//    }
-//    if (distanceFromBottom < hight) {//滑动到底部
-//    }
+- (void)orderCell:(SQDecorationOrderCell *)orderCell didClickAction:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage {
+    switch (actionType) {
+        case WKDecorationOrderActionTypePay://支付
+        {
+            CGFloat offset;
+            if (@available(iOS 11.0, *)) {
+                offset = self.view.safeAreaInsets.bottom;
+            }
+            else {
+                offset = self.view.layoutMargins.bottom;
+            }
+            
+        }
+            break;
+        case WKDecorationOrderActionTypeCancel://取消订单
+        {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"确认取消订单" preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+            }]];
+            [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil]];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+            break;
+        case WKDecorationOrderActionTypeDelete://删除订单
+        {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"确认删除订单" preferredStyle:UIAlertControllerStyleAlert];
+            [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+            }]];
+            [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil]];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+            break;
+        case WKDecorationOrderActionTypeRepair://补登
+        {
+//            WKDecorationRepairViewController *next = [WKDecorationRepairViewController new];
+//            [self.navigationController pushViewController:next animated:YES];
+        }
+            break;
+        case WKDecorationOrderActionTypeCallService://联系客服
+            break;
+        default:
+            break;
+    }
 }
-
-
 
 #pragma mark LazyLoad
 - (UIScrollView *)contentScrollView {
@@ -155,7 +190,6 @@
     }
     return _contentView;
 }
-
 
 
 @end

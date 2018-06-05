@@ -8,7 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class SQAddTicketApplyInputCell;
+
+@protocol SQAddTicketApplyInputCellDelegate<NSObject>
+
+- (void)cell:(SQAddTicketApplyInputCell *)cell didEditTextField:(UITextField *)textField;
+
+@end
+
 @interface SQAddTicketApplyInputCell : UITableViewCell
+
+@property (nonatomic, weak) id<SQAddTicketApplyInputCellDelegate> delegate;
 
 - (void)configTitle:(NSString *)title placeHodler:(NSString *)placeHodler content:(NSString *)content;
 

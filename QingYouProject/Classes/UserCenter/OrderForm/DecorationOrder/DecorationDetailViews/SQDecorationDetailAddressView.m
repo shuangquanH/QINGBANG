@@ -67,10 +67,11 @@
     }];
 }
 
-- (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo {
-    _nameLab.text = @"联系人：小伊";
-    _phoneLab.text = @"15728006850";
-    _addressLab.text = @"联系地址：对方是否色弱无若热无温柔沃尔沃二无若沃尔沃惹我二沃尔沃二为 玩儿温热无沃尔沃";
+- (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo {}
+- (void)configAddressInfo:(ManageMailPostModel *)addressInfo {
+    _nameLab.text = [NSString stringWithFormat:@"联系人：%@", addressInfo.name];
+    _phoneLab.text = addressInfo.phone;
+    _addressLab.text = [NSString stringWithFormat:@"联系地址：%@%@%@%@", addressInfo.prov?:@"", addressInfo.city?:@"", addressInfo.dist?:@"", addressInfo.address?:@""];
 }
 
 - (CGSize)viewSize {

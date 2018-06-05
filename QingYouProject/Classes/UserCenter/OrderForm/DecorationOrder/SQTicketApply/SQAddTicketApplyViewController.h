@@ -8,6 +8,10 @@
 
 #import "RootViewController.h"
 
+@class WKInvoiceModel;
+
 @interface SQAddTicketApplyViewController : RootViewController
+
+@property (nonatomic, strong) WKInvoiceModel *invoiceInfo;
 
 @end

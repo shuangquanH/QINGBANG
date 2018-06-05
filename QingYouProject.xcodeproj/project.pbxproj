@@ -25,6 +25,7 @@
 		0470A42D20C14B56003F23C6 /* SQAddTicketApplyInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A42C20C14B56003F23C6 /* SQAddTicketApplyInputCell.m */; };
 		0470A43120C150F5003F23C6 /* SQApplyAfterSaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A43020C150F5003F23C6 /* SQApplyAfterSaleViewController.m */; };
 		0470A43420C152DF003F23C6 /* SQAfterSaleListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A43320C152DF003F23C6 /* SQAfterSaleListViewController.m */; };
+		048E813320C6C3DE00845372 /* WKInvoiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 048E813220C6C3DE00845372 /* WKInvoiceModel.m */; };
 		04FD9BFF20C61B2F00B3D153 /* WKAnimationAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FD9BFD20C61AA300B3D153 /* WKAnimationAlert.m */; };
 		04FD9C0020C61B3F00B3D153 /* AnimationUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FD9BFE20C61AA300B3D153 /* AnimationUtils.m */; };
 		180FCFCF1FDE75E400EB278C /* ChooseGoodsWithCategoriesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180FCFCE1FDE75E400EB278C /* ChooseGoodsWithCategoriesView.m */; };
@@ -832,6 +833,8 @@
 		0470A43020C150F5003F23C6 /* SQApplyAfterSaleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQApplyAfterSaleViewController.m; sourceTree = "<group>"; };
 		0470A43220C152DF003F23C6 /* SQAfterSaleListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQAfterSaleListViewController.h; sourceTree = "<group>"; };
 		0470A43320C152DF003F23C6 /* SQAfterSaleListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQAfterSaleListViewController.m; sourceTree = "<group>"; };
+		048E813120C6C3DE00845372 /* WKInvoiceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKInvoiceModel.h; sourceTree = "<group>"; };
+		048E813220C6C3DE00845372 /* WKInvoiceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKInvoiceModel.m; sourceTree = "<group>"; };
 		04FD9BFB20C61AA300B3D153 /* WKAnimationAlert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKAnimationAlert.h; sourceTree = "<group>"; };
 		04FD9BFC20C61AA300B3D153 /* AnimationUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationUtils.h; sourceTree = "<group>"; };
 		04FD9BFD20C61AA300B3D153 /* WKAnimationAlert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKAnimationAlert.m; sourceTree = "<group>"; };
@@ -2348,6 +2351,8 @@
 				0470A42620C1467A003F23C6 /* SQTicketApplyCell.m */,
 				0470A42B20C14B56003F23C6 /* SQAddTicketApplyInputCell.h */,
 				0470A42C20C14B56003F23C6 /* SQAddTicketApplyInputCell.m */,
+				048E813120C6C3DE00845372 /* WKInvoiceModel.h */,
+				048E813220C6C3DE00845372 /* WKInvoiceModel.m */,
 			);
 			path = SQTicketApply;
 			sourceTree = "<group>";
@@ -6050,6 +6055,7 @@
 				18C1597E1FC8208A0010ACD3 /* MyRecruitViewController.m in Sources */,
 				18C158F51FC820890010ACD3 /* OfficePurchaseDetailViewController.m in Sources */,
 				2C8D78421FD1569300078C35 /* MyOrderCheckOrderViewController.m in Sources */,
+				048E813320C6C3DE00845372 /* WKInvoiceModel.m in Sources */,
 				18C1591C1FC820890010ACD3 /* OfficePurchaseViewController.m in Sources */,
 				18C15A531FC8208B0010ACD3 /* RoadShowHallAllViewController.m in Sources */,
 				18C15A361FC8208A0010ACD3 /* SubscribeSumOfMoneyViewController.m in Sources */,

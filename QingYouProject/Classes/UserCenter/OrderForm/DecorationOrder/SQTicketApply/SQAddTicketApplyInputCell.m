@@ -30,6 +30,7 @@
     
     _inputTF = [[UITextField alloc] init];
     _inputTF.font = [UIFont systemFontOfSize:15.0];
+    [_inputTF addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
     [self.contentView addSubview:_inputTF];
     
     [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -42,6 +43,12 @@
         make.top.mas_equalTo(5);
         make.right.mas_equalTo(-15);
     }];
+}
+
+- (void)textFieldChanged:(UITextField *)textField {
+    if ([self.delegate respondsToSelector:@selector(cell:didEditTextField:)]) {
+        [self.delegate cell:self didEditTextField:textField];
+    }
 }
 
 - (void)configTitle:(NSString *)title placeHodler:(NSString *)placeHodler content:(NSString *)content {
