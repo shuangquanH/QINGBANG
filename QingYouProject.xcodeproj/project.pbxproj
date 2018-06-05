@@ -25,14 +25,7 @@
 		0470A42D20C14B56003F23C6 /* SQAddTicketApplyInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A42C20C14B56003F23C6 /* SQAddTicketApplyInputCell.m */; };
 		0470A43120C150F5003F23C6 /* SQApplyAfterSaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A43020C150F5003F23C6 /* SQApplyAfterSaleViewController.m */; };
 		0470A43420C152DF003F23C6 /* SQAfterSaleListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A43320C152DF003F23C6 /* SQAfterSaleListViewController.m */; };
-		048E811820C66A6C00845372 /* EditNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048E811520C66A6B00845372 /* EditNameViewController.m */; };
-		048E811920C66A6C00845372 /* PersonalInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048E811620C66A6C00845372 /* PersonalInformationViewController.m */; };
-		048E812520C66C1200845372 /* WKSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048E811B20C66C1200845372 /* WKSettingViewController.m */; };
-		048E812620C66C1200845372 /* WKSettingEvaluateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048E811D20C66C1200845372 /* WKSettingEvaluateViewController.m */; };
-		048E812720C66C1200845372 /* WKSettingAboutusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048E811E20C66C1200845372 /* WKSettingAboutusViewController.m */; };
-		048E812820C66C1200845372 /* WKSettingPasswordSetValidateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048E811F20C66C1200845372 /* WKSettingPasswordSetValidateController.m */; };
-		048E812920C66C1200845372 /* WKSettingPasswordModifilyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048E812020C66C1200845372 /* WKSettingPasswordModifilyViewController.m */; };
-		048E812C20C68B6D00845372 /* WKInvoiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 048E812B20C68B6D00845372 /* WKInvoiceModel.m */; };
+		048E813320C6C3DE00845372 /* WKInvoiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 048E813220C6C3DE00845372 /* WKInvoiceModel.m */; };
 		04FD9BFF20C61B2F00B3D153 /* WKAnimationAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FD9BFD20C61AA300B3D153 /* WKAnimationAlert.m */; };
 		04FD9C0020C61B3F00B3D153 /* AnimationUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FD9BFE20C61AA300B3D153 /* AnimationUtils.m */; };
 		180FCFCF1FDE75E400EB278C /* ChooseGoodsWithCategoriesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180FCFCE1FDE75E400EB278C /* ChooseGoodsWithCategoriesView.m */; };
@@ -840,22 +833,8 @@
 		0470A43020C150F5003F23C6 /* SQApplyAfterSaleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQApplyAfterSaleViewController.m; sourceTree = "<group>"; };
 		0470A43220C152DF003F23C6 /* SQAfterSaleListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQAfterSaleListViewController.h; sourceTree = "<group>"; };
 		0470A43320C152DF003F23C6 /* SQAfterSaleListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQAfterSaleListViewController.m; sourceTree = "<group>"; };
-		048E811420C66A6B00845372 /* EditNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditNameViewController.h; sourceTree = "<group>"; };
-		048E811520C66A6B00845372 /* EditNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditNameViewController.m; sourceTree = "<group>"; };
-		048E811620C66A6C00845372 /* PersonalInformationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInformationViewController.m; sourceTree = "<group>"; };
-		048E811720C66A6C00845372 /* PersonalInformationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInformationViewController.h; sourceTree = "<group>"; };
-		048E811B20C66C1200845372 /* WKSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKSettingViewController.m; sourceTree = "<group>"; };
-		048E811C20C66C1200845372 /* WKSettingPasswordModifilyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKSettingPasswordModifilyViewController.h; sourceTree = "<group>"; };
-		048E811D20C66C1200845372 /* WKSettingEvaluateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKSettingEvaluateViewController.m; sourceTree = "<group>"; };
-		048E811E20C66C1200845372 /* WKSettingAboutusViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKSettingAboutusViewController.m; sourceTree = "<group>"; };
-		048E811F20C66C1200845372 /* WKSettingPasswordSetValidateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKSettingPasswordSetValidateController.m; sourceTree = "<group>"; };
-		048E812020C66C1200845372 /* WKSettingPasswordModifilyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKSettingPasswordModifilyViewController.m; sourceTree = "<group>"; };
-		048E812120C66C1200845372 /* WKSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKSettingViewController.h; sourceTree = "<group>"; };
-		048E812220C66C1200845372 /* WKSettingPasswordSetValidateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKSettingPasswordSetValidateController.h; sourceTree = "<group>"; };
-		048E812320C66C1200845372 /* WKSettingEvaluateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKSettingEvaluateViewController.h; sourceTree = "<group>"; };
-		048E812420C66C1200845372 /* WKSettingAboutusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKSettingAboutusViewController.h; sourceTree = "<group>"; };
-		048E812A20C68B6D00845372 /* WKInvoiceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKInvoiceModel.h; sourceTree = "<group>"; };
-		048E812B20C68B6D00845372 /* WKInvoiceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKInvoiceModel.m; sourceTree = "<group>"; };
+		048E813120C6C3DE00845372 /* WKInvoiceModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKInvoiceModel.h; sourceTree = "<group>"; };
+		048E813220C6C3DE00845372 /* WKInvoiceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKInvoiceModel.m; sourceTree = "<group>"; };
 		04FD9BFB20C61AA300B3D153 /* WKAnimationAlert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKAnimationAlert.h; sourceTree = "<group>"; };
 		04FD9BFC20C61AA300B3D153 /* AnimationUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationUtils.h; sourceTree = "<group>"; };
 		04FD9BFD20C61AA300B3D153 /* WKAnimationAlert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKAnimationAlert.m; sourceTree = "<group>"; };
@@ -2372,8 +2351,8 @@
 				0470A42620C1467A003F23C6 /* SQTicketApplyCell.m */,
 				0470A42B20C14B56003F23C6 /* SQAddTicketApplyInputCell.h */,
 				0470A42C20C14B56003F23C6 /* SQAddTicketApplyInputCell.m */,
-				048E812A20C68B6D00845372 /* WKInvoiceModel.h */,
-				048E812B20C68B6D00845372 /* WKInvoiceModel.m */,
+				048E813120C6C3DE00845372 /* WKInvoiceModel.h */,
+				048E813220C6C3DE00845372 /* WKInvoiceModel.m */,
 			);
 			path = SQTicketApply;
 			sourceTree = "<group>";
@@ -2389,23 +2368,6 @@
 				040084EC20C52C520094CF22 /* WKAfterSaleRecordCell.m */,
 			);
 			path = AfterSale;
-			sourceTree = "<group>";
-		};
-		048E811A20C66C1200845372 /* Setting */ = {
-			isa = PBXGroup;
-			children = (
-				048E812120C66C1200845372 /* WKSettingViewController.h */,
-				048E811B20C66C1200845372 /* WKSettingViewController.m */,
-				048E811C20C66C1200845372 /* WKSettingPasswordModifilyViewController.h */,
-				048E812020C66C1200845372 /* WKSettingPasswordModifilyViewController.m */,
-				048E812420C66C1200845372 /* WKSettingAboutusViewController.h */,
-				048E811E20C66C1200845372 /* WKSettingAboutusViewController.m */,
-				048E812220C66C1200845372 /* WKSettingPasswordSetValidateController.h */,
-				048E811F20C66C1200845372 /* WKSettingPasswordSetValidateController.m */,
-				048E812320C66C1200845372 /* WKSettingEvaluateViewController.h */,
-				048E811D20C66C1200845372 /* WKSettingEvaluateViewController.m */,
-			);
-			path = Setting;
 			sourceTree = "<group>";
 		};
 		04FD9BFA20C61AA300B3D153 /* WKAlert */ = {
@@ -5459,16 +5421,11 @@
 		E99DE1C920AC4FE3009CEF88 /* UserCenter */ = {
 			isa = PBXGroup;
 			children = (
-				048E811420C66A6B00845372 /* EditNameViewController.h */,
-				048E811520C66A6B00845372 /* EditNameViewController.m */,
-				048E811720C66A6C00845372 /* PersonalInformationViewController.h */,
-				048E811620C66A6C00845372 /* PersonalInformationViewController.m */,
 				E99DE1D020AC5EC3009CEF88 /* SQUserCenterMenuPlist.plist */,
 				E99DE1CA20AC5015009CEF88 /* SQUserCenterViewController.h */,
 				E99DE1CB20AC5015009CEF88 /* SQUserCenterViewController.m */,
 				E99DE1CD20AC5400009CEF88 /* SQUserCenterTableViewHeader.h */,
 				E99DE1CE20AC5400009CEF88 /* SQUserCenterTableViewHeader.m */,
-				048E811A20C66C1200845372 /* Setting */,
 				E9E1E58D20C65CEC00A807BE /* Collections */,
 				E99DE1D220AC644B009CEF88 /* OrderForm */,
 				E99DE28620C0E6E8009CEF88 /* ServiceForm */,
@@ -5978,7 +5935,6 @@
 				18C1591B1FC820890010ACD3 /* OfficePurchaseModel.m in Sources */,
 				18C159551FC8208A0010ACD3 /* NetManagerWithVIPServiceViewController.m in Sources */,
 				18C1595B1FC8208A0010ACD3 /* AreaSelectViewController.m in Sources */,
-				048E812920C66C1200845372 /* WKSettingPasswordModifilyViewController.m in Sources */,
 				E2E5B1241FB0675A00205F70 /* UILabel+ContentSize.m in Sources */,
 				1812F2F52021A63600EEC1CE /* HomePageLegalServiceVIPDetailViewController.m in Sources */,
 				E2E5B3531FB0675B00205F70 /* SocketNormalMessageModel.m in Sources */,
@@ -6099,6 +6055,7 @@
 				18C1597E1FC8208A0010ACD3 /* MyRecruitViewController.m in Sources */,
 				18C158F51FC820890010ACD3 /* OfficePurchaseDetailViewController.m in Sources */,
 				2C8D78421FD1569300078C35 /* MyOrderCheckOrderViewController.m in Sources */,
+				048E813320C6C3DE00845372 /* WKInvoiceModel.m in Sources */,
 				18C1591C1FC820890010ACD3 /* OfficePurchaseViewController.m in Sources */,
 				18C15A531FC8208B0010ACD3 /* RoadShowHallAllViewController.m in Sources */,
 				18C15A361FC8208A0010ACD3 /* SubscribeSumOfMoneyViewController.m in Sources */,
@@ -6216,7 +6173,6 @@
 				E2E5B14E1FB0675A00205F70 /* MJRefreshConst.m in Sources */,
 				E99DE1C020AC4FAF009CEF88 /* SQBaseHeaderFooterView.m in Sources */,
 				E99DE1C720AC4FAF009CEF88 /* SQBaseModel.m in Sources */,
-				048E812520C66C1200845372 /* WKSettingViewController.m in Sources */,
 				E2E5B35B1FB0675B00205F70 /* UploadImageTool.m in Sources */,
 				E2E5B15F1FB0675A00205F70 /* QNResponseInfo.m in Sources */,
 				18C159341FC8208A0010ACD3 /* WaitReplyModel.m in Sources */,
@@ -6238,7 +6194,6 @@
 				18C15A661FC8208B0010ACD3 /* MeetingChildBookingViewController.m in Sources */,
 				E99DE27D20BED24F009CEF88 /* JFSearchView.m in Sources */,
 				18C15A6E1FC8208B0010ACD3 /* ReservationController.m in Sources */,
-				048E812620C66C1200845372 /* WKSettingEvaluateViewController.m in Sources */,
 				E2E5B39C1FB0675B00205F70 /* YGVideoPickerController.m in Sources */,
 				E2E5B1501FB0675A00205F70 /* UIScrollView+MJExtension.m in Sources */,
 				18C158FB1FC820890010ACD3 /* OfficePurchaseDetailModel.m in Sources */,
@@ -6282,7 +6237,6 @@
 				E2E5B3481FB0675B00205F70 /* UIView+LDFrame.m in Sources */,
 				0470A40F20C119A1003F23C6 /* SQDecorationDetailServerView.m in Sources */,
 				18C159A71FC8208A0010ACD3 /* AlreadyProcessedViewController.m in Sources */,
-				048E811920C66A6C00845372 /* PersonalInformationViewController.m in Sources */,
 				18C159E41FC8208A0010ACD3 /* UpLoadPersonViewController.m in Sources */,
 				18C159681FC8208A0010ACD3 /* NetIntroduceViewController.m in Sources */,
 				18C15A4B1FC8208B0010ACD3 /* ServiceHallAdvertiseImgModel.m in Sources */,
@@ -6418,7 +6372,6 @@
 				E2E5B13C1FB0675A00205F70 /* NSObject+MJKeyValue.m in Sources */,
 				18C1592F1FC8208A0010ACD3 /* ComplaintsDetailModel.m in Sources */,
 				18C158E01FC820890010ACD3 /* ADManagerModel.m in Sources */,
-				048E812820C66C1200845372 /* WKSettingPasswordSetValidateController.m in Sources */,
 				18C15A921FC8208B0010ACD3 /* OrderCheckHouseModel.m in Sources */,
 				18C15A881FC8208B0010ACD3 /* ReserveChooseCell.m in Sources */,
 				18C15A341FC8208A0010ACD3 /* SubscribeSumOfMoneyModel.m in Sources */,
@@ -6451,7 +6404,6 @@
 				18C1592D1FC820890010ACD3 /* AlreadyReplayModel.m in Sources */,
 				E99DE23A20B6AA61009CEF88 /* SQDecorationSecondVC.m in Sources */,
 				E99DE24020B7B7C9009CEF88 /* SQDecorationDetailBottomView.m in Sources */,
-				048E812720C66C1200845372 /* WKSettingAboutusViewController.m in Sources */,
 				E2E5B16B1FB0675A00205F70 /* LxGridViewFlowLayout.m in Sources */,
 				18C159781FC8208A0010ACD3 /* JobOutsourceTradeRecoredWaitViewController.m in Sources */,
 				E2E5B1601FB0675A00205F70 /* QNSessionManager.m in Sources */,
@@ -6499,7 +6451,6 @@
 				18C159B41FC8208A0010ACD3 /* AdvertisementLocationCell.m in Sources */,
 				18C159A91FC8208A0010ACD3 /* CooperateThingViewController.m in Sources */,
 				E2E5B1541FB0675A00205F70 /* NJKWebViewProgressView.m in Sources */,
-				048E812C20C68B6D00845372 /* WKInvoiceModel.m in Sources */,
 				E2E5B1641FB0675A00205F70 /* QNFormUpload.m in Sources */,
 				2CA0191E1FCD444500B21863 /* MineProjectApplyTableViewCell.m in Sources */,
 				18C1590F1FC820890010ACD3 /* PendingPaymentOfficePurchaseViewController.m in Sources */,
@@ -6608,7 +6559,6 @@
 				E2E5B3451FB0675B00205F70 /* UIImage+LDImage.m in Sources */,
 				2CA019081FCD0C3F00B21863 /* ProjectApplyForDetailModel.m in Sources */,
 				18C1597B1FC8208A0010ACD3 /* MyAdvertisesViewController.m in Sources */,
-				048E811820C66A6C00845372 /* EditNameViewController.m in Sources */,
 				18C159841FC8208A0010ACD3 /* SearchAdvertiesePopSiftView.m in Sources */,
 				18C159381FC8208A0010ACD3 /* AddComplaintsViewController.m in Sources */,
 				18C1592B1FC820890010ACD3 /* AlreadyReplayCell.m in Sources */,

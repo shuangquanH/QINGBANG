@@ -7,7 +7,7 @@
 //
 
 #import "SQUserCenterViewController.h"
-#import "PersonalInformationViewController.h"
+//#import "PersonalInformationViewController.h"
 #import "SQOrderViewController.h"
 
 #import "SQUserCenterTableViewHeader.h"
@@ -93,8 +93,8 @@
         @weakify(self)
         _tableHeader.tapToPersonalInfo = ^{
             @strongify(self)
-            PersonalInformationViewController *next = [PersonalInformationViewController new];
-            [self.navigationController pushViewController:next animated:YES];
+//            PersonalInformationViewController *next = [PersonalInformationViewController new];
+//            [self.navigationController pushViewController:next animated:YES];
         };
     }
     return _tableHeader;
