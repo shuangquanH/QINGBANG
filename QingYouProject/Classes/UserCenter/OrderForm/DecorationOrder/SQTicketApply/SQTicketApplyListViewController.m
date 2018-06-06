@@ -38,6 +38,10 @@
     [self setupSubviews];
     
     self.invoiceList = [NSMutableArray array];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
     [self.tableView.mj_header beginRefreshing];
 }
@@ -95,7 +99,7 @@
 - (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
     if (headerAction) {
         [SQRequest post:KAPI_INVOICELIST param:nil success:^(id response) {
-            NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKInvoiceModel class] json:response[@"invoice_list"]];
+            NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKInvoiceModel class] json:response[@"data"][@"invoice_list"]];
             [self.invoiceList removeAllObjects];
             [self.invoiceList addObjectsFromArray:tmp];
             [self.tableView.mj_header endRefreshing];
@@ -138,15 +142,16 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.isTicketApplyManager) {
+    if (!self.isTicketApplyManager) {
+        if (self.selectInvoiceBlock) {
+            self.selectInvoiceBlock([self.invoiceList objectAtIndex:indexPath.row]);
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }
+    else {
         SQAddTicketApplyViewController *next = [SQAddTicketApplyViewController new];
         next.invoiceInfo = [self.invoiceList objectAtIndex:indexPath.row];
         [self.navigationController pushViewController:next animated:YES];
-    }
-    else {
-        if (self.selectInvoiceBlock) {
-            self.selectInvoiceBlock([self.invoiceList objectAtIndex:indexPath.row]);
-        }
     }
 }
 

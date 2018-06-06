@@ -28,12 +28,14 @@
 /** 会议室预定  */
 #import "MeetingOrderViewController.h"
 
+#import "WKMyOrderUnreadCountModel.h"
+
 @interface SQOrderViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) NSArray       *orderFormArr;
-@property (nonatomic, strong) SQBaseTableView       *tableview;
-@property (nonatomic, strong) SQOrderTableHeaderView       *tableHeader;
-
+@property (nonatomic, strong) NSArray                   *orderFormArr;
+@property (nonatomic, strong) SQBaseTableView           *tableview;
+@property (nonatomic, strong) SQOrderTableHeaderView    *tableHeader;
+@property (nonatomic, strong) WKMyOrderUnreadCountModel *unreadInfo;
 @end
 
 @implementation SQOrderViewController
@@ -41,6 +43,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.naviTitle = @"我的订单";
+    
+    [self sendUnreadBadgeReqeust];
+    
     NSString *path = [[NSBundle mainBundle]pathForResource:@"SQOrderFormListPlist" ofType:@"plist"];
     self.orderFormArr = [NSArray arrayWithContentsOfFile:path];
     [self.view addSubview:self.tableview];
@@ -51,6 +56,17 @@
     [super viewWillLayoutSubviews];
     [self.tableview mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(0);
+    }];
+}
+
+- (void)sendUnreadBadgeReqeust {
+    [SQRequest post:KAPI_UNREADORDERBADGE param:nil success:^(id response) {
+        if ([response[@"state"] isEqualToString:@"success"]) {
+            self.unreadInfo = [WKMyOrderUnreadCountModel yy_modelWithJSON:response[@"data"]];
+            [self.tableview reloadData];
+        }
+    } failure:^(NSError *error) {
+        
     }];
 }
 
