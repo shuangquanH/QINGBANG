@@ -804,6 +804,7 @@
 		E9E1E59A20C65D3800A807BE /* MyCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E59920C65D3700A807BE /* MyCollectionModel.m */; };
 		E9E1E59E20C6B61C00A807BE /* SQLinkJSWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E59D20C6B61C00A807BE /* SQLinkJSWebView.m */; };
 		E9E1E5A120C779D900A807BE /* SQDecorationHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E5A020C779D900A807BE /* SQDecorationHomeModel.m */; };
+		E9E1E5A420C7DA9400A807BE /* SQChooseDecorationAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E5A320C7DA9400A807BE /* SQChooseDecorationAddressView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -2309,6 +2310,8 @@
 		E9E1E59D20C6B61C00A807BE /* SQLinkJSWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQLinkJSWebView.m; sourceTree = "<group>"; };
 		E9E1E59F20C779D900A807BE /* SQDecorationHomeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationHomeModel.h; sourceTree = "<group>"; };
 		E9E1E5A020C779D900A807BE /* SQDecorationHomeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationHomeModel.m; sourceTree = "<group>"; };
+		E9E1E5A220C7DA9400A807BE /* SQChooseDecorationAddressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQChooseDecorationAddressView.h; sourceTree = "<group>"; };
+		E9E1E5A320C7DA9400A807BE /* SQChooseDecorationAddressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQChooseDecorationAddressView.m; sourceTree = "<group>"; };
 		F883056FA3AE70A8E2E8FFA5 /* Pods-QingYouProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QingYouProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-QingYouProject/Pods-QingYouProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -5581,6 +5584,8 @@
 				E99DE23F20B7B7C9009CEF88 /* SQDecorationDetailBottomView.m */,
 				E99DE24120B7BEDA009CEF88 /* SQConfirmDecorationOrderVC.h */,
 				E99DE24220B7BEDA009CEF88 /* SQConfirmDecorationOrderVC.m */,
+				E9E1E5A220C7DA9400A807BE /* SQChooseDecorationAddressView.h */,
+				E9E1E5A320C7DA9400A807BE /* SQChooseDecorationAddressView.m */,
 			);
 			path = DecorationServe;
 			sourceTree = "<group>";
@@ -6037,6 +6042,7 @@
 				E2E5B19A1FB0675A00205F70 /* NewPagedFlowView.m in Sources */,
 				18C1598C1FC8208A0010ACD3 /* AdvertisesForinfoPopView.m in Sources */,
 				18C1591E1FC820890010ACD3 /* DeailedViewController.m in Sources */,
+				E9E1E5A420C7DA9400A807BE /* SQChooseDecorationAddressView.m in Sources */,
 				18C15A951FC8208B0010ACD3 /* OrderCheckHouseTableViewCell.m in Sources */,
 				18C159441FC8208A0010ACD3 /* WaitToDealRepairOrderViewController.m in Sources */,
 				E99DE28E20C23941009CEF88 /* SQChooseGardenVC.m in Sources */,
