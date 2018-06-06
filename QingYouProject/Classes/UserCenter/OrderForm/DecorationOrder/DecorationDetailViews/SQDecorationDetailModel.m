@@ -8,16 +8,16 @@
 
 #import "SQDecorationDetailModel.h"
 
-@implementation SQDecorationDetailModel
-
+@implementation WKDecorationStageModel
 - (instancetype)init {
     if (self == [super init]) {
-        _stageOneState = 1;
-        _stageTwoState = 1;
-        _stageThreeState = 1;
+        _stageState = 1;
     }
     return self;
 }
+@end
+
+@implementation SQDecorationDetailModel
 
 - (NSString *)orderTitle {
     if (!_orderTitle) {
@@ -47,6 +47,10 @@
         }
     }
     return _orderTitle;
+}
+
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"stage_list": [WKDecorationStageModel class]};
 }
 
 @end

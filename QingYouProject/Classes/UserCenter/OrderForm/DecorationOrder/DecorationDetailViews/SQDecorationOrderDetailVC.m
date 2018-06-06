@@ -37,6 +37,7 @@
     self.orderDetailVM = [SQDecorationDetailViewModel new];
     self.orderDetailVM.orderDetailDelegate = self;
     
+    [YGNetService showLoadingViewWithSuperView:nil];
     @weakify(self)
     [self.orderDetailVM sendOrderDetailRequestWithOrderNum:self.orderNum completed:^(WKDecorationOrderDetailModel *order, NSError *error) {
         if (order) {
@@ -44,6 +45,7 @@
             self.orderInfo = order;
             [self sqaddSubVies];
         }
+        [YGNetService dissmissLoadingView];
     }];
 }
 

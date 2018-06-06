@@ -9,6 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "ManageMailPostModel.h"
 
+@interface WKDecorationStageModel : NSObject
+/** 阶段名称 */
+@property (nonatomic, copy  ) NSString *stageName;
+/** 阶段价格 */
+@property (nonatomic, copy  ) NSString *stagePrice;
+/** 阶段状态 1:待付款,补登 2:已支付 3:补登审核 4:已关闭 默认1 */
+@property (nonatomic, assign) NSInteger stageState;
+@end
+
 @interface SQDecorationDetailModel : NSObject
 
 @property (nonatomic, copy  ) NSString *orderNum;
@@ -26,30 +35,16 @@
 @property (nonatomic, copy  ) NSString *decorateName;
 /** 产品图片 */
 @property (nonatomic, copy  ) NSString *decorate_icon;
-/** 订金金额 */
-@property (nonatomic, copy  ) NSString *depositPrice;
-/** 订金状态 1:已付款 2:待付款 */
-@property (nonatomic, copy  ) NSString *depositState;
 /*  预估价  **/
 @property (nonatomic, copy  ) NSString *estimate;
-/** 阶段1价格 */
-@property (nonatomic, copy  ) NSString *stageOnePrice;
-/** 阶段2价格 */
-@property (nonatomic, copy  ) NSString *stageThreePrice;
-/** 阶段3价格 */
-@property (nonatomic, copy  ) NSString *stageTwoPrice;
-/** 针对订单状态4的阶段1状态，其他订单状态无效 1:待付款,补登 2:已支付 3:补登审核 默认1 */
-@property (nonatomic, assign) NSInteger stageOneState;
-/** 针对订单状态4的阶段2状态，其他订单状态无效 1:待付款,补登 2:已支付 3:补登审核 默认1 */
-@property (nonatomic, assign) NSInteger stageTwoState;
-/** 针对订单状态4的阶段3状态，其他订单状态无效 1:待付款,补登 2:已支付 3:补登审核 默认1 */
-@property (nonatomic, assign) NSInteger stageThreeState;
 
 @property (nonatomic, copy  ) NSString *payTime;
 
 @property (nonatomic, copy  ) NSString *finishTime;
 
 @property (nonatomic, copy  ) NSString *createTime;
+
+@property (nonatomic, strong) NSArray<WKDecorationStageModel *> *stage_list;
 
 @end
 

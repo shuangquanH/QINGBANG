@@ -8,6 +8,7 @@
 
 #import "SQDecorationOrderCell.h"
 #import "NSString+SQStringSize.h"
+#import "WKDecorationStageView.h"
 
 #define KSPACE 20
 
@@ -27,12 +28,10 @@ static CGFloat singleLineHeight() {
     UILabel *orderTitle;
     UILabel *orderDesc;
     UILabel *orderPrice;
-    
-    UIView  *paymentLine;
-    UIView  *paymentBgView;
-    UILabel *paymentLabel;
-    UILabel *paymentPrice;
-    SQDecorationCellPayButtonView *paymentState;
+
+    @public
+    WKDecorationStageView *paymentStageView;//订金阶段视图
+    SQDecorationDetailModel *_orderInfo;//订单信息
 }
 
 
@@ -45,6 +44,7 @@ static CGFloat singleLineHeight() {
         
         orderImage = [[UIImageView alloc] init];
         orderImage.contentMode = UIViewContentModeScaleAspectFill;
+        orderImage.clipsToBounds = YES;
         [self.contentView addSubview:orderImage];
         
         orderTitle = [[UILabel alloc] init];
@@ -64,34 +64,12 @@ static CGFloat singleLineHeight() {
         orderPrice.textColor = KCOLOR(@"333333");
         [self.contentView addSubview:orderPrice];
         
-        paymentBgView = [UIView new];
-        [self.contentView addSubview:paymentBgView];
+        paymentStageView = [[WKDecorationStageView alloc] init];
+        [self.contentView addSubview:paymentStageView];
         
-        paymentLine = [UIView new];
-        paymentLine.backgroundColor = colorWithLine;
-        [paymentBgView addSubview:paymentLine];
-        
-        /** 定金  */
-        paymentLabel = [[UILabel alloc] init];
-        paymentLabel.font = KFONT(28.0);
-        paymentLabel.textColor = KCOLOR(@"333333");
-        [paymentBgView addSubview:paymentLabel];
-        
-        /** 定金金额  */
-        paymentPrice = [[UILabel alloc] init];
-        paymentPrice.font = KFONT(28.0);
-        paymentPrice.textColor = KCOLOR(@"e60012");
-        [paymentPrice setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-        [paymentBgView addSubview:paymentPrice];
-        
-        /** 定金状态  */
-        paymentState = [[SQDecorationCellPayButtonView alloc] init];
-        paymentState.actionDelegate = self;
-        [paymentBgView addSubview:paymentState];
-    
-        paymentLabel.text = @"定金:";
-
         [self sqlayoutSubviews];
+        
+        orderImage.backgroundColor = [UIColor orangeColor];
         
     }
     return self;
@@ -127,34 +105,12 @@ static CGFloat singleLineHeight() {
         make.bottom.equalTo(orderImage.mas_bottom);
     }];
     
-    [paymentBgView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [paymentStageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(orderImage);
         make.centerX.mas_equalTo(0);
         make.top.equalTo(orderImage.mas_bottom).offset(KSCAL(KSPACE));
         make.height.mas_equalTo(KSCAL(88));
     }];
-    
-    [paymentLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(1.0);
-    }];
-    
-    [paymentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(0);
-        make.right.equalTo(orderImage);
-    }];
-    [paymentPrice mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(paymentLabel);
-        make.left.equalTo(paymentLabel.mas_right).offset(KSCAL(KSPACE));
-    }];
-    
-    [paymentState mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(0);
-        make.top.equalTo(paymentPrice);
-        make.left.equalTo(paymentPrice.mas_right).offset(KSCAL(KSPACE));
-        make.height.equalTo(paymentPrice);
-    }];
-
 }
 
 
@@ -165,13 +121,6 @@ static CGFloat singleLineHeight() {
     orderTitle.text = @"产品名称产品名称产品名称产品名称产品名称产品名称产品名称";
     orderDesc.text = @"产品描述产品描述产品描述产品描述产品描述产品描述产品描述";
     orderPrice.text = @"189230元";
-    paymentLabel.text = @"定金:";
-    paymentPrice.text = @"100元";
-    paymentState.backgroundColor = colorWithMainColor;
-}
-
-- (void)setIsInDetail:(BOOL)isInDetail {
-    paymentState.isInDetail = isInDetail;
 }
 
 - (CGSize)intrinsicContentSize {
@@ -181,13 +130,11 @@ static CGFloat singleLineHeight() {
 #pragma mark - SQDecorationDetailViewProtocol
 - (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo {
     
-    [paymentState configOrderInfo:orderInfo stage:0];
+    _orderInfo = orderInfo;
     
     orderStateLabel.text = orderInfo.orderTitle;
     orderDesc.text = orderInfo.decorateDescribe;
     orderPrice.text = [NSString stringWithFormat:@"¥ %@（预估价）", orderInfo.estimate];
-    paymentPrice.text = [NSString stringWithFormat:@"¥ %@", orderInfo.depositPrice];
-    paymentState.backgroundColor = colorWithMainColor;
     [orderImage sd_setImageWithURL:[NSURL URLWithString:orderInfo.decorate_icon] placeholderImage:nil];
     
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
@@ -196,6 +143,8 @@ static CGFloat singleLineHeight() {
     NSAttributedString *decorateName = [[NSAttributedString alloc] initWithString:orderInfo.decorateName attributes:@{NSParagraphStyleAttributeName: paragraphStyle}];
     orderTitle.attributedText = decorateName;
     orderTitle.lineBreakMode = NSLineBreakByTruncatingTail;
+
+    [paymentStageView configStageModel:orderInfo.stage_list.firstObject withStage:0 canRefund:orderInfo.canRefund inRefund:orderInfo.isInRefund inDetail:NO];
 }
 
 - (CGSize)viewSize {
@@ -211,7 +160,7 @@ static CGFloat singleLineHeight() {
 }
 
 #pragma mark - public
-+ (CGFloat)cellHeight {
++ (CGFloat)cellHeightWithOrderInfo:(SQDecorationDetailModel *)orderInfo {
     return KSCAL(88.0) + KSCAL(180) + 3 * KSCAL(KSPACE) + singleLineHeight();
 }
 
@@ -219,221 +168,65 @@ static CGFloat singleLineHeight() {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation SQDecorationOrderCellWithThreeStage {
-    UIView  *oneStageBgView;
-    UIView  *oneStageLine;
-    UILabel *oneStageLabel;
-    UILabel *oneStagePrice;
-    SQDecorationCellPayButtonView    *oneStageState;
-    
-    UIView  *twoStageBgView;
-    UIView  *twoStageLine;
-    UILabel *twoStageLabel;
-    UILabel *twoStagePrice;
-    SQDecorationCellPayButtonView    *twoStageState;
-    
-    UIView  *threeStageBgView;
-    UIView  *threeStageLine;
-    UILabel *threeStageLabel;
-    UILabel *threeStagePrice;
-    SQDecorationCellPayButtonView    *threeStageState;
+@implementation WKDecorationOrderMutableStageCell {
+    @public
+    NSMutableArray<WKDecorationStageView *> *stageViewArray;
 }
 
 
 - (void)sqlayoutSubviews {
     [super sqlayoutSubviews];
     
-    {
-        oneStageBgView = [UIView new];
-        [self.contentView addSubview:oneStageBgView];
-        
-        oneStageLine = [UIView new];
-        oneStageLine.backgroundColor = colorWithLine;
-        [oneStageBgView addSubview:oneStageLine];
-        
-        oneStageLabel = [[UILabel alloc] init];
-        oneStageLabel.font = [UIFont systemFontOfSize:KSCAL(28.0)];
-        oneStageLabel.textColor = KCOLOR(@"333333");
-        [oneStageBgView addSubview:oneStageLabel];
-        
-        oneStagePrice = [[UILabel alloc] init];
-        oneStagePrice.font = [UIFont systemFontOfSize:KSCAL(28.0)];
-        oneStagePrice.textColor = KCOLOR(@"e60012");
-        [oneStagePrice setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-        [oneStageBgView addSubview:oneStagePrice];
-        
-        oneStageState = [[SQDecorationCellPayButtonView alloc] init];
-        oneStageState.actionDelegate = self;
-        [oneStageBgView addSubview:oneStageState];
-    }
-    
-    {
-        twoStageBgView = [UIView new];
-        [self.contentView addSubview:twoStageBgView];
-        
-        twoStageLine = [UIView new];
-        twoStageLine.backgroundColor = colorWithLine;
-        [twoStageBgView addSubview:twoStageLine];
-        
-        twoStageLabel = [[UILabel alloc] init];
-        twoStageLabel.font = [UIFont systemFontOfSize:KSCAL(28.0)];
-        twoStageLabel.textColor = KCOLOR(@"333333");
-        [twoStageBgView addSubview:twoStageLabel];
-        
-        twoStagePrice = [[UILabel alloc] init];
-        twoStagePrice.font = [UIFont systemFontOfSize:KSCAL(28.0)];
-        twoStagePrice.textColor = KCOLOR(@"e60012");
-        [twoStagePrice setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-        [twoStageBgView addSubview:twoStagePrice];
-        
-        twoStageState = [[SQDecorationCellPayButtonView alloc] init];
-        twoStageState.actionDelegate = self;
-        [twoStageBgView addSubview:twoStageState];
-    }
-    
-    {
-        threeStageBgView = [UIView new];
-        [self.contentView addSubview:threeStageBgView];
-        
-        threeStageLine = [UIView new];
-        threeStageLine.backgroundColor = colorWithLine;
-        [threeStageBgView addSubview:threeStageLine];
-        
-        threeStageLabel = [[UILabel alloc] init];
-        threeStageLabel.font = [UIFont systemFontOfSize:KSCAL(28.0)];
-        threeStageLabel.textColor = KCOLOR(@"333333");
-        [threeStageBgView addSubview:threeStageLabel];
-        
-        threeStagePrice = [[UILabel alloc] init];
-        threeStagePrice.font = [UIFont systemFontOfSize:KSCAL(28.0)];
-        threeStagePrice.textColor = KCOLOR(@"e60012");
-        [threeStagePrice setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-        [threeStageBgView addSubview:threeStagePrice];
-        
-        threeStageState = [[SQDecorationCellPayButtonView alloc] init];
-        threeStageState.actionDelegate = self;
-        [threeStageBgView addSubview:threeStageState];
-    }
-    
-    
-    UIView *lastView = [super valueForKey:@"paymentBgView"];
-    UIView *orderImageView = [super valueForKey:@"orderImage"];
-    
-    [oneStageBgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.height.equalTo(lastView);
-        make.top.equalTo(lastView.mas_bottom);
-    }];
-    [oneStageLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(1.0);
-    }];
-    [oneStageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(0);
-        make.right.equalTo(orderImageView);
-    }];
-    [oneStagePrice mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(oneStageLabel.mas_right).offset(KSCAL(KSPACE));
-        make.top.equalTo(oneStageLabel);
-    }];
-    [oneStageState mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(oneStagePrice);
-        make.right.mas_equalTo(0);
-        make.left.equalTo(oneStagePrice.mas_right).offset(KSCAL(KSPACE));
-        make.height.equalTo(oneStagePrice);
-    }];
-    
-    
-    ////////////////////////////////////////////////////////////////////////
-    [twoStageBgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.height.equalTo(lastView);
-        make.top.equalTo(oneStageBgView.mas_bottom);
-    }];
-    [twoStageLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(1.0);
-    }];
-    [twoStageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(0);
-        make.right.equalTo(orderImageView);
-    }];
-    [twoStagePrice mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(twoStageLabel.mas_right).offset(KSCAL(KSPACE));
-        make.top.equalTo(twoStageLabel);
-    }];
-    [twoStageState mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(twoStagePrice);
-        make.right.mas_equalTo(0);
-        make.left.equalTo(twoStagePrice.mas_right).offset(KSCAL(KSPACE));
-        make.height.equalTo(twoStagePrice);
-    }];
-    
-    ////////////////////////////////////////////////////////////////////////
-    [threeStageBgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.height.equalTo(lastView);
-        make.top.equalTo(twoStageBgView.mas_bottom);
-    }];
-    [threeStageLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(1.0);
-    }];
-    [threeStageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(0);
-        make.right.equalTo(orderImageView);
-    }];
-    [threeStagePrice mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(threeStageLabel.mas_right).offset(KSCAL(KSPACE));
-        make.top.equalTo(threeStageLabel);
-    }];
-    [threeStageState mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(threeStagePrice);
-        make.right.mas_equalTo(0);
-        make.left.equalTo(threeStagePrice.mas_right).offset(KSCAL(KSPACE));
-        make.height.equalTo(threeStagePrice);
-    }];
+    stageViewArray = [NSMutableArray array];
 }
 
 - (void)setModel:(id)model {
     [super setModel:model];
-    oneStageLabel.text = @"1阶段:";
-    oneStagePrice.text = @"300000元";
-    oneStageState.backgroundColor = colorWithMainColor;
     
-    twoStageLabel.text = @"2阶段:";
-    twoStagePrice.text = @"500000元";
-    twoStageState.backgroundColor = colorWithMainColor;
-    
-    threeStageLabel.text = @"尾款:";
-    threeStagePrice.text = @"300000元";
-    threeStageState.backgroundColor = colorWithMainColor;
 }
 
 - (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo {
-
+    
     [super configOrderInfo:orderInfo];
-    oneStageLabel.text = @"1阶段:";
-    oneStagePrice.text = @"300000元";
-    oneStageState.backgroundColor = colorWithMainColor;
     
-    twoStageLabel.text = @"2阶段:";
-    twoStagePrice.text = @"500000元";
-    twoStageState.backgroundColor = colorWithMainColor;
+    while (stageViewArray.count > (orderInfo.stage_list.count - 1)) {
+        WKDecorationStageView *v = stageViewArray.lastObject;
+        [v removeFromSuperview];
+        [stageViewArray removeLastObject];
+    }
     
-    threeStageLabel.text = @"尾款:";
-    threeStagePrice.text = @"300000元";
-    threeStageState.backgroundColor = colorWithMainColor;
+    UIView *lastView = paymentStageView;
     
-    [oneStageState configOrderInfo:orderInfo stage:1];
-    [twoStageState configOrderInfo:orderInfo stage:2];
-    [threeStageState configOrderInfo:orderInfo stage:3];
+    for (int i = 0; i < orderInfo.stage_list.count - 1; i++) {
+        WKDecorationStageView *view;
+        if (stageViewArray.count > i) {
+            view = [stageViewArray objectAtIndex:i];
+        }
+        else {
+            view = [[WKDecorationStageView alloc] init];
+            [self.contentView addSubview:view];
+            [stageViewArray addObject:view];
+        }
+        
+        WKDecorationStageModel *stageInfo = [orderInfo.stage_list objectAtIndex:i+1];
+        [view configStageModel:stageInfo withStage:i+1 canRefund:orderInfo.canRefund inRefund:orderInfo.isInRefund inDetail:NO];
+        
+        [view mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.height.equalTo(lastView);
+            make.top.equalTo(lastView.mas_bottom);
+        }];
+        
+        lastView = view;
+    }
 }
 
 - (CGSize)viewSize {
-    CGFloat height = 4 * KSCAL(88.0) + 3 * KSCAL(KSPACE) + KSCAL(180) + singleLineHeight();
+    CGFloat height = MAX(0, _orderInfo.stage_list.count-1) * KSCAL(88.0) + [super viewSize].height;
     return CGSizeMake(kScreenW, height);
 }
 
-+ (CGFloat)cellHeight {
-    return 4 * KSCAL(88.0) + 3 * KSCAL(KSPACE) + KSCAL(180) + singleLineHeight();
++ (CGFloat)cellHeightWithOrderInfo:(SQDecorationDetailModel *)orderInfo {
+    return orderInfo.stage_list.count * KSCAL(88.0) + 3 * KSCAL(KSPACE) + KSCAL(180) + singleLineHeight();
 }
 
 @end
@@ -445,9 +238,10 @@ static CGFloat singleLineHeight() {
     UIButton *connectServiceBtn;
 }
 - (void)sqlayoutSubviews {
+    
     [super sqlayoutSubviews];
     
-    dealingTipLabel = [UILabel labelWithFont:17.0 textColor:[UIColor blackColor] textAlignment:NSTextAlignmentCenter text:@"系统正在受理您的订单，请耐心等待~"];
+    dealingTipLabel = [UILabel labelWithFont:KSCAL(34.0) textColor:[UIColor blackColor] textAlignment:NSTextAlignmentCenter text:@"系统正在受理您的订单，请耐心等待~"];
     [self.contentView addSubview:dealingTipLabel];
     
     connectServiceBtn = [UIButton new];
@@ -457,18 +251,24 @@ static CGFloat singleLineHeight() {
     [connectServiceBtn addTarget:self action:@selector(click_connectService) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:connectServiceBtn];
     
-    UIView  *lastView = [super valueForKey:@"paymentLabel"];
+    UIView *lastView;
+    
+    if (stageViewArray.count) {
+        lastView = stageViewArray.lastObject;
+    }
+    else {
+        lastView = paymentStageView;
+    }
     
     [dealingTipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.centerX.mas_equalTo(0);
-        make.top.equalTo(lastView.mas_bottom).offset(KSPACE);
+        make.left.right.equalTo(paymentStageView);
+        make.top.equalTo(lastView.mas_bottom).offset(KSCAL(KSPACE));
     }];
     
     [connectServiceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(0);
-        make.top.equalTo(dealingTipLabel.mas_bottom).offset(KSPACE);
-        make.left.mas_equalTo(15);
-        make.height.mas_equalTo(30);
+        make.left.right.equalTo(paymentStageView);
+        make.top.equalTo(dealingTipLabel.mas_bottom).offset(KSCAL(KSPACE));
+        make.height.mas_equalTo(KSCAL(30));
     }];
     
     [self layoutIfNeeded];
@@ -476,10 +276,23 @@ static CGFloat singleLineHeight() {
 
 - (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo {
     [super configOrderInfo:orderInfo];
+    
+    UIView *lastView;
+    if (stageViewArray.count) {
+        lastView = stageViewArray.lastObject;
+    }
+    else {
+        lastView = paymentStageView;
+    }
+    
+    [dealingTipLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(paymentStageView);
+        make.top.equalTo(lastView.mas_bottom).offset(KSCAL(KSPACE));
+    }];
 }
 
 - (CGSize)viewSize {
-    return CGSizeMake(kScreenW, [super viewSize].height + dealingTipLabel.height + 30 + 2 * KSPACE);
+    return CGSizeMake(kScreenW, [super viewSize].height + dealingTipLabel.height + KSCAL(30) + 2 * KSCAL(KSPACE));
 }
 
 - (void)click_connectService {
@@ -488,10 +301,10 @@ static CGFloat singleLineHeight() {
     }
 }
 
-+ (CGFloat)cellHeight {
++ (CGFloat)cellHeightWithOrderInfo:(SQDecorationDetailModel *)orderInfo {
     NSString *singleH = @"系统正在受理您的订单，请耐心等待~";
-    CGFloat tipH = [singleH sizeWithFont:[UIFont systemFontOfSize:17.0] andMaxSize:CGSizeMake(kScreenW-30, MAXFLOAT)].height;
-    return 5 * KSPACE + 100 + 2 * singleLineHeight() + tipH + 30 + 2 * KSPACE;
+    CGFloat tipH = [singleH sizeWithFont:[UIFont systemFontOfSize:17.0] andMaxSize:CGSizeMake(kScreenW-KSCAL(60), MAXFLOAT)].height;
+    return orderInfo.stage_list.count * KSCAL(88.0) + 3 * KSCAL(KSPACE) + KSCAL(180) + singleLineHeight() + tipH + KSCAL(30) + 2 * KSCAL(KSPACE);
 }
 
 @end

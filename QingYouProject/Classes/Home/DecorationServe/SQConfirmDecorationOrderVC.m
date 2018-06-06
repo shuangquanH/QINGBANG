@@ -46,7 +46,7 @@
         make.height.mas_equalTo(100);
     }];
     
-    SQDecorationOrderCellWithThreeStage   *orderCell = [[SQDecorationOrderCellWithThreeStage alloc] init];
+    WKDecorationOrderMutableStageCell   *orderCell = [[WKDecorationOrderMutableStageCell alloc] init];
     orderCell.model = @"dd";
     [contentView addSubview:orderCell];
     [orderCell mas_makeConstraints:^(MASConstraintMaker *make) {
