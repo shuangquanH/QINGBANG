@@ -213,6 +213,10 @@
     
     if (indexPath.section == 0 && indexPath.row == 2) {//发票抬头列表
         SQTicketApplyListViewController *next = [SQTicketApplyListViewController new];
+        next.selectInvoiceBlock = ^(WKInvoiceModel *invoiceInfo) {
+            self.invoiceInfo = invoiceInfo;
+            [self.tableView reloadData];
+        };
         [self.navigationController pushViewController:next animated:YES];
         return;
     }

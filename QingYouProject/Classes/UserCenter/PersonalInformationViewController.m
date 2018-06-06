@@ -13,24 +13,23 @@
 #import "QiniuSDK.h"
 #import "UploadImageTool.h"
 
-@interface PersonalInformationViewController () <UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
-{
-    
+@interface PersonalInformationViewController () <UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate,UINavigationControllerDelegate> {
     NSArray *_titleArray;
-//    NSArray *_informationArray;
-//    UIImageView *_headImageView;//头像
 }
-@property(nonatomic,strong)UIView * blackView; //点击头像时黑色半透明背景
-@property(nonatomic,strong)UIImage *headImage;
-@property(nonatomic,strong)UITableView *tableView;
+
+@property(nonatomic,strong) UIView *blackView; //点击头像时黑色半透明背景
+@property(nonatomic,strong) UIImage *headImage;
+@property(nonatomic,strong) UITableView *tableView;
 @end
 
 @implementation PersonalInformationViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     self.naviTitle = @"个人信息";
+    
+    _titleArray = [NSArray arrayWithObjects:@"头像",@"账号",@"昵称",@"公司名称",@"所在园区",@"简介",@"邀请码", nil];
+    [self.view addSubview:self.tableView];
 }
 
 -(UITableView *)tableView
@@ -47,17 +46,12 @@
     return _tableView;
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:YES];
-//    _informationArray = [NSArray arrayWithObjects:YGSingletonMarco.user.userImg,YGSingletonMarco.user.phone,YGSingletonMarco.user.userName,YGSingletonMarco.user.company,YGSingletonMarco.user.gion,YGSingletonMarco.user.description, nil];
-    _titleArray = [NSArray arrayWithObjects:@"头像",@"账号",@"昵称",@"公司名称",@"所在园区",@"简介",@"邀请码", nil];
-    
-    [self.view addSubview:self.tableView];
+    [self.tableView reloadData];
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
@@ -215,7 +209,7 @@
         NSLog(@"%@",responseObject);
         [YGAppTool showToastWithText:@"修改成功"];
         YGSingletonMarco.user.gion = areaString;
-         [YGSingletonMarco archiveUser];
+        [YGSingletonMarco archiveUser];
         
     } failure:^(NSError *error) {
         
@@ -264,6 +258,7 @@
             NSLog(@"%@",responseObject);
             
             YGSingletonMarco.user.userImg = url;
+            [YGSingletonMarco archiveUser];
             
             [YGAppTool showToastWithText:@"保存成功!"];
             [_tableView reloadData];

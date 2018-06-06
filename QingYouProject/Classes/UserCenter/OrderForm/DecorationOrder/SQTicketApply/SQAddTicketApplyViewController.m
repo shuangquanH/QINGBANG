@@ -26,6 +26,8 @@
 
 @property (nonatomic, strong) UIButton *personalBtn;
 
+@property (nonatomic, assign) BOOL isEdit;
+
 @end
 
 @implementation SQAddTicketApplyViewController
@@ -33,7 +35,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.naviTitle = @"添加抬头";
+    _isEdit = _invoiceInfo;
+    self.naviTitle = _isEdit ? @"编辑抬头" : @"添加抬头";
     
     [self setupSubviews];
 }
@@ -67,7 +70,10 @@
     _selectDefaultButton = [UIButton new];
     [_selectDefaultButton setTitle:@"设置为默认抬头" forState:UIControlStateNormal];
     [_selectDefaultButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [_selectDefaultButton setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
     _selectDefaultButton.selected = _invoiceInfo.isDefault;
+    [_selectDefaultButton addTarget:self
+                             action:@selector(click_defaultButton) forControlEvents:UIControlEventTouchUpInside];
     [_selectDefaultButton sizeToFit];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -81,6 +87,7 @@
     [_confirmButton setBackgroundColor:[UIColor redColor]];
     [_confirmButton setTitle:@"提交" forState:UIControlStateNormal];
     [_confirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_confirmButton addTarget:self action:@selector(click_confirmButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_confirmButton];
 }
 
@@ -144,6 +151,32 @@
 }
 
 #pragma mark - action
+- (void)click_confirmButton {
+    
+    if (_personalBtn.isSelected) {//个人
+        self.invoiceInfo.companyBank = nil;
+        self.invoiceInfo.companyPhone = nil;
+        self.invoiceInfo.companyAddress = nil;
+        self.invoiceInfo.companyBankAccount = nil;
+        self.invoiceInfo.invoiceDutyNum = nil;
+    }
+
+    NSDictionary *param = [self.invoiceInfo yy_modelToJSONObject];
+    [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
+    [SQRequest post:(_isEdit?KAPI_EDITINVOICE:KAPI_ADDINVOICE) param:param success:^(id response) {
+        [YGNetService dissmissLoadingView];
+        if ([response[@"state"] isEqualToString:@"success"]) {
+            [YGAppTool showToastWithText:(_isEdit?@"修改成功":@"添加成功")];
+            [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.5];
+        } else {
+            [YGAppTool showToastWithText:response[@"data"][@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        [YGNetService dissmissLoadingView];
+        [YGAppTool showToastWithText:@"网络错误"];
+    }];
+}
+
 - (void)click_selectButton:(UIButton *)sender {
     if (sender.isSelected) return;
     
@@ -157,6 +190,11 @@
     }
     sender.selected = YES;
     [self.tableView reloadData];
+}
+
+- (void)click_defaultButton {
+    _selectDefaultButton.selected = !_selectDefaultButton.isSelected;
+    self.invoiceInfo.isDefault = _selectDefaultButton.isSelected;
 }
 
 #pragma mark - UITableViewDataSource

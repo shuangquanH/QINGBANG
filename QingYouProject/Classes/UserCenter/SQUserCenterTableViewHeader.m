@@ -27,7 +27,7 @@
 - (void)setupSubviews {
     
     _iconImageView = [UIImageView new];
-    _iconImageView.contentMode = UIViewContentModeScaleAspectFit;
+    _iconImageView.contentMode = UIViewContentModeScaleAspectFill;
     _iconImageView.layer.cornerRadius = 40;
     _iconImageView.layer.masksToBounds = YES;
     _iconImageView.userInteractionEnabled = YES;

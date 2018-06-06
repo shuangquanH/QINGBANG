@@ -30,6 +30,11 @@
     [self.view addSubview:self.tableview];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [_tableHeader configUserInfo:YGSingletonMarco.user];
+}
+
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     

@@ -9,10 +9,13 @@
 #import "SQDecorationOrderDetailVC.h"
 #import "SQTicketApplyViewController.h"
 #import "SQApplyAfterSaleViewController.h"
+#import "WKDecorationRefundDetailViewController.h"
+#import "WKDecorationRepairViewController.h"
 
 #import "SQDecorationDetailViewModel.h"
+#import "SQDecorationOrderCell.h"
 
-@interface SQDecorationOrderDetailVC () < SQDecorationDetailViewModelDelegate>
+@interface SQDecorationOrderDetailVC () <SQDecorationDetailViewModelDelegate>
 
 @property (nonatomic, strong) UIScrollView  *contentScrollView;
 @property (nonatomic, strong) UIView        *contentView;
@@ -125,6 +128,7 @@
     }
     else {
         SQTicketApplyViewController *next = [SQTicketApplyViewController new];
+        next.orderDetailInfo = self.orderInfo.order_info;
         [self.navigationController pushViewController:next animated:YES];
     }
 }
@@ -191,15 +195,43 @@
             break;
         case WKDecorationOrderActionTypeRepair://补登
         {
-//            WKDecorationRepairViewController *next = [WKDecorationRepairViewController new];
-//            [self.navigationController pushViewController:next animated:YES];
+            WKDecorationRepairViewController *next = [WKDecorationRepairViewController new];
+            [self.navigationController pushViewController:next animated:YES];
         }
             break;
         case WKDecorationOrderActionTypeCallService://联系客服
+        {
+            NSString *url = @"tel:057812345";
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+        }
             break;
         case WKDecorationOrderActionTypeRefund://申请退款
+        {
+            [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
+            [SQRequest post:KAPI_APPLYREFUND param:@{@"orderNum": self.orderInfo.order_info.orderNum} success:^(id response) {
+                [YGNetService dissmissLoadingView];
+                if ([response[@"state"] isEqualToString:@"success"]) {
+                    //修改当前状态为申请退款中状态
+                    self.orderInfo.order_info.isInRefund = YES;
+                    self.orderInfo.order_info.canRefund = NO;
+                    [self.orderDetailVM.orderCell configOrderInfo:self.orderInfo.order_info];
+                    [YGAppTool showToastWithText:@"申请成功"];
+                }
+                else {
+                    [YGAppTool showToastWithText:response[@"data"][@"msg"]];
+                }
+            } failure:^(NSError *error) {
+                [YGNetService dissmissLoadingView];
+                [YGAppTool showToastWithText:@"网络错误"];
+            }];
+        }
             break;
         case WKDecorationOrderActionTypeRefundDetail://退款详情
+        {
+            WKDecorationRefundDetailViewController *next = [WKDecorationRefundDetailViewController new];
+            next.orderInfo = self.orderInfo;
+            [self.navigationController pushViewController:next animated:YES];
+        }
             break;
         default:
             break;
@@ -211,7 +243,6 @@
     if (!_contentScrollView) {
         CGRect frame = CGRectMake(0, 0, YGScreenWidth, YGScreenHeight-KNAV_HEIGHT);
         _contentScrollView = [[UIScrollView alloc] initWithFrame:frame];
-        _contentScrollView.delegate = self;
     }
     return _contentScrollView;
 }
