@@ -18,11 +18,9 @@
 //#define Debug_Server  @"http://192.168.51.28:8088/" //zhaoyifeng
 //#define Debug_Server  @"http://192.168.51.220:8080/" //李源
 //#define Debug_Server  @"http://thesiren.f3322.net:10086/" //李源
-//#define Debug_Server  @"http://www.ahqyc.xyz/" //线上
+#define Debug_Server  @"http://www.ahqyc.xyz/" //线上
 //#define Debug_Server  @"http://192.168.51.100:8080/" //李洪宝
 //#define Debug_Server  @"http://thesiren.f3322.net:11111/"
-#define Debug_Server @"http://192.168.2.28:8081/mockjsdata/1" //mock
-
 
 
 

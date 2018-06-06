@@ -9,7 +9,7 @@
 #import "SQDecorationOrderCell.h"
 #import "NSString+SQStringSize.h"
 
-#define KSPACE 10
+#define KSPACE 20
 
 static CGFloat singleLineHeight() {
     static CGFloat h;
@@ -28,6 +28,8 @@ static CGFloat singleLineHeight() {
     UILabel *orderDesc;
     UILabel *orderPrice;
     
+    UIView  *paymentLine;
+    UIView  *paymentBgView;
     UILabel *paymentLabel;
     UILabel *paymentPrice;
     SQDecorationCellPayButtonView *paymentState;
@@ -62,23 +64,30 @@ static CGFloat singleLineHeight() {
         orderPrice.textColor = KCOLOR(@"333333");
         [self.contentView addSubview:orderPrice];
         
+        paymentBgView = [UIView new];
+        [self.contentView addSubview:paymentBgView];
+        
+        paymentLine = [UIView new];
+        paymentLine.backgroundColor = colorWithLine;
+        [paymentBgView addSubview:paymentLine];
+        
         /** 定金  */
         paymentLabel = [[UILabel alloc] init];
         paymentLabel.font = KFONT(28.0);
         paymentLabel.textColor = KCOLOR(@"333333");
-        [self.contentView addSubview:paymentLabel];
+        [paymentBgView addSubview:paymentLabel];
         
         /** 定金金额  */
         paymentPrice = [[UILabel alloc] init];
         paymentPrice.font = KFONT(28.0);
         paymentPrice.textColor = KCOLOR(@"e60012");
         [paymentPrice setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-        [self.contentView addSubview:paymentPrice];
+        [paymentBgView addSubview:paymentPrice];
         
         /** 定金状态  */
         paymentState = [[SQDecorationCellPayButtonView alloc] init];
         paymentState.actionDelegate = self;
-        [self.contentView addSubview:paymentState];
+        [paymentBgView addSubview:paymentState];
     
         paymentLabel.text = @"定金:";
 
@@ -91,26 +100,26 @@ static CGFloat singleLineHeight() {
 
 - (void)sqlayoutSubviews {
     [orderStateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.contentView).offset(-2*KSPACE);;
-        make.top.equalTo(self.contentView).offset(KSPACE);
+        make.right.equalTo(self.contentView).offset(-KSCAL(30));
+        make.top.equalTo(self.contentView).offset(KSCAL(KSPACE));
     }];
     
     [orderImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(KSCAL(30));
-        make.top.equalTo(orderStateLabel.mas_bottom).offset(KSCAL(20));
+        make.top.equalTo(orderStateLabel.mas_bottom).offset(KSCAL(KSPACE));
         make.width.mas_equalTo(KSCAL(240));
-        make.height.mas_equalTo(KSCAL(170));
+        make.height.mas_equalTo(KSCAL(180));
     }];
     
     [orderTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(orderImage.mas_right).offset(KSCAL(20));
+        make.left.equalTo(orderImage.mas_right).offset(KSCAL(KSPACE));
         make.top.equalTo(orderImage);
         make.right.equalTo(self.contentView).offset(-KSCAL(30));
     }];
     
     [orderDesc mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(orderTitle);
-        make.top.equalTo(orderTitle.mas_bottom).offset(KSPACE);
+        make.top.equalTo(orderTitle.mas_baseline).offset(KSCAL(KSPACE));
     }];
     
     [orderPrice mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -118,19 +127,31 @@ static CGFloat singleLineHeight() {
         make.bottom.equalTo(orderImage.mas_bottom);
     }];
     
+    [paymentBgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(orderImage);
+        make.centerX.mas_equalTo(0);
+        make.top.equalTo(orderImage.mas_bottom).offset(KSCAL(KSPACE));
+        make.height.mas_equalTo(KSCAL(88));
+    }];
+    
+    [paymentLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(1.0);
+    }];
+    
     [paymentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(orderImage.mas_bottom).offset(KSPACE);
+        make.centerY.mas_equalTo(0);
         make.right.equalTo(orderImage);
     }];
     [paymentPrice mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(paymentLabel);
-        make.left.equalTo(paymentLabel.mas_right).offset(KSPACE);;
+        make.left.equalTo(paymentLabel.mas_right).offset(KSCAL(KSPACE));
     }];
     
     [paymentState mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(0);
         make.top.equalTo(paymentPrice);
-        make.left.equalTo(paymentPrice.mas_right).offset(KSPACE);
-        make.right.equalTo(self.contentView).offset(-KSPACE);
+        make.left.equalTo(paymentPrice.mas_right).offset(KSCAL(KSPACE));
         make.height.equalTo(paymentPrice);
     }];
 
@@ -147,7 +168,6 @@ static CGFloat singleLineHeight() {
     paymentLabel.text = @"定金:";
     paymentPrice.text = @"100元";
     paymentState.backgroundColor = colorWithMainColor;
-
 }
 
 - (void)setIsInDetail:(BOOL)isInDetail {
@@ -164,17 +184,22 @@ static CGFloat singleLineHeight() {
     [paymentState configOrderInfo:orderInfo stage:0];
     
     orderStateLabel.text = orderInfo.orderTitle;
-    orderImage.backgroundColor = [UIColor orangeColor];
-    [orderImage sd_setImageWithURL:[NSURL URLWithString:orderInfo.decorate_icon] placeholderImage:nil];
-    orderTitle.text = orderInfo.decorateName;
     orderDesc.text = orderInfo.decorateDescribe;
-    orderPrice.text = [NSString stringWithFormat:@"¥ %@", orderInfo.estimate];
+    orderPrice.text = [NSString stringWithFormat:@"¥ %@（预估价）", orderInfo.estimate];
     paymentPrice.text = [NSString stringWithFormat:@"¥ %@", orderInfo.depositPrice];
     paymentState.backgroundColor = colorWithMainColor;
+    [orderImage sd_setImageWithURL:[NSURL URLWithString:orderInfo.decorate_icon] placeholderImage:nil];
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:5];
+    [paragraphStyle setMinimumLineHeight:0.0];
+    NSAttributedString *decorateName = [[NSAttributedString alloc] initWithString:orderInfo.decorateName attributes:@{NSParagraphStyleAttributeName: paragraphStyle}];
+    orderTitle.attributedText = decorateName;
+    orderTitle.lineBreakMode = NSLineBreakByTruncatingTail;
 }
 
 - (CGSize)viewSize {
-    CGFloat height = 5 * KSPACE + 100 + 2 * singleLineHeight();
+    CGFloat height = KSCAL(88.0) + KSCAL(180.0) + 3 * KSCAL(KSPACE) + singleLineHeight();
     return CGSizeMake(kScreenW, height);
 }
 
@@ -187,7 +212,7 @@ static CGFloat singleLineHeight() {
 
 #pragma mark - public
 + (CGFloat)cellHeight {
-    return 5 * KSPACE + 100 + 2 * singleLineHeight();
+    return KSCAL(88.0) + KSCAL(180) + 3 * KSCAL(KSPACE) + singleLineHeight();
 }
 
 @end
@@ -195,15 +220,20 @@ static CGFloat singleLineHeight() {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation SQDecorationOrderCellWithThreeStage {
+    UIView  *oneStageBgView;
+    UIView  *oneStageLine;
     UILabel *oneStageLabel;
     UILabel *oneStagePrice;
     SQDecorationCellPayButtonView    *oneStageState;
     
+    UIView  *twoStageBgView;
+    UIView  *twoStageLine;
     UILabel *twoStageLabel;
     UILabel *twoStagePrice;
     SQDecorationCellPayButtonView    *twoStageState;
     
-    
+    UIView  *threeStageBgView;
+    UIView  *threeStageLine;
     UILabel *threeStageLabel;
     UILabel *threeStagePrice;
     SQDecorationCellPayButtonView    *threeStageState;
@@ -213,86 +243,151 @@ static CGFloat singleLineHeight() {
 - (void)sqlayoutSubviews {
     [super sqlayoutSubviews];
     
-    oneStageLabel = [[UILabel alloc] init];
-    [self.contentView addSubview:oneStageLabel];
-    oneStagePrice = [[UILabel alloc] init];
-    [self.contentView addSubview:oneStagePrice];
-    [oneStagePrice setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-    oneStageState = [[SQDecorationCellPayButtonView alloc] init];
-    oneStageState.actionDelegate = self;
-    [self.contentView addSubview:oneStageState];
+    {
+        oneStageBgView = [UIView new];
+        [self.contentView addSubview:oneStageBgView];
+        
+        oneStageLine = [UIView new];
+        oneStageLine.backgroundColor = colorWithLine;
+        [oneStageBgView addSubview:oneStageLine];
+        
+        oneStageLabel = [[UILabel alloc] init];
+        oneStageLabel.font = [UIFont systemFontOfSize:KSCAL(28.0)];
+        oneStageLabel.textColor = KCOLOR(@"333333");
+        [oneStageBgView addSubview:oneStageLabel];
+        
+        oneStagePrice = [[UILabel alloc] init];
+        oneStagePrice.font = [UIFont systemFontOfSize:KSCAL(28.0)];
+        oneStagePrice.textColor = KCOLOR(@"e60012");
+        [oneStagePrice setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+        [oneStageBgView addSubview:oneStagePrice];
+        
+        oneStageState = [[SQDecorationCellPayButtonView alloc] init];
+        oneStageState.actionDelegate = self;
+        [oneStageBgView addSubview:oneStageState];
+    }
     
-    twoStageLabel = [[UILabel alloc] init];
-    [self.contentView addSubview:twoStageLabel];
-    twoStagePrice = [[UILabel alloc] init];
-    [self.contentView addSubview:twoStagePrice];
-    [twoStagePrice setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-    twoStageState = [[SQDecorationCellPayButtonView alloc] init];
-    twoStageState.actionDelegate = self;
-    [self.contentView addSubview:twoStageState];
+    {
+        twoStageBgView = [UIView new];
+        [self.contentView addSubview:twoStageBgView];
+        
+        twoStageLine = [UIView new];
+        twoStageLine.backgroundColor = colorWithLine;
+        [twoStageBgView addSubview:twoStageLine];
+        
+        twoStageLabel = [[UILabel alloc] init];
+        twoStageLabel.font = [UIFont systemFontOfSize:KSCAL(28.0)];
+        twoStageLabel.textColor = KCOLOR(@"333333");
+        [twoStageBgView addSubview:twoStageLabel];
+        
+        twoStagePrice = [[UILabel alloc] init];
+        twoStagePrice.font = [UIFont systemFontOfSize:KSCAL(28.0)];
+        twoStagePrice.textColor = KCOLOR(@"e60012");
+        [twoStagePrice setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+        [twoStageBgView addSubview:twoStagePrice];
+        
+        twoStageState = [[SQDecorationCellPayButtonView alloc] init];
+        twoStageState.actionDelegate = self;
+        [twoStageBgView addSubview:twoStageState];
+    }
     
-    threeStageLabel = [[UILabel alloc] init];
-    [self.contentView addSubview:threeStageLabel];
-    threeStagePrice = [[UILabel alloc] init];
-    [self.contentView addSubview:threeStagePrice];
-    [threeStagePrice setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-    threeStageState = [[SQDecorationCellPayButtonView alloc] init];
-    threeStageState.actionDelegate = self;
-    [self.contentView addSubview:threeStageState];
+    {
+        threeStageBgView = [UIView new];
+        [self.contentView addSubview:threeStageBgView];
+        
+        threeStageLine = [UIView new];
+        threeStageLine.backgroundColor = colorWithLine;
+        [threeStageBgView addSubview:threeStageLine];
+        
+        threeStageLabel = [[UILabel alloc] init];
+        threeStageLabel.font = [UIFont systemFontOfSize:KSCAL(28.0)];
+        threeStageLabel.textColor = KCOLOR(@"333333");
+        [threeStageBgView addSubview:threeStageLabel];
+        
+        threeStagePrice = [[UILabel alloc] init];
+        threeStagePrice.font = [UIFont systemFontOfSize:KSCAL(28.0)];
+        threeStagePrice.textColor = KCOLOR(@"e60012");
+        [threeStagePrice setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+        [threeStageBgView addSubview:threeStagePrice];
+        
+        threeStageState = [[SQDecorationCellPayButtonView alloc] init];
+        threeStageState.actionDelegate = self;
+        [threeStageBgView addSubview:threeStageState];
+    }
     
-    UIView  *lastView = [super valueForKey:@"paymentLabel"];
-    UIView  *orderImage = [super valueForKey:@"orderImage"];
     
-    [lastView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(orderImage.mas_bottom).offset(KSPACE);
-        make.right.equalTo(orderImage);
+    UIView *lastView = [super valueForKey:@"paymentBgView"];
+    UIView *orderImageView = [super valueForKey:@"orderImage"];
+    
+    [oneStageBgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.height.equalTo(lastView);
+        make.top.equalTo(lastView.mas_bottom);
     }];
-    
+    [oneStageLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.mas_equalTo(0);
+        make.height.mas_equalTo(1.0);
+    }];
     [oneStageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(lastView.mas_bottom).offset(KSPACE);
-        make.right.equalTo(lastView);
+        make.centerY.mas_equalTo(0);
+        make.right.equalTo(orderImageView);
     }];
     [oneStagePrice mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(oneStageLabel.mas_right).offset(KSPACE);
+        make.left.equalTo(oneStageLabel.mas_right).offset(KSCAL(KSPACE));
         make.top.equalTo(oneStageLabel);
     }];
     [oneStageState mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(oneStagePrice);
-        make.left.equalTo(oneStagePrice.mas_right).offset(KSPACE);
-        make.right.equalTo(self.contentView).offset(-KSPACE);
+        make.right.mas_equalTo(0);
+        make.left.equalTo(oneStagePrice.mas_right).offset(KSCAL(KSPACE));
         make.height.equalTo(oneStagePrice);
     }];
     
     
     ////////////////////////////////////////////////////////////////////////
+    [twoStageBgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.height.equalTo(lastView);
+        make.top.equalTo(oneStageBgView.mas_bottom);
+    }];
+    [twoStageLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.mas_equalTo(0);
+        make.height.mas_equalTo(1.0);
+    }];
     [twoStageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(oneStageLabel.mas_bottom).offset(KSPACE);
-        make.right.equalTo(lastView);
+        make.centerY.mas_equalTo(0);
+        make.right.equalTo(orderImageView);
     }];
     [twoStagePrice mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(twoStageLabel.mas_right).offset(KSPACE);
+        make.left.equalTo(twoStageLabel.mas_right).offset(KSCAL(KSPACE));
         make.top.equalTo(twoStageLabel);
     }];
     [twoStageState mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(twoStagePrice);
-        make.left.equalTo(twoStagePrice.mas_right).offset(KSPACE);
-        make.right.equalTo(self.contentView).offset(-KSPACE);
+        make.right.mas_equalTo(0);
+        make.left.equalTo(twoStagePrice.mas_right).offset(KSCAL(KSPACE));
         make.height.equalTo(twoStagePrice);
     }];
     
     ////////////////////////////////////////////////////////////////////////
+    [threeStageBgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.height.equalTo(lastView);
+        make.top.equalTo(twoStageBgView.mas_bottom);
+    }];
+    [threeStageLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.mas_equalTo(0);
+        make.height.mas_equalTo(1.0);
+    }];
     [threeStageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(twoStageLabel.mas_bottom).offset(KSPACE);
-        make.right.equalTo(lastView);
+        make.centerY.mas_equalTo(0);
+        make.right.equalTo(orderImageView);
     }];
     [threeStagePrice mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(threeStageLabel.mas_right).offset(KSPACE);
+        make.left.equalTo(threeStageLabel.mas_right).offset(KSCAL(KSPACE));
         make.top.equalTo(threeStageLabel);
     }];
     [threeStageState mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(threeStagePrice);
-        make.left.equalTo(threeStagePrice.mas_right).offset(KSPACE);
-        make.right.equalTo(self.contentView).offset(-KSPACE);
+        make.right.mas_equalTo(0);
+        make.left.equalTo(threeStagePrice.mas_right).offset(KSCAL(KSPACE));
         make.height.equalTo(threeStagePrice);
     }];
 }
@@ -333,12 +428,12 @@ static CGFloat singleLineHeight() {
 }
 
 - (CGSize)viewSize {
-    CGFloat height = 8 * KSPACE + 100 + 5 * singleLineHeight();
+    CGFloat height = 4 * KSCAL(88.0) + 3 * KSCAL(KSPACE) + KSCAL(180) + singleLineHeight();
     return CGSizeMake(kScreenW, height);
 }
 
 + (CGFloat)cellHeight {
-    return 8 * KSPACE + 100 + 5 * singleLineHeight();
+    return 4 * KSCAL(88.0) + 3 * KSCAL(KSPACE) + KSCAL(180) + singleLineHeight();
 }
 
 @end

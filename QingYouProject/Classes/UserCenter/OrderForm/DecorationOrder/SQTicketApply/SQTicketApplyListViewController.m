@@ -94,7 +94,7 @@
 
 - (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
     if (headerAction) {
-        [YGNetService YGPOST:@"getInvoiceInfo" parameters:@{@"userId": YGSingletonMarco.user.userId} showLoadingView:NO scrollView:self.tableView success:^(id responseObject) {
+        [YGNetService YGPOST:KAPI_INVOICELIST parameters:@{@"userId": YGSingletonMarco.user.userId} showLoadingView:NO scrollView:self.tableView success:^(id responseObject) {
             NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKInvoiceModel class] json:responseObject[@"invoice_list"]];
             [self.invoiceList removeAllObjects];
             [self.invoiceList addObjectsFromArray:tmp];

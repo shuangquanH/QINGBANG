@@ -35,6 +35,7 @@
 		04FFB4BE20C7670400B8843E /* AboutusViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FFB4B520C7670400B8843E /* AboutusViewController.m */; };
 		04FFB4BF20C7670400B8843E /* PasswordSetValidateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FFB4B620C7670400B8843E /* PasswordSetValidateController.m */; };
 		04FFB4C020C7670400B8843E /* PasswordModifilyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FFB4B720C7670400B8843E /* PasswordModifilyViewController.m */; };
+		04FFB4C320C77E8700B8843E /* WKDecorationStageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FFB4C220C77E8700B8843E /* WKDecorationStageView.m */; };
 		180FCFCF1FDE75E400EB278C /* ChooseGoodsWithCategoriesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180FCFCE1FDE75E400EB278C /* ChooseGoodsWithCategoriesView.m */; };
 		1812F2EF2021A01B00EEC1CE /* HomePageLegalServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812F2EE2021A01B00EEC1CE /* HomePageLegalServiceViewController.m */; };
 		1812F2F22021A27100EEC1CE /* HomePageLegalServiceManagerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812F2F12021A27100EEC1CE /* HomePageLegalServiceManagerDetailViewController.m */; };
@@ -861,6 +862,8 @@
 		04FFB4B920C7670400B8843E /* PasswordSetValidateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordSetValidateController.h; sourceTree = "<group>"; };
 		04FFB4BA20C7670400B8843E /* EvaluateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvaluateViewController.h; sourceTree = "<group>"; };
 		04FFB4BB20C7670400B8843E /* AboutusViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutusViewController.h; sourceTree = "<group>"; };
+		04FFB4C120C77E8700B8843E /* WKDecorationStageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKDecorationStageView.h; sourceTree = "<group>"; };
+		04FFB4C220C77E8700B8843E /* WKDecorationStageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKDecorationStageView.m; sourceTree = "<group>"; };
 		180FCFCD1FDE75E400EB278C /* ChooseGoodsWithCategoriesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseGoodsWithCategoriesView.h; sourceTree = "<group>"; };
 		180FCFCE1FDE75E400EB278C /* ChooseGoodsWithCategoriesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChooseGoodsWithCategoriesView.m; sourceTree = "<group>"; };
 		1812F2ED2021A01B00EEC1CE /* HomePageLegalServiceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageLegalServiceViewController.h; sourceTree = "<group>"; };
@@ -5505,6 +5508,8 @@
 				E99DE1DF20AD5182009CEF88 /* SQDecorationOrderCell.m */,
 				E99DE1E120AD54CC009CEF88 /* SQDecorationCellPayButtonView.h */,
 				E99DE1E220AD54CC009CEF88 /* SQDecorationCellPayButtonView.m */,
+				04FFB4C120C77E8700B8843E /* WKDecorationStageView.h */,
+				04FFB4C220C77E8700B8843E /* WKDecorationStageView.m */,
 			);
 			path = DecorationOrder;
 			sourceTree = "<group>";
@@ -6286,6 +6291,7 @@
 				18C159811FC8208A0010ACD3 /* MyRecruitBeInviteInterviewTableViewCell.m in Sources */,
 				18C15A3B1FC8208B0010ACD3 /* MyInvestSubViewController.m in Sources */,
 				E2E5B3521FB0675B00205F70 /* SocketEnterRoomModel.m in Sources */,
+				04FFB4C320C77E8700B8843E /* WKDecorationStageView.m in Sources */,
 				E2E5B3481FB0675B00205F70 /* UIView+LDFrame.m in Sources */,
 				0470A40F20C119A1003F23C6 /* SQDecorationDetailServerView.m in Sources */,
 				18C159A71FC8208A0010ACD3 /* AlreadyProcessedViewController.m in Sources */,
