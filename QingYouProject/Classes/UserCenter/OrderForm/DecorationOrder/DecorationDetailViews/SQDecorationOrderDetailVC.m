@@ -10,6 +10,7 @@
 #import "SQTicketApplyViewController.h"
 #import "SQApplyAfterSaleViewController.h"
 #import "WKDecorationRefundDetailViewController.h"
+#import "WKDecorationRepairViewController.h"
 
 #import "SQDecorationDetailViewModel.h"
 #import "SQDecorationOrderCell.h"
@@ -194,8 +195,8 @@
             break;
         case WKDecorationOrderActionTypeRepair://补登
         {
-//            WKDecorationRepairViewController *next = [WKDecorationRepairViewController new];
-//            [self.navigationController pushViewController:next animated:YES];
+            WKDecorationRepairViewController *next = [WKDecorationRepairViewController new];
+            [self.navigationController pushViewController:next animated:YES];
         }
             break;
         case WKDecorationOrderActionTypeCallService://联系客服

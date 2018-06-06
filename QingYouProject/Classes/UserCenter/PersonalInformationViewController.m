@@ -258,6 +258,7 @@
             NSLog(@"%@",responseObject);
             
             YGSingletonMarco.user.userImg = url;
+            [YGSingletonMarco archiveUser];
             
             [YGAppTool showToastWithText:@"保存成功!"];
             [_tableView reloadData];
