@@ -94,19 +94,20 @@
 
 - (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
     if (headerAction) {
-        [YGNetService YGPOST:KAPI_INVOICELIST parameters:@{@"userId": YGSingletonMarco.user.userId} showLoadingView:NO scrollView:self.tableView success:^(id responseObject) {
-            NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKInvoiceModel class] json:responseObject[@"invoice_list"]];
+        [SQRequest post:KAPI_INVOICELIST param:nil success:^(id response) {
+            NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKInvoiceModel class] json:response[@"invoice_list"]];
             [self.invoiceList removeAllObjects];
             [self.invoiceList addObjectsFromArray:tmp];
+            [self.tableView.mj_header endRefreshing];
             [self.tableView reloadData];
-        } failure:nil];
+        } failure:^(NSError *error) {
+            [YGAppTool showToastWithText:@"网络错误"];
+            [self.tableView.mj_header endRefreshing];
+        }];
+        
     }
     else {
-//        [YGNetService YGPOST:@"" parameters:@{@"userId": YGSingletonMarco.user.userId} showLoadingView:NO scrollView:self.tableView success:^(id responseObject) {
-//            NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKInvoiceModel class] json:responseObject];
-//            [self.invoiceList addObjectsFromArray:tmp];
-//            [self.tableView reloadData];
-//        } failure:nil];
+
     }
 }
 

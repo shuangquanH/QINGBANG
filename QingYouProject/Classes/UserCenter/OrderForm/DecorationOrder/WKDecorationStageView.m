@@ -9,6 +9,12 @@
 #import "WKDecorationStageView.h"
 #import "SQDecorationCellPayButtonView.h"
 
+#import "SQDecorationDetailModel.h"
+
+@interface WKDecorationStageView()<SQDecorationCellPayButtonViewDelegate>
+
+@end
+
 @implementation WKDecorationStageView
 {
     UIView *lineView;
@@ -16,9 +22,12 @@
     UILabel *stagePriceLab;
     SQDecorationCellPayButtonView *stageStateView;
 }
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self == [super initWithFrame:frame]) {
+- (instancetype)init {
+    if (self == [super init]) {
+        
         [self setupSubviews];
+        
+        [self makeConstaints];
     }
     return self;
 }
@@ -36,12 +45,43 @@
     stagePriceLab = [[UILabel alloc] init];
     stagePriceLab.font = [UIFont systemFontOfSize:KSCAL(28.0)];
     stagePriceLab.textColor = KCOLOR(@"e60012");
-//    [oneStagePrice setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-//    [oneStageBgView addSubview:oneStagePrice];
-//
-//    oneStageState = [[SQDecorationCellPayButtonView alloc] init];
-//    oneStageState.actionDelegate = self;
-//    [oneStageBgView addSubview:oneStageState];
+    [stagePriceLab setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+    [self addSubview:stagePriceLab];
+
+    stageStateView = [[SQDecorationCellPayButtonView alloc] init];
+    stageStateView.actionDelegate = self;
+    [self addSubview:stageStateView];
+}
+
+- (void)makeConstaints {
+    [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.mas_equalTo(0);
+        make.height.mas_equalTo(1.0);
+    }];
+    [stageTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(0);
+        make.right.mas_equalTo(-kScreenW+KSCAL(300));
+    }];
+    [stagePriceLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(stageTitleLabel.mas_right).offset(KSCAL(20.0));
+        make.centerY.equalTo(stageTitleLabel);
+    }];
+    [stageStateView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.height.equalTo(stagePriceLab);
+        make.right.mas_equalTo(0);
+        make.left.equalTo(stagePriceLab.mas_right).offset(KSCAL(20.0));
+    }];
+}
+
+- (void)configStageModel:(WKDecorationStageModel *)stageModel withStage:(NSInteger)stage canRefund:(BOOL)canRefund inRefund:(BOOL)inRefund inDetail:(BOOL)inDetail {
+    stageTitleLabel.text = [NSString stringWithFormat:@"%@：", stageModel.stageName];
+    stagePriceLab.text = [NSString stringWithFormat:@"¥ %@", stageModel.stagePrice];
+    [stageStateView configStageModel:stageModel withStage:stage canRefund:canRefund inRefund:inRefund inDetail:inDetail];
+}
+
+#pragma mark - SQDecorationCellPayButtonViewDelegate
+- (void)actionView:(SQDecorationCellPayButtonView *)actionView didClickActionType:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage {
+    
 }
 
 @end

@@ -38,8 +38,7 @@
         return;
     }
     [SQRequest post:KAPI_DECORATIONORDERDETAIL param:nil success:^(id response) {
-        WKDecorationOrderDetailModel *order = [WKDecorationOrderDetailModel yy_modelWithJSON:response];
-        order.order_info.orderState = 5;
+        WKDecorationOrderDetailModel *order = [WKDecorationOrderDetailModel yy_modelWithJSON:response[@"data"]];
         [self setupByOrderInfo:order.order_info];
         completed(order, nil);
     } failure:^(NSError *error) {
@@ -74,16 +73,12 @@
     
     //订单详情
     SQDecorationOrderCell *detailCell;
-    if (orderInfo.orderState == 4 || orderInfo.orderState == 5) {
-       detailCell = [[SQDecorationOrderCellWithThreeStage alloc] init];
-    }
-    else if (orderInfo.orderState == 3) {
+    if (orderInfo.orderState == 3) {
         detailCell = [[WKDecorationDealingOrderCell alloc] init];
     }
     else {
-        detailCell = [[SQDecorationOrderCell alloc] init];
+        detailCell = [[WKDecorationOrderMutableStageCell alloc] init];
     }
-    detailCell.isInDetail = YES;
     detailCell.delegate = self;
     detailCell.backgroundColor = [UIColor whiteColor];
     [tmp addObject:detailCell];

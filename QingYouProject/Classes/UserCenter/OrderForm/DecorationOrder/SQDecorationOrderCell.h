@@ -44,22 +44,20 @@
 
 @property (nonatomic, weak  ) id <decorationOrderCellDelegate>       delegate;
 
-@property (nonatomic, assign) id       model;
-/** 是否在详情中，详情中会多出申请退款和查看退款详情入口 */
-@property (nonatomic, assign) BOOL isInDetail;
+@property (nonatomic, assign) id model;
 
-+ (CGFloat)cellHeight;
++ (CGFloat)cellHeightWithOrderInfo:(SQDecorationDetailModel *)orderInfo;
 
 @end
 
 
-/** 装修中和已完成状态cell */
-@interface SQDecorationOrderCellWithThreeStage : SQDecorationOrderCell
+/** 多阶段cell */
+@interface WKDecorationOrderMutableStageCell: SQDecorationOrderCell
 
 @end
 
 /** 受理中状态cell */
-@interface WKDecorationDealingOrderCell: SQDecorationOrderCell
+@interface WKDecorationDealingOrderCell: WKDecorationOrderMutableStageCell
 
 @end
 

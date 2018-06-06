@@ -29,9 +29,8 @@ typedef NS_ENUM(NSUInteger, WKDecorationOrderActionType) {
 @interface SQDecorationCellPayButtonView : UIView
 
 @property (nonatomic, weak) id<SQDecorationCellPayButtonViewDelegate> actionDelegate;
-/** 是否在详情中，详情中会多出申请退款和查看退款详情入口 */
-@property (nonatomic, assign) BOOL isInDetail;
-/** 设置订单模型，以及阶段类型(0:定金 1:阶段1 2:阶段2 3:阶段3, 默认为0) */
-- (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo stage:(NSInteger)stage;
+/** 设置阶段模型 */
+- (void)configStageModel:(WKDecorationStageModel *)stageModel withStage:(NSInteger)stage canRefund:(BOOL)canRefund inRefund:(BOOL)inRefund inDetail:(BOOL)inDetail;
+
 
 @end
