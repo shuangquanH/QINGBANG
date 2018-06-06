@@ -342,6 +342,9 @@
 #define KAPI_WEATHER        @"getWeatherInfo"//获取天气
 #define KAPI_ORDERNUM       @"getOrderNum"//首页获取订单数量
 
+#define KAPI_DECORHOME      @"getFitmentTypeList"//装修首页
+
+/********************************************* 新版本新增个人中心接口接口  ********************************************/
 #define KAPI_MYDECORATION_ORDERLIST    @"getOrderList"//我的装修订单列表
 #define KAPI_DECORATIONORDERDETAIL     @"getOrderInfo"//装修订单详情
 #define KAPI_INVOICELIST               @"getInvoiceInfo"//发票抬头列表

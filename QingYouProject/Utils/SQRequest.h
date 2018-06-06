@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define KAPI_ADDRESS @"http://192.168.2.28:8081/mockjs/1/"
+#define KAPI_ADDRESS @"http://192.168.2.28:8081/mockjsdata/1/"
 
 @interface SQRequest : NSObject
 

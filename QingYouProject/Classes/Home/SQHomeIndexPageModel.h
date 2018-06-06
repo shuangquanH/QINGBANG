@@ -40,6 +40,11 @@
 @property (nonatomic, copy) NSString       *bgimg_url;
 @end
 
+
+
+
+
+
 /** 首页定制功能model  */
 @interface SQHomeCustomModel : SQBaseModel
 @property (nonatomic, strong) NSArray       *banners;

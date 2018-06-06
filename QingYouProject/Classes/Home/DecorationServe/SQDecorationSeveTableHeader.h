@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SQDecorationHomeModel.h"
 
 @interface SQDecorationSeveTableHeader : UIView <SDCycleScrollViewDelegate> 
 
 
-- (void)loadImage;
+@property (nonatomic, strong) SQDecorationHomeModel       *model;
 
 
 @end
