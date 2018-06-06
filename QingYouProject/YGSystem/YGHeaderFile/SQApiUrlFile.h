@@ -342,5 +342,7 @@
 #define KAPI_WEATHER        @"getWeatherInfo"//获取天气
 #define KAPI_ORDERNUM       @"getOrderNum"//首页获取订单数量
 
+#define KAPI_DECORHOME      @"getFitmentTypeList"//装修首页
+
 
 #endif /* SQApiUrlFile_h */

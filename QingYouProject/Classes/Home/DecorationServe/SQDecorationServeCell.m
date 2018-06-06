@@ -56,8 +56,8 @@
     
 }
 
-- (void)setModel:(NSString *)model {
-    [productImage setImageWithUrl:model placeHolder:[UIImage imageNamed:@"placeholderfigure_square_750x750"]];
+- (void)setModel:(SQDecorationStyleModel *)model {
+    [productImage setImageWithUrl:model.imgurl placeHolder:[UIImage imageNamed:@"placeholderfigure_square_750x750"]];
     [self layoutIfNeeded];
 }
 

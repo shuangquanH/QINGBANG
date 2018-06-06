@@ -13,11 +13,14 @@
 
 #import "SQDecorationDetailVC.h"
 
+
+#import "SQDecorationHomeModel.h"
+
 @interface SQDecorationServeVC () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) SQDecorationSeveTableHeader       *header;
 @property (nonatomic, strong) SQBaseTableView       *tableview;
-@property (nonatomic, strong) NSMutableArray       *dataArr;
+@property (nonatomic, strong) SQDecorationHomeModel       *model;
 
 @end
 
@@ -45,25 +48,22 @@
 }
 
 - (void)requestData {
-    NSArray *userarr = @[@"http://img4.duitang.com/uploads/item/201310/16/20131016230233_5BuyL.thumb.700_0.gif",
-                         @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526636729682&di=17cb24dba05e69286d92f16606b23ad8&imgtype=0&src=http%3A%2F%2Fup.enterdesk.com%2Fedpic_source%2Ff7%2Ffb%2F1b%2Ff7fb1bd224c27f43d2ec3eaebedcf064.jpg",
-                         @"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1765474568,392718820&fm=27&gp=0.jpg",
-                         @"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3900680988,3018369610&fm=27&gp=0.jpg",
-                         @"http://img5.imgtn.bdimg.com/it/u=2547359387,735038154&fm=200&gp=0.jpg",
-                         @"http://img5.duitang.com/uploads/item/201411/25/20141125120243_mn8dR.gif",
-                         @"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3413067445,3734096099&fm=27&gp=0.jpg"];
-    self.dataArr = [NSMutableArray arrayWithArray:userarr];
-    [_header loadImage];
-    [self.tableview reloadData];
-    [self endRefreshWithScrollView:self.tableview];
+    [SQRequest post:KAPI_DECORHOME param:nil success:^(id response) {
+        self.model = [SQDecorationHomeModel yy_modelWithDictionary:response];
+        self.header.model = self.model;
+        [self.tableview reloadData];
+        [self endRefreshWithScrollView:self.tableview];
+    } failure:^(NSError *error) {
+        [self endRefreshWithScrollView:self.tableview];
+    }];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataArr.count;
+    return self.model.contents.count;
 }
 - (UITableViewCell  *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     SQDecorationServeCell *cell = [SQDecorationServeCell cellWithTableView:tableView];
-    cell.model = self.dataArr[indexPath.row];
+    cell.model = self.model.contents[indexPath.row];
     return cell;
 }
 

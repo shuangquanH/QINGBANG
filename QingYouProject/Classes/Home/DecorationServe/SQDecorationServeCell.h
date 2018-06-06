@@ -7,9 +7,11 @@
 //
 
 #import "SQBaseTableViewCell.h"
+#import "SQDecorationHomeModel.h"
 
 @interface SQDecorationServeCell : SQBaseTableViewCell
 
-@property (nonatomic, copy) NSString       *model;
+
+@property (nonatomic, strong) SQDecorationStyleModel       *model;
 
 @end

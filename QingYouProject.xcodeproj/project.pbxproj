@@ -799,6 +799,7 @@
 		E9E1E59720C65D1D00A807BE /* MyCollectionTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E59420C65D1C00A807BE /* MyCollectionTextCell.m */; };
 		E9E1E59A20C65D3800A807BE /* MyCollectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E59920C65D3700A807BE /* MyCollectionModel.m */; };
 		E9E1E59E20C6B61C00A807BE /* SQLinkJSWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E59D20C6B61C00A807BE /* SQLinkJSWebView.m */; };
+		E9E1E5A120C779D900A807BE /* SQDecorationHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E5A020C779D900A807BE /* SQDecorationHomeModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -2294,6 +2295,8 @@
 		E9E1E59920C65D3700A807BE /* MyCollectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionModel.m; sourceTree = "<group>"; };
 		E9E1E59C20C6B61C00A807BE /* SQLinkJSWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQLinkJSWebView.h; sourceTree = "<group>"; };
 		E9E1E59D20C6B61C00A807BE /* SQLinkJSWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQLinkJSWebView.m; sourceTree = "<group>"; };
+		E9E1E59F20C779D900A807BE /* SQDecorationHomeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationHomeModel.h; sourceTree = "<group>"; };
+		E9E1E5A020C779D900A807BE /* SQDecorationHomeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationHomeModel.m; sourceTree = "<group>"; };
 		F883056FA3AE70A8E2E8FFA5 /* Pods-QingYouProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QingYouProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-QingYouProject/Pods-QingYouProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -5534,6 +5537,8 @@
 		E99DE1E920AE9D97009CEF88 /* DecorationServe */ = {
 			isa = PBXGroup;
 			children = (
+				E9E1E59F20C779D900A807BE /* SQDecorationHomeModel.h */,
+				E9E1E5A020C779D900A807BE /* SQDecorationHomeModel.m */,
 				E99DE1EA20AE9DE4009CEF88 /* SQDecorationServeVC.h */,
 				E99DE1EB20AE9DE4009CEF88 /* SQDecorationServeVC.m */,
 				E99DE1ED20AEA207009CEF88 /* SQDecorationServeCell.h */,
@@ -6047,6 +6052,7 @@
 				E2E5B3711FB0675B00205F70 /* YGSegmentView.m in Sources */,
 				E2E5B12D1FB0675A00205F70 /* ShakeLabel.m in Sources */,
 				E2E5B1281FB0675A00205F70 /* FileMD5Hash.m in Sources */,
+				E9E1E5A120C779D900A807BE /* SQDecorationHomeModel.m in Sources */,
 				E2E5B3651FB0675B00205F70 /* YGCommentView.m in Sources */,
 				18C158FE1FC820890010ACD3 /* DeliveryWayView.m in Sources */,
 				2CA16F551FCBB61300BE7CAD /* ProjectApplyModel.m in Sources */,
