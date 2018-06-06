@@ -65,6 +65,7 @@ static CGFloat singleLineHeight() {
         [self.contentView addSubview:orderPrice];
         
         paymentStageView = [[WKDecorationStageView alloc] init];
+        paymentStageView.delegate = self;
         [self.contentView addSubview:paymentStageView];
         
         [self sqlayoutSubviews];
@@ -144,7 +145,7 @@ static CGFloat singleLineHeight() {
     orderTitle.attributedText = decorateName;
     orderTitle.lineBreakMode = NSLineBreakByTruncatingTail;
 
-    [paymentStageView configStageModel:orderInfo.stage_list.firstObject withStage:0 canRefund:orderInfo.canRefund inRefund:orderInfo.isInRefund inDetail:NO];
+    [paymentStageView configStageModel:orderInfo.stage_list.firstObject withStage:0 canRefund:orderInfo.canRefund inRefund:orderInfo.isInRefund inDetail:self.isInOrderDetail];
 }
 
 - (CGSize)viewSize {
@@ -152,12 +153,13 @@ static CGFloat singleLineHeight() {
     return CGSizeMake(kScreenW, height);
 }
 
-#pragma mark - SQDecorationCellPayButtonViewDelegate
-- (void)actionView:(SQDecorationCellPayButtonView *)actionView didClickActionType:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage {
+#pragma mark - WKDecorationStageViewDelegate
+- (void)stageView:(WKDecorationStageView *)stageView didClickActionType:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage {
     if ([self.delegate respondsToSelector:@selector(decorationCell:tapedOrderActionType:forStage:)]) {
         [self.delegate decorationCell:self tapedOrderActionType:actionType forStage:stage];
     }
 }
+
 
 #pragma mark - public
 + (CGFloat)cellHeightWithOrderInfo:(SQDecorationDetailModel *)orderInfo {
@@ -204,12 +206,13 @@ static CGFloat singleLineHeight() {
         }
         else {
             view = [[WKDecorationStageView alloc] init];
+            view.delegate = self;
             [self.contentView addSubview:view];
             [stageViewArray addObject:view];
         }
         
         WKDecorationStageModel *stageInfo = [orderInfo.stage_list objectAtIndex:i+1];
-        [view configStageModel:stageInfo withStage:i+1 canRefund:orderInfo.canRefund inRefund:orderInfo.isInRefund inDetail:NO];
+        [view configStageModel:stageInfo withStage:i+1 canRefund:orderInfo.canRefund inRefund:orderInfo.isInRefund inDetail:self.isInOrderDetail];
         
         [view mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.height.equalTo(lastView);
@@ -236,23 +239,32 @@ static CGFloat singleLineHeight() {
 {
     UILabel *dealingTipLabel;
     UIButton *connectServiceBtn;
+    UIView *dealingBgView;
+    UIView *dealingLine;
 }
 - (void)sqlayoutSubviews {
     
     [super sqlayoutSubviews];
     
-    dealingTipLabel = [UILabel labelWithFont:KSCAL(34.0) textColor:[UIColor blackColor] textAlignment:NSTextAlignmentCenter text:@"系统正在受理您的订单，请耐心等待~"];
-    [self.contentView addSubview:dealingTipLabel];
+    dealingBgView = [UIView new];
+    [self.contentView addSubview:dealingBgView];
+    
+    dealingLine = [UIView new];
+    dealingLine.backgroundColor = colorWithLine;
+    [dealingBgView addSubview:dealingLine];
+    
+    dealingTipLabel = [UILabel labelWithFont:KSCAL(30.0) textColor:[UIColor blackColor] textAlignment:NSTextAlignmentCenter text:@"系统正在受理您的订单，请耐心等待~"];
+    [dealingBgView addSubview:dealingTipLabel];
     
     connectServiceBtn = [UIButton new];
     [connectServiceBtn setTitle:@"联系客服" forState:UIControlStateNormal];
     [connectServiceBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [connectServiceBtn sizeToFit];
     [connectServiceBtn addTarget:self action:@selector(click_connectService) forControlEvents:UIControlEventTouchUpInside];
-    [self.contentView addSubview:connectServiceBtn];
+    connectServiceBtn.titleLabel.font = KFONT(30.0);
+    [dealingBgView addSubview:connectServiceBtn];
     
     UIView *lastView;
-    
     if (stageViewArray.count) {
         lastView = stageViewArray.lastObject;
     }
@@ -260,15 +272,25 @@ static CGFloat singleLineHeight() {
         lastView = paymentStageView;
     }
     
-    [dealingTipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [dealingBgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(paymentStageView);
-        make.top.equalTo(lastView.mas_bottom).offset(KSCAL(KSPACE));
+        make.top.equalTo(lastView.mas_bottom);
+        make.height.mas_equalTo(KSCAL(120));
+    }];
+    
+    [dealingLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.mas_equalTo(0);
+        make.height.mas_equalTo(1);
+    }];
+    
+    [dealingTipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(0);
+        make.bottom.equalTo(dealingBgView.mas_centerY).offset(-3);
     }];
     
     [connectServiceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(paymentStageView);
-        make.top.equalTo(dealingTipLabel.mas_bottom).offset(KSCAL(KSPACE));
-        make.height.mas_equalTo(KSCAL(30));
+        make.centerX.mas_equalTo(0);
+        make.top.equalTo(dealingBgView.mas_centerY);
     }];
     
     [self layoutIfNeeded];
@@ -285,14 +307,15 @@ static CGFloat singleLineHeight() {
         lastView = paymentStageView;
     }
     
-    [dealingTipLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+    [dealingBgView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(paymentStageView);
-        make.top.equalTo(lastView.mas_bottom).offset(KSCAL(KSPACE));
+        make.top.equalTo(lastView.mas_bottom);
+        make.height.mas_equalTo(KSCAL(120));
     }];
 }
 
 - (CGSize)viewSize {
-    return CGSizeMake(kScreenW, [super viewSize].height + dealingTipLabel.height + KSCAL(30) + 2 * KSCAL(KSPACE));
+    return CGSizeMake(kScreenW, [super viewSize].height + KSCAL(120));
 }
 
 - (void)click_connectService {
@@ -302,9 +325,7 @@ static CGFloat singleLineHeight() {
 }
 
 + (CGFloat)cellHeightWithOrderInfo:(SQDecorationDetailModel *)orderInfo {
-    NSString *singleH = @"系统正在受理您的订单，请耐心等待~";
-    CGFloat tipH = [singleH sizeWithFont:[UIFont systemFontOfSize:17.0] andMaxSize:CGSizeMake(kScreenW-KSCAL(60), MAXFLOAT)].height;
-    return orderInfo.stage_list.count * KSCAL(88.0) + 3 * KSCAL(KSPACE) + KSCAL(180) + singleLineHeight() + tipH + KSCAL(30) + 2 * KSCAL(KSPACE);
+    return orderInfo.stage_list.count * KSCAL(88.0) + 3 * KSCAL(KSPACE) + KSCAL(180) + singleLineHeight() + KSCAL(120);
 }
 
 @end

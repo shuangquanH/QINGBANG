@@ -81,7 +81,9 @@
 
 #pragma mark - SQDecorationCellPayButtonViewDelegate
 - (void)actionView:(SQDecorationCellPayButtonView *)actionView didClickActionType:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage {
-    
+    if ([self.delegate respondsToSelector:@selector(stageView:didClickActionType:forStage:)]) {
+        [self.delegate stageView:self didClickActionType:actionType forStage:stage];
+    }
 }
 
 @end

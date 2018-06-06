@@ -73,12 +73,13 @@
     
     //订单详情
     SQDecorationOrderCell *detailCell;
-    if (orderInfo.orderState == 3) {
+    if (orderInfo.orderState == 3) {//受理中订单
         detailCell = [[WKDecorationDealingOrderCell alloc] init];
     }
     else {
         detailCell = [[WKDecorationOrderMutableStageCell alloc] init];
     }
+    detailCell.isInOrderDetail = YES;
     detailCell.delegate = self;
     detailCell.backgroundColor = [UIColor whiteColor];
     [tmp addObject:detailCell];
@@ -130,30 +131,6 @@
     if ([self.orderDetailDelegate respondsToSelector:@selector(orderCell:didClickAction:forStage:)]) {
         [self.orderDetailDelegate orderCell:decorationCell didClickAction:actionType forStage:stage];
     }
-}
-/** 点击了取消订单  */
-- (void)tapedCancelOrderWithModel:(NSString *)model {
-    
-}
-
-/** 点击了付款按钮  */
-- (void)tapedPaymentWithModel:(NSString *)model {
-    
-}
-
-/** 点击了申请退款按钮  */
-- (void)tapedApplyRefundWithModel:(id)model {
-    
-}
-
-/** 点击支付阶段款  */
-- (void)tapedPaymentWithStages:(int)stages model:(id)model {
-    
-}
-
-/** 点击补登阶段款  */
-- (void)tapedPatchWithStages:(int)stages model:(id)model {
-    
 }
 
 
