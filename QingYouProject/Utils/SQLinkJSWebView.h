@@ -24,11 +24,11 @@ typedef void(^jsCallBack)(NSString *, _Nullable id);
 /** 原生应用调用js方法及回调 */
 //eg:@"remarkCount(0)",()内必须传值
 //bklock回调方法名,返回值
-- (void)ocCallJsWithMethodName:(NSString    *)method back:(void(^)(NSString*, _Nullable id))block;
+- (void)ocCallJsWithMethodName:(NSString    *)method back:(void(^)(NSString *methodName, _Nullable id returnValue))block;
 
 /** html调用js方法  */
 //bklock回调方法名,参数
-- (void)registJSFunctionWithName:(NSString  *)jsName back:(void(^)(NSString*, _Nullable id))block;
+- (void)registJSFunctionWithName:(NSString  *)jsName back:(void(^)(NSString *methodName, _Nullable id paramValue))block;
 
 
 
