@@ -7,13 +7,23 @@
 //
 
 #import "SQConfirmDecorationOrderVC.h"
-#import "SQDecorationOrderCell.h"
+#import "SQDecorationAddressModel.h"
+
+#import "SQChooseDecorationAddressView.h"
+#import "SQConfirmDecorationCell.h"
 
 
-@interface SQConfirmDecorationOrderVC ()
+@interface SQConfirmDecorationOrderVC () <decorationAddressTapDelegate>
 
-@property (nonatomic, strong) UIScrollView    *backScrollView;
-@property (nonatomic, strong) UIView       *bottomPayView;
+@property (nonatomic, strong) UIScrollView                  *backScrollView;
+@property (nonatomic, strong) UILabel                        *bottomPayView;
+
+
+
+@property (nonatomic, strong) SQDecorationAddressModel      *addressModel;
+
+@property (nonatomic, strong) SQChooseDecorationAddressView       *chooseAddressView;
+
 
 @end
 
@@ -21,7 +31,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self requestData];
+}
+
+- (void)requestData {
+    //获取用户地址
+    NSDictionary    *param = @{@"userId":YGSingletonMarco.user.userId,@"type":@"0", @"total":@"0",@"count":@"1"};
+    [YGNetService YGPOST:REQUEST_AddressList parameters:param showLoadingView:nil scrollView:nil success:^(id responseObject) {
+        NSArray *addresslist = [NSArray arrayWithArray:responseObject[@"addressList"]];
+        self.addressModel = [SQDecorationAddressModel yy_modelWithDictionary:addresslist.firstObject];
+    } failure: nil];
+    
 }
 
 
@@ -30,7 +51,6 @@
     [self.view addSubview:self.backScrollView];
     [self.view addSubview:self.bottomPayView];
     
-    
     UIView  *contentView = [[UIView alloc] init];
     [self.backScrollView addSubview:contentView];
     [contentView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -38,53 +58,51 @@
         make.width.equalTo(self.backScrollView);
     }];
     
-    UIView  *addressView = [[UIView alloc] init];
-    addressView.backgroundColor = kGrayColor;
-    [contentView addSubview:addressView];
-    [addressView mas_makeConstraints:^(MASConstraintMaker *make) {
+    /** 选择地址  */
+    self.chooseAddressView = [[SQChooseDecorationAddressView alloc] init];
+    self.chooseAddressView.delegate = self;
+    [contentView addSubview:self.chooseAddressView];
+    [self.chooseAddressView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.right.left.equalTo(contentView);
-        make.height.mas_equalTo(100);
     }];
     
-    WKDecorationOrderMutableStageCell   *orderCell = [[WKDecorationOrderMutableStageCell alloc] init];
-    orderCell.model = @"dd";
+    
+    /** 订单cell  */
+    SQConfirmDecorationCell   *orderCell = [[SQConfirmDecorationCell alloc] init];
+    orderCell.backgroundColor = kWhiteColor;
     [contentView addSubview:orderCell];
     [orderCell mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(addressView);
-        make.top.equalTo(addressView.mas_bottom);
+        make.left.right.equalTo(self.chooseAddressView);
+        make.top.equalTo(self.chooseAddressView.mas_bottom).offset(KSCAL(20));
     }];
     
-    UITextView  *textView = [[UITextView alloc] init];
-    textView.text = @"备注留言:";
-    [contentView addSubview:textView];
-    [textView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(addressView);
-        make.top.equalTo(orderCell.mas_bottom);
-        make.height.mas_equalTo(120);
-    }];
     
-    UILabel *priceLabel = [[UILabel alloc] init];
-    priceLabel.text = @"共计:100000(不含定金)";
-    [contentView addSubview:priceLabel];
-    [priceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(contentView);
-        make.top.equalTo(textView.mas_bottom);
-        make.height.mas_equalTo(60);
-    }];
-    
+    /** 支付方式  */
     UILabel *payLabel = [[UILabel alloc] init];
     payLabel.text = @"支付方式";
     [contentView addSubview:payLabel];
     [payLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(contentView);
-        make.top.equalTo(priceLabel.mas_bottom);
-        make.height.mas_equalTo(200);
-        make.bottom.equalTo(contentView);
+        make.left.mas_equalTo(KSCAL(30));
+        make.top.equalTo(orderCell.mas_bottom).offset(KSCAL(20));
+        make.height.mas_equalTo(KSCAL(88));
     }];
     
+    SQConfirmDecorationPayLabel *payTypeLabel = [[SQConfirmDecorationPayLabel alloc] init];
+    [contentView addSubview:payTypeLabel];
+    [payTypeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(contentView);
+        make.top.equalTo(payLabel.mas_bottom);
+        make.bottom.mas_equalTo(contentView);
+    }];
     
-    
-    
+}
+
+- (void)tapedAddressWithType:(BOOL)hadAddress {
+    if (hadAddress) {
+        //跳转到修改地址
+    } else {
+        //跳转到新建地址
+    }
 }
 
 
@@ -98,10 +116,13 @@
     return _backScrollView;
 }
 
-- (UIView   *)bottomPayView {
+- (UILabel   *)bottomPayView {
     if (!_bottomPayView) {
-        _bottomPayView = [[UIView alloc] initWithFrame:CGRectMake(0, KAPP_HEIGHT-KNAV_HEIGHT-60, KAPP_WIDTH, 60)];
+        _bottomPayView = [[UILabel alloc] initWithFrame:CGRectMake(0, KAPP_HEIGHT-KNAV_HEIGHT-60, KAPP_WIDTH, 60)];
         _bottomPayView.backgroundColor = colorWithMainColor;
+        _bottomPayView.text = @"提交订单";
+        _bottomPayView.textColor = kWhiteColor;
+        _bottomPayView.textAlignment = NSTextAlignmentCenter;
     }
     return _bottomPayView;
 }

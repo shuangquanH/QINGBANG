@@ -802,6 +802,8 @@
 		E9E1E59E20C6B61C00A807BE /* SQLinkJSWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E59D20C6B61C00A807BE /* SQLinkJSWebView.m */; };
 		E9E1E5A120C779D900A807BE /* SQDecorationHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E5A020C779D900A807BE /* SQDecorationHomeModel.m */; };
 		E9E1E5A420C7DA9400A807BE /* SQChooseDecorationAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E5A320C7DA9400A807BE /* SQChooseDecorationAddressView.m */; };
+		E9E1E5A720C7E64A00A807BE /* SQDecorationAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E5A620C7E64A00A807BE /* SQDecorationAddressModel.m */; };
+		E9E1E5AA20C7F9E300A807BE /* SQConfirmDecorationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E5A920C7F9E300A807BE /* SQConfirmDecorationCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -2303,6 +2305,10 @@
 		E9E1E5A020C779D900A807BE /* SQDecorationHomeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationHomeModel.m; sourceTree = "<group>"; };
 		E9E1E5A220C7DA9400A807BE /* SQChooseDecorationAddressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQChooseDecorationAddressView.h; sourceTree = "<group>"; };
 		E9E1E5A320C7DA9400A807BE /* SQChooseDecorationAddressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQChooseDecorationAddressView.m; sourceTree = "<group>"; };
+		E9E1E5A520C7E64A00A807BE /* SQDecorationAddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationAddressModel.h; sourceTree = "<group>"; };
+		E9E1E5A620C7E64A00A807BE /* SQDecorationAddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationAddressModel.m; sourceTree = "<group>"; };
+		E9E1E5A820C7F9E300A807BE /* SQConfirmDecorationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQConfirmDecorationCell.h; sourceTree = "<group>"; };
+		E9E1E5A920C7F9E300A807BE /* SQConfirmDecorationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQConfirmDecorationCell.m; sourceTree = "<group>"; };
 		F883056FA3AE70A8E2E8FFA5 /* Pods-QingYouProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QingYouProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-QingYouProject/Pods-QingYouProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -5561,8 +5567,12 @@
 				E99DE23F20B7B7C9009CEF88 /* SQDecorationDetailBottomView.m */,
 				E99DE24120B7BEDA009CEF88 /* SQConfirmDecorationOrderVC.h */,
 				E99DE24220B7BEDA009CEF88 /* SQConfirmDecorationOrderVC.m */,
+				E9E1E5A820C7F9E300A807BE /* SQConfirmDecorationCell.h */,
+				E9E1E5A920C7F9E300A807BE /* SQConfirmDecorationCell.m */,
 				E9E1E5A220C7DA9400A807BE /* SQChooseDecorationAddressView.h */,
 				E9E1E5A320C7DA9400A807BE /* SQChooseDecorationAddressView.m */,
+				E9E1E5A520C7E64A00A807BE /* SQDecorationAddressModel.h */,
+				E9E1E5A620C7E64A00A807BE /* SQDecorationAddressModel.m */,
 			);
 			path = DecorationServe;
 			sourceTree = "<group>";
@@ -5974,6 +5984,7 @@
 				E2E5B19C1FB0675A00205F70 /* HXTagCollectionViewCell.m in Sources */,
 				E2E5B1861FB0675A00205F70 /* YYImageCoder.m in Sources */,
 				180FCFCF1FDE75E400EB278C /* ChooseGoodsWithCategoriesView.m in Sources */,
+				E9E1E5A720C7E64A00A807BE /* SQDecorationAddressModel.m in Sources */,
 				18C15A331FC8208A0010ACD3 /* ChooseRightsViewController.m in Sources */,
 				18C159E01FC8208A0010ACD3 /* HouseRentAuditViewController.m in Sources */,
 				E2E5B11B1FB0675900205F70 /* BMChineseSort.m in Sources */,
@@ -6355,6 +6366,7 @@
 				E2E5B1181FB0675900205F70 /* AFURLRequestSerialization.m in Sources */,
 				E2E5B13F1FB0675A00205F70 /* MJRefreshAutoFooter.m in Sources */,
 				18C159111FC820890010ACD3 /* DeliveredViewController.m in Sources */,
+				E9E1E5AA20C7F9E300A807BE /* SQConfirmDecorationCell.m in Sources */,
 				E2E5B1491FB0675A00205F70 /* MJRefreshBackStateFooter.m in Sources */,
 				18C159DE1FC8208A0010ACD3 /* PayConfirmViewController.m in Sources */,
 				0470A40220C0F712003F23C6 /* SQDecorationDetailStagesView.m in Sources */,

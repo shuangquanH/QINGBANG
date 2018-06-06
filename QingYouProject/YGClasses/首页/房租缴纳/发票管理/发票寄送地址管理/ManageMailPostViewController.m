@@ -88,7 +88,7 @@
         
         footerView.backgroundColor = colorWithYGWhite;
         
-        UIButton *defultButton = [[UIButton alloc]initWithFrame:CGRectMake(10,7,70,25)];
+        UIButton *defultButton = [[UIButton alloc]initWithFrame:CGRectMake(10,7,80,25)];
         [defultButton setImage:[UIImage imageNamed:@"nochoice_btn_gray"] forState:UIControlStateNormal];
         [defultButton setImage:[UIImage imageNamed:@"choice_btn_green"] forState:UIControlStateSelected];
         [defultButton setTitle:@"默认地址" forState:UIControlStateNormal];
@@ -99,7 +99,7 @@
         defultButton.titleLabel.font = [UIFont systemFontOfSize:YGFontSizeNormal];
         [defultButton sizeToFit];
         [contentView addSubview:defultButton];
-        defultButton.frame = CGRectMake(10,5,defultButton.width+20,30);
+        defultButton.frame = CGRectMake(10,5,defultButton.width+40,30);
         
         UIButton *editButton = [[UIButton alloc]initWithFrame:CGRectMake(10,0,40,40)];
         [editButton setImage:[UIImage imageNamed:@"steward_edit_black"] forState:UIControlStateNormal];

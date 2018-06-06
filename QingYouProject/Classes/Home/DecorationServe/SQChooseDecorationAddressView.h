@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SQDecorationAddressModel.h"
+
+@protocol decorationAddressTapDelegate
+
+- (void)tapedAddressWithType:(BOOL)hadAddress;
+
+@end
 
 @interface SQChooseDecorationAddressView : UIView
+
+@property (nonatomic, weak) id <decorationAddressTapDelegate> delegate;
+
+@property (nonatomic, strong) SQDecorationAddressModel       *model;
 
 @end
