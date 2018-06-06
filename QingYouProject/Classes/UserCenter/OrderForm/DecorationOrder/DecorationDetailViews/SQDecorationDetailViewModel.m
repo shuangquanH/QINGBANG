@@ -72,17 +72,16 @@
     [tmp addObject:section_0];
     
     //订单详情
-    SQDecorationOrderCell *detailCell;
     if (orderInfo.orderState == 3) {//受理中订单
-        detailCell = [[WKDecorationDealingOrderCell alloc] init];
+        _orderCell = [[WKDecorationDealingOrderCell alloc] init];
     }
     else {
-        detailCell = [[WKDecorationOrderMutableStageCell alloc] init];
+        _orderCell = [[WKDecorationOrderMutableStageCell alloc] init];
     }
-    detailCell.isInOrderDetail = YES;
-    detailCell.delegate = self;
-    detailCell.backgroundColor = [UIColor whiteColor];
-    [tmp addObject:detailCell];
+    _orderCell.isInOrderDetail = YES;
+    _orderCell.delegate = self;
+    _orderCell.backgroundColor = [UIColor whiteColor];
+    [tmp addObject:_orderCell];
     
     //组分割视图
     SQDecorationDetailSectionView *section_1 = [SQDecorationDetailSectionView new];

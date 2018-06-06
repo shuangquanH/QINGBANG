@@ -8,8 +8,10 @@
 
 #import "RootViewController.h"
 
+@class SQDecorationDetailModel;
+
 @interface SQDecorationOrderDetailVC : RootViewController
 
-@property (nonatomic, copy) NSString *orderNum;
+@property (nonatomic, strong) SQDecorationDetailModel *orderListInfo;
 
 @end

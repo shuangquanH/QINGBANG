@@ -8,6 +8,10 @@
 
 #import "RootViewController.h"
 
+@class SQDecorationDetailModel;
+
 @interface SQTicketApplyViewController : RootViewController
+
+@property (nonatomic, strong) SQDecorationDetailModel *orderDetailInfo;
 
 @end

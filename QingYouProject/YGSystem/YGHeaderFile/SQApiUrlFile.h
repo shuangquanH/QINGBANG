@@ -348,5 +348,9 @@
 #define KAPI_MYDECORATION_ORDERLIST    @"getOrderList"//我的装修订单列表
 #define KAPI_DECORATIONORDERDETAIL     @"getOrderInfo"//装修订单详情
 #define KAPI_INVOICELIST               @"getInvoiceInfo"//发票抬头列表
+#define KAPI_CANCELORDER               @"cancelOrder"//取消订单
+#define KAPI_DELETEORDER               @"deleteOrder"//删除订单
+#define KAPI_GETDEFAULTINFO            @"getDefaultInfo"//获取默认邮寄地址和发票抬头
+#define KAPI_APPLYINVOICE              @"applyInvoice"//开票申请
 
 #endif /* SQApiUrlFile_h */

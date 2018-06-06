@@ -92,7 +92,7 @@
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     SQDecorationOrderDetailVC *vc = [[SQDecorationOrderDetailVC alloc] init];
-    vc.orderNum = [self.orderList objectAtIndex:indexPath.row].orderNum;
+    vc.orderListInfo = [self.orderList objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -133,9 +133,24 @@
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"确认取消订单" preferredStyle:UIAlertControllerStyleAlert];
             [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 SQDecorationDetailModel *m = [self.orderList objectAtIndex:targetIndex.row];
-                m.orderTitle = nil;
-                m.orderState = 2;
-                [decorationCell configOrderInfo:m];
+                [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
+                [SQRequest post:KAPI_CANCELORDER param:@{@"orderNum": m.orderNum} success:^(id response) {
+                    [YGNetService dissmissLoadingView];
+                    if ([response[@"state"] isEqualToString:@"success"]) {
+                        m.orderTitle = nil;
+                        m.orderState = 2;
+                        m.stage_list.firstObject.stageState = 4;
+                        [decorationCell configOrderInfo:m];
+                    }
+                    else {
+                        [YGAppTool showToastWithText:response[@"data"][@"msg"]];
+                    }
+
+                } failure:^(NSError *error) {
+                    [YGNetService dissmissLoadingView];
+                    [YGAppTool showToastWithText:@"网络错误"];
+                }];
+                
             }]];
             [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil]];
             [self presentViewController:alert animated:YES completion:nil];
@@ -145,8 +160,22 @@
         {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"确认删除订单" preferredStyle:UIAlertControllerStyleAlert];
             [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                [self.orderList removeObjectAtIndex:targetIndex.row];
-                [self.tableView deleteRowsAtIndexPaths:@[targetIndex] withRowAnimation:UITableViewRowAnimationLeft];
+                SQDecorationDetailModel *m = [self.orderList objectAtIndex:targetIndex.row];
+                [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
+                [SQRequest post:KAPI_DELETEORDER param:@{@"orderNum": m.orderNum} success:^(id response) {
+                    [YGNetService dissmissLoadingView];
+                    if ([response[@"state"] isEqualToString:@"success"]) {
+                        [self.orderList removeObjectAtIndex:targetIndex.row];
+                        [self.tableView deleteRowsAtIndexPaths:@[targetIndex] withRowAnimation:UITableViewRowAnimationLeft];
+                    }
+                    else {
+                        [YGAppTool showToastWithText:response[@"data"][@"msg"]];
+                    }
+                    
+                } failure:^(NSError *error) {
+                    [YGNetService dissmissLoadingView];
+                    [YGAppTool showToastWithText:@"网络错误"];
+                }];
             }]];
             [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil]];
             [self presentViewController:alert animated:YES completion:nil];

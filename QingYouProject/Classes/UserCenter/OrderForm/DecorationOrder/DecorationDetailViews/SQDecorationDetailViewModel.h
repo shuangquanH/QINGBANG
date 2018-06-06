@@ -41,6 +41,8 @@
 
 @property (nonatomic, strong, readonly) NSArray<UIView<SQDecorationDetailViewProtocol> *> *subviewArray;
 
+@property (nonatomic, strong, readonly) SQDecorationOrderCell *orderCell;
+
 @property (nonatomic, weak) id<SQDecorationDetailViewModelDelegate> orderDetailDelegate;
 
 - (void)setupByOrderInfo:(SQDecorationDetailModel *)orderInfo;
