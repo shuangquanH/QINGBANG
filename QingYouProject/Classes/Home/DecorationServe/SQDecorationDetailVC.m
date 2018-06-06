@@ -41,17 +41,17 @@
     [seg hiddenBottomLine];
     self.navigationItem.titleView = seg;
     
-    CGRect bottomFrame = CGRectMake(0, KAPP_HEIGHT-KSCAL(107)-KNAV_HEIGHT, KAPP_WIDTH, KSCAL(107));
-    SQDecorationDetailBottomView    *bottomView = [[SQDecorationDetailBottomView alloc] initWithFrame: bottomFrame];
-    bottomView.delegate = self;
-    [self.view addSubview:bottomView];
-    
     self.webView = [[SQLinkJSWebView alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, KAPP_HEIGHT-KNAV_HEIGHT-KSCAL(107))];
     [self.view addSubview:self.webView];
     [self.webView loadWebWithUrl:self.styleModel.linkurl];
     [self.webView registJSFunctionWithName:@"name" back:^(NSString *methodName, id  _Nullable paramValue) {
         NSLog(@"dd");
     }];
+    
+    CGRect bottomFrame = CGRectMake(0, KAPP_HEIGHT-KSCAL(107)-KNAV_HEIGHT, KAPP_WIDTH, KSCAL(107));
+    SQDecorationDetailBottomView    *bottomView = [[SQDecorationDetailBottomView alloc] initWithFrame: bottomFrame];
+    bottomView.delegate = self;
+    [self.view addSubview:bottomView];
 }
 
 
