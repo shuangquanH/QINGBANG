@@ -54,7 +54,7 @@
 
 - (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
     if (headerAction) {
-        [YGNetService YGPOST:@"getOrderList" parameters:@{@"userId": YGSingletonMarco.user.userId} showLoadingView:NO scrollView:self.tableview success:^(id responseObject) {
+        [YGNetService YGPOST:KAPI_MYDECORATION_ORDERLIST parameters:@{@"userId": YGSingletonMarco.user.userId} showLoadingView:NO scrollView:self.tableview success:^(id responseObject) {
             NSArray<SQDecorationDetailModel *> *tmp = [NSArray yy_modelArrayWithClass:[SQDecorationDetailModel class] json:responseObject[@"order_list"]];
             [self.orderList removeAllObjects];
             [self.orderList addObjectsFromArray:tmp];
@@ -179,6 +179,7 @@
         _tableview.delegate = self;
         _tableview.dataSource = self;
         _tableview.tableFooterView = [UIView new];
+        _tableview.separatorInset = UIEdgeInsetsMake(0, KSCAL(30.0), 0, KSCAL(30.0));
     }
     return _tableview;
 }

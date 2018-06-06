@@ -37,15 +37,15 @@
         completed(nil, nil);
         return;
     }
-    
-    [YGNetService YGPOST:@"getOrderInfo" parameters:@{@"orderNum": orderNum} showLoadingView:YES scrollView:nil success:^(id responseObject) {
-        WKDecorationOrderDetailModel *order = [WKDecorationOrderDetailModel yy_modelWithJSON:responseObject];
+    [SQRequest post:KAPI_DECORATIONORDERDETAIL param:nil success:^(id response) {
+        WKDecorationOrderDetailModel *order = [WKDecorationOrderDetailModel yy_modelWithJSON:response];
         order.order_info.orderState = 5;
         [self setupByOrderInfo:order.order_info];
         completed(order, nil);
     } failure:^(NSError *error) {
         completed(nil, error);
     }];
+  
 }
 
 - (void)setupByOrderInfo:(SQDecorationDetailModel *)orderInfo {
