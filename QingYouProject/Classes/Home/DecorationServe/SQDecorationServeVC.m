@@ -71,7 +71,9 @@
     [self contactWithCustomerServerWithType:ContactServerPropertyRepair button:nil];
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.navigationController pushViewController:[SQDecorationDetailVC new] animated:YES];
+    SQDecorationDetailVC    *vc = [[SQDecorationDetailVC alloc] init];
+    vc.styleModel = self.model.contents[indexPath.row];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

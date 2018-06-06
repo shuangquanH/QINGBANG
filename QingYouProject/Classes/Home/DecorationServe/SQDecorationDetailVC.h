@@ -7,7 +7,10 @@
 //  装修详情页
 
 #import "RootViewController.h"
+#import "SQDecorationHomeModel.h"
 
 @interface SQDecorationDetailVC : RootViewController
+
+@property (nonatomic, strong) SQDecorationStyleModel       *styleModel;
 
 @end

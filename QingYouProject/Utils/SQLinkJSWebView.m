@@ -44,7 +44,7 @@
 }
 
 /** 调用js方法  */
-- (void)ocCallJsWithMethodName:(NSString    *)method back:(void(^)(NSString*,_Nullable id))block {
+- (void)ocCallJsWithMethodName:(NSString    *)method back:(void(^)(NSString *methodName, _Nullable id returnValue))block {
     [self evaluateJavaScript:method completionHandler:^(id _Nullable responds, NSError * _Nullable error) {
         if (!error&&responds) {
             NSString    *respondStr = [NSString stringWithFormat:@"%@", responds];
@@ -54,7 +54,7 @@
 }
 
 /** html调用js方法  */
-- (void)registJSFunctionWithName:(NSString  *)jsName back:(void(^)(NSString*,_Nullable id))block {
+- (void)registJSFunctionWithName:(NSString  *)jsName back:(void(^)(NSString *methodName, _Nullable id paramValue))block {
     WeakScriptMessageDelegate *delegate = [[WeakScriptMessageDelegate alloc] initWithDelegate:self];
     [self.configuration.userContentController addScriptMessageHandler:delegate name:jsName];
     self.webJSCallBack = block;
@@ -66,6 +66,7 @@
 }
 
 - (void)dealloc {
+    NSLog(@"||||||||||webView已经销毁||||||||||");
     [self.configuration.userContentController removeAllUserScripts];
 }
 

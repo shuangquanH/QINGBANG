@@ -10,9 +10,12 @@
 #import "YGSegmentView.h"
 #import "SQDecorationDetailBottomView.h"
 #import "SQConfirmDecorationOrderVC.h"
+#import "SQLinkJSWebView.h"
 
 
 @interface SQDecorationDetailVC () <YGSegmentViewDelegate, decorationDetailBottomViewDelegate>
+
+@property (nonatomic, strong) SQLinkJSWebView       *webView;
 
 @end
 
@@ -22,6 +25,7 @@
     [super viewDidLoad];
     
 }
+
 - (void)configAttribute {
     UIBarButtonItem *itme = [self createBarbuttonWithNormalImageName:@"Details_page_nav_icon"
                                                    selectedImageName:@"Details_page_nav_icon"
@@ -41,6 +45,13 @@
     SQDecorationDetailBottomView    *bottomView = [[SQDecorationDetailBottomView alloc] initWithFrame: bottomFrame];
     bottomView.delegate = self;
     [self.view addSubview:bottomView];
+    
+    self.webView = [[SQLinkJSWebView alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, KAPP_HEIGHT-KNAV_HEIGHT-KSCAL(107))];
+    [self.view addSubview:self.webView];
+    [self.webView loadWebWithUrl:self.styleModel.linkurl];
+    [self.webView registJSFunctionWithName:@"name" back:^(NSString *methodName, id  _Nullable paramValue) {
+        NSLog(@"dd");
+    }];
 }
 
 
