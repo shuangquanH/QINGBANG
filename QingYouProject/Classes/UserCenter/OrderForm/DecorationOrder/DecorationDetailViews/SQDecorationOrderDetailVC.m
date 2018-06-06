@@ -39,7 +39,7 @@
     
     [YGNetService showLoadingViewWithSuperView:nil];
     @weakify(self)
-    [self.orderDetailVM sendOrderDetailRequestWithOrderNum:self.orderNum completed:^(WKDecorationOrderDetailModel *order, NSError *error) {
+    [self.orderDetailVM sendOrderDetailRequestWithOrderNum:self.orderListInfo.orderNum completed:^(WKDecorationOrderDetailModel *order, NSError *error) {
         if (order) {
             @strongify(self)
             self.orderInfo = order;
@@ -147,7 +147,20 @@
         {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"确认取消订单" preferredStyle:UIAlertControllerStyleAlert];
             [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                
+                [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
+                [SQRequest post:KAPI_CANCELORDER param:@{@"orderNum": self.orderInfo.order_info.orderNum} success:^(id response) {
+                    [YGNetService dissmissLoadingView];
+                    if ([response[@"state"] isEqualToString:@"success"]) {
+                        
+                    }
+                    else {
+                        [YGAppTool showToastWithText:response[@"data"][@"msg"]];
+                    }
+                    
+                } failure:^(NSError *error) {
+                    [YGNetService dissmissLoadingView];
+                    [YGAppTool showToastWithText:@"网络错误"];
+                }];
             }]];
             [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil]];
             [self presentViewController:alert animated:YES completion:nil];
@@ -157,7 +170,20 @@
         {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"确认删除订单" preferredStyle:UIAlertControllerStyleAlert];
             [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                
+                [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
+                [SQRequest post:KAPI_DELETEORDER param:@{@"orderNum": self.orderInfo.order_info.orderNum} success:^(id response) {
+                    [YGNetService dissmissLoadingView];
+                    if ([response[@"state"] isEqualToString:@"success"]) {
+                        
+                    }
+                    else {
+                        [YGAppTool showToastWithText:response[@"data"][@"msg"]];
+                    }
+                    
+                } failure:^(NSError *error) {
+                    [YGNetService dissmissLoadingView];
+                    [YGAppTool showToastWithText:@"网络错误"];
+                }];
             }]];
             [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil]];
             [self presentViewController:alert animated:YES completion:nil];
@@ -170,6 +196,10 @@
         }
             break;
         case WKDecorationOrderActionTypeCallService://联系客服
+            break;
+        case WKDecorationOrderActionTypeRefund://申请退款
+            break;
+        case WKDecorationOrderActionTypeRefundDetail://退款详情
             break;
         default:
             break;

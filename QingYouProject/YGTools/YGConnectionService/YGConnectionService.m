@@ -238,9 +238,8 @@ showLoadingView:(BOOL)flag
     //        requestKey = [NSData getEncryptValueWithDic:parameters];
     //    }
     
-    //[self.requestManager POST:[NSString stringWithFormat:@"%@app/%@", Debug_Server,
-                               
-    [self.requestManager POST:[NSString stringWithFormat:@"%@/%@", Debug_Server, URLString] parameters:parameters progress:^(NSProgress *_Nonnull uploadProgress) {
+                        
+    [self.requestManager POST:[NSString stringWithFormat:@"%@app/%@", Debug_Server, URLString] parameters:parameters progress:^(NSProgress *_Nonnull uploadProgress) {
 } success:^(NSURLSessionDataTask *_Nonnull task, id _Nullable responseObject) {
 //        NSLog(@"%@",responseObject);
         [scrollView.mj_header endRefreshing];

@@ -10,6 +10,10 @@
 #import "SQTicketApplyListViewController.h"
 #import "ManageMailPostViewController.h"
 
+#import "WKInvoiceModel.h"
+#import "ManageMailPostModel.h"
+#import "SQDecorationDetailModel.h"
+
 @interface SQTicketApplyViewController ()<UITableViewDelegate, UITableViewDataSource, ManageMailPostViewControllerDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -24,6 +28,10 @@
 
 @property (nonatomic, assign) BOOL isNeedPostMail;
 
+@property (nonatomic, strong) WKInvoiceModel *invoiceInfo;
+
+@property (nonatomic, strong) ManageMailPostModel *postInfo;
+
 @end
 
 @implementation SQTicketApplyViewController
@@ -32,6 +40,8 @@
     [super viewDidLoad];
     
     self.naviTitle = @"开票申请";
+    
+    [self sendDefaultInfoReqeust];
     
     [self setupSubviews];
 }
@@ -60,6 +70,7 @@
     [_confirmButton setBackgroundColor:[UIColor redColor]];
     [_confirmButton setTitle:@"提交申请" forState:UIControlStateNormal];
     [_confirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_confirmButton addTarget:self action:@selector(click_confirmButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_confirmButton];
 }
 
@@ -82,6 +93,21 @@
     }];
 }
 
+#pragma mark - reqeust
+- (void)sendDefaultInfoReqeust {
+    [SQRequest post:KAPI_GETDEFAULTINFO param:nil success:^(id response) {
+        if ([response[@"state"] isEqualToString:@"success"]) {
+            self.postInfo = [ManageMailPostModel yy_modelWithJSON:response[@"data"][@"result"][@"addressInfo"]];
+            self.invoiceInfo = [WKInvoiceModel yy_modelWithJSON:response[@"data"][@"result"][@"invoiceInfo"]];
+            [self.tableView reloadData];
+        } else {
+            [YGAppTool showToastWithText:response[@"data"][@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        [YGAppTool showToastWithText:@"网络错误"];
+    }];
+}
+
 #pragma mark - action
 - (void)postMailValueChanged:(UISwitch *)switcher {
     _isNeedPostMail = !_isNeedPostMail;
@@ -92,6 +118,36 @@
         [self.tableData[1] removeLastObject];
     }
     [self.tableView reloadData];
+}
+
+- (void)click_confirmButton {
+    [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
+    
+    NSDictionary *param;
+    if (self.sendSwitch.isOn) {
+        param =  @{@"orderNum": self.orderDetailInfo.orderNum,
+                   @"invoice_id": self.invoiceInfo.invoice_id,
+                   @"address_id": @"12"
+                   };
+    }
+    else {
+        param =  @{@"orderNum": self.orderDetailInfo.orderNum,
+                   @"invoice_id": self.invoiceInfo.invoice_id
+                   };
+    }
+    
+    [SQRequest post:KAPI_APPLYINVOICE param:param success:^(id response) {
+        [YGNetService dissmissLoadingView];
+        if ([response[@"state"] isEqualToString:@"success"]) {
+            [YGAppTool showToastWithText:@"申请成功"];
+            [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.5];
+        } else {
+            [YGAppTool showToastWithText:response[@"data"][@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        [YGNetService dissmissLoadingView];
+        [YGAppTool showToastWithText:@"网络错误"];
+    }];
 }
 
 #pragma mark - UITableViewDataSource
@@ -123,6 +179,28 @@
     }
     else {
         cell.accessoryView = self.sendSwitch;
+    }
+    
+    if (indexPath.section == 0 && indexPath.row == 2) {//发票抬头
+        if (self.invoiceInfo.invoiceName.length) {
+            cell.detailTextLabel.textColor = [UIColor blackColor];
+            cell.detailTextLabel.text = self.invoiceInfo.invoiceName;
+        }
+        else {
+            cell.detailTextLabel.textColor = colorWithPlaceholder;
+            cell.detailTextLabel.text = @"请选择";
+        }
+    }
+    
+    if (indexPath.section == 1 && indexPath.row == 1) {//邮寄地址
+        if (self.postInfo.address.length) {
+            cell.detailTextLabel.textColor = [UIColor blackColor];
+            cell.detailTextLabel.text = self.postInfo.address;
+        }
+        else {
+            cell.detailTextLabel.textColor = colorWithPlaceholder;
+            cell.detailTextLabel.text = @"请选择";
+        }
     }
     
     return cell;
@@ -171,7 +249,8 @@
 
 #pragma mark - ManageMailPostViewControllerDelegate
 - (void)passModel:(ManageMailPostModel *)model {
-    
+    self.postInfo = model;
+    [self.tableView reloadData];
 }
 
 #pragma mark - lazy load
