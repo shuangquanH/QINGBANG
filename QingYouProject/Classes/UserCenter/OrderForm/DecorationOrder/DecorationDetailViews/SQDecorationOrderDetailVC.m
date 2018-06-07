@@ -18,6 +18,7 @@
 @interface SQDecorationOrderDetailVC () <SQDecorationDetailViewModelDelegate>
 
 @property (nonatomic, strong) UIScrollView  *contentScrollView;
+
 @property (nonatomic, strong) UIView        *contentView;
 
 @property (nonatomic, strong) SQDecorationDetailViewModel *orderDetailVM;
@@ -110,8 +111,16 @@
 - (void)serviceView:(SQDecorationDetailServerView *)serviceView didClickServiceType:(NSInteger)serviceType {
     /** 0：联系客服 1：申请售后 */
     if (serviceType == 0) {
-        NSString *url = @"tel:057812345";
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+        [YGAlertView showAlertWithTitle:@"是否要拨打客服电话？"
+                      buttonTitlesArray:@[@"YES", @"NO"]
+                      buttonColorsArray:@[[UIColor blueColor],
+                                          [UIColor redColor]]
+                                handler:^(NSInteger buttonIndex) {
+                                    if (buttonIndex == 0) {
+                                        NSString *url = @"tel:057812345";
+                                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+                                    }
+                                }];
     }
     else {
         SQApplyAfterSaleViewController *next = [SQApplyAfterSaleViewController new];

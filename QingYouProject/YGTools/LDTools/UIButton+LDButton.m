@@ -47,4 +47,28 @@
     [button.titleLabel setFont:[UIFont systemFontOfSize:fontNum]];
     return button;
 }
+
++ (UIButton *)buttonWithTitle:(NSString *)title titleFont:(CGFloat)titleFont titleColor:(UIColor *)titleColor {
+    UIButton *button = [[UIButton alloc] init];
+    [button setTitle:title forState:UIControlStateNormal];
+    [button setTitleColor:titleColor forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:titleFont];
+    return button;
+}
+
++ (UIButton *)buttonWithTitle:(NSString *)title titleFont:(CGFloat)titleFont titleColor:(UIColor *)titleColor bgColor:(UIColor *)bgColor {
+    UIButton *btn = [UIButton buttonWithTitle:title titleFont:titleFont titleColor:titleColor];
+    [btn setBackgroundColor:bgColor];
+    return btn;
+}
+
++ (UIButton *)buttonWithTitle:(NSString *)title titleFont:(CGFloat)titleFont titleColor:(UIColor *)titleColor normalImage:(NSString *)normalImage highlightImage:(NSString *)highlightImage {
+    UIButton *button = [UIButton buttonWithTitle:title titleFont:titleFont titleColor:titleColor];
+    [button setImage:[UIImage imageNamed:normalImage] forState:UIControlStateNormal];
+    if (highlightImage) {
+      [button setImage:[UIImage imageNamed:highlightImage] forState:UIControlStateHighlighted];
+    }
+    return button;
+}
+
 @end

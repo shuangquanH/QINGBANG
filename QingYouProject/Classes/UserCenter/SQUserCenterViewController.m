@@ -9,6 +9,7 @@
 #import "SQUserCenterViewController.h"
 #import "PersonalInformationViewController.h"
 #import "SQOrderViewController.h"
+#import "WKUserInfoMessageViewController.h"
 
 #import "SQUserCenterTableViewHeader.h"
 
@@ -25,6 +26,8 @@
     [super viewDidLoad];
     
     self.naviTitle = @"我的";
+    UIBarButtonItem *messageItem = [self createBarbuttonWithNormalImageName:@"Details page_tab__icon2" selectedImageName:nil selector:@selector(click_toMessage)];
+    self.navigationItem.rightBarButtonItem = messageItem;
     
     [self readViewControllerByPlistFile];
     [self.view addSubview:self.tableview];
@@ -48,6 +51,12 @@
         }
     }];
 }
+
+- (void)click_toMessage {
+    WKUserInfoMessageViewController *next = [WKUserInfoMessageViewController new];
+    [self.navigationController pushViewController:next animated:YES];
+}
+
 #pragma mark - load data
 - (void)readViewControllerByPlistFile {
     NSString *path = [[NSBundle mainBundle]

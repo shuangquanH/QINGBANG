@@ -7,6 +7,7 @@
 //
 
 #import "WKAfterSaleRecordCell.h"
+#import <CoreText/CoreText.h>
 
 @implementation WKAfterSaleRecordCell
 {
@@ -15,16 +16,30 @@
     UILabel *_problemLab;
     UIView  *_certificateView;
     UILabel *_resultLab;
+    
+    UIImageView *bgImageView;
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self == [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+    
         [self setupSubviews];
         [self makeConstraints];
     }
     return self;
+}
+
+- (void)configInfo:(WKAfterSaleModel *)info {
+    _stateLab.text = info.stateDesc;
+    _timeLab.text = [NSString stringWithFormat:@"您于%@发起了售后申请：", info.createTime];
+    _problemLab.text = [NSString stringWithFormat:@"问题描述：%@", info.afterSaleDesc];
+    if (info.afterSaleState == 1) {
+        _resultLab.text = @"";
+    }
+    else {
+        _resultLab.text = [NSString stringWithFormat:@"处理结果：%@", info.afterSaleResult];
+    }
 }
 
 - (void)setupSubviews {
@@ -79,5 +94,6 @@
         make.bottom.mas_equalTo(-10);
     }];
 }
+
 
 @end

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WKAfterSaleModel.h"
 
 @interface WKAfterSaleRecordCell : UITableViewCell
+
+- (void)configInfo:(WKAfterSaleModel *)info;
 
 @end

@@ -39,6 +39,12 @@
 		04FFB4C620C7E9BF00B8843E /* WKMyOrderUnreadCountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FFB4C520C7E9BF00B8843E /* WKMyOrderUnreadCountModel.m */; };
 		04FFB4CA20C7F26D00B8843E /* WKDecorationRefundDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FFB4C920C7F26D00B8843E /* WKDecorationRefundDetailViewController.m */; };
 		04FFB4CD20C7F59800B8843E /* WKDecorationRefundModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FFB4CC20C7F59800B8843E /* WKDecorationRefundModel.m */; };
+		04FFB4D020C8C0FF00B8843E /* WKAfterSaleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FFB4CF20C8C0FF00B8843E /* WKAfterSaleModel.m */; };
+		04FFB4D320C8E5F200B8843E /* WKUserInfoMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FFB4D220C8E5F200B8843E /* WKUserInfoMessageViewController.m */; };
+		04FFB4D820C8FB8300B8843E /* WKUserInfoMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FFB4D720C8FB8300B8843E /* WKUserInfoMessageCell.m */; };
+		04FFB4DB20C8FFB000B8843E /* WKUserCenterCollectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FFB4DA20C8FFB000B8843E /* WKUserCenterCollectViewController.m */; };
+		04FFB4DE20C9000600B8843E /* WKUserCenterCollectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FFB4DD20C9000600B8843E /* WKUserCenterCollectCell.m */; };
+		04FFB4E120C9052400B8843E /* WKUserCenterBadgeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FFB4E020C9052400B8843E /* WKUserCenterBadgeCell.m */; };
 		180FCFCF1FDE75E400EB278C /* ChooseGoodsWithCategoriesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180FCFCE1FDE75E400EB278C /* ChooseGoodsWithCategoriesView.m */; };
 		1812F2EF2021A01B00EEC1CE /* HomePageLegalServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812F2EE2021A01B00EEC1CE /* HomePageLegalServiceViewController.m */; };
 		1812F2F22021A27100EEC1CE /* HomePageLegalServiceManagerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812F2F12021A27100EEC1CE /* HomePageLegalServiceManagerDetailViewController.m */; };
@@ -874,6 +880,18 @@
 		04FFB4C920C7F26D00B8843E /* WKDecorationRefundDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKDecorationRefundDetailViewController.m; sourceTree = "<group>"; };
 		04FFB4CB20C7F59800B8843E /* WKDecorationRefundModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKDecorationRefundModel.h; sourceTree = "<group>"; };
 		04FFB4CC20C7F59800B8843E /* WKDecorationRefundModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKDecorationRefundModel.m; sourceTree = "<group>"; };
+		04FFB4CE20C8C0FF00B8843E /* WKAfterSaleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKAfterSaleModel.h; sourceTree = "<group>"; };
+		04FFB4CF20C8C0FF00B8843E /* WKAfterSaleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKAfterSaleModel.m; sourceTree = "<group>"; };
+		04FFB4D120C8E5F200B8843E /* WKUserInfoMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKUserInfoMessageViewController.h; sourceTree = "<group>"; };
+		04FFB4D220C8E5F200B8843E /* WKUserInfoMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKUserInfoMessageViewController.m; sourceTree = "<group>"; };
+		04FFB4D620C8FB8300B8843E /* WKUserInfoMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKUserInfoMessageCell.h; sourceTree = "<group>"; };
+		04FFB4D720C8FB8300B8843E /* WKUserInfoMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKUserInfoMessageCell.m; sourceTree = "<group>"; };
+		04FFB4D920C8FFB000B8843E /* WKUserCenterCollectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKUserCenterCollectViewController.h; sourceTree = "<group>"; };
+		04FFB4DA20C8FFB000B8843E /* WKUserCenterCollectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKUserCenterCollectViewController.m; sourceTree = "<group>"; };
+		04FFB4DC20C9000600B8843E /* WKUserCenterCollectCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKUserCenterCollectCell.h; sourceTree = "<group>"; };
+		04FFB4DD20C9000600B8843E /* WKUserCenterCollectCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKUserCenterCollectCell.m; sourceTree = "<group>"; };
+		04FFB4DF20C9052400B8843E /* WKUserCenterBadgeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKUserCenterBadgeCell.h; sourceTree = "<group>"; };
+		04FFB4E020C9052400B8843E /* WKUserCenterBadgeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKUserCenterBadgeCell.m; sourceTree = "<group>"; };
 		180FCFCD1FDE75E400EB278C /* ChooseGoodsWithCategoriesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseGoodsWithCategoriesView.h; sourceTree = "<group>"; };
 		180FCFCE1FDE75E400EB278C /* ChooseGoodsWithCategoriesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChooseGoodsWithCategoriesView.m; sourceTree = "<group>"; };
 		1812F2ED2021A01B00EEC1CE /* HomePageLegalServiceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageLegalServiceViewController.h; sourceTree = "<group>"; };
@@ -2405,6 +2423,8 @@
 				0470A43320C152DF003F23C6 /* SQAfterSaleListViewController.m */,
 				040084EB20C52C520094CF22 /* WKAfterSaleRecordCell.h */,
 				040084EC20C52C520094CF22 /* WKAfterSaleRecordCell.m */,
+				04FFB4CE20C8C0FF00B8843E /* WKAfterSaleModel.h */,
+				04FFB4CF20C8C0FF00B8843E /* WKAfterSaleModel.m */,
 			);
 			path = AfterSale;
 			sourceTree = "<group>";
@@ -2420,7 +2440,7 @@
 			path = WKAlert;
 			sourceTree = "<group>";
 		};
-		04FFB4B120C7670400B8843E /* setting */ = {
+		04FFB4B120C7670400B8843E /* Setting */ = {
 			isa = PBXGroup;
 			children = (
 				04FFB4B820C7670400B8843E /* WKSettingViewController.h */,
@@ -2434,7 +2454,7 @@
 				04FFB4B320C7670400B8843E /* PasswordModifilyViewController.h */,
 				04FFB4B720C7670400B8843E /* PasswordModifilyViewController.m */,
 			);
-			path = setting;
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		04FFB4C720C7F24C00B8843E /* Refund */ = {
@@ -2446,6 +2466,28 @@
 				04FFB4CC20C7F59800B8843E /* WKDecorationRefundModel.m */,
 			);
 			path = Refund;
+			sourceTree = "<group>";
+		};
+		04FFB4D420C8E65D00B8843E /* PersonInfo */ = {
+			isa = PBXGroup;
+			children = (
+				04FFB4AC20C766EB00B8843E /* EditNameViewController.h */,
+				04FFB4AB20C766EB00B8843E /* EditNameViewController.m */,
+				04FFB4AD20C766EC00B8843E /* PersonalInformationViewController.h */,
+				04FFB4AE20C766EC00B8843E /* PersonalInformationViewController.m */,
+			);
+			path = PersonInfo;
+			sourceTree = "<group>";
+		};
+		04FFB4D520C8FB3F00B8843E /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				04FFB4D120C8E5F200B8843E /* WKUserInfoMessageViewController.h */,
+				04FFB4D220C8E5F200B8843E /* WKUserInfoMessageViewController.m */,
+				04FFB4D620C8FB8300B8843E /* WKUserInfoMessageCell.h */,
+				04FFB4D720C8FB8300B8843E /* WKUserInfoMessageCell.m */,
+			);
+			path = Message;
 			sourceTree = "<group>";
 		};
 		0689741FD22BD91624E78C41 /* Pods */ = {
@@ -5488,18 +5530,16 @@
 		E99DE1C920AC4FE3009CEF88 /* UserCenter */ = {
 			isa = PBXGroup;
 			children = (
-				04FFB4AC20C766EB00B8843E /* EditNameViewController.h */,
-				04FFB4AB20C766EB00B8843E /* EditNameViewController.m */,
-				04FFB4AD20C766EC00B8843E /* PersonalInformationViewController.h */,
-				04FFB4AE20C766EC00B8843E /* PersonalInformationViewController.m */,
+				04FFB4D520C8FB3F00B8843E /* Message */,
+				E99DE1D220AC644B009CEF88 /* OrderForm */,
+				E9E1E58D20C65CEC00A807BE /* Collections */,
+				04FFB4B120C7670400B8843E /* Setting */,
+				04FFB4D420C8E65D00B8843E /* PersonInfo */,
 				E99DE1D020AC5EC3009CEF88 /* SQUserCenterMenuPlist.plist */,
 				E99DE1CA20AC5015009CEF88 /* SQUserCenterViewController.h */,
 				E99DE1CB20AC5015009CEF88 /* SQUserCenterViewController.m */,
 				E99DE1CD20AC5400009CEF88 /* SQUserCenterTableViewHeader.h */,
 				E99DE1CE20AC5400009CEF88 /* SQUserCenterTableViewHeader.m */,
-				04FFB4B120C7670400B8843E /* setting */,
-				E9E1E58D20C65CEC00A807BE /* Collections */,
-				E99DE1D220AC644B009CEF88 /* OrderForm */,
 				E99DE28620C0E6E8009CEF88 /* ServiceForm */,
 			);
 			path = UserCenter;
@@ -5515,6 +5555,8 @@
 				E99DE1D720AC64C7009CEF88 /* SQOrderTableHeaderView.m */,
 				04FFB4C420C7E9BF00B8843E /* WKMyOrderUnreadCountModel.h */,
 				04FFB4C520C7E9BF00B8843E /* WKMyOrderUnreadCountModel.m */,
+				04FFB4DF20C9052400B8843E /* WKUserCenterBadgeCell.h */,
+				04FFB4E020C9052400B8843E /* WKUserCenterBadgeCell.m */,
 				E99DE1E420AE6446009CEF88 /* DecorationOrder */,
 			);
 			path = OrderForm;
@@ -5714,6 +5756,10 @@
 				E9E1E59320C65D1C00A807BE /* MyCollectionTextCell.xib */,
 				E9E1E59820C65D3700A807BE /* MyCollectionModel.h */,
 				E9E1E59920C65D3700A807BE /* MyCollectionModel.m */,
+				04FFB4D920C8FFB000B8843E /* WKUserCenterCollectViewController.h */,
+				04FFB4DA20C8FFB000B8843E /* WKUserCenterCollectViewController.m */,
+				04FFB4DC20C9000600B8843E /* WKUserCenterCollectCell.h */,
+				04FFB4DD20C9000600B8843E /* WKUserCenterCollectCell.m */,
 			);
 			path = Collections;
 			sourceTree = "<group>";
@@ -6069,6 +6115,7 @@
 				E2E5B33F1FB0675B00205F70 /* LDExchangeButton.m in Sources */,
 				E99DE23320B665E4009CEF88 /* SQHomeCollectionViewCell.m in Sources */,
 				E2E5B35D1FB0675B00205F70 /* YGAnimatePlayer.m in Sources */,
+				04FFB4DE20C9000600B8843E /* WKUserCenterCollectCell.m in Sources */,
 				18C15A561FC8208B0010ACD3 /* GCMAssetModel.m in Sources */,
 				18C1594D1FC8208A0010ACD3 /* NetManagerDetailVC.m in Sources */,
 				E2E5B16D1FB0675A00205F70 /* TZAssetCell.m in Sources */,
@@ -6107,6 +6154,7 @@
 				18C15A2B1FC8208A0010ACD3 /* CrowdFundingAddProjectChooseTypeModel.m in Sources */,
 				1812F3012021ACF600EEC1CE /* HomePageLegalServiceLDApplyVCViewController.m in Sources */,
 				18C159961FC8208A0010ACD3 /* YGPickerView.m in Sources */,
+				04FFB4D320C8E5F200B8843E /* WKUserInfoMessageViewController.m in Sources */,
 				18C159371FC8208A0010ACD3 /* ServiceIntroductionViewController.m in Sources */,
 				E2E5B1A11FB0675A00205F70 /* RootViewController.m in Sources */,
 				E2E5B1371FB0675A00205F70 /* MJProperty.m in Sources */,
@@ -6189,6 +6237,7 @@
 				E2E5B36C1FB0675B00205F70 /* NSDate+Tools.m in Sources */,
 				E2E5B1A51FB0675A00205F70 /* YGTabBarController.m in Sources */,
 				18C1593A1FC8208A0010ACD3 /* PropertyRepairView.m in Sources */,
+				04FFB4DB20C8FFB000B8843E /* WKUserCenterCollectViewController.m in Sources */,
 				182459791FCD03720092D5BC /* IntegrationIndustryWebViewController.m in Sources */,
 				18C159DA1FC8208A0010ACD3 /* MyContractViewController.m in Sources */,
 				E2E5B1251FB0675A00205F70 /* FCUUID.m in Sources */,
@@ -6356,6 +6405,7 @@
 				18C15A671FC8208B0010ACD3 /* MeetingChildDetailsController.m in Sources */,
 				18C159311FC8208A0010ACD3 /* MyComplaintsViewController.m in Sources */,
 				E99DE28520BFD2C2009CEF88 /* NSMutableAttributedString+AppendImage.m in Sources */,
+				04FFB4D020C8C0FF00B8843E /* WKAfterSaleModel.m in Sources */,
 				E99DE28B20C0E7D0009CEF88 /* SQServiceFormViewController.m in Sources */,
 				E2E5B36E1FB0675B00205F70 /* YGPopCycleView.m in Sources */,
 				18C159141FC820890010ACD3 /* OrderDetailBottomView.m in Sources */,
@@ -6441,6 +6491,7 @@
 				18C159D61FC8208A0010ACD3 /* AskForInvoiceViewController.m in Sources */,
 				18C1599C1FC8208A0010ACD3 /* ServiceProtectTableViewCell.m in Sources */,
 				E2E5B1201FB0675900205F70 /* EBForeNotification.m in Sources */,
+				04FFB4D820C8FB8300B8843E /* WKUserInfoMessageCell.m in Sources */,
 				18C158F91FC820890010ACD3 /* ChooseGoodsFatherView.m in Sources */,
 				18C15A761FC8208B0010ACD3 /* MeetingBookCell.m in Sources */,
 				18C15A401FC8208B0010ACD3 /* BussinessPlanViewController.m in Sources */,
@@ -6623,6 +6674,7 @@
 				E2E5B34A1FB0675B00205F70 /* AESCrypt.m in Sources */,
 				18C15A861FC8208B0010ACD3 /* AlreayReservedTimeCell.m in Sources */,
 				E2E5B1A61FB0675A00205F70 /* YGUser.m in Sources */,
+				04FFB4E120C9052400B8843E /* WKUserCenterBadgeCell.m in Sources */,
 				E2E5B3601FB0675B00205F70 /* YGBadgeImageView.m in Sources */,
 				E2E5B1151FB0675900205F70 /* AFHTTPSessionManager.m in Sources */,
 				18C158EB1FC820890010ACD3 /* ShopItemModel.m in Sources */,
