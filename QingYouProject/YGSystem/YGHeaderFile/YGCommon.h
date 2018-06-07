@@ -71,7 +71,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:rgbAlpha]
 
 
 // 主色调
-#define colorWithMainColor YGUIColorFromRGB(0x2dbe50, 1)
+#define colorWithMainColor YGUIColorFromRGB(0xf39700, 1)
 
 // 黑色字体颜色
 #define colorWithBlack YGUIColorFromRGB(0x161c16, 1)

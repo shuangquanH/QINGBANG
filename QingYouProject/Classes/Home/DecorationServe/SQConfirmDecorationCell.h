@@ -10,6 +10,8 @@
 
 @interface SQConfirmDecorationCell : UIView
 
+@property (nonatomic, copy) NSString       *leaveMessageStr;
+
 @end
 
 

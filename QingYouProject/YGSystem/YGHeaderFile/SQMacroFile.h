@@ -46,11 +46,17 @@
 
 
 /** app主色调 */
-#define KCOLOR_MAIN         [UIColor hexStringToColor:@"43c5ff"]
+#define KCOLOR_MAIN         [UIColor hexStringToColor:@"f39700"]
 /** 白色 */
 #define KCOLOR_WHITE         [UIColor hexStringToColor:@"ffffff"]
-/** 按钮选中颜色  */
-#define KCOLOR_SELET        [UIColor hexStringToColor:@"f39700"]
+
+/** 333黑色  */
+#define kCOLOR_333          [UIColor hexStringToColor:@"333333"]
+/** 666灰色  */
+#define kCOLOR_666          [UIColor hexStringToColor:@"666666"]
+/** 999灰色  */
+#define kCOLOR_999          [UIColor hexStringToColor:@"999999"]
+
 /** 颜色(传string格式) */
 #define KCOLOR(a)           [UIColor hexStringToColor:a]
 

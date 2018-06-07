@@ -11,9 +11,13 @@
 
 #import "SQChooseDecorationAddressView.h"
 #import "SQConfirmDecorationCell.h"
+#import "UIView+SQGesture.h"
+
+#import "ManageMailPostViewController.h"
+#import "AddAddressViewController.h"
 
 
-@interface SQConfirmDecorationOrderVC () <decorationAddressTapDelegate>
+@interface SQConfirmDecorationOrderVC ()
 
 @property (nonatomic, strong) UIScrollView                  *backScrollView;
 @property (nonatomic, strong) UILabel                        *bottomPayView;
@@ -41,6 +45,7 @@
     [YGNetService YGPOST:REQUEST_AddressList parameters:param showLoadingView:nil scrollView:nil success:^(id responseObject) {
         NSArray *addresslist = [NSArray arrayWithArray:responseObject[@"addressList"]];
         self.addressModel = [SQDecorationAddressModel yy_modelWithDictionary:addresslist.firstObject];
+        self.chooseAddressView.model = self.addressModel;
     } failure: nil];
     
 }
@@ -60,7 +65,6 @@
     
     /** 选择地址  */
     self.chooseAddressView = [[SQChooseDecorationAddressView alloc] init];
-    self.chooseAddressView.delegate = self;
     [contentView addSubview:self.chooseAddressView];
     [self.chooseAddressView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.right.left.equalTo(contentView);
@@ -79,6 +83,8 @@
     
     /** 支付方式  */
     UILabel *payLabel = [[UILabel alloc] init];
+    payLabel.font = KFONT(32);
+    payLabel.textColor = kCOLOR_333;
     payLabel.text = @"支付方式";
     [contentView addSubview:payLabel];
     [payLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -95,14 +101,29 @@
         make.bottom.mas_equalTo(contentView);
     }];
     
-}
-
-- (void)tapedAddressWithType:(BOOL)hadAddress {
-    if (hadAddress) {
-        //跳转到修改地址
-    } else {
-        //跳转到新建地址
-    }
+    
+    
+    WeakSelf(weakSelf);
+    self.chooseAddressView.userInteractionEnabled = YES;
+    [self.chooseAddressView sq_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+        if (weakSelf.addressModel) {
+            ManageMailPostViewController *managePostVC = [[ManageMailPostViewController alloc] init];
+            managePostVC.pageType = @"decorationAddress";
+            [weakSelf.navigationController pushViewController:managePostVC animated:YES];
+        } else {
+            AddAddressViewController *addVC = [[AddAddressViewController alloc]init];
+            addVC.navTitle = @"添加地址";
+            addVC.state = @"添加";
+            [weakSelf.navigationController pushViewController:addVC animated:YES];
+        }
+        
+    }];
+    
+    self.bottomPayView.userInteractionEnabled = YES;
+    [self.bottomPayView sq_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+        NSLog(@"%@", orderCell.leaveMessageStr);;
+    }];
+    
 }
 
 
@@ -120,6 +141,7 @@
     if (!_bottomPayView) {
         _bottomPayView = [[UILabel alloc] initWithFrame:CGRectMake(0, KAPP_HEIGHT-KNAV_HEIGHT-60, KAPP_WIDTH, 60)];
         _bottomPayView.backgroundColor = colorWithMainColor;
+        _bottomPayView.font = KFONT(38);
         _bottomPayView.text = @"提交订单";
         _bottomPayView.textColor = kWhiteColor;
         _bottomPayView.textAlignment = NSTextAlignmentCenter;
@@ -129,19 +151,5 @@
 
 
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
