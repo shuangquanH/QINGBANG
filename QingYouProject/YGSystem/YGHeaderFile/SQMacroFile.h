@@ -56,6 +56,8 @@
 #define kCOLOR_666          [UIColor hexStringToColor:@"666666"]
 /** 999灰色  */
 #define kCOLOR_999          [UIColor hexStringToColor:@"999999"]
+/** 浅灰背景颜色  */
+#define KCOLOR_LIGHTBACK    [UIColor hexStringToColor:@"F0F0F0"]
 
 /** 颜色(传string格式) */
 #define KCOLOR(a)           [UIColor hexStringToColor:a]
