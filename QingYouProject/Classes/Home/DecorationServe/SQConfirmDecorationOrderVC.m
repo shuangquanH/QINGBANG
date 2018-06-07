@@ -16,6 +16,9 @@
 #import "ManageMailPostViewController.h"
 #import "AddAddressViewController.h"
 
+#import "SQPaySuccessfulVC.h"
+#import "YGNavigationController.h"
+
 
 @interface SQConfirmDecorationOrderVC ()
 
@@ -121,7 +124,9 @@
     
     self.bottomPayView.userInteractionEnabled = YES;
     [self.bottomPayView sq_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
-        NSLog(@"%@", orderCell.leaveMessageStr);;
+        SQPaySuccessfulVC   *payvc = [[SQPaySuccessfulVC alloc] init];
+        YGNavigationController  *nav = [[YGNavigationController alloc] initWithRootViewController:payvc];
+        [weakSelf presentViewController:nav animated:YES completion:nil];
     }];
     
 }

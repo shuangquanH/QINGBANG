@@ -816,6 +816,7 @@
 		E9E1E5A420C7DA9400A807BE /* SQChooseDecorationAddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E5A320C7DA9400A807BE /* SQChooseDecorationAddressView.m */; };
 		E9E1E5A720C7E64A00A807BE /* SQDecorationAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E5A620C7E64A00A807BE /* SQDecorationAddressModel.m */; };
 		E9E1E5AA20C7F9E300A807BE /* SQConfirmDecorationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E5A920C7F9E300A807BE /* SQConfirmDecorationCell.m */; };
+		E9E1E5AD20C90B1500A807BE /* SQPaySuccessfulVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E5AC20C90B1500A807BE /* SQPaySuccessfulVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -2345,6 +2346,8 @@
 		E9E1E5A620C7E64A00A807BE /* SQDecorationAddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationAddressModel.m; sourceTree = "<group>"; };
 		E9E1E5A820C7F9E300A807BE /* SQConfirmDecorationCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQConfirmDecorationCell.h; sourceTree = "<group>"; };
 		E9E1E5A920C7F9E300A807BE /* SQConfirmDecorationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQConfirmDecorationCell.m; sourceTree = "<group>"; };
+		E9E1E5AB20C90B1500A807BE /* SQPaySuccessfulVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQPaySuccessfulVC.h; sourceTree = "<group>"; };
+		E9E1E5AC20C90B1500A807BE /* SQPaySuccessfulVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQPaySuccessfulVC.m; sourceTree = "<group>"; };
 		F883056FA3AE70A8E2E8FFA5 /* Pods-QingYouProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QingYouProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-QingYouProject/Pods-QingYouProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -5773,6 +5776,8 @@
 				E9E1E5A320C7DA9400A807BE /* SQChooseDecorationAddressView.m */,
 				E9E1E5A520C7E64A00A807BE /* SQDecorationAddressModel.h */,
 				E9E1E5A620C7E64A00A807BE /* SQDecorationAddressModel.m */,
+				E9E1E5AB20C90B1500A807BE /* SQPaySuccessfulVC.h */,
+				E9E1E5AC20C90B1500A807BE /* SQPaySuccessfulVC.m */,
 			);
 			path = DecorationServe;
 			sourceTree = "<group>";
@@ -6702,6 +6707,7 @@
 				18C159241FC820890010ACD3 /* WaitToDealModel.m in Sources */,
 				18C159AB1FC8208A0010ACD3 /* OrderListModel.m in Sources */,
 				18C159591FC8208A0010ACD3 /* WaitToNetManagerViewController.m in Sources */,
+				E9E1E5AD20C90B1500A807BE /* SQPaySuccessfulVC.m in Sources */,
 				18C15A1B1FC8208A0010ACD3 /* ServiceIntroduceViewController.m in Sources */,
 				04FFB4C620C7E9BF00B8843E /* WKMyOrderUnreadCountModel.m in Sources */,
 				18C159EC1FC8208A0010ACD3 /* BreakContractBillModel.m in Sources */,
