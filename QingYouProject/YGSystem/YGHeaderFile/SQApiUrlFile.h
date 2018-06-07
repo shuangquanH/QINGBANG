@@ -358,5 +358,6 @@
 #define KAPI_REFUNDDETAIL              @"refundDetail"//退款详情
 #define KAPI_APPLYREFUND               @"applyRefund"//申请退款
 #define KAPI_AFTERSALERECORD           @"afterSaleRecord"//售后记录
+#define KAPI_MESSAGELIST               @"getMessage"//消息记录
 
 #endif /* SQApiUrlFile_h */

@@ -27,7 +27,9 @@
     
     self.naviTitle = @"我的消息";
     self.messageList = [NSMutableArray array];
+    
     [self setupSubviews];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)setupSubviews {
@@ -50,7 +52,23 @@
 
 - (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
     if (headerAction) {
-        [self.tableView.mj_header endRefreshing];
+        [SQRequest post:KAPI_MESSAGELIST param:nil success:^(id response) {
+            [self.tableView.mj_header endRefreshing];
+            if ([response[@"state"] isEqualToString:@"success"]) {
+                NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKUserCenterMessageModel class] json:response[@"data"][@"result"][@"message_list"]];
+                if (tmp.count) {
+                    [self.messageList removeAllObjects];
+                    [self.messageList addObjectsFromArray:tmp];
+                    [self.tableView reloadData];
+                }
+            }
+            else {
+               [YGAppTool showToastWithText:response[@"data"][@"msg"]];
+            }
+        } failure:^(NSError *error) {
+            [YGAppTool showToastWithText:@"网络错误"];
+            [self.tableView.mj_header endRefreshing];
+        }];
     }
     else {
         [self.tableView.mj_footer endRefreshing];

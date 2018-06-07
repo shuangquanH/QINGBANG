@@ -177,8 +177,8 @@
                 [SQRequest post:KAPI_DELETEORDER param:@{@"orderNum": m.orderNum} success:^(id response) {
                     [YGNetService dissmissLoadingView];
                     if ([response[@"state"] isEqualToString:@"success"]) {
-                        [self.orderList removeObjectAtIndex:targetIndex.row];
-                        [self.tableView deleteRowsAtIndexPaths:@[targetIndex] withRowAnimation:UITableViewRowAnimationLeft];
+                        [self.orderList removeObjectAtIndex:targetIndex.section];
+                        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:targetIndex.section] withRowAnimation:UITableViewRowAnimationLeft];
                     }
                     else {
                         [YGAppTool showToastWithText:response[@"data"][@"msg"]];

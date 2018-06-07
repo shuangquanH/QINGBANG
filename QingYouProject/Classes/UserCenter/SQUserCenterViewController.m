@@ -117,8 +117,10 @@
         @weakify(self)
         _tableHeader.tapToPersonalInfo = ^{
             @strongify(self)
-            PersonalInformationViewController *next = [PersonalInformationViewController new];
-            [self.navigationController pushViewController:next animated:YES];
+            if ([self loginOrNot]) {
+                PersonalInformationViewController *next = [PersonalInformationViewController new];
+                [self.navigationController pushViewController:next animated:YES];
+            }
         };
     }
     return _tableHeader;
