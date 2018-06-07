@@ -10,10 +10,12 @@
 #import "SQDecorationOrderDetailVC.h"
 #import "WKDecorationRepairViewController.h"
 
+#import "WKDecorationStateCell.h"
 #import "SQDecorationOrderCell.h"
 #import "SQDecorationDetailModel.h"
 
 #import "WKAnimationAlert.h"
+#import "WKDecorationOrderAlertView.h"
 
 @interface SQDecorationOrderVC () <UITableViewDataSource, UITableViewDelegate, decorationOrderCellDelegate>
 
@@ -69,14 +71,23 @@
 }
 
 #pragma mark - UITableViewDataSource
-- (NSInteger)tableView:(UITableView *)tableView
- numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.orderList.count;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 2;
 }
 - (UITableViewCell  *)tableView:(UITableView *)tableView
           cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SQDecorationDetailModel *order = [self.orderList objectAtIndex:indexPath.row];
-    
+    SQDecorationDetailModel *order = [self.orderList objectAtIndex:indexPath.section];
+    //订单状态头部
+    if (indexPath.row == 0) {
+        WKDecorationStateCell *cell = [WKDecorationStateCell cellWithTableView:tableView];
+        cell.backgroundColor = [UIColor clearColor];
+        [cell configOrderInfo:order];
+        return cell;
+    }
+    //订单详情
     SQDecorationOrderCell *cell;
     if (order.orderState == 3) {//受理中
         cell = [WKDecorationDealingOrderCell cellWithTableView:tableView];
@@ -92,11 +103,14 @@
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     SQDecorationOrderDetailVC *vc = [[SQDecorationOrderDetailVC alloc] init];
-    vc.orderListInfo = [self.orderList objectAtIndex:indexPath.row];
+    vc.orderListInfo = [self.orderList objectAtIndex:indexPath.section];
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SQDecorationDetailModel *order = [self.orderList objectAtIndex:indexPath.row];
+    if (indexPath.row == 0) {
+        return KSCAL(110);
+    }
+    SQDecorationDetailModel *order = [self.orderList objectAtIndex:indexPath.section];
     if (order.orderState == 3) {//受理中
         return [WKDecorationDealingOrderCell cellHeightWithOrderInfo:order];
     }
@@ -130,37 +144,35 @@
             break;
         case WKDecorationOrderActionTypeCancel://取消订单
         {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"确认取消订单" preferredStyle:UIAlertControllerStyleAlert];
-            [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                SQDecorationDetailModel *m = [self.orderList objectAtIndex:targetIndex.row];
-                [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-                [SQRequest post:KAPI_CANCELORDER param:@{@"orderNum": m.orderNum} success:^(id response) {
-                    [YGNetService dissmissLoadingView];
-                    if ([response[@"state"] isEqualToString:@"success"]) {
-                        m.orderTitle = nil;
-                        m.orderState = 2;
-                        m.stage_list.firstObject.stageState = 4;
-                        [decorationCell configOrderInfo:m];
-                    }
-                    else {
-                        [YGAppTool showToastWithText:response[@"data"][@"msg"]];
-                    }
-
-                } failure:^(NSError *error) {
-                    [YGNetService dissmissLoadingView];
-                    [YGAppTool showToastWithText:@"网络错误"];
-                }];
-                
-            }]];
-            [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil]];
-            [self presentViewController:alert animated:YES completion:nil];
+            [WKDecorationOrderAlertView alertWithDetail:@"确认取消订单?" titles:@[@"确定", @"取消"] bgColors:@[KCOLOR_MAIN, KCOLOR(@"98999A")] handler:^(NSInteger index) {
+                if (index == 0) {
+                    SQDecorationDetailModel *m = [self.orderList objectAtIndex:targetIndex.section];
+                    [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
+                    [SQRequest post:KAPI_CANCELORDER param:@{@"orderNum": m.orderNum} success:^(id response) {
+                        [YGNetService dissmissLoadingView];
+                        if ([response[@"state"] isEqualToString:@"success"]) {
+                            m.orderTitle = nil;
+                            m.orderState = 2;
+                            m.stage_list.firstObject.stageState = 4;
+                            [decorationCell configOrderInfo:m];
+                        }
+                        else {
+                            [YGAppTool showToastWithText:response[@"data"][@"msg"]];
+                        }
+                        
+                    } failure:^(NSError *error) {
+                        [YGNetService dissmissLoadingView];
+                        [YGAppTool showToastWithText:@"网络错误"];
+                    }];
+                }
+            }];
         }
             break;
         case WKDecorationOrderActionTypeDelete://删除订单
         {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"确认删除订单" preferredStyle:UIAlertControllerStyleAlert];
             [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                SQDecorationDetailModel *m = [self.orderList objectAtIndex:targetIndex.row];
+                SQDecorationDetailModel *m = [self.orderList objectAtIndex:targetIndex.section];
                 [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
                 [SQRequest post:KAPI_DELETEORDER param:@{@"orderNum": m.orderNum} success:^(id response) {
                     [YGNetService dissmissLoadingView];
@@ -198,8 +210,10 @@
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero];
+        _tableView.backgroundColor = [UIColor colorWithRed:239.0/255 green:240.0/255.0 blue:241.0/255 alpha:1.0];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.tableFooterView = [UIView new];
         _tableView.separatorInset = UIEdgeInsetsMake(0, KSCAL(30.0), 0, KSCAL(30.0));
     }
