@@ -17,7 +17,7 @@
 
 @implementation WKDecorationStageView
 {
-    UIView *lineView;
+    CALayer *lineLayer;
     UILabel *stageTitleLabel;
     UILabel *stagePriceLab;
     SQDecorationCellPayButtonView *stageStateView;
@@ -33,18 +33,18 @@
 }
 
 - (void)setupSubviews {
-    lineView = [UIView new];
-    lineView.backgroundColor = colorWithLine;
-    [self addSubview:lineView];
+    lineLayer = [CALayer layer];
+    lineLayer.backgroundColor = colorWithLine.CGColor;
+    [self.layer addSublayer:lineLayer];
     
     stageTitleLabel = [[UILabel alloc] init];
     stageTitleLabel.font = [UIFont systemFontOfSize:KSCAL(28.0)];
-    stageTitleLabel.textColor = KCOLOR(@"333333");
+    stageTitleLabel.textColor = kCOLOR_333;
     [self addSubview:stageTitleLabel];
     
     stagePriceLab = [[UILabel alloc] init];
     stagePriceLab.font = [UIFont systemFontOfSize:KSCAL(28.0)];
-    stagePriceLab.textColor = KCOLOR(@"e60012");
+    stagePriceLab.textColor = kCOLOR_PRICE_RED;
     [stagePriceLab setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     [self addSubview:stagePriceLab];
 
@@ -54,23 +54,25 @@
 }
 
 - (void)makeConstaints {
-    [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(1.0);
-    }];
     [stageTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(0);
-        make.right.mas_equalTo(-kScreenW+KSCAL(300));
+        make.centerY.left.mas_equalTo(0);
     }];
     [stagePriceLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(stageTitleLabel.mas_right).offset(KSCAL(20.0));
+        make.left.equalTo(stageTitleLabel.mas_right);
         make.centerY.equalTo(stageTitleLabel);
     }];
     [stageStateView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.height.equalTo(stagePriceLab);
         make.right.mas_equalTo(0);
-        make.left.equalTo(stagePriceLab.mas_right).offset(KSCAL(20.0));
+        make.left.mas_equalTo(KSCAL(260));
+        make.height.mas_equalTo(KSCAL(45));
     }];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    lineLayer.frame = CGRectMake(0, 0, self.width, 1);
 }
 
 - (void)configStageModel:(WKDecorationStageModel *)stageModel withStage:(NSInteger)stage canRefund:(BOOL)canRefund inRefund:(BOOL)inRefund inDetail:(BOOL)inDetail {

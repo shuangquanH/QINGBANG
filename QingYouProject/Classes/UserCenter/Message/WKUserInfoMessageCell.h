@@ -1,13 +1,13 @@
 //
-//  WKAfterSaleRecordCell.h
+//  WKUserInfoMessageCell.h
 //  QingYouProject
 //
-//  Created by mac on 2018/6/4.
+//  Created by mac on 2018/6/7.
 //  Copyright © 2018年 ccyouge. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface WKAfterSaleRecordCell : UITableViewCell
+@interface WKUserInfoMessageCell : UITableViewCell
 
 @end

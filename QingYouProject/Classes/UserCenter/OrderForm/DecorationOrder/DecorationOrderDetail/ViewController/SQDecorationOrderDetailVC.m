@@ -14,10 +14,12 @@
 
 #import "SQDecorationDetailViewModel.h"
 #import "SQDecorationOrderCell.h"
+#import "WKDecorationOrderAlertView.h"
 
 @interface SQDecorationOrderDetailVC () <SQDecorationDetailViewModelDelegate>
 
 @property (nonatomic, strong) UIScrollView  *contentScrollView;
+
 @property (nonatomic, strong) UIView        *contentView;
 
 @property (nonatomic, strong) SQDecorationDetailViewModel *orderDetailVM;
@@ -110,8 +112,16 @@
 - (void)serviceView:(SQDecorationDetailServerView *)serviceView didClickServiceType:(NSInteger)serviceType {
     /** 0：联系客服 1：申请售后 */
     if (serviceType == 0) {
-        NSString *url = @"tel:057812345";
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+        [YGAlertView showAlertWithTitle:@"是否要拨打客服电话？"
+                      buttonTitlesArray:@[@"YES", @"NO"]
+                      buttonColorsArray:@[[UIColor blueColor],
+                                          [UIColor redColor]]
+                                handler:^(NSInteger buttonIndex) {
+                                    if (buttonIndex == 0) {
+                                        NSString *url = @"tel:057812345";
+                                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+                                    }
+                                }];
     }
     else {
         SQApplyAfterSaleViewController *next = [SQApplyAfterSaleViewController new];
@@ -149,25 +159,24 @@
             break;
         case WKDecorationOrderActionTypeCancel://取消订单
         {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"确认取消订单" preferredStyle:UIAlertControllerStyleAlert];
-            [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-                [SQRequest post:KAPI_CANCELORDER param:@{@"orderNum": self.orderInfo.order_info.orderNum} success:^(id response) {
-                    [YGNetService dissmissLoadingView];
-                    if ([response[@"state"] isEqualToString:@"success"]) {
+            [WKDecorationOrderAlertView alertWithDetail:@"确认取消订单?" titles:@[@"确定", @"取消"] bgColors:@[KCOLOR_MAIN, KCOLOR(@"98999A")] handler:^(NSInteger index) {
+                if (index == 0) {
+                    [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
+                    [SQRequest post:KAPI_CANCELORDER param:@{@"orderNum": self.orderInfo.order_info.orderNum} success:^(id response) {
+                        [YGNetService dissmissLoadingView];
+                        if ([response[@"state"] isEqualToString:@"success"]) {
+                            
+                        }
+                        else {
+                            [YGAppTool showToastWithText:response[@"data"][@"msg"]];
+                        }
                         
-                    }
-                    else {
-                        [YGAppTool showToastWithText:response[@"data"][@"msg"]];
-                    }
-                    
-                } failure:^(NSError *error) {
-                    [YGNetService dissmissLoadingView];
-                    [YGAppTool showToastWithText:@"网络错误"];
-                }];
-            }]];
-            [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil]];
-            [self presentViewController:alert animated:YES completion:nil];
+                    } failure:^(NSError *error) {
+                        [YGNetService dissmissLoadingView];
+                        [YGAppTool showToastWithText:@"网络错误"];
+                    }];
+                }
+            }];
         }
             break;
         case WKDecorationOrderActionTypeDelete://删除订单

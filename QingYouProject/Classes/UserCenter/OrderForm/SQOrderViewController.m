@@ -27,14 +27,18 @@
 #import "SQDecorationOrderVC.h"
 /** 会议室预定  */
 #import "MeetingOrderViewController.h"
+/** 项目申报  */
+#import "MineProjectApplyViewController.h"
+/** 我的人才招聘  */
+#import "MyRecruitViewController.h"
 
 #import "WKMyOrderUnreadCountModel.h"
+#import "WKUserCenterBadgeCell.h"
 
 @interface SQOrderViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) NSArray                   *orderFormArr;
 @property (nonatomic, strong) SQBaseTableView           *tableview;
-@property (nonatomic, strong) SQOrderTableHeaderView    *tableHeader;
 @property (nonatomic, strong) WKMyOrderUnreadCountModel *unreadInfo;
 @end
 
@@ -49,7 +53,6 @@
     NSString *path = [[NSBundle mainBundle]pathForResource:@"SQOrderFormListPlist" ofType:@"plist"];
     self.orderFormArr = [NSArray arrayWithContentsOfFile:path];
     [self.view addSubview:self.tableview];
-    self.tableview.tableHeaderView = self.tableHeader;
 }
 
 - (void)viewWillLayoutSubviews {
@@ -70,13 +73,14 @@
     }];
 }
 
+#pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.orderFormArr.count;
 }
-- (UIView   *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     return [[UIView alloc] init];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -86,7 +90,7 @@
     return CGFLOAT_MIN;
 }
 - (UITableViewCell  *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SQBaseTableViewCell *cell = [SQBaseTableViewCell cellWithTableView:tableView];
+    WKUserCenterBadgeCell *cell = [WKUserCenterBadgeCell cellWithTableView:tableView];
     cell.imageView.image = [UIImage imageNamed:@"mine_instashot"];
     cell.textLabel.text = self.orderFormArr[indexPath.section][@"title"];
     return cell;
@@ -95,7 +99,7 @@
     if (![self loginOrNot]) {
         return;
     }
-    NSString  *titlestr = self.orderFormArr[indexPath.section][@"title"];
+    NSString *titlestr = self.orderFormArr[indexPath.section][@"title"];
     
     if ([titlestr isEqualToString:@"水电缴费"]) {
         [YGNetService YGPOST:REQUEST_HouserAudit parameters:@{@"userid":YGSingletonMarco.user.userId} showLoadingView:YES scrollView:nil success:^(id responseObject) {
@@ -143,8 +147,15 @@
         MeetingOrderViewController *vc = [[MeetingOrderViewController alloc]init];
         [self.navigationController pushViewController:vc animated:YES];
     }
+    if ([titlestr isEqualToString:@"项目申报"]) {
+        MineProjectApplyViewController *mineProjectVC = [[MineProjectApplyViewController alloc] init];
+        [self.navigationController pushViewController:mineProjectVC animated:YES];
+    }
+    if ([titlestr isEqualToString:@"人才招聘"]) {
+        MyRecruitViewController *vc = [[MyRecruitViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
-
 
 #pragma mark LazyLoad
 - (SQBaseTableView  *)tableview {
@@ -155,13 +166,6 @@
         _tableview.dataSource = self;
     }
     return _tableview;
-}
-
-- (SQOrderTableHeaderView *)tableHeader {
-    if (!_tableHeader) {
-        _tableHeader = [[SQOrderTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, YGScreenWidth, 220)];
-    }
-    return _tableHeader;
 }
 
 @end

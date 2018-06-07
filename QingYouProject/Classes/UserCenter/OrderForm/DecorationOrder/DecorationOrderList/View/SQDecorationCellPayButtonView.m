@@ -8,8 +8,8 @@
 
 #import "SQDecorationCellPayButtonView.h"
 
-const CGFloat kFunctionButtonWidth = 60.0;
-const CGFloat kFunctionButtonLeftMargin = 10.0;
+const CGFloat kFunctionButtonWidth = 150.0;
+const CGFloat kFunctionButtonLeftMargin = 20.0;
 const CGFloat kFunctionButtonTopMargin = 0.0;
 
 @implementation SQDecorationCellPayButtonView
@@ -34,7 +34,7 @@ const CGFloat kFunctionButtonTopMargin = 0.0;
     
     if (stageModel.stageState == 1) {//待付款
         if (stage == 0) {//订金
-          [self reSetFunctionButtonsWithTitles:@[@"取消订单", @"付款"] types:@[@(WKDecorationOrderActionTypeCancel), @(WKDecorationOrderActionTypePay)]];
+          [self reSetFunctionButtonsWithTitles:@[@"付款", @"取消订单"] types:@[@(WKDecorationOrderActionTypePay), @(WKDecorationOrderActionTypeCancel)]];
         }
         else {
           [self reSetFunctionButtonsWithTitles:@[@"补登", @"付款"] types:@[@(WKDecorationOrderActionTypeRepair), @(WKDecorationOrderActionTypePay)]];
@@ -48,10 +48,12 @@ const CGFloat kFunctionButtonTopMargin = 0.0;
                 if (_buttons.count) {
                     btn = _buttons.firstObject;
                     [btn setTitle:@"退款" forState:UIControlStateNormal];
+                    [btn setTitleColor:[self colorWithActionType:WKDecorationOrderActionTypeRefund] forState:UIControlStateNormal];
+                    btn.layer.borderColor = [self colorWithActionType:WKDecorationOrderActionTypeRefund].CGColor;
                     btn.hidden = NO;
                 }
                 else {
-                    btn = [self setupButtonWithTitle:@"退款"];
+                    btn = [self setupButtonWithTitle:@"退款" actionType:WKDecorationOrderActionTypeRefund];
                     [btn addTarget:self action:@selector(click_typeButton:) forControlEvents:UIControlEventTouchUpInside];
                     [_buttons addObject:btn];
                     [self addSubview:btn];
@@ -60,8 +62,8 @@ const CGFloat kFunctionButtonTopMargin = 0.0;
                 [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
                     make.centerY.mas_equalTo(0);
                     make.left.mas_equalTo(0);
-                    make.top.mas_equalTo(kFunctionButtonTopMargin);
-                    make.width.mas_equalTo(kFunctionButtonWidth);
+                    make.top.mas_equalTo(KSCAL(kFunctionButtonTopMargin));
+                    make.width.mas_equalTo(KSCAL(kFunctionButtonWidth));
                 }];
                 return;
             }
@@ -71,10 +73,12 @@ const CGFloat kFunctionButtonTopMargin = 0.0;
                 if (_buttons.count) {
                     btn = _buttons.firstObject;
                     [btn setTitle:@"退款详情" forState:UIControlStateNormal];
+                    [btn setTitleColor:[self colorWithActionType:WKDecorationOrderActionTypeRefundDetail] forState:UIControlStateNormal];
+                    btn.layer.borderColor = [self colorWithActionType:WKDecorationOrderActionTypeRefundDetail].CGColor;
                     btn.hidden = NO;
                 }
                 else {
-                    btn = [self setupButtonWithTitle:@"退款详情"];
+                    btn = [self setupButtonWithTitle:@"退款详情" actionType:WKDecorationOrderActionTypeRefundDetail];
                     [btn addTarget:self action:@selector(click_typeButton:) forControlEvents:UIControlEventTouchUpInside];
                     [_buttons addObject:btn];
                     [self addSubview:btn];
@@ -83,8 +87,8 @@ const CGFloat kFunctionButtonTopMargin = 0.0;
                 [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
                     make.centerY.mas_equalTo(0);
                     make.left.mas_equalTo(0);
-                    make.top.mas_equalTo(kFunctionButtonTopMargin);
-                    make.width.mas_equalTo(kFunctionButtonWidth);
+                    make.top.mas_equalTo(KSCAL(kFunctionButtonTopMargin));
+                    make.width.mas_equalTo(KSCAL(kFunctionButtonWidth));
                 }];
                 return;
             }
@@ -119,7 +123,7 @@ const CGFloat kFunctionButtonTopMargin = 0.0;
             [btn setTitle:titles[i] forState:UIControlStateNormal];
         }
         else {
-            btn = [self setupButtonWithTitle:titles[i]];
+            btn = [self setupButtonWithTitle:titles[i] actionType:[types[i] integerValue]];
             [btn addTarget:self action:@selector(click_typeButton:) forControlEvents:UIControlEventTouchUpInside];
             [self addSubview:btn];
             
@@ -130,9 +134,9 @@ const CGFloat kFunctionButtonTopMargin = 0.0;
         
         [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(0);
-            make.right.mas_equalTo(- i * (kFunctionButtonWidth + kFunctionButtonLeftMargin));
-            make.top.mas_equalTo(kFunctionButtonTopMargin);
-            make.width.mas_equalTo(kFunctionButtonWidth);
+            make.right.mas_equalTo(- i * (KSCAL(kFunctionButtonWidth) + KSCAL(kFunctionButtonLeftMargin)));
+            make.top.mas_equalTo(KSCAL(kFunctionButtonTopMargin));
+            make.width.mas_equalTo(KSCAL(kFunctionButtonWidth));
         }];
     }
     
@@ -156,15 +160,22 @@ const CGFloat kFunctionButtonTopMargin = 0.0;
 
 
 //生成标准按钮
-- (UIButton *)setupButtonWithTitle:(NSString *)title {
-    UIButton *btn = [UIButton new];
-    [btn setTitle:title forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    btn.layer.cornerRadius = 3.0;
+- (UIButton *)setupButtonWithTitle:(NSString *)title actionType:(WKDecorationOrderActionType)actionType {
+    UIColor *titleColor = [self colorWithActionType:actionType];
+    UIButton *btn = [UIButton buttonWithTitle:title titleFont:KSCAL(24) titleColor:titleColor];
+    btn.layer.cornerRadius = KSCAL(22.5);
+    btn.layer.borderColor = titleColor.CGColor;
     btn.layer.borderWidth = 1.0;
-    btn.layer.borderColor = [UIColor redColor].CGColor;
-    btn.titleLabel.font = [UIFont systemFontOfSize:13.0];
     return btn;
+}
+
+- (UIColor *)colorWithActionType:(WKDecorationOrderActionType)actionType {
+    switch (actionType) {
+        case WKDecorationOrderActionTypeCancel:
+            return KCOLOR_MAIN;
+        default:
+            return KCOLOR(@"666666");
+    }
 }
 
 - (void)click_typeButton:(UIButton *)sender {

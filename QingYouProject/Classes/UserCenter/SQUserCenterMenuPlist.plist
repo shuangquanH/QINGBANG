@@ -14,19 +14,9 @@
 	</dict>
 	<dict>
 		<key>title</key>
-		<string>我的申请单</string>
-		<key>vc</key>
-		<string>SQServiceFormViewController</string>
-		<key>icon</key>
-		<string></string>
-		<key>needLogin</key>
-		<true/>
-	</dict>
-	<dict>
-		<key>title</key>
 		<string>我的收藏</string>
 		<key>vc</key>
-		<string>MyCollectionListController</string>
+		<string>WKUserCenterCollectViewController</string>
 		<key>icon</key>
 		<string></string>
 		<key>needLogin</key>

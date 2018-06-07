@@ -82,15 +82,25 @@
     _orderCell.delegate = self;
     _orderCell.backgroundColor = [UIColor whiteColor];
     [tmp addObject:_orderCell];
-    
-    //组分割视图
-    SQDecorationDetailSectionView *section_1 = [SQDecorationDetailSectionView new];
-    [tmp addObject:section_1];
-    
+ 
     //订单动作
-    SQDecorationDetailFunctionView *functionView = [SQDecorationDetailFunctionView new];
-    [tmp addObject:functionView];
-    
+    if (orderInfo.orderState == 4 || orderInfo.orderState == 5) {//装修中，已完成
+        //组分割视图
+        SQDecorationDetailSectionView *section_1 = [SQDecorationDetailSectionView new];
+        [tmp addObject:section_1];
+        
+        SQDecorationDetailFunctionView *functionView = [SQDecorationDetailFunctionView new];
+        [tmp addObject:functionView];
+        
+        @weakify(self)
+        @weakify(functionView)
+        functionView.functionBlock = ^(NSInteger tag) {
+            @strongify(self)
+            @strongify(functionView)
+            [self.orderDetailDelegate functionView:functionView didClickFunctionType:tag];
+        };
+    }
+
     //组分割视图
     SQDecorationDetailSectionView *section_2 = [SQDecorationDetailSectionView new];
     [tmp addObject:section_2];
@@ -117,12 +127,7 @@
         [self.orderDetailDelegate serviceView:serverView didClickServiceType:tag];
     };
     
-    @weakify(functionView)
-    functionView.functionBlock = ^(NSInteger tag) {
-        @strongify(self)
-        @strongify(functionView)
-        [self.orderDetailDelegate functionView:functionView didClickFunctionType:tag];
-    };
+    
 }
 
 #pragma mark - decorationOrderCellDelegate

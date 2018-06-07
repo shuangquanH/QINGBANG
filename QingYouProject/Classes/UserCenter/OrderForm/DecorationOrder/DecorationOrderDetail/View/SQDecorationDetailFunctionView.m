@@ -13,9 +13,9 @@ const CGFloat kContentLeftMargin = 40.0;
 
 @implementation SQDecorationDetailFunctionView
 {
-    UIButton *_downLoadPriceFormBtn;
-    UIButton *_checkContractBtn;
-    UIButton *_ticketApplyBtn;
+    UIButton *_downContractBtn;//下载合同
+    UIButton *_checkContractBtn;//查看合同
+    UIButton *_ticketApplyBtn;//开票申请
     NSInteger _orderState;
 }
 
@@ -33,27 +33,11 @@ const CGFloat kContentLeftMargin = 40.0;
     _orderState = orderInfo.orderState;
     CGFloat itemW = (kScreenW - 2 * kItemMargin - 2 * kContentLeftMargin) / 3.0;
     switch (_orderState) {
-        case 1:
-        case 2:
-        {//待付款、已关闭
-            if (!_downLoadPriceFormBtn) {
-                _downLoadPriceFormBtn = [self setupButtonWithTitle:@"下载报价单" withTag:0];
-                [self addSubview:_downLoadPriceFormBtn];
-            }
-            
-            _downLoadPriceFormBtn.hidden = NO;
-            _downLoadPriceFormBtn.frame = CGRectMake((kScreenW-itemW)/2.0, 5, itemW, 34);
-            
-            _ticketApplyBtn.hidden = YES;
-            _checkContractBtn.hidden = YES;
-        }
-            break;
-        case 3:
         case 4:
         {//受理中、装修中
-            if (!_downLoadPriceFormBtn) {
-                _downLoadPriceFormBtn = [self setupButtonWithTitle:@"下载报价单" withTag:0];
-                [self addSubview:_downLoadPriceFormBtn];
+            if (!_downContractBtn) {
+                _downContractBtn = [self setupButtonWithTitle:@"下载报价单" withTag:0];
+                [self addSubview:_downContractBtn];
             }
             
             if (!_checkContractBtn) {
@@ -63,8 +47,8 @@ const CGFloat kContentLeftMargin = 40.0;
             
             CGFloat leftMargin = (kScreenW - 2 * itemW - kItemMargin) / 2.0;
             
-            _downLoadPriceFormBtn.hidden = NO;
-            _downLoadPriceFormBtn.frame = CGRectMake(leftMargin + 0 * (itemW + kItemMargin), 5, itemW, 34);
+            _downContractBtn.hidden = NO;
+            _downContractBtn.frame = CGRectMake(leftMargin + 0 * (itemW + kItemMargin), 5, itemW, 34);
             
             _checkContractBtn.hidden = NO;
             _checkContractBtn.frame = CGRectMake(leftMargin + 1 * (itemW + kItemMargin), 5, itemW, 34);
@@ -74,9 +58,9 @@ const CGFloat kContentLeftMargin = 40.0;
             break;
         case 5:
         {//已完成
-            if (!_downLoadPriceFormBtn) {
-                _downLoadPriceFormBtn = [self setupButtonWithTitle:@"下载报价单" withTag:0];
-                [self addSubview:_downLoadPriceFormBtn];
+            if (!_downContractBtn) {
+                _downContractBtn = [self setupButtonWithTitle:@"下载报价单" withTag:0];
+                [self addSubview:_downContractBtn];
             }
             
             if (!_checkContractBtn) {
@@ -89,8 +73,8 @@ const CGFloat kContentLeftMargin = 40.0;
                 [self addSubview:_ticketApplyBtn];
             }
             
-            _downLoadPriceFormBtn.hidden = NO;
-            _downLoadPriceFormBtn.frame = CGRectMake(kContentLeftMargin + 0 * (itemW + kItemMargin), 5, itemW, 34);
+            _downContractBtn.hidden = NO;
+            _downContractBtn.frame = CGRectMake(kContentLeftMargin + 0 * (itemW + kItemMargin), 5, itemW, 34);
             
             _checkContractBtn.hidden = NO;
             _checkContractBtn.frame = CGRectMake(kContentLeftMargin + 1 * (itemW + kItemMargin), 5, itemW, 34);

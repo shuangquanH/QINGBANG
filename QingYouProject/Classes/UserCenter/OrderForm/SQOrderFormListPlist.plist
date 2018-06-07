@@ -38,5 +38,17 @@
 		<key>vc</key>
 		<string></string>
 	</dict>
+	<dict>
+		<key>title</key>
+		<string>人才招聘</string>
+		<key>vc</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>title</key>
+		<string>项目申报</string>
+		<key>vc</key>
+		<string></string>
+	</dict>
 </array>
 </plist>

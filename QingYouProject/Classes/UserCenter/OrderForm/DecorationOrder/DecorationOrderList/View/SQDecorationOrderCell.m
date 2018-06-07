@@ -12,22 +12,13 @@
 
 #define KSPACE 20
 
-static CGFloat singleLineHeight() {
-    static CGFloat h;
-    if (h == 0) {
-        NSString *singleH = @"单行高度";
-        h = [singleH sizeWithFont:[UIFont systemFontOfSize:17.0] andMaxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)].height;
-    }
-    return h;
-}
-
 @implementation SQDecorationOrderCell {
-    
-    UILabel *orderStateLabel;
+
     UIImageView *orderImage;
     UILabel *orderTitle;
     UILabel *orderDesc;
     UILabel *orderPrice;
+    CALayer *bottomLineLayer;
 
     @public
     WKDecorationStageView *paymentStageView;//订金阶段视图
@@ -38,10 +29,7 @@ static CGFloat singleLineHeight() {
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        
-        orderStateLabel = [[UILabel alloc] init];
-        [self.contentView addSubview:orderStateLabel];
-        
+
         orderImage = [[UIImageView alloc] init];
         orderImage.contentMode = UIViewContentModeScaleAspectFill;
         orderImage.clipsToBounds = YES;
@@ -49,19 +37,19 @@ static CGFloat singleLineHeight() {
         
         orderTitle = [[UILabel alloc] init];
         orderTitle.font = KFONT(28.0);
-        orderTitle.textColor = KCOLOR(@"666666");
+        orderTitle.textColor = kCOLOR_666;
         orderTitle.numberOfLines = 2;
         [self.contentView addSubview:orderTitle];
         
         orderDesc = [[UILabel alloc] init];
         orderDesc.font = KFONT(28.0);
-        orderDesc.textColor = KCOLOR(@"666666");
+        orderDesc.textColor = kCOLOR_666;
         orderDesc.numberOfLines = 1;
         [self.contentView addSubview:orderDesc];
         
         orderPrice = [[UILabel alloc] init];
         orderPrice.font = KFONT(28.0);
-        orderPrice.textColor = KCOLOR(@"333333");
+        orderPrice.textColor = kCOLOR_666;
         [self.contentView addSubview:orderPrice];
         
         paymentStageView = [[WKDecorationStageView alloc] init];
@@ -72,20 +60,19 @@ static CGFloat singleLineHeight() {
         
         orderImage.backgroundColor = [UIColor orangeColor];
         
+        bottomLineLayer = [CALayer layer];
+        bottomLineLayer.backgroundColor = colorWithLine.CGColor;
+        [self.contentView.layer addSublayer:bottomLineLayer];
     }
     return self;
 }
 
 
 - (void)sqlayoutSubviews {
-    [orderStateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.contentView).offset(-KSCAL(30));
-        make.top.equalTo(self.contentView).offset(KSCAL(KSPACE));
-    }];
-    
+
     [orderImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(KSCAL(30));
-        make.top.equalTo(orderStateLabel.mas_bottom).offset(KSCAL(KSPACE));
+        make.top.mas_equalTo(KSCAL(KSPACE));
         make.width.mas_equalTo(KSCAL(240));
         make.height.mas_equalTo(KSCAL(180));
     }];
@@ -114,9 +101,13 @@ static CGFloat singleLineHeight() {
     }];
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    bottomLineLayer.frame = CGRectMake(KSCAL(30), self.contentView.height-KSCAL(KSPACE), self.contentView.width-KSCAL(60), 1);
+}
 
 - (void)setModel:(id)model {
-    orderStateLabel.text = @"装修中,待付款";
     orderImage.backgroundColor = [UIColor orangeColor];
     orderImage.image = [UIImage imageNamed:@"mine_instashot"];
     orderTitle.text = @"产品名称产品名称产品名称产品名称产品名称产品名称产品名称";
@@ -133,14 +124,14 @@ static CGFloat singleLineHeight() {
     
     _orderInfo = orderInfo;
     
-    orderStateLabel.text = orderInfo.orderTitle;
     orderDesc.text = orderInfo.decorateDescribe;
-    orderPrice.text = [NSString stringWithFormat:@"¥ %@（预估价）", orderInfo.estimate];
+    NSMutableAttributedString *estimatePrice = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"¥ %@（预估价）", orderInfo.estimate]];
+    [estimatePrice setAttributes:@{NSForegroundColorAttributeName: kCOLOR_PRICE_RED} range:NSMakeRange(0, 2+orderInfo.estimate.length)];
+    orderPrice.attributedText = estimatePrice;
     [orderImage sd_setImageWithURL:[NSURL URLWithString:orderInfo.decorate_icon] placeholderImage:nil];
     
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:5];
-    [paragraphStyle setMinimumLineHeight:0.0];
     NSAttributedString *decorateName = [[NSAttributedString alloc] initWithString:orderInfo.decorateName attributes:@{NSParagraphStyleAttributeName: paragraphStyle}];
     orderTitle.attributedText = decorateName;
     orderTitle.lineBreakMode = NSLineBreakByTruncatingTail;
@@ -149,7 +140,7 @@ static CGFloat singleLineHeight() {
 }
 
 - (CGSize)viewSize {
-    CGFloat height = KSCAL(88.0) + KSCAL(180.0) + 3 * KSCAL(KSPACE) + singleLineHeight();
+    CGFloat height = KSCAL(88.0) + KSCAL(180.0) + 3 * KSCAL(KSPACE);
     return CGSizeMake(kScreenW, height);
 }
 
@@ -160,10 +151,9 @@ static CGFloat singleLineHeight() {
     }
 }
 
-
 #pragma mark - public
 + (CGFloat)cellHeightWithOrderInfo:(SQDecorationDetailModel *)orderInfo {
-    return KSCAL(88.0) + KSCAL(180) + 3 * KSCAL(KSPACE) + singleLineHeight();
+    return KSCAL(88.0) + KSCAL(180) + 3 * KSCAL(KSPACE);
 }
 
 @end
@@ -215,8 +205,9 @@ static CGFloat singleLineHeight() {
         [view configStageModel:stageInfo withStage:i+1 canRefund:orderInfo.canRefund inRefund:orderInfo.isInRefund inDetail:self.isInOrderDetail];
         
         [view mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.height.equalTo(lastView);
+            make.height.equalTo(lastView);
             make.top.equalTo(lastView.mas_bottom);
+            make.left.right.equalTo(lastView).priorityHigh();
         }];
         
         lastView = view;
@@ -229,7 +220,7 @@ static CGFloat singleLineHeight() {
 }
 
 + (CGFloat)cellHeightWithOrderInfo:(SQDecorationDetailModel *)orderInfo {
-    return orderInfo.stage_list.count * KSCAL(88.0) + 3 * KSCAL(KSPACE) + KSCAL(180) + singleLineHeight();
+    return orderInfo.stage_list.count * KSCAL(88.0) + 3 * KSCAL(KSPACE) + KSCAL(180);
 }
 
 @end
@@ -325,7 +316,7 @@ static CGFloat singleLineHeight() {
 }
 
 + (CGFloat)cellHeightWithOrderInfo:(SQDecorationDetailModel *)orderInfo {
-    return orderInfo.stage_list.count * KSCAL(88.0) + 3 * KSCAL(KSPACE) + KSCAL(180) + singleLineHeight() + KSCAL(120);
+    return orderInfo.stage_list.count * KSCAL(88.0) + 3 * KSCAL(KSPACE) + KSCAL(180) + KSCAL(120);
 }
 
 @end

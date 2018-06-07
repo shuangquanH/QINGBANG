@@ -8,10 +8,13 @@
 
 #import "SQAfterSaleListViewController.h"
 #import "WKAfterSaleRecordCell.h"
+#import "WKAfterSaleModel.h"
 
 @interface SQAfterSaleListViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
+
+@property (nonatomic, strong) NSMutableArray<WKAfterSaleModel *> *afterSaleList;
 
 @end
 
@@ -25,6 +28,9 @@
 }
 
 - (void)setupSubviews {
+    
+    _afterSaleList = [NSMutableArray array];
+    
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -32,17 +38,46 @@
     _tableView.estimatedSectionHeaderHeight = 0.0;
     _tableView.estimatedSectionFooterHeight = 0.0;
     [self.view addSubview:_tableView];
+    
+    [self createRefreshWithScrollView:_tableView containFooter:YES];
+    [self.tableView.mj_header beginRefreshing];
+}
+
+- (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
+    if (headerAction) {
+        [SQRequest post:KAPI_AFTERSALERECORD param:nil success:^(id response) {
+            if ([response[@"state"] isEqualToString:@"success"]) {
+                NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKAfterSaleModel class] json:response[@"data"][@"result"][@"record_list"]];
+                if (tmp.count) {
+                    [self.afterSaleList removeAllObjects];
+                    [self.afterSaleList addObjectsFromArray:tmp];
+                    [self.tableView reloadData];
+                }
+            }
+            else {
+                [YGAppTool showToastWithText:response[@"data"][@"msg"]];
+            }
+            [self.tableView.mj_header endRefreshing];
+        } failure:^(NSError *error) {
+            [self.tableView.mj_header endRefreshing];
+            [YGAppTool showToastWithText:@"网络错误"];
+        }];
+    }
+    else {
+        [self.tableView.mj_footer endRefreshing];
+    }
 }
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return self.afterSaleList.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WKAfterSaleRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
         cell = [[WKAfterSaleRecordCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
+    [cell configInfo:self.afterSaleList[indexPath.row]];
     return cell;
 }
 
@@ -50,6 +85,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return CGFLOAT_MIN;
 }
+
 
 
 @end
