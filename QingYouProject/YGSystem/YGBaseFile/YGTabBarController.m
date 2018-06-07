@@ -27,7 +27,7 @@
 -(void)configUI {
     self.delegate = self;
     YGTabbar *myTabBar = [[YGTabbar alloc] init];
-    myTabBar.tintColor = KCOLOR_SELET;
+    myTabBar.tintColor = KCOLOR_MAIN;
     myTabBar.translucent = NO;
     myTabBar.layer.masksToBounds = NO;
     myTabBar.layer.shadowOffset = CGSizeMake(0, -3);

@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SQDecorationAddressModel.h"
+
+
 
 @interface SQChooseDecorationAddressView : UIView
+
+@property (nonatomic, strong) SQDecorationAddressModel       *model;
 
 @end
