@@ -8,6 +8,6 @@
 
 #import "RootViewController.h"
 
-@interface WKUserInfoMessageViewController : RootViewController
+@interface WKUserCenterMessageViewController : RootViewController
 
 @end

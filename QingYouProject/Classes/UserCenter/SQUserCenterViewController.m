@@ -9,14 +9,15 @@
 #import "SQUserCenterViewController.h"
 #import "PersonalInformationViewController.h"
 #import "SQOrderViewController.h"
-#import "WKUserInfoMessageViewController.h"
+#import "WKUserCenterMessageViewController.h"
 
 #import "SQUserCenterTableViewHeader.h"
 
 @interface SQUserCenterViewController () <UITableViewDelegate, UITableViewDataSource>
-@property (nonatomic, strong) NSArray                           *userCenterArr;
-@property (nonatomic, strong) SQBaseTableView                   *tableview;
-@property (nonatomic, strong) SQUserCenterTableViewHeader       *tableHeader;
+@property (nonatomic, strong) NSArray                     *userCenterArr;
+@property (nonatomic, strong) SQBaseTableView             *tableview;
+@property (nonatomic, strong) SQUserCenterTableViewHeader *tableHeader;
+@property (nonatomic, strong) UIImageView                 *headerImageView;
 @end
 
 @implementation SQUserCenterViewController
@@ -25,17 +26,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.naviTitle = @"我的";
-    UIBarButtonItem *messageItem = [self createBarbuttonWithNormalImageName:@"Details page_tab__icon2" selectedImageName:nil selector:@selector(click_toMessage)];
-    self.navigationItem.rightBarButtonItem = messageItem;
-    
+    [self layoutNavigation];
     [self readViewControllerByPlistFile];
-    [self.view addSubview:self.tableview];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [_tableHeader configUserInfo:YGSingletonMarco.user];
+    [self.tableHeader configUserInfo:YGSingletonMarco.user];
 }
 
 - (void)viewWillLayoutSubviews {
@@ -52,8 +49,20 @@
     }];
 }
 
+- (void)layoutNavigation {
+    self.naviTitle = @"我的";
+    UIBarButtonItem *messageItem = [self createBarbuttonWithNormalImageName:@"Details page_tab__icon2" selectedImageName:nil selector:@selector(click_toMessage)];
+    self.navigationItem.rightBarButtonItem = messageItem;
+}
+
+- (void)setupSubviews {
+    self.tableview.hidden = NO;
+    
+    self.headerImageView = [UIImageView new];
+}
+
 - (void)click_toMessage {
-    WKUserInfoMessageViewController *next = [WKUserInfoMessageViewController new];
+    WKUserCenterMessageViewController *next = [WKUserCenterMessageViewController new];
     [self.navigationController pushViewController:next animated:YES];
 }
 
@@ -91,10 +100,11 @@
 - (SQBaseTableView  *)tableview {
     if (!_tableview) {
         _tableview = [[SQBaseTableView alloc] initWithFrame:CGRectZero];
-        _tableview.rowHeight = 60;
+        _tableview.rowHeight = KSCAL(120);
         _tableview.delegate = self;
         _tableview.dataSource = self;
         _tableview.tableHeaderView = self.tableHeader;
+        [self.view addSubview:self.tableview];
     }
     return _tableview;
 }

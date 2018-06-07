@@ -6,9 +6,10 @@
 //  Copyright © 2018年 ccyouge. All rights reserved.
 //
 
-#import "WKUserInfoMessageCell.h"
+#import "WKUserCenterMessageCell.h"
+#import "WKUserCenterMessageModel.h"
 
-@implementation WKUserInfoMessageCell
+@implementation WKUserCenterMessageCell
 {
     UILabel *_titleLabel;
     UILabel *_detailLabel;
@@ -68,5 +69,13 @@
     _timeLabel.text = @"2018-05-28  12:00:00";
 }
 
+- (void)configMessageInfo:(WKUserCenterMessageModel *)messageInfo {
+    _titleLabel.text = messageInfo.messageTitle;
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:3.0];
+    NSAttributedString *detail = [[NSAttributedString alloc] initWithString:messageInfo.messageDetail attributes:@{NSParagraphStyleAttributeName: paragraphStyle}];
+    _detailLabel.attributedText = detail;
+    _timeLabel.text = messageInfo.messageTime;
+}
 
 @end

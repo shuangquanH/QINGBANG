@@ -56,6 +56,7 @@
 #define kCOLOR_666          [UIColor hexStringToColor:@"666666"]
 /** 999灰色  */
 #define kCOLOR_999          [UIColor hexStringToColor:@"999999"]
+
 /** 价格红色 */
 #define kCOLOR_PRICE_RED    [UIColor hexStringToColor:@"e60012"]
 /** 颜色(传string格式) */

@@ -6,23 +6,27 @@
 //  Copyright © 2018年 ccyouge. All rights reserved.
 //
 
-#import "WKUserInfoMessageViewController.h"
+#import "WKUserCenterMessageViewController.h"
 
-#import "WKUserInfoMessageCell.h"
+#import "WKUserCenterMessageCell.h"
 
-@interface WKUserInfoMessageViewController ()<UITableViewDelegate, UITableViewDataSource>
+#import "WKUserCenterMessageModel.h"
+
+@interface WKUserCenterMessageViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 
+@property (nonatomic, strong) NSMutableArray<WKUserCenterMessageModel *> *messageList;
+
 @end
 
-@implementation WKUserInfoMessageViewController
+@implementation WKUserCenterMessageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.naviTitle = @"我的消息";
-    
+    self.messageList = [NSMutableArray array];
     [self setupSubviews];
 }
 
@@ -40,17 +44,29 @@
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.right.top.mas_equalTo(0);
     }];
+    
+    [self createRefreshWithScrollView:self.tableView containFooter:YES];
+}
+
+- (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
+    if (headerAction) {
+        [self.tableView.mj_header endRefreshing];
+    }
+    else {
+        [self.tableView.mj_footer endRefreshing];
+    }
 }
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return self.messageList.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    WKUserInfoMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    WKUserCenterMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
-        cell = [[WKUserInfoMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell = [[WKUserCenterMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
+    [cell configMessageInfo:self.messageList[indexPath.row]];
     return cell;
 }
 
