@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class WKUserCenterCollectModel;
+
 @interface WKUserCenterCollectCell : UITableViewCell
+
+- (void)configCollectInfo:(WKUserCenterCollectModel *)collectInfo;
 
 @end

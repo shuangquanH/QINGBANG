@@ -96,12 +96,12 @@
 #pragma mark - reqeust
 - (void)sendDefaultInfoReqeust {
     [SQRequest post:KAPI_GETDEFAULTINFO param:nil success:^(id response) {
-        if ([response[@"state"] isEqualToString:@"success"]) {
-            self.postInfo = [ManageMailPostModel yy_modelWithJSON:response[@"data"][@"result"][@"addressInfo"]];
-            self.invoiceInfo = [WKInvoiceModel yy_modelWithJSON:response[@"data"][@"result"][@"invoiceInfo"]];
+        if ([response[@"code"] isEqualToString:@"0"]) {
+            self.postInfo = [ManageMailPostModel yy_modelWithJSON:response[@"data"][@"addressInfo"]];
+            self.invoiceInfo = [WKInvoiceModel yy_modelWithJSON:response[@"data"][@"invoiceInfo"]];
             [self.tableView reloadData];
         } else {
-            [YGAppTool showToastWithText:response[@"data"][@"msg"]];
+            [YGAppTool showToastWithText:response[@"msg"]];
         }
     } failure:^(NSError *error) {
         [YGAppTool showToastWithText:@"网络错误"];
@@ -138,11 +138,11 @@
     
     [SQRequest post:KAPI_APPLYINVOICE param:param success:^(id response) {
         [YGNetService dissmissLoadingView];
-        if ([response[@"state"] isEqualToString:@"success"]) {
+        if ([response[@"code"] isEqualToString:@"0"]) {
             [YGAppTool showToastWithText:@"申请成功"];
             [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.5];
         } else {
-            [YGAppTool showToastWithText:response[@"data"][@"msg"]];
+            [YGAppTool showToastWithText:response[@"msg"]];
         }
     } failure:^(NSError *error) {
         [YGNetService dissmissLoadingView];

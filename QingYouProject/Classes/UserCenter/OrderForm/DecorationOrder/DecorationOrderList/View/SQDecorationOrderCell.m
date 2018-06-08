@@ -9,6 +9,7 @@
 #import "SQDecorationOrderCell.h"
 #import "NSString+SQStringSize.h"
 #import "WKDecorationStageView.h"
+#import "UIButton+SQImagePosition.h"
 
 #define KSPACE 20
 
@@ -18,18 +19,19 @@
     UILabel *orderTitle;
     UILabel *orderDesc;
     UILabel *orderPrice;
-    CALayer *bottomLineLayer;
 
     @public
     WKDecorationStageView *paymentStageView;//订金阶段视图
     SQDecorationDetailModel *_orderInfo;//订单信息
+    CALayer *bottomLineLayer;
+
 }
 
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-
+        
         orderImage = [[UIImageView alloc] init];
         orderImage.contentMode = UIViewContentModeScaleAspectFill;
         orderImage.clipsToBounds = YES;
@@ -56,13 +58,11 @@
         paymentStageView.delegate = self;
         [self.contentView addSubview:paymentStageView];
         
-        [self sqlayoutSubviews];
-        
-        orderImage.backgroundColor = [UIColor orangeColor];
-        
         bottomLineLayer = [CALayer layer];
         bottomLineLayer.backgroundColor = colorWithLine.CGColor;
         [self.contentView.layer addSublayer:bottomLineLayer];
+        
+        [self sqlayoutSubviews];
     }
     return self;
 }
@@ -237,6 +237,8 @@
     
     [super sqlayoutSubviews];
     
+    bottomLineLayer.hidden = YES;
+    
     dealingBgView = [UIView new];
     [self.contentView addSubview:dealingBgView];
     
@@ -244,15 +246,16 @@
     dealingLine.backgroundColor = colorWithLine;
     [dealingBgView addSubview:dealingLine];
     
-    dealingTipLabel = [UILabel labelWithFont:KSCAL(30.0) textColor:[UIColor blackColor] textAlignment:NSTextAlignmentCenter text:@"系统正在受理您的订单，请耐心等待~"];
+    dealingTipLabel = [UILabel labelWithFont:KSCAL(28) textColor:kCOLOR_999 textAlignment:NSTextAlignmentCenter text:@"系统正在受理您的订单，请耐心等待~"];
     [dealingBgView addSubview:dealingTipLabel];
     
     connectServiceBtn = [UIButton new];
     [connectServiceBtn setTitle:@"联系客服" forState:UIControlStateNormal];
-    [connectServiceBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [connectServiceBtn sizeToFit];
+    [connectServiceBtn setTitleColor:KCOLOR(@"32bcea") forState:UIControlStateNormal];
+    [connectServiceBtn setImage:[UIImage imageNamed:@"service_tel_icon"] forState:UIControlStateNormal];
+    [connectServiceBtn sq_setImagePosition:SQImagePositionLeft spacing:5];
     [connectServiceBtn addTarget:self action:@selector(click_connectService) forControlEvents:UIControlEventTouchUpInside];
-    connectServiceBtn.titleLabel.font = KFONT(30.0);
+    connectServiceBtn.titleLabel.font = KFONT(28.0);
     [dealingBgView addSubview:connectServiceBtn];
     
     UIView *lastView;
@@ -266,7 +269,7 @@
     [dealingBgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(paymentStageView);
         make.top.equalTo(lastView.mas_bottom);
-        make.height.mas_equalTo(KSCAL(120));
+        make.height.mas_equalTo(KSCAL(175));
     }];
     
     [dealingLine mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -276,15 +279,13 @@
     
     [dealingTipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
-        make.bottom.equalTo(dealingBgView.mas_centerY).offset(-3);
+        make.bottom.equalTo(dealingBgView.mas_centerY).offset(-KSCAL(10));
     }];
     
     [connectServiceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(0);
-        make.top.equalTo(dealingBgView.mas_centerY);
+        make.top.equalTo(dealingBgView.mas_centerY).offset(KSCAL(10));
     }];
-    
-    [self layoutIfNeeded];
 }
 
 - (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo {
@@ -301,12 +302,12 @@
     [dealingBgView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(paymentStageView);
         make.top.equalTo(lastView.mas_bottom);
-        make.height.mas_equalTo(KSCAL(120));
+        make.height.mas_equalTo(KSCAL(175));
     }];
 }
 
 - (CGSize)viewSize {
-    return CGSizeMake(kScreenW, [super viewSize].height + KSCAL(120));
+    return CGSizeMake(kScreenW, [super viewSize].height + KSCAL(155));
 }
 
 - (void)click_connectService {
@@ -316,7 +317,7 @@
 }
 
 + (CGFloat)cellHeightWithOrderInfo:(SQDecorationDetailModel *)orderInfo {
-    return orderInfo.stage_list.count * KSCAL(88.0) + 3 * KSCAL(KSPACE) + KSCAL(180) + KSCAL(120);
+    return orderInfo.stage_list.count * KSCAL(88.0) + 2 * KSCAL(KSPACE) + KSCAL(180) + KSCAL(175);
 }
 
 @end

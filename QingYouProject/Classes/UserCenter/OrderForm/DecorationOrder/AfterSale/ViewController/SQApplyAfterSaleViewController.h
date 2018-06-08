@@ -8,6 +8,10 @@
 
 #import "RootViewController.h"
 
+@class WKDecorationOrderDetailModel;
+
 @interface SQApplyAfterSaleViewController : RootViewController
+
+@property (nonatomic, strong) WKDecorationOrderDetailModel *orderInfo;
 
 @end

@@ -44,25 +44,26 @@
     [super viewWillLayoutSubviews];
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.mas_equalTo(0);
-        if (@available(iOS 11.0, *)) {
-            make.bottom.mas_equalTo(-self.view.safeAreaInsets.bottom);
-        }
-        else {
-            make.bottom.mas_equalTo(-self.view.layoutMargins.bottom);
-        }
+        make.edges.mas_equalTo(0);
     }];
 }
 
 - (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
     if (headerAction) {
         [SQRequest post:KAPI_MYDECORATION_ORDERLIST param:nil success:^(id response) {
-            NSArray<SQDecorationDetailModel *> *tmp = [NSArray yy_modelArrayWithClass:[SQDecorationDetailModel class] json:response[@"data"][@"order_list"]];
-            [self.orderList removeAllObjects];
-            [self.orderList addObjectsFromArray:tmp];
             [self.tableView.mj_header endRefreshing];
-            [self.tableView reloadData];
+            if ([response[@"code"] isEqualToString:@"0"]) {
+                NSArray<SQDecorationDetailModel *> *tmp = [NSArray yy_modelArrayWithClass:[SQDecorationDetailModel class] json:response[@"data"][@"order_list"]];
+                [self.orderList removeAllObjects];
+                [self.orderList addObjectsFromArray:tmp];
+                [self.tableView reloadData];
+            }
+            else {
+                [YGAppTool showToastWithText:response[@"msg"]];
+            }
+            
         } failure:^(NSError *error) {
+            [YGAppTool showToastWithText:@"网路错误"];
             [self.tableView.mj_header endRefreshing];
         }];
     } else {
@@ -176,12 +177,12 @@
                 [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
                 [SQRequest post:KAPI_DELETEORDER param:@{@"orderNum": m.orderNum} success:^(id response) {
                     [YGNetService dissmissLoadingView];
-                    if ([response[@"state"] isEqualToString:@"success"]) {
+                    if ([response[@"code"] isEqualToString:@"0"]) {
                         [self.orderList removeObjectAtIndex:targetIndex.section];
                         [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:targetIndex.section] withRowAnimation:UITableViewRowAnimationLeft];
                     }
                     else {
-                        [YGAppTool showToastWithText:response[@"data"][@"msg"]];
+                        [YGAppTool showToastWithText:response[@"msg"]];
                     }
                     
                 } failure:^(NSError *error) {
@@ -200,6 +201,18 @@
         }
             break;
         case WKDecorationOrderActionTypeCallService://联系客服
+        {
+            [YGAlertView showAlertWithTitle:@"是否要拨打客服电话？"
+                          buttonTitlesArray:@[@"YES", @"NO"]
+                          buttonColorsArray:@[[UIColor blueColor],
+                                              [UIColor redColor]]
+                                    handler:^(NSInteger buttonIndex) {
+                                        if (buttonIndex == 0) {
+                                            NSString *url = @"tel:057812345";
+                                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+                                        }
+                                    }];
+        }
             break;
         default:
             break;

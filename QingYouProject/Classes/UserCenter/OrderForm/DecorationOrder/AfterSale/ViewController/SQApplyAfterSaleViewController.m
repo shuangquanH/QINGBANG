@@ -12,6 +12,8 @@
 
 #import "TZTestCell.h"
 
+#import "SQDecorationDetailModel.h"
+
 @interface SQApplyAfterSaleViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, strong) UILabel *tipLabel;
@@ -51,6 +53,7 @@
     [_confirmButton setBackgroundColor:[UIColor redColor]];
     [_confirmButton setTitle:@"提交申请" forState:UIControlStateNormal];
     [_confirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_confirmButton addTarget:self action:@selector(click_confirmButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_confirmButton];
     
     _tipLabel = [UILabel labelWithFont:15.0 textColor:[UIColor blackColor] text:@"问题描述："];
@@ -112,6 +115,29 @@
 - (void)click_listButton {
     SQAfterSaleListViewController *next = [SQAfterSaleListViewController new];
     [self.navigationController pushViewController:next animated:YES];
+}
+- (void)click_confirmButton {
+    [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
+    
+    NSString *images = @"1.jpg,2.jpg";
+    NSDictionary *param = @{@"orderNum": self.orderInfo.order_info.orderNum,
+                            @"apply_images": images,
+                            @"desc": self.problemTV.text?:@""
+                            };
+    [SQRequest post:KAPI_APPLYAFTERSALE param:param success:^(id response) {
+        if ([response[@"code"] isEqualToString:@"0"]) {
+            [YGAppTool showToastWithText:@"申请成功"];
+            [YGNetService dissmissLoadingView];
+            [self performSelector:@selector(click_listButton) withObject:nil afterDelay:1.5];
+        }
+        else {
+            [YGNetService dissmissLoadingView];
+            [YGAppTool showToastWithText:response[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        [YGNetService dissmissLoadingView];
+        [YGAppTool showToastWithText:@"网络错误"];
+    }];
 }
 
 - (void)pushImagePickerController {

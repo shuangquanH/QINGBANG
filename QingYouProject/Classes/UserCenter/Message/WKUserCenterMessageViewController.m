@@ -54,8 +54,8 @@
     if (headerAction) {
         [SQRequest post:KAPI_MESSAGELIST param:nil success:^(id response) {
             [self.tableView.mj_header endRefreshing];
-            if ([response[@"state"] isEqualToString:@"success"]) {
-                NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKUserCenterMessageModel class] json:response[@"data"][@"result"][@"message_list"]];
+            if ([response[@"code"] isEqualToString:@"0"]) {
+                NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKUserCenterMessageModel class] json:response[@"data"][@"message_list"]];
                 if (tmp.count) {
                     [self.messageList removeAllObjects];
                     [self.messageList addObjectsFromArray:tmp];
@@ -63,7 +63,7 @@
                 }
             }
             else {
-               [YGAppTool showToastWithText:response[@"data"][@"msg"]];
+               [YGAppTool showToastWithText:response[@"msg"]];
             }
         } failure:^(NSError *error) {
             [YGAppTool showToastWithText:@"网络错误"];

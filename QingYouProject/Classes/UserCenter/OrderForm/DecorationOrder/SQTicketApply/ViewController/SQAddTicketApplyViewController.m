@@ -165,11 +165,11 @@
     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
     [SQRequest post:(_isEdit?KAPI_EDITINVOICE:KAPI_ADDINVOICE) param:param success:^(id response) {
         [YGNetService dissmissLoadingView];
-        if ([response[@"state"] isEqualToString:@"success"]) {
+        if ([response[@"code"] isEqualToString:@"0"]) {
             [YGAppTool showToastWithText:(_isEdit?@"修改成功":@"添加成功")];
             [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.5];
         } else {
-            [YGAppTool showToastWithText:response[@"data"][@"msg"]];
+            [YGAppTool showToastWithText:response[@"msg"]];
         }
     } failure:^(NSError *error) {
         [YGNetService dissmissLoadingView];

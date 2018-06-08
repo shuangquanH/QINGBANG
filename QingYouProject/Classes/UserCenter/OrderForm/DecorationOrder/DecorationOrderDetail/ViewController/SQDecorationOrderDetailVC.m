@@ -22,7 +22,7 @@
 
 @property (nonatomic, strong) UIView        *contentView;
 
-@property (nonatomic, strong) SQDecorationDetailViewModel *orderDetailVM;
+@property (nonatomic, strong) SQDecorationDetailViewModel  *orderVM;
 
 @property (nonatomic, strong) WKDecorationOrderDetailModel *orderInfo;
 
@@ -39,12 +39,12 @@
 
 - (void)sendReqeust {
     
-    self.orderDetailVM = [SQDecorationDetailViewModel new];
-    self.orderDetailVM.orderDetailDelegate = self;
+    self.orderVM = [SQDecorationDetailViewModel new];
+    self.orderVM.orderDetailDelegate = self;
     
     [YGNetService showLoadingViewWithSuperView:nil];
     @weakify(self)
-    [self.orderDetailVM sendOrderDetailRequestWithOrderNum:self.orderListInfo.orderNum completed:^(WKDecorationOrderDetailModel *order, NSError *error) {
+    [self.orderVM sendOrderDetailRequestWithOrderNum:self.orderListInfo.orderNum completed:^(WKDecorationOrderDetailModel *order, NSError *error) {
         if (order) {
             @strongify(self)
             self.orderInfo = order;
@@ -63,7 +63,7 @@
         make.edges.equalTo(self.contentScrollView);
     }];
 
-    for (UIView<SQDecorationDetailViewProtocol> *v in self.orderDetailVM.subviewArray) {
+    for (UIView<SQDecorationDetailViewProtocol> *v in self.orderVM.subviewArray) {
         [v configOrderInfo:self.orderInfo.order_info];
         if ([v respondsToSelector:@selector(configAddressInfo:)]) {
             [v configAddressInfo:self.orderInfo.address_info];
@@ -77,8 +77,8 @@
 - (void)makeConstraints {
     
     UIView *lastView;
-    for (int i = 0; i < self.orderDetailVM.subviewArray.count; i++) {
-        UIView<SQDecorationDetailViewProtocol> *v = [self.orderDetailVM.subviewArray objectAtIndex:i];
+    for (int i = 0; i < self.orderVM.subviewArray.count; i++) {
+        UIView<SQDecorationDetailViewProtocol> *v = [self.orderVM.subviewArray objectAtIndex:i];
         if (i == 0) {
             [v mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.top.right.mas_equalTo(0);
@@ -87,7 +87,7 @@
         }
         else {
             
-            if (i == self.orderDetailVM.subviewArray.count - 1) {
+            if (i == self.orderVM.subviewArray.count - 1) {
                 [v mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.left.right.bottom.mas_equalTo(0);
                     make.top.equalTo(lastView.mas_bottom);
@@ -125,6 +125,7 @@
     }
     else {
         SQApplyAfterSaleViewController *next = [SQApplyAfterSaleViewController new];
+        next.orderInfo = self.orderInfo;
         [self.navigationController pushViewController:next animated:YES];
     }
 }
@@ -186,11 +187,11 @@
                 [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
                 [SQRequest post:KAPI_DELETEORDER param:@{@"orderNum": self.orderInfo.order_info.orderNum} success:^(id response) {
                     [YGNetService dissmissLoadingView];
-                    if ([response[@"state"] isEqualToString:@"success"]) {
+                    if ([response[@"code"] isEqualToString:@"0"]) {
                         
                     }
                     else {
-                        [YGAppTool showToastWithText:response[@"data"][@"msg"]];
+                        [YGAppTool showToastWithText:response[@"msg"]];
                     }
                     
                 } failure:^(NSError *error) {
@@ -210,8 +211,16 @@
             break;
         case WKDecorationOrderActionTypeCallService://联系客服
         {
-            NSString *url = @"tel:057812345";
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+            [YGAlertView showAlertWithTitle:@"是否要拨打客服电话？"
+                          buttonTitlesArray:@[@"YES", @"NO"]
+                          buttonColorsArray:@[[UIColor blueColor],
+                                              [UIColor redColor]]
+                                    handler:^(NSInteger buttonIndex) {
+                                        if (buttonIndex == 0) {
+                                            NSString *url = @"tel:057812345";
+                                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+                                        }
+                                    }];
         }
             break;
         case WKDecorationOrderActionTypeRefund://申请退款
@@ -219,15 +228,15 @@
             [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
             [SQRequest post:KAPI_APPLYREFUND param:@{@"orderNum": self.orderInfo.order_info.orderNum} success:^(id response) {
                 [YGNetService dissmissLoadingView];
-                if ([response[@"state"] isEqualToString:@"success"]) {
+                if ([response[@"code"] isEqualToString:@"0"]) {
                     //修改当前状态为申请退款中状态
                     self.orderInfo.order_info.isInRefund = YES;
                     self.orderInfo.order_info.canRefund = NO;
-                    [self.orderDetailVM.orderCell configOrderInfo:self.orderInfo.order_info];
+                    [self.orderVM.orderCell configOrderInfo:self.orderInfo.order_info];
                     [YGAppTool showToastWithText:@"申请成功"];
                 }
                 else {
-                    [YGAppTool showToastWithText:response[@"data"][@"msg"]];
+                    [YGAppTool showToastWithText:response[@"msg"]];
                 }
             } failure:^(NSError *error) {
                 [YGNetService dissmissLoadingView];

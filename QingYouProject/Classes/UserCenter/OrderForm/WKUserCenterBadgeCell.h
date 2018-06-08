@@ -10,4 +10,6 @@
 
 @interface WKUserCenterBadgeCell : SQBaseTableViewCell
 
+- (void)configBadgeNum:(NSInteger)badgeNum;
+
 @end
