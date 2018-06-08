@@ -19,13 +19,20 @@ const CGFloat kFunctionButtonTopMargin = 0.0;
     NSInteger _stage;
 }
 
+- (instancetype)init {
+    if (self == [super init]) {
+        _stage = -1;
+    }
+    return self;
+}
+
 - (void)configStageModel:(WKDecorationStageModel *)stageModel withStage:(NSInteger)stage canRefund:(BOOL)canRefund inRefund:(BOOL)inRefund inDetail:(BOOL)inDetail {
     
     if (stage < 0) {
         NSLog(@"%@ %ld 阶段不符合规则", NSStringFromClass([self class]), stage);
         return;
     }
-    
+
     _stage = stage;
     
     if (!_buttons) {
@@ -84,6 +91,7 @@ const CGFloat kFunctionButtonTopMargin = 0.0;
         UIButton *btn;
         if (_buttons.count > i) {
             btn = [_buttons objectAtIndex:i];
+            btn.hidden = NO;
             [btn setTitle:titles[i] forState:UIControlStateNormal];
         }
         else {

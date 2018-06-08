@@ -361,5 +361,6 @@
 #define KAPI_MESSAGELIST               @"getMessage"//消息记录
 #define KAPI_COLLECTLIST               @"getMyCollection"//收藏记录
 #define KAPI_APPLYAFTERSALE            @"applyAfterSale"//申请售后
+#define KAPI_APPLYREPAIR               @"applyRepair"//申请补登
 
 #endif /* SQApiUrlFile_h */

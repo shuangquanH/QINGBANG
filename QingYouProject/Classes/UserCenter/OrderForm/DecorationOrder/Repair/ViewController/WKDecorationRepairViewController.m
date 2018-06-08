@@ -10,6 +10,8 @@
 #import "TZImagePickerController.h"
 #import "WKDecorationRepairPhotoCell.h"
 
+#import "SQDecorationDetailModel.h"
+
 const CGFloat kItemHorizontalMargin = 10;
 
 @interface WKDecorationRepairViewController ()<TZImagePickerControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, WKDecorationRepairPhotoCellDelegate>
@@ -112,7 +114,37 @@ const CGFloat kItemHorizontalMargin = 10;
 }
 
 - (void)click_confirmButton {
+    if (!self.repairImageArray.count) {
+        [YGAppTool showToastWithText:@"请至少添加一张回执单图片"];
+        return;
+    }
     
+    
+    [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
+    
+    WKDecorationStageModel *stage = [self.orderInfo.stage_list objectAtIndex:self.stageIndex];
+    
+    NSDictionary *param = @{@"orderNum": self.orderInfo.orderNum,
+                            @"images": @"1.jpg,2.jpg",
+                            @"stageId": stage.stageId
+                            };
+    [SQRequest post:KAPI_APPLYREPAIR param:param success:^(id response) {
+        [YGNetService dissmissLoadingView];
+        if ([response[@"code"] isEqualToString:@"0"]) {
+            stage.stageState = 3;
+            if (self.repairSuccess) {
+                self.repairSuccess(self.orderInfo);
+            }
+            [YGAppTool showToastWithText:@"申请成功，等待人员审核"];
+            [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.5];
+        }
+        else {
+            [YGAppTool showToastWithText:response[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        [YGNetService dissmissLoadingView];
+        [YGAppTool showToastWithText:@"网络错误"];
+    }];
 }
 
 - (void)pushImagePickerController {
@@ -156,6 +188,11 @@ const CGFloat kItemHorizontalMargin = 10;
     if (indexPath.item >= self.repairImageArray.count) return;
     if (indexPath.item == _selectIndex) return;
     
+    
+    if (_selectIndex != -1) {
+        WKDecorationRepairPhotoCell *selectCell = (WKDecorationRepairPhotoCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:_selectIndex inSection:0]];
+        selectCell.photoSelect = NO;
+    }
     _selectIndex = indexPath.item;
     WKDecorationRepairPhotoCell *cell = (WKDecorationRepairPhotoCell *)[collectionView cellForItemAtIndexPath:indexPath];
     cell.photoSelect = YES;
@@ -173,6 +210,9 @@ const CGFloat kItemHorizontalMargin = 10;
             else {
                 _selectIndex = 0;
             }
+        }
+        else if (deleteIndexPath.item < _selectIndex) {
+            _selectIndex -= 1;
         }
         [self.collectionView reloadData];
     }

@@ -196,7 +196,13 @@
             break;
         case WKDecorationOrderActionTypeRepair://补登
         {
+          
             WKDecorationRepairViewController *next = [WKDecorationRepairViewController new];
+            next.orderInfo = self.orderList[targetIndex.section];
+            next.stageIndex = stage;
+            next.repairSuccess = ^(SQDecorationDetailModel *orderInfo) {
+                [decorationCell configOrderInfo:orderInfo];
+            };
             [self.navigationController pushViewController:next animated:YES];
         }
             break;
