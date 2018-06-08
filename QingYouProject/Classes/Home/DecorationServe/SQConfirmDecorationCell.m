@@ -7,6 +7,7 @@
 //
 
 #import "SQConfirmDecorationCell.h"
+#import "UIView+SQGesture.h"
 
 #define KSPACE 20
 
@@ -25,6 +26,8 @@
 {
     self = [super init];
     if (self) {
+        self.backgroundColor = kWhiteColor;
+        
         orderImage = [[UIImageView alloc] init];
         orderImage.backgroundColor = [UIColor orangeColor];
         orderImage.contentMode = UIViewContentModeScaleAspectFill;
@@ -215,6 +218,7 @@
         [zhifubao mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(0);
             make.left.mas_equalTo(KSPACE);
+            make.right.equalTo(zfbBtn.mas_left);
             make.height.mas_equalTo(KSCAL(88));
         }];
 
@@ -252,6 +256,7 @@
         [weixin mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(zhifubao.mas_bottom);
             make.left.mas_equalTo(KSPACE);
+            make.right.equalTo(wxBtn.mas_left);
             make.height.mas_equalTo(KSCAL(88));
         }];
         
@@ -283,6 +288,16 @@
             make.bottom.equalTo(self);
         }];
         
+        
+        WeakSelf(weakSelf);
+        zhifubao.userInteractionEnabled = YES;
+        [zhifubao sq_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+            [weakSelf zhifuaction];
+        }];
+        weixin.userInteractionEnabled = YES;
+        [weixin sq_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+            [weakSelf wxaction];
+        }];
         [zfbBtn addTarget:self action:@selector(zhifuaction) forControlEvents:UIControlEventTouchUpInside];
         [wxBtn addTarget:self action:@selector(wxaction) forControlEvents:UIControlEventTouchUpInside];
         
@@ -298,12 +313,24 @@
 }
 
 - (void)zhifuaction {
+    if (self.delegate) {
+        [self.delegate payType:SQPayByAirPay];
+    }
     wxBtn.selected = NO;
     zfbBtn.selected = YES;
 }
 - (void)wxaction {
+    if (self.delegate) {
+        [self.delegate payType:SQPayByWechat];
+    }
     wxBtn.selected = YES;
     zfbBtn.selected = NO;
+}
+
+
+- (void)dealloc
+{
+    NSLog(@"------dealloc:%@------", self);
 }
 @end
 

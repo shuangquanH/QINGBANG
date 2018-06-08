@@ -16,6 +16,9 @@ typedef enum : NSUInteger {
 
 @interface SQPaySuccessfulVC : RootViewController
 
+/** 需要把navigationController传递过来  */
+@property (nonatomic, weak) UINavigationController      *lastNav;
+
 @property (nonatomic, assign) SQPaySuccessViewType       type;
 
 @end
