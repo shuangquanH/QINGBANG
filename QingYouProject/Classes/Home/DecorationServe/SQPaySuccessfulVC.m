@@ -7,6 +7,7 @@
 //
 
 #import "SQPaySuccessfulVC.h"
+#import "SQDecorationOrderVC.h"
 
 @interface SQPaySuccessfulVC ()
 
@@ -21,18 +22,19 @@
     UIButton    *rightButton;
 }
 
+- (void)configAttribute {
+    self.naviTitle =  @"付款提示";
+    UIBarButtonItem *item = [self createBarbuttonWithNormalImageName:@"paymentsuccess_nav_colse_icon" selectedImageName:nil selector:@selector(closeSelf)];
+    self.navigationItem.rightBarButtonItem = item;
+}
+
+- (void)closeSelf {
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = kWhiteColor;
-    
-//    UILabel  *topView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, KNAV_HEIGHT)];
-//    topView.backgroundColor = kBlackColor;
-//    topView.text = @"付款提示";
-//    topView.textColor = KCOLOR_WHITE;
-//    topView.textAlignment = NSTextAlignmentCenter;
-//    [self.view addSubview:topView];
-    
-    self.naviTitle =  @"付款提示";
     
     titel = [[UILabel alloc] init];
     [self.view addSubview:titel];
@@ -85,6 +87,8 @@
     
     [leftButton setTitle:@"返回首页" forState:UIControlStateNormal];
     [rightButton setTitle:@"我的订单" forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(backHomePage) forControlEvents:UIControlEventTouchUpInside];
+    [rightButton addTarget:self action:@selector(gotoMyOrder) forControlEvents:UIControlEventTouchUpInside];
     
     [titel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(KSCAL(300));
@@ -115,9 +119,25 @@
         make.height.mas_equalTo(KSCAL(98));
         make.width.mas_equalTo(KSCAL(300));
     }];
-
-    
 }
+
+/** 返回首页  */
+- (void)backHomePage {
+    if (self.lastNav) {
+        [self.lastNav popToRootViewControllerAnimated:YES];
+        [self closeSelf];
+    }
+}
+/** 去我的装修订单  */
+- (void)gotoMyOrder {
+    if (self.lastNav) {
+        [self.lastNav popToRootViewControllerAnimated:YES];
+        SQDecorationOrderVC *vc = [[SQDecorationOrderVC alloc] init];
+        [self.lastNav pushViewController:vc animated:YES];
+        [self closeSelf];
+    }
+}
+
 
 
 

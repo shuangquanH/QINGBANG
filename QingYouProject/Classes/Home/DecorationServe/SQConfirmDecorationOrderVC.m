@@ -20,16 +20,14 @@
 #import "YGNavigationController.h"
 
 
-@interface SQConfirmDecorationOrderVC ()
+@interface SQConfirmDecorationOrderVC () <SQConfirmDecorationPayDelegate>
 
+@property (nonatomic, assign) PayType       payType;
 @property (nonatomic, strong) UIScrollView                  *backScrollView;
 @property (nonatomic, strong) UILabel                        *bottomPayView;
 
-
-
-@property (nonatomic, strong) SQDecorationAddressModel      *addressModel;
-
 @property (nonatomic, strong) SQChooseDecorationAddressView       *chooseAddressView;
+@property (nonatomic, strong) SQConfirmDecorationCell       *confirmDecorationCell;
 
 
 @end
@@ -47,8 +45,7 @@
     NSDictionary    *param = @{@"userId":YGSingletonMarco.user.userId,@"type":@"0", @"total":@"0",@"count":@"1"};
     [YGNetService YGPOST:REQUEST_AddressList parameters:param showLoadingView:nil scrollView:nil success:^(id responseObject) {
         NSArray *addresslist = [NSArray arrayWithArray:responseObject[@"addressList"]];
-        self.addressModel = [SQDecorationAddressModel yy_modelWithDictionary:addresslist.firstObject];
-        self.chooseAddressView.model = self.addressModel;
+        self.chooseAddressView.model = [SQDecorationAddressModel yy_modelWithDictionary:addresslist.firstObject];
     } failure: nil];
     
 }
@@ -75,10 +72,9 @@
     
     
     /** 订单cell  */
-    SQConfirmDecorationCell   *orderCell = [[SQConfirmDecorationCell alloc] init];
-    orderCell.backgroundColor = kWhiteColor;
-    [contentView addSubview:orderCell];
-    [orderCell mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.confirmDecorationCell = [[SQConfirmDecorationCell alloc] init];
+    [contentView addSubview:self.confirmDecorationCell];
+    [self.confirmDecorationCell mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.chooseAddressView);
         make.top.equalTo(self.chooseAddressView.mas_bottom).offset(KSCAL(20));
     }];
@@ -92,11 +88,12 @@
     [contentView addSubview:payLabel];
     [payLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(KSCAL(30));
-        make.top.equalTo(orderCell.mas_bottom).offset(KSCAL(20));
+        make.top.equalTo(self.confirmDecorationCell.mas_bottom).offset(KSCAL(20));
         make.height.mas_equalTo(KSCAL(88));
     }];
     
     SQConfirmDecorationPayLabel *payTypeLabel = [[SQConfirmDecorationPayLabel alloc] init];
+    payTypeLabel.delegate = self;
     [contentView addSubview:payTypeLabel];
     [payTypeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(contentView);
@@ -107,9 +104,10 @@
     
     
     WeakSelf(weakSelf);
+    /** 点击地址栏  */
     self.chooseAddressView.userInteractionEnabled = YES;
     [self.chooseAddressView sq_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
-        if (weakSelf.addressModel) {
+        if (weakSelf.chooseAddressView.model) {
             ManageMailPostViewController *managePostVC = [[ManageMailPostViewController alloc] init];
             managePostVC.pageType = @"decorationAddress";
             [weakSelf.navigationController pushViewController:managePostVC animated:YES];
@@ -119,20 +117,34 @@
             addVC.state = @"添加";
             [weakSelf.navigationController pushViewController:addVC animated:YES];
         }
-        
     }];
     
+    /** 点击提交订单按钮  */
     self.bottomPayView.userInteractionEnabled = YES;
     [self.bottomPayView sq_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
-        SQPaySuccessfulVC   *payvc = [[SQPaySuccessfulVC alloc] init];
-        YGNavigationController  *nav = [[YGNavigationController alloc] initWithRootViewController:payvc];
-        [weakSelf presentViewController:nav animated:YES completion:nil];
+        [weakSelf confirmButtonAction];
     }];
     
 }
 
+- (void)payType:(PayType)type {
+    self.payType = type;
+}
+- (void)confirmButtonAction {
+    
+    if (self.payType) {
+        SQPaySuccessfulVC   *payvc = [[SQPaySuccessfulVC alloc] init];
+        payvc.lastNav = self.navigationController;
+        YGNavigationController  *nav = [[YGNavigationController alloc] initWithRootViewController:payvc];
+        [self presentViewController:nav animated:YES completion:nil];
+    } else {
+        [YGAlertView showAlertWithTitle:@"请选择支付方式" buttonTitlesArray:@[@"OK"] buttonColorsArray:@[KCOLOR_MAIN] handler:nil];
+    }
+}
 
 
+
+#pragma mark LazyLoad
 - (UIScrollView *)backScrollView {
     if (!_backScrollView) {
         CGRect frame =CGRectMake(0, 0, KAPP_WIDTH, KAPP_HEIGHT-KNAV_HEIGHT-60);
