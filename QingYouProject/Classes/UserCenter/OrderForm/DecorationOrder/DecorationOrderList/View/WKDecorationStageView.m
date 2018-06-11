@@ -77,13 +77,15 @@
     lineLayer.frame = CGRectMake(0, 0, self.width, 1);
 }
 
-- (void)configStageModel:(WKDecorationStageModel *)stageModel withStage:(NSInteger)stage canRefund:(BOOL)canRefund inRefund:(BOOL)inRefund inDetail:(BOOL)inDetail {
-    stageTitleLabel.text = [NSString stringWithFormat:@"%@：", stageModel.stageName];
-    stagePriceLab.text   = [NSString stringWithFormat:@"¥ %@", stageModel.stagePrice];
-    [stageStateView configStageModel:stageModel withStage:stage canRefund:canRefund inRefund:inRefund inDetail:inDetail];
+- (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo withStage:(NSInteger)stage withInDetail:(BOOL)inDetail {
+    WKDecorationStageModel *stageInfo = orderInfo.stage_list[stage];
+    stageTitleLabel.text = [NSString stringWithFormat:@"%@：", stageInfo.stageName];
+    stagePriceLab.text   = [NSString stringWithFormat:@"¥ %@", stageInfo.stagePrice];
+    [stageStateView configStageModel:stageInfo withStage:stage inDetail:inDetail];
+    
     
     if (stage == 0 && inDetail) {//订金阶段&&在详情中
-        if (inRefund) {//处于退款申请中
+        if (orderInfo.isInRefund) {//有过退款记录，可以查看退款详情
             self.refundDetailBtn.hidden = NO;
             _refundBtn.hidden = YES;
             [stageStateView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -94,8 +96,7 @@
             }];
             return;
         }
-        
-        if (canRefund) {//可以申请退款
+        if (orderInfo.canRefund && orderInfo.orderState == 3) {//可以退款&&处于处理中状态
             self.refundBtn.hidden = NO;
             _refundDetailBtn.hidden = YES;
             [stageStateView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -106,6 +107,7 @@
             }];
             return;
         }
+        
     }
     else {
         if (!_refundBtn || _refundBtn.hidden) {

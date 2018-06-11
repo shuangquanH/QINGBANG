@@ -47,14 +47,25 @@ static const CGFloat kCircleWidth = 26;
 
     CGFloat perW = (kScreenW - 2 * KSCAL(30)) / 6.0;
 
+    UIImageView *leftArrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"orderdetails_flowchart_triangle"]];
+    leftArrowImageView.contentMode = UIViewContentModeScaleAspectFit;
+    leftArrowImageView.frame = CGRectMake(0, 0, KSCAL(35), KSCAL(20));
+    leftArrowImageView.center = CGPointMake(KSCAL(30)+perW*2, KSCAL(40)+0.5);
+    [self addSubview:leftArrowImageView];
+    
+    UIImageView *rightArrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"orderdetails_flowchart_triangle"]];
+    rightArrowImageView.contentMode = UIViewContentModeScaleAspectFit;
+    rightArrowImageView.frame = CGRectMake(0, 0, KSCAL(35), KSCAL(20));
+    rightArrowImageView.center = CGPointMake(KSCAL(30)+perW*4, KSCAL(40)+0.5);
+    [self addSubview:rightArrowImageView];
+    
     [self stageViewWithTitle:@"定金"   state:@"已支付" centerX:KSCAL(30)+perW tag:0];
     [self stageViewWithTitle:@"阶段款" state:@"已支付" centerX:KSCAL(30)+perW*3 tag:1];
     [self stageViewWithTitle:@"尾款"   state:@"已支付" centerX:KSCAL(30)+perW*5 tag:2];
 
-    
     _bottomLineImageView = [UIImageView new];
     _bottomLineImageView.frame = CGRectMake(KSCAL(30.0), 0, kScreenW-KSCAL(60.0), 2.0);
-    _bottomLineImageView.image = [self drawLineOfDashByImageView:_bottomLineImageView];
+    _bottomLineImageView.image = [[UIImage imageNamed:@"orderdetails_horizontalline"] resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeTile];
     [self addSubview:_bottomLineImageView];
     [_bottomLineImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.bottom.mas_equalTo(0);
@@ -63,11 +74,11 @@ static const CGFloat kCircleWidth = 26;
     }];
     
     _shadowView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0.1, 0.1)];
-    _shadowView.layer.shadowOpacity = 0.3;
+    _shadowView.layer.shadowOpacity = 0.4;
     _shadowView.layer.shadowOffset = CGSizeZero;
     _shadowView.layer.shadowColor = [UIColor whiteColor].CGColor;
     CGFloat x = -KSCAL(30.0)+0.05;
-    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(x, x, KSCAL(60), KSCAL(60)) cornerRadius:5.0];
+    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(x, x, KSCAL(60), KSCAL(60)) cornerRadius:KSCAL(30)];
     _shadowView.layer.shadowPath = shadowPath.CGPath;
     [self addSubview:_shadowView];
     _shadowView.center = CGPointMake(KSCAL(30)+perW*3, KSCAL(40)+0.5);
@@ -124,20 +135,6 @@ static const CGFloat kCircleWidth = 26;
     }
 }
 
-- (UIImage *)drawLineOfDashByImageView:(UIImageView *)imageView {
-    UIGraphicsBeginImageContext(imageView.frame.size);
-    CGContextRef line = UIGraphicsGetCurrentContext();
-    CGContextSetLineCap(line, kCGLineCapRound);
-    CGFloat lengths[] = {2,4};
-    CGContextSetStrokeColorWithColor(line, kCOLOR_RGB(250, 214, 65).CGColor);
-    CGContextSetLineDash(line, 0, lengths, 2.0);
-    CGContextSetLineWidth(line, 2.0);
-    CGContextMoveToPoint(line, 0.0, 0.0);
-    CGContextAddLineToPoint(line, imageView.frame.size.width, 0.0);
-    CGContextStrokePath(line);
-    return UIGraphicsGetImageFromCurrentImageContext();
-}
-
 #pragma mark - SQDecorationDetailViewProtocol
 - (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo {
     
@@ -162,7 +159,6 @@ static const CGFloat kCircleWidth = 26;
         _shadowView.center = CGPointMake(KSCAL(30)+perW*5, KSCAL(40)+0.5);
         _rightStateLabel.text = @"已支付";
     }
-    
 }
 
 - (CGSize)viewSize {

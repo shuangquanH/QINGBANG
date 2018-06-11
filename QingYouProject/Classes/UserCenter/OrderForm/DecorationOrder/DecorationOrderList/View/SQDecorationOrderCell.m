@@ -136,11 +136,7 @@
     orderTitle.attributedText = decorateName;
     orderTitle.lineBreakMode = NSLineBreakByTruncatingTail;
 
-    [paymentStageView configStageModel:orderInfo.stage_list.firstObject
-                             withStage:0
-                             canRefund:orderInfo.canRefund
-                              inRefund:orderInfo.isInRefund
-                              inDetail:self.isInOrderDetail];
+    [paymentStageView configOrderInfo:orderInfo withStage:0 withInDetail:self.isInOrderDetail];
 }
 
 - (CGSize)viewSize {
@@ -203,10 +199,7 @@
             [self.contentView addSubview:view];
             [stageViewArray addObject:view];
         }
-        
-        WKDecorationStageModel *stageInfo = [orderInfo.stage_list objectAtIndex:i+1];
-        [view configStageModel:stageInfo withStage:i+1 canRefund:orderInfo.canRefund inRefund:orderInfo.isInRefund inDetail:self.isInOrderDetail];
-        
+        [view configOrderInfo:orderInfo withStage:i+1 withInDetail:self.isInOrderDetail];
         [view mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.equalTo(lastView);
             make.top.equalTo(lastView.mas_bottom);

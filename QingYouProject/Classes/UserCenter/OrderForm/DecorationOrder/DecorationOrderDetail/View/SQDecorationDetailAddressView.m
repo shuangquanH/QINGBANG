@@ -29,6 +29,7 @@
     
     _flagImageView = [UIImageView new];
     _flagImageView.contentMode = UIViewContentModeScaleAspectFit;
+    _flagImageView.image = [UIImage imageNamed:@"orderdetails_address_icon"];
     [self addSubview:_flagImageView];
     
     _nameLab = [UILabel labelWithFont:KSCAL(28.0) textColor:[UIColor whiteColor]];
@@ -60,9 +61,9 @@
     }];
 
     [_flagImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.mas_equalTo(20);
+        make.width.height.mas_equalTo(KSCAL(30));
         make.top.equalTo(_addressLab.mas_top);
-        make.left.mas_equalTo(KSCAL(30));
+        make.right.equalTo(_nameLab.mas_left).offset(-KSCAL(23));
     }];
  
 }

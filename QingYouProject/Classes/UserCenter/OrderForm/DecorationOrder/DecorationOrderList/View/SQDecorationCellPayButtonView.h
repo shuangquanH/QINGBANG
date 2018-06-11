@@ -31,7 +31,7 @@ typedef NS_ENUM(NSUInteger, WKDecorationOrderActionType) {
 
 @property (nonatomic, weak) id<SQDecorationCellPayButtonViewDelegate> actionDelegate;
 /** 设置阶段模型 */
-- (void)configStageModel:(WKDecorationStageModel *)stageModel withStage:(NSInteger)stage canRefund:(BOOL)canRefund inRefund:(BOOL)inRefund inDetail:(BOOL)inDetail;
+- (void)configStageModel:(WKDecorationStageModel *)stageModel withStage:(NSInteger)stage inDetail:(BOOL)inDetail;
 
 
 @end

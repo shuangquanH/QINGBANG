@@ -26,13 +26,12 @@ const CGFloat kFunctionButtonTopMargin = 0.0;
     return self;
 }
 
-- (void)configStageModel:(WKDecorationStageModel *)stageModel withStage:(NSInteger)stage canRefund:(BOOL)canRefund inRefund:(BOOL)inRefund inDetail:(BOOL)inDetail {
-    
+- (void)configStageModel:(WKDecorationStageModel *)stageModel withStage:(NSInteger)stage inDetail:(BOOL)inDetail {
     if (stage < 0) {
         NSLog(@"%@ %ld 阶段不符合规则", NSStringFromClass([self class]), stage);
         return;
     }
-
+    
     _stage = stage;
     
     if (!_buttons) {
@@ -50,7 +49,7 @@ const CGFloat kFunctionButtonTopMargin = 0.0;
         }
         else {
             if (inDetail) {
-               [self reSetFunctionButtonsWithTitles:@[@"付款"] types:@[@(WKDecorationOrderActionTypePay)]];
+                [self reSetFunctionButtonsWithTitles:@[@"付款"] types:@[@(WKDecorationOrderActionTypePay)]];
             }
             else {
                 [self reSetFunctionButtonsWithTitles:@[@"补登", @"付款"] types:@[@(WKDecorationOrderActionTypeRepair), @(WKDecorationOrderActionTypePay)]];
