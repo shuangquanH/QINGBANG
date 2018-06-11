@@ -4,7 +4,7 @@
 //
 //  Created by qwuser on 2018/5/24.
 //  Copyright © 2018年 ccyouge. All rights reserved.
-//
+//  网络请求工具类
 
 #import <Foundation/Foundation.h>
 
@@ -12,8 +12,12 @@
 
 @interface SQRequest : NSObject
 
-
+/** 普通网络请求  */
 + (void)post:(NSString  *)api param:(NSDictionary   *)param success:(void(^)(id response))success failure:(void(^)(NSError *error))failure;
+
+
+/** 带loading动画的网络请求  */
++ (void)post:(NSString  *)api param:(NSDictionary   *)param success:(void(^)(id response))success failure:(void(^)(NSError *error))failure showLoadingView:(BOOL)show;
 
 
 

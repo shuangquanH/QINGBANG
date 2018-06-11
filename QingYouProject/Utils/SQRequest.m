@@ -12,7 +12,6 @@
 @implementation SQRequest
 
 + (void)post:(NSString  *)api param:(NSDictionary   *)param success:(void(^)(id response))success failure:(void(^)(NSError *error))failure {
-    
     NSString    *apiString = [NSString stringWithFormat:@"%@%@", KAPI_ADDRESS, api];
     NSMutableDictionary *muParam = [NSMutableDictionary dictionaryWithDictionary:param];
     
@@ -30,7 +29,9 @@
                                                               progress:nil
                                                                success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
     {
-        success(responseObject);
+        if (success) {
+            success(responseObject);
+        }
     }
                                                                failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
     {
@@ -40,6 +41,24 @@
     }];
 }
 
+
++ (void)post:(NSString  *)api param:(NSDictionary   *)param success:(void(^)(id response))success failure:(void(^)(NSError *error))failure showLoadingView:(BOOL)show {
+    if (show) {
+        [[YGConnectionService sharedConnectionService] showLoadingViewWithSuperView:YGAppDelegate.window];
+    }
+    [self post:api param:param success:^(id response) {
+        if (success) {
+            success(response);
+        }
+        if (show) {
+            [[YGConnectionService sharedConnectionService] dissmissLoadingView];
+        }
+    } failure:^(NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
 
 
 //    [[YGConnectionService sharedConnectionService].requestManager GET:apiString parameters:requestParam progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
