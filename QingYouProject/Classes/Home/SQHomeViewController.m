@@ -32,6 +32,8 @@
 /** 选择园区  */
 #import "SQChooseGardenVC.h"
 
+#import "UILabel+SQAttribut.h"
+
 
 
 

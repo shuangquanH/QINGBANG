@@ -14,7 +14,6 @@ typedef void(^jsCallBack)(NSString *, _Nullable id);
 @interface SQLinkJSWebView : WKWebView <WKScriptMessageHandler>
 @property (nonatomic, copy) jsCallBack       webJSCallBack;
 
-/** 使用这个构造方法  */
 
 
 /** 加载html页面,输入地址  */
