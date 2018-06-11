@@ -14,12 +14,14 @@
 {
     UILabel *_stateLabel;
     UILabel *_otherStateLabel;
-    CAShapeLayer *_stateMaskLayer;
     CALayer *_bottomLineLayer;
+    CAShapeLayer *_stateMaskLayer;
+
 }
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self == [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         [self setupSubviews];
     }
     return self;
@@ -29,14 +31,13 @@
     _stateLabel = [UILabel labelWithFont:KSCAL(28) textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentCenter];
     _stateLabel.backgroundColor = KCOLOR_MAIN;
     [self.contentView addSubview:_stateLabel];
-    
-    [_stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_stateLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(0);
         make.width.mas_equalTo(0.1);
         make.height.mas_equalTo(KSCAL(40));
         make.bottom.mas_equalTo(-KSCAL(20));
     }];
-   
+    
     _stateMaskLayer = [CAShapeLayer layer];
     _stateLabel.layer.mask = _stateMaskLayer;
 }
@@ -62,14 +63,32 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+
     if (!_bottomLineLayer) {
         _bottomLineLayer = [CALayer layer];
         _bottomLineLayer.backgroundColor = KCOLOR_MAIN.CGColor;
         [self.contentView.layer addSublayer:_bottomLineLayer];
     }
-    _bottomLineLayer.frame = CGRectMake(0, KSCAL(50)+KSCAL(40)-1.5, self.contentView.width, 1.5);
+    
+    CGFloat maxY = self.isInDetail ? KSCAL(19) : KSCAL(20);
+    _bottomLineLayer.frame = CGRectMake(0, self.contentView.height-maxY-1.5, self.contentView.width, 1.5);
 }
 
+- (void)setIsInDetail:(BOOL)isInDetail {
+    
+    if (_isInDetail == isInDetail) return;
+    
+    _isInDetail = isInDetail;
+    _bottomLineLayer.hidden = isInDetail;
+    if (isInDetail) {
+        [_stateLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(0);
+            make.width.mas_equalTo(0.1);
+            make.height.mas_equalTo(KSCAL(40));
+            make.centerY.mas_equalTo(0);
+        }];
+    }
+}
 
 - (CGSize)intrinsicContentSize {
     return [self viewSize];
@@ -109,6 +128,9 @@
 }
 
 - (CGSize)viewSize {
+    if (self.isInDetail) {
+        return CGSizeMake(kScreenW, KSCAL(78));
+    }
     return CGSizeMake(kScreenW, KSCAL(110));
 }
 

@@ -11,38 +11,55 @@
 @implementation SQDecorationDetailStateHeadView
 {
     UILabel *_stateLab;
-    UIView *_line;
+    UIImageView *_leftImageView;
+    UIImageView *_rightImageView;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self == [super initWithFrame:frame]) {
+        
         self.backgroundColor = [UIColor whiteColor];
         
-        _line = [UIView new];
-        _line.backgroundColor = colorWithLine;
-        [self addSubview:_line];
+        _leftImageView = [UIImageView new];
+        _leftImageView.contentMode = UIViewContentModeScaleAspectFit;
+        [self addSubview:_leftImageView];
         
-        _stateLab = [UILabel labelWithFont:17.0 textColor:[UIColor blackColor]];
+        _rightImageView = [UIImageView new];
+        _rightImageView.contentMode = UIViewContentModeScaleAspectFit;
+        [self addSubview:_rightImageView];
+        
+        _stateLab = [UILabel labelWithFont:KSCAL(38) textColor:kCOLOR_666];
         [self addSubview:_stateLab];
+        
         [_stateLab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.mas_equalTo(0);
-            make.left.mas_equalTo(15);
         }];
+        
+        [_leftImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(_stateLab);
+            make.right.equalTo(_stateLab.mas_left);
+            make.width.height.mas_equalTo(KSCAL(50));
+        }];
+        
+        [_rightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(_stateLab);
+            make.left.equalTo(_stateLab.mas_right);
+            make.width.height.mas_equalTo(KSCAL(50));
+        }];
+        
+        _leftImageView.backgroundColor = KCOLOR_MAIN;
+        _rightImageView.backgroundColor = KCOLOR_MAIN;
     }
     return self;
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    
-    _line.frame = CGRectMake(0, self.height-1, self.width, 1);
-}
 
 - (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo {
     _stateLab.text = orderInfo.orderTitle;
 }
+
 - (CGSize)viewSize {
-    return CGSizeMake(kScreenW, 55);
+    return CGSizeMake(kScreenW, KSCAL(110));
 }
 
 @end

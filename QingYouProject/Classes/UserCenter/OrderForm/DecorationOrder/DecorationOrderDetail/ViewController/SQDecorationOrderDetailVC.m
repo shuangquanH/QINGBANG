@@ -12,9 +12,10 @@
 #import "WKDecorationRefundDetailViewController.h"
 #import "WKDecorationRepairViewController.h"
 
-#import "SQDecorationDetailViewModel.h"
 #import "SQDecorationOrderCell.h"
 #import "WKDecorationOrderAlertView.h"
+
+#import "SQDecorationDetailViewModel.h"
 
 @interface SQDecorationOrderDetailVC () <SQDecorationDetailViewModelDelegate>
 
@@ -34,13 +35,13 @@
     [super viewDidLoad];
     self.naviTitle = @"订单详情";
     
+    
+    self.orderVM = [SQDecorationDetailViewModel new];
+    self.orderVM.orderDetailDelegate = self;
     [self sendReqeust];
 }
 
 - (void)sendReqeust {
-    
-    self.orderVM = [SQDecorationDetailViewModel new];
-    self.orderVM.orderDetailDelegate = self;
     
     [YGNetService showLoadingViewWithSuperView:nil];
     @weakify(self)
@@ -80,7 +81,7 @@
     for (int i = 0; i < self.orderVM.subviewArray.count; i++) {
         UIView<SQDecorationDetailViewProtocol> *v = [self.orderVM.subviewArray objectAtIndex:i];
         if (i == 0) {
-            [v mas_makeConstraints:^(MASConstraintMaker *make) {
+            [v mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.top.right.mas_equalTo(0);
                 make.size.mas_equalTo([v viewSize]);
             }];
@@ -88,14 +89,14 @@
         else {
             
             if (i == self.orderVM.subviewArray.count - 1) {
-                [v mas_makeConstraints:^(MASConstraintMaker *make) {
+                [v mas_remakeConstraints:^(MASConstraintMaker *make) {
                     make.left.right.bottom.mas_equalTo(0);
                     make.top.equalTo(lastView.mas_bottom);
                     make.height.mas_equalTo([v viewSize].height);
                 }];
             }
             else {
-                [v mas_makeConstraints:^(MASConstraintMaker *make) {
+                [v mas_remakeConstraints:^(MASConstraintMaker *make) {
                     make.left.right.mas_equalTo(0);
                     make.top.equalTo(lastView.mas_bottom);
                     make.height.mas_equalTo([v viewSize].height).priorityHigh();
@@ -148,13 +149,6 @@
     switch (actionType) {
         case WKDecorationOrderActionTypePay://支付
         {
-            CGFloat offset;
-            if (@available(iOS 11.0, *)) {
-                offset = self.view.safeAreaInsets.bottom;
-            }
-            else {
-                offset = self.view.layoutMargins.bottom;
-            }
             
         }
             break;
@@ -164,14 +158,21 @@
                 if (index == 0) {
                     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
                     [SQRequest post:KAPI_CANCELORDER param:@{@"orderNum": self.orderInfo.order_info.orderNum} success:^(id response) {
-                        [YGNetService dissmissLoadingView];
                         if ([response[@"state"] isEqualToString:@"success"]) {
+                            //重新请求数据，更新状态
+                            [self sendReqeust];
                             
+                            //通知列表，更新视图
+                            self.orderListInfo.orderState = 2;
+                            self.orderListInfo.stage_list.firstObject.stageState = 4;
+                            if (self.orderRefreshBlock) {
+                                self.orderRefreshBlock(self.orderListInfo);
+                            }
                         }
                         else {
+                            [YGNetService dissmissLoadingView];
                             [YGAppTool showToastWithText:response[@"data"][@"msg"]];
                         }
-                        
                     } failure:^(NSError *error) {
                         [YGNetService dissmissLoadingView];
                         [YGAppTool showToastWithText:@"网络错误"];
@@ -188,12 +189,15 @@
                 [SQRequest post:KAPI_DELETEORDER param:@{@"orderNum": self.orderInfo.order_info.orderNum} success:^(id response) {
                     [YGNetService dissmissLoadingView];
                     if ([response[@"code"] isEqualToString:@"0"]) {
-                        
+                        if (self.orderRefreshBlock) {//通知列表，更新视图
+                            self.orderRefreshBlock(nil);
+                        }
+                        [YGAppTool showToastWithText:@"删除订单成功"];
+                        [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.5];
                     }
                     else {
                         [YGAppTool showToastWithText:response[@"msg"]];
                     }
-                    
                 } failure:^(NSError *error) {
                     [YGNetService dissmissLoadingView];
                     [YGAppTool showToastWithText:@"网络错误"];
@@ -210,6 +214,11 @@
             next.stageIndex = stage;
             next.repairSuccess = ^(SQDecorationDetailModel *orderInfo) {
                 [self.orderVM.orderCell configOrderInfo:orderInfo];
+                //通知前一个视图，更新数据
+                self.orderListInfo.stage_list[stage].stageState = 3;
+                if (self.orderRefreshBlock) {
+                    self.orderRefreshBlock(self.orderListInfo);
+                }
             };
             [self.navigationController pushViewController:next animated:YES];
         }
@@ -238,7 +247,14 @@
                     self.orderInfo.order_info.isInRefund = YES;
                     self.orderInfo.order_info.canRefund = NO;
                     [self.orderVM.orderCell configOrderInfo:self.orderInfo.order_info];
-                    [YGAppTool showToastWithText:@"申请成功"];
+                    
+                    self.orderListInfo.isInRefund = YES;
+                    self.orderListInfo.canRefund = NO;
+                    if (self.orderRefreshBlock) {
+                        self.orderRefreshBlock(self.orderListInfo);
+                    }
+                    
+                    [YGAppTool showToastWithText:@"申请成功，等待审核"];
                 }
                 else {
                     [YGAppTool showToastWithText:response[@"msg"]];

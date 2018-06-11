@@ -225,7 +225,7 @@
 - (SQBaseTableView  *)tableview {
     if (!_tableview) {
         _tableview = [[SQBaseTableView alloc] initWithFrame:CGRectZero];
-        _tableview.rowHeight = 60;
+        _tableview.rowHeight = KSCAL(120.0);
         _tableview.delegate = self;
         _tableview.dataSource = self;
     }

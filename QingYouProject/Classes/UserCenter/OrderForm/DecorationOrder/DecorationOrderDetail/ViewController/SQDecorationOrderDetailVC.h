@@ -14,4 +14,6 @@
 
 @property (nonatomic, strong) SQDecorationDetailModel *orderListInfo;
 
+@property (nonatomic, copy  ) void (^ orderRefreshBlock)(SQDecorationDetailModel *orderInfo);
+
 @end

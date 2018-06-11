@@ -16,4 +16,24 @@
     //返回一个矩形，大小等于文本绘制完占据的宽和高。
     return  [self  boundingRectWithSize:size  options:NSStringDrawingUsesLineFragmentOrigin  attributes:attrs   context:nil].size;
 }
+
+- (CGSize)labelAutoCalculateRectWithLineSpace:(CGFloat)lineSpace Font:(UIFont *)font MaxSize:(CGSize)maxSize {
+    NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+    
+    paragraphStyle.lineBreakMode=NSLineBreakByWordWrapping;
+    
+    paragraphStyle.lineSpacing = lineSpace;
+    
+    NSDictionary* attributes =@{NSFontAttributeName:font,NSParagraphStyleAttributeName:paragraphStyle.copy};
+    
+    CGSize labelSize = [self boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading|NSStringDrawingTruncatesLastVisibleLine attributes:attributes context:nil].size;
+    
+    
+    labelSize.height = ceil(labelSize.height);
+    
+    labelSize.width = ceil(labelSize.width);
+    
+    return labelSize;
+}
+
 @end

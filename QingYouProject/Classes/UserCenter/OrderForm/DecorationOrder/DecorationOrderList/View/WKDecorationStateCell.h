@@ -11,4 +11,6 @@
 
 @interface WKDecorationStateCell : SQBaseTableViewCell<SQDecorationDetailViewProtocol>
 
+@property (nonatomic, assign) BOOL isInDetail;
+
 @end
