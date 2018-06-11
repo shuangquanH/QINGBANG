@@ -71,6 +71,8 @@
 /** 颜色和透明度(颜色为string格式，透明度为float格式) */
 #define KCOLOR_ALPHA(a,b)   [UIColor hexStringToColor:a andAlpha:b]
 
+/** RGB设置颜色 */
+#define kCOLOR_RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0]
 
 /** 系统版本 */
 #define KiOS9_1Later        ([UIDevice currentDevice].systemVersion.floatValue >= 9.1f)

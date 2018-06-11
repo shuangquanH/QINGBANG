@@ -46,8 +46,8 @@
 - (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
     if (headerAction) {
         [SQRequest post:KAPI_AFTERSALERECORD param:nil success:^(id response) {
-            if ([response[@"state"] isEqualToString:@"success"]) {
-                NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKAfterSaleModel class] json:response[@"data"][@"result"][@"record_list"]];
+            if ([response[@"code"] isEqualToString:@"0"]) {
+                NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKAfterSaleModel class] json:response[@"data"][@"record_list"]];
                 if (tmp.count) {
                     [self.afterSaleList removeAllObjects];
                     [self.afterSaleList addObjectsFromArray:tmp];
@@ -55,7 +55,7 @@
                 }
             }
             else {
-                [YGAppTool showToastWithText:response[@"data"][@"msg"]];
+                [YGAppTool showToastWithText:response[@"msg"]];
             }
             [self.tableView.mj_header endRefreshing];
         } failure:^(NSError *error) {

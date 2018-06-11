@@ -36,14 +36,8 @@
     [super viewWillLayoutSubviews];
     
     [_addButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
+        make.left.right.bottom.mas_equalTo(0);
         make.height.mas_equalTo(49.5);
-        if (@available(iOS 11.0, *)) {
-            make.bottom.mas_equalTo(-self.view.safeAreaInsets.bottom);
-        }
-        else {
-            make.bottom.mas_equalTo(-self.view.layoutMargins.bottom);
-        }
     }];
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {

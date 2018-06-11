@@ -63,14 +63,74 @@
 }
 
 - (void)sendUnreadBadgeReqeust {
+    if (![self loginOrNot]) {
+        return;
+    }
+    
     [SQRequest post:KAPI_UNREADORDERBADGE param:nil success:^(id response) {
-        if ([response[@"state"] isEqualToString:@"success"]) {
-            self.unreadInfo = [WKMyOrderUnreadCountModel yy_modelWithJSON:response[@"data"]];
+        if ([response[@"code"] isEqualToString:@"0"]) {
+            self.unreadInfo = [WKMyOrderUnreadCountModel yy_modelWithJSON:response[@"data"][@"badgeNum"]];
             [self.tableview reloadData];
         }
     } failure:^(NSError *error) {
         
     }];
+}
+
+- (NSInteger)readBadgeNumberWithIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.section) {
+        case 0:
+            return self.unreadInfo.houserAudit_badgeNum;
+        case 1:
+            return self.unreadInfo.industrial_badgeNum;
+        case 2:
+            return self.unreadInfo.taxation_badgeNum;
+        case 3:
+            return self.unreadInfo.procurementOfOffice_badgeNum;
+        case 4:
+            return self.unreadInfo.decorate_badgeNum;
+        case 5:
+            return self.unreadInfo.meetingRoom_badgeNum;
+        case 6:
+            return self.unreadInfo.recruitment_badgeNum;
+        case 7:
+            return self.unreadInfo.projectApplication_badgeNum;
+        default:
+            return 0;
+    }
+}
+
+- (void)badgeToZeroWithIndexPath:(NSIndexPath *)indexPath {
+    WKUserCenterBadgeCell *cell = [self.tableview cellForRowAtIndexPath:indexPath];
+    [cell configBadgeNum:0];
+    switch (indexPath.section) {
+        case 0:
+            self.unreadInfo.houserAudit_badgeNum = 0;
+            break;
+        case 1:
+            self.unreadInfo.industrial_badgeNum = 0;
+            break;
+        case 2:
+            self.unreadInfo.taxation_badgeNum = 0;
+            break;
+        case 3:
+            self.unreadInfo.procurementOfOffice_badgeNum = 0;
+            break;
+        case 4:
+            self.unreadInfo.decorate_badgeNum = 0;
+            break;
+        case 5:
+            self.unreadInfo.meetingRoom_badgeNum = 0;
+            break;
+        case 6:
+            self.unreadInfo.recruitment_badgeNum = 0;
+            break;
+        case 7:
+            self.unreadInfo.projectApplication_badgeNum = 0;
+            break;
+        default:
+            break;
+    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -93,14 +153,15 @@
     WKUserCenterBadgeCell *cell = [WKUserCenterBadgeCell cellWithTableView:tableView];
     cell.imageView.image = [UIImage imageNamed:@"mine_instashot"];
     cell.textLabel.text = self.orderFormArr[indexPath.section][@"title"];
+    [cell configBadgeNum:[self readBadgeNumberWithIndexPath:indexPath]];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (![self loginOrNot]) {
         return;
     }
+ 
     NSString *titlestr = self.orderFormArr[indexPath.section][@"title"];
-    
     if ([titlestr isEqualToString:@"水电缴费"]) {
         [YGNetService YGPOST:REQUEST_HouserAudit parameters:@{@"userid":YGSingletonMarco.user.userId} showLoadingView:YES scrollView:nil success:^(id responseObject) {
             //返回值state=0是请提交审核材料,=1待审核,=2审核通过直接跳到房租缴纳首页,=3审核不通过跳到传身份证页面并提示请重新上传资料审核
@@ -155,6 +216,9 @@
         MyRecruitViewController *vc = [[MyRecruitViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }
+    
+    [self badgeToZeroWithIndexPath:indexPath];
+
 }
 
 #pragma mark LazyLoad

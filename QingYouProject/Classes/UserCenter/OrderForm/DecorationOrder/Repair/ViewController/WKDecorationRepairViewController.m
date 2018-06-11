@@ -8,18 +8,27 @@
 
 #import "WKDecorationRepairViewController.h"
 #import "TZImagePickerController.h"
+#import "WKDecorationRepairPhotoCell.h"
 
-#import "TZTestCell.h"
+#import "SQDecorationDetailModel.h"
 
-const CGFloat kItemHorizontalMargin = 30;
+const CGFloat kItemHorizontalMargin = 10;
 
-@interface WKDecorationRepairViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, TZImagePickerControllerDelegate>
+@interface WKDecorationRepairViewController ()<TZImagePickerControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, WKDecorationRepairPhotoCellDelegate>
+
+@property (nonatomic, strong) UILabel *topTipLabel;
+
+@property (nonatomic, strong) UILabel *tipLabl;
+
+@property (nonatomic, strong) UIButton *addPhotoBtn;
 
 @property (nonatomic, strong) UIButton *confirmButton;
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
 @property (nonatomic, strong) NSMutableArray<UIImage *> *repairImageArray;
+
+@property (nonatomic, assign) NSInteger selectIndex;
 
 @end
 
@@ -30,53 +39,120 @@ const CGFloat kItemHorizontalMargin = 30;
 
     self.naviTitle = @"我要补登";
     self.repairImageArray = [NSMutableArray array];
+    _selectIndex = -1;
+    
     [self setupSubviews];
 }
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
-    
-    [_confirmButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.mas_equalTo(0);
-        
-        if (@available(iOS 11.0, *)) {
-            make.bottom.mas_equalTo(-self.view.safeAreaInsets.bottom);
-        }
-        else {
-            make.bottom.mas_equalTo(-self.view.layoutMargins.bottom);
-        }
-    }];
-    [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
-        make.bottom.equalTo(self.confirmButton.mas_top);
-        make.top.mas_equalTo(KSCAL(120));
-    }];
+    [self makeContraints];
 }
 
 - (void)setupSubviews {
-    _confirmButton = [UIButton new];
-    [_confirmButton setBackgroundColor:[UIColor redColor]];
-    [_confirmButton setTitle:@"提交" forState:UIControlStateNormal];
-    [_confirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    self.view.backgroundColor = colorWithTable;
+    
+    _topTipLabel = [UILabel labelWithFont:KSCAL(30.0) textColor:kCOLOR_333 textAlignment:NSTextAlignmentCenter text:@"我已在线下完成付款，申请补登更新订单状态："];
+    _topTipLabel.backgroundColor = kCOLOR_RGB(210, 211, 212);
+    [self.view addSubview:_topTipLabel];
+    
+    _confirmButton = [UIButton buttonWithTitle:@"提交" titleFont:KSCAL(38) titleColor:[UIColor whiteColor] bgColor:KCOLOR_MAIN];
+    [_confirmButton addTarget:self action:@selector(click_confirmButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_confirmButton];
     
-    CGFloat itemW = (kScreenW - 4 * KSCAL(kItemHorizontalMargin)) / 3.0;
+    _tipLabl = [UILabel labelWithFont:KSCAL(38) textColor:kCOLOR_666 text:@"上传回执单"];
+    [self.view addSubview:_tipLabl];
     
+    _addPhotoBtn = [UIButton new];
+    [_addPhotoBtn setBackgroundImage:[UIImage imageNamed:@"repair_bg_btn"] forState:UIControlStateNormal];
+    [_addPhotoBtn setBackgroundImage:[UIImage imageNamed:@"repair_bg_btn"] forState:UIControlStateHighlighted];
+    [_addPhotoBtn addTarget:self action:@selector(pushImagePickerController) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_addPhotoBtn];
+    
+    CGFloat itemW = (kScreenW - 4 * KSCAL(kItemHorizontalMargin) - 2 * KSCAL(30)) / 5.0;
+    CGFloat itemH = KSCAL(240);
     UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
-    layout.itemSize = CGSizeMake(itemW, itemW);
-    layout.sectionInset = UIEdgeInsetsMake(15, KSCAL(kItemHorizontalMargin), 0, KSCAL(kItemHorizontalMargin));
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    
+    layout.itemSize = CGSizeMake(itemW, itemH);
+    layout.minimumInteritemSpacing = KSCAL(kItemHorizontalMargin);
     _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
-    _collectionView.backgroundColor = [UIColor whiteColor];
-    _collectionView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-    [_collectionView registerClass:[TZTestCell class] forCellWithReuseIdentifier:@"TZTestCell"];
+    _collectionView.backgroundColor = self.view.backgroundColor;
+    [_collectionView registerClass:[WKDecorationRepairPhotoCell class] forCellWithReuseIdentifier:@"photoCell"];
     [self.view addSubview:_collectionView];
 }
 
+- (void)makeContraints {
+    [_topTipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.right.mas_equalTo(0);
+        make.height.mas_equalTo(KSCAL(110));
+    }];
+    
+    [_tipLabl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(_topTipLabel.mas_bottom).offset(KSCAL(130));
+        make.centerX.mas_equalTo(0);
+    }];
+    
+    [_addPhotoBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(0);
+        make.width.height.mas_equalTo(KSCAL(200));
+        make.top.equalTo(_tipLabl.mas_bottom).offset(KSCAL(30));
+    }];
+    
+    [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(KSCAL(30));
+        make.top.equalTo(_addPhotoBtn.mas_bottom).offset(KSCAL(90));
+        make.centerX.mas_equalTo(0);
+        make.height.mas_equalTo(KSCAL(240));
+    }];
+    
+    [_confirmButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.bottom.right.mas_equalTo(0);
+        make.height.mas_equalTo(KSCAL(100));
+    }];
+}
+
+- (void)click_confirmButton {
+    if (!self.repairImageArray.count) {
+        [YGAppTool showToastWithText:@"请至少添加一张回执单图片"];
+        return;
+    }
+    
+    
+    [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
+    
+    WKDecorationStageModel *stage = [self.orderInfo.stage_list objectAtIndex:self.stageIndex];
+    
+    NSDictionary *param = @{@"orderNum": self.orderInfo.orderNum,
+                            @"images": @"1.jpg,2.jpg",
+                            @"stageId": stage.stageId
+                            };
+    [SQRequest post:KAPI_APPLYREPAIR param:param success:^(id response) {
+        [YGNetService dissmissLoadingView];
+        if ([response[@"code"] isEqualToString:@"0"]) {
+            stage.stageState = 3;
+            if (self.repairSuccess) {
+                self.repairSuccess(self.orderInfo);
+            }
+            [YGAppTool showToastWithText:@"申请成功，等待人员审核"];
+            [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.5];
+        }
+        else {
+            [YGAppTool showToastWithText:response[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        [YGNetService dissmissLoadingView];
+        [YGAppTool showToastWithText:@"网络错误"];
+    }];
+}
+
 - (void)pushImagePickerController {
+
+    if (self.repairImageArray.count == 5) {
+        return;
+    }
+    
     TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:(5 - self.repairImageArray.count) columnNumber:4 delegate:self];
     imagePickerVc.allowTakePicture = YES; // 在内部显示拍照按钮
     imagePickerVc.allowPickingVideo = NO;
@@ -92,33 +168,63 @@ const CGFloat kItemHorizontalMargin = 30;
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.repairImageArray.count == 5 ? self.repairImageArray.count : self.repairImageArray.count + 1;
+    return 5;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    TZTestCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"TZTestCell" forIndexPath:indexPath];
-    if (indexPath.item >= self.repairImageArray.count) {
-        cell.imageView.image = [UIImage imageNamed:@"steward_snapshot_addphotos"];
-        cell.deleteBtn.hidden = YES;
+    WKDecorationRepairPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"photoCell" forIndexPath:indexPath];
+    cell.delegate = self;
+    if (self.repairImageArray.count > indexPath.item) {
+        cell.imageView.image = self.repairImageArray[indexPath.item];
     }
     else {
-        cell.deleteBtn.hidden = NO;
-        cell.imageView.image = [self.repairImageArray objectAtIndex:indexPath.item];
+        cell.imageView.image = nil;
     }
+    cell.photoSelect = (_selectIndex == indexPath.item);
     return cell;
 }
 
-#pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.item == self.repairImageArray.count) {
-        [self pushImagePickerController];
+    if (indexPath.item >= self.repairImageArray.count) return;
+    if (indexPath.item == _selectIndex) return;
+    
+    
+    if (_selectIndex != -1) {
+        WKDecorationRepairPhotoCell *selectCell = (WKDecorationRepairPhotoCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:_selectIndex inSection:0]];
+        selectCell.photoSelect = NO;
+    }
+    _selectIndex = indexPath.item;
+    WKDecorationRepairPhotoCell *cell = (WKDecorationRepairPhotoCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    cell.photoSelect = YES;
+}
+
+#pragma mark - WKDecorationRepairPhotoCellDelegate
+- (void)photoCellDidClickDelete:(WKDecorationRepairPhotoCell *)photoCell {
+    NSIndexPath *deleteIndexPath = [self.collectionView indexPathForCell:photoCell];
+    if (deleteIndexPath) {
+        [self.repairImageArray removeObjectAtIndex:deleteIndexPath.item];
+        if (deleteIndexPath.item == _selectIndex) {
+            if (!self.repairImageArray.count) {
+                _selectIndex = -1;
+            }
+            else {
+                _selectIndex = 0;
+            }
+        }
+        else if (deleteIndexPath.item < _selectIndex) {
+            _selectIndex -= 1;
+        }
+        [self.collectionView reloadData];
     }
 }
 
 #pragma mark - TZImagePickerControllerDelegate
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto {
-    [self.repairImageArray addObjectsFromArray:photos];
-    [_collectionView reloadData];
+    [self.repairImageArray insertObjects:photos atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, photos.count)]];
+    if (_selectIndex == -1) {
+        _selectIndex = 0;
+    }
+    [self.collectionView reloadData];
 }
 
 @end

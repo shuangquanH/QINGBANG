@@ -16,6 +16,8 @@
 @property (nonatomic, copy  ) NSString *stagePrice;
 /** 阶段状态 1:待付款,补登 2:已支付 3:补登审核 4:已关闭 默认1 */
 @property (nonatomic, assign) NSInteger stageState;
+
+@property (nonatomic, copy  ) NSString *stageId;
 @end
 
 @interface SQDecorationDetailModel : NSObject

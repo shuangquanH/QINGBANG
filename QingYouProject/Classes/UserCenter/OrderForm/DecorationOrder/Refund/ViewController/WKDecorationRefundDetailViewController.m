@@ -90,14 +90,14 @@
 - (void)sendRefundDetailReqeust {
     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
     [SQRequest post:KAPI_REFUNDDETAIL param:@{@"orderNum": self.orderInfo.order_info.orderNum  } success:^(id response) {
-        if ([response[@"state"] isEqualToString:@"success"]) {
-            self.refundInfo = [WKDecorationRefundModel yy_modelWithJSON:response[@"data"]];
+        if ([response[@"code"] isEqualToString:@"0"]) {
+            self.refundInfo = [WKDecorationRefundModel yy_modelWithJSON:response[@"data"][@"refund_info"]];
             [self setupSubviews];
             [YGNetService dissmissLoadingView];
         }
         else {
             [YGNetService dissmissLoadingView];
-            [YGAppTool showToastWithText:response[@"data"][@"msg"]];
+            [YGAppTool showToastWithText:response[@"msg"]];
         }
     } failure:^(NSError *error) {
         [YGNetService dissmissLoadingView];

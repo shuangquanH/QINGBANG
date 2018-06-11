@@ -7,6 +7,7 @@
 //
 
 #import "WKUserCenterCollectCell.h"
+#import "WKUserCenterCollectModel.h"
 
 @implementation WKUserCenterCollectCell
 {
@@ -58,6 +59,11 @@
     }];
     
     _productImageView.backgroundColor = [UIColor orangeColor];
+}
+
+- (void)configCollectInfo:(WKUserCenterCollectModel *)collectInfo {
+    [_productImageView sd_setImageWithURL:[NSURL URLWithString:collectInfo.product_icon] placeholderImage:nil];
+    _productNameLabel.text = collectInfo.product_desc;
 }
 
 @end

@@ -10,6 +10,7 @@
 #import "SQDecorationDetailModel.h"
 
 typedef NS_ENUM(NSUInteger, WKDecorationOrderActionType) {
+    WKDecorationOrderActionTypeAlreadyPay,  //已支付
     WKDecorationOrderActionTypePay,         //付款
     WKDecorationOrderActionTypeCancel,      //取消订单
     WKDecorationOrderActionTypeDelete,      //删除订单

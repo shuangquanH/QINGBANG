@@ -38,9 +38,14 @@
         return;
     }
     [SQRequest post:KAPI_DECORATIONORDERDETAIL param:nil success:^(id response) {
-        WKDecorationOrderDetailModel *order = [WKDecorationOrderDetailModel yy_modelWithJSON:response[@"data"]];
-        [self setupByOrderInfo:order.order_info];
-        completed(order, nil);
+        if ([response[@"code"] isEqualToString:@"0"]) {
+           WKDecorationOrderDetailModel *order = [WKDecorationOrderDetailModel yy_modelWithJSON:response[@"data"][@"detail_info"]];
+            [self setupByOrderInfo:order.order_info];
+            completed(order, nil);
+        }
+        else {
+            completed(nil, [NSError errorWithDomain:response[@"msg"] code:-999 userInfo:nil]);;
+        }
     } failure:^(NSError *error) {
         completed(nil, error);
     }];

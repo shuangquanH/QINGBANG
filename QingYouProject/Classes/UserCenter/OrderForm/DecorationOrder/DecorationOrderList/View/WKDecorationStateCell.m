@@ -13,6 +13,7 @@
 @implementation WKDecorationStateCell
 {
     UILabel *_stateLabel;
+    UILabel *_otherStateLabel;
     CAShapeLayer *_stateMaskLayer;
     CALayer *_bottomLineLayer;
 }
@@ -75,6 +76,35 @@
 }
 
 - (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo {
+    if (orderInfo.orderState == 3 && orderInfo.isInRefund) {//受理中，待退款
+        if (!_otherStateLabel) {
+            _otherStateLabel = [UILabel labelWithFont:KSCAL(28) textColor:KCOLOR_MAIN];
+            [self.contentView addSubview:_otherStateLabel];
+            [_otherStateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(_stateLabel.mas_right);
+                make.centerY.equalTo(_stateLabel);
+            }];
+        }
+        
+        _otherStateLabel.hidden = NO;
+        _otherStateLabel.text = @"(待退款)";
+    }
+    else if (orderInfo.orderState == 4) {//阶段款
+        if (!_otherStateLabel) {
+            _otherStateLabel = [UILabel labelWithFont:KSCAL(28) textColor:KCOLOR_MAIN];
+            [self.contentView addSubview:_otherStateLabel];
+            [_otherStateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(_stateLabel.mas_right);
+                make.centerY.equalTo(_stateLabel);
+            }];
+        }
+        
+        _otherStateLabel.hidden = NO;
+        _otherStateLabel.text = [NSString stringWithFormat:@"(%@)", orderInfo.stage_list.lastObject.stageName];
+    }
+    else {
+        _otherStateLabel.hidden = YES;
+    }
     [self reloadWithTitle:orderInfo.orderTitle];
 }
 
