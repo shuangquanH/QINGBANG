@@ -12,4 +12,6 @@
 
 - (CGSize)sizeWithFont:(UIFont*)font andMaxSize:(CGSize)size;
 
+- (CGSize)labelAutoCalculateRectWithLineSpace:(CGFloat)lineSpace Font:(UIFont*)font MaxSize:(CGSize)maxSize;
+
 @end

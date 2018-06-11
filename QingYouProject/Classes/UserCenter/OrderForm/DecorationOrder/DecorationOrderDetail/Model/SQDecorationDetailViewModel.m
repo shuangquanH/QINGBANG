@@ -15,13 +15,13 @@
 #import "SQDecorationDetailOrderNumberView.h"
 #import "SQDecorationOrderCell.h"
 #import "SQDecorationDetailStateHeadView.h"
+#import "WKDecorationStateCell.h"
 
 @interface SQDecorationDetailSectionView: UIView<SQDecorationDetailViewProtocol>
 @end
-
 @implementation SQDecorationDetailSectionView
 - (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo {}
-- (CGSize)viewSize { return CGSizeMake(kScreenW, 15); }
+- (CGSize)viewSize { return CGSizeMake(kScreenW, KSCAL(20)); }
 @end
 
 @interface SQDecorationDetailViewModel()<decorationOrderCellDelegate>
@@ -57,12 +57,37 @@
         return;
     }
     
+    //已经初始化过子视图，查看是否更新订单信息视图
+    if (_subviewArray.count) {
+        if (orderInfo.orderState == 3) {//受理中订单
+            if (![_orderCell isKindOfClass:[WKDecorationDealingOrderCell class]]) {//更新视图
+                WKDecorationDealingOrderCell *cell = [[WKDecorationDealingOrderCell alloc] init];
+                NSMutableArray *tmpArr = [_subviewArray mutableCopy];
+                NSInteger index = [_subviewArray indexOfObject:_orderCell];
+                [tmpArr replaceObjectAtIndex:index withObject:cell];
+                [_orderCell removeFromSuperview];
+                _orderCell = cell;
+            }
+        }
+        else {
+            if (![_orderCell isKindOfClass:[WKDecorationOrderMutableStageCell class]]) {//更新视图
+                WKDecorationOrderMutableStageCell *cell = [[WKDecorationOrderMutableStageCell alloc] init];
+                NSMutableArray *tmpArr = [_subviewArray mutableCopy];
+                NSInteger index = [_subviewArray indexOfObject:_orderCell];
+                [tmpArr replaceObjectAtIndex:index withObject:cell];
+                [_orderCell removeFromSuperview];
+                _orderCell = cell;
+            }
+        }
+        return;
+    }
+    
     NSMutableArray<UIView<SQDecorationDetailViewProtocol> *> *tmp = [NSMutableArray array];
     
-    SQDecorationDetailStateHeadView *headerView = [[SQDecorationDetailStateHeadView alloc] initWithFrame:CGRectZero];
-    [tmp addObject:headerView];
+    SQDecorationDetailStateHeadView *stageView = [[SQDecorationDetailStateHeadView alloc] initWithFrame:CGRectZero];
+    [tmp addObject:stageView];
     
-    if (orderInfo.orderState == 4 || orderInfo.orderState == 5) {
+    if (orderInfo.orderState == 4 || orderInfo.orderState == 5 || orderInfo.orderState == 3) {
         //订单进度
         SQDecorationDetailStagesView *stagesView = [[SQDecorationDetailStagesView alloc] initWithFrame:CGRectZero];
         [tmp addObject:stagesView];
@@ -72,9 +97,10 @@
     SQDecorationDetailAddressView *addressView = [[SQDecorationDetailAddressView alloc] initWithFrame:CGRectZero];
     [tmp addObject:addressView];
     
-    //组分割视图
-    SQDecorationDetailSectionView *section_0 = [SQDecorationDetailSectionView new];
-    [tmp addObject:section_0];
+    //订单状态
+    WKDecorationStateCell *stateCell = [[WKDecorationStateCell alloc] init];
+    stateCell.isInDetail = YES;
+    [tmp addObject:stateCell];
     
     //订单详情
     if (orderInfo.orderState == 3) {//受理中订单
@@ -131,8 +157,7 @@
         @strongify(serverView)
         [self.orderDetailDelegate serviceView:serverView didClickServiceType:tag];
     };
-    
-    
+
 }
 
 #pragma mark - decorationOrderCellDelegate

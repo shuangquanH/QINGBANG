@@ -50,6 +50,7 @@
 		04FFB4F920C92BE200B8843E /* WKUserCenterMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FFB4F820C92BE200B8843E /* WKUserCenterMessageModel.m */; };
 		04FFB4FC20CA1E9400B8843E /* WKUserCenterCollectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FFB4FB20CA1E9400B8843E /* WKUserCenterCollectModel.m */; };
 		04FFB58120CA6E8500B8843E /* WKDecorationRepairPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FFB58020CA6E8500B8843E /* WKDecorationRepairPhotoCell.m */; };
+		04FFB58820CE6CAD00B8843E /* WKOrderRepairModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FFB58720CE6CAD00B8843E /* WKOrderRepairModel.m */; };
 		180FCFCF1FDE75E400EB278C /* ChooseGoodsWithCategoriesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180FCFCE1FDE75E400EB278C /* ChooseGoodsWithCategoriesView.m */; };
 		1812F2EF2021A01B00EEC1CE /* HomePageLegalServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812F2EE2021A01B00EEC1CE /* HomePageLegalServiceViewController.m */; };
 		1812F2F22021A27100EEC1CE /* HomePageLegalServiceManagerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812F2F12021A27100EEC1CE /* HomePageLegalServiceManagerDetailViewController.m */; };
@@ -912,6 +913,8 @@
 		04FFB4FB20CA1E9400B8843E /* WKUserCenterCollectModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKUserCenterCollectModel.m; sourceTree = "<group>"; };
 		04FFB57F20CA6E8500B8843E /* WKDecorationRepairPhotoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKDecorationRepairPhotoCell.h; sourceTree = "<group>"; };
 		04FFB58020CA6E8500B8843E /* WKDecorationRepairPhotoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKDecorationRepairPhotoCell.m; sourceTree = "<group>"; };
+		04FFB58620CE6CAD00B8843E /* WKOrderRepairModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKOrderRepairModel.h; sourceTree = "<group>"; };
+		04FFB58720CE6CAD00B8843E /* WKOrderRepairModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKOrderRepairModel.m; sourceTree = "<group>"; };
 		180FCFCD1FDE75E400EB278C /* ChooseGoodsWithCategoriesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseGoodsWithCategoriesView.h; sourceTree = "<group>"; };
 		180FCFCE1FDE75E400EB278C /* ChooseGoodsWithCategoriesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChooseGoodsWithCategoriesView.m; sourceTree = "<group>"; };
 		1812F2ED2021A01B00EEC1CE /* HomePageLegalServiceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageLegalServiceViewController.h; sourceTree = "<group>"; };
@@ -2394,6 +2397,7 @@
 		040084E720C520F90094CF22 /* Repair */ = {
 			isa = PBXGroup;
 			children = (
+				04FFB58520CE6C8C00B8843E /* Model */,
 				04FFB57B20CA62A800B8843E /* View */,
 				04FFB4EE20C91D1700B8843E /* ViewController */,
 			);
@@ -2661,6 +2665,15 @@
 				04FFB58020CA6E8500B8843E /* WKDecorationRepairPhotoCell.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		04FFB58520CE6C8C00B8843E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04FFB58620CE6CAD00B8843E /* WKOrderRepairModel.h */,
+				04FFB58720CE6CAD00B8843E /* WKOrderRepairModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		0689741FD22BD91624E78C41 /* Pods */ = {
@@ -6840,6 +6853,7 @@
 				E2E5B15E1FB0675A00205F70 /* QNUrlSafeBase64.m in Sources */,
 				E2E5B1511FB0675A00205F70 /* UIScrollView+MJRefresh.m in Sources */,
 				18C1592E1FC820890010ACD3 /* AlreadyViewController.m in Sources */,
+				04FFB58820CE6CAD00B8843E /* WKOrderRepairModel.m in Sources */,
 				E2E5B3561FB0675B00205F70 /* YGSocketServe.m in Sources */,
 				18C1595E1FC8208A0010ACD3 /* LDTextView.m in Sources */,
 				18C15A551FC8208B0010ACD3 /* RoadShowHallViewController.m in Sources */,

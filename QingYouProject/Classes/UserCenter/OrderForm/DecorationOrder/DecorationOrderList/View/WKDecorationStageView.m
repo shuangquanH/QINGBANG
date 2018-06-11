@@ -13,6 +13,10 @@
 
 @interface WKDecorationStageView()<SQDecorationCellPayButtonViewDelegate>
 
+@property (nonatomic, strong) UIButton *refundDetailBtn;
+
+@property (nonatomic, strong) UIButton *refundBtn;
+
 @end
 
 @implementation WKDecorationStageView
@@ -24,9 +28,7 @@
 }
 - (instancetype)init {
     if (self == [super init]) {
-        
         [self setupSubviews];
-        
         [self makeConstaints];
     }
     return self;
@@ -64,7 +66,7 @@
     [stageStateView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.height.equalTo(stagePriceLab);
         make.right.mas_equalTo(0);
-        make.left.mas_equalTo(KSCAL(260));
+        make.left.mas_equalTo(KSCAL(260)).priorityHigh();
         make.height.mas_equalTo(KSCAL(45));
     }];
 }
@@ -77,8 +79,59 @@
 
 - (void)configStageModel:(WKDecorationStageModel *)stageModel withStage:(NSInteger)stage canRefund:(BOOL)canRefund inRefund:(BOOL)inRefund inDetail:(BOOL)inDetail {
     stageTitleLabel.text = [NSString stringWithFormat:@"%@：", stageModel.stageName];
-    stagePriceLab.text = [NSString stringWithFormat:@"¥ %@", stageModel.stagePrice];
+    stagePriceLab.text   = [NSString stringWithFormat:@"¥ %@", stageModel.stagePrice];
     [stageStateView configStageModel:stageModel withStage:stage canRefund:canRefund inRefund:inRefund inDetail:inDetail];
+    
+    if (stage == 0 && inDetail) {//订金阶段&&在详情中
+        if (inRefund) {//处于退款申请中
+            self.refundDetailBtn.hidden = NO;
+            _refundBtn.hidden = YES;
+            [stageStateView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.height.equalTo(stagePriceLab);
+                make.right.mas_equalTo(0);
+                make.left.equalTo(self.refundDetailBtn.mas_right).offset(KSCAL(15));
+                make.height.mas_equalTo(KSCAL(45));
+            }];
+            return;
+        }
+        
+        if (canRefund) {//可以申请退款
+            self.refundBtn.hidden = NO;
+            _refundDetailBtn.hidden = YES;
+            [stageStateView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.height.equalTo(stagePriceLab);
+                make.right.mas_equalTo(0);
+                make.left.equalTo(self.refundBtn.mas_right).offset(KSCAL(15));
+                make.height.mas_equalTo(KSCAL(45));
+            }];
+            return;
+        }
+    }
+    else {
+        if (!_refundBtn || _refundBtn.hidden) {
+            return;
+        }
+        _refundBtn.hidden = YES;
+        _refundDetailBtn.hidden = YES;
+        [stageStateView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.height.equalTo(stagePriceLab);
+            make.right.mas_equalTo(0);
+            make.left.mas_equalTo(KSCAL(260)).priorityHigh();
+            make.height.mas_equalTo(KSCAL(45));
+        }];
+    }
+}
+
+- (void)click_refundDetailBtn {
+    if ([self.delegate respondsToSelector:@selector(stageView:didClickActionType:forStage:)]) {
+        [self.delegate stageView:self didClickActionType:WKDecorationOrderActionTypeRefundDetail forStage:0];
+    }
+}
+
+- (void)click_refundBtn {
+    if ([self.delegate respondsToSelector:@selector(stageView:didClickActionType:forStage:)]) {
+        [self.delegate stageView:self didClickActionType:WKDecorationOrderActionTypeRefund forStage:0];
+    }
 }
 
 #pragma mark - SQDecorationCellPayButtonViewDelegate
@@ -86,6 +139,43 @@
     if ([self.delegate respondsToSelector:@selector(stageView:didClickActionType:forStage:)]) {
         [self.delegate stageView:self didClickActionType:actionType forStage:stage];
     }
+}
+
+#pragma mark - lazy load
+- (UIButton *)refundBtn {
+    if (!_refundBtn) {
+        _refundBtn = [UIButton buttonWithTitle:@"申请退款" titleFont:KSCAL(28.0) titleColor:KCOLOR_MAIN];
+        _refundBtn.layer.borderWidth = 1.0;
+        _refundBtn.layer.borderColor = KCOLOR_MAIN.CGColor;
+        _refundBtn.layer.cornerRadius = 4.0;
+        [_refundBtn addTarget:self action:@selector(click_refundBtn) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_refundBtn];
+        
+        [_refundBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(0);
+            make.left.equalTo(stagePriceLab.mas_right).offset(KSCAL(15));
+            make.size.mas_equalTo(CGSizeMake(KSCAL(140), KSCAL(50)));
+        }];
+    }
+    return _refundBtn;
+}
+
+- (UIButton *)refundDetailBtn {
+    if (!_refundDetailBtn) {
+        _refundDetailBtn = [UIButton buttonWithTitle:@"¥" titleFont:KSCAL(28.0) titleColor:KCOLOR_MAIN];
+        _refundDetailBtn.layer.borderWidth = 1.0;
+        _refundDetailBtn.layer.borderColor = KCOLOR_MAIN.CGColor;
+        _refundDetailBtn.layer.cornerRadius = 4.0;
+        [_refundDetailBtn addTarget:self action:@selector(click_refundDetailBtn) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_refundDetailBtn];
+        
+        [_refundDetailBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(0);
+            make.left.equalTo(stagePriceLab.mas_right).offset(KSCAL(15));
+            make.size.mas_equalTo(CGSizeMake(KSCAL(50), KSCAL(50)));
+        }];
+    }
+    return _refundDetailBtn;
 }
 
 @end

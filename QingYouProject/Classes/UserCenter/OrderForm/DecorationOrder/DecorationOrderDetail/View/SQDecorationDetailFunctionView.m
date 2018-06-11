@@ -8,9 +8,6 @@
 
 #import "SQDecorationDetailFunctionView.h"
 
-const CGFloat kItemMargin = 20.0;
-const CGFloat kContentLeftMargin = 40.0;
-
 @implementation SQDecorationDetailFunctionView
 {
     UIButton *_downContractBtn;//下载合同
@@ -22,7 +19,7 @@ const CGFloat kContentLeftMargin = 40.0;
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self == [super initWithFrame:frame]) {
         _orderState = -1;
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = kCOLOR_RGB(222, 169, 105);
     }
     return self;
 }
@@ -31,10 +28,12 @@ const CGFloat kContentLeftMargin = 40.0;
     if (_orderState == orderInfo.orderState) return;
     
     _orderState = orderInfo.orderState;
-    CGFloat itemW = (kScreenW - 2 * kItemMargin - 2 * kContentLeftMargin) / 3.0;
+    CGFloat itemH = KSCAL(98);
     switch (_orderState) {
         case 4:
         {//受理中、装修中
+            CGFloat itemW = (kScreenW - 1.0) / 2.0;
+
             if (!_downContractBtn) {
                 _downContractBtn = [self setupButtonWithTitle:@"下载报价单" withTag:0];
                 [self addSubview:_downContractBtn];
@@ -45,19 +44,21 @@ const CGFloat kContentLeftMargin = 40.0;
                 [self addSubview:_checkContractBtn];
             }
             
-            CGFloat leftMargin = (kScreenW - 2 * itemW - kItemMargin) / 2.0;
             
             _downContractBtn.hidden = NO;
-            _downContractBtn.frame = CGRectMake(leftMargin + 0 * (itemW + kItemMargin), 5, itemW, 34);
+            _downContractBtn.frame = CGRectMake(0, 0, itemW, itemH);
             
             _checkContractBtn.hidden = NO;
-            _checkContractBtn.frame = CGRectMake(leftMargin + 1 * (itemW + kItemMargin), 5, itemW, 34);
+            _checkContractBtn.frame = CGRectMake(itemW + 1.0, 0, itemW, itemH);
             
             _ticketApplyBtn.hidden = YES;
         }
             break;
         case 5:
         {//已完成
+            
+            CGFloat itemW = (kScreenW - 2.0) / 3.0;
+
             if (!_downContractBtn) {
                 _downContractBtn = [self setupButtonWithTitle:@"下载报价单" withTag:0];
                 [self addSubview:_downContractBtn];
@@ -74,13 +75,13 @@ const CGFloat kContentLeftMargin = 40.0;
             }
             
             _downContractBtn.hidden = NO;
-            _downContractBtn.frame = CGRectMake(kContentLeftMargin + 0 * (itemW + kItemMargin), 5, itemW, 34);
+            _downContractBtn.frame = CGRectMake(0, 0, itemW, itemH);
             
             _checkContractBtn.hidden = NO;
-            _checkContractBtn.frame = CGRectMake(kContentLeftMargin + 1 * (itemW + kItemMargin), 5, itemW, 34);
+            _checkContractBtn.frame = CGRectMake((itemW + 1.0), 0, itemW, itemH);
             
             _ticketApplyBtn.hidden = NO;
-            _ticketApplyBtn.frame = CGRectMake(kContentLeftMargin + 2 * (itemW + kItemMargin), 5, itemW, 34);
+            _ticketApplyBtn.frame = CGRectMake(2 * (itemW + 1.0), 0, itemW, itemH);
         }
             break;
         default:
@@ -89,17 +90,17 @@ const CGFloat kContentLeftMargin = 40.0;
 }
 
 - (CGSize)viewSize {
-    return CGSizeMake(kScreenW, 44);
+    return CGSizeMake(kScreenW, KSCAL(98.0));
 }
 
 - (UIButton *)setupButtonWithTitle:(NSString *)title withTag:(NSInteger)tag {
     UIButton *btn = [UIButton new];
-    btn.titleLabel.font = [UIFont systemFontOfSize:15.0];
-    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    btn.backgroundColor = KCOLOR_MAIN;
+    btn.titleLabel.font = KFONT(28);
+    [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btn setTitleColor:kCOLOR_RGB(250, 214, 65) forState:UIControlStateHighlighted];
+    [btn setTitleColor:kCOLOR_RGB(250, 214, 65) forState:UIControlStateSelected];
     [btn setTitle:title forState:UIControlStateNormal];
-    btn.layer.borderColor = [UIColor blackColor].CGColor;
-    btn.layer.borderWidth = 1.0;
-    btn.layer.cornerRadius = 5.0;
     btn.tag = tag;
     [btn addTarget:self action:@selector(click_button:) forControlEvents:UIControlEventTouchUpInside];
     return btn;

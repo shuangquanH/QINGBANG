@@ -41,29 +41,24 @@ const CGFloat kFunctionButtonTopMargin = 0.0;
     
     if (stageModel.stageState == 1) {//待付款
         if (stage == 0) {//订金
-          [self reSetFunctionButtonsWithTitles:@[@"付款", @"取消订单"] types:@[@(WKDecorationOrderActionTypePay), @(WKDecorationOrderActionTypeCancel)]];
+            if (inDetail) {
+                [self reSetFunctionButtonsWithTitles:@[@"付款"] types:@[@(WKDecorationOrderActionTypePay)]];
+            }
+            else {
+                [self reSetFunctionButtonsWithTitles:@[@"付款", @"取消订单"] types:@[@(WKDecorationOrderActionTypePay), @(WKDecorationOrderActionTypeCancel)]];
+            }
         }
         else {
-          [self reSetFunctionButtonsWithTitles:@[@"补登", @"付款"] types:@[@(WKDecorationOrderActionTypeRepair), @(WKDecorationOrderActionTypePay)]];
+            if (inDetail) {
+               [self reSetFunctionButtonsWithTitles:@[@"付款"] types:@[@(WKDecorationOrderActionTypePay)]];
+            }
+            else {
+                [self reSetFunctionButtonsWithTitles:@[@"补登", @"付款"] types:@[@(WKDecorationOrderActionTypeRepair), @(WKDecorationOrderActionTypePay)]];
+            }
         }
     }
     else if (stageModel.stageState == 2) {//已支付
-
-        if (stage == 0 && inDetail) {//订金阶段且在详情中
-            if (canRefund) {//可退款
-                [self reSetFunctionButtonsWithTitles:@[@"已支付", @"退款"] types:@[@(WKDecorationOrderActionTypeAlreadyPay), @(WKDecorationOrderActionTypeRefund)]];
-                return;
-            }
-            
-            if (inRefund) {//退款中
-                [self reSetFunctionButtonsWithTitles:@[@"已支付", @"退款详情"] types:@[@(WKDecorationOrderActionTypeAlreadyPay), @(WKDecorationOrderActionTypeRefundDetail)]];
-                
-                return;
-            }
-        }
-        else {
-            [self reSetFunctionButtonsWithTitles:@[@"已支付"] types:@[@(WKDecorationOrderActionTypeAlreadyPay)]];
-        }
+        [self reSetFunctionButtonsWithTitles:@[@"已支付"] types:@[@(WKDecorationOrderActionTypeAlreadyPay)]];
     }
     else if (stageModel.stageState == 3) {//补登审核中
         [self showLabelWithTitle:@"补登审核中"];
@@ -148,7 +143,7 @@ const CGFloat kFunctionButtonTopMargin = 0.0;
         case WKDecorationOrderActionTypeRepair:
             return KCOLOR_MAIN;
         default:
-            return KCOLOR(@"666666");
+            return kCOLOR_666;
     }
 }
 

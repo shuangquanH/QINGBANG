@@ -8,13 +8,15 @@
 
 #import "WKDecorationRepairViewController.h"
 #import "TZImagePickerController.h"
+
 #import "WKDecorationRepairPhotoCell.h"
 
 #import "SQDecorationDetailModel.h"
+#import "WKOrderRepairModel.H"
 
 const CGFloat kItemHorizontalMargin = 10;
 
-@interface WKDecorationRepairViewController ()<TZImagePickerControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, WKDecorationRepairPhotoCellDelegate>
+@interface WKDecorationRepairViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, WKDecorationRepairPhotoCellDelegate>
 
 @property (nonatomic, strong) UILabel *topTipLabel;
 
@@ -30,6 +32,10 @@ const CGFloat kItemHorizontalMargin = 10;
 
 @property (nonatomic, assign) NSInteger selectIndex;
 
+@property (nonatomic, strong) WKOrderRepairModel *repairInfo;
+
+@property (nonatomic, strong) UIImageView *repairFailBgView;
+
 @end
 
 @implementation WKDecorationRepairViewController
@@ -41,12 +47,7 @@ const CGFloat kItemHorizontalMargin = 10;
     self.repairImageArray = [NSMutableArray array];
     _selectIndex = -1;
     
-    [self setupSubviews];
-}
-
-- (void)viewWillLayoutSubviews {
-    [super viewWillLayoutSubviews];
-    [self makeContraints];
+    [self sendRepairStateRequest];
 }
 
 - (void)setupSubviews {
@@ -56,13 +57,6 @@ const CGFloat kItemHorizontalMargin = 10;
     _topTipLabel = [UILabel labelWithFont:KSCAL(30.0) textColor:kCOLOR_333 textAlignment:NSTextAlignmentCenter text:@"我已在线下完成付款，申请补登更新订单状态："];
     _topTipLabel.backgroundColor = kCOLOR_RGB(210, 211, 212);
     [self.view addSubview:_topTipLabel];
-    
-    _confirmButton = [UIButton buttonWithTitle:@"提交" titleFont:KSCAL(38) titleColor:[UIColor whiteColor] bgColor:KCOLOR_MAIN];
-    [_confirmButton addTarget:self action:@selector(click_confirmButton) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_confirmButton];
-    
-    _tipLabl = [UILabel labelWithFont:KSCAL(38) textColor:kCOLOR_666 text:@"上传回执单"];
-    [self.view addSubview:_tipLabl];
     
     _addPhotoBtn = [UIButton new];
     [_addPhotoBtn setBackgroundImage:[UIImage imageNamed:@"repair_bg_btn"] forState:UIControlStateNormal];
@@ -81,19 +75,63 @@ const CGFloat kItemHorizontalMargin = 10;
     _collectionView.backgroundColor = self.view.backgroundColor;
     [_collectionView registerClass:[WKDecorationRepairPhotoCell class] forCellWithReuseIdentifier:@"photoCell"];
     [self.view addSubview:_collectionView];
+    
+    if (self.repairInfo.repairState == 0) {//还没有申请过补登，展示申请补登状态
+        _confirmButton = [UIButton buttonWithTitle:@"提交" titleFont:KSCAL(38) titleColor:[UIColor whiteColor] bgColor:KCOLOR_MAIN];
+        [_confirmButton addTarget:self action:@selector(click_confirmButton) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_confirmButton];
+        
+        _tipLabl = [UILabel labelWithFont:KSCAL(38) textColor:kCOLOR_333 text:@"上传回执单"];
+        [self.view addSubview:_tipLabl];
+    }
+    else if (self.repairInfo.repairState == 1) {//申请补登失败，重新申请
+        
+        _topTipLabel.alpha = 0.0;
+        _addPhotoBtn.alpha = 0.0;
+        _collectionView.alpha = 0.0;
+        
+        _confirmButton = [UIButton
+                          buttonWithTitle:@"重新申请补登"
+                          titleFont:KSCAL(38)
+                          titleColor:[UIColor whiteColor]
+                          bgColor:KCOLOR_MAIN];
+        _confirmButton.layer.cornerRadius = 5.0;
+        [_confirmButton addTarget:self
+                           action:@selector(click_confirmButton)
+                 forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:_confirmButton];
+        
+        _tipLabl = [UILabel labelWithFont:KSCAL(38) textColor:kCOLOR_333 text:@"系统回复"];
+        [self.view addSubview:_tipLabl];
+        
+        _repairFailBgView = [UIImageView new];
+        _repairFailBgView.backgroundColor = [UIColor whiteColor];
+        [self.view addSubview:_repairFailBgView];
+    }
+    
+    [self makeContraints];
+
 }
 
 - (void)makeContraints {
     [_topTipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.right.mas_equalTo(0);
+        make.left.right.top.mas_equalTo(0);
         make.height.mas_equalTo(KSCAL(110));
     }];
     
-    [_tipLabl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(_topTipLabel.mas_bottom).offset(KSCAL(130));
-        make.centerX.mas_equalTo(0);
-    }];
-    
+    if (self.repairInfo.repairState == 1) {
+        [_tipLabl mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(KSCAL(210));
+            make.centerX.mas_equalTo(0);
+        }];
+    }
+    else {
+        [_tipLabl mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(_topTipLabel.mas_bottom).offset(KSCAL(130));
+            make.centerX.mas_equalTo(0);
+        }];
+    }
+
     [_addPhotoBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(0);
         make.width.height.mas_equalTo(KSCAL(200));
@@ -107,13 +145,86 @@ const CGFloat kItemHorizontalMargin = 10;
         make.height.mas_equalTo(KSCAL(240));
     }];
     
-    [_confirmButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.bottom.right.mas_equalTo(0);
-        make.height.mas_equalTo(KSCAL(100));
+    if (self.repairInfo.repairState == 1) {
+        
+        [_repairFailBgView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(0);
+            make.top.equalTo(_tipLabl.mas_bottom).offset(KSCAL(50));
+            make.size.mas_equalTo(CGSizeMake(KSCAL(690), KSCAL(155)));
+        }];
+        
+        [_confirmButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(0);
+            make.size.mas_equalTo(CGSizeMake(KSCAL(500), KSCAL(98)));
+            make.top.equalTo(_repairFailBgView.mas_bottom).offset(KSCAL(100));
+        }];
+    }
+    else {
+        [_confirmButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.bottom.right.mas_equalTo(0);
+            make.height.mas_equalTo(KSCAL(100));
+        }];
+    }
+}
+
+#pragma mark - request
+- (void)sendRepairStateRequest {
+    [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
+    [SQRequest post:KAPI_GETREPAIRINFO
+              param:@{@"orderNum": self.orderInfo.orderNum,
+                      @"stageId": self.orderInfo.stage_list[self.stageIndex].stageId}
+            success:^(id response) {
+        [YGNetService dissmissLoadingView];
+        if ([response[@"code"] isEqualToString:@"0"]) {
+            self.repairInfo = [WKOrderRepairModel yy_modelWithJSON:response[@"data"][@"repairInfo"]];
+            [self setupSubviews];
+        }
+        else {
+            [YGAppTool showToastWithText:response[@"msg"]];
+            [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.5];
+        }
+    } failure:^(NSError *error) {
+        [YGNetService dissmissLoadingView];
+        [YGAppTool showToastWithText:@"网络错误，请检查网络"];
+        [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.5];
     }];
 }
 
 - (void)click_confirmButton {
+    
+    if (self.repairInfo.repairState == 1) {//进入申请状态
+        self.confirmButton.enabled = NO;
+        
+        [self.view layoutIfNeeded];
+        [UIView animateWithDuration:0.7 animations:^{
+            _topTipLabel.alpha = 1.0;
+            _collectionView.alpha = 1.0;
+            _addPhotoBtn.alpha = 1.0;
+            _repairFailBgView.alpha = 0.0;
+            _tipLabl.text = @"上传回执单";
+            [_confirmButton setTitle:@"提交" forState:UIControlStateNormal];
+            
+            [_tipLabl mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.top.equalTo(_topTipLabel.mas_bottom).offset(KSCAL(130));
+                make.centerX.mas_equalTo(0);
+            }];
+            
+            [_confirmButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.left.bottom.right.mas_equalTo(0);
+                make.height.mas_equalTo(KSCAL(100));
+            }];
+            
+            [self.view layoutIfNeeded];
+
+        } completion:^(BOOL finished) {
+            self.confirmButton.enabled = YES;
+            self.repairInfo.repairState = 0;
+            [_repairFailBgView removeFromSuperview];
+        }];
+        
+        return;
+    }
+    
     if (!self.repairImageArray.count) {
         [YGAppTool showToastWithText:@"请至少添加一张回执单图片"];
         return;
@@ -153,14 +264,18 @@ const CGFloat kItemHorizontalMargin = 10;
         return;
     }
     
-    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:(5 - self.repairImageArray.count) columnNumber:4 delegate:self];
+    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:(5 - self.repairImageArray.count) columnNumber:4 delegate:nil];
     imagePickerVc.allowTakePicture = YES; // 在内部显示拍照按钮
     imagePickerVc.allowPickingVideo = NO;
     imagePickerVc.allowPickingImage = YES;
     imagePickerVc.allowPickingOriginalPhoto = YES;
     imagePickerVc.sortAscendingByModificationDate = YES;
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
-        
+        [self.repairImageArray insertObjects:photos atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, photos.count)]];
+        if (self.selectIndex == -1) {
+            self.selectIndex = 0;
+        }
+        [self.collectionView reloadData];
     }];
     imagePickerVc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentViewController:imagePickerVc animated:YES completion:nil];
@@ -188,7 +303,6 @@ const CGFloat kItemHorizontalMargin = 10;
     if (indexPath.item >= self.repairImageArray.count) return;
     if (indexPath.item == _selectIndex) return;
     
-    
     if (_selectIndex != -1) {
         WKDecorationRepairPhotoCell *selectCell = (WKDecorationRepairPhotoCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:_selectIndex inSection:0]];
         selectCell.photoSelect = NO;
@@ -203,7 +317,7 @@ const CGFloat kItemHorizontalMargin = 10;
     NSIndexPath *deleteIndexPath = [self.collectionView indexPathForCell:photoCell];
     if (deleteIndexPath) {
         [self.repairImageArray removeObjectAtIndex:deleteIndexPath.item];
-        if (deleteIndexPath.item == _selectIndex) {
+        if (deleteIndexPath.item == _selectIndex) {//删除索引为选中索引，如果还有图片选择第一张，如果没有回到初始化状态
             if (!self.repairImageArray.count) {
                 _selectIndex = -1;
             }
@@ -211,20 +325,11 @@ const CGFloat kItemHorizontalMargin = 10;
                 _selectIndex = 0;
             }
         }
-        else if (deleteIndexPath.item < _selectIndex) {
+        else if (deleteIndexPath.item < _selectIndex) {//删除索小于选择索引，选择索引前移
             _selectIndex -= 1;
         }
         [self.collectionView reloadData];
     }
-}
-
-#pragma mark - TZImagePickerControllerDelegate
-- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto {
-    [self.repairImageArray insertObjects:photos atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, photos.count)]];
-    if (_selectIndex == -1) {
-        _selectIndex = 0;
-    }
-    [self.collectionView reloadData];
 }
 
 @end

@@ -136,7 +136,11 @@
     orderTitle.attributedText = decorateName;
     orderTitle.lineBreakMode = NSLineBreakByTruncatingTail;
 
-    [paymentStageView configStageModel:orderInfo.stage_list.firstObject withStage:0 canRefund:orderInfo.canRefund inRefund:orderInfo.isInRefund inDetail:self.isInOrderDetail];
+    [paymentStageView configStageModel:orderInfo.stage_list.firstObject
+                             withStage:0
+                             canRefund:orderInfo.canRefund
+                              inRefund:orderInfo.isInRefund
+                              inDetail:self.isInOrderDetail];
 }
 
 - (CGSize)viewSize {
@@ -174,7 +178,6 @@
 
 - (void)setModel:(id)model {
     [super setModel:model];
-    
 }
 
 - (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo {
@@ -207,7 +210,7 @@
         [view mas_makeConstraints:^(MASConstraintMaker *make) {
             make.height.equalTo(lastView);
             make.top.equalTo(lastView.mas_bottom);
-            make.left.right.equalTo(lastView).priorityHigh();
+            make.left.right.equalTo(lastView);
         }];
         
         lastView = view;
@@ -228,10 +231,10 @@
 
 @implementation WKDecorationDealingOrderCell
 {
-    UILabel *dealingTipLabel;
+    UILabel  *dealingTipLabel;
     UIButton *connectServiceBtn;
-    UIView *dealingBgView;
-    UIView *dealingLine;
+    UIView   *dealingBgView;
+    UIView   *dealingLine;
 }
 - (void)sqlayoutSubviews {
     

@@ -103,9 +103,21 @@
 
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0) return;
+    
     SQDecorationOrderDetailVC *vc = [[SQDecorationOrderDetailVC alloc] init];
     vc.orderListInfo = [self.orderList objectAtIndex:indexPath.section];
     [self.navigationController pushViewController:vc animated:YES];
+    
+    vc.orderRefreshBlock = ^(SQDecorationDetailModel *orderInfo) {
+        if (!orderInfo) {
+            [self.orderList removeObjectAtIndex:indexPath.section];
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationNone];
+        }
+        else {
+            [self.tableView reloadData];
+        }
+    };
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
@@ -134,13 +146,7 @@
     switch (actionType) {
         case WKDecorationOrderActionTypePay://支付
         {
-            CGFloat offset;
-            if (@available(iOS 11.0, *)) {
-                offset = self.view.safeAreaInsets.bottom;
-            } else {
-                offset = self.view.layoutMargins.bottom;
-            }
-            [WKAnimationAlert showAlertWithInsideView:self.bottomPayView animation:WKAlertAnimationTypeBottom canTouchDissmiss:YES superView:nil offset:offset];
+            [WKAnimationAlert showAlertWithInsideView:self.bottomPayView animation:WKAlertAnimationTypeBottom canTouchDissmiss:YES superView:nil offset:0];
         }
             break;
         case WKDecorationOrderActionTypeCancel://取消订单
