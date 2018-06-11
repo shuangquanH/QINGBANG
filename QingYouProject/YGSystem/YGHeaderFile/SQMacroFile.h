@@ -48,7 +48,7 @@
 /** app主色调 */
 #define KCOLOR_MAIN         [UIColor hexStringToColor:@"f39700"]
 /** 白色 */
-#define KCOLOR_WHITE         [UIColor hexStringToColor:@"ffffff"]
+#define KCOLOR_WHITE         [UIColor whiteColor]
 
 /** 333黑色  */
 #define kCOLOR_333          [UIColor hexStringToColor:@"333333"]

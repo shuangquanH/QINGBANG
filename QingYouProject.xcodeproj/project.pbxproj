@@ -820,6 +820,8 @@
 		E9E1E5A720C7E64A00A807BE /* SQDecorationAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E5A620C7E64A00A807BE /* SQDecorationAddressModel.m */; };
 		E9E1E5AA20C7F9E300A807BE /* SQConfirmDecorationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E5A920C7F9E300A807BE /* SQConfirmDecorationCell.m */; };
 		E9E1E5AD20C90B1500A807BE /* SQPaySuccessfulVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E5AC20C90B1500A807BE /* SQPaySuccessfulVC.m */; };
+		E9E1E5B020CE63FB00A807BE /* NSMutableAttributedString+SQAttributColorFont.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E5AF20CE63FB00A807BE /* NSMutableAttributedString+SQAttributColorFont.m */; };
+		E9E1E5B320CE656100A807BE /* UILabel+SQAttribut.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E5B220CE656100A807BE /* UILabel+SQAttribut.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -2357,6 +2359,10 @@
 		E9E1E5A920C7F9E300A807BE /* SQConfirmDecorationCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQConfirmDecorationCell.m; sourceTree = "<group>"; };
 		E9E1E5AB20C90B1500A807BE /* SQPaySuccessfulVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQPaySuccessfulVC.h; sourceTree = "<group>"; };
 		E9E1E5AC20C90B1500A807BE /* SQPaySuccessfulVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQPaySuccessfulVC.m; sourceTree = "<group>"; };
+		E9E1E5AE20CE63FB00A807BE /* NSMutableAttributedString+SQAttributColorFont.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+SQAttributColorFont.h"; sourceTree = "<group>"; };
+		E9E1E5AF20CE63FB00A807BE /* NSMutableAttributedString+SQAttributColorFont.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+SQAttributColorFont.m"; sourceTree = "<group>"; };
+		E9E1E5B120CE656100A807BE /* UILabel+SQAttribut.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+SQAttribut.h"; sourceTree = "<group>"; };
+		E9E1E5B220CE656100A807BE /* UILabel+SQAttribut.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+SQAttribut.m"; sourceTree = "<group>"; };
 		F883056FA3AE70A8E2E8FFA5 /* Pods-QingYouProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QingYouProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-QingYouProject/Pods-QingYouProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -5816,10 +5822,14 @@
 			children = (
 				0470A41320C11D67003F23C6 /* UILabel+Factory.h */,
 				0470A41420C11D67003F23C6 /* UILabel+Factory.m */,
+				E9E1E5B120CE656100A807BE /* UILabel+SQAttribut.h */,
+				E9E1E5B220CE656100A807BE /* UILabel+SQAttribut.m */,
 				E99DE1FD20B25C57009CEF88 /* NSString+SQStringSize.h */,
 				E99DE1FE20B25C57009CEF88 /* NSString+SQStringSize.m */,
 				E99DE28320BFD2C2009CEF88 /* NSMutableAttributedString+AppendImage.h */,
 				E99DE28420BFD2C2009CEF88 /* NSMutableAttributedString+AppendImage.m */,
+				E9E1E5AE20CE63FB00A807BE /* NSMutableAttributedString+SQAttributColorFont.h */,
+				E9E1E5AF20CE63FB00A807BE /* NSMutableAttributedString+SQAttributColorFont.m */,
 				E99DE24720B7DE87009CEF88 /* UIButton+SQImagePosition.h */,
 				E99DE24820B7DE87009CEF88 /* UIButton+SQImagePosition.m */,
 				E99DE24D20BBF8BA009CEF88 /* UIButton+SQWebImage.h */,
@@ -6207,6 +6217,7 @@
 				04FD9C0020C61B3F00B3D153 /* AnimationUtils.m in Sources */,
 				04FD9BFF20C61B2F00B3D153 /* WKAnimationAlert.m in Sources */,
 				E2E5B1891FB0675A00205F70 /* YYWebImageManager.m in Sources */,
+				E9E1E5B320CE656100A807BE /* UILabel+SQAttribut.m in Sources */,
 				18C159E91FC8208A0010ACD3 /* BillDetailModel.m in Sources */,
 				18C1596F1FC8208A0010ACD3 /* IssueAdvertiseViewController.m in Sources */,
 				04FFB4F620C91DC700B8843E /* WKDecorationOrderAlertView.m in Sources */,
@@ -6594,6 +6605,7 @@
 				E2E5B36E1FB0675B00205F70 /* YGPopCycleView.m in Sources */,
 				18C159141FC820890010ACD3 /* OrderDetailBottomView.m in Sources */,
 				18C159761FC8208A0010ACD3 /* JobOutsourceTradeRecoredTableViewCell.m in Sources */,
+				E9E1E5B020CE63FB00A807BE /* NSMutableAttributedString+SQAttributColorFont.m in Sources */,
 				18C1599F1FC8208A0010ACD3 /* MyIntegrationIndustryDealingController.m in Sources */,
 				E99DE1F220AEA6AB009CEF88 /* SQDecorationSeveTableHeader.m in Sources */,
 				18C159161FC820890010ACD3 /* ShipAndSuccessViewController.m in Sources */,
