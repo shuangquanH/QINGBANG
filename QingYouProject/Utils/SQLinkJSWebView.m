@@ -16,8 +16,7 @@
 @implementation SQLinkJSWebView
 
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     //初始化一个WKWebViewConfiguration对象
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
     //允许视频播放
@@ -60,7 +59,7 @@
     self.webJSCallBack = block;
 }
 
-//前端调用js方法的回调
+//html调用js方法的回调
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {
     self.webJSCallBack(message.name, message.body);
 }
@@ -69,5 +68,7 @@
     NSLog(@"||||||||||webView已经销毁||||||||||");
     [self.configuration.userContentController removeAllUserScripts];
 }
+
+
 
 @end

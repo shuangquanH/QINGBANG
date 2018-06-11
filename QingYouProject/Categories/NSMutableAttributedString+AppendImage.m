@@ -15,7 +15,11 @@
     //创建NSTextAttachment
     NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
     attachment.image = image;
-    attachment.bounds = CGRectMake(-4, -4, KSCAL(29), KSCAL(38));
+    if (type==SQAppendImageInLeft) {
+        attachment.bounds = CGRectMake(-4, -4, image.size.width, image.size.height);
+    } else {
+        attachment.bounds = CGRectMake(4, -4, image.size.width, image.size.height);
+    }
     
     NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:attachment];
     

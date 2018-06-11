@@ -32,6 +32,8 @@
 /** 选择园区  */
 #import "SQChooseGardenVC.h"
 
+#import "UILabel+SQAttribut.h"
+
 
 
 
@@ -56,6 +58,12 @@
     [super viewDidLoad];
     [self loadLaunches];
     [self requestData];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, KAPP_WIDTH, 160)];
+    label.backgroundColor = KCOLOR_MAIN;
+    [self.view addSubview:label];
+    
+    [label setText:@"heh" appendImage:[UIImage imageNamed:@"home_nav_icon"] withType:SQAppendImageInLeft];
+    [label appendImage:[UIImage imageNamed:@"Details_page_tab__icon1"] withType:SQAppendImageInRight];
 }
 
 - (void)loadLaunches {
