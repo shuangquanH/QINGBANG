@@ -13,13 +13,18 @@
 #import "SQLinkJSWebView.h"
 
 
-@interface SQDecorationDetailVC () <YGSegmentViewDelegate, decorationDetailBottomViewDelegate>
+@interface SQDecorationDetailVC () <YGSegmentViewDelegate, decorationDetailBottomViewDelegate, UIScrollViewDelegate>
 
+@property (nonatomic, strong) YGSegmentView       *seg;
+@property (nonatomic, strong) SQDecorationDetailBottomView       *bottomView;
 @property (nonatomic, strong) SQLinkJSWebView       *webView;
+@property (nonatomic, assign) NSInteger       skuId;
+@property (nonatomic, assign) CGFloat       productInfoHeight;
+@property (nonatomic, assign) CGFloat       priceSheetHeight;
 
 @end
 
-@implementation SQDecorationDetailVC 
+@implementation SQDecorationDetailVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,35 +37,54 @@
                                                             selector:@selector(rightButtonItemAciton)];
     self.navigationItem.rightBarButtonItem = itme;
     
-    CGRect frame = CGRectMake(0, 0, YGScreenWidth - 150, 22);
-    NSArray *titleArr = @[@"商品", @"详情", @"报价单"];
-    YGSegmentView   *seg = [[YGSegmentView alloc] initWithFrame:frame titlesArray:titleArr lineColor:colorWithMainColor delegate:self];
-    seg.backgroundColor = kBlackColor;
-    seg.normalTitleColor = kWhiteColor;
-    [seg setTitleFont:KFONT(38)];
-    [seg hiddenBottomLine];
-    self.navigationItem.titleView = seg;
-    
-    self.webView = [[SQLinkJSWebView alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, KAPP_HEIGHT-KNAV_HEIGHT-KSCAL(107))];
+    self.navigationItem.titleView = self.seg;
+    [self.view addSubview:self.bottomView];
     [self.view addSubview:self.webView];
-    [self.webView loadWebWithUrl:self.styleModel.linkurl];
-    
-    [self.webView registJSFunctionWithName:@[@"GETHTMLHEIGHTFORIOS"] back:^(NSString *methodName, id  _Nullable paramValue) {
-        NSLog(@"%@", methodName);
-    }];
-    
-    
-    
-    CGRect bottomFrame = CGRectMake(0, KAPP_HEIGHT-KSCAL(107)-KNAV_HEIGHT, KAPP_WIDTH, KSCAL(107));
-    SQDecorationDetailBottomView    *bottomView = [[SQDecorationDetailBottomView alloc] initWithFrame: bottomFrame];
-    bottomView.delegate = self;
-    [self.view addSubview:bottomView];
 }
 
 
 - (void)segmentButtonClickWithIndex:(int)buttonIndex {
-    NSLog(@"%d", buttonIndex);
+    switch (buttonIndex) {
+        case 0:
+            [self scrollAnimationWithPoint:CGPointZero];
+            break;
+        case 1:
+            [self scrollAnimationWithPoint:CGPointMake(0, self.productInfoHeight)];
+            break;
+        case 2:
+            [self scrollAnimationWithPoint:CGPointMake(0, self.priceSheetHeight)];
+            break;
+        default:
+            break;
+    }
 }
+
+- (void)scrollAnimationWithPoint:(CGPoint)point {
+    [UIView  animateWithDuration:0.2 animations:^{
+        self.webView.scrollView.contentOffset = point;
+    }];
+//    [self.webView.scrollView setContentOffset:point animated:YES];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView.contentOffset.y<self.productInfoHeight&&
+        self.seg.selectedIndex!=0) {
+        [self.seg selectButtonWithIndex:0];
+        
+    } else if (scrollView.contentOffset.y<self.priceSheetHeight&&
+               scrollView.contentOffset.y>self.productInfoHeight&&
+               self.seg.selectedIndex!=1) {
+        [self.seg selectButtonWithIndex:1];
+        
+    } else if (scrollView.contentOffset.y>self.priceSheetHeight&&
+               self.seg.selectedIndex!=2){
+        [self.seg selectButtonWithIndex:2];
+    }
+}
+
+
+
+
 - (void)rightButtonItemAciton {
     [YGAppTool shareWithShareUrl:@"dd" shareTitle:@"分享" shareDetail:@"" shareImageUrl:@"" shareController:self];
 }
@@ -73,12 +97,65 @@
     
 }
 - (void)clickedPayButton {
-    SQConfirmDecorationOrderVC  *vc = [[SQConfirmDecorationOrderVC alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    if (self.skuId) {
+        SQConfirmDecorationOrderVC  *vc = [[SQConfirmDecorationOrderVC alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    } else {
+        [self.webView ocCallJsWithMethodName:@"vum.changedialog()" back:^(NSString *methodName, id  _Nullable returnValue) {
+            NSLog(@"%@", methodName);
+        }];
+    }
 }
 
 
 
+
+
+#pragma lazyLoad
+- (YGSegmentView *)seg {
+    if (!_seg) {
+        CGRect frame = CGRectMake(0, 0, YGScreenWidth - 150, 22);
+        NSArray *titleArr = @[@"商品", @"详情", @"报价单"];
+        _seg = [[YGSegmentView alloc] initWithFrame:frame titlesArray:titleArr lineColor:colorWithMainColor delegate:self];
+        _seg.backgroundColor = kBlackColor;
+        _seg.normalTitleColor = kWhiteColor;
+        [_seg setTitleFont:KFONT(38)];
+        [_seg hiddenBottomLine];
+    }
+    return _seg;
+}
+
+- (SQDecorationDetailBottomView *)bottomView {
+    if (!_bottomView) {
+        CGRect bottomFrame = CGRectMake(0, KAPP_HEIGHT-KSCAL(107)-KNAV_HEIGHT, KAPP_WIDTH, KSCAL(107));
+        _bottomView = [[SQDecorationDetailBottomView alloc] initWithFrame: bottomFrame];
+        _bottomView.delegate = self;
+    }
+    return _bottomView;
+}
+
+- (SQLinkJSWebView  *)webView {
+    if (!_webView) {
+        _webView = [[SQLinkJSWebView alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, KAPP_HEIGHT-KNAV_HEIGHT-KSCAL(107))];
+        _webView.scrollView.delegate = self;
+        [_webView loadWebWithUrl:self.styleModel.linkurl];
+        
+        NSArray *regisArr = @[@"GETHTMLHEIGHTFORIOS", @"CHOOSESKUPARAMFORIOS"];
+        
+        WeakSelf(weakSelf);
+        [_webView registJSFunctionWithName:regisArr back:^(NSString *methodName, id  _Nullable paramValue) {
+            
+            if ([methodName isEqualToString:@"CHOOSESKUPARAMFORIOS"]) {
+                weakSelf.skuId = [paramValue integerValue];
+            } else if ([methodName isEqualToString:@"GETHTMLHEIGHTFORIOS"]) {
+                weakSelf.productInfoHeight = [paramValue[@"productInfoHeight"] floatValue];
+                weakSelf.priceSheetHeight = [paramValue[@"priceSheetHeight"] floatValue];
+            }
+        }];
+    }
+    return _webView;
+}
 
 
 

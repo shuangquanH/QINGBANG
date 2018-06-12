@@ -30,7 +30,7 @@
 /** 代理 */
 @property (nonatomic,assign) id <YGSegmentViewDelegate>delegate;
 
-
+@property (nonatomic, assign, readonly) NSInteger       selectedIndex;
 
 @property (nonatomic, strong) UIColor       *normalTitleColor;
 

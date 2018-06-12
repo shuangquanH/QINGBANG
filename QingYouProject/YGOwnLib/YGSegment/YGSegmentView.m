@@ -13,6 +13,7 @@
 @interface YGSegmentView ()
 @property (nonatomic, strong) NSArray * titlesArray;
 @property (nonatomic, strong) UIColor * lineColor;
+@property (nonatomic, assign) NSInteger       selectedIndex;
 @end
 
 @implementation YGSegmentView {
@@ -92,6 +93,7 @@
         _lineView.centerx = segBtn.centerx;
     }];
     [segBtn showQAnimate];
+    self.selectedIndex = buttonIndex;
 
 }
 
