@@ -138,6 +138,7 @@
 - (SQLinkJSWebView  *)webView {
     if (!_webView) {
         _webView = [[SQLinkJSWebView alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, KAPP_HEIGHT-KNAV_HEIGHT-KSCAL(107))];
+        _webView.scrollView.showsHorizontalScrollIndicator = NO;
         _webView.scrollView.delegate = self;
         [_webView loadWebWithUrl:self.styleModel.linkurl];
         
