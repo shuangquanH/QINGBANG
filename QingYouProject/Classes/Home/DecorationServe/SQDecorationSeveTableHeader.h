@@ -9,8 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "SQDecorationHomeModel.h"
 
-@interface SQDecorationSeveTableHeader : UIView <SDCycleScrollViewDelegate> 
+@protocol decorationSeveHeaderDelegate
 
+- (void)didSelectedBannerWithIndex:(NSInteger)index;
+
+@end
+
+@interface SQDecorationSeveTableHeader : UIView <SDCycleScrollViewDelegate> 
+@property (nonatomic, weak) id <decorationSeveHeaderDelegate> delegate;
 
 @property (nonatomic, strong) SQDecorationHomeModel       *model;
 

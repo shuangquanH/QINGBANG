@@ -53,9 +53,11 @@
 }
 
 /** html调用js方法  */
-- (void)registJSFunctionWithName:(NSString  *)jsName back:(void(^)(NSString *methodName, _Nullable id paramValue))block {
+- (void)registJSFunctionWithName:(NSArray  *)jsNames back:(void(^)(NSString *methodName, _Nullable id paramValue))block {
     WeakScriptMessageDelegate *delegate = [[WeakScriptMessageDelegate alloc] initWithDelegate:self];
-    [self.configuration.userContentController addScriptMessageHandler:delegate name:jsName];
+    for (NSString *jsname in jsNames) {
+     [self.configuration.userContentController addScriptMessageHandler:delegate name:jsname];
+    }
     self.webJSCallBack = block;
 }
 
