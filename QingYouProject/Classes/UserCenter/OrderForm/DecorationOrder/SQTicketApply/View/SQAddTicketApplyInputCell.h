@@ -20,6 +20,6 @@
 
 @property (nonatomic, weak) id<SQAddTicketApplyInputCellDelegate> delegate;
 
-- (void)configTitle:(NSString *)title placeHodler:(NSString *)placeHodler content:(NSString *)content;
+- (void)configTitle:(NSString *)title placeHodler:(NSString *)placeHodler content:(NSString *)content necessary:(BOOL)necessary;
 
 @end

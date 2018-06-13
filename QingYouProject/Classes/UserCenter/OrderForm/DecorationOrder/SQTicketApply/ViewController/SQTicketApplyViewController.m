@@ -14,6 +14,8 @@
 #import "ManageMailPostModel.h"
 #import "SQDecorationDetailModel.h"
 
+#import "UILabel+SQAttribut.h"
+
 @interface SQTicketApplyViewController ()<UITableViewDelegate, UITableViewDataSource, ManageMailPostViewControllerDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -62,14 +64,11 @@
     _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.rowHeight = 50;
-    _tableView.separatorInset = UIEdgeInsetsZero;
+    _tableView.rowHeight = KSCAL(90);
+    _tableView.separatorInset = UIEdgeInsetsMake(0, KSCAL(30), 0, KSCAL(30));
     [self.view addSubview:_tableView];
     
-    _confirmButton = [UIButton new];
-    [_confirmButton setBackgroundColor:[UIColor redColor]];
-    [_confirmButton setTitle:@"提交申请" forState:UIControlStateNormal];
-    [_confirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    _confirmButton = [UIButton buttonWithTitle:@"提交申请" titleFont:KSCAL(38) titleColor:[UIColor whiteColor] bgColor:KCOLOR_MAIN];
     [_confirmButton addTarget:self action:@selector(click_confirmButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_confirmButton];
 }
@@ -78,14 +77,8 @@
     [super viewWillLayoutSubviews];
     
     [_confirmButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(55);
-        if (@available(iOS 11.0, *)) {
-            make.bottom.mas_equalTo(-self.view.safeAreaInsets.bottom);
-        }
-        else {
-            make.bottom.mas_equalTo(-self.view.layoutMargins.bottom);
-        }
+        make.left.bottom.right.mas_equalTo(0);
+        make.height.mas_equalTo(KSCAL(100));
     }];
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.right.mas_equalTo(0);
@@ -163,9 +156,12 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
-        cell.textLabel.textColor = [UIColor blackColor];
+        cell.textLabel.textColor = kCOLOR_666;
+        cell.textLabel.font = KFONT(28);
+        cell.detailTextLabel.font = KFONT(28);
     }
-    
+    cell.detailTextLabel.textColor = kCOLOR_666;
+
     NSDictionary *dict = [[self.tableData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     cell.textLabel.text = dict[@"title"];
     cell.detailTextLabel.text = dict[@"detail"];
@@ -183,7 +179,7 @@
     
     if (indexPath.section == 0 && indexPath.row == 2) {//发票抬头
         if (self.invoiceInfo.invoiceName.length) {
-            cell.detailTextLabel.textColor = [UIColor blackColor];
+            cell.detailTextLabel.textColor = kCOLOR_666;
             cell.detailTextLabel.text = self.invoiceInfo.invoiceName;
         }
         else {
@@ -194,7 +190,7 @@
     
     if (indexPath.section == 1 && indexPath.row == 1) {//邮寄地址
         if (self.postInfo.address.length) {
-            cell.detailTextLabel.textColor = [UIColor blackColor];
+            cell.detailTextLabel.textColor = kCOLOR_666;
             cell.detailTextLabel.text = self.postInfo.address;
         }
         else {
@@ -246,9 +242,9 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     if (!_isNeedPostMail && section == 1) {
-        return 44.0;
+        return KSCAL(60);
     }
-    return 15.0;
+    return KSCAL(20);
 }
 
 #pragma mark - ManageMailPostViewControllerDelegate
@@ -262,6 +258,8 @@
     if (!_sendSwitch) {
         _sendSwitch = [[UISwitch alloc] init];
         _sendSwitch.on = YES;
+        _sendSwitch.tintColor = kCOLOR_RGB(59, 186, 229);
+        _sendSwitch.backgroundColor = kCOLOR_RGB(59, 186, 229);
         [_sendSwitch addTarget:self action:@selector(postMailValueChanged:) forControlEvents:UIControlEventValueChanged];
     }
     return _sendSwitch;
@@ -269,15 +267,13 @@
 
 - (UIView *)footerView {
     if (!_footerView) {
-        _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, 44)];
-        
-        UILabel *tipLab = [UILabel labelWithFont:15.0 textColor:[UIColor grayColor] text:@"*可联系客户经理索取"];
+        _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, KSCAL(60))];
+        UILabel *tipLab = [UILabel labelWithFont:KSCAL(26) textColor:colorWithLightGray text:@" 可联系客户经理索取"];
+        [tipLab appendImage:[UIImage imageNamed:@"invoicetitle_redpoint"] withType:SQAppendImageInLeft];
         [_footerView addSubview:tipLab];
         [tipLab sizeToFit];
-        
-        tipLab.x = 15.0;
-        tipLab.centery = 22;
-        
+        tipLab.x = KSCAL(15);
+        tipLab.centery = KSCAL(50);
     }
     return _footerView;
 }

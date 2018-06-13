@@ -11,13 +11,22 @@
 #import "SQDecorationDetailModel.h"
 #import "WKDecorationRefundModel.h"
 
+#import "NSString+SQStringSize.h"
+#import "UIButton+SQImagePosition.h"
+
 @interface WKDecorationRefundDetailViewController ()
-
+//联系客服
+@property (nonatomic, strong) UIButton *serviceBtn;
+//撤销退款
 @property (nonatomic, strong) UIButton *cancelRefundBtn;
-
+//标签背景
+@property (nonatomic, strong) UIView *labelBgView;
+//状态价格标签
 @property (nonatomic, strong) UILabel *stateLabel;
-
+//描述
 @property (nonatomic, strong) UILabel *detailLabel;
+
+@property (nonatomic, strong) UIView *line;
 
 @property (nonatomic, strong) WKDecorationRefundModel *refundInfo;
 
@@ -34,43 +43,24 @@
 
 - (void)setupSubviews {
     
-    _stateLabel = [UILabel labelWithFont:KSCAL(34.0) textColor:[UIColor blackColor]];
-    [self.view addSubview:_stateLabel];
+    _labelBgView = [UIView new];
+    _labelBgView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:_labelBgView];
     
-    _detailLabel = [UILabel labelWithFont:KSCAL(28.0) textColor:[UIColor blackColor]];
-    [self.view addSubview:_detailLabel];
+    _stateLabel = [UILabel labelWithFont:KSCAL(38) textColor:kCOLOR_333];
+    [_labelBgView addSubview:_stateLabel];
     
-    [_stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(KSCAL(30));
-        make.centerX.mas_equalTo(0);
-        make.top.mas_equalTo(KSCAL(30));
-    }];
-    
-    [_detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.centerX.equalTo(self.stateLabel);
-        make.top.equalTo(self.stateLabel.mas_bottom).offset(KSCAL(30));
-    }];
+    _detailLabel = [UILabel labelWithFont:KSCAL(28.0) textColor:kCOLOR_666];
+    [_labelBgView addSubview:_detailLabel];
     
     if (self.refundInfo.refundState == 1) {//审核中
         _stateLabel.text = [NSString stringWithFormat:@"等待平台退款 ¥ %@", self.refundInfo.refundPrice];
         _detailLabel.text = [NSString stringWithFormat:@"退款申请已提交，等待平台处理。在%@内平台未处理，系统将按您的支付方式原路退还", self.refundInfo.limitTime];
         
-        _cancelRefundBtn = [UIButton new];
-        [_cancelRefundBtn setBackgroundColor:[UIColor redColor]];
-        [_cancelRefundBtn setTitle:@"撤销退款" forState:UIControlStateNormal];
-        [_cancelRefundBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _cancelRefundBtn = [UIButton buttonWithTitle:@"撤销退款" titleFont:KSCAL(38) titleColor:[UIColor whiteColor] bgColor:KCOLOR_MAIN];
+        _cancelRefundBtn.layer.cornerRadius = 8.0;
         [_cancelRefundBtn addTarget:self action:@selector(click_cancelButton) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_cancelRefundBtn];
-        [_cancelRefundBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.mas_equalTo(0);
-            make.height.mas_equalTo(55);
-            if (@available(iOS 11.0, *)) {
-                make.bottom.mas_equalTo(-self.view.safeAreaInsets.bottom);
-            }
-            else {
-                make.bottom.mas_equalTo(-self.view.layoutMargins.bottom);
-            }
-        }];
     }
     else if (self.refundInfo.refundState == 2) {//退款成功
         _stateLabel.text = [NSString stringWithFormat:@"退款成功 ¥ %@", self.refundInfo.refundPrice];
@@ -83,7 +73,41 @@
     else {//退款失败
         _stateLabel.text = @"退款审核不通过";
         _detailLabel.text = [NSString stringWithFormat:@"您于%@发起的退款，因%@不予通过。", self.refundInfo.createTime, self.refundInfo.refundFailReason];
+        
+        _line = [UIView new];
+        _line.backgroundColor = colorWithLine;
+        [_labelBgView addSubview:_line];
     }
+    
+    
+    [_labelBgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(0);
+        make.top.mas_equalTo(KSCAL(20));
+    }];
+    
+    [_stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(KSCAL(30));
+        make.centerX.mas_equalTo(0);
+        make.top.mas_equalTo(KSCAL(50));
+    }];
+    
+    [_detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.centerX.equalTo(self.stateLabel);
+        make.top.equalTo(self.stateLabel.mas_bottom).offset(KSCAL(25));
+        make.bottom.mas_equalTo(-KSCAL(50));
+    }];
+    
+    [_line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.stateLabel);
+        make.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(1);
+    }];
+    
+    [_cancelRefundBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(0);
+        make.size.mas_equalTo(CGSizeMake(KSCAL(500), KSCAL(100)));
+        make.top.equalTo(_labelBgView.mas_bottom).offset(KSCAL(88));
+    }];
 }
 
 #pragma mark - request

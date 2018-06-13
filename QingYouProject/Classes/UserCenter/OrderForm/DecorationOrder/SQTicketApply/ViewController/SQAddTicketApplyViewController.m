@@ -11,12 +11,13 @@
 #import "SQAddTicketApplyInputCell.h"
 #import "WKInvoiceModel.h"
 
-@interface SQAddTicketApplyViewController ()<UITableViewDelegate, UITableViewDataSource, SQAddTicketApplyInputCellDelegate>
+#import "UIButton+SQImagePosition.h"
 
+@interface SQAddTicketApplyViewController ()<UITableViewDelegate, UITableViewDataSource, SQAddTicketApplyInputCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
-@property (nonatomic, strong) UIView *selectView;
+@property (nonatomic, strong) UIView   *selectView;
 
 @property (nonatomic, strong) UIButton *confirmButton;
 
@@ -46,106 +47,61 @@
     if (!_invoiceInfo) {
         _invoiceInfo = [WKInvoiceModel new];
     }
-    
-    _selectView = [UIView new];
-    [self.view addSubview:_selectView];
-    
-    _companyBtn = [UIButton new];
-    [_companyBtn setTitle:@"企业" forState:UIControlStateNormal];
-    [_companyBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_companyBtn setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
-    [_companyBtn addTarget:self action:@selector(click_selectButton:) forControlEvents:UIControlEventTouchUpInside];
-    [_selectView addSubview:_companyBtn];
-    _companyBtn.selected = !self.invoiceInfo.is_personal;
-    
-    _personalBtn = [UIButton new];
-    [_personalBtn setTitle:@"个人" forState:UIControlStateNormal];
-    [_personalBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_personalBtn setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
-    [_personalBtn addTarget:self action:@selector(click_selectButton:) forControlEvents:UIControlEventTouchUpInside];
-    [_selectView addSubview:_personalBtn];
-    _personalBtn.selected = self.invoiceInfo.is_personal;
 
-    
-    _selectDefaultButton = [UIButton new];
-    [_selectDefaultButton setTitle:@"设置为默认抬头" forState:UIControlStateNormal];
-    [_selectDefaultButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_selectDefaultButton setTitleColor:[UIColor blueColor] forState:UIControlStateSelected];
-    _selectDefaultButton.selected = _invoiceInfo.isDefault;
-    [_selectDefaultButton addTarget:self
-                             action:@selector(click_defaultButton) forControlEvents:UIControlEventTouchUpInside];
-    [_selectDefaultButton sizeToFit];
-    
-    _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.rowHeight = 50;
+    _tableView.rowHeight = KSCAL(88);
+    _tableView.estimatedSectionFooterHeight = 0;
+    _tableView.estimatedSectionHeaderHeight = 0;
+    _tableView.separatorInset = UIEdgeInsetsMake(0, KSCAL(30), 0, KSCAL(30));
     _tableView.tableFooterView = [UIView new];
     [self.view addSubview:_tableView];
     
-    _confirmButton = [UIButton new];
-    [_confirmButton setBackgroundColor:[UIColor redColor]];
-    [_confirmButton setTitle:@"提交" forState:UIControlStateNormal];
-    [_confirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    _confirmButton = [UIButton buttonWithTitle:@"提交" titleFont:KSCAL(38) titleColor:[UIColor whiteColor] bgColor:KCOLOR_MAIN];
     [_confirmButton addTarget:self action:@selector(click_confirmButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_confirmButton];
+    
+    _selectDefaultButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, KSCAL(60), KSCAL(60))];
+    _selectDefaultButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [_selectDefaultButton setImage:[UIImage imageNamed:(_invoiceInfo.isDefault?@"invoicetitle_circle_selected":@"invoicetitle_circle")] forState:UIControlStateNormal];
+    [_selectDefaultButton addTarget:self action:@selector(click_defaultButton) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     
     [_confirmButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(55);
-        if (@available(iOS 11.0, *)) {
-            make.bottom.mas_equalTo(-self.view.safeAreaInsets.bottom);
-        }
-        else {
-            make.bottom.mas_equalTo(-self.view.layoutMargins.bottom);
-        }
-    }];
-    [_selectView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(44);
-    }];
-    
-    [_companyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(0);
-        make.left.mas_equalTo(KSCAL(15.0));
-    }];
-    
-    [_personalBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(0);
-        make.left.equalTo(self->_companyBtn.mas_right).offset(10.0);
+        make.left.bottom.right.mas_equalTo(0);
+        make.height.mas_equalTo(KSCAL(100));
     }];
     
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
+        make.left.top.right.mas_equalTo(0);
         make.bottom.equalTo(self.confirmButton.mas_top);
-        make.top.equalTo(self.selectView.mas_bottom);
     }];
 }
 
 - (void)fillInvoiceInfoWithIndexPath:(NSIndexPath *)indexPath forCell:(SQAddTicketApplyInputCell *)cell {
-    if (indexPath.row == 0) {
-        [cell configTitle:@"名称：" placeHodler:@"请输入抬头名称" content:self.invoiceInfo.invoiceName];
+    if (indexPath.row == 1) {
+        [cell configTitle:@"名称" placeHodler:@"请输入抬头名称" content:self.invoiceInfo.invoiceName necessary:YES];
         return;
     }
     if (!self.invoiceInfo.is_personal) {
-        if (indexPath.row == 1) {
-            [cell configTitle:@"税号：" placeHodler:@"请输入纳税人识别号" content:self.invoiceInfo.invoiceDutyNum];
-        }
-        else if (indexPath.row == 2) {
-            [cell configTitle:@"企业地址：" placeHodler:@"请输入企业注册地址" content:self.invoiceInfo.companyAddress];
+        if (indexPath.row == 2) {
+            [cell configTitle:@"税号" placeHodler:@"请输入纳税人识别号" content:self.invoiceInfo.invoiceDutyNum necessary:YES];
         }
         else if (indexPath.row == 3) {
-            [cell configTitle:@"电话号码：" placeHodler:@"请输入企业电话号码" content:self.invoiceInfo.companyPhone];
+            [cell configTitle:@"企业地址" placeHodler:@"请输入企业注册地址" content:self.invoiceInfo.companyAddress necessary:NO];
         }
         else if (indexPath.row == 4) {
-            [cell configTitle:@"开户银行：" placeHodler:@"请输入企业开户银行" content:self.invoiceInfo.companyBank];
+            [cell configTitle:@"电话号码" placeHodler:@"请输入企业电话号码" content:self.invoiceInfo.companyPhone necessary:NO];
         }
         else if (indexPath.row == 5) {
-            [cell configTitle:@"银行账户：" placeHodler:@"请输入企业银行账户" content:self.invoiceInfo.companyBankAccount];
+            [cell configTitle:@"开户银行" placeHodler:@"请输入企业开户银行" content:self.invoiceInfo.companyBank necessary:NO];
+        }
+        else if (indexPath.row == 6) {
+            [cell configTitle:@"银行账户" placeHodler:@"请输入企业银行账户" content:self.invoiceInfo.companyBankAccount necessary:NO];
         }
     }
 }
@@ -182,38 +138,63 @@
     
     if (sender == _personalBtn) {
         self.invoiceInfo.is_personal = YES;
-        _companyBtn.selected = NO;
     }
     else {
         self.invoiceInfo.is_personal = NO;
-        _personalBtn.selected = NO;
     }
-    sender.selected = YES;
+    
+    if (_invoiceInfo.is_personal) {
+        [_personalBtn setImage:[UIImage imageNamed:@"invoicetitle_circle_selected"] forState:UIControlStateNormal];
+        [_companyBtn setImage:[UIImage imageNamed:@"invoicetitle_circle"] forState:UIControlStateNormal];
+    }
+    else {
+        [_personalBtn setImage:[UIImage imageNamed:@"invoicetitle_circle"] forState:UIControlStateNormal];
+        [_companyBtn setImage:[UIImage imageNamed:@"invoicetitle_circle_selected"] forState:UIControlStateNormal];
+    }
     [self.tableView reloadData];
 }
 
 - (void)click_defaultButton {
-    _selectDefaultButton.selected = !_selectDefaultButton.isSelected;
-    self.invoiceInfo.isDefault = _selectDefaultButton.isSelected;
+    self.invoiceInfo.isDefault = !self.invoiceInfo.isDefault;
+    [_selectDefaultButton setImage:[UIImage imageNamed:(_invoiceInfo.isDefault?@"invoicetitle_circle_selected":@"invoicetitle_circle")] forState:UIControlStateNormal];
 }
 
 #pragma mark - UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (self.invoiceInfo.is_personal) {
-        return 2;
+    if (section == 0) {
+        if (self.invoiceInfo.is_personal) {
+            return 2;
+        }
+        return 7;
     }
-    return 7;
+    
+    return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if ((self.invoiceInfo.is_personal && indexPath.row == 1) || (!self.invoiceInfo.is_personal && indexPath.row == 6)) {
+    if (indexPath.section == 0 && indexPath.row == 0) {//选择视图
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"selectCell"];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"selectCell"];
-            [cell.contentView addSubview:self.selectDefaultButton];
-            [self.selectDefaultButton mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.center.mas_equalTo(0);
+            [cell.contentView addSubview:self.selectView];
+            [self.selectView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.edges.mas_equalTo(0);
             }];
+        }
+        return cell;
+    }
+    
+    if (indexPath.section == 1) {//设置默认cell
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"defaultCell"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"defaultCell"];
+            cell.accessoryView = self.selectDefaultButton;
+            cell.textLabel.textColor = kCOLOR_333;
+            cell.textLabel.font = KFONT(28);
+            cell.textLabel.text = @"设为默认地址";
         }
         return cell;
     }
@@ -226,43 +207,89 @@
     [self fillInvoiceInfoWithIndexPath:indexPath forCell:cell];
     return cell;
 }
-
 #pragma mark - UITableViewDelegate
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 6) {
-        cell.separatorInset = UIEdgeInsetsMake(0, kScreenW, 0, 0);
-    }
-    else {
-        cell.separatorInset = UIEdgeInsetsZero;
-    }
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return KSCAL(20);
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return CGFLOAT_MIN;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, KSCAL(20))];
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return nil;
+}
+
 
 #pragma mark - SQAddTicketApplyInputCellDelegate
 - (void)cell:(SQAddTicketApplyInputCell *)cell didEditTextField:(UITextField *)textField {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     if (!indexPath) return;
     
-    if (indexPath.row == 0) {
+    if (indexPath.row == 1) {
         self.invoiceInfo.invoiceName = textField.text;
         return;
     }
     if (!self.invoiceInfo.is_personal) {
-        if (indexPath.row == 1) {
+        if (indexPath.row == 2) {
             self.invoiceInfo.invoiceDutyNum = textField.text;
         }
-        else if (indexPath.row == 2) {
+        else if (indexPath.row == 3) {
             self.invoiceInfo.companyAddress = textField.text;
         }
-        else if (indexPath.row == 3) {
+        else if (indexPath.row == 4) {
             self.invoiceInfo.companyPhone = textField.text;
         }
-        else if (indexPath.row == 4) {
+        else if (indexPath.row == 5) {
             self.invoiceInfo.companyBank = textField.text;
         }
-        else if (indexPath.row == 5) {
+        else if (indexPath.row == 6) {
             self.invoiceInfo.companyBankAccount = textField.text;
         }
     }
+}
+
+#pragma mark - lazy load
+- (UIView *)selectView {
+    if (!_selectView) {
+        
+        _selectView = [UIView new];
+        [self.view addSubview:_selectView];
+        
+        _companyBtn = [UIButton buttonWithTitle:@"企业" titleFont:KSCAL(28) titleColor:kCOLOR_333];
+        [_companyBtn addTarget:self action:@selector(click_selectButton:) forControlEvents:UIControlEventTouchUpInside];
+        [_selectView addSubview:_companyBtn];
+        
+        _personalBtn = [UIButton buttonWithTitle:@"个人" titleFont:KSCAL(28) titleColor:kCOLOR_333];
+        [_personalBtn addTarget:self action:@selector(click_selectButton:) forControlEvents:UIControlEventTouchUpInside];
+        [_selectView addSubview:_personalBtn];
+       
+        if (_invoiceInfo.is_personal) {
+            [_personalBtn setImage:[UIImage imageNamed:@"invoicetitle_circle_selected"] forState:UIControlStateNormal];
+            [_companyBtn setImage:[UIImage imageNamed:@"invoicetitle_circle"] forState:UIControlStateNormal];
+        }
+        else {
+            [_personalBtn setImage:[UIImage imageNamed:@"invoicetitle_circle"] forState:UIControlStateNormal];
+            [_companyBtn setImage:[UIImage imageNamed:@"invoicetitle_circle_selected"] forState:UIControlStateNormal];
+        }
+        
+        [_companyBtn sizeToFit];
+        [_companyBtn sq_setImagePosition:SQImagePositionLeft spacing:6];
+        [_personalBtn sizeToFit];
+        [_personalBtn sq_setImagePosition:SQImagePositionLeft spacing:6];
+
+        [_companyBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(0);
+            make.left.mas_equalTo(KSCAL(30));
+        }];
+        
+        [_personalBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(0);
+            make.left.equalTo(_companyBtn.mas_right).offset(KSCAL(80));
+        }];
+    }
+    return _selectView;
 }
 
 @end

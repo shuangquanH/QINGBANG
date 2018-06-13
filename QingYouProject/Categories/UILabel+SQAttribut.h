@@ -14,6 +14,7 @@
 
 /** uilabel添加图片  */
 - (void)appendImage:(UIImage    *)image withType:(SQAppendImageType)type;
+- (void)appendImage:(UIImage    *)image imageFrame:(CGRect)imageFrame withType:(SQAppendImageType)type;
 /** 设置文字 并拼接图片  */
 - (void)setText:(NSString   *)text appendImage:(UIImage *)image withType:(SQAppendImageType)type;
 

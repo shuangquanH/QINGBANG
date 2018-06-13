@@ -7,6 +7,7 @@
 //
 
 #import "SQAddTicketApplyInputCell.h"
+#import "UILabel+SQAttribut.h"
 
 @implementation SQAddTicketApplyInputCell
 {
@@ -24,25 +25,27 @@
 
 - (void)setupSubviews {
     
-    _titleLab = [UILabel labelWithFont:15.0 textColor:[UIColor blackColor]];
-    [_titleLab setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
+    _titleLab = [UILabel labelWithFont:KSCAL(28) textColor:kCOLOR_333];
     [self.contentView addSubview:_titleLab];
     
     _inputTF = [[UITextField alloc] init];
-    _inputTF.font = [UIFont systemFontOfSize:15.0];
+    _inputTF.font = KFONT(28);
+    _inputTF.textColor = kCOLOR_333;
     [_inputTF addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
     [self.contentView addSubview:_inputTF];
     
-    [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(0);
-        make.left.mas_equalTo(15);
-    }];
     [_inputTF mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_titleLab.mas_right).offset(5);
+        make.left.mas_equalTo(KSCAL(180));
         make.centerY.mas_equalTo(0);
         make.top.mas_equalTo(5);
-        make.right.mas_equalTo(-15);
+        make.right.mas_equalTo(-KSCAL(30));
     }];
+    [_titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(0);
+        make.left.mas_equalTo(KSCAL(30));
+        make.right.equalTo(_inputTF.mas_left);
+    }];
+    
 }
 
 - (void)textFieldChanged:(UITextField *)textField {
@@ -51,10 +54,20 @@
     }
 }
 
-- (void)configTitle:(NSString *)title placeHodler:(NSString *)placeHodler content:(NSString *)content {
-    _titleLab.text = title;
+- (void)configTitle:(NSString *)title placeHodler:(NSString *)placeHodler content:(NSString *)content necessary:(BOOL)necessary {
+    if (necessary) {
+        _titleLab.text = [NSString stringWithFormat:@"%@ ", title];
+        [_titleLab appendImage:[UIImage imageNamed:@"invoicetitle_redpoint"] imageFrame:CGRectMake(0, 2, 7, 7) withType:SQAppendImageInRight];
+    }
+    else {
+        _titleLab.text = title;
+    }
     _inputTF.placeholder = placeHodler;
     _inputTF.text = content;
+}
+
+- (CGSize)intrinsicContentSize {
+    return CGSizeMake(kScreenW, KSCAL(90));
 }
 
 @end
