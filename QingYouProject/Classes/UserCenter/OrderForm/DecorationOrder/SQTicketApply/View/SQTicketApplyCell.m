@@ -25,35 +25,41 @@
     return self;
 }
 - (void)setupSubviews {
-    _nameLab = [UILabel labelWithFont:15.0 textColor:[UIColor blackColor]];
+    _nameLab = [UILabel labelWithFont:KSCAL(34) textColor:kCOLOR_333];
     [self.contentView addSubview:_nameLab];
     
-    _numberLab = [UILabel labelWithFont:15.0 textColor:[UIColor blackColor]];
+    _numberLab = [UILabel labelWithFont:KSCAL(24) textColor:kCOLOR_999];
     [self.contentView addSubview:_numberLab];
     
-    _organizationLab = [UILabel labelWithFont:15.0 textColor:[UIColor blackColor]];
+    _organizationLab = [UILabel labelWithFont:KSCAL(28) textColor:kCOLOR_999];
     [_organizationLab setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
     [self.contentView addSubview:_organizationLab];
     
-    _defaultLabel = [UILabel labelWithFont:13.0 textColor:[UIColor redColor] textAlignment:NSTextAlignmentCenter];
-    _defaultLabel.text = @"默认";
-    [_defaultLabel setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
-    [_defaultLabel sizeToFit];
-    _defaultLabel.size = CGSizeMake(_defaultLabel.width + 6, _defaultLabel.height + 4);
-    [self.contentView addSubview:_defaultLabel];
+    _defaultLabel = [UILabel labelWithFont:KSCAL(28) textColor:KCOLOR_MAIN textAlignment:NSTextAlignmentLeft];
+    _defaultLabel.text = @"【默认】";
     _defaultLabel.hidden = YES;
+    [self.contentView addSubview:_defaultLabel];
 
-    
+    [_organizationLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(0);
+        make.right.mas_equalTo(-KSCAL(30));
+    }];
+    [_nameLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(KSCAL(30));
+        make.top.mas_equalTo(KSCAL(34));
+    }];
     [_defaultLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(-KSCAL(15.0));
-        make.top.equalTo(self.contentView.mas_centerY).offset(4);
+        make.left.mas_equalTo(_nameLab.mas_right);
+        make.centerY.mas_equalTo(_nameLab);
+        make.right.mas_equalTo(_organizationLab.mas_left);
+    }];
+    [_numberLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_nameLab);
+        make.top.equalTo(_nameLab.mas_bottom).offset(3);
+        make.right.equalTo(_defaultLabel);
     }];
     
-    [_numberLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(KSCAL(15.0));
-        make.right.equalTo(self->_defaultLabel.mas_left).offset(-10);
-        make.top.equalTo(self.contentView.mas_centerY).offset(4);
-    }];
+    
 }
 
 - (void)configInvoiceInfo:(WKInvoiceModel *)invoiceInfo {
@@ -63,9 +69,8 @@
         _nameLab.text = invoiceInfo.invoiceName;
         
         [_nameLab mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self->_numberLab);
+            make.left.mas_equalTo(KSCAL(30));
             make.centerY.mas_equalTo(0);
-            make.right.equalTo(self->_organizationLab.mas_left).offset(-10);
         }];
     }
     else {
@@ -74,27 +79,13 @@
         _numberLab.text = invoiceInfo.invoiceDutyNum;
         _nameLab.text = invoiceInfo.invoiceName;
         
-        [_nameLab mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self->_numberLab);
-            make.bottom.equalTo(self.mas_centerY).offset(-4);
-            make.right.equalTo(self->_organizationLab.mas_left).offset(-10);
+        [_nameLab mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(KSCAL(30));
+            make.top.mas_equalTo(KSCAL(34));
         }];
     }
     
-    if (invoiceInfo.isDefault) {
-        _defaultLabel.hidden = NO;
-        [_organizationLab mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self->_defaultLabel);
-            make.bottom.equalTo(self.mas_centerY).offset(-4);
-        }];
-    }
-    else {
-        _defaultLabel.hidden = YES;
-        [_organizationLab mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.right.equalTo(self->_defaultLabel);
-            make.centerY.mas_equalTo(0);
-        }];
-    }
+    _defaultLabel.hidden = !invoiceInfo.isDefault;
 }
 
 @end

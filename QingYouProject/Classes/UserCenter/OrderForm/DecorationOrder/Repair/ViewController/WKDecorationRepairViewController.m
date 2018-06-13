@@ -14,10 +14,12 @@
 #import "SQDecorationDetailModel.h"
 #import "WKOrderRepairModel.H"
 
+#import "NSString+SQStringSize.h"
+
 const CGFloat kItemHorizontalMargin = 10;
 
 @interface WKDecorationRepairViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, WKDecorationRepairPhotoCellDelegate>
-
+//申请补登相关
 @property (nonatomic, strong) UILabel *topTipLabel;
 
 @property (nonatomic, strong) UILabel *tipLabl;
@@ -32,9 +34,12 @@ const CGFloat kItemHorizontalMargin = 10;
 
 @property (nonatomic, assign) NSInteger selectIndex;
 
+//重新补登相关
 @property (nonatomic, strong) WKOrderRepairModel *repairInfo;
 
 @property (nonatomic, strong) UIImageView *repairFailBgView;
+
+@property (nonatomic, strong) UILabel *repairFailReasonLabel;
 
 @end
 
@@ -105,8 +110,12 @@ const CGFloat kItemHorizontalMargin = 10;
         [self.view addSubview:_tipLabl];
         
         _repairFailBgView = [UIImageView new];
-        _repairFailBgView.backgroundColor = [UIColor whiteColor];
+        UIImage *bgImage = [UIImage imageNamed:@"actualiza_image"];
+        _repairFailBgView.image = [bgImage stretchableImageWithLeftCapWidth:bgImage.size.width*0.5 topCapHeight:bgImage.size.height*0.5];
         [self.view addSubview:_repairFailBgView];
+        
+        _repairFailReasonLabel = [UILabel labelWithFont:KSCAL(28) textColor:kCOLOR_333 textAlignment:NSTextAlignmentCenter];
+        [_repairFailBgView addSubview:_repairFailReasonLabel];
     }
     
     [self makeContraints];
@@ -147,10 +156,25 @@ const CGFloat kItemHorizontalMargin = 10;
     
     if (self.repairInfo.repairState == 1) {
         
+        
+        NSString *reasonStr = [NSString stringWithFormat:@"您与%@提交的补登审核未通过，原因是：%@", self.repairInfo.createDate, self.repairInfo.reason];
+        NSMutableParagraphStyle *para = [[NSMutableParagraphStyle alloc] init];
+        [para setLineSpacing:KSCAL(14)];
+        NSAttributedString *reason = [[NSAttributedString alloc] initWithString:reasonStr attributes:@{NSParagraphStyleAttributeName: para}];
+        _repairFailReasonLabel.attributedText = reason;
+        
+        CGFloat reasonH = [reasonStr labelAutoCalculateRectWithLineSpace:KSCAL(14) Font:KFONT(28) MaxSize:CGSizeMake(KSCAL(590), MAXFLOAT)].height + KSCAL(60);
+        
         [_repairFailBgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(0);
             make.top.equalTo(_tipLabl.mas_bottom).offset(KSCAL(50));
-            make.size.mas_equalTo(CGSizeMake(KSCAL(690), KSCAL(155)));
+            make.size.mas_equalTo(CGSizeMake(KSCAL(690), reasonH));
+        }];
+        
+        [_repairFailReasonLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.center.mas_equalTo(0);
+            make.left.mas_equalTo(KSCAL(50));
+            make.top.mas_equalTo(KSCAL(30));
         }];
         
         [_confirmButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -195,14 +219,15 @@ const CGFloat kItemHorizontalMargin = 10;
     if (self.repairInfo.repairState == 1) {//进入申请状态
         self.confirmButton.enabled = NO;
         
+        [_confirmButton setTitle:@"提交" forState:UIControlStateNormal];
+        _tipLabl.text = @"上传回执单";
         [self.view layoutIfNeeded];
+        
         [UIView animateWithDuration:0.7 animations:^{
             _topTipLabel.alpha = 1.0;
             _collectionView.alpha = 1.0;
             _addPhotoBtn.alpha = 1.0;
             _repairFailBgView.alpha = 0.0;
-            _tipLabl.text = @"上传回执单";
-            [_confirmButton setTitle:@"提交" forState:UIControlStateNormal];
             
             [_tipLabl mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(_topTipLabel.mas_bottom).offset(KSCAL(130));

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		040084EA20C521150094CF22 /* WKDecorationRepairViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040084E920C521150094CF22 /* WKDecorationRepairViewController.m */; };
 		040084ED20C52C520094CF22 /* WKAfterSaleRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040084EC20C52C520094CF22 /* WKAfterSaleRecordCell.m */; };
+		042AF70320CFBB61005ECDBF /* WKCheckContactScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042AF70220CFBB61005ECDBF /* WKCheckContactScaleView.m */; };
 		0470A40220C0F712003F23C6 /* SQDecorationDetailStagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A40120C0F712003F23C6 /* SQDecorationDetailStagesView.m */; };
 		0470A40520C0FB93003F23C6 /* SQDecorationDetailFunctionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A40420C0FB93003F23C6 /* SQDecorationDetailFunctionView.m */; };
 		0470A40820C11548003F23C6 /* SQDecorationDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A40720C11548003F23C6 /* SQDecorationDetailModel.m */; };
@@ -51,6 +52,7 @@
 		04FFB4FC20CA1E9400B8843E /* WKUserCenterCollectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FFB4FB20CA1E9400B8843E /* WKUserCenterCollectModel.m */; };
 		04FFB58120CA6E8500B8843E /* WKDecorationRepairPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FFB58020CA6E8500B8843E /* WKDecorationRepairPhotoCell.m */; };
 		04FFB58820CE6CAD00B8843E /* WKOrderRepairModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FFB58720CE6CAD00B8843E /* WKOrderRepairModel.m */; };
+		04FFB58D20CF6A7700B8843E /* WKCheckContractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FFB58C20CF6A7700B8843E /* WKCheckContractViewController.m */; };
 		180FCFCF1FDE75E400EB278C /* ChooseGoodsWithCategoriesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180FCFCE1FDE75E400EB278C /* ChooseGoodsWithCategoriesView.m */; };
 		1812F2EF2021A01B00EEC1CE /* HomePageLegalServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812F2EE2021A01B00EEC1CE /* HomePageLegalServiceViewController.m */; };
 		1812F2F22021A27100EEC1CE /* HomePageLegalServiceManagerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812F2F12021A27100EEC1CE /* HomePageLegalServiceManagerDetailViewController.m */; };
@@ -829,6 +831,8 @@
 		040084E920C521150094CF22 /* WKDecorationRepairViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKDecorationRepairViewController.m; sourceTree = "<group>"; };
 		040084EB20C52C520094CF22 /* WKAfterSaleRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKAfterSaleRecordCell.h; sourceTree = "<group>"; };
 		040084EC20C52C520094CF22 /* WKAfterSaleRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKAfterSaleRecordCell.m; sourceTree = "<group>"; };
+		042AF70120CFBB61005ECDBF /* WKCheckContactScaleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKCheckContactScaleView.h; sourceTree = "<group>"; };
+		042AF70220CFBB61005ECDBF /* WKCheckContactScaleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKCheckContactScaleView.m; sourceTree = "<group>"; };
 		0470A40020C0F712003F23C6 /* SQDecorationDetailStagesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationDetailStagesView.h; sourceTree = "<group>"; };
 		0470A40120C0F712003F23C6 /* SQDecorationDetailStagesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationDetailStagesView.m; sourceTree = "<group>"; };
 		0470A40320C0FB93003F23C6 /* SQDecorationDetailFunctionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationDetailFunctionView.h; sourceTree = "<group>"; };
@@ -915,6 +919,8 @@
 		04FFB58020CA6E8500B8843E /* WKDecorationRepairPhotoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKDecorationRepairPhotoCell.m; sourceTree = "<group>"; };
 		04FFB58620CE6CAD00B8843E /* WKOrderRepairModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKOrderRepairModel.h; sourceTree = "<group>"; };
 		04FFB58720CE6CAD00B8843E /* WKOrderRepairModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKOrderRepairModel.m; sourceTree = "<group>"; };
+		04FFB58B20CF6A7700B8843E /* WKCheckContractViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKCheckContractViewController.h; sourceTree = "<group>"; };
+		04FFB58C20CF6A7700B8843E /* WKCheckContractViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKCheckContractViewController.m; sourceTree = "<group>"; };
 		180FCFCD1FDE75E400EB278C /* ChooseGoodsWithCategoriesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseGoodsWithCategoriesView.h; sourceTree = "<group>"; };
 		180FCFCE1FDE75E400EB278C /* ChooseGoodsWithCategoriesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChooseGoodsWithCategoriesView.m; sourceTree = "<group>"; };
 		1812F2ED2021A01B00EEC1CE /* HomePageLegalServiceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageLegalServiceViewController.h; sourceTree = "<group>"; };
@@ -2404,6 +2410,15 @@
 			path = Repair;
 			sourceTree = "<group>";
 		};
+		042AF70020CFBB10005ECDBF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				042AF70120CFBB61005ECDBF /* WKCheckContactScaleView.h */,
+				042AF70220CFBB61005ECDBF /* WKCheckContactScaleView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		0470A40C20C116CC003F23C6 /* DecorationOrderDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -2674,6 +2689,24 @@
 				04FFB58720CE6CAD00B8843E /* WKOrderRepairModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		04FFB58920CF6A3600B8843E /* checkContract */ = {
+			isa = PBXGroup;
+			children = (
+				042AF70020CFBB10005ECDBF /* View */,
+				04FFB58A20CF6A5800B8843E /* Controller */,
+			);
+			path = checkContract;
+			sourceTree = "<group>";
+		};
+		04FFB58A20CF6A5800B8843E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				04FFB58B20CF6A7700B8843E /* WKCheckContractViewController.h */,
+				04FFB58C20CF6A7700B8843E /* WKCheckContractViewController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		0689741FD22BD91624E78C41 /* Pods */ = {
@@ -5751,6 +5784,7 @@
 		E99DE1E420AE6446009CEF88 /* DecorationOrder */ = {
 			isa = PBXGroup;
 			children = (
+				04FFB58920CF6A3600B8843E /* checkContract */,
 				04FFB4F120C91D4600B8843E /* DecorationOrderList */,
 				04FFB4C720C7F24C00B8843E /* Refund */,
 				040084E720C520F90094CF22 /* Repair */,
@@ -6596,6 +6630,7 @@
 				18C159B01FC8208A0010ACD3 /* AdvertisementApplyCell.m in Sources */,
 				18C15A521FC8208B0010ACD3 /* RoadShowHallAllTableViewCell.m in Sources */,
 				18C15A941FC8208B0010ACD3 /* OrderCheckHouseSubmitViewController.m in Sources */,
+				04FFB58D20CF6A7700B8843E /* WKCheckContractViewController.m in Sources */,
 				18C158DF1FC820890010ACD3 /* AddressAskModel.m in Sources */,
 				18C15A671FC8208B0010ACD3 /* MeetingChildDetailsController.m in Sources */,
 				18C159311FC8208A0010ACD3 /* MyComplaintsViewController.m in Sources */,
@@ -6892,6 +6927,7 @@
 				18C159C91FC8208A0010ACD3 /* HistoryPayRecoredTableViewCell.m in Sources */,
 				E99DE22A20B595F0009CEF88 /* SQIphonePx.m in Sources */,
 				18C159041FC820890010ACD3 /* OfficePurchaseOrderListViewController.m in Sources */,
+				042AF70320CFBB61005ECDBF /* WKCheckContactScaleView.m in Sources */,
 				18C159481FC8208A0010ACD3 /* LDPayItemView.m in Sources */,
 				E99DE23020B65A11009CEF88 /* SQRequest.m in Sources */,
 				18C159CB1FC8208A0010ACD3 /* InvoiceManagerViewController.m in Sources */,

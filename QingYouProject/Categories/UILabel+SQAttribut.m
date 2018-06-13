@@ -36,6 +36,21 @@
     [self labelAppendImage:image withType:type mutubleString:mustring];
     self.attributedText = mustring;
 }
+- (void)appendImage:(UIImage *)image imageFrame:(CGRect)imageFrame withType:(SQAppendImageType)type {
+    NSMutableAttributedString *mustring = (self.attributedText)?self.attributedText.mutableCopy:[[NSMutableAttributedString alloc] initWithString:self.text];
+    NSTextAttachment *attachment = [[NSTextAttachment alloc] init];
+    attachment.image = image;
+    
+    NSAttributedString *attachmentString = [NSAttributedString attributedStringWithAttachment:attachment];
+    if (type==SQAppendImageInLeft) {
+        attachment.bounds = imageFrame;
+        [mustring insertAttributedString:attachmentString atIndex:0];
+    } else {
+        attachment.bounds = imageFrame;
+        [mustring insertAttributedString:attachmentString atIndex:mustring.length];
+    }
+    self.attributedText = mustring;
+}
 - (void)setTextFont:(UIFont *)font andRange:(NSRange)range {
     NSMutableAttributedString *mustring = (self.attributedText)?self.attributedText.mutableCopy:[[NSMutableAttributedString alloc] initWithString:self.text];
     [mustring setTextFont:font andRange:range];

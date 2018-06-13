@@ -50,14 +50,8 @@
     [super viewWillLayoutSubviews];
     
     [_addButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(55);
-        if (@available(iOS 11.0, *)) {
-            make.bottom.mas_equalTo(-self.view.safeAreaInsets.bottom);
-        }
-        else {
-            make.bottom.mas_equalTo(-self.view.layoutMargins.bottom);
-        }
+        make.left.bottom.right.mas_equalTo(0);
+        make.height.mas_equalTo(KSCAL(100));
     }];
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.right.mas_equalTo(0);
@@ -72,6 +66,7 @@
     else {
         self.naviTitle = @"发票抬头";
         UIBarButtonItem *managerItem = [self createBarbuttonWithNormalTitleString:@"管理" selectedTitleString:@"管理" selector:@selector(click_managerBtn)];
+        [((UIButton *)managerItem.customView) setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         self.navigationItem.rightBarButtonItem = managerItem;
     }
 }
@@ -81,15 +76,12 @@
     _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.rowHeight = 50;
+    _tableView.rowHeight = KSCAL(140);
     _tableView.tableFooterView = [UIView new];
-    _tableView.separatorInset = UIEdgeInsetsZero;
+    _tableView.separatorInset = UIEdgeInsetsMake(0, KSCAL(30), 0, KSCAL(30));
     [self.view addSubview:_tableView];
     
-    _addButton = [UIButton new];
-    [_addButton setBackgroundColor:[UIColor redColor]];
-    [_addButton setTitle:@"添加新抬头" forState:UIControlStateNormal];
-    [_addButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    _addButton = [UIButton buttonWithTitle:@"添加新抬头" titleFont:KSCAL(38) titleColor:[UIColor whiteColor] bgColor:KCOLOR_MAIN];
     [_addButton addTarget:self action:@selector(click_confirm) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_addButton];
     
@@ -111,7 +103,7 @@
         
     }
     else {
-
+        [self.tableView.mj_footer endRefreshing];
     }
 }
 

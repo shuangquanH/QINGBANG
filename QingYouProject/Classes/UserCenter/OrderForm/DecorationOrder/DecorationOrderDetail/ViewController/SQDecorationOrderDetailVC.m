@@ -11,6 +11,7 @@
 #import "SQApplyAfterSaleViewController.h"
 #import "WKDecorationRefundDetailViewController.h"
 #import "WKDecorationRepairViewController.h"
+#import "WKCheckContractViewController.h"
 
 #import "SQDecorationOrderCell.h"
 #import "WKDecorationOrderAlertView.h"
@@ -136,7 +137,9 @@
         
     }
     else if (functionType == 1) {
-        
+        WKCheckContractViewController *next = [WKCheckContractViewController new];
+        next.orderInfo = self.orderInfo;
+        [self.navigationController pushViewController:next animated:YES];
     }
     else {
         SQTicketApplyViewController *next = [SQTicketApplyViewController new];
