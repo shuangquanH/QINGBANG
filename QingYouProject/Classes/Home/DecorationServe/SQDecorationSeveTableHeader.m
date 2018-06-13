@@ -41,7 +41,9 @@
 
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
-    NSLog(@"点击了轮播图");
+    if (self.delegate) {
+        [self.delegate didSelectedBannerWithIndex:index];
+    }
 }
 
 /*

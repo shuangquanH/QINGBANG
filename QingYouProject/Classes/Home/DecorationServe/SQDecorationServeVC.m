@@ -16,7 +16,7 @@
 
 #import "SQDecorationHomeModel.h"
 
-@interface SQDecorationServeVC () <UITableViewDelegate, UITableViewDataSource>
+@interface SQDecorationServeVC () <UITableViewDelegate, UITableViewDataSource, decorationSeveHeaderDelegate>
 
 @property (nonatomic, strong) SQDecorationSeveTableHeader       *header;
 @property (nonatomic, strong) SQBaseTableView       *tableview;
@@ -75,7 +75,11 @@
     vc.styleModel = self.model.contents[indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
-
+- (void)didSelectedBannerWithIndex:(NSInteger)index {
+    SQDecorationDetailVC    *vc = [[SQDecorationDetailVC alloc] init];
+    vc.styleModel = self.model.banners[index];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 #pragma mark LazyLoad
 - (SQBaseTableView  *)tableview {
@@ -93,6 +97,7 @@
 - (SQDecorationSeveTableHeader *)header {
     if (!_header) {
         _header = [[SQDecorationSeveTableHeader alloc] initWithFrame:CGRectMake(0, 0, YGScreenWidth, KSCAL(320))];
+        _header.delegate = self;
     }
     return _header;
 }

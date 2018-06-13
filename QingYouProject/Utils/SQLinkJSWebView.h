@@ -27,7 +27,7 @@ typedef void(^jsCallBack)(NSString *, _Nullable id);
 
 /** html调用js方法  */
 //bklock回调方法名,参数
-- (void)registJSFunctionWithName:(NSString  *)jsName back:(void(^)(NSString *methodName, _Nullable id paramValue))block;
+- (void)registJSFunctionWithName:(NSArray  *)jsNames back:(void(^)(NSString *methodName, _Nullable id paramValue))block;
 
 
 
