@@ -46,6 +46,8 @@
 
 @property (nonatomic, copy  ) NSString *createTime;
 
+@property (nonatomic, copy  ) NSString *contractImages;
+
 @property (nonatomic, strong) NSArray<WKDecorationStageModel *> *stage_list;
 
 @end

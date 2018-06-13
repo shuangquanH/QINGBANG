@@ -42,6 +42,7 @@
     self.tableView.estimatedRowHeight = 0.0;
     self.tableView.estimatedSectionFooterHeight = 0.0;
     self.tableView.estimatedSectionHeaderHeight = 0.0;
+    self.tableView.backgroundColor = colorWithTable;
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.right.top.mas_equalTo(0);
@@ -83,6 +84,7 @@
     WKUserCenterMessageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
         cell = [[WKUserCenterMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell.backgroundColor = colorWithTable;
     }
     [cell configMessageInfo:self.messageList[indexPath.row]];
     return cell;
@@ -90,7 +92,11 @@
 
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 120+KSCAL(20);
+    WKUserCenterMessageModel *info = self.messageList[indexPath.row];
+    if (info.cellHeight == 0) {
+        info.cellHeight = [WKUserCenterMessageCell cellHeightWithMessageInfo:info];
+    }
+    return info.cellHeight;
 }
 
 

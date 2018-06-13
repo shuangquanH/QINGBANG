@@ -9,12 +9,21 @@
 #import "WKCheckContractViewController.h"
 
 #import "WKCheckContactScaleView.h"
+#import "WKImageCollectionView.h"
+
+#import "SQDecorationDetailModel.h"
 
 @interface WKCheckContractViewController ()
 
-@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UIView *bgView;
+
+@property (nonatomic, strong) UILabel *tipLabel;
 
 @property (nonatomic, strong) WKCheckContactScaleView *scaleDisplayView;
+
+@property (nonatomic, strong) WKImageCollectionView *imageCollectView;
+
+@property (nonatomic, strong) NSArray<NSString *> *contractUrls;
 
 @end
 
@@ -27,29 +36,58 @@
     [self setupSubviews];
 }
 
-- (void)setupSubviews {
-    _imageView = [UIImageView new];
-    _imageView.image = [UIImage imageNamed:@"mine_fund_my_investment"];
-    [self.view addSubview:_imageView];
-    [_imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.mas_equalTo(0);
-        make.width.height.mas_equalTo(90);
-    }];
+- (void)viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
     
-    _imageView.userInteractionEnabled = YES;
-    [_imageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap_displayView)]];
+    [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.right.mas_equalTo(0);
+    }];
+    [_tipLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(KSCAL(30));
+        make.top.mas_equalTo(KSCAL(30));
+        if (!_imageCollectView) {
+            make.bottom.mas_equalTo(-KSCAL(40));
+        }
+    }];
+    [_imageCollectView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_tipLabel);
+        make.top.equalTo(_tipLabel.mas_bottom).offset(KSCAL(32));
+        make.bottom.mas_equalTo(-KSCAL(40));
+        make.width.mas_equalTo(KSCAL(130) * 3 + KSCAL(20) * 2);
+    }];
 }
 
-- (void)tap_displayView {
-    [self.scaleDisplayView showWithImageUrls:@[
-                                               @"http://img4.imgtn.bdimg.com/it/u=1972873509,2904368741&fm=27&gp=0.jpg",
-                                               @"http://img07.tooopen.com/images/20170316/tooopen_sy_201956178977.jpg",
-                                               @"http://img.zcool.cn/community/01f09e577b85450000012e7e182cf0.jpg@1280w_1l_2o_100sh.jpg"] selectIndex:0 captureView:self.imageView];
+- (void)setupSubviews {
+    
+    _bgView = [UIView new];
+    _bgView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:_bgView];
+    
+    self.contractUrls = [self.orderInfo.order_info.contractImages componentsSeparatedByString:@";"];
+
+    _tipLabel = [UILabel labelWithFont:KSCAL(32) textColor:kCOLOR_333 text:@"合同文件"];
+    [_tipLabel setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+    [_bgView addSubview:_tipLabel];
+    
+    if (self.contractUrls.count) {
+        _imageCollectView = [[WKImageCollectionView alloc] initWithMaxCount:self.contractUrls.count hasDeleteAction:NO];
+        [_bgView addSubview:_imageCollectView];
+        
+        for (int i = 0; i < self.contractUrls.count; i++) {
+            [_imageCollectView setImageUrl:self.contractUrls[i] forIndex:i];
+        }
+        
+        @weakify(self)
+        _imageCollectView.viewClicker = ^(UIView *view, NSInteger index) {
+            @strongify(self)
+            [self.scaleDisplayView showWithImageUrls:self.contractUrls selectIndex:index captureView:view];
+        };
+    }
 }
 
 - (WKCheckContactScaleView *)scaleDisplayView {
     if (!_scaleDisplayView) {
-        _scaleDisplayView = [[WKCheckContactScaleView alloc] initWithFrame:self.view.bounds];
+        _scaleDisplayView = [[WKCheckContactScaleView alloc] initWithFrame:CGRectZero];
     }
     return _scaleDisplayView;
 }

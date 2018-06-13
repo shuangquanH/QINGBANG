@@ -12,6 +12,7 @@
 #import "WKUserCenterMessageViewController.h"
 
 #import "SQUserCenterTableViewHeader.h"
+#import "WKUserCenterCell.h"
 
 @interface SQUserCenterViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) NSArray                     *userCenterArr;
@@ -28,6 +29,7 @@
     
     [self layoutNavigation];
     [self readViewControllerByPlistFile];
+    [self setupSubviews];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -39,19 +41,13 @@
     [super viewWillLayoutSubviews];
     
     [self.tableview mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.mas_equalTo(0);
-        if (@available(iOS 11.0, *)) {
-            make.bottom.mas_equalTo(-self.view.safeAreaInsets.bottom);
-        }
-        else {
-            make.bottom.mas_equalTo(-self.view.layoutMargins.bottom);
-        }
+        make.edges.mas_equalTo(0);
     }];
 }
 
 - (void)layoutNavigation {
     self.naviTitle = @"我的";
-    UIBarButtonItem *messageItem = [self createBarbuttonWithNormalImageName:@"Details page_tab__icon2" selectedImageName:nil selector:@selector(click_toMessage)];
+    UIBarButtonItem *messageItem = [self createBarbuttonWithNormalImageName:@"usercenter_nav_news" selectedImageName:nil selector:@selector(click_toMessage)];
     self.navigationItem.rightBarButtonItem = messageItem;
 }
 
@@ -59,6 +55,10 @@
     self.tableview.hidden = NO;
     
     self.headerImageView = [UIImageView new];
+    self.headerImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.headerImageView.image = [UIImage imageNamed:@"usercenter_bg"];
+    self.headerImageView.frame = CGRectMake(0, 0, kScreenW, self.tableHeader.height);
+    [self.tableview insertSubview:self.headerImageView belowSubview:self.tableHeader];
 }
 
 - (void)click_toMessage {
@@ -74,19 +74,23 @@
 }
 
 #pragma mark - UITableViewDataSource
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.userCenterArr.count;
 }
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
 - (UITableViewCell  *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SQBaseTableViewCell *cell = [SQBaseTableViewCell cellWithTableView:tableView];
-    cell.imageView.image = [UIImage imageNamed:@"mine_instashot"];
-    cell.textLabel.text = self.userCenterArr[indexPath.row][@"title"];
+    WKUserCenterCell *cell = [WKUserCenterCell cellWithTableView:tableView];
+    NSDictionary *dict = self.userCenterArr[indexPath.section];
+    cell.userImageView.image = [UIImage imageNamed:dict[@"image"]];
+    cell.titleLabel.text = dict[@"title"];
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    Class theclass = NSClassFromString(self.userCenterArr[indexPath.row][@"vc"]);
+    Class theclass = NSClassFromString(self.userCenterArr[indexPath.section][@"vc"]);
     RootViewController  *vc = [[theclass alloc] init];
-    bool needlogin = [self.userCenterArr[indexPath.row][@"needLogin"] boolValue];
+    bool needlogin = [self.userCenterArr[indexPath.section][@"needLogin"] boolValue];
     if (needlogin) {
         if ([self loginOrNot]) {
             [self.navigationController pushViewController:vc animated:YES];
@@ -96,14 +100,31 @@
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return CGFLOAT_MIN;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return KSCAL(20);
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (scrollView.contentOffset.y <= 0) {
+        self.headerImageView.frame = CGRectMake(0, scrollView.contentOffset.y, kScreenW, KSCAL(340)-scrollView.contentOffset.y);
+    }
+}
+
 #pragma mark LazyLoad
 - (SQBaseTableView  *)tableview {
     if (!_tableview) {
-        _tableview = [[SQBaseTableView alloc] initWithFrame:CGRectZero];
-        _tableview.rowHeight = KSCAL(120);
+        _tableview = [[SQBaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        _tableview.rowHeight = KSCAL(88);
         _tableview.delegate = self;
         _tableview.dataSource = self;
         _tableview.tableHeaderView = self.tableHeader;
+        _tableview.backgroundColor = kCOLOR_RGB(239, 239, 239);
+        _tableview.estimatedRowHeight = 0.0;
+        _tableview.estimatedSectionFooterHeight = 0.0;
+        _tableview.estimatedSectionHeaderHeight = 0.0;
         [self.view addSubview:self.tableview];
     }
     return _tableview;
@@ -111,7 +132,7 @@
 
 - (SQUserCenterTableViewHeader *)tableHeader {
     if (!_tableHeader) {
-        _tableHeader = [[SQUserCenterTableViewHeader alloc] initWithFrame:CGRectMake(0, 0, YGScreenWidth, 220)];
+        _tableHeader = [[SQUserCenterTableViewHeader alloc] initWithFrame:CGRectMake(0, 0, YGScreenWidth, KSCAL(340))];
         [_tableHeader configUserInfo:YGSingletonMarco.user];
         
         @weakify(self)

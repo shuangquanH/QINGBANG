@@ -18,7 +18,6 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = colorWithMainColor;
         [self setupSubviews];
     }
     return self;
@@ -28,32 +27,36 @@
     
     _iconImageView = [UIImageView new];
     _iconImageView.contentMode = UIViewContentModeScaleAspectFill;
-    _iconImageView.layer.cornerRadius = 40;
+    _iconImageView.layer.cornerRadius = KSCAL(80);
+    _iconImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+    _iconImageView.layer.borderWidth = 1.5;
     _iconImageView.layer.masksToBounds = YES;
     _iconImageView.userInteractionEnabled = YES;
     [_iconImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap_icon)]];
     [self addSubview:_iconImageView];
     
-    _nameLab = [UILabel labelWithFont:15.0 textColor:[UIColor whiteColor]];
+    _nameLab = [UILabel labelWithFont:KSCAL(32) textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentCenter];
     [self addSubview:_nameLab];
     
-    _signLab = [UILabel labelWithFont:14.0 textColor:[UIColor whiteColor]];
+    _signLab = [UILabel labelWithFont:KSCAL(24) textColor:[UIColor whiteColor] textAlignment:NSTextAlignmentCenter];
     [self addSubview:_signLab];
     
     [_iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(0);
-        make.left.mas_equalTo(15);
-        make.width.height.mas_equalTo(80);
+        make.centerX.mas_equalTo(0).priorityHigh();
+        make.top.mas_equalTo(KSCAL(38));
+        make.width.height.mas_equalTo(KSCAL(160));
     }];
     
     [_nameLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_iconImageView.mas_right).offset(10);
-        make.bottom.equalTo(self->_iconImageView.mas_centerY).offset(-4);
+        make.centerX.equalTo(_iconImageView);
+        make.left.mas_equalTo(KSCAL(60));
+        make.top.equalTo(_iconImageView.mas_bottom).offset(KSCAL(16));
     }];
     
     [_signLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self->_nameLab);
-        make.top.equalTo(self->_iconImageView.mas_centerY).offset(4);
+        make.centerX.equalTo(_iconImageView);
+        make.left.mas_equalTo(KSCAL(60));
+        make.top.equalTo(_nameLab.mas_bottom).offset(KSCAL(22));
     }];
 }
 

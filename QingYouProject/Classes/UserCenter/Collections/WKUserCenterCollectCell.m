@@ -12,7 +12,7 @@
 @implementation WKUserCenterCollectCell
 {
     UIImageView *_productImageView;
-    UILabel *_productNameLabel;
+    UILabel  *_productNameLabel;
     UIButton *_cancelCollectBtn;
 }
 
@@ -29,41 +29,46 @@
     _productImageView.contentMode = UIViewContentModeScaleAspectFill;
     [self.contentView addSubview:_productImageView];
     
-    _productNameLabel = [UILabel labelWithFont:KSCAL(30) textColor:[UIColor blackColor]];
+    _productNameLabel = [UILabel labelWithFont:KSCAL(28) textColor:kCOLOR_333];
     _productNameLabel.numberOfLines = 2;
     [self.contentView addSubview:_productNameLabel];
     
-    _cancelCollectBtn = [UIButton buttonWithTitle:@"取消收藏" titleFont:KSCAL(28) titleColor:[UIColor blackColor]];
-    _cancelCollectBtn.layer.cornerRadius = 3.0;
-    _cancelCollectBtn.layer.borderColor = colorWithLine.CGColor;
+    _cancelCollectBtn = [UIButton buttonWithTitle:@"取消收藏" titleFont:KSCAL(24) titleColor:kCOLOR_333];
+    _cancelCollectBtn.layer.cornerRadius = KSCAL(22.5);
+    _cancelCollectBtn.layer.borderColor = kCOLOR_666.CGColor;
     _cancelCollectBtn.layer.borderWidth = 1.0;
     [self.contentView addSubview:_cancelCollectBtn];
     
     [_productImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(KSCAL(30));
         make.centerY.mas_equalTo(0);
-        make.width.mas_equalTo(KSCAL(160));
-        make.height.mas_equalTo(KSCAL(100));
+        make.width.mas_equalTo(KSCAL(240));
+        make.height.mas_equalTo(KSCAL(170));
     }];
     
     [_productNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(_productImageView);
-        make.left.equalTo(_productImageView.mas_right).offset(KSCAL(20));
+        make.left.equalTo(_productImageView.mas_right).offset(KSCAL(14));
         make.right.mas_equalTo(-KSCAL(30));
     }];
     
     [_cancelCollectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(_productNameLabel);
         make.bottom.equalTo(_productImageView);
-        make.size.mas_equalTo(CGSizeMake(KSCAL(140), KSCAL(60)));
+        make.size.mas_equalTo(CGSizeMake(KSCAL(150), KSCAL(45)));
     }];
-    
-    _productImageView.backgroundColor = [UIColor orangeColor];
 }
 
 - (void)configCollectInfo:(WKUserCenterCollectModel *)collectInfo {
+    
+    NSMutableParagraphStyle *para = [NSMutableParagraphStyle new];
+    [para setLineSpacing:KSCAL(14)];
+    NSAttributedString *desc = [[NSAttributedString alloc] initWithString:collectInfo.product_desc attributes:@{NSParagraphStyleAttributeName: para}];
+    _productNameLabel.attributedText = desc;
+    _productNameLabel.numberOfLines = 2;
+    _productNameLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+    
     [_productImageView sd_setImageWithURL:[NSURL URLWithString:collectInfo.product_icon] placeholderImage:nil];
-    _productNameLabel.text = collectInfo.product_desc;
 }
 
 @end

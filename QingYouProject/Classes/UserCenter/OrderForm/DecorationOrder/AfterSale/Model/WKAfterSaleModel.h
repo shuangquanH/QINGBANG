@@ -22,6 +22,8 @@
 
 @property (nonatomic, copy  ) NSString *stateDesc;
 
+@property (nonatomic, assign) CGFloat cellHeight;
+
 @end
 
 @interface WKAfterSaleCellFrameModel: NSObject

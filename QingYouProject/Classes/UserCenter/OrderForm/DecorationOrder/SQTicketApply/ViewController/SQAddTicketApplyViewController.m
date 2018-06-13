@@ -179,6 +179,7 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"selectCell"];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"selectCell"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             [cell.contentView addSubview:self.selectView];
             [self.selectView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.mas_equalTo(0);
@@ -191,6 +192,7 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"defaultCell"];
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"defaultCell"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.accessoryView = self.selectDefaultButton;
             cell.textLabel.textColor = kCOLOR_333;
             cell.textLabel.font = KFONT(28);

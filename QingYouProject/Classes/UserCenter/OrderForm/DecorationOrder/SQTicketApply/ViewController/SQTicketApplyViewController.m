@@ -258,8 +258,7 @@
     if (!_sendSwitch) {
         _sendSwitch = [[UISwitch alloc] init];
         _sendSwitch.on = YES;
-        _sendSwitch.tintColor = kCOLOR_RGB(59, 186, 229);
-        _sendSwitch.backgroundColor = kCOLOR_RGB(59, 186, 229);
+        _sendSwitch.onTintColor = kCOLOR_RGB(59, 186, 229);
         [_sendSwitch addTarget:self action:@selector(postMailValueChanged:) forControlEvents:UIControlEventValueChanged];
     }
     return _sendSwitch;
@@ -269,11 +268,11 @@
     if (!_footerView) {
         _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, KSCAL(60))];
         UILabel *tipLab = [UILabel labelWithFont:KSCAL(26) textColor:colorWithLightGray text:@" 可联系客户经理索取"];
-        [tipLab appendImage:[UIImage imageNamed:@"invoicetitle_redpoint"] withType:SQAppendImageInLeft];
+        [tipLab appendImage:[UIImage imageNamed:@"invoicetitle_redpoint"] imageFrame:CGRectMake(0, 0, 7, 7) withType:SQAppendImageInLeft];
         [_footerView addSubview:tipLab];
         [tipLab sizeToFit];
-        tipLab.x = KSCAL(15);
-        tipLab.centery = KSCAL(50);
+        tipLab.x = KSCAL(30);
+        tipLab.centery = KSCAL(30);
     }
     return _footerView;
 }

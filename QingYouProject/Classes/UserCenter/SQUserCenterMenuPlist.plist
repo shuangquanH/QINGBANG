@@ -11,6 +11,8 @@
 		<string></string>
 		<key>needLogin</key>
 		<true/>
+		<key>image</key>
+		<string>usercenter_ordericon</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -21,6 +23,8 @@
 		<string></string>
 		<key>needLogin</key>
 		<true/>
+		<key>image</key>
+		<string>usercenter_collection_icon</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -31,6 +35,8 @@
 		<string></string>
 		<key>needLogin</key>
 		<false/>
+		<key>image</key>
+		<string>usercenter_set_icon</string>
 	</dict>
 	<dict>
 		<key>title</key>
@@ -41,6 +47,8 @@
 		<string></string>
 		<key>needLogin</key>
 		<false/>
+		<key>image</key>
+		<string>usercenter_service_icon</string>
 	</dict>
 </array>
 </plist>

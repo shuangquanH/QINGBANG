@@ -7,8 +7,10 @@
 //
 
 #import "WKUserCenterCollectViewController.h"
+
 #import "WKUserCenterCollectCell.h"
 #import "WKUserCenterCollectModel.h"
+
 @interface WKUserCenterCollectViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -37,6 +39,8 @@
     self.tableView.estimatedRowHeight = 0.0;
     self.tableView.estimatedSectionFooterHeight = 0.0;
     self.tableView.estimatedSectionHeaderHeight = 0.0;
+    self.tableView.separatorInset = UIEdgeInsetsMake(0, KSCAL(30), 0, KSCAL(30));
+    self.tableView.rowHeight = KSCAL(210);
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.right.top.mas_equalTo(0);
@@ -84,9 +88,5 @@
     return cell;
 }
 
-#pragma mark - UITableViewDelegate
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 120;
-}
 
 @end

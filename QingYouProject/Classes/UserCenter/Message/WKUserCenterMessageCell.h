@@ -14,4 +14,6 @@
 
 - (void)configMessageInfo:(WKUserCenterMessageModel *)messageInfo;
 
++ (CGFloat)cellHeightWithMessageInfo:(WKUserCenterMessageModel *)messageInfo;
+
 @end
