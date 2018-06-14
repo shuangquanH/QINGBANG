@@ -38,7 +38,7 @@
             
             [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.left.right.top.mas_equalTo(0);
-                make.height.mas_equalTo(KSCAL(130)).priorityHigh();
+                make.height.mas_equalTo(KSCAL(130));
             }];
             
             [deleteBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -69,10 +69,10 @@
             if (i == 0) {
                 make.left.mas_equalTo(0);
                 if (!hasDeleteAction) {
-                    make.height.mas_equalTo(KSCAL(130)).priorityHigh();
+                    make.height.mas_equalTo(KSCAL(130));
                 }
                 else {
-                    make.height.mas_equalTo(KSCAL(190)).priorityHigh();
+                    make.height.mas_equalTo(KSCAL(190));
                 }
             }
             else {

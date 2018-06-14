@@ -8,9 +8,9 @@
 
 #import "SQDecorationCellPayButtonView.h"
 
-const CGFloat kFunctionButtonWidth = 150.0;
+const CGFloat kFunctionButtonWidth      = 150.0;
 const CGFloat kFunctionButtonLeftMargin = 20.0;
-const CGFloat kFunctionButtonTopMargin = 0.0;
+const CGFloat kFunctionButtonTopMargin  = 0.0;
 
 @implementation SQDecorationCellPayButtonView
 {
@@ -147,6 +147,11 @@ const CGFloat kFunctionButtonTopMargin = 0.0;
 }
 
 - (void)click_typeButton:(UIButton *)sender {
+    
+    if (sender.tag == WKDecorationOrderActionTypeAlreadyPay) {//已付款状态没有相关动作
+        return;
+    }
+    
     if ([self.actionDelegate respondsToSelector:@selector(actionView:didClickActionType:forStage:)]) {
         [self.actionDelegate actionView:self didClickActionType:sender.tag forStage:_stage];
     }

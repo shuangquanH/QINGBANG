@@ -2454,6 +2454,19 @@
 			path = AfterSale;
 			sourceTree = "<group>";
 		};
+		04A6167120D20D3900D347D2 /* WKUserCenterCollect */ = {
+			isa = PBXGroup;
+			children = (
+				04FFB4D920C8FFB000B8843E /* WKUserCenterCollectViewController.h */,
+				04FFB4DA20C8FFB000B8843E /* WKUserCenterCollectViewController.m */,
+				04FFB4DC20C9000600B8843E /* WKUserCenterCollectCell.h */,
+				04FFB4DD20C9000600B8843E /* WKUserCenterCollectCell.m */,
+				04FFB4FA20CA1E9400B8843E /* WKUserCenterCollectModel.h */,
+				04FFB4FB20CA1E9400B8843E /* WKUserCenterCollectModel.m */,
+			);
+			path = WKUserCenterCollect;
+			sourceTree = "<group>";
+		};
 		04FD9BFA20C61AA300B3D153 /* WKAlert */ = {
 			isa = PBXGroup;
 			children = (
@@ -5972,6 +5985,7 @@
 		E9E1E58D20C65CEC00A807BE /* Collections */ = {
 			isa = PBXGroup;
 			children = (
+				04A6167120D20D3900D347D2 /* WKUserCenterCollect */,
 				E9E1E58720C65C3700A807BE /* MyCollectionListController.h */,
 				E9E1E58820C65C3800A807BE /* MyCollectionListController.m */,
 				E9E1E58A20C65C7300A807BE /* MyCollectionViewController.h */,
@@ -5984,12 +5998,6 @@
 				E9E1E59320C65D1C00A807BE /* MyCollectionTextCell.xib */,
 				E9E1E59820C65D3700A807BE /* MyCollectionModel.h */,
 				E9E1E59920C65D3700A807BE /* MyCollectionModel.m */,
-				04FFB4D920C8FFB000B8843E /* WKUserCenterCollectViewController.h */,
-				04FFB4DA20C8FFB000B8843E /* WKUserCenterCollectViewController.m */,
-				04FFB4DC20C9000600B8843E /* WKUserCenterCollectCell.h */,
-				04FFB4DD20C9000600B8843E /* WKUserCenterCollectCell.m */,
-				04FFB4FA20CA1E9400B8843E /* WKUserCenterCollectModel.h */,
-				04FFB4FB20CA1E9400B8843E /* WKUserCenterCollectModel.m */,
 			);
 			path = Collections;
 			sourceTree = "<group>";

@@ -37,21 +37,15 @@
         orderImage.clipsToBounds = YES;
         [self.contentView addSubview:orderImage];
         
-        orderTitle = [[UILabel alloc] init];
-        orderTitle.font = KFONT(28.0);
-        orderTitle.textColor = kCOLOR_666;
+        orderTitle = [UILabel labelWithFont:KSCAL(28.0) textColor:kCOLOR_666];
         orderTitle.numberOfLines = 2;
         [self.contentView addSubview:orderTitle];
         
-        orderDesc = [[UILabel alloc] init];
-        orderDesc.font = KFONT(28.0);
-        orderDesc.textColor = kCOLOR_666;
+        orderDesc = [UILabel labelWithFont:KSCAL(28.0) textColor:kCOLOR_666];
         orderDesc.numberOfLines = 1;
         [self.contentView addSubview:orderDesc];
         
-        orderPrice = [[UILabel alloc] init];
-        orderPrice.font = KFONT(28.0);
-        orderPrice.textColor = kCOLOR_666;
+        orderPrice = [UILabel labelWithFont:KSCAL(28.0) textColor:kCOLOR_666];
         [self.contentView addSubview:orderPrice];
         
         paymentStageView = [[WKDecorationStageView alloc] init];
@@ -180,14 +174,15 @@
     
     [super configOrderInfo:orderInfo];
     
+    //清除多余单阶段视图
     while (stageViewArray.count > (orderInfo.stage_list.count - 1)) {
         WKDecorationStageView *v = stageViewArray.lastObject;
         [v removeFromSuperview];
         [stageViewArray removeLastObject];
     }
     
+    //订金阶段视图
     UIView *lastView = paymentStageView;
-    
     for (int i = 0; i < orderInfo.stage_list.count - 1; i++) {
         WKDecorationStageView *view;
         if (stageViewArray.count > i) {
@@ -221,7 +216,7 @@
 
 @end
 
-
+/////////////
 @implementation WKDecorationDealingOrderCell
 {
     UILabel  *dealingTipLabel;
@@ -245,13 +240,9 @@
     dealingTipLabel = [UILabel labelWithFont:KSCAL(28) textColor:kCOLOR_999 textAlignment:NSTextAlignmentCenter text:@"系统正在受理您的订单，请耐心等待~"];
     [dealingBgView addSubview:dealingTipLabel];
     
-    connectServiceBtn = [UIButton new];
-    [connectServiceBtn setTitle:@"联系客服" forState:UIControlStateNormal];
-    [connectServiceBtn setTitleColor:KCOLOR(@"32bcea") forState:UIControlStateNormal];
-    [connectServiceBtn setImage:[UIImage imageNamed:@"service_tel_icon"] forState:UIControlStateNormal];
+    connectServiceBtn = [UIButton buttonWithTitle:@"联系客服" titleFont:KSCAL(28.0) titleColor:KCOLOR(@"32bcea") normalImage:@"service_tel_icon" highlightImage:nil];
     [connectServiceBtn sq_setImagePosition:SQImagePositionLeft spacing:5];
     [connectServiceBtn addTarget:self action:@selector(click_connectService) forControlEvents:UIControlEventTouchUpInside];
-    connectServiceBtn.titleLabel.font = KFONT(28.0);
     [dealingBgView addSubview:connectServiceBtn];
     
     UIView *lastView;
@@ -308,7 +299,9 @@
 
 - (void)click_connectService {
     if ([self.delegate respondsToSelector:@selector(decorationCell:tapedOrderActionType:forStage:)]) {
-        [self.delegate decorationCell:self tapedOrderActionType:WKDecorationOrderActionTypeCallService forStage:1];
+        [self.delegate decorationCell:self
+                 tapedOrderActionType:WKDecorationOrderActionTypeCallService
+                             forStage:1];
     }
 }
 

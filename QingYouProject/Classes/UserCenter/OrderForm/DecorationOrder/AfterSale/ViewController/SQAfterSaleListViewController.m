@@ -10,11 +10,15 @@
 #import "WKAfterSaleRecordCell.h"
 #import "WKAfterSaleModel.h"
 
-@interface SQAfterSaleListViewController ()<UITableViewDelegate, UITableViewDataSource>
+#import "WKCheckContactScaleView.h"
+
+@interface SQAfterSaleListViewController ()<UITableViewDelegate, UITableViewDataSource, WKAfterSaleRecordCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) NSMutableArray<WKAfterSaleModel *> *afterSaleList;
+
+@property (nonatomic, strong) WKCheckContactScaleView *imageDisplayView;
 
 @end
 
@@ -76,6 +80,7 @@
     WKAfterSaleRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
         cell = [[WKAfterSaleRecordCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell.delegate = self;
     }
     [cell configInfo:self.afterSaleList[indexPath.row]];
     return cell;
@@ -97,6 +102,17 @@
     return info.cellHeight;
 }
 
+#pragma mark - WKAfterSaleRecordCellDelegate
+- (void)recordCell:(WKAfterSaleRecordCell *)recordCell didSelectImageIndex:(NSInteger)imageIndex withSaleInfo:(WKAfterSaleModel *)saleInfo withTargetView:(UIView *)targetView {
+    [self.imageDisplayView showWithImageUrls:[saleInfo.images componentsSeparatedByString:@","] selectIndex:imageIndex captureView:targetView];
+}
 
+#pragma mark - lazy load
+- (WKCheckContactScaleView *)imageDisplayView {
+    if (!_imageDisplayView) {
+        _imageDisplayView = [[WKCheckContactScaleView alloc] initWithFrame:CGRectZero];
+    }
+    return _imageDisplayView;
+}
 
 @end

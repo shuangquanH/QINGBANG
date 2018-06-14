@@ -35,6 +35,8 @@
 
 @property (nonatomic, assign) NSInteger selectImageIndex;
 
+@property (nonatomic, copy  ) NSString *afterSaleText;
+
 @end
 
 @implementation SQApplyAfterSaleViewController
@@ -139,19 +141,39 @@
     SQAfterSaleListViewController *next = [SQAfterSaleListViewController new];
     [self.navigationController pushViewController:next animated:YES];
 }
-- (void)click_confirmButton {
-    [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
+
+- (void)pushToListClearSelf {
+    SQAfterSaleListViewController *next = [SQAfterSaleListViewController new];
+    [self.navigationController pushViewController:next animated:YES];
     
+    NSMutableArray *tmp = [self.navigationController.viewControllers mutableCopy];
+    [tmp removeObject:self];
+    [self.navigationController setValue:[tmp copy] forKey:@"viewControllers"];
+}
+
+- (void)click_confirmButton {
+    
+    if (!_afterSaleText.length) {
+        [YGAppTool showToastWithText:@"请填写问题描述"];
+        return;
+    }
+    
+    if (!_afterSaleImageArray.count) {
+        [YGAppTool showToastWithText:@"请至少添加一张凭证图片"];
+        return;
+    }
+    
+    [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
     NSString *images = @"1.jpg,2.jpg";
     NSDictionary *param = @{@"orderNum": self.orderInfo.order_info.orderNum,
                             @"apply_images": images,
-                            @"desc": @""
+                            @"desc": _afterSaleText
                             };
     [SQRequest post:KAPI_APPLYAFTERSALE param:param success:^(id response) {
         if ([response[@"code"] isEqualToString:@"0"]) {
             [YGAppTool showToastWithText:@"申请成功"];
             [YGNetService dissmissLoadingView];
-            [self performSelector:@selector(click_listButton) withObject:nil afterDelay:1.5];
+            [self performSelector:@selector(pushToListClearSelf) withObject:nil afterDelay:1.5];
         }
         else {
             [YGNetService dissmissLoadingView];
@@ -180,7 +202,7 @@
 
 #pragma mark - SQAddTicketApplyInputCellDelegate
 - (void)cell:(SQAddTicketApplyInputCell *)cell didEditTextField:(UITextField *)textField {
-    
+    _afterSaleText = textField.text;
 }
 
 

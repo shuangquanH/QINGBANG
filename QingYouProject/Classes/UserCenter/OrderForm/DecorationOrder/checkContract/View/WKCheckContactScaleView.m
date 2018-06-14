@@ -7,6 +7,8 @@
 //
 
 #import "WKCheckContactScaleView.h"
+#import <Photos/Photos.h>
+#import <MBProgressHUD/MBProgressHUD.h>
 
 static const CGFloat kScaleAnimationDuraction = 0.7;
 
@@ -59,9 +61,15 @@ static const CGFloat kScaleAnimationDuraction = 0.7;
     }
     else {
         [imageView sd_setImageWithPreviousCachedImageWithURL:[NSURL URLWithString:self.imageUrls[indexPath.item]] placeholderImage:nil options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-            
+            if (self.selectIndex == indexPath.item) {
+                
+            }
         } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-            
+            if (self.selectIndex == indexPath.item) {
+                if (error) {
+                    [YGAppTool showToastWithText:@"图片加载失败"];
+                }
+            }
         }];
     }
     return cell;
@@ -79,6 +87,21 @@ static const CGFloat kScaleAnimationDuraction = 0.7;
 }
 - (void)click_save {
     
+    UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:self.selectIndex inSection:0]];
+    UIImageView *imageView = cell.contentView.subviews.firstObject;
+    if (!imageView.image) return;
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
+    hud.bezelView.backgroundColor =  [[UIColor blackColor] colorWithAlphaComponent:0.6];
+    UIImage *saveImage = imageView.image;
+    [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+        [PHAssetChangeRequest creationRequestForAssetFromImage:saveImage];
+    } completionHandler:^(BOOL success, NSError * _Nullable error) {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [hud hideAnimated:NO];
+            [YGAppTool showToastWithText:(success ? @"已保存图片到相册" : @"保存失败")];
+        });
+    }];
 }
 
 #pragma mark - public
@@ -105,20 +128,23 @@ static const CGFloat kScaleAnimationDuraction = 0.7;
                 [self addSubview:_maskImageView];
             }
             _maskImageView.contentMode = imageView.contentMode;
-            _maskImageView.hidden = NO;
             _maskImageView.frame = _fromRect;
             _maskImageView.image = imageView.image;
+            _maskImageView.hidden = NO;
         }
     }
 
     [[UIApplication sharedApplication].windows.firstObject addSubview:self];
 
     self.frame = self.superview.bounds;
-    self.alpha = 1.0;
-    self.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.1];
+    
     self.collectionView.hidden = YES;
     self.pageLabel.text = [NSString stringWithFormat:@"%zd/%zd", selectIndex + 1, imageUrls.count];
-    if (self.maskImageView) {
+
+    self.alpha = 1.0;
+    self.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.1];
+    
+    if (!self.maskImageView.hidden) {
         [self bringSubviewToFront:self.maskImageView];
     }
     [self layoutIfNeeded];
@@ -147,9 +173,12 @@ static const CGFloat kScaleAnimationDuraction = 0.7;
     
     if (image) {
         self.maskImageView.image = image;
+        self.maskImageView.frame = self.collectionView.frame;
         self.maskImageView.hidden = NO;
         cell.contentView.subviews.firstObject.hidden = YES;
     }
+    
+    [self layoutIfNeeded];
     [UIView animateWithDuration:kScaleAnimationDuraction animations:^{
         if (image) {
             self.maskImageView.frame = self.fromRect;
@@ -159,6 +188,7 @@ static const CGFloat kScaleAnimationDuraction = 0.7;
     } completion:^(BOOL finished) {
         cell.contentView.subviews.firstObject.hidden = NO;
         self.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.1];
+        self.maskImageView.alpha = 1.0;
         [self removeFromSuperview];
     }];
 }

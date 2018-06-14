@@ -61,7 +61,6 @@
             else {
                 [YGAppTool showToastWithText:response[@"msg"]];
             }
-            
         } failure:^(NSError *error) {
             [YGAppTool showToastWithText:@"网路错误"];
             [self.tableView.mj_header endRefreshing];
@@ -90,10 +89,13 @@
     }
     //订单详情
     SQDecorationOrderCell *cell;
-    if (order.orderState == 3) {//受理中
+    if (order.orderState == 1 || order.orderState == 2) {//待付款、已关闭状态，只有一个订金阶段需要展示
+        cell = [SQDecorationOrderCell cellWithTableView:tableView];
+    }
+    else if (order.orderState == 3) {//受理中状态
         cell = [WKDecorationDealingOrderCell cellWithTableView:tableView];
     }
-    else {//装修中、已完成
+    else {//其余所有状态
         cell = [WKDecorationOrderMutableStageCell cellWithTableView:tableView];
     }
     cell.delegate = self;
@@ -140,33 +142,44 @@
 
 #pragma mark - decorationOrderCellDelegate
 - (void)decorationCell:(SQDecorationOrderCell *)decorationCell tapedOrderActionType:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage {
+    
     NSIndexPath *targetIndex = [self.tableView indexPathForCell:decorationCell];
     if (!targetIndex) return;
     
+    SQDecorationDetailModel *orderInfo = [self.orderList objectAtIndex:targetIndex.section];
+    WKDecorationStageModel *stageInfo = orderInfo.stage_list[stage];
+    if (!stageInfo.isActivity) {//当前状态还没有被激活
+        [YGAppTool showToastWithText:[NSString stringWithFormat:@"需要完成%@，才可以操作此阶段", orderInfo.stage_list[stage-1].stageName]];
+        return;
+    }
+    
     switch (actionType) {
-        case WKDecorationOrderActionTypePay://支付
-        {
+        case WKDecorationOrderActionTypePay: {//支付
             [WKAnimationAlert showAlertWithInsideView:self.bottomPayView animation:WKAlertAnimationTypeBottom canTouchDissmiss:YES superView:nil offset:0];
         }
             break;
-        case WKDecorationOrderActionTypeCancel://取消订单
-        {
+        case WKDecorationOrderActionTypeCancel: {//取消订单
             [WKDecorationOrderAlertView alertWithDetail:@"确认取消订单?" titles:@[@"确定", @"取消"] bgColors:@[KCOLOR_MAIN, KCOLOR(@"98999A")] handler:^(NSInteger index) {
                 if (index == 0) {
-                    SQDecorationDetailModel *m = [self.orderList objectAtIndex:targetIndex.section];
                     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-                    [SQRequest post:KAPI_CANCELORDER param:@{@"orderNum": m.orderNum} success:^(id response) {
+                    [SQRequest post:KAPI_CANCELORDER param:@{@"orderNum": orderInfo.orderNum} success:^(id response) {
                         [YGNetService dissmissLoadingView];
                         if ([response[@"state"] isEqualToString:@"success"]) {
-                            m.orderTitle = nil;
-                            m.orderState = 2;
-                            m.stage_list.firstObject.stageState = 4;
-                            [decorationCell configOrderInfo:m];
+                            orderInfo.orderTitle = nil;
+                            orderInfo.orderState = 2;
+                            orderInfo.stage_list.firstObject.stageState = 4;
+                            WKDecorationStateCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:targetIndex.section]];
+                            if (cell) {
+                                [cell configOrderInfo:orderInfo];
+                                [decorationCell configOrderInfo:orderInfo];
+                            }
+                            else {
+                                [self.tableView reloadData];
+                            }
                         }
                         else {
                             [YGAppTool showToastWithText:response[@"data"][@"msg"]];
                         }
-                        
                     } failure:^(NSError *error) {
                         [YGNetService dissmissLoadingView];
                         [YGAppTool showToastWithText:@"网络错误"];
@@ -175,13 +188,11 @@
             }];
         }
             break;
-        case WKDecorationOrderActionTypeDelete://删除订单
-        {
+        case WKDecorationOrderActionTypeDelete: {//删除订单
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"确认删除订单" preferredStyle:UIAlertControllerStyleAlert];
             [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                SQDecorationDetailModel *m = [self.orderList objectAtIndex:targetIndex.section];
                 [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-                [SQRequest post:KAPI_DELETEORDER param:@{@"orderNum": m.orderNum} success:^(id response) {
+                [SQRequest post:KAPI_DELETEORDER param:@{@"orderNum": orderInfo.orderNum} success:^(id response) {
                     [YGNetService dissmissLoadingView];
                     if ([response[@"code"] isEqualToString:@"0"]) {
                         [self.orderList removeObjectAtIndex:targetIndex.section];
@@ -200,9 +211,7 @@
             [self presentViewController:alert animated:YES completion:nil];
         }
             break;
-        case WKDecorationOrderActionTypeRepair://补登
-        {
-          
+        case WKDecorationOrderActionTypeRepair: {//补登
             WKDecorationRepairViewController *next = [WKDecorationRepairViewController new];
             next.orderInfo = self.orderList[targetIndex.section];
             next.stageIndex = stage;
@@ -212,8 +221,7 @@
             [self.navigationController pushViewController:next animated:YES];
         }
             break;
-        case WKDecorationOrderActionTypeCallService://联系客服
-        {
+        case WKDecorationOrderActionTypeCallService: {//联系客服
             [YGAlertView showAlertWithTitle:@"是否要拨打客服电话？"
                           buttonTitlesArray:@[@"YES", @"NO"]
                           buttonColorsArray:@[[UIColor blueColor],

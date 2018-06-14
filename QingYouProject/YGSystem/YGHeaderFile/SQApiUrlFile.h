@@ -364,5 +364,6 @@
 #define KAPI_APPLYREPAIR               @"applyRepair"//申请补登
 #define KAPI_GETREPAIRINFO             @"getRepairInfo"//补登状态
 #define KAPI_CANCELREFUND              @"cancelRefund"//撤销退款
+#define KAPI_DELETECOLLECT             @"deleteCollect"//取消收藏
 
 #endif /* SQApiUrlFile_h */

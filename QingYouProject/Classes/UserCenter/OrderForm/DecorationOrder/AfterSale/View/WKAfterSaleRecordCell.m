@@ -20,6 +20,7 @@
     UILabel *_resultLab;
     
     WKImageCollectionView *_imageCollectView;
+    WKAfterSaleModel *_saleInfo;
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -34,6 +35,9 @@
 }
 
 - (void)configInfo:(WKAfterSaleModel *)info {
+    
+    _saleInfo = info;
+    
     _stateLab.text = info.stateDesc;
     _timeLab.text = [NSString stringWithFormat:@"您于%@发起了售后申请：", info.createTime];
     _problemLab.text = [NSString stringWithFormat:@"问题描述：%@", info.afterSaleDesc];
@@ -90,6 +94,14 @@
     [self.contentView addSubview:_resultLab];
  
     _certificateTipLab.text = @"凭证：";
+    
+    @weakify(self)
+    _imageCollectView.viewClicker = ^(UIView *view, NSInteger index) {
+        @strongify(self)
+        if ([self.delegate respondsToSelector:@selector(recordCell:didSelectImageIndex:withSaleInfo:withTargetView:)]) {
+            [self.delegate recordCell:self didSelectImageIndex:index withSaleInfo:self->_saleInfo withTargetView:view];
+        }
+    };
 }
 
 - (void)makeConstraints {

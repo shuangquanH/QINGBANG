@@ -10,4 +10,6 @@
 
 @interface SQAfterSaleListViewController : RootViewController
 
+@property (nonatomic, assign) BOOL isPopToOrderDetail;
+
 @end

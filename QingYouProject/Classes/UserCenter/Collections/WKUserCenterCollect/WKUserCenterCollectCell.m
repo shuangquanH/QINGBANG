@@ -14,6 +14,8 @@
     UIImageView *_productImageView;
     UILabel  *_productNameLabel;
     UIButton *_cancelCollectBtn;
+    
+    WKUserCenterCollectModel *_collectInfo;
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -27,6 +29,7 @@
 - (void)setupSubviews {
     _productImageView = [[UIImageView alloc] init];
     _productImageView.contentMode = UIViewContentModeScaleAspectFill;
+    _productImageView.layer.masksToBounds = YES;
     [self.contentView addSubview:_productImageView];
     
     _productNameLabel = [UILabel labelWithFont:KSCAL(28) textColor:kCOLOR_333];
@@ -37,6 +40,7 @@
     _cancelCollectBtn.layer.cornerRadius = KSCAL(22.5);
     _cancelCollectBtn.layer.borderColor = kCOLOR_666.CGColor;
     _cancelCollectBtn.layer.borderWidth = 1.0;
+    [_cancelCollectBtn addTarget:self action:@selector(click_cancelCollect) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_cancelCollectBtn];
     
     [_productImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -61,6 +65,8 @@
 
 - (void)configCollectInfo:(WKUserCenterCollectModel *)collectInfo {
     
+    _collectInfo = collectInfo;
+    
     NSMutableParagraphStyle *para = [NSMutableParagraphStyle new];
     [para setLineSpacing:KSCAL(14)];
     NSAttributedString *desc = [[NSAttributedString alloc] initWithString:collectInfo.product_desc attributes:@{NSParagraphStyleAttributeName: para}];
@@ -69,6 +75,12 @@
     _productNameLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     
     [_productImageView sd_setImageWithURL:[NSURL URLWithString:collectInfo.product_icon] placeholderImage:nil];
+}
+
+- (void)click_cancelCollect {
+    if ([self.delegate respondsToSelector:@selector(collectCell:didClickCancelCollectInfo:)]) {
+        [self.delegate collectCell:self didClickCancelCollectInfo:_collectInfo];
+    }
 }
 
 @end

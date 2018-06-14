@@ -53,13 +53,6 @@
     NSString *path = [[NSBundle mainBundle]pathForResource:@"SQOrderFormListPlist" ofType:@"plist"];
     self.orderFormArr = [NSArray arrayWithContentsOfFile:path];
     [self.view addSubview:self.tableview];
-    
-    if (@available(iOS 11.0, *)) {
-        self.tableview.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-    }
-    else {
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    }
 }
 
 - (void)viewWillLayoutSubviews {
@@ -70,10 +63,6 @@
 }
 
 - (void)sendUnreadBadgeReqeust {
-    if (![self loginOrNot]) {
-        return;
-    }
-    
     [SQRequest post:KAPI_UNREADORDERBADGE param:nil success:^(id response) {
         if ([response[@"code"] isEqualToString:@"0"]) {
             self.unreadInfo = [WKMyOrderUnreadCountModel yy_modelWithJSON:response[@"data"][@"badgeNum"]];
@@ -227,7 +216,6 @@
     }
     
     [self badgeToZeroWithIndexPath:indexPath];
-
 }
 
 #pragma mark LazyLoad

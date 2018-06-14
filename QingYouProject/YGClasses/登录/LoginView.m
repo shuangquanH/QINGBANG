@@ -55,7 +55,7 @@
     switch (self.loginWithType) {
         case loginWithCommonPageType://登录
         {
-            [self createBackButtonWithBaseView:nil];
+//            [self createBackButtonWithBaseView:nil];
             [self createLoginViewWithBaseView:nil];
             [self createPhoneViewWithY:_logoImageView.y+_logoImageView.height];
             [self createPasswordViewWithBaseView:_phoneBaseView];
@@ -189,7 +189,7 @@
 {
 
     //注册
-    _registButton = [[UIButton alloc] initWithFrame:CGRectMake(YGScreenWidth-50, 20, 40, 40)];
+    _registButton = [[UIButton alloc] initWithFrame:CGRectMake(YGScreenWidth-48, KSTATU_HEIGHT, 40, 40)];
     [_registButton setTitle:@"注册" forState:UIControlStateNormal];
     [_registButton setTitleColor:colorWithMainColor forState:UIControlStateNormal];
     _nimbleButton.titleLabel.font = [UIFont systemFontOfSize:YGFontSizeBigTwo];

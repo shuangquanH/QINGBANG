@@ -53,7 +53,7 @@
     [self.view addSubview:_loginView];
     if (self.loginWithType == loginWithCommonPageType) {
         self.fd_prefersNavigationBarHidden = YES;
-        UIButton    *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 20, 40, 40)];
+        UIButton   *backButton = [[UIButton alloc] initWithFrame:CGRectMake(8, KSTATU_HEIGHT, 40, 40)];
         [backButton setImage:[UIImage imageNamed:@"back_black"] forState:UIControlStateNormal];
         [backButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
         [_loginView addSubview:backButton];

@@ -18,6 +18,9 @@
 @property (nonatomic, assign) NSInteger stageState;
 
 @property (nonatomic, copy  ) NSString *stageId;
+/** 是否被激活 */
+@property (nonatomic, assign) BOOL isActivity;
+
 @end
 
 @interface SQDecorationDetailModel : NSObject
@@ -47,6 +50,8 @@
 @property (nonatomic, copy  ) NSString *createTime;
 
 @property (nonatomic, copy  ) NSString *contractImages;
+//报价单下载地址
+@property (nonatomic, copy  ) NSString *quotationUrl;
 
 @property (nonatomic, strong) NSArray<WKDecorationStageModel *> *stage_list;
 

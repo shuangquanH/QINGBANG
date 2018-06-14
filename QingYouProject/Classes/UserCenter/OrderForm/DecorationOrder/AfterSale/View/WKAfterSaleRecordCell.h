@@ -9,7 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "WKAfterSaleModel.h"
 
+@class WKAfterSaleRecordCell;
+
+@protocol WKAfterSaleRecordCellDelegate<NSObject>
+
+- (void)recordCell:(WKAfterSaleRecordCell *)recordCell didSelectImageIndex:(NSInteger)imageIndex withSaleInfo:(WKAfterSaleModel *)saleInfo withTargetView:(UIView *)targetView;
+
+@end
+
 @interface WKAfterSaleRecordCell : UITableViewCell
+
+@property (nonatomic, weak) id<WKAfterSaleRecordCellDelegate> delegate;
 
 - (void)configInfo:(WKAfterSaleModel *)info;
 

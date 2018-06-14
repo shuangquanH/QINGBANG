@@ -36,7 +36,6 @@
     [super viewDidLoad];
     self.naviTitle = @"订单详情";
     
-    
     self.orderVM = [SQDecorationDetailViewModel new];
     self.orderVM.orderDetailDelegate = self;
     [self sendReqeust];
@@ -149,6 +148,13 @@
 }
 
 - (void)orderCell:(SQDecorationOrderCell *)orderCell didClickAction:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage {
+    
+    WKDecorationStageModel *stageInfo = self.orderInfo.order_info.stage_list[stage];
+    if (!stageInfo.isActivity) {//当前状态还没有被激活
+        [YGAppTool showToastWithText:[NSString stringWithFormat:@"需要完成%@，才可以操作此阶段", self.orderInfo.order_info.stage_list[stage-1].stageName]];
+        return;
+    }
+    
     switch (actionType) {
         case WKDecorationOrderActionTypePay://支付
         {

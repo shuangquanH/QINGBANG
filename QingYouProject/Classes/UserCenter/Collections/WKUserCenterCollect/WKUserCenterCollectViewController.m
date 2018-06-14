@@ -11,7 +11,7 @@
 #import "WKUserCenterCollectCell.h"
 #import "WKUserCenterCollectModel.h"
 
-@interface WKUserCenterCollectViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface WKUserCenterCollectViewController ()<UITableViewDelegate, UITableViewDataSource, WKUserCenterCollectCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -83,9 +83,35 @@
     WKUserCenterCollectCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
         cell = [[WKUserCenterCollectCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell.delegate = self;
     }
     [cell configCollectInfo:self.collectList[indexPath.row]];
     return cell;
+}
+
+#pragma mark - WKUserCenterCollectCellDelegate
+- (void)collectCell:(WKUserCenterCollectCell *)collectCell didClickCancelCollectInfo:(WKUserCenterCollectModel *)collectInfo {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"确认取消收藏？" preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
+        [SQRequest post:KAPI_DELETECOLLECT param:@{@"product_id": collectInfo.product_id} success:^(id response) {
+            [YGNetService dissmissLoadingView];
+            if ([response[@"code"] isEqualToString:@"0"]) {
+                NSInteger index = [self.collectList indexOfObject:collectInfo];
+                [self.collectList removeObjectAtIndex:index];
+                [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationLeft];
+            }
+            else {
+                [YGAppTool showToastWithText:response[@"msg"]];
+            }
+        } failure:^(NSError *error) {
+            [YGNetService dissmissLoadingView];
+            [YGAppTool showToastWithText:@"网络错误"];
+        }];
+    }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 
