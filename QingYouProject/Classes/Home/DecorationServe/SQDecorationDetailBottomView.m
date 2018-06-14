@@ -10,7 +10,7 @@
 #import "UIButton+SQImagePosition.h"
 
 @implementation SQDecorationDetailBottomView {
-    UIButton    *collectBtn;
+//    UIButton    *collectBtn;
     UIButton    *contactBtn;
     UIButton    *payButton;
 }
@@ -19,21 +19,22 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = kWhiteColor;
+        self.backgroundColor = KCOLOR_MAIN;
         self.layer.masksToBounds = NO;
         self.layer.shadowOffset = CGSizeMake(0, -3);
-        self.layer.shadowRadius = 5;
+        self.layer.shadowRadius = 3;
         self.layer.shadowOpacity = 0.15;
         
         
-        collectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [collectBtn setTitle:@"收藏" forState:UIControlStateNormal];
-        collectBtn.titleLabel.font = KFONT(20);
-        collectBtn.titleLabel.textColor = kGrayColor;
-        [collectBtn setImage:[UIImage imageNamed:@"Details_page_tab__icon1"] forState:UIControlStateNormal];
-        [collectBtn setImage:[UIImage imageNamed:@"Details_page_tab__icon1_down"] forState:UIControlStateSelected];
-        [self addSubview:collectBtn];
-        [collectBtn setTitleColor:kGrayColor forState:UIControlStateNormal];
+//        collectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [collectBtn setTitle:@"收藏" forState:UIControlStateNormal];
+//        collectBtn.titleLabel.font = KFONT(20);
+//        collectBtn.titleLabel.textColor = kGrayColor;
+//        [collectBtn setImage:[UIImage imageNamed:@"Details_page_tab__icon1"] forState:UIControlStateNormal];
+//        [collectBtn setImage:[UIImage imageNamed:@"Details_page_tab__icon1_down"] forState:UIControlStateSelected];
+//        [self addSubview:collectBtn];
+//        [collectBtn setTitleColor:kGrayColor forState:UIControlStateNormal];
+//        [collectBtn sq_setImagePosition:SQImagePositionTop spacing:2];
         
         
         contactBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -45,43 +46,47 @@
         [self addSubview:contactBtn];
         [contactBtn setTitleColor:kGrayColor forState:UIControlStateNormal];
         
-        [collectBtn sq_setImagePosition:SQImagePositionTop spacing:2];
         [contactBtn sq_setImagePosition:SQImagePositionTop spacing:2];
         
-        SQBaseImageView *lefLine = [[SQBaseImageView alloc] init];
-        lefLine.image = [UIImage imageNamed:@"tab_line"];
-        [self addSubview:lefLine];
+        
+        
+//        SQBaseImageView *lefLine = [[SQBaseImageView alloc] init];
+//        lefLine.image = [UIImage imageNamed:@"tab_line"];
+//        [self addSubview:lefLine];
+//        [lefLine mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.equalTo(collectBtn.mas_right);
+//            make.centerY.equalTo(collectBtn);
+//        }];
+        
         SQBaseImageView *rightLine = [[SQBaseImageView alloc] init];
         rightLine.image = [UIImage imageNamed:@"tab_line"];
         [self addSubview:rightLine];
-        [lefLine mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(collectBtn.mas_right);
-            make.centerY.equalTo(collectBtn);
-        }];
+        
         [rightLine mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(contactBtn.mas_right);
-            make.centerY.equalTo(collectBtn);
+            make.centerY.equalTo(self);
         }];
         
         
         
         payButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [payButton setBackgroundImage:[UIImage imageNamed:@"Details_page_tab_but_nor"] forState:UIControlStateNormal];
+//        [payButton setBackgroundImage:[UIImage imageNamed:@"Details_page_tab_but_nor"] forState:UIControlStateNormal];
         [payButton setTitle:@"支付定金" forState:UIControlStateNormal];
-        [payButton setTitleColor:kGrayColor forState:UIControlStateNormal];
+        [payButton setTitleColor:kWhiteColor forState:UIControlStateNormal];
         payButton.titleLabel.font = KFONT(30);
         [self addSubview:payButton];
         
-        [collectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self).offset(KSCAL(10));
-            make.left.equalTo(self);
-            make.height.equalTo(self).offset(KSCAL(-10));
-            make.width.mas_equalTo(KSCAL(150));
-        }];
+//        [collectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(self).offset(KSCAL(20));
+//            make.left.equalTo(self);
+//            make.height.equalTo(self).offset(KSCAL(-20));
+//            make.width.mas_equalTo(KSCAL(0));
+//        }];
         
         [contactBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(collectBtn.mas_right);
-            make.top.height.width.equalTo(collectBtn);
+            make.left.equalTo(self);
+            make.right.equalTo(self.mas_centerX);
+            make.bottom.equalTo(self).offset(-KSCAL(20));
         }];
         
         [payButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -92,7 +97,7 @@
         }];
         
         
-        [collectBtn addTarget:self action:@selector(collectionAction) forControlEvents:UIControlEventTouchUpInside];
+//        [collectBtn addTarget:self action:@selector(collectionAction) forControlEvents:UIControlEventTouchUpInside];
         [contactBtn addTarget:self action:@selector(contactAction) forControlEvents:UIControlEventTouchUpInside];
         [payButton addTarget:self action:@selector(payAction) forControlEvents:UIControlEventTouchUpInside];
         

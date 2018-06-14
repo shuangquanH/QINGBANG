@@ -146,6 +146,7 @@
         
         WeakSelf(weakSelf);
         [_webView registJSFunctionWithName:regisArr back:^(NSString *methodName, id  _Nullable paramValue) {
+            [weakSelf.view bringSubviewToFront:weakSelf.bottomView];
             if ([methodName isEqualToString:@"CHOOSESKUPARAMFORIOS"]) {
                 weakSelf.skuId = [paramValue integerValue];
             } else if ([methodName isEqualToString:@"GETHTMLHEIGHTFORIOS"]) {
