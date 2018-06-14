@@ -34,7 +34,7 @@
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    _tableView.estimatedRowHeight = 80;
+    _tableView.estimatedRowHeight = 0.0;
     _tableView.estimatedSectionHeaderHeight = 0.0;
     _tableView.estimatedSectionFooterHeight = 0.0;
     [self.view addSubview:_tableView];
@@ -84,6 +84,17 @@
 #pragma mark - UITableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return KSCAL(20);
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return CGFLOAT_MIN;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    WKAfterSaleModel *info = self.afterSaleList[indexPath.row];
+    if (info.cellHeight == 0) {
+        info.cellHeight = [WKAfterSaleRecordCell cellHeightWithSaleInfo:info];
+    }
+    return info.cellHeight;
 }
 
 

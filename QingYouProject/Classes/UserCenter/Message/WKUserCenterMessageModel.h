@@ -16,4 +16,6 @@
 
 @property (nonatomic, copy) NSString *messageTime;
 
+@property (nonatomic, assign) CGFloat cellHeight;
+
 @end

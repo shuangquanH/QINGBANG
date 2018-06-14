@@ -37,7 +37,9 @@ const CGFloat kItemHorizontalMargin = 10;
 //重新补登相关
 @property (nonatomic, strong) WKOrderRepairModel *repairInfo;
 
-@property (nonatomic, strong) UIImageView *repairFailBgView;
+@property (nonatomic, strong) UIView *roundRectBgView;
+
+@property (nonatomic, strong) UIView  *repairFailBgView;
 
 @property (nonatomic, strong) UILabel *repairFailReasonLabel;
 
@@ -109,10 +111,12 @@ const CGFloat kItemHorizontalMargin = 10;
         _tipLabl = [UILabel labelWithFont:KSCAL(38) textColor:kCOLOR_333 text:@"系统回复"];
         [self.view addSubview:_tipLabl];
         
-        _repairFailBgView = [UIImageView new];
-        UIImage *bgImage = [UIImage imageNamed:@"actualiza_image"];
-        _repairFailBgView.image = [bgImage stretchableImageWithLeftCapWidth:bgImage.size.width*0.5 topCapHeight:bgImage.size.height*0.5];
-        [self.view addSubview:_repairFailBgView];
+        _roundRectBgView = [UIView new];
+        [self.view addSubview:_roundRectBgView];
+        
+        _repairFailBgView = [UIView new];
+        _repairFailBgView.backgroundColor = [UIColor whiteColor];
+        [_roundRectBgView addSubview:_repairFailBgView];
         
         _repairFailReasonLabel = [UILabel labelWithFont:KSCAL(28) textColor:kCOLOR_333 textAlignment:NSTextAlignmentCenter];
         [_repairFailBgView addSubview:_repairFailReasonLabel];
@@ -163,24 +167,31 @@ const CGFloat kItemHorizontalMargin = 10;
         NSAttributedString *reason = [[NSAttributedString alloc] initWithString:reasonStr attributes:@{NSParagraphStyleAttributeName: para}];
         _repairFailReasonLabel.attributedText = reason;
         
-        CGFloat reasonH = [reasonStr labelAutoCalculateRectWithLineSpace:KSCAL(14) Font:KFONT(28) MaxSize:CGSizeMake(KSCAL(590), MAXFLOAT)].height + KSCAL(60);
+        CGFloat reasonH = [reasonStr labelAutoCalculateRectWithLineSpace:KSCAL(14) Font:KFONT(28) MaxSize:CGSizeMake(kScreenW-2*KSCAL(85), MAXFLOAT)].height;
         
-        [_repairFailBgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [_roundRectBgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(0);
             make.top.equalTo(_tipLabl.mas_bottom).offset(KSCAL(50));
-            make.size.mas_equalTo(CGSizeMake(KSCAL(690), reasonH));
+            make.left.mas_equalTo(KSCAL(30));
+            make.height.mas_equalTo(reasonH + KSCAL(70));
+        }];
+        
+        [_repairFailBgView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.center.mas_equalTo(0);
+            make.top.mas_equalTo(KSCAL(20));
+            make.left.mas_equalTo(KSCAL(20));
         }];
         
         [_repairFailReasonLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.mas_equalTo(0);
-            make.left.mas_equalTo(KSCAL(50));
-            make.top.mas_equalTo(KSCAL(30));
+            make.left.mas_equalTo(KSCAL(35));
+            make.top.mas_equalTo(KSCAL(15));
         }];
         
         [_confirmButton mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(0);
             make.size.mas_equalTo(CGSizeMake(KSCAL(500), KSCAL(98)));
-            make.top.equalTo(_repairFailBgView.mas_bottom).offset(KSCAL(100));
+            make.top.equalTo(_roundRectBgView.mas_bottom).offset(KSCAL(100));
         }];
     }
     else {
@@ -189,6 +200,47 @@ const CGFloat kItemHorizontalMargin = 10;
             make.height.mas_equalTo(KSCAL(100));
         }];
     }
+    
+
+    [self.view layoutIfNeeded];
+    
+    CGFloat kCircleW = 4.0;
+    CGFloat width = _roundRectBgView.width;
+    NSInteger hCount = width / kCircleW / 2.0 + 1;
+    CAReplicatorLayer *topReplicatorLayer = [CAReplicatorLayer layer];
+    topReplicatorLayer.instanceCount = hCount;
+    topReplicatorLayer.instanceTransform = CATransform3DMakeTranslation(kCircleW * 2, 0, 0);
+    [topReplicatorLayer addSublayer:[self circleLayer]];
+    topReplicatorLayer.frame = CGRectMake(0, 0, width, kCircleW);
+    topReplicatorLayer.masksToBounds = YES;
+    [_roundRectBgView.layer addSublayer:topReplicatorLayer];
+    
+    CAReplicatorLayer *bottomReplicatorLayer = [CAReplicatorLayer layer];
+    bottomReplicatorLayer.instanceCount = hCount;
+    bottomReplicatorLayer.instanceTransform = CATransform3DMakeTranslation(kCircleW * 2, 0, 0);
+    [bottomReplicatorLayer addSublayer:[self circleLayer]];
+    bottomReplicatorLayer.frame = CGRectMake(0, _roundRectBgView.height - kCircleW, width, kCircleW);
+    bottomReplicatorLayer.masksToBounds = YES;
+    [_roundRectBgView.layer addSublayer:bottomReplicatorLayer];
+    
+    //左右
+    CGFloat height = _roundRectBgView.height;
+    NSInteger vCount = height / kCircleW / 2 + 1;
+    CAReplicatorLayer *leftReplicatorLayer = [CAReplicatorLayer layer];
+    leftReplicatorLayer.instanceCount = vCount;
+    leftReplicatorLayer.instanceTransform = CATransform3DMakeTranslation(0, kCircleW * 2, 0);
+    [leftReplicatorLayer addSublayer:[self circleLayer]];
+    leftReplicatorLayer.frame = CGRectMake(0, 0, kCircleW, height);
+    leftReplicatorLayer.masksToBounds = YES;
+    [_roundRectBgView.layer addSublayer:leftReplicatorLayer];
+    
+    CAReplicatorLayer *rightReplicatorLayer = [CAReplicatorLayer layer];
+    rightReplicatorLayer.instanceCount = vCount;
+    rightReplicatorLayer.instanceTransform = CATransform3DMakeTranslation(0, kCircleW * 2, 0);
+    [rightReplicatorLayer addSublayer:[self circleLayer]];
+    rightReplicatorLayer.frame = CGRectMake(width-kCircleW, 0, kCircleW, height);
+    rightReplicatorLayer.masksToBounds = YES;
+    [_roundRectBgView.layer addSublayer:rightReplicatorLayer];
 }
 
 #pragma mark - request
@@ -227,7 +279,7 @@ const CGFloat kItemHorizontalMargin = 10;
             _topTipLabel.alpha = 1.0;
             _collectionView.alpha = 1.0;
             _addPhotoBtn.alpha = 1.0;
-            _repairFailBgView.alpha = 0.0;
+            _roundRectBgView.alpha = 0.0;
             
             [_tipLabl mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.top.equalTo(_topTipLabel.mas_bottom).offset(KSCAL(130));
@@ -355,6 +407,14 @@ const CGFloat kItemHorizontalMargin = 10;
         }
         [self.collectionView reloadData];
     }
+}
+
+- (CALayer *)circleLayer {
+    CALayer *layer = [CALayer layer];
+    layer.frame = CGRectMake(0, 0, 4.0, 4.0);
+    layer.cornerRadius = 2.0;
+    layer.backgroundColor = [UIColor whiteColor].CGColor;
+    return layer;
 }
 
 @end

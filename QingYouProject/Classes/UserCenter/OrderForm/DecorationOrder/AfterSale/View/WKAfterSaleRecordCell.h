@@ -13,4 +13,6 @@
 
 - (void)configInfo:(WKAfterSaleModel *)info;
 
++ (CGFloat)cellHeightWithSaleInfo:(WKAfterSaleModel *)saleInfo;
+
 @end

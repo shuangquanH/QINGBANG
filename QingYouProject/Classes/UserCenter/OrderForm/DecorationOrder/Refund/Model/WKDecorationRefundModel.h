@@ -17,8 +17,13 @@
 @property (nonatomic, copy  ) NSString *refundFailReason;
 /** 退款发起时间 */
 @property (nonatomic, copy  ) NSString *createTime;
-/** 退款截止时间 */
-@property (nonatomic, copy  ) NSString *limitTime;
 /** 退款撤销时间 */
 @property (nonatomic, copy  ) NSString *cancelTime;
+/** 退款天数 */
+@property (nonatomic, copy  ) NSString *limitDay;
+/** 退款小时数 */
+@property (nonatomic, copy  ) NSString *limitHour;
+/** 退款分钟数 */
+@property (nonatomic, copy  ) NSString *limitMinute;
+
 @end

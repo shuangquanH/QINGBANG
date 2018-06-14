@@ -11,6 +11,7 @@
 #import "TZImagePickerController.h"
 
 #import "SQAddTicketApplyInputCell.h"
+#import "WKImageCollectionView.h"
 
 #import "SQDecorationDetailModel.h"
 
@@ -26,9 +27,13 @@
 
 @property (nonatomic, strong) UIButton *confirmButton;
 
+@property (nonatomic, strong) WKImageCollectionView *imageCollectView;
+
 @property (nonatomic, strong) SQAddTicketApplyInputCell *inputCell;
 
-@property (nonatomic, strong) NSMutableArray<UIImage *> *afterSaleImageArray;
+@property (nonatomic, strong) NSMutableArray *afterSaleImageArray;
+
+@property (nonatomic, assign) NSInteger selectImageIndex;
 
 @end
 
@@ -37,7 +42,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.afterSaleImageArray = [NSMutableArray array];
+    self.afterSaleImageArray = [NSMutableArray arrayWithObjects:@"", @"", @"", nil];
     
     [self layoutNavigation];
     
@@ -69,11 +74,28 @@
     
     _tipLabel = [UILabel labelWithFont:KSCAL(28.0) textColor:kCOLOR_333 text:@"上传凭证（最多3张）"];
     [_tipLabel setTextColor:colorWithLightGray andRange:NSMakeRange(4, 6)];
+    [_tipLabel setTextFont:KFONT(24) andRange:NSMakeRange(4, 6)];
     [_bgView addSubview:_tipLabel];
+    
+    _imageCollectView = [[WKImageCollectionView alloc] initWithMaxCount:3 hasDeleteAction:YES];
+    [_bgView addSubview:_imageCollectView];
     
     _confirmButton = [UIButton buttonWithTitle:@"提交申请" titleFont:KSCAL(38) titleColor:[UIColor whiteColor] bgColor:KCOLOR_MAIN];
     [_confirmButton addTarget:self action:@selector(click_confirmButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_confirmButton];
+    
+    @weakify(self)
+    _imageCollectView.viewClicker = ^(UIView *view, NSInteger index) {
+        @strongify(self)
+        self.selectImageIndex = index;
+        [self pushImagePickerController];
+    };
+    
+    _imageCollectView.deleteClicker = ^(UIView *view, NSInteger index) {
+        @strongify(self)
+        [self.imageCollectView setImage:nil forIndex:index];
+        [self.afterSaleImageArray replaceObjectAtIndex:index withObject:@""];
+    };
 }
 
 - (void)viewWillLayoutSubviews {
@@ -81,14 +103,8 @@
     
     [_bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(KSCAL(350));
     }];
-    
-    [_confirmButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.mas_equalTo(0);
-        make.height.mas_equalTo(KSCAL(100));
-    }];
-    
+
     [_inputCell mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
         make.height.mas_equalTo(KSCAL(90));
@@ -105,7 +121,18 @@
         make.left.equalTo(_lineView);
         make.top.equalTo(_lineView.mas_bottom).offset(KSCAL(26));
     }];
+    
+    [_imageCollectView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(_lineView);
+        make.width.mas_equalTo(KSCAL(130) * 3 + KSCAL(20) * 2);
+        make.top.equalTo(_tipLabel.mas_bottom).offset(KSCAL(24));
+        make.bottom.mas_equalTo(-KSCAL(40));
+    }];
    
+    [_confirmButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(KSCAL(100));
+    }];
 }
 
 - (void)click_listButton {
@@ -137,14 +164,15 @@
 }
 
 - (void)pushImagePickerController {
-    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:(5 - self.afterSaleImageArray.count) columnNumber:4 delegate:nil];
+    TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:1 columnNumber:4 delegate:nil];
     imagePickerVc.allowTakePicture = YES; // 在内部显示拍照按钮
     imagePickerVc.allowPickingVideo = NO;
     imagePickerVc.allowPickingImage = YES;
     imagePickerVc.allowPickingOriginalPhoto = YES;
     imagePickerVc.sortAscendingByModificationDate = YES;
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
-        [self.afterSaleImageArray addObjectsFromArray:photos];
+        [self.imageCollectView setImage:photos.firstObject forIndex:self.selectImageIndex];
+        [self.afterSaleImageArray replaceObjectAtIndex:self.selectImageIndex withObject:photos.firstObject];
     }];
     imagePickerVc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentViewController:imagePickerVc animated:YES completion:nil];

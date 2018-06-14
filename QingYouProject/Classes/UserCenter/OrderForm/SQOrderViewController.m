@@ -33,7 +33,7 @@
 #import "MyRecruitViewController.h"
 
 #import "WKMyOrderUnreadCountModel.h"
-#import "WKUserCenterBadgeCell.h"
+#import "WKUserCenterCell.h"
 
 @interface SQOrderViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -53,6 +53,13 @@
     NSString *path = [[NSBundle mainBundle]pathForResource:@"SQOrderFormListPlist" ofType:@"plist"];
     self.orderFormArr = [NSArray arrayWithContentsOfFile:path];
     [self.view addSubview:self.tableview];
+    
+    if (@available(iOS 11.0, *)) {
+        self.tableview.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+    else {
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
 }
 
 - (void)viewWillLayoutSubviews {
@@ -101,7 +108,7 @@
 }
 
 - (void)badgeToZeroWithIndexPath:(NSIndexPath *)indexPath {
-    WKUserCenterBadgeCell *cell = [self.tableview cellForRowAtIndexPath:indexPath];
+    WKUserCenterCell *cell = [self.tableview cellForRowAtIndexPath:indexPath];
     [cell configBadgeNum:0];
     switch (indexPath.section) {
         case 0:
@@ -140,22 +147,24 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.orderFormArr.count;
 }
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return [[UIView alloc] init];
-}
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 10;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return CGFLOAT_MIN;
 }
-- (UITableViewCell  *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    WKUserCenterBadgeCell *cell = [WKUserCenterBadgeCell cellWithTableView:tableView];
-    cell.imageView.image = [UIImage imageNamed:@"mine_instashot"];
-    cell.textLabel.text = self.orderFormArr[indexPath.section][@"title"];
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if (section == self.orderFormArr.count - 1) {
+        return CGFLOAT_MIN;
+    }
+    return KSCAL(20);
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    WKUserCenterCell *cell = [WKUserCenterCell cellWithTableView:tableView];
+    NSDictionary *dict = self.orderFormArr[indexPath.section];
+    cell.userImageView.image = [UIImage imageNamed:dict[@"image"]];
+    cell.titleLabel.text = dict[@"title"];
     [cell configBadgeNum:[self readBadgeNumberWithIndexPath:indexPath]];
     return cell;
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (![self loginOrNot]) {
         return;
@@ -224,10 +233,14 @@
 #pragma mark LazyLoad
 - (SQBaseTableView  *)tableview {
     if (!_tableview) {
-        _tableview = [[SQBaseTableView alloc] initWithFrame:CGRectZero];
-        _tableview.rowHeight = KSCAL(120.0);
+        _tableview = [[SQBaseTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableview.rowHeight = KSCAL(88);
         _tableview.delegate = self;
         _tableview.dataSource = self;
+        _tableview.estimatedRowHeight = 0.0;
+        _tableview.estimatedSectionFooterHeight = 0.0;
+        _tableview.estimatedSectionHeaderHeight = 0.0;
+        _tableview.backgroundColor = kCOLOR_RGB(239, 239, 239);
     }
     return _tableview;
 }

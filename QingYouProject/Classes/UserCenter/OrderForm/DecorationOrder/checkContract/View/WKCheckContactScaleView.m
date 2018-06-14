@@ -14,41 +14,26 @@ static const CGFloat kScaleAnimationDuraction = 0.7;
 
 @property (nonatomic, strong) UIImageView *maskImageView;
 
+@property (nonatomic, strong) UICollectionView *collectionView;
+
+@property (nonatomic, strong) UIButton *dismissBtn;
+
+@property (nonatomic, strong) UIButton *saveBtn;
+
+@property (nonatomic, strong) UILabel  *pageLabel;
+
+
 @property (nonatomic, strong) NSArray<NSString *> *imageUrls;
 
 @property (nonatomic, assign) NSInteger selectIndex;
 
 @property (nonatomic, assign) CGRect fromRect;
 
-@property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, assign) NSInteger firstIndex;
 
 @end
 
 @implementation WKCheckContactScaleView
-
-
-#pragma mark - lazy load
-- (UICollectionView *)collectionView {
-    if (!_collectionView) {
-        UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
-        layout.itemSize = CGSizeMake(kScreenW, kScreenH-KNAV_HEIGHT-KTAB_HEIGHT+49.0);
-        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        layout.minimumInteritemSpacing = 0.0;
-        
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
-        _collectionView.delegate = self;
-        _collectionView.dataSource = self;
-        _collectionView.pagingEnabled = YES;
-        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"imageCell"];
-        [self addSubview:_collectionView];
-        [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.mas_equalTo(0);
-            make.top.mas_equalTo(KNAV_HEIGHT);
-            make.bottom.mas_equalTo(KTAB_HEIGHT-49.0);
-        }];
-    }
-    return _collectionView;
-}
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -56,7 +41,6 @@ static const CGFloat kScaleAnimationDuraction = 0.7;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"imageCell" forIndexPath:indexPath];
-    
     UIImageView *imageView;
     if (!cell.contentView.subviews.count) {
         imageView = [UIImageView new];
@@ -69,75 +53,173 @@ static const CGFloat kScaleAnimationDuraction = 0.7;
     else {
         imageView = cell.contentView.subviews.firstObject;
     }
-    [imageView sd_setImageWithURL:[NSURL URLWithString:self.imageUrls[indexPath.item]] placeholderImage:nil options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-        
-    } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        
-    }];
     
+    if (indexPath.item == self.firstIndex && self.maskImageView.image) {
+        imageView.image = self.maskImageView.image;
+    }
+    else {
+        [imageView sd_setImageWithPreviousCachedImageWithURL:[NSURL URLWithString:self.imageUrls[indexPath.item]] placeholderImage:nil options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+            
+        } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            
+        }];
+    }
     return cell;
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    NSInteger index = (scrollView.contentOffset.x / kScreenW);
+    self.selectIndex = index;
+    self.pageLabel.text = [NSString stringWithFormat:@"%zd/%zd", index + 1, _imageUrls.count];
+}
+
+#pragma mark - action
+- (void)click_dismiss {
+    [self dismiss];
+}
+- (void)click_save {
+    
 }
 
 #pragma mark - public
 - (void)showWithImageUrls:(NSArray<NSString *> *)imageUrls selectIndex:(NSInteger)selectIndex captureView:(UIView *)captureView {
-    
+    //初始化数据
     _imageUrls = imageUrls;
     _selectIndex = selectIndex;
+    _fromRect = CGRectMake(kScreenW/2.0, KNAV_HEIGHT + (kScreenH - KNAV_HEIGHT - KTAB_HEIGHT + 5.0) / 2.0, 80, 80);
+    _maskImageView.image = nil;
+    _firstIndex = selectIndex;
     
-    
+    //来源位置
+    if (captureView) {
+        CGRect fromRect = [captureView.superview convertRect:captureView.frame toView:YGAppDelegate.window];
+        _fromRect = fromRect;
+    }
+
+    //设置动画蒙版图片
     if ([captureView isKindOfClass:[UIImageView class]] && captureView) {
         UIImageView *imageView = (UIImageView *)captureView;
-        if (imageView.image) {
-            CGRect fromRect = [captureView.superview convertRect:captureView.frame toView:YGAppDelegate.window];
-            _fromRect = fromRect;
-            
+        if (imageView.image) {//存在图片时，才显示mask
             if (!_maskImageView) {
                 _maskImageView = [[UIImageView alloc] init];
                 [self addSubview:_maskImageView];
             }
-            
-            UIGraphicsBeginImageContext(captureView.bounds.size);
-            [captureView.layer renderInContext:UIGraphicsGetCurrentContext()];
-            UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-
+            _maskImageView.contentMode = imageView.contentMode;
             _maskImageView.hidden = NO;
-            _maskImageView.frame = fromRect;
-            _maskImageView.image = viewImage;
+            _maskImageView.frame = _fromRect;
+            _maskImageView.image = imageView.image;
         }
-        else {
-            _fromRect = CGRectZero;
-        }
-    }
-    else {
-        _fromRect = CGRectZero;
     }
 
-    self.frame = YGAppDelegate.window.bounds;
+    [[UIApplication sharedApplication].windows.firstObject addSubview:self];
+
+    self.frame = self.superview.bounds;
+    self.alpha = 1.0;
     self.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.1];
     self.collectionView.hidden = YES;
-    if (!self.superview) {
-        [[UIApplication sharedApplication].windows.firstObject addSubview:self];
+    self.pageLabel.text = [NSString stringWithFormat:@"%zd/%zd", selectIndex + 1, imageUrls.count];
+    if (self.maskImageView) {
+        [self bringSubviewToFront:self.maskImageView];
     }
     [self layoutIfNeeded];
-    
+
     captureView.hidden = YES;
     [UIView animateWithDuration:kScaleAnimationDuraction animations:^{
         self.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:1.0];
-        self.maskImageView.center = CGPointMake(self.frame.size.width / 2.0, (self.frame.size.height - KSTATU_HEIGHT) / 2.0);
+        if (self.maskImageView.image) {
+            self.maskImageView.frame = self.collectionView.frame;
+        }
     } completion:^(BOOL finished) {
         captureView.hidden = NO;
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:selectIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
         self.collectionView.hidden = NO;
-        [self.collectionView reloadData];
+        self.maskImageView.hidden = YES;
     }];
-    
 }
 
 - (void)dismiss {
+
+    UIImage *image;
+    UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:self.selectIndex inSection:0]];
+    if (cell && cell.contentView.subviews.count) {
+        image = ((UIImageView *)cell.contentView.subviews.firstObject).image;
+    }
     
+    if (image) {
+        self.maskImageView.image = image;
+        self.maskImageView.hidden = NO;
+        cell.contentView.subviews.firstObject.hidden = YES;
+    }
+    [UIView animateWithDuration:kScaleAnimationDuraction animations:^{
+        if (image) {
+            self.maskImageView.frame = self.fromRect;
+            self.maskImageView.alpha = 0.2;
+        }
+        self.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        cell.contentView.subviews.firstObject.hidden = NO;
+        self.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.1];
+        [self removeFromSuperview];
+    }];
 }
 
-
+#pragma mark - lazy load
+- (UICollectionView *)collectionView {
+    if (!_collectionView) {
+        UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
+        layout.itemSize = CGSizeMake(kScreenW, kScreenH-KNAV_HEIGHT-KTAB_HEIGHT+5);
+        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        layout.minimumInteritemSpacing = 0.0;
+        layout.minimumLineSpacing = 0.0;
+        layout.sectionInset = UIEdgeInsetsZero;
+        
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
+        _collectionView.delegate = self;
+        _collectionView.dataSource = self;
+        _collectionView.pagingEnabled = YES;
+        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"imageCell"];
+        [self addSubview:_collectionView];
+        
+        _pageLabel = [UILabel labelWithFont:15.0 textColor:[UIColor whiteColor]];
+        [self addSubview:_pageLabel];
+        
+        _saveBtn = [UIButton buttonWithTitle:@"保存" titleFont:15.0 titleColor:[UIColor whiteColor]];
+        _saveBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        [_saveBtn addTarget:self action:@selector(click_save) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_saveBtn];
+        
+        _dismissBtn = [UIButton buttonWithTitle:@"关闭" titleFont:15.0 titleColor:[UIColor whiteColor]];
+        _dismissBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        [_dismissBtn addTarget:self action:@selector(click_dismiss) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_dismissBtn];
+        
+        [_dismissBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(KSTATU_HEIGHT);
+            make.left.mas_equalTo(20);
+            make.height.mas_equalTo(44);
+            make.width.mas_equalTo(80);
+        }];
+        
+        [_pageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(_dismissBtn);
+            make.bottom.mas_equalTo(-KTAB_HEIGHT+49);
+            make.height.mas_equalTo(44);
+        }];
+        
+        [_saveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.height.equalTo(_pageLabel);
+            make.right.mas_equalTo(-20);
+            make.width.mas_equalTo(80);
+        }];
+        
+        [_collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.mas_equalTo(0);
+            make.top.equalTo(_dismissBtn.mas_bottom);
+            make.bottom.equalTo(_pageLabel.mas_top);
+        }];
+    }
+    return _collectionView;
+}
 
 
 @end
