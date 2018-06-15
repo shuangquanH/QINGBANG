@@ -20,7 +20,7 @@
 @interface SQDecorationDetailSectionView: UIView<SQDecorationDetailViewProtocol>
 @end
 @implementation SQDecorationDetailSectionView
-- (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo {}
+- (void)configOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {}
 - (CGSize)viewSize { return CGSizeMake(kScreenW, KSCAL(20)); }
 @end
 
@@ -38,9 +38,9 @@
         return;
     }
     [SQRequest post:KAPI_DECORATIONORDERDETAIL param:nil success:^(id response) {
-        if ([response[@"code"] isEqualToString:@"0"]) {
+        if ([response[@"code"] longLongValue] == 0) {
            WKDecorationOrderDetailModel *order = [WKDecorationOrderDetailModel yy_modelWithJSON:response[@"data"][@"detail_info"]];
-            [self setupByOrderInfo:order.order_info];
+            [self setupByOrderInfo:order];
             completed(order, nil);
         }
         else {
@@ -52,14 +52,14 @@
   
 }
 
-- (void)setupByOrderInfo:(SQDecorationDetailModel *)orderInfo {
+- (void)setupByOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {
     if (!orderInfo) {
         return;
     }
     
     //已经初始化过子视图，查看是否更新订单信息视图
     if (_subviewArray.count) {
-        if (orderInfo.orderState == 3) {//受理中订单
+        if (orderInfo.status == 3) {//受理中订单
             if (![_orderCell isKindOfClass:[WKDecorationDealingOrderCell class]]) {//更新视图
                 WKDecorationDealingOrderCell *cell = [[WKDecorationDealingOrderCell alloc] init];
                 NSMutableArray *tmpArr = [_subviewArray mutableCopy];
@@ -87,7 +87,7 @@
     SQDecorationDetailStateHeadView *stageView = [[SQDecorationDetailStateHeadView alloc] initWithFrame:CGRectZero];
     [tmp addObject:stageView];
     
-    if (orderInfo.orderState == 4 || orderInfo.orderState == 5 || orderInfo.orderState == 3) {
+    if (orderInfo.status == 4 || orderInfo.status == 5 || orderInfo.status == 3) {
         //订单进度
         SQDecorationDetailStagesView *stagesView = [[SQDecorationDetailStagesView alloc] initWithFrame:CGRectZero];
         [tmp addObject:stagesView];
@@ -103,7 +103,7 @@
     [tmp addObject:stateCell];
     
     //订单详情
-    if (orderInfo.orderState == 3) {//受理中订单
+    if (orderInfo.status == 3) {//受理中订单
         _orderCell = [[WKDecorationDealingOrderCell alloc] init];
     }
     else {
@@ -115,7 +115,7 @@
     [tmp addObject:_orderCell];
  
     //订单动作
-    if (orderInfo.orderState == 4 || orderInfo.orderState == 5) {//装修中，已完成
+    if (orderInfo.status == 4 || orderInfo.status == 5) {//装修中，已完成
         //组分割视图
         SQDecorationDetailSectionView *section_1 = [SQDecorationDetailSectionView new];
         [tmp addObject:section_1];

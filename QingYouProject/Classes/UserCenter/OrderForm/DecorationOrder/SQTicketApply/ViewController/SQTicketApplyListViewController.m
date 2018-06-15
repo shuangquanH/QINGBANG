@@ -14,6 +14,7 @@
 
 @interface SQTicketApplyListViewController ()<UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, assign) BOOL isFirstLoad;
 @property (nonatomic, assign) BOOL isTicketApplyManager;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIButton *addButton;
@@ -38,12 +39,14 @@
     [self setupSubviews];
     
     self.invoiceList = [NSMutableArray array];
+    
+    _isFirstLoad = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    [self.tableView.mj_header beginRefreshing];
+    [self refreshInvoiceList];
 }
 
 - (void)viewWillLayoutSubviews {
@@ -90,21 +93,40 @@
 
 - (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
     if (headerAction) {
-        [SQRequest post:KAPI_INVOICELIST param:nil success:^(id response) {
-            NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKInvoiceModel class] json:response[@"data"][@"invoice_list"]];
-            [self.invoiceList removeAllObjects];
-            [self.invoiceList addObjectsFromArray:tmp];
-            [self.tableView.mj_header endRefreshing];
-            [self.tableView reloadData];
-        } failure:^(NSError *error) {
-            [YGAppTool showToastWithText:@"网络错误"];
-            [self.tableView.mj_header endRefreshing];
-        }];
-        
+        [self refreshInvoiceList];
     }
     else {
         [self.tableView.mj_footer endRefreshing];
     }
+}
+
+- (void)refreshInvoiceList {
+    
+    if (_isFirstLoad) {
+        [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
+    }
+    
+    [SQRequest post:KAPI_INVOICELIST param:nil success:^(id response) {
+        NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKInvoiceModel class] json:response[@"data"][@"invoice_list"]];
+        [self.invoiceList removeAllObjects];
+        [self.invoiceList addObjectsFromArray:tmp];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView reloadData];
+        
+        if (_isFirstLoad) {
+            [YGNetService dissmissLoadingView];
+            _isFirstLoad = NO;
+        }
+    } failure:^(NSError *error) {
+        
+        if (_isFirstLoad) {
+            [YGNetService dissmissLoadingView];
+            _isFirstLoad = NO;
+        }
+        
+        [YGAppTool showToastWithText:@"网络错误"];
+        [self.tableView.mj_header endRefreshing];
+    }];
 }
 
 #pragma mark - action
@@ -113,7 +135,6 @@
     [self.navigationController pushViewController:next animated:YES];
 }
 
-#pragma mark - action
 - (void)click_managerBtn {
     SQTicketApplyListViewController *next = [[SQTicketApplyListViewController alloc] initWithIsTicketApplyManager:YES];
     [self.navigationController pushViewController:next animated:YES];
@@ -134,17 +155,75 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (!self.isTicketApplyManager) {
+    if (!self.isTicketApplyManager) {//不是抬头管理，直接返回选择抬头模型
         if (self.selectInvoiceBlock) {
             self.selectInvoiceBlock([self.invoiceList objectAtIndex:indexPath.row]);
             [self.navigationController popViewControllerAnimated:YES];
         }
     }
-    else {
+    else {//编辑抬头
         SQAddTicketApplyViewController *next = [SQAddTicketApplyViewController new];
         next.invoiceInfo = [self.invoiceList objectAtIndex:indexPath.row];
         [self.navigationController pushViewController:next animated:YES];
     }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return _isTicketApplyManager;
+}
+- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (!_isTicketApplyManager) return nil;
+    
+    NSMutableArray *actions = [NSMutableArray array];
+    
+    WKInvoiceModel *invoice = self.invoiceList[indexPath.row];
+    if (!invoice.isDefault) {
+        UITableViewRowAction *setDefaultAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"设为默认" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+            [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
+            [SQRequest post:KAPI_EDITINVOICE
+                      param:@{@"invoice_id": invoice.invoice_id,
+                              @"isDefault": @"1"}
+                    success:^(id response) {
+                        [YGNetService dissmissLoadingView];
+                        if ([response[@"code"] longLongValue] == 0) {
+                            for (WKInvoiceModel *m in self.invoiceList) {
+                                m.isDefault = NO;
+                            }
+                            invoice.isDefault = YES;
+                            [self.tableView reloadData];
+                        }
+                        else {
+                            [YGAppTool showToastWithText:response[@"msg"]];
+                        }
+                    } failure:^(NSError *error) {
+                        [YGNetService dissmissLoadingView];
+                        [YGAppTool showToastWithText:@"网络错误"];
+                    }];
+        }];
+        setDefaultAction.backgroundColor = KCOLOR_MAIN;
+        [actions addObject:setDefaultAction];
+    }
+
+    UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
+        [SQRequest post:KAPI_DELETEINVOICE param:@{@"invoice_id": invoice.invoice_id} success:^(id response) {
+            [YGNetService dissmissLoadingView];
+            if ([response[@"code"] longLongValue] == 0) {
+                [self.invoiceList removeObjectAtIndex:indexPath.row];
+                [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+            }
+            else {
+                [YGAppTool showToastWithText:response[@"msg"]];
+            }
+            
+        } failure:^(NSError *error) {
+            [YGNetService dissmissLoadingView];
+            [YGAppTool showToastWithText:@"网络错误"];
+        }];
+    }];
+    [actions insertObject:deleteAction atIndex:0];
+    return actions;
+
 }
 
 @end

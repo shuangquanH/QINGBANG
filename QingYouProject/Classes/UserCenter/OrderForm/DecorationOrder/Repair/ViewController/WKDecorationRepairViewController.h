@@ -8,14 +8,14 @@
 
 #import "RootViewController.h"
 
-@class SQDecorationDetailModel;
+@class WKDecorationOrderDetailModel;
 
 @interface WKDecorationRepairViewController : RootViewController
 //订单信息
-@property (nonatomic, strong) SQDecorationDetailModel *orderInfo;
+@property (nonatomic, strong) WKDecorationOrderDetailModel *orderInfo;
 //阶段索引
 @property (nonatomic, assign) NSInteger stageIndex;
 //补登成功回调
-@property (nonatomic, copy  ) void (^ repairSuccess)(SQDecorationDetailModel *orderInfo);
+@property (nonatomic, copy  ) void (^ repairSuccess)(WKDecorationOrderDetailModel *orderInfo);
 
 @end

@@ -22,7 +22,7 @@
 
     @public
     WKDecorationStageView *paymentStageView;//订金阶段视图
-    SQDecorationDetailModel *_orderInfo;//订单信息
+    WKDecorationOrderDetailModel *_orderInfo;//订单信息
     CALayer *bottomLineLayer;
 
 }
@@ -42,7 +42,7 @@
         [self.contentView addSubview:orderTitle];
         
         orderDesc = [UILabel labelWithFont:KSCAL(28.0) textColor:kCOLOR_666];
-        orderDesc.numberOfLines = 1;
+        orderDesc.numberOfLines = 3;
         [self.contentView addSubview:orderDesc];
         
         orderPrice = [UILabel labelWithFont:KSCAL(28.0) textColor:kCOLOR_666];
@@ -114,21 +114,24 @@
 }
 
 #pragma mark - SQDecorationDetailViewProtocol
-- (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo {
+- (void)configOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {
     
     _orderInfo = orderInfo;
     
-    orderDesc.text = orderInfo.decorateDescribe;
     NSMutableAttributedString *estimatePrice = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"¥ %@（预估价）", orderInfo.estimate]];
     [estimatePrice setAttributes:@{NSForegroundColorAttributeName: kCOLOR_PRICE_RED} range:NSMakeRange(0, 2+orderInfo.estimate.length)];
     orderPrice.attributedText = estimatePrice;
+    
     [orderImage sd_setImageWithURL:[NSURL URLWithString:orderInfo.decorate_icon] placeholderImage:nil];
     
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    [paragraphStyle setLineSpacing:5];
+    [paragraphStyle setLineSpacing:2];
     NSAttributedString *decorateName = [[NSAttributedString alloc] initWithString:orderInfo.decorateName attributes:@{NSParagraphStyleAttributeName: paragraphStyle}];
     orderTitle.attributedText = decorateName;
     orderTitle.lineBreakMode = NSLineBreakByTruncatingTail;
+    
+    orderDesc.attributedText = _orderInfo.decorationDescAttributeString;
+    orderDesc.lineBreakMode = NSLineBreakByTruncatingTail;
 
     [paymentStageView configOrderInfo:orderInfo withStage:0 withInDetail:self.isInOrderDetail];
 }
@@ -146,7 +149,7 @@
 }
 
 #pragma mark - public
-+ (CGFloat)cellHeightWithOrderInfo:(SQDecorationDetailModel *)orderInfo {
++ (CGFloat)cellHeightWithOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {
     return KSCAL(88.0) + KSCAL(180) + 3 * KSCAL(KSPACE);
 }
 
@@ -170,7 +173,7 @@
     [super setModel:model];
 }
 
-- (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo {
+- (void)configOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {
     
     [super configOrderInfo:orderInfo];
     
@@ -210,7 +213,7 @@
     return CGSizeMake(kScreenW, height);
 }
 
-+ (CGFloat)cellHeightWithOrderInfo:(SQDecorationDetailModel *)orderInfo {
++ (CGFloat)cellHeightWithOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {
     return orderInfo.stage_list.count * KSCAL(88.0) + 3 * KSCAL(KSPACE) + KSCAL(180);
 }
 
@@ -275,7 +278,7 @@
     }];
 }
 
-- (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo {
+- (void)configOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {
     [super configOrderInfo:orderInfo];
     
     UIView *lastView;
@@ -305,7 +308,7 @@
     }
 }
 
-+ (CGFloat)cellHeightWithOrderInfo:(SQDecorationDetailModel *)orderInfo {
++ (CGFloat)cellHeightWithOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {
     return orderInfo.stage_list.count * KSCAL(88.0) + 2 * KSCAL(KSPACE) + KSCAL(180) + KSCAL(175);
 }
 

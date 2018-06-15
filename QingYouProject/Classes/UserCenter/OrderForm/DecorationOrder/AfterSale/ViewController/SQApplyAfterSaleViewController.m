@@ -13,7 +13,7 @@
 #import "SQAddTicketApplyInputCell.h"
 #import "WKImageCollectionView.h"
 
-#import "SQDecorationDetailModel.h"
+#import "WKDecorationOrderDetailModel.h"
 
 #import "UILabel+SQAttribut.h"
 
@@ -165,12 +165,12 @@
     
     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
     NSString *images = @"1.jpg,2.jpg";
-    NSDictionary *param = @{@"orderNum": self.orderInfo.order_info.orderNum,
+    NSDictionary *param = @{@"orderNum": self.orderInfo.orderNum,
                             @"apply_images": images,
                             @"desc": _afterSaleText
                             };
     [SQRequest post:KAPI_APPLYAFTERSALE param:param success:^(id response) {
-        if ([response[@"code"] isEqualToString:@"0"]) {
+        if ([response[@"code"] longLongValue] == 0) {
             [YGAppTool showToastWithText:@"申请成功"];
             [YGNetService dissmissLoadingView];
             [self performSelector:@selector(pushToListClearSelf) withObject:nil afterDelay:1.5];

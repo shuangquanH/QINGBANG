@@ -12,7 +12,7 @@
 
 #import "WKDecorationStateCell.h"
 #import "SQDecorationOrderCell.h"
-#import "SQDecorationDetailModel.h"
+#import "WKDecorationOrderDetailModel.h"
 
 #import "WKAnimationAlert.h"
 #import "WKDecorationOrderAlertView.h"
@@ -21,7 +21,11 @@
 
 @property (nonatomic, strong) UITableView       *tableView;
 
-@property (nonatomic, strong) NSMutableArray<SQDecorationDetailModel *> *orderList;
+@property (nonatomic, assign) NSInteger         page;
+
+@property (nonatomic, assign) NSInteger         pageSize;
+
+@property (nonatomic, strong) NSMutableArray<WKDecorationOrderDetailModel *> *orderList;
 
 @property (nonatomic, strong) UIView *bottomPayView;
 
@@ -33,9 +37,12 @@
     [super viewDidLoad];
 
     self.naviTitle = @"我的装修订单";
-    [self.view addSubview:self.tableView];
     
     self.orderList = [NSMutableArray array];
+    self.page = 1;
+    self.pageSize = 10;
+    
+    [self.view addSubview:self.tableView];
     [self createRefreshWithScrollView:self.tableView containFooter:YES];
     [self.tableView.mj_header beginRefreshing];
 }
@@ -49,25 +56,49 @@
 }
 
 - (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
+
+    NSInteger tmpPage = self.page;
     if (headerAction) {
-        [SQRequest post:KAPI_MYDECORATION_ORDERLIST param:nil success:^(id response) {
-            [self.tableView.mj_header endRefreshing];
-            if ([response[@"code"] isEqualToString:@"0"]) {
-                NSArray<SQDecorationDetailModel *> *tmp = [NSArray yy_modelArrayWithClass:[SQDecorationDetailModel class] json:response[@"data"][@"order_list"]];
-                [self.orderList removeAllObjects];
-                [self.orderList addObjectsFromArray:tmp];
+        tmpPage = 1;
+    }
+    else {
+        tmpPage += 1;
+    }
+    
+    [SQRequest post:KAPI_MYDECORATION_ORDERLIST param:@{@"page": @(tmpPage), @"pageSize": @(self.pageSize)} success:^(id response) {
+        if ([response[@"code"] longLongValue] == 0) {
+            NSArray<WKDecorationOrderDetailModel *> *tmp = [NSArray yy_modelArrayWithClass:[WKDecorationOrderDetailModel class] json:response[@"data"][@"orderList"]];
+            if (tmp.count) {
+                if (headerAction) {
+                    [self.orderList removeAllObjects];
+                    [self.orderList addObjectsFromArray:tmp];
+                }
+                else {
+                    [self.orderList addObjectsFromArray:tmp];
+                }
+                self.page = tmpPage;
                 [self.tableView reloadData];
             }
-            else {
-                [YGAppTool showToastWithText:response[@"msg"]];
-            }
-        } failure:^(NSError *error) {
-            [YGAppTool showToastWithText:@"网路错误"];
+        }
+        else {
+            [YGAppTool showToastWithText:response[@"msg"]];
+        }
+        
+        if (headerAction) {
             [self.tableView.mj_header endRefreshing];
-        }];
-    } else {
-        [self.tableView.mj_footer endRefreshing];
-    }
+        }
+        else {
+            [self.tableView.mj_footer endRefreshing];
+        }
+    } failure:^(NSError *error) {
+        [YGAppTool showToastWithText:@"网路错误"];
+        if (headerAction) {
+            [self.tableView.mj_header endRefreshing];
+        }
+        else {
+            [self.tableView.mj_footer endRefreshing];
+        }
+    }];
 }
 
 #pragma mark - UITableViewDataSource
@@ -77,22 +108,22 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 2;
 }
-- (UITableViewCell  *)tableView:(UITableView *)tableView
+- (UITableViewCell *)tableView:(UITableView *)tableView
           cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    SQDecorationDetailModel *order = [self.orderList objectAtIndex:indexPath.section];
+    WKDecorationOrderDetailModel *order = [self.orderList objectAtIndex:indexPath.section];
     //订单状态头部
     if (indexPath.row == 0) {
         WKDecorationStateCell *cell = [WKDecorationStateCell cellWithTableView:tableView];
-        cell.backgroundColor = [UIColor clearColor];
+        cell.backgroundColor = self.tableView.backgroundColor;
         [cell configOrderInfo:order];
         return cell;
     }
     //订单详情
     SQDecorationOrderCell *cell;
-    if (order.orderState == 1 || order.orderState == 2) {//待付款、已关闭状态，只有一个订金阶段需要展示
+    if (order.status == 1 || order.status == 2) {//待付款、已关闭状态，只有一个订金阶段需要展示
         cell = [SQDecorationOrderCell cellWithTableView:tableView];
     }
-    else if (order.orderState == 3) {//受理中状态
+    else if (order.status == 3) {//受理中状态
         cell = [WKDecorationDealingOrderCell cellWithTableView:tableView];
     }
     else {//其余所有状态
@@ -111,7 +142,7 @@
     vc.orderListInfo = [self.orderList objectAtIndex:indexPath.section];
     [self.navigationController pushViewController:vc animated:YES];
     
-    vc.orderRefreshBlock = ^(SQDecorationDetailModel *orderInfo) {
+    vc.orderRefreshBlock = ^(WKDecorationOrderDetailModel *orderInfo) {
         if (!orderInfo) {
             [self.orderList removeObjectAtIndex:indexPath.section];
             [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationNone];
@@ -125,8 +156,8 @@
     if (indexPath.row == 0) {
         return KSCAL(110);
     }
-    SQDecorationDetailModel *order = [self.orderList objectAtIndex:indexPath.section];
-    if (order.orderState == 3) {//受理中
+    WKDecorationOrderDetailModel *order = [self.orderList objectAtIndex:indexPath.section];
+    if (order.status == 3) {//受理中
         return [WKDecorationDealingOrderCell cellHeightWithOrderInfo:order];
     }
     else {
@@ -146,7 +177,7 @@
     NSIndexPath *targetIndex = [self.tableView indexPathForCell:decorationCell];
     if (!targetIndex) return;
     
-    SQDecorationDetailModel *orderInfo = [self.orderList objectAtIndex:targetIndex.section];
+    WKDecorationOrderDetailModel *orderInfo = [self.orderList objectAtIndex:targetIndex.section];
     WKDecorationStageModel *stageInfo = orderInfo.stage_list[stage];
     if (!stageInfo.isActivity) {//当前状态还没有被激活
         [YGAppTool showToastWithText:[NSString stringWithFormat:@"需要完成%@，才可以操作此阶段", orderInfo.stage_list[stage-1].stageName]];
@@ -155,7 +186,11 @@
     
     switch (actionType) {
         case WKDecorationOrderActionTypePay: {//支付
-            [WKAnimationAlert showAlertWithInsideView:self.bottomPayView animation:WKAlertAnimationTypeBottom canTouchDissmiss:YES superView:nil offset:0];
+            [WKAnimationAlert showAlertWithInsideView:self.bottomPayView
+                                            animation:WKAlertAnimationTypeBottom
+                                     canTouchDissmiss:YES
+                                            superView:nil
+                                               offset:0];
         }
             break;
         case WKDecorationOrderActionTypeCancel: {//取消订单
@@ -166,7 +201,7 @@
                         [YGNetService dissmissLoadingView];
                         if ([response[@"state"] isEqualToString:@"success"]) {
                             orderInfo.orderTitle = nil;
-                            orderInfo.orderState = 2;
+                            orderInfo.status = 2;
                             orderInfo.stage_list.firstObject.stageState = 4;
                             WKDecorationStateCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:targetIndex.section]];
                             if (cell) {
@@ -194,7 +229,7 @@
                 [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
                 [SQRequest post:KAPI_DELETEORDER param:@{@"orderNum": orderInfo.orderNum} success:^(id response) {
                     [YGNetService dissmissLoadingView];
-                    if ([response[@"code"] isEqualToString:@"0"]) {
+                    if ([response[@"code"] longLongValue] == 0) {
                         [self.orderList removeObjectAtIndex:targetIndex.section];
                         [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:targetIndex.section] withRowAnimation:UITableViewRowAnimationLeft];
                     }
@@ -215,7 +250,7 @@
             WKDecorationRepairViewController *next = [WKDecorationRepairViewController new];
             next.orderInfo = self.orderList[targetIndex.section];
             next.stageIndex = stage;
-            next.repairSuccess = ^(SQDecorationDetailModel *orderInfo) {
+            next.repairSuccess = ^(WKDecorationOrderDetailModel *orderInfo) {
                 [decorationCell configOrderInfo:orderInfo];
             };
             [self.navigationController pushViewController:next animated:YES];
@@ -243,7 +278,7 @@
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero];
-        _tableView.backgroundColor = [UIColor colorWithRed:239.0/255 green:240.0/255.0 blue:241.0/255 alpha:1.0];
+        _tableView.backgroundColor = colorWithTable;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -255,8 +290,8 @@
 
 - (UIView *)bottomPayView {
     if (!_bottomPayView) {
-        _bottomPayView = [[UIView alloc] initWithFrame:CGRectMake(0, KAPP_HEIGHT-KNAV_HEIGHT-60, KAPP_WIDTH, 200)];
-        _bottomPayView.backgroundColor = colorWithMainColor;
+        _bottomPayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, 200)];
+        _bottomPayView.backgroundColor = KCOLOR_MAIN;
     }
     return _bottomPayView;
 }

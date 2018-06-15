@@ -52,7 +52,7 @@
 
 
 
-- (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo {
+- (void)configOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {
     if (!_contactServiceBtn) {
         _contactServiceBtn = [UIButton buttonWithTitle:@"联系客服" titleFont:KSCAL(38) titleColor:kCOLOR_333];
         _contactServiceBtn.backgroundColor = [UIColor whiteColor];
@@ -69,7 +69,7 @@
     }
     
 
-    if (orderInfo.orderState == 5) {//订单完成，展示售后
+    if (orderInfo.status == 5) {//订单完成，展示售后
         
         if (!_applySaleBtn) {
             _applySaleBtn = [UIButton buttonWithTitle:@"申请售后" titleFont:KSCAL(38) titleColor:kCOLOR_333];

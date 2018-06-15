@@ -9,7 +9,7 @@
 #import "WKDecorationStageView.h"
 #import "SQDecorationCellPayButtonView.h"
 
-#import "SQDecorationDetailModel.h"
+#import "WKDecorationOrderDetailModel.h"
 
 @interface WKDecorationStageView()<SQDecorationCellPayButtonViewDelegate>
 
@@ -77,7 +77,7 @@
     lineLayer.frame = CGRectMake(0, 0, self.width, 1);
 }
 
-- (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo withStage:(NSInteger)stage withInDetail:(BOOL)inDetail {
+- (void)configOrderInfo:(WKDecorationOrderDetailModel *)orderInfo withStage:(NSInteger)stage withInDetail:(BOOL)inDetail {
     WKDecorationStageModel *stageInfo = orderInfo.stage_list[stage];
     stageTitleLabel.text = [NSString stringWithFormat:@"%@：", stageInfo.stageName];
     stagePriceLab.text   = [NSString stringWithFormat:@"¥ %@", stageInfo.stagePrice];
@@ -96,7 +96,7 @@
             }];
             return;
         }
-        if (orderInfo.canRefund && orderInfo.orderState == 3) {//可以退款&&处于处理中状态
+        if (orderInfo.canRefund && orderInfo.status == 3) {//可以退款&&处于处理中状态
             self.refundBtn.hidden = NO;
             _refundDetailBtn.hidden = YES;
             [stageStateView mas_remakeConstraints:^(MASConstraintMaker *make) {

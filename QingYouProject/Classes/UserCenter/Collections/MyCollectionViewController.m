@@ -27,9 +27,9 @@
 }
 
 @property(nonatomic,strong)NSMutableArray *interfaceArray;//收藏列表接口名
-@property(nonatomic,strong)NSDictionary *paraDic;//收藏列表参数
+@property(nonatomic,strong)NSDictionary   *paraDic;//收藏列表参数
 @property(nonatomic,strong)NSMutableArray *cancelInterfaceArray;//取消收藏接口名
-@property(nonatomic,strong)NSDictionary *cancelParaDic;//取消收藏参数
+@property(nonatomic,strong)NSDictionary   *cancelParaDic;//取消收藏参数
 
 @end
 
@@ -37,9 +37,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
     self.naviTitle = self.titleString;
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated
