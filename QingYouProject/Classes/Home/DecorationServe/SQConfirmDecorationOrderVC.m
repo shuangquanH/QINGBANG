@@ -133,55 +133,12 @@
     self.payType = type;
 }
 - (void)confirmButtonAction {
-    NSDictionary    *dic = @{
-                             @"id": @"ch_a5OinLGyzzjLXPSOy9rPKKiL",
-                             @"object": @"charge",
-                             @"created": @1458186221,
-                             @"livemode": @1,
-                             @"paid": @0,
-                             @"refunded": @0,
-                             @"app": @"app_1Gqj58ynP0mHeX1q",
-                             @"channel": @"alipay",
-                             @"order_no": @"123456789",
-                             @"client_ip": @"127.0.0.1",
-                             @"amount": @100,
-                             @"amount_settle": @100,
-                             @"currency": @"cny",
-                             @"subject": @"Your Subject",
-                             @"body": @"Your Body",
-                             @"extra": @{},
-                             @"time_paid": @"",
-                             @"time_expire": @1458272621,
-                             @"time_settle": @"",
-                             @"transaction_no": @"",
-                             @"refunds": @{
-                                 @"object": @"list",
-                                 @"url": @"/v1/charges/ch_a5OinLGyzzjLXPSOy9rPKKiL/refunds",
-                                 @"has_more": @0,
-                                 @"data": @[]
-                             },
-                             @"amount_refunded": @0,
-                             @"failure_code": @"",
-                             @"failure_msg": @"",
-                             @"metadata": @{},
-                             @"credential": @{
-                                 @"object": @"credential",
-                                 @"alipay": @{
-                                     @"orderInfo":
-                                     @"service=\"mobile.securitypay.pay\"&_input_charset=\"utf-8\"&notify_url=\"https%3A%2F%2Fapi.pingxx.com%2Fnotify%2Fcharges%2Fch_a5OinLGyzzjLXPSOy9rPKKiL\"&partner=\"2008010319263982\"&out_trade_no=\"123456789\"&subject=\"YourSubject\"&body=\"YourBody\"&total_fee=\"0.10\"&payment_type=\"1\"&seller_id=\"2088020116983982\"&it_b_pay=\"2016-03-1811:43:41\"&sign=\"ODRJPReSwsH8om5fGTqvhia9453k4eUaaGMJTLMTnEYbBuceMyTathvKtdnUpsP6Q5%2F5jcEV887EdtBWi4tuMFHPQmm4dz1nG6b4Blafi6v2tvKaf8b0RiQTOycU4SxigugKoyfeR6E4AGA6uIzWUBRpkq%2BZf65eqT0qe712BJ0%3D\"&sign_type=\"RSA\""
-                                 }
-                             },
-                             @"description": @"Your Description"
-                             };
-    
-    [Pingpp createPayment:dic viewController:self appURLScheme:@"qingyouhui" withCompletion:^(NSString *result, PingppError *error){
-        if ([result isEqualToString:@"success"])
-        {
-            NSLog(@"dd");
-        } else {
-            NSLog(@"aa");
-        }
-    }];
+    NSDictionary    *param = @{@"addressId":@"20", @"payType":@"airpay", @"remarks":@"beizhu", @"skuId":self.skuId, @"userId":@"0c2715a0701c41b2a38469f055d748bd"};
+    [SQRequest postCustomApi:@"http://192.168.2.27:8089/order/createOrder" param:param success:^(id response) {
+        NSLog(@"%@", response);
+    } failure:^(NSError *error) {
+        NSLog(@"dd");
+    } showLoadingView:YES];
     
     
 //    if (self.payType) {
