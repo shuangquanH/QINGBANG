@@ -8,7 +8,7 @@
 
 #import "WKDecorationRefundDetailViewController.h"
 
-#import "SQDecorationDetailModel.h"
+#import "WKDecorationOrderDetailModel.h"
 #import "WKDecorationRefundModel.h"
 
 #import "NSString+SQStringSize.h"
@@ -142,8 +142,8 @@
 #pragma mark - request
 - (void)sendRefundDetailReqeust {
     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-    [SQRequest post:KAPI_REFUNDDETAIL param:@{@"orderNum": self.orderInfo.order_info.orderNum  } success:^(id response) {
-        if ([response[@"code"] isEqualToString:@"0"]) {
+    [SQRequest post:KAPI_REFUNDDETAIL param:@{@"orderNum": self.orderInfo.orderNum  } success:^(id response) {
+        if ([response[@"code"] longLongValue] == 0) {
             self.refundInfo = [WKDecorationRefundModel yy_modelWithJSON:response[@"data"][@"refund_info"]];
             [self setupSubviews];
             [YGNetService dissmissLoadingView];
@@ -159,9 +159,9 @@
 
 - (void)click_cancelButton {
     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-    [SQRequest post:KAPI_CANCELREFUND param:@{@"orderNum": self.orderInfo.order_info.orderNum} success:^(id response) {
+    [SQRequest post:KAPI_CANCELREFUND param:@{@"orderNum": self.orderInfo.orderNum} success:^(id response) {
         [YGNetService dissmissLoadingView];
-        if ([response[@"code"] isEqualToString:@"0"]) {
+        if ([response[@"code"] longLongValue] == 0) {
             [YGAppTool showToastWithText:@"撤销退款成功"];
             [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.0];
         }

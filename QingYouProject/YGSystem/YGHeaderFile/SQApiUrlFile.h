@@ -345,7 +345,7 @@
 #define KAPI_DECORHOME      @"getFitmentTypeList"//装修首页
 
 /********************************************* 新版本新增个人中心接口  ********************************************/
-#define KAPI_MYDECORATION_ORDERLIST    @"getOrderList"//我的装修订单列表
+#define KAPI_MYDECORATION_ORDERLIST    @"order/getOrderList"//我的装修订单列表
 #define KAPI_DECORATIONORDERDETAIL     @"getOrderInfo"//装修订单详情
 #define KAPI_INVOICELIST               @"getInvoiceInfo"//发票抬头列表
 #define KAPI_CANCELORDER               @"cancelOrder"//取消订单
@@ -365,5 +365,6 @@
 #define KAPI_GETREPAIRINFO             @"getRepairInfo"//补登状态
 #define KAPI_CANCELREFUND              @"cancelRefund"//撤销退款
 #define KAPI_DELETECOLLECT             @"deleteCollect"//取消收藏
+#define KAPI_DELETEINVOICE             @"deleteInvoice"//删除发票
 
 #endif /* SQApiUrlFile_h */

@@ -12,7 +12,7 @@
 
 #import "WKInvoiceModel.h"
 #import "ManageMailPostModel.h"
-#import "SQDecorationDetailModel.h"
+#import "WKDecorationOrderDetailModel.h"
 
 #import "UILabel+SQAttribut.h"
 
@@ -89,7 +89,7 @@
 #pragma mark - reqeust
 - (void)sendDefaultInfoReqeust {
     [SQRequest post:KAPI_GETDEFAULTINFO param:nil success:^(id response) {
-        if ([response[@"code"] isEqualToString:@"0"]) {
+        if ([response[@"code"] longLongValue] == 0) {
             self.postInfo = [ManageMailPostModel yy_modelWithJSON:response[@"data"][@"addressInfo"]];
             self.invoiceInfo = [WKInvoiceModel yy_modelWithJSON:response[@"data"][@"invoiceInfo"]];
             [self.tableView reloadData];
@@ -114,13 +114,24 @@
 }
 
 - (void)click_confirmButton {
+    
+    if (!self.invoiceInfo.invoiceName.length) {
+        [YGAppTool showToastWithText:@"请选择发票抬头"];
+        return;
+    }
+    
+    if (self.sendSwitch.isOn && !self.postInfo.ID.length) {
+        [YGAppTool showToastWithText:@"请选择邮寄地址"];
+        return;
+    }
+    
     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
     
     NSDictionary *param;
     if (self.sendSwitch.isOn) {
         param =  @{@"orderNum": self.orderDetailInfo.orderNum,
                    @"invoice_id": self.invoiceInfo.invoice_id,
-                   @"address_id": @"12"
+                   @"address_id": self.postInfo.ID
                    };
     }
     else {
@@ -131,8 +142,9 @@
     
     [SQRequest post:KAPI_APPLYINVOICE param:param success:^(id response) {
         [YGNetService dissmissLoadingView];
-        if ([response[@"code"] isEqualToString:@"0"]) {
-            [YGAppTool showToastWithText:@"申请成功"];
+        if ([response[@"code"] longLongValue] == 0) {
+            [YGAppTool showToastWithText:@"申请成功，等待审核"];
+            self.orderDetailInfo.isInRepairApply = YES;
             [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.5];
         } else {
             [YGAppTool showToastWithText:response[@"msg"]];

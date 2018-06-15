@@ -16,17 +16,17 @@
 @interface SQAddTicketApplyViewController ()<UITableViewDelegate, UITableViewDataSource, SQAddTicketApplyInputCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
-
+//头部选择背景视图
 @property (nonatomic, strong) UIView   *selectView;
-
+//确认按钮
 @property (nonatomic, strong) UIButton *confirmButton;
-
+//设置默认按钮
 @property (nonatomic, strong) UIButton *selectDefaultButton;
-
+//企业
 @property (nonatomic, strong) UIButton *companyBtn;
-
+//个人
 @property (nonatomic, strong) UIButton *personalBtn;
-
+//是否为编辑抬头
 @property (nonatomic, assign) BOOL isEdit;
 
 @end
@@ -87,6 +87,7 @@
         [cell configTitle:@"名称" placeHodler:@"请输入抬头名称" content:self.invoiceInfo.invoiceName necessary:YES];
         return;
     }
+    
     if (!self.invoiceInfo.is_personal) {
         if (indexPath.row == 2) {
             [cell configTitle:@"税号" placeHodler:@"请输入纳税人识别号" content:self.invoiceInfo.invoiceDutyNum necessary:YES];
@@ -109,7 +110,17 @@
 #pragma mark - action
 - (void)click_confirmButton {
     
-    if (_personalBtn.isSelected) {//个人
+    if (!_invoiceInfo.invoiceName.length) {
+        [YGAppTool showToastWithText:@"请填写发票抬头名称"];
+        return;
+    }
+    
+    if (!_invoiceInfo.is_personal && !_invoiceInfo.invoiceDutyNum.length) {//企业税号必填
+        [YGAppTool showToastWithText:@"请填写发票抬头税号"];
+        return;
+    }
+    
+    if (_personalBtn.isSelected) {//个人，不需要其它数据
         self.invoiceInfo.companyBank = nil;
         self.invoiceInfo.companyPhone = nil;
         self.invoiceInfo.companyAddress = nil;
@@ -121,7 +132,7 @@
     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
     [SQRequest post:(_isEdit?KAPI_EDITINVOICE:KAPI_ADDINVOICE) param:param success:^(id response) {
         [YGNetService dissmissLoadingView];
-        if ([response[@"code"] isEqualToString:@"0"]) {
+        if ([response[@"code"] longLongValue] == 0) {
             [YGAppTool showToastWithText:(_isEdit?@"修改成功":@"添加成功")];
             [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.5];
         } else {

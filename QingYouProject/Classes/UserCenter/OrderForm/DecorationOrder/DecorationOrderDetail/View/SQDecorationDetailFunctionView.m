@@ -24,10 +24,10 @@
     return self;
 }
 
-- (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo {
-    if (_orderState == orderInfo.orderState) return;
+- (void)configOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {
+    if (_orderState == orderInfo.status) return;
     
-    _orderState = orderInfo.orderState;
+    _orderState = orderInfo.status;
     CGFloat itemH = KSCAL(98);
     switch (_orderState) {
         case 4:

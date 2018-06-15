@@ -9,7 +9,7 @@
 #import "SQBaseTableViewCell.h"
 
 #import "SQDecorationDetailViewModel.h"
-#import "SQDecorationDetailModel.h"
+#import "WKDecorationOrderDetailModel.h"
 
 #import "WKDecorationStageView.h"
 
@@ -33,7 +33,7 @@
 /** 是否在订单详情中(详情中可能需要展示退款) */
 @property (nonatomic, assign) BOOL isInOrderDetail;
 
-+ (CGFloat)cellHeightWithOrderInfo:(SQDecorationDetailModel *)orderInfo;
++ (CGFloat)cellHeightWithOrderInfo:(WKDecorationOrderDetailModel *)orderInfo;
 
 @end
 

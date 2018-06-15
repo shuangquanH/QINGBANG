@@ -68,7 +68,7 @@
  
 }
 
-- (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo {}
+- (void)configOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {}
 - (void)configAddressInfo:(ManageMailPostModel *)addressInfo {
     _nameLab.text = [NSString stringWithFormat:@"联系人：%@", addressInfo.name];
     _phoneLab.text = addressInfo.phone;

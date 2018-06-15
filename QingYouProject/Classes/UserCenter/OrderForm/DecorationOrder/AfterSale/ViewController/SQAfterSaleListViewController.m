@@ -50,7 +50,7 @@
 - (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
     if (headerAction) {
         [SQRequest post:KAPI_AFTERSALERECORD param:nil success:^(id response) {
-            if ([response[@"code"] isEqualToString:@"0"]) {
+            if ([response[@"code"] longLongValue] == 0) {
                 NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKAfterSaleModel class] json:response[@"data"][@"record_list"]];
                 if (tmp.count) {
                     [self.afterSaleList removeAllObjects];

@@ -94,8 +94,8 @@
     return [self viewSize];
 }
 
-- (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo {
-    if (orderInfo.orderState == 3 && orderInfo.isInRefund) {//受理中，待退款
+- (void)configOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {
+    if (orderInfo.status == 3 && orderInfo.isInRefund) {//受理中，待退款
         if (!_otherStateLabel) {
             _otherStateLabel = [UILabel labelWithFont:KSCAL(28) textColor:KCOLOR_MAIN];
             [self.contentView addSubview:_otherStateLabel];
@@ -108,7 +108,7 @@
         _otherStateLabel.hidden = NO;
         _otherStateLabel.text = @"(待退款)";
     }
-    else if (orderInfo.orderState == 4) {//阶段款
+    else if (orderInfo.status == 4) {//阶段款
         if (!_otherStateLabel) {
             _otherStateLabel = [UILabel labelWithFont:KSCAL(28) textColor:KCOLOR_MAIN];
             [self.contentView addSubview:_otherStateLabel];

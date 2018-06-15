@@ -65,7 +65,7 @@
     }];
 
     for (UIView<SQDecorationDetailViewProtocol> *v in self.orderVM.subviewArray) {
-        [v configOrderInfo:self.orderInfo.order_info];
+        [v configOrderInfo:self.orderInfo];
         if ([v respondsToSelector:@selector(configAddressInfo:)]) {
             [v configAddressInfo:self.orderInfo.address_info];
         }
@@ -141,17 +141,21 @@
         [self.navigationController pushViewController:next animated:YES];
     }
     else {
+        if (self.orderInfo.isInRepairApply) {//已经申请过发票
+            [YGAppTool showToastWithText:@"开票申请已提交，请耐心等待！"];
+            return;
+        }
         SQTicketApplyViewController *next = [SQTicketApplyViewController new];
-        next.orderDetailInfo = self.orderInfo.order_info;
+        next.orderDetailInfo = self.orderInfo;
         [self.navigationController pushViewController:next animated:YES];
     }
 }
 
 - (void)orderCell:(SQDecorationOrderCell *)orderCell didClickAction:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage {
     
-    WKDecorationStageModel *stageInfo = self.orderInfo.order_info.stage_list[stage];
+    WKDecorationStageModel *stageInfo = self.orderInfo.stage_list[stage];
     if (!stageInfo.isActivity) {//当前状态还没有被激活
-        [YGAppTool showToastWithText:[NSString stringWithFormat:@"需要完成%@，才可以操作此阶段", self.orderInfo.order_info.stage_list[stage-1].stageName]];
+        [YGAppTool showToastWithText:[NSString stringWithFormat:@"需要完成%@，才可以操作此阶段", self.orderInfo.stage_list[stage-1].stageName]];
         return;
     }
     
@@ -166,13 +170,13 @@
             [WKDecorationOrderAlertView alertWithDetail:@"确认取消订单?" titles:@[@"确定", @"取消"] bgColors:@[KCOLOR_MAIN, KCOLOR(@"98999A")] handler:^(NSInteger index) {
                 if (index == 0) {
                     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-                    [SQRequest post:KAPI_CANCELORDER param:@{@"orderNum": self.orderInfo.order_info.orderNum} success:^(id response) {
+                    [SQRequest post:KAPI_CANCELORDER param:@{@"orderNum": self.orderInfo.orderNum} success:^(id response) {
                         if ([response[@"state"] isEqualToString:@"success"]) {
                             //重新请求数据，更新状态
                             [self sendReqeust];
                             
                             //通知列表，更新视图
-                            self.orderListInfo.orderState = 2;
+                            self.orderListInfo.status = 2;
                             self.orderListInfo.stage_list.firstObject.stageState = 4;
                             if (self.orderRefreshBlock) {
                                 self.orderRefreshBlock(self.orderListInfo);
@@ -195,9 +199,9 @@
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"确认删除订单" preferredStyle:UIAlertControllerStyleAlert];
             [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-                [SQRequest post:KAPI_DELETEORDER param:@{@"orderNum": self.orderInfo.order_info.orderNum} success:^(id response) {
+                [SQRequest post:KAPI_DELETEORDER param:@{@"orderNum": self.orderInfo.orderNum} success:^(id response) {
                     [YGNetService dissmissLoadingView];
-                    if ([response[@"code"] isEqualToString:@"0"]) {
+                    if ([response[@"code"] longLongValue] == 0) {
                         if (self.orderRefreshBlock) {//通知列表，更新视图
                             self.orderRefreshBlock(nil);
                         }
@@ -219,9 +223,9 @@
         case WKDecorationOrderActionTypeRepair://补登
         {
             WKDecorationRepairViewController *next = [WKDecorationRepairViewController new];
-            next.orderInfo = self.orderInfo.order_info;
+            next.orderInfo = self.orderInfo;
             next.stageIndex = stage;
-            next.repairSuccess = ^(SQDecorationDetailModel *orderInfo) {
+            next.repairSuccess = ^(WKDecorationOrderDetailModel *orderInfo) {
                 [self.orderVM.orderCell configOrderInfo:orderInfo];
                 //通知前一个视图，更新数据
                 self.orderListInfo.stage_list[stage].stageState = 3;
@@ -249,13 +253,13 @@
         case WKDecorationOrderActionTypeRefund://申请退款
         {
             [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-            [SQRequest post:KAPI_APPLYREFUND param:@{@"orderNum": self.orderInfo.order_info.orderNum} success:^(id response) {
+            [SQRequest post:KAPI_APPLYREFUND param:@{@"orderNum": self.orderInfo.orderNum} success:^(id response) {
                 [YGNetService dissmissLoadingView];
-                if ([response[@"code"] isEqualToString:@"0"]) {
+                if ([response[@"code"] longLongValue] == 0) {
                     //修改当前状态为申请退款中状态
-                    self.orderInfo.order_info.isInRefund = YES;
-                    self.orderInfo.order_info.canRefund = NO;
-                    [self.orderVM.orderCell configOrderInfo:self.orderInfo.order_info];
+                    self.orderInfo.isInRefund = YES;
+                    self.orderInfo.canRefund = NO;
+                    [self.orderVM.orderCell configOrderInfo:self.orderInfo];
                     
                     self.orderListInfo.isInRefund = YES;
                     self.orderListInfo.canRefund = NO;

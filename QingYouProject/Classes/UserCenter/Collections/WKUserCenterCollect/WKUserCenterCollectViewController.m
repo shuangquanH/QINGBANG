@@ -54,7 +54,7 @@
     if (headerAction) {
         [SQRequest post:KAPI_COLLECTLIST param:nil success:^(id response) {
             [self.tableView.mj_header endRefreshing];
-            if ([response[@"code"] isEqualToString:@"0"]) {
+            if ([response[@"code"] longLongValue] == 0) {
                 NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKUserCenterCollectModel class] json:response[@"data"][@"collect_list"]];
                 if (tmp.count) {
                     [self.collectList removeAllObjects];
@@ -97,7 +97,7 @@
         [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
         [SQRequest post:KAPI_DELETECOLLECT param:@{@"product_id": collectInfo.product_id} success:^(id response) {
             [YGNetService dissmissLoadingView];
-            if ([response[@"code"] isEqualToString:@"0"]) {
+            if ([response[@"code"] longLongValue] == 0) {
                 NSInteger index = [self.collectList indexOfObject:collectInfo];
                 [self.collectList removeObjectAtIndex:index];
                 [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationLeft];

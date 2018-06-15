@@ -10,8 +10,9 @@
 #import "TZImagePickerController.h"
 
 #import "WKDecorationRepairPhotoCell.h"
+#import "WKImageCollectionView.h"
 
-#import "SQDecorationDetailModel.h"
+#import "WKDecorationOrderDetailModel.h"
 #import "WKOrderRepairModel.H"
 
 #import "NSString+SQStringSize.h"
@@ -31,7 +32,7 @@ const CGFloat kItemHorizontalMargin = 10;
 @property (nonatomic, strong) UICollectionView *collectionView;
 
 @property (nonatomic, strong) NSMutableArray<UIImage *> *repairImageArray;
-
+//选择图片索引 默认-1 没有选择
 @property (nonatomic, assign) NSInteger selectIndex;
 
 //重新补登相关
@@ -251,7 +252,7 @@ const CGFloat kItemHorizontalMargin = 10;
                       @"stageId": self.orderInfo.stage_list[self.stageIndex].stageId}
             success:^(id response) {
         [YGNetService dissmissLoadingView];
-        if ([response[@"code"] isEqualToString:@"0"]) {
+        if ([response[@"code"] longLongValue] == 0) {
             self.repairInfo = [WKOrderRepairModel yy_modelWithJSON:response[@"data"][@"repairInfo"]];
             [self setupSubviews];
         }
@@ -318,7 +319,7 @@ const CGFloat kItemHorizontalMargin = 10;
                             };
     [SQRequest post:KAPI_APPLYREPAIR param:param success:^(id response) {
         [YGNetService dissmissLoadingView];
-        if ([response[@"code"] isEqualToString:@"0"]) {
+        if ([response[@"code"] longLongValue] == 0) {
             stage.stageState = 3;
             if (self.repairSuccess) {
                 self.repairSuccess(self.orderInfo);

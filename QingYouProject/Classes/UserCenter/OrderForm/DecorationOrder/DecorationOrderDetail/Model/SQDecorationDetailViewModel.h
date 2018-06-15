@@ -7,7 +7,7 @@
 //  订单详情视图管理类
 
 #import <Foundation/Foundation.h>
-#import "SQDecorationDetailModel.h"
+#import "WKDecorationOrderDetailModel.h"
 #import "ManageMailPostModel.h"
 #import "SQDecorationCellPayButtonView.h"
 
@@ -15,7 +15,7 @@
 
 @protocol SQDecorationDetailViewProtocol<NSObject>
 
-- (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo;
+- (void)configOrderInfo:(WKDecorationOrderDetailModel *)orderInfo;
 
 - (CGSize)viewSize;
 
@@ -45,7 +45,7 @@
 
 @property (nonatomic, weak) id<SQDecorationDetailViewModelDelegate> orderDetailDelegate;
 
-- (void)setupByOrderInfo:(SQDecorationDetailModel *)orderInfo;
+- (void)setupByOrderInfo:(WKDecorationOrderDetailModel *)orderInfo;
 
 - (void)sendOrderDetailRequestWithOrderNum:(NSString *)orderNum completed:(void(^)(WKDecorationOrderDetailModel *order, NSError *error))completed;
 

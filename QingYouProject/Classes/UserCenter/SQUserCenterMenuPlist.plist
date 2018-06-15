@@ -18,7 +18,7 @@
 		<key>title</key>
 		<string>我的收藏</string>
 		<key>vc</key>
-		<string>WKUserCenterCollectViewController</string>
+		<string>MyCollectionListController</string>
 		<key>icon</key>
 		<string></string>
 		<key>needLogin</key>

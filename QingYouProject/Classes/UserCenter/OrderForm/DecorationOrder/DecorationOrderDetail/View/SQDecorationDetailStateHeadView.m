@@ -29,7 +29,7 @@
     return self;
 }
 
-- (void)configOrderInfo:(SQDecorationDetailModel *)orderInfo {
+- (void)configOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {
     _stateLab.text = orderInfo.orderTitle;
     [_stateLab appendImage:[UIImage imageNamed:@"orderdetails_left_header"] withType:SQAppendImageInLeft];
     [_stateLab appendImage:[UIImage imageNamed:@"orderdetails_right_header"] withType:SQAppendImageInRight];

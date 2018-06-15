@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SQDecorationDetailModel.h"
+#import "WKDecorationOrderDetailModel.h"
 
 typedef NS_ENUM(NSUInteger, WKDecorationOrderActionType) {
     WKDecorationOrderActionTypeAlreadyPay,  //已支付

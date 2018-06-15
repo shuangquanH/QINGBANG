@@ -64,7 +64,7 @@
 
 - (void)sendUnreadBadgeReqeust {
     [SQRequest post:KAPI_UNREADORDERBADGE param:nil success:^(id response) {
-        if ([response[@"code"] isEqualToString:@"0"]) {
+        if ([response[@"code"] longLongValue] == 0) {
             self.unreadInfo = [WKMyOrderUnreadCountModel yy_modelWithJSON:response[@"data"][@"badgeNum"]];
             [self.tableview reloadData];
         }
