@@ -18,7 +18,7 @@
 @property (nonatomic, strong) YGSegmentView       *seg;
 @property (nonatomic, strong) SQDecorationDetailBottomView       *bottomView;
 @property (nonatomic, strong) SQLinkJSWebView       *webView;
-@property (nonatomic, assign) NSInteger       skuId;
+@property (nonatomic, copy) NSString       *skuId;
 @property (nonatomic, assign) CGFloat       productInfoHeight;
 @property (nonatomic, assign) CGFloat       priceSheetHeight;
 
@@ -63,7 +63,6 @@
     [UIView  animateWithDuration:0.2 animations:^{
         self.webView.scrollView.contentOffset = point;
     }];
-//    [self.webView.scrollView setContentOffset:point animated:YES];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -99,6 +98,7 @@
 - (void)clickedPayButton {
     if (self.skuId) {
         SQConfirmDecorationOrderVC  *vc = [[SQConfirmDecorationOrderVC alloc] init];
+        vc.skuId = self.skuId;
         [self.navigationController pushViewController:vc animated:YES];
         
     } else {
@@ -148,7 +148,7 @@
         [_webView registJSFunctionWithName:regisArr back:^(NSString *methodName, id  _Nullable paramValue) {
             [weakSelf.view bringSubviewToFront:weakSelf.bottomView];
             if ([methodName isEqualToString:@"CHOOSESKUPARAMFORIOS"]) {
-                weakSelf.skuId = [paramValue integerValue];
+                weakSelf.skuId = [NSString stringWithFormat:@"%@", paramValue];
             } else if ([methodName isEqualToString:@"GETHTMLHEIGHTFORIOS"]) {
                 weakSelf.productInfoHeight = [paramValue[@"productInfoHeight"] floatValue];
                 weakSelf.priceSheetHeight = [paramValue[@"priceSheetHeight"] floatValue];

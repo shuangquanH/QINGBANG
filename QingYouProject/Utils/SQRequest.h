@@ -20,6 +20,8 @@
 /** 带loading动画的网络请求  */
 + (void)post:(NSString  *)api param:(NSDictionary   *)param success:(void(^)(id response))success failure:(void(^)(NSError *error))failure showLoadingView:(BOOL)show;
 
+/** 带自定义接口的loading动画的网络请求  */
++ (void)postCustomApi:(NSString  *)api param:(NSDictionary   *)param success:(void(^)(id response))success failure:(void(^)(NSError *error))failure showLoadingView:(BOOL)show;
 
 
 @end

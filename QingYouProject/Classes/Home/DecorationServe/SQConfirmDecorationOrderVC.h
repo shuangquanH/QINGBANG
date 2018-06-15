@@ -9,5 +9,7 @@
 #import "RootViewController.h"
 
 @interface SQConfirmDecorationOrderVC : RootViewController
+@property (nonatomic, copy) NSString       *skuId;
+
 
 @end

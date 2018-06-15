@@ -13,7 +13,6 @@
 #import "DeliveryWayView.h"//配送方式
 #import "IntegralView.h"//青币购
 #import "TotalPrice.h"//合计多少钱
-#import "LDPayItemView.h"//支付视图
 #import "AllOfficePurchaseModel.h"//订单模型
 
 @interface TransactionSuccessCell ()
