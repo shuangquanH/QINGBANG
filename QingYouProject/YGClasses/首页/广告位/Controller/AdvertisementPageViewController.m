@@ -12,7 +12,6 @@
 #import "AdvertisementDetailController.h"
 #import "YGActionSheetView.h"
 #import "AdvertisementLocationCell.h"
-#import "NetDetailViewController.h"
 #import "AdvertisementDetailController.h"
 
 @interface AdvertisementPageViewController ()<UITableViewDelegate,UITableViewDataSource,SDCycleScrollViewDelegate>

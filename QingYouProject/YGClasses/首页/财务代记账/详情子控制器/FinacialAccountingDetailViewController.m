@@ -13,12 +13,12 @@
 #import "ServiceIntroduceViewController.h"
 #import "ServiceEvaluationViewController.h"
 #import "TradeRecordViewController.h"
-#import "NetIntroduceViewController.h"
+//#import "NetIntroduceViewController.h"
 #import "FinacialAccountPopView.h"
 
 #import "BuyOrderViewController.h"
 #import "ShopItemModel.h"
-#import "NetManagerVC.h"
+//#import "NetManagerVC.h"
 
 @interface FinacialAccountingDetailViewController ()<UIScrollViewDelegate,SDCycleScrollViewDelegate,YGSegmentViewDelegate,ServiceIntroduceViewControllerDelegate,ServiceEvaluationViewControllerDelegate,TradeRecordViewControllerDelegate,FinacialAccountPopViewDelegate>
 {
@@ -281,12 +281,12 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
-        case 2:
-        {
-            NetManagerVC * netVC = [[NetManagerVC alloc] init];
-            [self.navigationController pushViewController:netVC animated:YES];
-        }
-            break;
+//        case 2:
+//        {
+//            NetManagerVC * netVC = [[NetManagerVC alloc] init];
+//            [self.navigationController pushViewController:netVC animated:YES];
+//        }
+//            break;
             
         default:
             break;

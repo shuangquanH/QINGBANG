@@ -13,11 +13,11 @@
 #import "FinacialAccountingDetailViewController.h"
 #import "OfficePurchaseDetailViewController.h"
 #import "AdvertisementDetailController.h"
-#import "NetDetailViewController.h"
+//#import "NetDetailViewController.h"
 //#import "NewThingsDetailController.h"
 #import "RoadShowHallCrowdFundingViewController.h"
 //#import "RushPurchaseDetailViewController.h"
-#import "HomePageLegalServiceNetDetailViewController.h"
+//#import "HomePageLegalServiceNetDetailViewController.h"
 
 
 @interface MyCollectionViewController ()<UITableViewDelegate,UITableViewDataSource>

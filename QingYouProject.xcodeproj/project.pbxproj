@@ -55,19 +55,6 @@
 		04FFB58820CE6CAD00B8843E /* WKOrderRepairModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FFB58720CE6CAD00B8843E /* WKOrderRepairModel.m */; };
 		04FFB58D20CF6A7700B8843E /* WKCheckContractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FFB58C20CF6A7700B8843E /* WKCheckContractViewController.m */; };
 		180FCFCF1FDE75E400EB278C /* ChooseGoodsWithCategoriesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180FCFCE1FDE75E400EB278C /* ChooseGoodsWithCategoriesView.m */; };
-		1812F2EF2021A01B00EEC1CE /* HomePageLegalServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812F2EE2021A01B00EEC1CE /* HomePageLegalServiceViewController.m */; };
-		1812F2F22021A27100EEC1CE /* HomePageLegalServiceManagerDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812F2F12021A27100EEC1CE /* HomePageLegalServiceManagerDetailViewController.m */; };
-		1812F2F52021A63600EEC1CE /* HomePageLegalServiceVIPDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812F2F42021A63600EEC1CE /* HomePageLegalServiceVIPDetailViewController.m */; };
-		1812F2F82021A70300EEC1CE /* HomePageLegalServiceManagerApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812F2F72021A70300EEC1CE /* HomePageLegalServiceManagerApplyViewController.m */; };
-		1812F2FB2021A88600EEC1CE /* HomePageLegalServiceNetDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812F2FA2021A88600EEC1CE /* HomePageLegalServiceNetDetailViewController.m */; };
-		1812F2FE2021A9F500EEC1CE /* HomePageLegalServiceIntroduceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812F2FD2021A9F500EEC1CE /* HomePageLegalServiceIntroduceViewController.m */; };
-		1812F3012021ACF600EEC1CE /* HomePageLegalServiceLDApplyVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812F3002021ACF600EEC1CE /* HomePageLegalServiceLDApplyVCViewController.m */; };
-		1812F3042021B29100EEC1CE /* HomePageLegalServiceLDPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812F3032021B29100EEC1CE /* HomePageLegalServiceLDPayViewController.m */; };
-		1812F3082021BDA800EEC1CE /* HomePageLegalServiceWithVIPServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812F3072021BDA800EEC1CE /* HomePageLegalServiceWithVIPServiceViewController.m */; };
-		1812F30B2021BE0B00EEC1CE /* HomePageLegalServiceWaitTorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812F30A2021BE0B00EEC1CE /* HomePageLegalServiceWaitTorViewController.m */; };
-		1812F30E2021BEB800EEC1CE /* HomePageLegalDealingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812F30D2021BEB800EEC1CE /* HomePageLegalDealingViewController.m */; };
-		1812F3112021BF2C00EEC1CE /* HomePageLegalDealedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812F3102021BF2C00EEC1CE /* HomePageLegalDealedViewController.m */; };
-		1812F3142021BFE000EEC1CE /* HomePageLegalJudgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1812F3132021BFE000EEC1CE /* HomePageLegalJudgeViewController.m */; };
 		181314F71FD546200070CD6D /* MyFinancialAccountDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 181314F61FD546200070CD6D /* MyFinancialAccountDetailModel.m */; };
 		182459791FCD03720092D5BC /* IntegrationIndustryWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 182459781FCD03720092D5BC /* IntegrationIndustryWebViewController.m */; };
 		1824E2E81FD0F3F900769A6A /* IntegrationtryJudgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1824E2E71FD0F3F900769A6A /* IntegrationtryJudgeViewController.m */; };
@@ -75,7 +62,6 @@
 		182F021F1FCFD16F00C63376 /* MyIntegrationIndustryWtihCategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182F021D1FCFD16F00C63376 /* MyIntegrationIndustryWtihCategoryTableViewCell.xib */; };
 		182F02221FCFD7CA00C63376 /* IntegrationIndustryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 182F02211FCFD7CA00C63376 /* IntegrationIndustryModel.m */; };
 		1854BE26202A8DD80078798C /* YGConnectionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1854BE25202A8DD80078798C /* YGConnectionService.m */; };
-		18C158AF1FC820890010ACD3 /* CooperationCaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C1545A1FC820880010ACD3 /* CooperationCaseViewController.m */; };
 		18C158DB1FC820890010ACD3 /* AddressAskSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C154B31FC820880010ACD3 /* AddressAskSubViewController.m */; };
 		18C158DC1FC820890010ACD3 /* AddressAskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C154B51FC820880010ACD3 /* AddressAskViewController.m */; };
 		18C158DD1FC820890010ACD3 /* AddressAskAndRegisterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C154B81FC820880010ACD3 /* AddressAskAndRegisterModel.m */; };
@@ -176,39 +162,6 @@
 		18C159421FC8208A0010ACD3 /* RepairOrderJudgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155981FC820880010ACD3 /* RepairOrderJudgeViewController.m */; };
 		18C159431FC8208A0010ACD3 /* RepairOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C1559A1FC820880010ACD3 /* RepairOrderViewController.m */; };
 		18C159441FC8208A0010ACD3 /* WaitToDealRepairOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C1559C1FC820880010ACD3 /* WaitToDealRepairOrderViewController.m */; };
-		18C159481FC8208A0010ACD3 /* LDPayItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155A71FC820880010ACD3 /* LDPayItemView.m */; };
-		18C159491FC8208A0010ACD3 /* LDPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155A91FC820880010ACD3 /* LDPayViewController.m */; };
-		18C1594A1FC8208A0010ACD3 /* LDVipImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155AB1FC820880010ACD3 /* LDVipImageView.m */; };
-		18C1594B1FC8208A0010ACD3 /* NetManagerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155AD1FC820880010ACD3 /* NetManagerCell.m */; };
-		18C1594C1FC8208A0010ACD3 /* NetManagerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C155AE1FC820880010ACD3 /* NetManagerCell.xib */; };
-		18C1594D1FC8208A0010ACD3 /* NetManagerDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155B01FC820880010ACD3 /* NetManagerDetailVC.m */; };
-		18C1594E1FC8208A0010ACD3 /* NetManagerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155B21FC820880010ACD3 /* NetManagerVC.m */; };
-		18C1594F1FC8208A0010ACD3 /* NetVIPDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155B41FC820880010ACD3 /* NetVIPDetailVC.m */; };
-		18C159501FC8208A0010ACD3 /* NetVIPmodel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155B61FC820880010ACD3 /* NetVIPmodel.m */; };
-		18C159511FC8208A0010ACD3 /* LDPlayPayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155BA1FC820880010ACD3 /* LDPlayPayViewController.m */; };
-		18C159521FC8208A0010ACD3 /* DealedNetManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155BD1FC820880010ACD3 /* DealedNetManagerViewController.m */; };
-		18C159531FC8208A0010ACD3 /* DealingNetManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155BF1FC820880010ACD3 /* DealingNetManagerViewController.m */; };
-		18C159541FC8208A0010ACD3 /* NetManagerJudgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155C11FC820880010ACD3 /* NetManagerJudgeViewController.m */; };
-		18C159551FC8208A0010ACD3 /* NetManagerWithVIPServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155C31FC820880010ACD3 /* NetManagerWithVIPServiceViewController.m */; };
-		18C159561FC8208A0010ACD3 /* WaitToNetManagerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155C51FC820880010ACD3 /* WaitToNetManagerModel.m */; };
-		18C159571FC8208A0010ACD3 /* WaitToNetManagerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155C71FC820880010ACD3 /* WaitToNetManagerTableViewCell.m */; };
-		18C159581FC8208A0010ACD3 /* WaitToNetManagerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C155C81FC820880010ACD3 /* WaitToNetManagerTableViewCell.xib */; };
-		18C159591FC8208A0010ACD3 /* WaitToNetManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155CA1FC820880010ACD3 /* WaitToNetManagerViewController.m */; };
-		18C1595A1FC8208A0010ACD3 /* AreaSelectDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155CD1FC820880010ACD3 /* AreaSelectDetailViewController.m */; };
-		18C1595B1FC8208A0010ACD3 /* AreaSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155CF1FC820880010ACD3 /* AreaSelectViewController.m */; };
-		18C1595C1FC8208A0010ACD3 /* LDApplyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155D11FC820880010ACD3 /* LDApplyVC.m */; };
-		18C1595D1FC8208A0010ACD3 /* LDNetManagerApplyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155D31FC820880010ACD3 /* LDNetManagerApplyVC.m */; };
-		18C1595E1FC8208A0010ACD3 /* LDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155D51FC820880010ACD3 /* LDTextView.m */; };
-		18C1595F1FC8208A0010ACD3 /* LDPayOptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155D81FC820880010ACD3 /* LDPayOptionView.m */; };
-		18C159601FC8208A0010ACD3 /* LDVIPButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155DA1FC820880010ACD3 /* LDVIPButton.m */; };
-		18C159611FC8208A0010ACD3 /* LDBaseNetManagerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155DD1FC820880010ACD3 /* LDBaseNetManagerVC.m */; };
-		18C159621FC8208A0010ACD3 /* LDPendingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155DF1FC820880010ACD3 /* LDPendingCell.m */; };
-		18C159631FC8208A0010ACD3 /* LDPendingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C155E01FC820880010ACD3 /* LDPendingCell.xib */; };
-		18C159641FC8208A0010ACD3 /* LDPendingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155E21FC820880010ACD3 /* LDPendingVC.m */; };
-		18C159651FC8208A0010ACD3 /* LDProcessedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155E41FC820880010ACD3 /* LDProcessedVC.m */; };
-		18C159661FC8208A0010ACD3 /* LDProcessingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155E61FC820880010ACD3 /* LDProcessingVC.m */; };
-		18C159671FC8208A0010ACD3 /* NetDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155E91FC820880010ACD3 /* NetDetailViewController.m */; };
-		18C159681FC8208A0010ACD3 /* NetIntroduceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155EB1FC820880010ACD3 /* NetIntroduceViewController.m */; };
 		18C1596D1FC8208A0010ACD3 /* AdvertisesForEnterpriseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155F91FC820880010ACD3 /* AdvertisesForEnterpriseViewController.m */; };
 		18C1596E1FC8208A0010ACD3 /* ChooseJobPositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155FC1FC820880010ACD3 /* ChooseJobPositionViewController.m */; };
 		18C1596F1FC8208A0010ACD3 /* IssueAdvertiseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C155FE1FC820880010ACD3 /* IssueAdvertiseViewController.m */; };
@@ -464,13 +417,6 @@
 		18C15A8D1FC8208B0010ACD3 /* ReserveInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C1585D1FC820890010ACD3 /* ReserveInputCell.xib */; };
 		18C15A8E1FC8208B0010ACD3 /* ReserveRemarkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C1585F1FC820890010ACD3 /* ReserveRemarkCell.m */; };
 		18C15A8F1FC8208B0010ACD3 /* ReserveRemarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C158601FC820890010ACD3 /* ReserveRemarkCell.xib */; };
-		18C15A901FC8208B0010ACD3 /* OrderCheckHouseDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C158631FC820890010ACD3 /* OrderCheckHouseDetailTableViewCell.m */; };
-		18C15A911FC8208B0010ACD3 /* OrderCheckHouseDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C158651FC820890010ACD3 /* OrderCheckHouseDetailViewController.m */; };
-		18C15A921FC8208B0010ACD3 /* OrderCheckHouseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C158671FC820890010ACD3 /* OrderCheckHouseModel.m */; };
-		18C15A931FC8208B0010ACD3 /* OrderCheckHouseSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C158691FC820890010ACD3 /* OrderCheckHouseSearchViewController.m */; };
-		18C15A941FC8208B0010ACD3 /* OrderCheckHouseSubmitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C1586B1FC820890010ACD3 /* OrderCheckHouseSubmitViewController.m */; };
-		18C15A951FC8208B0010ACD3 /* OrderCheckHouseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C1586D1FC820890010ACD3 /* OrderCheckHouseTableViewCell.m */; };
-		18C15A961FC8208B0010ACD3 /* OrderCheckHouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C1586F1FC820890010ACD3 /* OrderCheckHouseViewController.m */; };
 		18C15A9E1FC8208B0010ACD3 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C158801FC820890010ACD3 /* ProgressView.m */; };
 		18C15A9F1FC8208B0010ACD3 /* SelectCityPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C158821FC820890010ACD3 /* SelectCityPopView.m */; };
 		2C6C2C411FB141B800B1CB9C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6C2C401FB141B800B1CB9C /* SystemConfiguration.framework */; };
@@ -482,9 +428,6 @@
 		2C7BE8A41FD6847A000080A0 /* YGScollTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7BE8A31FD6847A000080A0 /* YGScollTitleView.m */; };
 		2C7CDCB81FCE5149005437C6 /* ProjectApplyForWebDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7CDCB71FCE5149005437C6 /* ProjectApplyForWebDetailViewController.m */; };
 		2C84D5A11F73980500254912 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C84D5A01F73980500254912 /* MapKit.framework */; };
-		2C8D783F1FD155DF00078C35 /* MyOrderCheckHouseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D783E1FD155DF00078C35 /* MyOrderCheckHouseViewController.m */; };
-		2C8D78421FD1569300078C35 /* MyOrderCheckOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D78411FD1569300078C35 /* MyOrderCheckOrderViewController.m */; };
-		2C8D78451FD1576500078C35 /* MyOrderCheckHouseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8D78441FD1576500078C35 /* MyOrderCheckHouseTableViewCell.m */; };
 		2CA019081FCD0C3F00B21863 /* ProjectApplyForDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA019071FCD0C3F00B21863 /* ProjectApplyForDetailModel.m */; };
 		2CA0190B1FCD32CD00B21863 /* ProjectApplySuccessDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA0190A1FCD32CD00B21863 /* ProjectApplySuccessDetailViewController.m */; };
 		2CA0190F1FCD3A1D00B21863 /* MineProjectApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA0190E1FCD3A1D00B21863 /* MineProjectApplyViewController.m */; };
@@ -825,6 +768,10 @@
 		E9E1E5AD20C90B1500A807BE /* SQPaySuccessfulVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E5AC20C90B1500A807BE /* SQPaySuccessfulVC.m */; };
 		E9E1E5B020CE63FB00A807BE /* NSMutableAttributedString+SQAttributColorFont.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E5AF20CE63FB00A807BE /* NSMutableAttributedString+SQAttributColorFont.m */; };
 		E9E1E5B320CE656100A807BE /* UILabel+SQAttribut.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E5B220CE656100A807BE /* UILabel+SQAttribut.m */; };
+		E9E1E5B620D3C60800A807BE /* LDPayItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E5B520D3C60800A807BE /* LDPayItemView.m */; };
+		E9E1E5B920D3C66200A807BE /* LDTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E5B720D3C66200A807BE /* LDTextView.m */; };
+		E9E1E5BC20D3C68600A807BE /* AreaSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E5BA20D3C68600A807BE /* AreaSelectViewController.m */; };
+		E9E1E5BF20D3C6A100A807BE /* AreaSelectDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E5BD20D3C6A100A807BE /* AreaSelectDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -926,32 +873,6 @@
 		04FFB58C20CF6A7700B8843E /* WKCheckContractViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKCheckContractViewController.m; sourceTree = "<group>"; };
 		180FCFCD1FDE75E400EB278C /* ChooseGoodsWithCategoriesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChooseGoodsWithCategoriesView.h; sourceTree = "<group>"; };
 		180FCFCE1FDE75E400EB278C /* ChooseGoodsWithCategoriesView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChooseGoodsWithCategoriesView.m; sourceTree = "<group>"; };
-		1812F2ED2021A01B00EEC1CE /* HomePageLegalServiceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageLegalServiceViewController.h; sourceTree = "<group>"; };
-		1812F2EE2021A01B00EEC1CE /* HomePageLegalServiceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageLegalServiceViewController.m; sourceTree = "<group>"; };
-		1812F2F02021A27100EEC1CE /* HomePageLegalServiceManagerDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageLegalServiceManagerDetailViewController.h; sourceTree = "<group>"; };
-		1812F2F12021A27100EEC1CE /* HomePageLegalServiceManagerDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageLegalServiceManagerDetailViewController.m; sourceTree = "<group>"; };
-		1812F2F32021A63600EEC1CE /* HomePageLegalServiceVIPDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageLegalServiceVIPDetailViewController.h; sourceTree = "<group>"; };
-		1812F2F42021A63600EEC1CE /* HomePageLegalServiceVIPDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageLegalServiceVIPDetailViewController.m; sourceTree = "<group>"; };
-		1812F2F62021A70300EEC1CE /* HomePageLegalServiceManagerApplyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageLegalServiceManagerApplyViewController.h; sourceTree = "<group>"; };
-		1812F2F72021A70300EEC1CE /* HomePageLegalServiceManagerApplyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageLegalServiceManagerApplyViewController.m; sourceTree = "<group>"; };
-		1812F2F92021A88600EEC1CE /* HomePageLegalServiceNetDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageLegalServiceNetDetailViewController.h; sourceTree = "<group>"; };
-		1812F2FA2021A88600EEC1CE /* HomePageLegalServiceNetDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageLegalServiceNetDetailViewController.m; sourceTree = "<group>"; };
-		1812F2FC2021A9F500EEC1CE /* HomePageLegalServiceIntroduceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageLegalServiceIntroduceViewController.h; sourceTree = "<group>"; };
-		1812F2FD2021A9F500EEC1CE /* HomePageLegalServiceIntroduceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageLegalServiceIntroduceViewController.m; sourceTree = "<group>"; };
-		1812F2FF2021ACF600EEC1CE /* HomePageLegalServiceLDApplyVCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageLegalServiceLDApplyVCViewController.h; sourceTree = "<group>"; };
-		1812F3002021ACF600EEC1CE /* HomePageLegalServiceLDApplyVCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageLegalServiceLDApplyVCViewController.m; sourceTree = "<group>"; };
-		1812F3022021B29100EEC1CE /* HomePageLegalServiceLDPayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageLegalServiceLDPayViewController.h; sourceTree = "<group>"; };
-		1812F3032021B29100EEC1CE /* HomePageLegalServiceLDPayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageLegalServiceLDPayViewController.m; sourceTree = "<group>"; };
-		1812F3062021BDA800EEC1CE /* HomePageLegalServiceWithVIPServiceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageLegalServiceWithVIPServiceViewController.h; sourceTree = "<group>"; };
-		1812F3072021BDA800EEC1CE /* HomePageLegalServiceWithVIPServiceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageLegalServiceWithVIPServiceViewController.m; sourceTree = "<group>"; };
-		1812F3092021BE0B00EEC1CE /* HomePageLegalServiceWaitTorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageLegalServiceWaitTorViewController.h; sourceTree = "<group>"; };
-		1812F30A2021BE0B00EEC1CE /* HomePageLegalServiceWaitTorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageLegalServiceWaitTorViewController.m; sourceTree = "<group>"; };
-		1812F30C2021BEB800EEC1CE /* HomePageLegalDealingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageLegalDealingViewController.h; sourceTree = "<group>"; };
-		1812F30D2021BEB800EEC1CE /* HomePageLegalDealingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageLegalDealingViewController.m; sourceTree = "<group>"; };
-		1812F30F2021BF2C00EEC1CE /* HomePageLegalDealedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageLegalDealedViewController.h; sourceTree = "<group>"; };
-		1812F3102021BF2C00EEC1CE /* HomePageLegalDealedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageLegalDealedViewController.m; sourceTree = "<group>"; };
-		1812F3122021BFE000EEC1CE /* HomePageLegalJudgeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomePageLegalJudgeViewController.h; sourceTree = "<group>"; };
-		1812F3132021BFE000EEC1CE /* HomePageLegalJudgeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomePageLegalJudgeViewController.m; sourceTree = "<group>"; };
 		181314F51FD546200070CD6D /* MyFinancialAccountDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFinancialAccountDetailModel.h; sourceTree = "<group>"; };
 		181314F61FD546200070CD6D /* MyFinancialAccountDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFinancialAccountDetailModel.m; sourceTree = "<group>"; };
 		182459771FCD03720092D5BC /* IntegrationIndustryWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegrationIndustryWebViewController.h; sourceTree = "<group>"; };
@@ -964,8 +885,6 @@
 		182F02201FCFD7CA00C63376 /* IntegrationIndustryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntegrationIndustryModel.h; sourceTree = "<group>"; };
 		182F02211FCFD7CA00C63376 /* IntegrationIndustryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntegrationIndustryModel.m; sourceTree = "<group>"; };
 		1854BE25202A8DD80078798C /* YGConnectionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGConnectionService.m; sourceTree = "<group>"; };
-		18C154591FC820880010ACD3 /* CooperationCaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CooperationCaseViewController.h; sourceTree = "<group>"; };
-		18C1545A1FC820880010ACD3 /* CooperationCaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CooperationCaseViewController.m; sourceTree = "<group>"; };
 		18C154B21FC820880010ACD3 /* AddressAskSubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressAskSubViewController.h; sourceTree = "<group>"; };
 		18C154B31FC820880010ACD3 /* AddressAskSubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressAskSubViewController.m; sourceTree = "<group>"; };
 		18C154B41FC820880010ACD3 /* AddressAskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressAskViewController.h; sourceTree = "<group>"; };
@@ -1156,69 +1075,6 @@
 		18C1559A1FC820880010ACD3 /* RepairOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepairOrderViewController.m; sourceTree = "<group>"; };
 		18C1559B1FC820880010ACD3 /* WaitToDealRepairOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitToDealRepairOrderViewController.h; sourceTree = "<group>"; };
 		18C1559C1FC820880010ACD3 /* WaitToDealRepairOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitToDealRepairOrderViewController.m; sourceTree = "<group>"; };
-		18C155A61FC820880010ACD3 /* LDPayItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDPayItemView.h; sourceTree = "<group>"; };
-		18C155A71FC820880010ACD3 /* LDPayItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDPayItemView.m; sourceTree = "<group>"; };
-		18C155A81FC820880010ACD3 /* LDPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDPayViewController.h; sourceTree = "<group>"; };
-		18C155A91FC820880010ACD3 /* LDPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDPayViewController.m; sourceTree = "<group>"; };
-		18C155AA1FC820880010ACD3 /* LDVipImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDVipImageView.h; sourceTree = "<group>"; };
-		18C155AB1FC820880010ACD3 /* LDVipImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDVipImageView.m; sourceTree = "<group>"; };
-		18C155AC1FC820880010ACD3 /* NetManagerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetManagerCell.h; sourceTree = "<group>"; };
-		18C155AD1FC820880010ACD3 /* NetManagerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetManagerCell.m; sourceTree = "<group>"; };
-		18C155AE1FC820880010ACD3 /* NetManagerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NetManagerCell.xib; sourceTree = "<group>"; };
-		18C155AF1FC820880010ACD3 /* NetManagerDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetManagerDetailVC.h; sourceTree = "<group>"; };
-		18C155B01FC820880010ACD3 /* NetManagerDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetManagerDetailVC.m; sourceTree = "<group>"; };
-		18C155B11FC820880010ACD3 /* NetManagerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetManagerVC.h; sourceTree = "<group>"; };
-		18C155B21FC820880010ACD3 /* NetManagerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetManagerVC.m; sourceTree = "<group>"; };
-		18C155B31FC820880010ACD3 /* NetVIPDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetVIPDetailVC.h; sourceTree = "<group>"; };
-		18C155B41FC820880010ACD3 /* NetVIPDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetVIPDetailVC.m; sourceTree = "<group>"; };
-		18C155B51FC820880010ACD3 /* NetVIPmodel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetVIPmodel.h; sourceTree = "<group>"; };
-		18C155B61FC820880010ACD3 /* NetVIPmodel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetVIPmodel.m; sourceTree = "<group>"; };
-		18C155B91FC820880010ACD3 /* LDPlayPayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDPlayPayViewController.h; sourceTree = "<group>"; };
-		18C155BA1FC820880010ACD3 /* LDPlayPayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDPlayPayViewController.m; sourceTree = "<group>"; };
-		18C155BC1FC820880010ACD3 /* DealedNetManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealedNetManagerViewController.h; sourceTree = "<group>"; };
-		18C155BD1FC820880010ACD3 /* DealedNetManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealedNetManagerViewController.m; sourceTree = "<group>"; };
-		18C155BE1FC820880010ACD3 /* DealingNetManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DealingNetManagerViewController.h; sourceTree = "<group>"; };
-		18C155BF1FC820880010ACD3 /* DealingNetManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DealingNetManagerViewController.m; sourceTree = "<group>"; };
-		18C155C01FC820880010ACD3 /* NetManagerJudgeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetManagerJudgeViewController.h; sourceTree = "<group>"; };
-		18C155C11FC820880010ACD3 /* NetManagerJudgeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetManagerJudgeViewController.m; sourceTree = "<group>"; };
-		18C155C21FC820880010ACD3 /* NetManagerWithVIPServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetManagerWithVIPServiceViewController.h; sourceTree = "<group>"; };
-		18C155C31FC820880010ACD3 /* NetManagerWithVIPServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetManagerWithVIPServiceViewController.m; sourceTree = "<group>"; };
-		18C155C41FC820880010ACD3 /* WaitToNetManagerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitToNetManagerModel.h; sourceTree = "<group>"; };
-		18C155C51FC820880010ACD3 /* WaitToNetManagerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitToNetManagerModel.m; sourceTree = "<group>"; };
-		18C155C61FC820880010ACD3 /* WaitToNetManagerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitToNetManagerTableViewCell.h; sourceTree = "<group>"; };
-		18C155C71FC820880010ACD3 /* WaitToNetManagerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitToNetManagerTableViewCell.m; sourceTree = "<group>"; };
-		18C155C81FC820880010ACD3 /* WaitToNetManagerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaitToNetManagerTableViewCell.xib; sourceTree = "<group>"; };
-		18C155C91FC820880010ACD3 /* WaitToNetManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitToNetManagerViewController.h; sourceTree = "<group>"; };
-		18C155CA1FC820880010ACD3 /* WaitToNetManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitToNetManagerViewController.m; sourceTree = "<group>"; };
-		18C155CC1FC820880010ACD3 /* AreaSelectDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AreaSelectDetailViewController.h; sourceTree = "<group>"; };
-		18C155CD1FC820880010ACD3 /* AreaSelectDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreaSelectDetailViewController.m; sourceTree = "<group>"; };
-		18C155CE1FC820880010ACD3 /* AreaSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AreaSelectViewController.h; sourceTree = "<group>"; };
-		18C155CF1FC820880010ACD3 /* AreaSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreaSelectViewController.m; sourceTree = "<group>"; };
-		18C155D01FC820880010ACD3 /* LDApplyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDApplyVC.h; sourceTree = "<group>"; };
-		18C155D11FC820880010ACD3 /* LDApplyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDApplyVC.m; sourceTree = "<group>"; };
-		18C155D21FC820880010ACD3 /* LDNetManagerApplyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDNetManagerApplyVC.h; sourceTree = "<group>"; };
-		18C155D31FC820880010ACD3 /* LDNetManagerApplyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDNetManagerApplyVC.m; sourceTree = "<group>"; };
-		18C155D41FC820880010ACD3 /* LDTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDTextView.h; sourceTree = "<group>"; };
-		18C155D51FC820880010ACD3 /* LDTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDTextView.m; sourceTree = "<group>"; };
-		18C155D71FC820880010ACD3 /* LDPayOptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDPayOptionView.h; sourceTree = "<group>"; };
-		18C155D81FC820880010ACD3 /* LDPayOptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDPayOptionView.m; sourceTree = "<group>"; };
-		18C155D91FC820880010ACD3 /* LDVIPButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDVIPButton.h; sourceTree = "<group>"; };
-		18C155DA1FC820880010ACD3 /* LDVIPButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDVIPButton.m; sourceTree = "<group>"; };
-		18C155DC1FC820880010ACD3 /* LDBaseNetManagerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDBaseNetManagerVC.h; sourceTree = "<group>"; };
-		18C155DD1FC820880010ACD3 /* LDBaseNetManagerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDBaseNetManagerVC.m; sourceTree = "<group>"; };
-		18C155DE1FC820880010ACD3 /* LDPendingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDPendingCell.h; sourceTree = "<group>"; };
-		18C155DF1FC820880010ACD3 /* LDPendingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDPendingCell.m; sourceTree = "<group>"; };
-		18C155E01FC820880010ACD3 /* LDPendingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LDPendingCell.xib; sourceTree = "<group>"; };
-		18C155E11FC820880010ACD3 /* LDPendingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDPendingVC.h; sourceTree = "<group>"; };
-		18C155E21FC820880010ACD3 /* LDPendingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDPendingVC.m; sourceTree = "<group>"; };
-		18C155E31FC820880010ACD3 /* LDProcessedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDProcessedVC.h; sourceTree = "<group>"; };
-		18C155E41FC820880010ACD3 /* LDProcessedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDProcessedVC.m; sourceTree = "<group>"; };
-		18C155E51FC820880010ACD3 /* LDProcessingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDProcessingVC.h; sourceTree = "<group>"; };
-		18C155E61FC820880010ACD3 /* LDProcessingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDProcessingVC.m; sourceTree = "<group>"; };
-		18C155E81FC820880010ACD3 /* NetDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetDetailViewController.h; sourceTree = "<group>"; };
-		18C155E91FC820880010ACD3 /* NetDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetDetailViewController.m; sourceTree = "<group>"; };
-		18C155EA1FC820880010ACD3 /* NetIntroduceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetIntroduceViewController.h; sourceTree = "<group>"; };
-		18C155EB1FC820880010ACD3 /* NetIntroduceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetIntroduceViewController.m; sourceTree = "<group>"; };
 		18C155F81FC820880010ACD3 /* AdvertisesForEnterpriseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvertisesForEnterpriseViewController.h; sourceTree = "<group>"; };
 		18C155F91FC820880010ACD3 /* AdvertisesForEnterpriseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvertisesForEnterpriseViewController.m; sourceTree = "<group>"; };
 		18C155FB1FC820880010ACD3 /* ChooseJobPositionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseJobPositionViewController.h; sourceTree = "<group>"; };
@@ -1694,20 +1550,6 @@
 		18C1585E1FC820890010ACD3 /* ReserveRemarkCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReserveRemarkCell.h; sourceTree = "<group>"; };
 		18C1585F1FC820890010ACD3 /* ReserveRemarkCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReserveRemarkCell.m; sourceTree = "<group>"; };
 		18C158601FC820890010ACD3 /* ReserveRemarkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReserveRemarkCell.xib; sourceTree = "<group>"; };
-		18C158621FC820890010ACD3 /* OrderCheckHouseDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCheckHouseDetailTableViewCell.h; sourceTree = "<group>"; };
-		18C158631FC820890010ACD3 /* OrderCheckHouseDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCheckHouseDetailTableViewCell.m; sourceTree = "<group>"; };
-		18C158641FC820890010ACD3 /* OrderCheckHouseDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCheckHouseDetailViewController.h; sourceTree = "<group>"; };
-		18C158651FC820890010ACD3 /* OrderCheckHouseDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCheckHouseDetailViewController.m; sourceTree = "<group>"; };
-		18C158661FC820890010ACD3 /* OrderCheckHouseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCheckHouseModel.h; sourceTree = "<group>"; };
-		18C158671FC820890010ACD3 /* OrderCheckHouseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCheckHouseModel.m; sourceTree = "<group>"; };
-		18C158681FC820890010ACD3 /* OrderCheckHouseSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCheckHouseSearchViewController.h; sourceTree = "<group>"; };
-		18C158691FC820890010ACD3 /* OrderCheckHouseSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCheckHouseSearchViewController.m; sourceTree = "<group>"; };
-		18C1586A1FC820890010ACD3 /* OrderCheckHouseSubmitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCheckHouseSubmitViewController.h; sourceTree = "<group>"; };
-		18C1586B1FC820890010ACD3 /* OrderCheckHouseSubmitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCheckHouseSubmitViewController.m; sourceTree = "<group>"; };
-		18C1586C1FC820890010ACD3 /* OrderCheckHouseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCheckHouseTableViewCell.h; sourceTree = "<group>"; };
-		18C1586D1FC820890010ACD3 /* OrderCheckHouseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCheckHouseTableViewCell.m; sourceTree = "<group>"; };
-		18C1586E1FC820890010ACD3 /* OrderCheckHouseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCheckHouseViewController.h; sourceTree = "<group>"; };
-		18C1586F1FC820890010ACD3 /* OrderCheckHouseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCheckHouseViewController.m; sourceTree = "<group>"; };
 		18C1587F1FC820890010ACD3 /* ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressView.h; sourceTree = "<group>"; };
 		18C158801FC820890010ACD3 /* ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressView.m; sourceTree = "<group>"; };
 		18C158811FC820890010ACD3 /* SelectCityPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCityPopView.h; sourceTree = "<group>"; };
@@ -1724,12 +1566,6 @@
 		2C7CDCB71FCE5149005437C6 /* ProjectApplyForWebDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectApplyForWebDetailViewController.m; sourceTree = "<group>"; };
 		2C8451E41FBD434200F037DE /* QingYouProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QingYouProject.entitlements; sourceTree = "<group>"; };
 		2C84D5A01F73980500254912 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		2C8D783D1FD155DF00078C35 /* MyOrderCheckHouseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyOrderCheckHouseViewController.h; sourceTree = "<group>"; };
-		2C8D783E1FD155DF00078C35 /* MyOrderCheckHouseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyOrderCheckHouseViewController.m; sourceTree = "<group>"; };
-		2C8D78401FD1569300078C35 /* MyOrderCheckOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyOrderCheckOrderViewController.h; sourceTree = "<group>"; };
-		2C8D78411FD1569300078C35 /* MyOrderCheckOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyOrderCheckOrderViewController.m; sourceTree = "<group>"; };
-		2C8D78431FD1576500078C35 /* MyOrderCheckHouseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyOrderCheckHouseTableViewCell.h; sourceTree = "<group>"; };
-		2C8D78441FD1576500078C35 /* MyOrderCheckHouseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyOrderCheckHouseTableViewCell.m; sourceTree = "<group>"; };
 		2CA019061FCD0C3F00B21863 /* ProjectApplyForDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectApplyForDetailModel.h; sourceTree = "<group>"; };
 		2CA019071FCD0C3F00B21863 /* ProjectApplyForDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProjectApplyForDetailModel.m; sourceTree = "<group>"; };
 		2CA019091FCD32CD00B21863 /* ProjectApplySuccessDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProjectApplySuccessDetailViewController.h; sourceTree = "<group>"; };
@@ -2372,6 +2208,14 @@
 		E9E1E5AF20CE63FB00A807BE /* NSMutableAttributedString+SQAttributColorFont.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+SQAttributColorFont.m"; sourceTree = "<group>"; };
 		E9E1E5B120CE656100A807BE /* UILabel+SQAttribut.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+SQAttribut.h"; sourceTree = "<group>"; };
 		E9E1E5B220CE656100A807BE /* UILabel+SQAttribut.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+SQAttribut.m"; sourceTree = "<group>"; };
+		E9E1E5B420D3C60800A807BE /* LDPayItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDPayItemView.h; sourceTree = "<group>"; };
+		E9E1E5B520D3C60800A807BE /* LDPayItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDPayItemView.m; sourceTree = "<group>"; };
+		E9E1E5B720D3C66200A807BE /* LDTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDTextView.m; sourceTree = "<group>"; };
+		E9E1E5B820D3C66200A807BE /* LDTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDTextView.h; sourceTree = "<group>"; };
+		E9E1E5BA20D3C68600A807BE /* AreaSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreaSelectViewController.m; sourceTree = "<group>"; };
+		E9E1E5BB20D3C68600A807BE /* AreaSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AreaSelectViewController.h; sourceTree = "<group>"; };
+		E9E1E5BD20D3C6A100A807BE /* AreaSelectDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreaSelectDetailViewController.m; sourceTree = "<group>"; };
+		E9E1E5BE20D3C6A100A807BE /* AreaSelectDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AreaSelectDetailViewController.h; sourceTree = "<group>"; };
 		F883056FA3AE70A8E2E8FFA5 /* Pods-QingYouProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QingYouProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-QingYouProject/Pods-QingYouProject.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2736,66 +2580,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		1812F2EC20219FA100EEC1CE /* 法律服务 */ = {
-			isa = PBXGroup;
-			children = (
-				1812F3052021BD4A00EEC1CE /* 法律服务订单 */,
-				1812F2ED2021A01B00EEC1CE /* HomePageLegalServiceViewController.h */,
-				1812F2EE2021A01B00EEC1CE /* HomePageLegalServiceViewController.m */,
-				1812F2F02021A27100EEC1CE /* HomePageLegalServiceManagerDetailViewController.h */,
-				1812F2F12021A27100EEC1CE /* HomePageLegalServiceManagerDetailViewController.m */,
-				1812F2F32021A63600EEC1CE /* HomePageLegalServiceVIPDetailViewController.h */,
-				1812F2F42021A63600EEC1CE /* HomePageLegalServiceVIPDetailViewController.m */,
-				1812F2F62021A70300EEC1CE /* HomePageLegalServiceManagerApplyViewController.h */,
-				1812F2F72021A70300EEC1CE /* HomePageLegalServiceManagerApplyViewController.m */,
-				1812F2F92021A88600EEC1CE /* HomePageLegalServiceNetDetailViewController.h */,
-				1812F2FA2021A88600EEC1CE /* HomePageLegalServiceNetDetailViewController.m */,
-				1812F2FC2021A9F500EEC1CE /* HomePageLegalServiceIntroduceViewController.h */,
-				1812F2FD2021A9F500EEC1CE /* HomePageLegalServiceIntroduceViewController.m */,
-				1812F2FF2021ACF600EEC1CE /* HomePageLegalServiceLDApplyVCViewController.h */,
-				1812F3002021ACF600EEC1CE /* HomePageLegalServiceLDApplyVCViewController.m */,
-				1812F3022021B29100EEC1CE /* HomePageLegalServiceLDPayViewController.h */,
-				1812F3032021B29100EEC1CE /* HomePageLegalServiceLDPayViewController.m */,
-			);
-			path = "法律服务";
-			sourceTree = "<group>";
-		};
-		1812F3052021BD4A00EEC1CE /* 法律服务订单 */ = {
-			isa = PBXGroup;
-			children = (
-				1812F3062021BDA800EEC1CE /* HomePageLegalServiceWithVIPServiceViewController.h */,
-				1812F3072021BDA800EEC1CE /* HomePageLegalServiceWithVIPServiceViewController.m */,
-				1812F3092021BE0B00EEC1CE /* HomePageLegalServiceWaitTorViewController.h */,
-				1812F30A2021BE0B00EEC1CE /* HomePageLegalServiceWaitTorViewController.m */,
-				1812F30C2021BEB800EEC1CE /* HomePageLegalDealingViewController.h */,
-				1812F30D2021BEB800EEC1CE /* HomePageLegalDealingViewController.m */,
-				1812F30F2021BF2C00EEC1CE /* HomePageLegalDealedViewController.h */,
-				1812F3102021BF2C00EEC1CE /* HomePageLegalDealedViewController.m */,
-				1812F3122021BFE000EEC1CE /* HomePageLegalJudgeViewController.h */,
-				1812F3132021BFE000EEC1CE /* HomePageLegalJudgeViewController.m */,
-			);
-			path = "法律服务订单";
-			sourceTree = "<group>";
-		};
 		18C154071FC820880010ACD3 /* YGClasses */ = {
 			isa = PBXGroup;
 			children = (
-				18C154581FC820880010ACD3 /* 合作案例类似的界面 */,
 				18C154B01FC820880010ACD3 /* 支付相关 */,
 				18C154D71FC820880010ACD3 /* 登录 */,
-				18C154DC1FC820880010ACD3 /* 管家 */,
 				18C155EC1FC820880010ACD3 /* 首页 */,
 			);
 			path = YGClasses;
-			sourceTree = "<group>";
-		};
-		18C154581FC820880010ACD3 /* 合作案例类似的界面 */ = {
-			isa = PBXGroup;
-			children = (
-				18C154591FC820880010ACD3 /* CooperationCaseViewController.h */,
-				18C1545A1FC820880010ACD3 /* CooperationCaseViewController.m */,
-			);
-			path = "合作案例类似的界面";
 			sourceTree = "<group>";
 		};
 		18C154B01FC820880010ACD3 /* 支付相关 */ = {
@@ -2813,6 +2605,10 @@
 		18C154B11FC820880010ACD3 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				E9E1E5BE20D3C6A100A807BE /* AreaSelectDetailViewController.h */,
+				E9E1E5BD20D3C6A100A807BE /* AreaSelectDetailViewController.m */,
+				E9E1E5BB20D3C68600A807BE /* AreaSelectViewController.h */,
+				E9E1E5BA20D3C68600A807BE /* AreaSelectViewController.m */,
 				18C154B21FC820880010ACD3 /* AddressAskSubViewController.h */,
 				18C154B31FC820880010ACD3 /* AddressAskSubViewController.m */,
 				18C154B41FC820880010ACD3 /* AddressAskViewController.h */,
@@ -2847,6 +2643,10 @@
 		18C154C71FC820880010ACD3 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E9E1E5B820D3C66200A807BE /* LDTextView.h */,
+				E9E1E5B720D3C66200A807BE /* LDTextView.m */,
+				E9E1E5B420D3C60800A807BE /* LDPayItemView.h */,
+				E9E1E5B520D3C60800A807BE /* LDPayItemView.m */,
 				18C154C81FC820880010ACD3 /* AddressAskTableViewCell.h */,
 				18C154C91FC820880010ACD3 /* AddressAskTableViewCell.m */,
 			);
@@ -2887,17 +2687,6 @@
 				18C154DB1FC820880010ACD3 /* LoginViewController.m */,
 			);
 			path = "登录";
-			sourceTree = "<group>";
-		};
-		18C154DC1FC820880010ACD3 /* 管家 */ = {
-			isa = PBXGroup;
-			children = (
-				1812F2EC20219FA100EEC1CE /* 法律服务 */,
-				18C154EA1FC820880010ACD3 /* 办公采购 */,
-				18C1554A1FC820880010ACD3 /* 室内报修 */,
-				18C155A41FC820880010ACD3 /* 网络管家 */,
-			);
-			path = "管家";
 			sourceTree = "<group>";
 		};
 		18C154EA1FC820880010ACD3 /* 办公采购 */ = {
@@ -3261,143 +3050,11 @@
 			path = "维修单";
 			sourceTree = "<group>";
 		};
-		18C155A41FC820880010ACD3 /* 网络管家 */ = {
-			isa = PBXGroup;
-			children = (
-				18C155A51FC820880010ACD3 /* LD立即支付(顶部月卡) */,
-				18C155AC1FC820880010ACD3 /* NetManagerCell.h */,
-				18C155AD1FC820880010ACD3 /* NetManagerCell.m */,
-				18C155AE1FC820880010ACD3 /* NetManagerCell.xib */,
-				18C155AF1FC820880010ACD3 /* NetManagerDetailVC.h */,
-				18C155B01FC820880010ACD3 /* NetManagerDetailVC.m */,
-				18C155B11FC820880010ACD3 /* NetManagerVC.h */,
-				18C155B21FC820880010ACD3 /* NetManagerVC.m */,
-				18C155B31FC820880010ACD3 /* NetVIPDetailVC.h */,
-				18C155B41FC820880010ACD3 /* NetVIPDetailVC.m */,
-				18C155B51FC820880010ACD3 /* NetVIPmodel.h */,
-				18C155B61FC820880010ACD3 /* NetVIPmodel.m */,
-				18C155B71FC820880010ACD3 /* 一起玩 */,
-				18C155BB1FC820880010ACD3 /* 我的网络管理服务 */,
-				18C155CB1FC820880010ACD3 /* 立即申请 */,
-				18C155DB1FC820880010ACD3 /* 网络管理服务 */,
-				18C155E71FC820880010ACD3 /* 网路管家临时 */,
-			);
-			path = "网络管家";
-			sourceTree = "<group>";
-		};
-		18C155A51FC820880010ACD3 /* LD立即支付(顶部月卡) */ = {
-			isa = PBXGroup;
-			children = (
-				18C155A61FC820880010ACD3 /* LDPayItemView.h */,
-				18C155A71FC820880010ACD3 /* LDPayItemView.m */,
-				18C155A81FC820880010ACD3 /* LDPayViewController.h */,
-				18C155A91FC820880010ACD3 /* LDPayViewController.m */,
-				18C155AA1FC820880010ACD3 /* LDVipImageView.h */,
-				18C155AB1FC820880010ACD3 /* LDVipImageView.m */,
-			);
-			path = "LD立即支付(顶部月卡)";
-			sourceTree = "<group>";
-		};
-		18C155B71FC820880010ACD3 /* 一起玩 */ = {
-			isa = PBXGroup;
-			children = (
-				18C155B81FC820880010ACD3 /* Play立即支付 */,
-			);
-			path = "一起玩";
-			sourceTree = "<group>";
-		};
-		18C155B81FC820880010ACD3 /* Play立即支付 */ = {
-			isa = PBXGroup;
-			children = (
-				18C155B91FC820880010ACD3 /* LDPlayPayViewController.h */,
-				18C155BA1FC820880010ACD3 /* LDPlayPayViewController.m */,
-			);
-			path = "Play立即支付";
-			sourceTree = "<group>";
-		};
-		18C155BB1FC820880010ACD3 /* 我的网络管理服务 */ = {
-			isa = PBXGroup;
-			children = (
-				18C155BC1FC820880010ACD3 /* DealedNetManagerViewController.h */,
-				18C155BD1FC820880010ACD3 /* DealedNetManagerViewController.m */,
-				18C155BE1FC820880010ACD3 /* DealingNetManagerViewController.h */,
-				18C155BF1FC820880010ACD3 /* DealingNetManagerViewController.m */,
-				18C155C01FC820880010ACD3 /* NetManagerJudgeViewController.h */,
-				18C155C11FC820880010ACD3 /* NetManagerJudgeViewController.m */,
-				18C155C21FC820880010ACD3 /* NetManagerWithVIPServiceViewController.h */,
-				18C155C31FC820880010ACD3 /* NetManagerWithVIPServiceViewController.m */,
-				18C155C41FC820880010ACD3 /* WaitToNetManagerModel.h */,
-				18C155C51FC820880010ACD3 /* WaitToNetManagerModel.m */,
-				18C155C61FC820880010ACD3 /* WaitToNetManagerTableViewCell.h */,
-				18C155C71FC820880010ACD3 /* WaitToNetManagerTableViewCell.m */,
-				18C155C81FC820880010ACD3 /* WaitToNetManagerTableViewCell.xib */,
-				18C155C91FC820880010ACD3 /* WaitToNetManagerViewController.h */,
-				18C155CA1FC820880010ACD3 /* WaitToNetManagerViewController.m */,
-			);
-			path = "我的网络管理服务";
-			sourceTree = "<group>";
-		};
-		18C155CB1FC820880010ACD3 /* 立即申请 */ = {
-			isa = PBXGroup;
-			children = (
-				18C155CC1FC820880010ACD3 /* AreaSelectDetailViewController.h */,
-				18C155CD1FC820880010ACD3 /* AreaSelectDetailViewController.m */,
-				18C155CE1FC820880010ACD3 /* AreaSelectViewController.h */,
-				18C155CF1FC820880010ACD3 /* AreaSelectViewController.m */,
-				18C155D01FC820880010ACD3 /* LDApplyVC.h */,
-				18C155D11FC820880010ACD3 /* LDApplyVC.m */,
-				18C155D21FC820880010ACD3 /* LDNetManagerApplyVC.h */,
-				18C155D31FC820880010ACD3 /* LDNetManagerApplyVC.m */,
-				18C155D41FC820880010ACD3 /* LDTextView.h */,
-				18C155D51FC820880010ACD3 /* LDTextView.m */,
-				18C155D61FC820880010ACD3 /* 支付选择商品 */,
-			);
-			path = "立即申请";
-			sourceTree = "<group>";
-		};
-		18C155D61FC820880010ACD3 /* 支付选择商品 */ = {
-			isa = PBXGroup;
-			children = (
-				18C155D71FC820880010ACD3 /* LDPayOptionView.h */,
-				18C155D81FC820880010ACD3 /* LDPayOptionView.m */,
-				18C155D91FC820880010ACD3 /* LDVIPButton.h */,
-				18C155DA1FC820880010ACD3 /* LDVIPButton.m */,
-			);
-			path = "支付选择商品";
-			sourceTree = "<group>";
-		};
-		18C155DB1FC820880010ACD3 /* 网络管理服务 */ = {
-			isa = PBXGroup;
-			children = (
-				18C155DC1FC820880010ACD3 /* LDBaseNetManagerVC.h */,
-				18C155DD1FC820880010ACD3 /* LDBaseNetManagerVC.m */,
-				18C155DE1FC820880010ACD3 /* LDPendingCell.h */,
-				18C155DF1FC820880010ACD3 /* LDPendingCell.m */,
-				18C155E01FC820880010ACD3 /* LDPendingCell.xib */,
-				18C155E11FC820880010ACD3 /* LDPendingVC.h */,
-				18C155E21FC820880010ACD3 /* LDPendingVC.m */,
-				18C155E31FC820880010ACD3 /* LDProcessedVC.h */,
-				18C155E41FC820880010ACD3 /* LDProcessedVC.m */,
-				18C155E51FC820880010ACD3 /* LDProcessingVC.h */,
-				18C155E61FC820880010ACD3 /* LDProcessingVC.m */,
-			);
-			path = "网络管理服务";
-			sourceTree = "<group>";
-		};
-		18C155E71FC820880010ACD3 /* 网路管家临时 */ = {
-			isa = PBXGroup;
-			children = (
-				18C155E81FC820880010ACD3 /* NetDetailViewController.h */,
-				18C155E91FC820880010ACD3 /* NetDetailViewController.m */,
-				18C155EA1FC820880010ACD3 /* NetIntroduceViewController.h */,
-				18C155EB1FC820880010ACD3 /* NetIntroduceViewController.m */,
-			);
-			path = "网路管家临时";
-			sourceTree = "<group>";
-		};
 		18C155EC1FC820880010ACD3 /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				18C1554A1FC820880010ACD3 /* 室内报修 */,
+				18C154EA1FC820880010ACD3 /* 办公采购 */,
 				18C155F61FC820880010ACD3 /* 人才招聘 */,
 				18C156601FC820880010ACD3 /* 工商一体化 */,
 				18C156711FC820880010ACD3 /* 广告位 */,
@@ -3406,7 +3063,6 @@
 				18C157741FC820880010ACD3 /* 资金扶持 */,
 				18C158101FC820880010ACD3 /* 项目申报 */,
 				18C158131FC820880010ACD3 /* 预定会议室 */,
-				18C158611FC820890010ACD3 /* 预约看房 */,
 			);
 			path = "首页";
 			sourceTree = "<group>";
@@ -4474,41 +4130,6 @@
 				18C158601FC820890010ACD3 /* ReserveRemarkCell.xib */,
 			);
 			path = ReservationView;
-			sourceTree = "<group>";
-		};
-		18C158611FC820890010ACD3 /* 预约看房 */ = {
-			isa = PBXGroup;
-			children = (
-				2C8D783C1FD155BF00078C35 /* 我的预约看房 */,
-				18C158621FC820890010ACD3 /* OrderCheckHouseDetailTableViewCell.h */,
-				18C158631FC820890010ACD3 /* OrderCheckHouseDetailTableViewCell.m */,
-				18C158641FC820890010ACD3 /* OrderCheckHouseDetailViewController.h */,
-				18C158651FC820890010ACD3 /* OrderCheckHouseDetailViewController.m */,
-				18C158661FC820890010ACD3 /* OrderCheckHouseModel.h */,
-				18C158671FC820890010ACD3 /* OrderCheckHouseModel.m */,
-				18C158681FC820890010ACD3 /* OrderCheckHouseSearchViewController.h */,
-				18C158691FC820890010ACD3 /* OrderCheckHouseSearchViewController.m */,
-				18C1586A1FC820890010ACD3 /* OrderCheckHouseSubmitViewController.h */,
-				18C1586B1FC820890010ACD3 /* OrderCheckHouseSubmitViewController.m */,
-				18C1586C1FC820890010ACD3 /* OrderCheckHouseTableViewCell.h */,
-				18C1586D1FC820890010ACD3 /* OrderCheckHouseTableViewCell.m */,
-				18C1586E1FC820890010ACD3 /* OrderCheckHouseViewController.h */,
-				18C1586F1FC820890010ACD3 /* OrderCheckHouseViewController.m */,
-			);
-			path = "预约看房";
-			sourceTree = "<group>";
-		};
-		2C8D783C1FD155BF00078C35 /* 我的预约看房 */ = {
-			isa = PBXGroup;
-			children = (
-				2C8D783D1FD155DF00078C35 /* MyOrderCheckHouseViewController.h */,
-				2C8D783E1FD155DF00078C35 /* MyOrderCheckHouseViewController.m */,
-				2C8D78401FD1569300078C35 /* MyOrderCheckOrderViewController.h */,
-				2C8D78411FD1569300078C35 /* MyOrderCheckOrderViewController.m */,
-				2C8D78431FD1576500078C35 /* MyOrderCheckHouseTableViewCell.h */,
-				2C8D78441FD1576500078C35 /* MyOrderCheckHouseTableViewCell.m */,
-			);
-			path = "我的预约看房";
 			sourceTree = "<group>";
 		};
 		2CA0190C1FCD39E700B21863 /* 我的项目申报 */ = {
@@ -6118,7 +5739,6 @@
 				18C159B91FC8208A0010ACD3 /* AdvertisementRemarkCell.xib in Resources */,
 				18C159B11FC8208A0010ACD3 /* AdvertisementApplyCell.xib in Resources */,
 				18C159231FC820890010ACD3 /* WaitToDealCell.xib in Resources */,
-				18C1594C1FC8208A0010ACD3 /* NetManagerCell.xib in Resources */,
 				D210B9AB1FA3622800C4574B /* Info.plist in Resources */,
 				E2E5B37A1FB0675B00205F70 /* share_weibo@3x.png in Resources */,
 				E2E5B1A21FB0675A00205F70 /* tabbar.plist in Resources */,
@@ -6157,7 +5777,6 @@
 				E2E5B37C1FB0675B00205F70 /* share_weixin@2x.png in Resources */,
 				E99DE1D120AC5EC3009CEF88 /* SQUserCenterMenuPlist.plist in Resources */,
 				18C159C31FC8208A0010ACD3 /* CooperateClientCell.xib in Resources */,
-				18C159631FC8208A0010ACD3 /* LDPendingCell.xib in Resources */,
 				E2E5B3791FB0675B00205F70 /* share_weibo@2x.png in Resources */,
 				18C15A871FC8208B0010ACD3 /* AlreayReservedTimeCell.xib in Resources */,
 				18C159BD1FC8208A0010ACD3 /* ApplyPictureCell.xib in Resources */,
@@ -6198,7 +5817,6 @@
 				18C159C11FC8208A0010ACD3 /* CompanyTextViewCell.xib in Resources */,
 				18C159AC1FC8208A0010ACD3 /* button-screen-double.png in Resources */,
 				E2E5B11F1FB0675900205F70 /* EBBannerView.xib in Resources */,
-				18C159581FC8208A0010ACD3 /* WaitToNetManagerTableViewCell.xib in Resources */,
 				E99DE28220BED24F009CEF88 /* shop_area.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6295,7 +5913,6 @@
 				E9E1E59720C65D1D00A807BE /* MyCollectionTextCell.m in Sources */,
 				18C15A7A1FC8208B0010ACD3 /* MeetingOrderCell.m in Sources */,
 				18C15A201FC8208A0010ACD3 /* FinancialAccountReturnMoneyViewController.m in Sources */,
-				18C15A961FC8208B0010ACD3 /* OrderCheckHouseViewController.m in Sources */,
 				E2E5B1791FB0675A00205F70 /* YYCache.m in Sources */,
 				04FFB4B020C766EC00B8843E /* PersonalInformationViewController.m in Sources */,
 				04FFB4CD20C7F59800B8843E /* WKDecorationRefundModel.m in Sources */,
@@ -6305,12 +5922,8 @@
 				E99DE21220B40D82009CEF88 /* SQCardScrollView.m in Sources */,
 				18C15A101FC8208A0010ACD3 /* MyFinancialAccountDealedViewController.m in Sources */,
 				18C1591B1FC820890010ACD3 /* OfficePurchaseModel.m in Sources */,
-				18C159551FC8208A0010ACD3 /* NetManagerWithVIPServiceViewController.m in Sources */,
-				18C1595B1FC8208A0010ACD3 /* AreaSelectViewController.m in Sources */,
 				E2E5B1241FB0675A00205F70 /* UILabel+ContentSize.m in Sources */,
-				1812F2F52021A63600EEC1CE /* HomePageLegalServiceVIPDetailViewController.m in Sources */,
 				E2E5B3531FB0675B00205F70 /* SocketNormalMessageModel.m in Sources */,
-				18C159671FC8208A0010ACD3 /* NetDetailViewController.m in Sources */,
 				E2E5B35E1FB0675B00205F70 /* YGAnimatePlayerOperation.m in Sources */,
 				18C15A261FC8208A0010ACD3 /* RoadShowHallCrowdFundingViewController.m in Sources */,
 				18C15A3D1FC8208B0010ACD3 /* MyInvestViewController.m in Sources */,
@@ -6321,8 +5934,6 @@
 				18C15A441FC8208B0010ACD3 /* CertifyViewController.m in Sources */,
 				E2E5B1611FB0675A00205F70 /* QNUserAgent.m in Sources */,
 				18C15A821FC8208B0010ACD3 /* PointsPayCell.m in Sources */,
-				1812F3082021BDA800EEC1CE /* HomePageLegalServiceWithVIPServiceViewController.m in Sources */,
-				18C1595F1FC8208A0010ACD3 /* LDPayOptionView.m in Sources */,
 				181314F71FD546200070CD6D /* MyFinancialAccountDetailModel.m in Sources */,
 				18C159AA1FC8208A0010ACD3 /* PanoramicViewController.m in Sources */,
 				0470A40B20C115D2003F23C6 /* SQDecorationDetailViewModel.m in Sources */,
@@ -6331,7 +5942,6 @@
 				18C1598C1FC8208A0010ACD3 /* AdvertisesForinfoPopView.m in Sources */,
 				18C1591E1FC820890010ACD3 /* DeailedViewController.m in Sources */,
 				E9E1E5A420C7DA9400A807BE /* SQChooseDecorationAddressView.m in Sources */,
-				18C15A951FC8208B0010ACD3 /* OrderCheckHouseTableViewCell.m in Sources */,
 				18C159441FC8208A0010ACD3 /* WaitToDealRepairOrderViewController.m in Sources */,
 				E99DE28E20C23941009CEF88 /* SQChooseGardenVC.m in Sources */,
 				5201C1681FCC49B40049F22C /* ProjectApplyDetailViewController.m in Sources */,
@@ -6346,7 +5956,6 @@
 				E9E1E58320C63F4C00A807BE /* TobeLeaderOfAllianceViewController.m in Sources */,
 				E2E5B3461FB0675B00205F70 /* UILabel+LDLabel.m in Sources */,
 				E2E5B3441FB0675B00205F70 /* UIButton+LDButton.m in Sources */,
-				18C1595D1FC8208A0010ACD3 /* LDNetManagerApplyVC.m in Sources */,
 				18C158E61FC820890010ACD3 /* ResultViewController.m in Sources */,
 				18C15A251FC8208A0010ACD3 /* CrowdFundingHallViewController.m in Sources */,
 				18C159EF1FC8208A0010ACD3 /* PayRentViewController.m in Sources */,
@@ -6359,12 +5968,12 @@
 				E2E5B35D1FB0675B00205F70 /* YGAnimatePlayer.m in Sources */,
 				04FFB4DE20C9000600B8843E /* WKUserCenterCollectCell.m in Sources */,
 				18C15A561FC8208B0010ACD3 /* GCMAssetModel.m in Sources */,
-				18C1594D1FC8208A0010ACD3 /* NetManagerDetailVC.m in Sources */,
 				E2E5B16D1FB0675A00205F70 /* TZAssetCell.m in Sources */,
 				E2E5B1331FB0675A00205F70 /* LXScollTitleView.m in Sources */,
 				E2E5B1731FB0675A00205F70 /* TZPhotoPreviewCell.m in Sources */,
 				E2E5B35C1FB0675B00205F70 /* YGActionSheetView.m in Sources */,
 				E2E5B13E1FB0675A00205F70 /* NSString+MJExtension.m in Sources */,
+				E9E1E5BC20D3C68600A807BE /* AreaSelectViewController.m in Sources */,
 				18C15A121FC8208A0010ACD3 /* MyFinancialAccountTableViewCell.m in Sources */,
 				18C158FD1FC820890010ACD3 /* ConfirmOrderOfficePurchase.m in Sources */,
 				E2E5B1481FB0675A00205F70 /* MJRefreshBackNormalFooter.m in Sources */,
@@ -6387,14 +5996,12 @@
 				E2E5B13D1FB0675A00205F70 /* NSObject+MJProperty.m in Sources */,
 				18C159721FC8208A0010ACD3 /* IssueChooseWellBeingView.m in Sources */,
 				18C159151FC820890010ACD3 /* OrderDetailHeaderView.m in Sources */,
-				1812F2F22021A27100EEC1CE /* HomePageLegalServiceManagerDetailViewController.m in Sources */,
 				E99DE26020BEB0EF009CEF88 /* UIView+SQGesture.m in Sources */,
 				18C15A241FC8208A0010ACD3 /* CrowdFundingHallTableViewCell.m in Sources */,
 				E99DE1CF20AC5400009CEF88 /* SQUserCenterTableViewHeader.m in Sources */,
 				E2E5B36A1FB0675B00205F70 /* YGGravityImageView.m in Sources */,
 				18C15A8E1FC8208B0010ACD3 /* ReserveRemarkCell.m in Sources */,
 				18C15A2B1FC8208A0010ACD3 /* CrowdFundingAddProjectChooseTypeModel.m in Sources */,
-				1812F3012021ACF600EEC1CE /* HomePageLegalServiceLDApplyVCViewController.m in Sources */,
 				18C159961FC8208A0010ACD3 /* YGPickerView.m in Sources */,
 				04FFB4D320C8E5F200B8843E /* WKUserCenterMessageViewController.m in Sources */,
 				18C159371FC8208A0010ACD3 /* ServiceIntroductionViewController.m in Sources */,
@@ -6402,8 +6009,6 @@
 				E2E5B1371FB0675A00205F70 /* MJProperty.m in Sources */,
 				E2E5B3541FB0675B00205F70 /* SocketNoTalkModel.m in Sources */,
 				E99DE1C120AC4FAF009CEF88 /* SQBaseTableViewCell.m in Sources */,
-				18C159521FC8208A0010ACD3 /* DealedNetManagerViewController.m in Sources */,
-				1812F30B2021BE0B00EEC1CE /* HomePageLegalServiceWaitTorViewController.m in Sources */,
 				E99DE1FF20B25C57009CEF88 /* NSString+SQStringSize.m in Sources */,
 				E99DE1E320AD54CC009CEF88 /* SQDecorationCellPayButtonView.m in Sources */,
 				18C1591D1FC820890010ACD3 /* IndoorMaintenanceViewController.m in Sources */,
@@ -6431,7 +6036,6 @@
 				E9E1E59E20C6B61C00A807BE /* SQLinkJSWebView.m in Sources */,
 				18C1597E1FC8208A0010ACD3 /* MyRecruitViewController.m in Sources */,
 				18C158F51FC820890010ACD3 /* OfficePurchaseDetailViewController.m in Sources */,
-				2C8D78421FD1569300078C35 /* MyOrderCheckOrderViewController.m in Sources */,
 				048E813320C6C3DE00845372 /* WKInvoiceModel.m in Sources */,
 				18C1591C1FC820890010ACD3 /* OfficePurchaseViewController.m in Sources */,
 				18C15A531FC8208B0010ACD3 /* RoadShowHallAllViewController.m in Sources */,
@@ -6442,10 +6046,8 @@
 				E99DE27C20BED24F009CEF88 /* JFCityHeaderView.m in Sources */,
 				E2E5B1351FB0675A00205F70 /* MJExtensionConst.m in Sources */,
 				E2E5B1271FB0675A00205F70 /* UIDevice+FCUUID.m in Sources */,
-				18C158AF1FC820890010ACD3 /* CooperationCaseViewController.m in Sources */,
 				0470A40520C0FB93003F23C6 /* SQDecorationDetailFunctionView.m in Sources */,
 				18C159A81FC8208A0010ACD3 /* ApplyImmediatelyController.m in Sources */,
-				1812F2FB2021A88600EEC1CE /* HomePageLegalServiceNetDetailViewController.m in Sources */,
 				18C159E11FC8208A0010ACD3 /* UpLoadModel.m in Sources */,
 				18C1590D1FC820890010ACD3 /* ShippedViewController.m in Sources */,
 				18C159C01FC8208A0010ACD3 /* CompanyTextViewCell.m in Sources */,
@@ -6473,7 +6075,6 @@
 				18C159851FC8208A0010ACD3 /* SearchAdvertieseTableViewCell.m in Sources */,
 				E2E5B3681FB0675B00205F70 /* YGFlyCommentTrackView.m in Sources */,
 				18C15A6B1FC8208B0010ACD3 /* MeetingPayingViewController.m in Sources */,
-				18C159651FC8208A0010ACD3 /* LDProcessedVC.m in Sources */,
 				E2E5B1741FB0675A00205F70 /* TZPhotoPreviewController.m in Sources */,
 				18C159EB1FC8208A0010ACD3 /* BillsDetailViewController.m in Sources */,
 				E2E5B36C1FB0675B00205F70 /* NSDate+Tools.m in Sources */,
@@ -6487,7 +6088,6 @@
 				18C159E51FC8208A0010ACD3 /* UpLoadEnterpriseTableViewCell.m in Sources */,
 				18C159071FC820890010ACD3 /* AllOfficePurchaseModel.m in Sources */,
 				18C159751FC8208A0010ACD3 /* JobOutsourceTradeRecoredFinishViewController.m in Sources */,
-				18C15A931FC8208B0010ACD3 /* OrderCheckHouseSearchViewController.m in Sources */,
 				E2E5B3591FB0675B00205F70 /* UIView+Animate.m in Sources */,
 				18C15A6D1FC8208B0010ACD3 /* RefundViewController.m in Sources */,
 				18C159881FC8208A0010ACD3 /* DeliverRecoredViewController.m in Sources */,
@@ -6499,7 +6099,6 @@
 				0470A43420C152DF003F23C6 /* SQAfterSaleListViewController.m in Sources */,
 				0470A40820C11548003F23C6 /* SQDecorationDetailModel.m in Sources */,
 				E2E5B3671FB0675B00205F70 /* YGFlyCommentManager.m in Sources */,
-				18C159531FC8208A0010ACD3 /* DealingNetManagerViewController.m in Sources */,
 				E2E5B33E1FB0675B00205F70 /* LDBaseViewCell.m in Sources */,
 				18C15A3A1FC8208B0010ACD3 /* MyInvestDetailViewController.m in Sources */,
 				18C159A41FC8208A0010ACD3 /* AdvertisementLocationApplyController.m in Sources */,
@@ -6511,11 +6110,8 @@
 				E2E5B17D1FB0675A00205F70 /* _YYWebImageSetter.m in Sources */,
 				2CA0190F1FCD3A1D00B21863 /* MineProjectApplyViewController.m in Sources */,
 				18C159BA1FC8208A0010ACD3 /* ApplyInformationCell.m in Sources */,
-				18C159621FC8208A0010ACD3 /* LDPendingCell.m in Sources */,
-				18C159661FC8208A0010ACD3 /* LDProcessingVC.m in Sources */,
 				E2E5B1661FB0675A00205F70 /* QNUploadManager.m in Sources */,
 				18C15A2E1FC8208A0010ACD3 /* CrowdFundingAddProjectModel.m in Sources */,
-				18C159601FC8208A0010ACD3 /* LDVIPButton.m in Sources */,
 				18C15A371FC8208A0010ACD3 /* ServiceHallBaseProfileViewController.m in Sources */,
 				E2E5B1561FB0675A00205F70 /* QNALAssetFile.m in Sources */,
 				04FFB4BD20C7670400B8843E /* EvaluateViewController.m in Sources */,
@@ -6526,19 +6122,15 @@
 				E2E5B13A1FB0675A00205F70 /* NSObject+MJClass.m in Sources */,
 				18C15A641FC8208B0010ACD3 /* MeetingAreaChooseViewController.m in Sources */,
 				E2E5B1171FB0675900205F70 /* AFSecurityPolicy.m in Sources */,
-				18C159491FC8208A0010ACD3 /* LDPayViewController.m in Sources */,
 				E2E5B1361FB0675A00205F70 /* MJFoundation.m in Sources */,
 				18C1590B1FC820890010ACD3 /* GoodsCommentViewController.m in Sources */,
 				18C1593B1FC8208A0010ACD3 /* PropertyRepairViewController.m in Sources */,
 				18C159081FC820890010ACD3 /* AllOfficePurchaseOrderListViewController.m in Sources */,
 				18C159211FC820890010ACD3 /* OrderListBaseViewController.m in Sources */,
 				E2E5B1581FB0675A00205F70 /* QNCrc32.m in Sources */,
-				2C8D78451FD1576500078C35 /* MyOrderCheckHouseTableViewCell.m in Sources */,
 				2CA019151FCD3DF600B21863 /* MineProjectApplyCheckingViewController.m in Sources */,
 				E2E5B1781FB0675A00205F70 /* UIView+Genie.m in Sources */,
 				18C1592A1FC820890010ACD3 /* OrderDetailModel.m in Sources */,
-				18C159641FC8208A0010ACD3 /* LDPendingVC.m in Sources */,
-				18C159541FC8208A0010ACD3 /* NetManagerJudgeViewController.m in Sources */,
 				E99DE24C20BBDD68009CEF88 /* SQHomeIndexPageModel.m in Sources */,
 				18C15A3F1FC8208B0010ACD3 /* BussinessPlanTableViewCell.m in Sources */,
 				E99DE1C220AC4FAF009CEF88 /* SQBaseTableView.m in Sources */,
@@ -6558,6 +6150,7 @@
 				18C159341FC8208A0010ACD3 /* WaitReplyModel.m in Sources */,
 				E99DE23D20B6AB22009CEF88 /* SQDecorationDetailVC.m in Sources */,
 				18C159701FC8208A0010ACD3 /* IssueAdvertiseViewSpreadTableViewCell.m in Sources */,
+				E9E1E5B920D3C66200A807BE /* LDTextView.m in Sources */,
 				18C15A211FC8208A0010ACD3 /* YGBirthdayDataPickerView.m in Sources */,
 				E2E5B19D1FB0675A00205F70 /* HXTagCollectionViewFlowLayout.m in Sources */,
 				E2E5B12F1FB0675A00205F70 /* KSPhotoBrowser.m in Sources */,
@@ -6588,8 +6181,8 @@
 				18C159DD1FC8208A0010ACD3 /* IssueInvoiceViewController.m in Sources */,
 				18C159CA1FC8208A0010ACD3 /* HistoryPayRecoredViewController.m in Sources */,
 				E99DE1D520AC646B009CEF88 /* SQOrderViewController.m in Sources */,
-				18C1595A1FC8208A0010ACD3 /* AreaSelectDetailViewController.m in Sources */,
 				18C159B21FC8208A0010ACD3 /* AdvertisementInstructionCell.m in Sources */,
+				E9E1E5BF20D3C6A100A807BE /* AreaSelectDetailViewController.m in Sources */,
 				18C15A171FC8208A0010ACD3 /* FinacialAccountPopView.m in Sources */,
 				18C15A411FC8208B0010ACD3 /* MyRoadShowFinishViewController.m in Sources */,
 				E99DE1C520AC4FAF009CEF88 /* SQBaseViewController.m in Sources */,
@@ -6597,10 +6190,8 @@
 				E2E5B35F1FB0675B00205F70 /* YGAnimatePlayerView.m in Sources */,
 				18C158DB1FC820890010ACD3 /* AddressAskSubViewController.m in Sources */,
 				2C7BE8A41FD6847A000080A0 /* YGScollTitleView.m in Sources */,
-				1812F3142021BFE000EEC1CE /* HomePageLegalJudgeViewController.m in Sources */,
 				18C158DD1FC820890010ACD3 /* AddressAskAndRegisterModel.m in Sources */,
 				E2E5B3491FB0675B00205F70 /* YGAppTool.m in Sources */,
-				1812F2F82021A70300EEC1CE /* HomePageLegalServiceManagerApplyViewController.m in Sources */,
 				18C1598F1FC8208A0010ACD3 /* MyIntroduceModel.m in Sources */,
 				18C15A711FC8208B0010ACD3 /* MyOrderModel.m in Sources */,
 				E99DE1C320AC4FAF009CEF88 /* SQBaseImageView.m in Sources */,
@@ -6620,10 +6211,8 @@
 				18C159A71FC8208A0010ACD3 /* AlreadyProcessedViewController.m in Sources */,
 				18C159E41FC8208A0010ACD3 /* UpLoadPersonViewController.m in Sources */,
 				04FFB4BC20C7670400B8843E /* WKSettingViewController.m in Sources */,
-				18C159681FC8208A0010ACD3 /* NetIntroduceViewController.m in Sources */,
 				18C15A4B1FC8208B0010ACD3 /* ServiceHallAdvertiseImgModel.m in Sources */,
 				18C159E31FC8208A0010ACD3 /* UpLoadIDFatherViewController.m in Sources */,
-				18C159611FC8208A0010ACD3 /* LDBaseNetManagerVC.m in Sources */,
 				18C1596D1FC8208A0010ACD3 /* AdvertisesForEnterpriseViewController.m in Sources */,
 				E2E5B1751FB0675A00205F70 /* TZTestCell.m in Sources */,
 				18C15A1C1FC8208A0010ACD3 /* TextViewAjustHeight.m in Sources */,
@@ -6636,14 +6225,12 @@
 				E2E5B1521FB0675A00205F70 /* UIView+MJExtension.m in Sources */,
 				E2E5B1A31FB0675A00205F70 /* YGNavigationController.m in Sources */,
 				18C159731FC8208A0010ACD3 /* JobOutSourceRecoredModel.m in Sources */,
-				1812F2FE2021A9F500EEC1CE /* HomePageLegalServiceIntroduceViewController.m in Sources */,
 				E99DE1C420AC4FAF009CEF88 /* SQBaseTableViewController.m in Sources */,
 				E2E5B33A1FB0675B00205F70 /* NSDictionary+HYBUnicodeReadable.m in Sources */,
 				040084EA20C521150094CF22 /* WKDecorationRepairViewController.m in Sources */,
 				18C159831FC8208A0010ACD3 /* CheckAdvertisesViewController.m in Sources */,
 				18C159B01FC8208A0010ACD3 /* AdvertisementApplyCell.m in Sources */,
 				18C15A521FC8208B0010ACD3 /* RoadShowHallAllTableViewCell.m in Sources */,
-				18C15A941FC8208B0010ACD3 /* OrderCheckHouseSubmitViewController.m in Sources */,
 				04FFB58D20CF6A7700B8843E /* WKCheckContractViewController.m in Sources */,
 				18C158DF1FC820890010ACD3 /* AddressAskModel.m in Sources */,
 				18C15A671FC8208B0010ACD3 /* MeetingChildDetailsController.m in Sources */,
@@ -6666,7 +6253,6 @@
 				0470A42720C1467A003F23C6 /* SQTicketApplyCell.m in Sources */,
 				E2E5B16C1FB0675A00205F70 /* NSBundle+TZImagePicker.m in Sources */,
 				18C159171FC820890010ACD3 /* WaitPaidViewController.m in Sources */,
-				18C159501FC8208A0010ACD3 /* NetVIPmodel.m in Sources */,
 				18C15A111FC8208A0010ACD3 /* MyFinancialAccountDealingViewController.m in Sources */,
 				182F021E1FCFD16F00C63376 /* MyIntegrationIndustryWtihCategoryTableViewCell.m in Sources */,
 				E2E5B15A1FB0675A00205F70 /* QNFile.m in Sources */,
@@ -6699,12 +6285,10 @@
 				18C1590C1FC820890010ACD3 /* ShippedCell.m in Sources */,
 				18C159861FC8208A0010ACD3 /* SerchAdvertisesViewController.m in Sources */,
 				E2E5B1451FB0675A00205F70 /* MJRefreshAutoNormalFooter.m in Sources */,
-				18C1594F1FC8208A0010ACD3 /* NetVIPDetailVC.m in Sources */,
 				18C158F81FC820890010ACD3 /* ChooseGoodsChildView.m in Sources */,
 				E99DE1D820AC64C7009CEF88 /* SQOrderTableHeaderView.m in Sources */,
 				E2E5B15D1FB0675A00205F70 /* QNSystem.m in Sources */,
 				18C159101FC820890010ACD3 /* DeliveredCell.m in Sources */,
-				1812F3042021B29100EEC1CE /* HomePageLegalServiceLDPayViewController.m in Sources */,
 				E2E5B3611FB0675B00205F70 /* YGButton.m in Sources */,
 				18C15A701FC8208B0010ACD3 /* MeetingBookingModel.m in Sources */,
 				E2E5B1221FB0675900205F70 /* EBMuteDetector.m in Sources */,
@@ -6715,11 +6299,9 @@
 				18C159A31FC8208A0010ACD3 /* AdvertisementDetailController.m in Sources */,
 				18C15A141FC8208A0010ACD3 /* MyFinancialAccountViewController.m in Sources */,
 				E2E5B3391FB0675B00205F70 /* NSArray+HYBUnicodeReadable.m in Sources */,
-				1812F3112021BF2C00EEC1CE /* HomePageLegalDealedViewController.m in Sources */,
 				E99DE24320B7BEDA009CEF88 /* SQConfirmDecorationOrderVC.m in Sources */,
 				18C159901FC8208A0010ACD3 /* MyIntroduceTableViewCell.m in Sources */,
 				18C15A781FC8208B0010ACD3 /* MeetingDetailCell.m in Sources */,
-				18C15A911FC8208B0010ACD3 /* OrderCheckHouseDetailViewController.m in Sources */,
 				E2E5B1381FB0675A00205F70 /* MJPropertyKey.m in Sources */,
 				E2E5B16E1FB0675A00205F70 /* TZAssetModel.m in Sources */,
 				18C159B61FC8208A0010ACD3 /* AdvertisementLocationViewCell.m in Sources */,
@@ -6728,7 +6310,6 @@
 				E2E5B1261FB0675A00205F70 /* UICKeyChainStore.m in Sources */,
 				18C15A421FC8208B0010ACD3 /* MyRoadShowViewController.m in Sources */,
 				E2E5B1441FB0675A00205F70 /* MJRefreshAutoGifFooter.m in Sources */,
-				18C159511FC8208A0010ACD3 /* LDPlayPayViewController.m in Sources */,
 				18C15A6F1FC8208B0010ACD3 /* MeetingAreaModel.m in Sources */,
 				E2E5B3661FB0675B00205F70 /* YGCustomMenu.m in Sources */,
 				2CA16F581FCBD6BF00BE7CAD /* ProjectApplyForSubModel.m in Sources */,
@@ -6754,13 +6335,13 @@
 				18C15A5A1FC8208B0010ACD3 /* RoadShowHallDetailViewController.m in Sources */,
 				18C159BE1FC8208A0010ACD3 /* ApplyRemarkCell.m in Sources */,
 				E2E5B11C1FB0675900205F70 /* DACircularProgressView.m in Sources */,
+				E9E1E5B620D3C60800A807BE /* LDPayItemView.m in Sources */,
 				E9E1E58C20C65C7300A807BE /* MyCollectionViewController.m in Sources */,
 				18C159031FC820890010ACD3 /* TotalPrice.m in Sources */,
 				18C159131FC820890010ACD3 /* DeliveredAndRefundViewController.m in Sources */,
 				E2E5B13C1FB0675A00205F70 /* NSObject+MJKeyValue.m in Sources */,
 				18C1592F1FC8208A0010ACD3 /* ComplaintsDetailModel.m in Sources */,
 				18C158E01FC820890010ACD3 /* ADManagerModel.m in Sources */,
-				18C15A921FC8208B0010ACD3 /* OrderCheckHouseModel.m in Sources */,
 				04FFB4C020C7670400B8843E /* PasswordModifilyViewController.m in Sources */,
 				18C15A881FC8208B0010ACD3 /* ReserveChooseCell.m in Sources */,
 				18C15A341FC8208A0010ACD3 /* SubscribeSumOfMoneyModel.m in Sources */,
@@ -6779,7 +6360,6 @@
 				18C1590E1FC820890010ACD3 /* PendingPaymentOfficePurchaseCell.m in Sources */,
 				042AF70E20D0B192005ECDBF /* WKImageCollectionView.m in Sources */,
 				1824E2E81FD0F3F900769A6A /* IntegrationtryJudgeViewController.m in Sources */,
-				18C1594E1FC8208A0010ACD3 /* NetManagerVC.m in Sources */,
 				18C159D41FC8208A0010ACD3 /* ManageMailPostViewController.m in Sources */,
 				18C159E71FC8208A0010ACD3 /* UpLoadPersonTableViewCell.m in Sources */,
 				18C15A4A1FC8208B0010ACD3 /* ServiceContentViewController.m in Sources */,
@@ -6788,7 +6368,6 @@
 				E2E5B14A1FB0675A00205F70 /* MJRefreshGifHeader.m in Sources */,
 				E99DE1CC20AC5015009CEF88 /* SQUserCenterViewController.m in Sources */,
 				18C15A581FC8208B0010ACD3 /* RoadShowHallApplyViewController.m in Sources */,
-				18C1594A1FC8208A0010ACD3 /* LDVipImageView.m in Sources */,
 				E94137A0209C3891003F3649 /* AppStartManager.m in Sources */,
 				E2E5B11A1FB0675900205F70 /* AFURLSessionManager.m in Sources */,
 				18C1592D1FC820890010ACD3 /* AlreadyReplayModel.m in Sources */,
@@ -6799,7 +6378,6 @@
 				E2E5B1601FB0675A00205F70 /* QNSessionManager.m in Sources */,
 				18C159241FC820890010ACD3 /* WaitToDealModel.m in Sources */,
 				18C159AB1FC8208A0010ACD3 /* OrderListModel.m in Sources */,
-				18C159591FC8208A0010ACD3 /* WaitToNetManagerViewController.m in Sources */,
 				E9E1E5AD20C90B1500A807BE /* SQPaySuccessfulVC.m in Sources */,
 				18C15A1B1FC8208A0010ACD3 /* ServiceIntroduceViewController.m in Sources */,
 				04FFB4C620C7E9BF00B8843E /* WKMyOrderUnreadCountModel.m in Sources */,
@@ -6814,7 +6392,6 @@
 				18C159771FC8208A0010ACD3 /* JobOutsourceTradeRecoredViewController.m in Sources */,
 				18C159181FC820890010ACD3 /* OfficePurchaseChildViewController.m in Sources */,
 				523184C91FE165B800B7905C /* AskForInvoiceInputEmailAddressView.m in Sources */,
-				18C1595C1FC8208A0010ACD3 /* LDApplyVC.m in Sources */,
 				E2E5B37E1FB0675B00205F70 /* YGShareView.m in Sources */,
 				18C159A51FC8208A0010ACD3 /* AdvertisementPageViewController.m in Sources */,
 				E2E5B1321FB0675A00205F70 /* KSProgressLayer.m in Sources */,
@@ -6829,9 +6406,7 @@
 				E9E1E59220C65D0200A807BE /* MyColectionCell.m in Sources */,
 				18C15A841FC8208B0010ACD3 /* RefundHearderView.m in Sources */,
 				18C15A161FC8208A0010ACD3 /* FinacialAccountingDetailViewController.m in Sources */,
-				1812F30E2021BEB800EEC1CE /* HomePageLegalDealingViewController.m in Sources */,
 				18C159951FC8208A0010ACD3 /* YGDatePickerView.m in Sources */,
-				18C1594B1FC8208A0010ACD3 /* NetManagerCell.m in Sources */,
 				18C159A61FC8208A0010ACD3 /* AdvertisementSuccessController.m in Sources */,
 				18C158FF1FC820890010ACD3 /* GoodsDetailView.m in Sources */,
 				18C1598A1FC8208A0010ACD3 /* AdvertisesForInfoDetailViewController.m in Sources */,
@@ -6861,7 +6436,6 @@
 				18C159291FC820890010ACD3 /* OrderDetailListViewController.m in Sources */,
 				E25128061FF4E1BF0055F5D0 /* AdvertisementAgreementController.m in Sources */,
 				E2E5B1811FB0675A00205F70 /* UIImage+YYWebImage.m in Sources */,
-				18C15A901FC8208B0010ACD3 /* OrderCheckHouseDetailTableViewCell.m in Sources */,
 				E99DE1E720AE6473009CEF88 /* SQDecorationOrderDetailVC.m in Sources */,
 				E2E5B1461FB0675A00205F70 /* MJRefreshAutoStateFooter.m in Sources */,
 				18C159CD1FC8208A0010ACD3 /* InvoiceHistoryModel.m in Sources */,
@@ -6870,7 +6444,6 @@
 				18C159301FC8208A0010ACD3 /* ComplaintsDetailViewController.m in Sources */,
 				E2E5B1591FB0675A00205F70 /* QNEtag.m in Sources */,
 				E2E5B3881FB0675B00205F70 /* YGVerticalPopView.m in Sources */,
-				18C159561FC8208A0010ACD3 /* WaitToNetManagerModel.m in Sources */,
 				E99DE24F20BBF8BA009CEF88 /* UIButton+SQWebImage.m in Sources */,
 				18C15A741FC8208B0010ACD3 /* AreaChooseCollectionCell.m in Sources */,
 				18C159CC1FC8208A0010ACD3 /* ChoosePostInvoiceAddressViewController.m in Sources */,
@@ -6890,7 +6463,6 @@
 				04FFB4F920C92BE200B8843E /* WKUserCenterMessageModel.m in Sources */,
 				18C158E51FC820890010ACD3 /* AddressAskTableViewCell.m in Sources */,
 				E2E5B13B1FB0675A00205F70 /* NSObject+MJCoding.m in Sources */,
-				18C159571FC8208A0010ACD3 /* WaitToNetManagerTableViewCell.m in Sources */,
 				E2E5B33C1FB0675B00205F70 /* LDBaseCollectionViewCell.m in Sources */,
 				18C159251FC820890010ACD3 /* WaitToDealViewController.m in Sources */,
 				18C159741FC8208A0010ACD3 /* JobOutsourceTradeRecoredDealingViewController.m in Sources */,
@@ -6899,13 +6471,11 @@
 				18C159911FC8208A0010ACD3 /* MyIntroduceViewController.m in Sources */,
 				E2E5B1851FB0675A00205F70 /* YYImage.m in Sources */,
 				18C158DE1FC820890010ACD3 /* AddressAskConfig.m in Sources */,
-				1812F2EF2021A01B00EEC1CE /* HomePageLegalServiceViewController.m in Sources */,
 				E2E5B15E1FB0675A00205F70 /* QNUrlSafeBase64.m in Sources */,
 				E2E5B1511FB0675A00205F70 /* UIScrollView+MJRefresh.m in Sources */,
 				18C1592E1FC820890010ACD3 /* AlreadyViewController.m in Sources */,
 				04FFB58820CE6CAD00B8843E /* WKOrderRepairModel.m in Sources */,
 				E2E5B3561FB0675B00205F70 /* YGSocketServe.m in Sources */,
-				18C1595E1FC8208A0010ACD3 /* LDTextView.m in Sources */,
 				18C15A551FC8208B0010ACD3 /* RoadShowHallViewController.m in Sources */,
 				E99DE1E020AD5182009CEF88 /* SQDecorationOrderCell.m in Sources */,
 				18C15A461FC8208B0010ACD3 /* SubscribeDetailViewController.m in Sources */,
@@ -6942,7 +6512,6 @@
 				E99DE22A20B595F0009CEF88 /* SQIphonePx.m in Sources */,
 				18C159041FC820890010ACD3 /* OfficePurchaseOrderListViewController.m in Sources */,
 				042AF70320CFBB61005ECDBF /* WKCheckContactScaleView.m in Sources */,
-				18C159481FC8208A0010ACD3 /* LDPayItemView.m in Sources */,
 				E99DE23020B65A11009CEF88 /* SQRequest.m in Sources */,
 				18C159CB1FC8208A0010ACD3 /* InvoiceManagerViewController.m in Sources */,
 				E2E5B11D1FB0675900205F70 /* DALabeledCircularProgressView.m in Sources */,
@@ -6962,7 +6531,6 @@
 				18C1592B1FC820890010ACD3 /* AlreadyReplayCell.m in Sources */,
 				E2E5B3551FB0675B00205F70 /* SocketSendGiftModel.m in Sources */,
 				18C159431FC8208A0010ACD3 /* RepairOrderViewController.m in Sources */,
-				2C8D783F1FD155DF00078C35 /* MyOrderCheckHouseViewController.m in Sources */,
 				E2E5B1531FB0675A00205F70 /* NJKWebViewProgress.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
