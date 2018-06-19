@@ -8,8 +8,6 @@
 
 #import "AreaSelectViewController.h"
 #import "AreaSelectDetailViewController.h"
-#import <AMapLocationKit/AMapLocationKit.h>
-#import <AMapFoundationKit/AMapFoundationKit.h>
 #import <CoreLocation/CoreLocation.h>
 
 @interface AreaSelectViewController ()<UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate>

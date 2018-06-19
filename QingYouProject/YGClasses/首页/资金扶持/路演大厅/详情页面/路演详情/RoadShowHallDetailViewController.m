@@ -9,19 +9,28 @@
 #import "RoadShowHallDetailViewController.h"
 #import "YGSegmentView.h"
 #import "AskBPViewController.h"
-#import "ZFPlayer.h"
+#import "ZWPlayer.h"
 
-@interface RoadShowHallDetailViewController ()<UIScrollViewDelegate,SDCycleScrollViewDelegate,YGSegmentViewDelegate,ZFPlayerDelegate>
-{
+
+@interface RoadShowHallDetailViewController ()<UIScrollViewDelegate,SDCycleScrollViewDelegate,YGSegmentViewDelegate> {
     NSMutableArray * _controllersArray;//Controller数组
     YGSegmentView * _segmentView;//选择器
     UIScrollView * _scrollView;
 
 }
-@property (nonatomic, strong) ZFPlayerView        *playerView;
-@property (nonatomic, strong) ZFPlayerControlView *controlView;
-/** 离开页面时候是否在播放 */
-@property (nonatomic, assign) BOOL isPlaying;
+//播放器
+@property(nonatomic,strong)ZWPlayerView    *playerView;
+@property (nonatomic, strong) ZWPlayerControlView       *controlView;
+//离开页面时候是否在播放
+@property (nonatomic, assign) BOOL          isPlaying;
+@property (nonatomic, assign) BOOL          playing;
+//是否在cell中播放
+@property(nonatomic,assign)BOOL             isInCell;
+//记录当前在哪一个cell上播放对应的indexPath
+@property(nonatomic,strong) NSIndexPath     *currentIndexPath;
+//播放器在哪个cell上播放
+@property(nonatomic,strong)UIView *currentCell;
+
 @end
 
 @implementation RoadShowHallDetailViewController
@@ -44,7 +53,7 @@
     int   _selectIndex;
     
     UIView *_bottomView;
-    ZFPlayerModel *_playerModel;
+//    ZFPlayerModel *_playerModel;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -336,56 +345,32 @@
 
 
 
-- (ZFPlayerView *)playerView
+- (ZWPlayerView *)playerView
 {
     if (!_playerView)
     {
-        _playerView = [ZFPlayerView sharedPlayerView];
-        _playerView.delegate = self;
-        _playerView.hasDownload = NO;
-        // 当cell播放视频由全屏变为小屏时候，不回到中间位置
-        _playerView.cellPlayerOnCenter = NO;
-        // 当cell划出屏幕的时候停止播放
-//        _playerView.stopPlayWhileCellNotVisable = YES;
+        _playerView = [ZWPlayerView sharedPlayerView];
         //（可选设置）可以设置视频的填充模式，默认为（等比例填充，直到一个维度到达区域边界）
-        //_playerView.playerLayerGravity = ZFPlayerLayerGravityResizeAspect;
-        // 静音
-        
-        
-        // _playerView.mute = YES;
+        _playerView.playerLayerGravity = ZWPlayerLayerGravityResizeAspect;
     }
     return _playerView;
 }
--(void)zf_playerBackAction
-{
+-(void)zf_playerBackAction {
     [self.playerView resetPlayer];
 }
-- (ZFPlayerControlView *)controlView
-{
-    if (!_controlView)
-    {
-        _controlView = [[ZFPlayerControlView alloc] init];
-//        _controlView.downLoadBtn.hidden = YES;
+- (ZWPlayerControlView *)controlView {
+    if (!_controlView) {
+        _controlView = [[ZWPlayerControlView alloc] init];
     }
     return _controlView;
 }
 
-- (void)playAction:(UIButton *)btn
-{
-    //player
-    ZFPlayerModel *playerModel = [[ZFPlayerModel alloc] init];
-//    playerModel.title = model.name;
-    playerModel.videoURL  = [NSURL URLWithString:_roadShowProjectModel.videoData];
-    playerModel.placeholderImage = YGDefaultImgFour_Three;
-//    playerModel.tableView = weakSelf.myTableView;
-//    playerModel.indexPath = weakIndexPath;
-    // player的父视图
-    playerModel.fatherView = _projectVideoImageView;
-    // 设置播放控制层和model
-    [self.playerView playerControlView:self.controlView playerModel:playerModel];
-    // 下载功能
-    self.playerView.hasDownload = NO;
-    // 自动播放
+- (void)playAction:(UIButton *)btn {
+    [self.playerView resetToPlayNewURL];
+    NSURL *videoUrl = [NSURL URLWithString:_roadShowProjectModel.videoData];
+    self.playerView.videoURL = videoUrl;
+    self.playerView.playerLayerGravity = ZWPlayerLayerGravityResize;
+    //设置自动播放
     [self.playerView autoPlayTheVideo];
 }
 
