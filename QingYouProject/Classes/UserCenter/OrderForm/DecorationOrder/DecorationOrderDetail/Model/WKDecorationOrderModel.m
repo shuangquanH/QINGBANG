@@ -9,11 +9,8 @@
 #import "WKDecorationOrderModel.h"
 
 @implementation WKDecorationStageModel
-- (instancetype)init {
-    if (self == [super init]) {
-        _stageState = 1;
-    }
-    return self;
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"ID" : @"id"};
 }
 @end
 

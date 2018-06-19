@@ -119,7 +119,7 @@
         }
         
         _otherStateLabel.hidden = NO;
-        _otherStateLabel.text = [NSString stringWithFormat:@"(%@)", orderInfo.stage_list.lastObject.stageName];
+        _otherStateLabel.text = [NSString stringWithFormat:@"(%@)", orderInfo.paymentList.lastObject.name];
     }
     else {
         _otherStateLabel.hidden = YES;

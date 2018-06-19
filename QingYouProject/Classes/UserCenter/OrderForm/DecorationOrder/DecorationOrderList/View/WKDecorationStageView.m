@@ -78,9 +78,9 @@
 }
 
 - (void)configOrderInfo:(WKDecorationOrderDetailModel *)orderInfo withStage:(NSInteger)stage withInDetail:(BOOL)inDetail {
-    WKDecorationStageModel *stageInfo = orderInfo.stage_list[stage];
-    stageTitleLabel.text = [NSString stringWithFormat:@"%@：", stageInfo.stageName];
-    stagePriceLab.text   = [NSString stringWithFormat:@"¥ %@", stageInfo.stagePrice];
+    WKDecorationStageModel *stageInfo = orderInfo.paymentList[stage];
+    stageTitleLabel.text = [NSString stringWithFormat:@"%@：", stageInfo.name];
+    stagePriceLab.text   = [NSString stringWithFormat:@"¥ %@", stageInfo.amount];
     [stageStateView configStageModel:stageInfo withStage:stage inDetail:inDetail];
     
     

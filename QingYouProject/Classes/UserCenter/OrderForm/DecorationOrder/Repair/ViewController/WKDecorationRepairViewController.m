@@ -249,7 +249,7 @@ const CGFloat kItemHorizontalMargin = 10;
     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
     [SQRequest post:KAPI_GETREPAIRINFO
               param:@{@"orderNum": self.orderInfo.orderNum,
-                      @"stageId": self.orderInfo.stage_list[self.stageIndex].stageId}
+                      @"stageId": self.orderInfo.paymentList[self.stageIndex].ID}
             success:^(id response) {
         [YGNetService dissmissLoadingView];
         if ([response[@"code"] longLongValue] == 0) {
@@ -311,16 +311,16 @@ const CGFloat kItemHorizontalMargin = 10;
     
     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
     
-    WKDecorationStageModel *stage = [self.orderInfo.stage_list objectAtIndex:self.stageIndex];
+    WKDecorationStageModel *stage = [self.orderInfo.paymentList objectAtIndex:self.stageIndex];
     
     NSDictionary *param = @{@"orderNum": self.orderInfo.orderNum,
                             @"images": @"1.jpg,2.jpg",
-                            @"stageId": stage.stageId
+                            @"stageId": stage.ID
                             };
     [SQRequest post:KAPI_APPLYREPAIR param:param success:^(id response) {
         [YGNetService dissmissLoadingView];
         if ([response[@"code"] longLongValue] == 0) {
-            stage.stageState = 3;
+            stage.status = 3;
             if (self.repairSuccess) {
                 self.repairSuccess(self.orderInfo);
             }

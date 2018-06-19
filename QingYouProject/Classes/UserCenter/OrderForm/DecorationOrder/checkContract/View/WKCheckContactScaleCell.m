@@ -42,6 +42,8 @@
 
 - (void)configImage:(id)image {
     
+    self.imageContentScrollView.zoomScale = 1.0;
+    
     if ([image isKindOfClass:[UIImage class]]) {
         [_imageView sd_cancelCurrentAnimationImagesLoad];
         _imageView.image = image;
@@ -51,6 +53,9 @@
         [_imageView sd_setImageWithURL:[NSURL URLWithString:image] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
             if (image) {
                 [self aspectFitImageViewForImage:image];
+            }
+            else {
+                [self aspectFitImageViewForImage:[UIImage imageNamed:@""]];
             }
         }];
     }

@@ -38,7 +38,7 @@ const CGFloat kFunctionButtonTopMargin  = 0.0;
         _buttons = [NSMutableArray array];
     }
     
-    if (stageModel.stageState == 1) {//待付款
+    if (stageModel.status == 1) {//待付款
         if (stage == 0) {//订金
             if (inDetail) {
                 [self reSetFunctionButtonsWithTitles:@[@"付款"] types:@[@(WKDecorationOrderActionTypePay)]];
@@ -56,13 +56,13 @@ const CGFloat kFunctionButtonTopMargin  = 0.0;
             }
         }
     }
-    else if (stageModel.stageState == 2) {//已支付
+    else if (stageModel.status == 3) {//已支付
         [self reSetFunctionButtonsWithTitles:@[@"已支付"] types:@[@(WKDecorationOrderActionTypeAlreadyPay)]];
     }
-    else if (stageModel.stageState == 3) {//补登审核中
+    else if (stageModel.status == 2) {//补登审核中
         [self showLabelWithTitle:@"补登审核中"];
     }
-    else if (stageModel.stageState == 4) {//已关闭
+    else if (stageModel.status == 4) {//已关闭
         [self reSetFunctionButtonsWithTitles:@[@"删除订单"] types:@[@(WKDecorationOrderActionTypeDelete)]];
     }
     else {//无其他阶段

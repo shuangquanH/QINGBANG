@@ -34,9 +34,8 @@
 }
 
 
-
 + (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"stage_list": [WKDecorationStageModel class],
+    return @{@"paymentList": [WKDecorationStageModel class],
              @"decorateProperty_list": [WKDecorationPropertyModel class]
              };
 }
