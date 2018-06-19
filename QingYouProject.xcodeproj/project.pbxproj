@@ -691,6 +691,9 @@
 		E2E5B39A1FB0675B00205F70 /* xianzhi_luzhi_shanguang_yellow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2E5B1101FB0675900205F70 /* xianzhi_luzhi_shanguang_yellow@3x.png */; };
 		E2E5B39B1FB0675B00205F70 /* YGPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E5B1121FB0675900205F70 /* YGPreviewViewController.m */; };
 		E2E5B39C1FB0675B00205F70 /* YGVideoPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E5B1141FB0675900205F70 /* YGVideoPickerController.m */; };
+		E911E8BF20D89173000D8BEA /* ZWPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E911E8B920D89173000D8BEA /* ZWPlayerView.m */; };
+		E911E8C020D89173000D8BEA /* ZWPlayerControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = E911E8BD20D89173000D8BEA /* ZWPlayerControlView.m */; };
+		E911E8C120D89173000D8BEA /* ZWPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E911E8BE20D89173000D8BEA /* ZWPlayer.bundle */; };
 		E94137A0209C3891003F3649 /* AppStartManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E941379F209C3891003F3649 /* AppStartManager.m */; };
 		E94137A7209C4295003F3649 /* SQLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E94137A6209C4295003F3649 /* SQLocationManager.m */; };
 		E99DE1C020AC4FAF009CEF88 /* SQBaseHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1AE20AC4FAF009CEF88 /* SQBaseHeaderFooterView.m */; };
@@ -2060,6 +2063,12 @@
 		E2E5B1121FB0675900205F70 /* YGPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGPreviewViewController.m; sourceTree = "<group>"; };
 		E2E5B1131FB0675900205F70 /* YGVideoPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGVideoPickerController.h; sourceTree = "<group>"; };
 		E2E5B1141FB0675900205F70 /* YGVideoPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGVideoPickerController.m; sourceTree = "<group>"; };
+		E911E8B920D89173000D8BEA /* ZWPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZWPlayerView.m; sourceTree = "<group>"; };
+		E911E8BA20D89173000D8BEA /* ZWPlayerControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZWPlayerControlView.h; sourceTree = "<group>"; };
+		E911E8BB20D89173000D8BEA /* ZWPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZWPlayerView.h; sourceTree = "<group>"; };
+		E911E8BC20D89173000D8BEA /* ZWPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZWPlayer.h; sourceTree = "<group>"; };
+		E911E8BD20D89173000D8BEA /* ZWPlayerControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZWPlayerControlView.m; sourceTree = "<group>"; };
+		E911E8BE20D89173000D8BEA /* ZWPlayer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZWPlayer.bundle; sourceTree = "<group>"; };
 		E941379E209C3891003F3649 /* AppStartManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppStartManager.h; sourceTree = "<group>"; };
 		E941379F209C3891003F3649 /* AppStartManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppStartManager.m; sourceTree = "<group>"; };
 		E94137A5209C4295003F3649 /* SQLocationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQLocationManager.h; sourceTree = "<group>"; };
@@ -5313,6 +5322,19 @@
 			path = resource;
 			sourceTree = "<group>";
 		};
+		E911E8B820D89172000D8BEA /* ZWPlayerLib */ = {
+			isa = PBXGroup;
+			children = (
+				E911E8B920D89173000D8BEA /* ZWPlayerView.m */,
+				E911E8BA20D89173000D8BEA /* ZWPlayerControlView.h */,
+				E911E8BB20D89173000D8BEA /* ZWPlayerView.h */,
+				E911E8BC20D89173000D8BEA /* ZWPlayer.h */,
+				E911E8BD20D89173000D8BEA /* ZWPlayerControlView.m */,
+				E911E8BE20D89173000D8BEA /* ZWPlayer.bundle */,
+			);
+			path = ZWPlayerLib;
+			sourceTree = "<group>";
+		};
 		E94137A1209C3D89003F3649 /* SQTools */ = {
 			isa = PBXGroup;
 			children = (
@@ -5535,6 +5557,7 @@
 		E99DE26120BED238009CEF88 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				E911E8B820D89172000D8BEA /* ZWPlayerLib */,
 				E99DE26220BED24F009CEF88 /* JFCityViewController */,
 			);
 			path = Vendor;
@@ -5741,6 +5764,7 @@
 				E2E5B1A21FB0675A00205F70 /* tabbar.plist in Resources */,
 				18C15A891FC8208B0010ACD3 /* ReserveChooseCell.xib in Resources */,
 				18C159B51FC8208A0010ACD3 /* AdvertisementLocationCell.xib in Resources */,
+				E911E8C120D89173000D8BEA /* ZWPlayer.bundle in Resources */,
 				D210B95C1FA3622800C4574B /* Assets.xcassets in Resources */,
 				18C15A851FC8208B0010ACD3 /* RefundHearderView.xib in Resources */,
 				18C15A7B1FC8208B0010ACD3 /* MeetingOrderCell.xib in Resources */,
@@ -5829,22 +5853,20 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-QingYouProject/Pods-QingYouProject-resources.sh",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
-				"${PODS_ROOT}/Pingpp/lib/Channels/Alipay/AlipaySDK.bundle",
 				"${PODS_ROOT}/Pingpp/lib/Pingpp.bundle",
+				"${PODS_ROOT}/PingppAlipaySDK/AlipaySDK.bundle",
 				"${PODS_ROOT}/UMengUShare/UShareSDK/UMSocialSDK/UMSocialSDKPromptResources.bundle",
 				"${PODS_ROOT}/UMengUShare/UShareSDK/SocialLibraries/QQ/QQSDK/TencentOpenApi_IOS_Bundle.bundle",
 				"${PODS_ROOT}/UMengUShare/UShareSDK/SocialLibraries/Sina/SinaSDK/WeiboSDK.bundle",
-				"${PODS_ROOT}/ZFPlayer/ZFPlayer/ZFPlayer.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AlipaySDK.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Pingpp.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AlipaySDK.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/UMSocialSDKPromptResources.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TencentOpenApi_IOS_Bundle.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/WeiboSDK.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ZFPlayer.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -6382,6 +6404,7 @@
 				04FFB4C620C7E9BF00B8843E /* WKMyOrderUnreadCountModel.m in Sources */,
 				18C159EC1FC8208A0010ACD3 /* BreakContractBillModel.m in Sources */,
 				E2E5B1161FB0675900205F70 /* AFNetworkReachabilityManager.m in Sources */,
+				E911E8BF20D89173000D8BEA /* ZWPlayerView.m in Sources */,
 				E2E5B36F1FB0675B00205F70 /* YGPushSDK.m in Sources */,
 				18C15A3C1FC8208B0010ACD3 /* MyInvestUploadProofViewController.m in Sources */,
 				E2E5B1301FB0675A00205F70 /* KSPhotoItem.m in Sources */,
@@ -6509,6 +6532,7 @@
 				18C159C91FC8208A0010ACD3 /* HistoryPayRecoredTableViewCell.m in Sources */,
 				E99DE22A20B595F0009CEF88 /* SQIphonePx.m in Sources */,
 				18C159041FC820890010ACD3 /* OfficePurchaseOrderListViewController.m in Sources */,
+				E911E8C020D89173000D8BEA /* ZWPlayerControlView.m in Sources */,
 				042AF70320CFBB61005ECDBF /* WKCheckContactScaleView.m in Sources */,
 				E99DE23020B65A11009CEF88 /* SQRequest.m in Sources */,
 				18C159CB1FC8208A0010ACD3 /* InvoiceManagerViewController.m in Sources */,
@@ -6654,8 +6678,6 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_ROOT}/AMapFoundation\"",
-					"\"${PODS_ROOT}/AMapLocation\"",
 					"\"${PODS_ROOT}/MOBFoundation\"",
 					"\"${PODS_ROOT}/Pingpp/lib/Channels/Alipay\"",
 					"\"${PODS_ROOT}/SMSSDK/MobProducts/SDK/SMSSDK\"",
@@ -6688,7 +6710,6 @@
 					"-l\"UMSocialLog\"",
 					"-l\"WeChatSDK\"",
 					"-l\"WeiboSDK\"",
-					"-l\"ZFPlayer\"",
 					"-l\"c++\"",
 					"-l\"icucore\"",
 					"-l\"pingpp+alipay\"",
@@ -6699,10 +6720,6 @@
 					"-l\"sqlite3\"",
 					"-l\"stdc++\"",
 					"-l\"z\"",
-					"-framework",
-					"\"AMapFoundationKit\"",
-					"-framework",
-					"\"AMapLocationKit\"",
 					"-framework",
 					"\"AlipaySDK\"",
 					"-framework",
@@ -6766,8 +6783,6 @@
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_ROOT}/AMapFoundation\"",
-					"\"${PODS_ROOT}/AMapLocation\"",
 					"\"${PODS_ROOT}/MOBFoundation\"",
 					"\"${PODS_ROOT}/Pingpp/lib/Channels/Alipay\"",
 					"\"${PODS_ROOT}/SMSSDK/MobProducts/SDK/SMSSDK\"",
@@ -6800,7 +6815,6 @@
 					"-l\"UMSocialLog\"",
 					"-l\"WeChatSDK\"",
 					"-l\"WeiboSDK\"",
-					"-l\"ZFPlayer\"",
 					"-l\"c++\"",
 					"-l\"icucore\"",
 					"-l\"pingpp+alipay\"",
@@ -6811,10 +6825,6 @@
 					"-l\"sqlite3\"",
 					"-l\"stdc++\"",
 					"-l\"z\"",
-					"-framework",
-					"\"AMapFoundationKit\"",
-					"-framework",
-					"\"AMapLocationKit\"",
 					"-framework",
 					"\"AlipaySDK\"",
 					"-framework",

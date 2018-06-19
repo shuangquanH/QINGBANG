@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <AMapLocationKit/AMapLocationKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 
 

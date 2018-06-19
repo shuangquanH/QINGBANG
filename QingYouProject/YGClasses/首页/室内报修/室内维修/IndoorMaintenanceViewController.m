@@ -23,8 +23,6 @@
 #import "YGActionSheetView.h"
 #import "AreaSelectViewController.h"
 
-#import <AMapLocationKit/AMapLocationKit.h>
-#import <AMapFoundationKit/AMapFoundationKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import "PlaceholderAndNoticeTextView.h"
 

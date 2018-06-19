@@ -33,12 +33,12 @@ target 'QingYouProject' do
   pod 'MBProgressHUD'
   #SMSSDK必须
   pod 'SMSSDK'
+  
   #播放器
-
-  pod 'ZFPlayer'
-
+#  pod 'ZFPlayer'
   #地图
-  pod 'AMapLocation'
+#  pod 'AMapLocation'
+
   pod 'FSCalendar'
   pod 'HappyDNS', '~> 0.2'
   pod 'Pingpp', '~> 2.2.17'
