@@ -7,8 +7,8 @@
 //  订单详情订单号视图
 
 #import <UIKit/UIKit.h>
-#import "SQDecorationDetailViewModel.h"
+#import "WKDecorationDetailViewModel.h"
 
-@interface SQDecorationDetailOrderNumberView : UIView<SQDecorationDetailViewProtocol>
+@interface SQDecorationDetailOrderNumberView : UIView<WKDecorationDetailViewProtocol>
 
 @end

@@ -7,8 +7,8 @@
 //  订单详情地址视图
 
 #import <UIKit/UIKit.h>
-#import "SQDecorationDetailViewModel.h"
+#import "WKDecorationDetailViewModel.h"
 
-@interface SQDecorationDetailAddressView : UIView<SQDecorationDetailViewProtocol>
+@interface SQDecorationDetailAddressView : UIView<WKDecorationDetailViewProtocol>
 
 @end

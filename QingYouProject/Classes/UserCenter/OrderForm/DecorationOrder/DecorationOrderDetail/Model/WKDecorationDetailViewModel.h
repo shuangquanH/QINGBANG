@@ -11,9 +11,9 @@
 #import "ManageMailPostModel.h"
 #import "SQDecorationCellPayButtonView.h"
 
-@class SQDecorationDetailViewModel, SQDecorationDetailFunctionView, SQDecorationDetailServerView, SQDecorationOrderCell;
+@class WKDecorationDetailViewModel, SQDecorationDetailFunctionView, SQDecorationDetailServerView, SQDecorationOrderCell;
 
-@protocol SQDecorationDetailViewProtocol<NSObject>
+@protocol WKDecorationDetailViewProtocol<NSObject>
 
 - (void)configOrderInfo:(WKDecorationOrderDetailModel *)orderInfo;
 
@@ -24,7 +24,7 @@
 
 @end
 
-@protocol SQDecorationDetailViewModelDelegate<NSObject>
+@protocol WKDecorationDetailViewModelDelegate<NSObject>
 
 @optional
 /** 0：联系客服 1：申请售后 */
@@ -36,14 +36,14 @@
 
 @end
 
-@interface SQDecorationDetailViewModel : NSObject
+@interface WKDecorationDetailViewModel : NSObject
 
 
-@property (nonatomic, strong, readonly) NSArray<UIView<SQDecorationDetailViewProtocol> *> *subviewArray;
+@property (nonatomic, strong, readonly) NSArray<UIView<WKDecorationDetailViewProtocol> *> *subviewArray;
 
 @property (nonatomic, strong, readonly) SQDecorationOrderCell *orderCell;
 
-@property (nonatomic, weak) id<SQDecorationDetailViewModelDelegate> orderDetailDelegate;
+@property (nonatomic, weak) id<WKDecorationDetailViewModelDelegate> orderDetailDelegate;
 
 - (void)setupByOrderInfo:(WKDecorationOrderDetailModel *)orderInfo;
 

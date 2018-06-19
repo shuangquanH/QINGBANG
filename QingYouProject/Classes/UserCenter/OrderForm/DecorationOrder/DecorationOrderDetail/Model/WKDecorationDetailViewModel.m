@@ -6,7 +6,7 @@
 //  Copyright © 2018年 ccyouge. All rights reserved.
 //
 
-#import "SQDecorationDetailViewModel.h"
+#import "WKDecorationDetailViewModel.h"
 
 #import "SQDecorationDetailStagesView.h"
 #import "SQDecorationDetailAddressView.h"
@@ -17,18 +17,18 @@
 #import "SQDecorationDetailStateHeadView.h"
 #import "WKDecorationStateCell.h"
 
-@interface SQDecorationDetailSectionView: UIView<SQDecorationDetailViewProtocol>
+@interface SQDecorationDetailSectionView: UIView<WKDecorationDetailViewProtocol>
 @end
 @implementation SQDecorationDetailSectionView
 - (void)configOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {}
 - (CGSize)viewSize { return CGSizeMake(kScreenW, KSCAL(20)); }
 @end
 
-@interface SQDecorationDetailViewModel()<decorationOrderCellDelegate>
+@interface WKDecorationDetailViewModel()<decorationOrderCellDelegate>
 
 @end
 
-@implementation SQDecorationDetailViewModel
+@implementation WKDecorationDetailViewModel
 
 - (void)sendOrderDetailRequestWithOrderNum:(NSString *)orderNum completed:(void (^)(WKDecorationOrderDetailModel *, NSError *))completed {
     
@@ -82,7 +82,7 @@
         return;
     }
     
-    NSMutableArray<UIView<SQDecorationDetailViewProtocol> *> *tmp = [NSMutableArray array];
+    NSMutableArray<UIView<WKDecorationDetailViewProtocol> *> *tmp = [NSMutableArray array];
     
     SQDecorationDetailStateHeadView *stageView = [[SQDecorationDetailStateHeadView alloc] initWithFrame:CGRectZero];
     [tmp addObject:stageView];

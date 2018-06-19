@@ -46,6 +46,7 @@
         [self.contentView addSubview:orderDesc];
         
         orderPrice = [UILabel labelWithFont:KSCAL(28.0) textColor:kCOLOR_666];
+        orderPrice.numberOfLines = 1;
         [self.contentView addSubview:orderPrice];
         
         paymentStageView = [[WKDecorationStageView alloc] init];
@@ -118,19 +119,15 @@
     
     _orderInfo = orderInfo;
     
-    NSMutableAttributedString *estimatePrice = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"¥ %@（预估价）", orderInfo.estimate]];
-    [estimatePrice setAttributes:@{NSForegroundColorAttributeName: kCOLOR_PRICE_RED} range:NSMakeRange(0, 2+orderInfo.estimate.length)];
-    orderPrice.attributedText = estimatePrice;
+    [orderImage sd_setImageWithURL:[NSURL URLWithString:orderInfo.skuDetails.skuImgUrl] placeholderImage:nil];
     
-    [orderImage sd_setImageWithURL:[NSURL URLWithString:orderInfo.decorate_icon] placeholderImage:nil];
-    
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    [paragraphStyle setLineSpacing:2];
-    NSAttributedString *decorateName = [[NSAttributedString alloc] initWithString:orderInfo.decorateName attributes:@{NSParagraphStyleAttributeName: paragraphStyle}];
-    orderTitle.attributedText = decorateName;
+    orderPrice.attributedText = orderInfo.skuDetails.skuProductPriceAttributeString;
+    orderPrice.lineBreakMode = NSLineBreakByTruncatingTail;
+
+    orderTitle.attributedText = orderInfo.skuDetails.skuProductNameAttributeString;
     orderTitle.lineBreakMode = NSLineBreakByTruncatingTail;
     
-    orderDesc.attributedText = _orderInfo.decorationDescAttributeString;
+    orderDesc.attributedText = orderInfo.skuDetails.skuProductDescAttributeString;
     orderDesc.lineBreakMode = NSLineBreakByTruncatingTail;
 
     [paymentStageView configOrderInfo:orderInfo withStage:0 withInDetail:self.isInOrderDetail];

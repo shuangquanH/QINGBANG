@@ -10,6 +10,8 @@
 #import <Photos/Photos.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 
+#import "WKCheckContactScaleCell.h"
+
 static const CGFloat kScaleAnimationDuraction = 0.7;
 
 @interface WKCheckContactScaleView()<UICollectionViewDelegate, UICollectionViewDataSource>
@@ -42,35 +44,13 @@ static const CGFloat kScaleAnimationDuraction = 0.7;
     return self.imageUrls.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"imageCell" forIndexPath:indexPath];
-    UIImageView *imageView;
-    if (!cell.contentView.subviews.count) {
-        imageView = [UIImageView new];
-        imageView.contentMode = UIViewContentModeScaleAspectFit;
-        [cell.contentView addSubview:imageView];
-        [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.edges.mas_equalTo(0);
-        }];
-    }
-    else {
-        imageView = cell.contentView.subviews.firstObject;
-    }
+    WKCheckContactScaleCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"imageCell" forIndexPath:indexPath];
     
     if (indexPath.item == self.firstIndex && self.maskImageView.image) {
-        imageView.image = self.maskImageView.image;
+        [cell configImage:self.maskImageView.image];
     }
     else {
-        [imageView sd_setImageWithPreviousCachedImageWithURL:[NSURL URLWithString:self.imageUrls[indexPath.item]] placeholderImage:nil options:SDWebImageRetryFailed progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-            if (self.selectIndex == indexPath.item) {
-                
-            }
-        } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-            if (self.selectIndex == indexPath.item) {
-                if (error) {
-                    [YGAppTool showToastWithText:@"图片加载失败"];
-                }
-            }
-        }];
+        [cell configImage:self.imageUrls[indexPath.item]];
     }
     return cell;
 }
@@ -87,13 +67,13 @@ static const CGFloat kScaleAnimationDuraction = 0.7;
 }
 - (void)click_save {
     
-    UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:self.selectIndex inSection:0]];
-    UIImageView *imageView = cell.contentView.subviews.firstObject;
-    if (!imageView.image) return;
+    WKCheckContactScaleCell *cell = (WKCheckContactScaleCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:self.selectIndex inSection:0]];
+
+    if (!cell.imageView.image) return;
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self animated:YES];
     hud.bezelView.backgroundColor =  [[UIColor blackColor] colorWithAlphaComponent:0.6];
-    UIImage *saveImage = imageView.image;
+    UIImage *saveImage = cell.imageView.image;
     [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
         [PHAssetChangeRequest creationRequestForAssetFromImage:saveImage];
     } completionHandler:^(BOOL success, NSError * _Nullable error) {
@@ -207,7 +187,7 @@ static const CGFloat kScaleAnimationDuraction = 0.7;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.pagingEnabled = YES;
-        [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"imageCell"];
+        [_collectionView registerClass:[WKCheckContactScaleCell class] forCellWithReuseIdentifier:@"imageCell"];
         [self addSubview:_collectionView];
         
         _pageLabel = [UILabel labelWithFont:15.0 textColor:[UIColor whiteColor]];

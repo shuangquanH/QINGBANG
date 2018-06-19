@@ -7,9 +7,9 @@
 //  订单详情客服视图（联系客服、申请售后）
 
 #import <UIKit/UIKit.h>
-#import "SQDecorationDetailViewModel.h"
+#import "WKDecorationDetailViewModel.h"
 
-@interface SQDecorationDetailServerView : UIView<SQDecorationDetailViewProtocol>
+@interface SQDecorationDetailServerView : UIView<WKDecorationDetailViewProtocol>
 
 @property (nonatomic, copy) void (^ serviceBlock)(NSInteger tag);
 
