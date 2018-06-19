@@ -7,9 +7,9 @@
 //  订单详情阶段视图
 
 #import <UIKit/UIKit.h>
-#import "SQDecorationDetailViewModel.h"
+#import "WKDecorationDetailViewModel.h"
 
-@interface SQDecorationDetailStagesView : UIView<SQDecorationDetailViewProtocol>
+@interface SQDecorationDetailStagesView : UIView<WKDecorationDetailViewProtocol>
 
 
 @end

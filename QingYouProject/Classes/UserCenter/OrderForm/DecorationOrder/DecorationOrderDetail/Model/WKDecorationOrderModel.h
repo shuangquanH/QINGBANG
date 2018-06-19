@@ -48,7 +48,7 @@
 @property (nonatomic, assign) BOOL     deleted;
 
 @property (nonatomic, copy  ) NSString *remarks;
-
+/** 1:待付款 2:已关闭 3:受理中 4:装修中,待付款 5:已完成 */
 @property (nonatomic, copy  ) NSString *status;
 
 @property (nonatomic, copy  ) NSString *createBy;

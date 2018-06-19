@@ -71,11 +71,8 @@
             if (tmp.count) {
                 if (headerAction) {
                     [self.orderList removeAllObjects];
-                    [self.orderList addObjectsFromArray:tmp];
                 }
-                else {
-                    [self.orderList addObjectsFromArray:tmp];
-                }
+                [self.orderList addObjectsFromArray:tmp];
                 self.page = tmpPage;
                 [self.tableView reloadData];
             }
@@ -91,7 +88,15 @@
             [self.tableView.mj_footer endRefreshing];
         }
     } failure:^(NSError *error) {
-        [YGAppTool showToastWithText:@"网路错误"];
+        NSError *underlyingError = error.userInfo[NSUnderlyingErrorKey];
+        NSHTTPURLResponse *reponse = underlyingError.userInfo[@"com.alamofire.serialization.response.error.response"];
+        if (reponse && reponse.statusCode >= 500) {
+            [YGAppTool showToastWithText:@"服务器错误"];
+        }
+        else {
+            [YGAppTool showToastWithText:@"网络错误"];
+        }
+
         if (headerAction) {
             [self.tableView.mj_header endRefreshing];
         }
@@ -179,8 +184,13 @@
     
     WKDecorationOrderDetailModel *orderInfo = [self.orderList objectAtIndex:targetIndex.section];
     WKDecorationStageModel *stageInfo = orderInfo.stage_list[stage];
-    if (!stageInfo.isActivity) {//当前状态还没有被激活
-        [YGAppTool showToastWithText:[NSString stringWithFormat:@"需要完成%@，才可以操作此阶段", orderInfo.stage_list[stage-1].stageName]];
+    if (!stageInfo.isActivity && stage >= 1) {//当前状态还没有被激活
+        if (stage >= 1) {
+            [YGAppTool showToastWithText:[NSString stringWithFormat:@"需要完成%@，才可以操作此阶段", orderInfo.stage_list[stage-1].stageName]];
+        }
+        else {
+            [YGAppTool showToastWithText:@"暂时还不能进行此操作，请稍后再试"];
+        }
         return;
     }
     

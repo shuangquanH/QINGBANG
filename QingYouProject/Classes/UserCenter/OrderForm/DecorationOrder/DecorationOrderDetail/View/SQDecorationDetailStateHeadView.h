@@ -7,8 +7,8 @@
 //  订单详情订单状态视图
 
 #import <UIKit/UIKit.h>
-#import "SQDecorationDetailViewModel.h"
+#import "WKDecorationDetailViewModel.h"
 
-@interface SQDecorationDetailStateHeadView : UIView<SQDecorationDetailViewProtocol>
+@interface SQDecorationDetailStateHeadView : UIView<WKDecorationDetailViewProtocol>
 
 @end

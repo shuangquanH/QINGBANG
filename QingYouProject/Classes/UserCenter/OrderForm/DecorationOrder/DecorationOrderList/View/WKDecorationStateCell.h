@@ -7,9 +7,9 @@
 //
 
 #import "SQBaseTableViewCell.h"
-#import "SQDecorationDetailViewModel.h"
+#import "WKDecorationDetailViewModel.h"
 
-@interface WKDecorationStateCell : SQBaseTableViewCell<SQDecorationDetailViewProtocol>
+@interface WKDecorationStateCell : SQBaseTableViewCell<WKDecorationDetailViewProtocol>
 
 @property (nonatomic, assign) BOOL isInDetail;
 

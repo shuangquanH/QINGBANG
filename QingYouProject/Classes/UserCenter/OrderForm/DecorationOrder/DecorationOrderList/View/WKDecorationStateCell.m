@@ -104,7 +104,7 @@
                 make.centerY.equalTo(_stateLabel);
             }];
         }
-        
+
         _otherStateLabel.hidden = NO;
         _otherStateLabel.text = @"(待退款)";
     }

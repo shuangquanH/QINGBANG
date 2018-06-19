@@ -8,7 +8,7 @@
 
 #import "SQBaseTableViewCell.h"
 
-#import "SQDecorationDetailViewModel.h"
+#import "WKDecorationDetailViewModel.h"
 #import "WKDecorationOrderDetailModel.h"
 
 #import "WKDecorationStageView.h"
@@ -25,7 +25,7 @@
 
 
 /** 基本订单cell */
-@interface SQDecorationOrderCell : SQBaseTableViewCell<SQDecorationDetailViewProtocol, WKDecorationStageViewDelegate>
+@interface SQDecorationOrderCell : SQBaseTableViewCell<WKDecorationDetailViewProtocol, WKDecorationStageViewDelegate>
 
 @property (nonatomic, weak  ) id <decorationOrderCellDelegate>       delegate;
 

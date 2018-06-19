@@ -16,15 +16,15 @@
 #import "SQDecorationOrderCell.h"
 #import "WKDecorationOrderAlertView.h"
 
-#import "SQDecorationDetailViewModel.h"
+#import "WKDecorationDetailViewModel.h"
 
-@interface SQDecorationOrderDetailVC () <SQDecorationDetailViewModelDelegate>
+@interface SQDecorationOrderDetailVC () <WKDecorationDetailViewModelDelegate>
 
 @property (nonatomic, strong) UIScrollView  *contentScrollView;
 
 @property (nonatomic, strong) UIView        *contentView;
 
-@property (nonatomic, strong) SQDecorationDetailViewModel  *orderVM;
+@property (nonatomic, strong) WKDecorationDetailViewModel  *orderVM;
 
 @property (nonatomic, strong) WKDecorationOrderDetailModel *orderInfo;
 
@@ -36,7 +36,7 @@
     [super viewDidLoad];
     self.naviTitle = @"订单详情";
     
-    self.orderVM = [SQDecorationDetailViewModel new];
+    self.orderVM = [WKDecorationDetailViewModel new];
     self.orderVM.orderDetailDelegate = self;
     [self sendReqeust];
 }
@@ -64,7 +64,7 @@
         make.edges.equalTo(self.contentScrollView);
     }];
 
-    for (UIView<SQDecorationDetailViewProtocol> *v in self.orderVM.subviewArray) {
+    for (UIView<WKDecorationDetailViewProtocol> *v in self.orderVM.subviewArray) {
         [v configOrderInfo:self.orderInfo];
         if ([v respondsToSelector:@selector(configAddressInfo:)]) {
             [v configAddressInfo:self.orderInfo.address_info];
@@ -79,7 +79,7 @@
     
     UIView *lastView;
     for (int i = 0; i < self.orderVM.subviewArray.count; i++) {
-        UIView<SQDecorationDetailViewProtocol> *v = [self.orderVM.subviewArray objectAtIndex:i];
+        UIView<WKDecorationDetailViewProtocol> *v = [self.orderVM.subviewArray objectAtIndex:i];
         if (i == 0) {
             [v mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.left.top.right.mas_equalTo(0);
@@ -155,7 +155,12 @@
     
     WKDecorationStageModel *stageInfo = self.orderInfo.stage_list[stage];
     if (!stageInfo.isActivity) {//当前状态还没有被激活
-        [YGAppTool showToastWithText:[NSString stringWithFormat:@"需要完成%@，才可以操作此阶段", self.orderInfo.stage_list[stage-1].stageName]];
+        if (stage >= 1) {
+            [YGAppTool showToastWithText:[NSString stringWithFormat:@"需要完成%@，才可以操作此阶段", self.orderInfo.stage_list[stage-1].stageName]];
+        }
+        else {
+            [YGAppTool showToastWithText:@"暂时还不能进行此操作，请稍后再试"];
+        }
         return;
     }
     

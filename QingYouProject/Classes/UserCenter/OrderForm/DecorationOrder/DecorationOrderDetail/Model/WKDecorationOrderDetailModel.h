@@ -7,11 +7,12 @@
 //  订单详情模型
 
 #import <Foundation/Foundation.h>
-
+//地址信息
 #import "ManageMailPostModel.h"
+//商品信息
 #import "WKDecorationSUKModel.h"
+//订单列表信息
 #import "WKDecorationOrderModel.h"
-
 
 @interface WKDecorationOrderDetailModel: NSObject
 
@@ -19,9 +20,9 @@
 
 @property (nonatomic, copy  ) NSString *orderNum;
 
-@property (nonatomic, copy  ) NSString *deposit;
-
 @property (nonatomic, copy  ) NSString *typeId;
+
+@property (nonatomic, copy  ) NSString *memberId;
 
 @property (nonatomic, copy  ) NSString *createDate;
 
@@ -29,13 +30,13 @@
 
 @property (nonatomic, copy  ) NSString *addressId;
 
+@property (nonatomic, copy  ) NSString *deposit;
+
 @property (nonatomic, copy  ) NSString *price;
 
 @property (nonatomic, copy  ) NSString *createTime;
 
 @property (nonatomic, assign) BOOL     deleted;
-
-@property (nonatomic, copy  ) NSString *memberId;
 
 @property (nonatomic, copy  ) NSString *updateDate;
 
@@ -45,13 +46,14 @@
 /** 1:待付款 2:已关闭 3:受理中 4:装修中,待付款 5:已完成 */
 @property (nonatomic, assign) NSInteger status;
 
-@property (nonatomic, copy  ) NSString *orderTitle;
-
 @property (nonatomic, strong) WKDecorationSUKModel *skuDetails;
 
 @property (nonatomic, strong) WKDecorationOrderModel *orderDetails;
 
 @property (nonatomic, strong) ManageMailPostModel *address_info;
+
+@property (nonatomic, copy  ) NSString *orderTitle;
+
 
 
 /** 是否可退款 */
@@ -78,9 +80,5 @@
 @property (nonatomic, assign) BOOL isInRepairApply;
 
 @property (nonatomic, strong) NSArray<WKDecorationStageModel *> *stage_list;
-//商品描述
-@property (nonatomic, strong) NSAttributedString *decorationDescAttributeString;
-
-
 
 @end
