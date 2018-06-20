@@ -692,9 +692,9 @@
 		E2E5B39A1FB0675B00205F70 /* xianzhi_luzhi_shanguang_yellow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E2E5B1101FB0675900205F70 /* xianzhi_luzhi_shanguang_yellow@3x.png */; };
 		E2E5B39B1FB0675B00205F70 /* YGPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E5B1121FB0675900205F70 /* YGPreviewViewController.m */; };
 		E2E5B39C1FB0675B00205F70 /* YGVideoPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E5B1141FB0675900205F70 /* YGVideoPickerController.m */; };
-		E911E8BF20D89173000D8BEA /* ZWPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E911E8B920D89173000D8BEA /* ZWPlayerView.m */; };
-		E911E8C020D89173000D8BEA /* ZWPlayerControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = E911E8BD20D89173000D8BEA /* ZWPlayerControlView.m */; };
-		E911E8C120D89173000D8BEA /* ZWPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E911E8BE20D89173000D8BEA /* ZWPlayer.bundle */; };
+		E92ABB6F20DA08E8003B374D /* SQPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E92ABB6B20DA08E8003B374D /* SQPlayer.bundle */; };
+		E92ABB7020DA08E8003B374D /* SQPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E92ABB6D20DA08E8003B374D /* SQPlayerView.m */; };
+		E92ABB7120DA08E8003B374D /* SQPlayerControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = E92ABB6E20DA08E8003B374D /* SQPlayerControlView.m */; };
 		E94137A0209C3891003F3649 /* AppStartManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E941379F209C3891003F3649 /* AppStartManager.m */; };
 		E94137A7209C4295003F3649 /* SQLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E94137A6209C4295003F3649 /* SQLocationManager.m */; };
 		E99DE1C020AC4FAF009CEF88 /* SQBaseHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1AE20AC4FAF009CEF88 /* SQBaseHeaderFooterView.m */; };
@@ -2066,12 +2066,12 @@
 		E2E5B1121FB0675900205F70 /* YGPreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGPreviewViewController.m; sourceTree = "<group>"; };
 		E2E5B1131FB0675900205F70 /* YGVideoPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YGVideoPickerController.h; sourceTree = "<group>"; };
 		E2E5B1141FB0675900205F70 /* YGVideoPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YGVideoPickerController.m; sourceTree = "<group>"; };
-		E911E8B920D89173000D8BEA /* ZWPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZWPlayerView.m; sourceTree = "<group>"; };
-		E911E8BA20D89173000D8BEA /* ZWPlayerControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZWPlayerControlView.h; sourceTree = "<group>"; };
-		E911E8BB20D89173000D8BEA /* ZWPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZWPlayerView.h; sourceTree = "<group>"; };
-		E911E8BC20D89173000D8BEA /* ZWPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZWPlayer.h; sourceTree = "<group>"; };
-		E911E8BD20D89173000D8BEA /* ZWPlayerControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZWPlayerControlView.m; sourceTree = "<group>"; };
-		E911E8BE20D89173000D8BEA /* ZWPlayer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ZWPlayer.bundle; sourceTree = "<group>"; };
+		E92ABB6920DA08E8003B374D /* SQPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQPlayerView.h; sourceTree = "<group>"; };
+		E92ABB6A20DA08E8003B374D /* SQPlayerControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQPlayerControlView.h; sourceTree = "<group>"; };
+		E92ABB6B20DA08E8003B374D /* SQPlayer.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SQPlayer.bundle; sourceTree = "<group>"; };
+		E92ABB6C20DA08E8003B374D /* SQPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQPlayer.h; sourceTree = "<group>"; };
+		E92ABB6D20DA08E8003B374D /* SQPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQPlayerView.m; sourceTree = "<group>"; };
+		E92ABB6E20DA08E8003B374D /* SQPlayerControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQPlayerControlView.m; sourceTree = "<group>"; };
 		E941379E209C3891003F3649 /* AppStartManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppStartManager.h; sourceTree = "<group>"; };
 		E941379F209C3891003F3649 /* AppStartManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppStartManager.m; sourceTree = "<group>"; };
 		E94137A5209C4295003F3649 /* SQLocationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQLocationManager.h; sourceTree = "<group>"; };
@@ -5327,17 +5327,17 @@
 			path = resource;
 			sourceTree = "<group>";
 		};
-		E911E8B820D89172000D8BEA /* ZWPlayerLib */ = {
+		E92ABB6820DA08E8003B374D /* SQPlayerLib */ = {
 			isa = PBXGroup;
 			children = (
-				E911E8B920D89173000D8BEA /* ZWPlayerView.m */,
-				E911E8BA20D89173000D8BEA /* ZWPlayerControlView.h */,
-				E911E8BB20D89173000D8BEA /* ZWPlayerView.h */,
-				E911E8BC20D89173000D8BEA /* ZWPlayer.h */,
-				E911E8BD20D89173000D8BEA /* ZWPlayerControlView.m */,
-				E911E8BE20D89173000D8BEA /* ZWPlayer.bundle */,
+				E92ABB6C20DA08E8003B374D /* SQPlayer.h */,
+				E92ABB6920DA08E8003B374D /* SQPlayerView.h */,
+				E92ABB6D20DA08E8003B374D /* SQPlayerView.m */,
+				E92ABB6A20DA08E8003B374D /* SQPlayerControlView.h */,
+				E92ABB6E20DA08E8003B374D /* SQPlayerControlView.m */,
+				E92ABB6B20DA08E8003B374D /* SQPlayer.bundle */,
 			);
-			path = ZWPlayerLib;
+			path = SQPlayerLib;
 			sourceTree = "<group>";
 		};
 		E94137A1209C3D89003F3649 /* SQTools */ = {
@@ -5562,7 +5562,7 @@
 		E99DE26120BED238009CEF88 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				E911E8B820D89172000D8BEA /* ZWPlayerLib */,
+				E92ABB6820DA08E8003B374D /* SQPlayerLib */,
 				E99DE26220BED24F009CEF88 /* JFCityViewController */,
 			);
 			path = Vendor;
@@ -5769,7 +5769,6 @@
 				E2E5B1A21FB0675A00205F70 /* tabbar.plist in Resources */,
 				18C15A891FC8208B0010ACD3 /* ReserveChooseCell.xib in Resources */,
 				18C159B51FC8208A0010ACD3 /* AdvertisementLocationCell.xib in Resources */,
-				E911E8C120D89173000D8BEA /* ZWPlayer.bundle in Resources */,
 				D210B95C1FA3622800C4574B /* Assets.xcassets in Resources */,
 				18C15A851FC8208B0010ACD3 /* RefundHearderView.xib in Resources */,
 				18C15A7B1FC8208B0010ACD3 /* MeetingOrderCell.xib in Resources */,
@@ -5821,6 +5820,7 @@
 				18C159E81FC8208A0010ACD3 /* UpLoadPersonTableViewCell.xib in Resources */,
 				18C159AD1FC8208A0010ACD3 /* button-screen-single.png in Resources */,
 				E2E5B3941FB0675B00205F70 /* xianzhi_luzhi_right@3x.png in Resources */,
+				E92ABB6F20DA08E8003B374D /* SQPlayer.bundle in Resources */,
 				182F021F1FCFD16F00C63376 /* MyIntegrationIndustryWtihCategoryTableViewCell.xib in Resources */,
 				E2E5B3911FB0675B00205F70 /* xianzhi_luzhi_quxiao@3x.png in Resources */,
 				18C15A131FC8208A0010ACD3 /* MyFinancialAccountTableViewCell.xib in Resources */,
@@ -6372,6 +6372,7 @@
 				04FFB4C020C7670400B8843E /* PasswordModifilyViewController.m in Sources */,
 				18C15A881FC8208B0010ACD3 /* ReserveChooseCell.m in Sources */,
 				18C15A341FC8208A0010ACD3 /* SubscribeSumOfMoneyModel.m in Sources */,
+				E92ABB7020DA08E8003B374D /* SQPlayerView.m in Sources */,
 				E94137A7209C4295003F3649 /* SQLocationManager.m in Sources */,
 				18C159941FC8208A0010ACD3 /* YGCityPikerView1.m in Sources */,
 				18C159281FC820890010ACD3 /* OrderDeatilBottomPictureView.m in Sources */,
@@ -6410,7 +6411,6 @@
 				04FFB4C620C7E9BF00B8843E /* WKMyOrderUnreadCountModel.m in Sources */,
 				18C159EC1FC8208A0010ACD3 /* BreakContractBillModel.m in Sources */,
 				E2E5B1161FB0675900205F70 /* AFNetworkReachabilityManager.m in Sources */,
-				E911E8BF20D89173000D8BEA /* ZWPlayerView.m in Sources */,
 				E2E5B36F1FB0675B00205F70 /* YGPushSDK.m in Sources */,
 				18C15A3C1FC8208B0010ACD3 /* MyInvestUploadProofViewController.m in Sources */,
 				E2E5B1301FB0675A00205F70 /* KSPhotoItem.m in Sources */,
@@ -6420,6 +6420,7 @@
 				18C159771FC8208A0010ACD3 /* JobOutsourceTradeRecoredViewController.m in Sources */,
 				18C159181FC820890010ACD3 /* OfficePurchaseChildViewController.m in Sources */,
 				523184C91FE165B800B7905C /* AskForInvoiceInputEmailAddressView.m in Sources */,
+				E92ABB7120DA08E8003B374D /* SQPlayerControlView.m in Sources */,
 				E2E5B37E1FB0675B00205F70 /* YGShareView.m in Sources */,
 				18C159A51FC8208A0010ACD3 /* AdvertisementPageViewController.m in Sources */,
 				E2E5B1321FB0675A00205F70 /* KSProgressLayer.m in Sources */,
@@ -6538,7 +6539,6 @@
 				18C159C91FC8208A0010ACD3 /* HistoryPayRecoredTableViewCell.m in Sources */,
 				E99DE22A20B595F0009CEF88 /* SQIphonePx.m in Sources */,
 				18C159041FC820890010ACD3 /* OfficePurchaseOrderListViewController.m in Sources */,
-				E911E8C020D89173000D8BEA /* ZWPlayerControlView.m in Sources */,
 				042AF70320CFBB61005ECDBF /* WKCheckContactScaleView.m in Sources */,
 				E99DE23020B65A11009CEF88 /* SQRequest.m in Sources */,
 				18C159CB1FC8208A0010ACD3 /* InvoiceManagerViewController.m in Sources */,

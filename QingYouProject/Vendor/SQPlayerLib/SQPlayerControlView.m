@@ -1,8 +1,8 @@
 //
-//  ZWPlayerControlView.m
-//  ZWPlayerDemo
+//  SQPlayerControlView.m
+//  SQPlayerDemo
 //
-//  Created by 郑亚伟 on 2017/2/9.
+//  Created by qwer on 2017/2/9.
 //  Copyright © 2017年 zhengyawei. All rights reserved.
 //
 
@@ -11,11 +11,11 @@
 /**
  控制层视图
 */
-#import "ZWPlayerControlView.h"
-#import "ZWPlayer.h"
+#import "SQPlayerControlView.h"
+#import "SQPlayer.h"
 
 
-@interface ZWPlayerControlView ()
+@interface SQPlayerControlView ()
 /** 开始播放按钮 */
 @property (nonatomic, strong) UIButton                *startBtn;
 /** 当前播放时长label */
@@ -51,7 +51,7 @@
 
 @end
 
-@implementation ZWPlayerControlView
+@implementation SQPlayerControlView
 - (instancetype)init{
     self = [super init];
     if (self) {
@@ -60,7 +60,7 @@
         [self addSubview:self.bottomImageView];
         [self.bottomImageView addSubview:self.startBtn];
         [self.bottomImageView addSubview:self.currentTimeLabel];
-//        [self.bottomImageView addSubview:self.progressView];
+        [self.bottomImageView addSubview:self.progressView];
         [self.bottomImageView addSubview:self.videoSlider];
         [self.bottomImageView addSubview:self.fullScreenBtn];
         [self.bottomImageView addSubview:self.totalTimeLabel];
@@ -77,9 +77,7 @@
        
         UITapGestureRecognizer *sliderTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapSliderAction:)];
         [self.videoSlider addGestureRecognizer:sliderTap];
-        //显示菊花转
-        [self.activity stopAnimating];
-//        [self.activity startAnimating];
+
         // 初始化时重置controlView
         [self resetControlView];
     }
@@ -131,11 +129,11 @@
         make.width.mas_equalTo(43);
     }];
     
-//    [self.progressView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.leading.equalTo(self.currentTimeLabel.mas_trailing).offset(4);
-//        make.trailing.equalTo(self.totalTimeLabel.mas_leading).offset(-4);
-//        make.centerY.equalTo(self.startBtn.mas_centerY);
-//    }];
+    [self.progressView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(self.currentTimeLabel.mas_trailing).offset(4);
+        make.trailing.equalTo(self.totalTimeLabel.mas_leading).offset(-4);
+        make.centerY.equalTo(self.startBtn.mas_centerY);
+    }];
     
     [self.videoSlider mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.currentTimeLabel.mas_trailing).offset(4);
@@ -152,6 +150,7 @@
     }];
     
     [self.activity mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.mas_equalTo(100);
         make.center.equalTo(self);
     }];
     
@@ -185,13 +184,12 @@
 /** 重置ControlView，恢复到初始状态*/
 - (void)resetControlView{
     self.videoSlider.value      = 0;
-//    self.progressView.progress  = 0;
+    self.progressView.progress  = 0;
     self.currentTimeLabel.text  = @"00:00";
     self.totalTimeLabel.text    = @"00:00";
     self.horizontalLabel.hidden = YES;
     self.repeatBtn.hidden       = YES;
     self.playeBtn.hidden        = YES;
-    [self.activity startAnimating];
     self.backgroundColor        = [UIColor clearColor];
     
 }
@@ -209,48 +207,45 @@
 
 #pragma mark - getter
 
-- (UIButton *)backBtn
-{
+- (UIButton *)backBtn {
     if (!_backBtn) {
         _backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_backBtn setImage:[UIImage imageNamed:ZWPlayerSrcName(@"ZFPlayer_back_full")] forState:UIControlStateNormal];
+        if (KPLAYERSHOWBACKBUTTON) {
+            [_backBtn setImage:[UIImage imageNamed:SQPlayerSrcName(@"ZFPlayer_back_full")] forState:UIControlStateNormal];
+        }
     }
     return _backBtn;
 }
 
-- (UIImageView *)topImageView
-{
+- (UIImageView *)topImageView {
     if (!_topImageView) {
         _topImageView                        = [[UIImageView alloc] init];
         _topImageView.userInteractionEnabled = YES;
-        _topImageView.image                  = [UIImage imageNamed:ZWPlayerSrcName(@"ZFPlayer_top_shadow")];
+        _topImageView.image                  = [UIImage imageNamed:SQPlayerSrcName(@"ZFPlayer_top_shadow")];
     }
     return _topImageView;
 }
 
-- (UIImageView *)bottomImageView
-{
+- (UIImageView *)bottomImageView {
     if (!_bottomImageView) {
         _bottomImageView                        = [[UIImageView alloc] init];
         _bottomImageView.userInteractionEnabled = YES;
-        _bottomImageView.image                  = [UIImage imageNamed:ZWPlayerSrcName(@"ZFPlayer_bottom_shadow")];
+        _bottomImageView.image                  = [UIImage imageNamed:SQPlayerSrcName(@"ZFPlayer_bottom_shadow")];
     }
     return _bottomImageView;
 }
 
 
-- (UIButton *)startBtn
-{
+- (UIButton *)startBtn {
     if (!_startBtn) {
         _startBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_startBtn setImage:[UIImage imageNamed:ZWPlayerSrcName(@"ZFPlayer_play")] forState:UIControlStateNormal];
-        [_startBtn setImage:[UIImage imageNamed:ZWPlayerSrcName(@"ZFPlayer_pause")] forState:UIControlStateSelected];
+        [_startBtn setImage:[UIImage imageNamed:SQPlayerSrcName(@"ZFPlayer_play")] forState:UIControlStateNormal];
+        [_startBtn setImage:[UIImage imageNamed:SQPlayerSrcName(@"ZFPlayer_pause")] forState:UIControlStateSelected];
     }
     return _startBtn;
 }
 
-- (UILabel *)currentTimeLabel
-{
+- (UILabel *)currentTimeLabel {
     if (!_currentTimeLabel) {
         _currentTimeLabel               = [[UILabel alloc] init];
         _currentTimeLabel.textColor     = [UIColor whiteColor];
@@ -269,12 +264,11 @@
     return _progressView;
 }
 
-- (UISlider *)videoSlider
-{
+- (UISlider *)videoSlider {
     if (!_videoSlider) {
         _videoSlider                       = [[UISlider alloc] init];
         // 设置slider
-        [_videoSlider setThumbImage:[UIImage imageNamed:ZWPlayerSrcName(@"ZFPlayer_slider")] forState:UIControlStateNormal];
+        [_videoSlider setThumbImage:[UIImage imageNamed:SQPlayerSrcName(@"ZFPlayer_slider")] forState:UIControlStateNormal];
         _videoSlider.maximumValue          = 1;
         _videoSlider.minimumTrackTintColor = [UIColor whiteColor];
         _videoSlider.maximumTrackTintColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.5];
@@ -282,8 +276,7 @@
     return _videoSlider;
 }
 
-- (UILabel *)totalTimeLabel
-{
+- (UILabel *)totalTimeLabel {
     if (!_totalTimeLabel) {
         _totalTimeLabel               = [[UILabel alloc] init];
         _totalTimeLabel.textColor     = [UIColor whiteColor];
@@ -293,18 +286,18 @@
     return _totalTimeLabel;
 }
 
-- (UIButton *)fullScreenBtn
-{
+- (UIButton *)fullScreenBtn {
     if (!_fullScreenBtn) {
         _fullScreenBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_fullScreenBtn setImage:[UIImage imageNamed:ZWPlayerSrcName(@"ZFPlayer_fullscreen")] forState:UIControlStateNormal];
-        [_fullScreenBtn setImage:[UIImage imageNamed:ZWPlayerSrcName(@"ZFPlayer_shrinkscreen")] forState:UIControlStateSelected];
+        if (KPLAYERSHOWFULLSCREENBUTTON) {
+            [_fullScreenBtn setImage:[UIImage imageNamed:SQPlayerSrcName(@"ZFPlayer_fullscreen")] forState:UIControlStateNormal];
+            [_fullScreenBtn setImage:[UIImage imageNamed:SQPlayerSrcName(@"ZFPlayer_shrinkscreen")] forState:UIControlStateSelected];
+        }
     }
     return _fullScreenBtn;
 }
 
-- (UILabel *)horizontalLabel
-{
+- (UILabel *)horizontalLabel {
     if (!_horizontalLabel) {
         _horizontalLabel                 = [[UILabel alloc] init];
         _horizontalLabel.textColor       = [UIColor whiteColor];
@@ -313,7 +306,7 @@
         _horizontalLabel.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.5];
         _horizontalLabel.layer.cornerRadius = 10;
         _horizontalLabel.clipsToBounds = YES;
-        //_horizontalLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:ZWPlayerSrcName(@"ZFPlayer_management_mask")]];
+        //_horizontalLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:SQPlayerSrcName(@"ZFPlayer_management_mask")]];
     }
     return _horizontalLabel;
 }
@@ -321,16 +314,14 @@
 - (UIActivityIndicatorView *)activity{
     if (!_activity) {
         _activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-        _activity.frame = CGRectMake(0, 0, 100, 100);
         }
     return _activity;
 }
 
-- (UIButton *)repeatBtn
-{
+- (UIButton *)repeatBtn {
     if (!_repeatBtn) {
         _repeatBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_repeatBtn setImage:[UIImage imageNamed:ZWPlayerSrcName(@"ZFPlayer_repeat_video")] forState:UIControlStateNormal];
+        [_repeatBtn setImage:[UIImage imageNamed:SQPlayerSrcName(@"ZFPlayer_repeat_video")] forState:UIControlStateNormal];
     }
     return _repeatBtn;
 }
@@ -339,7 +330,7 @@
 - (UIButton *)playeBtn{
     if (!_playeBtn) {
         _playeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_playeBtn setImage:[UIImage imageNamed:ZWPlayerSrcName(@"ZFPlayer_play_btn")] forState:UIControlStateNormal];
+        [_playeBtn setImage:[UIImage imageNamed:SQPlayerSrcName(@"ZFPlayer_play_btn")] forState:UIControlStateNormal];
     }
     return _playeBtn;
 }

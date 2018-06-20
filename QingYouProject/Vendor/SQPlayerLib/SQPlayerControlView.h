@@ -1,8 +1,8 @@
 //
-//  ZWPlayerControlView.h
-//  ZWPlayerDemo
+//  SQPlayerControlView.h
+//  SQPlayerDemo
 //
-//  Created by 郑亚伟 on 2017/2/9.
+//  Created by qwer on 2017/2/9.
 //  Copyright © 2017年 zhengyawei. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 typedef void(^SliderTapBlock)(CGFloat value);
 
-@interface ZWPlayerControlView : UIView
+@interface SQPlayerControlView : UIView
 
 /** 左下角的开始播放按钮 */
 @property (nonatomic, strong, readonly) UIButton                *startBtn;

@@ -133,9 +133,11 @@
     self.payType = type;
 }
 - (void)confirmButtonAction {
-    NSDictionary    *param = @{@"addressId":@"20", @"payType":@"airpay", @"remarks":@"beizhu", @"skuId":self.skuId, @"userId":@"0c2715a0701c41b2a38469f055d748bd"};
+    NSDictionary    *param = @{@"addressId":@"20", @"payType":@"alipay", @"remarks":@"beizhu", @"skuId":self.skuId, @"userId":@"0c2715a0701c41b2a38469f055d748bd"};
     [SQRequest postCustomApi:@"http://192.168.2.27:8089/order/createOrder" param:param success:^(id response) {
         NSLog(@"%@", response);
+        [self pingPPPayWithResponde:response[@"data"]];
+        
     } failure:^(NSError *error) {
         NSLog(@"dd");
     } showLoadingView:YES];
@@ -151,6 +153,18 @@
 //    }
 }
 
+
+- (void)pingPPPayWithResponde:(NSDictionary *)response {
+    [Pingpp createPayment:response[@"charge"] viewController:self appURLScheme:@"qingyouhui" withCompletion:^(NSString *result, PingppError *error){
+        if ([result isEqualToString:@"success"]) {
+            
+        } else {
+            if (error.code == PingppErrWxNotInstalled) {
+                [YGAppTool showToastWithText:@"请安装微信客户端"];
+            }
+        }
+    }];
+}
 
 
 #pragma mark LazyLoad
