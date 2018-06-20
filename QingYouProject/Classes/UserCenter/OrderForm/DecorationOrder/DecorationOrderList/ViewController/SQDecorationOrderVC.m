@@ -89,7 +89,7 @@
         }
     } failure:^(NSError *error) {
         NSError *underlyingError = error.userInfo[NSUnderlyingErrorKey];
-        NSHTTPURLResponse *reponse = underlyingError.userInfo[@"com.alamofire.serialization.response.error.response"];
+        NSHTTPURLResponse *reponse = underlyingError.userInfo[AFNetworkingOperationFailingURLResponseErrorKey];
         if (reponse && reponse.statusCode >= 500) {
             [YGAppTool showToastWithText:@"服务器错误"];
         }
@@ -162,11 +162,14 @@
         return KSCAL(110);
     }
     WKDecorationOrderDetailModel *order = [self.orderList objectAtIndex:indexPath.section];
-    if (order.status == 3) {//受理中
+    if (order.status == 1 || order.status == 2) {//待付款、已关闭状态，只有一个订金阶段需要展示
+        return [SQDecorationOrderCell cellHeightWithOrderInfo:order];
+    }
+    else if (order.status == 3) {//受理中状态
         return [WKDecorationDealingOrderCell cellHeightWithOrderInfo:order];
     }
-    else {
-        return [WKDecorationOrderMutableStageCell cellHeightWithOrderInfo:order];
+    else {//其余所有状态
+        return [WKDecorationOrderMutableStageCell cellHeightWithOrderInfo:order];  
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -183,10 +186,10 @@
     if (!targetIndex) return;
     
     WKDecorationOrderDetailModel *orderInfo = [self.orderList objectAtIndex:targetIndex.section];
-    WKDecorationStageModel *stageInfo = orderInfo.stage_list[stage];
-    if (!stageInfo.isActivity && stage >= 1) {//当前状态还没有被激活
+    WKDecorationStageModel *stageInfo = orderInfo.paymentList[stage];
+    if (stageInfo.status == 0 && stage >= 1) {//当前状态还没有被激活
         if (stage >= 1) {
-            [YGAppTool showToastWithText:[NSString stringWithFormat:@"需要完成%@，才可以操作此阶段", orderInfo.stage_list[stage-1].stageName]];
+            [YGAppTool showToastWithText:[NSString stringWithFormat:@"需要完成%@，才可以操作此阶段", orderInfo.paymentList[stage-1].name]];
         }
         else {
             [YGAppTool showToastWithText:@"暂时还不能进行此操作，请稍后再试"];
@@ -212,7 +215,7 @@
                         if ([response[@"state"] isEqualToString:@"success"]) {
                             orderInfo.orderTitle = nil;
                             orderInfo.status = 2;
-                            orderInfo.stage_list.firstObject.stageState = 4;
+                            orderInfo.paymentList.firstObject.status = 4;
                             WKDecorationStateCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:targetIndex.section]];
                             if (cell) {
                                 [cell configOrderInfo:orderInfo];
@@ -305,6 +308,5 @@
     }
     return _bottomPayView;
 }
-
 
 @end

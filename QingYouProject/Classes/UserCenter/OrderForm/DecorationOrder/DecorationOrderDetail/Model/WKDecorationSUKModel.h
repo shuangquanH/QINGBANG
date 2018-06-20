@@ -24,15 +24,7 @@
 
 @property (nonatomic, copy  ) NSString *productId;
 
-@property (nonatomic, copy  ) NSString *skuQuotationSheet;
-
-@property (nonatomic, copy  ) NSString *updateBy;
-
-@property (nonatomic, copy  ) NSString *createDate;
-
 @property (nonatomic, copy  ) NSString *skuPrice;
-
-@property (nonatomic, assign) BOOL     deleted;
 
 @property (nonatomic, copy  ) NSString *updateDate;
 
@@ -40,11 +32,7 @@
 
 @property (nonatomic, copy  ) NSString *skuImgUrl;
 
-@property (nonatomic, copy  ) NSString *remarks;
-
 @property (nonatomic, copy  ) NSString *skuDesc;
-
-@property (nonatomic, copy  ) NSString *createBy;
 
 #pragma mark - 自己添加的参数
 //商品描述

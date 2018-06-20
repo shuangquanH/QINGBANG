@@ -175,7 +175,7 @@
     [super configOrderInfo:orderInfo];
     
     //清除多余单阶段视图
-    while (stageViewArray.count > (orderInfo.stage_list.count - 1)) {
+    while (stageViewArray.count > (orderInfo.paymentList.count - 1)) {
         WKDecorationStageView *v = stageViewArray.lastObject;
         [v removeFromSuperview];
         [stageViewArray removeLastObject];
@@ -183,7 +183,7 @@
     
     //订金阶段视图
     UIView *lastView = paymentStageView;
-    for (int i = 0; i < orderInfo.stage_list.count - 1; i++) {
+    for (int i = 0; i < orderInfo.paymentList.count - 1; i++) {
         WKDecorationStageView *view;
         if (stageViewArray.count > i) {
             view = [stageViewArray objectAtIndex:i];
@@ -206,12 +206,12 @@
 }
 
 - (CGSize)viewSize {
-    CGFloat height = MAX(0, _orderInfo.stage_list.count-1) * KSCAL(88.0) + [super viewSize].height;
+    CGFloat height = MAX(0, _orderInfo.paymentList.count-1) * KSCAL(88.0) + [super viewSize].height;
     return CGSizeMake(kScreenW, height);
 }
 
 + (CGFloat)cellHeightWithOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {
-    return orderInfo.stage_list.count * KSCAL(88.0) + 3 * KSCAL(KSPACE) + KSCAL(180);
+    return orderInfo.paymentList.count * KSCAL(88.0) + 3 * KSCAL(KSPACE) + KSCAL(180);
 }
 
 @end
@@ -306,7 +306,7 @@
 }
 
 + (CGFloat)cellHeightWithOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {
-    return orderInfo.stage_list.count * KSCAL(88.0) + 2 * KSCAL(KSPACE) + KSCAL(180) + KSCAL(175);
+    return orderInfo.paymentList.count * KSCAL(88.0) + 2 * KSCAL(KSPACE) + KSCAL(180) + KSCAL(175);
 }
 
 @end

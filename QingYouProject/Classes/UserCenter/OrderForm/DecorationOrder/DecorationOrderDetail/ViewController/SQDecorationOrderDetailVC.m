@@ -153,10 +153,10 @@
 
 - (void)orderCell:(SQDecorationOrderCell *)orderCell didClickAction:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage {
     
-    WKDecorationStageModel *stageInfo = self.orderInfo.stage_list[stage];
-    if (!stageInfo.isActivity) {//当前状态还没有被激活
+    WKDecorationStageModel *stageInfo = self.orderInfo.paymentList[stage];
+    if (stageInfo.status == 0) {//当前状态还没有被激活
         if (stage >= 1) {
-            [YGAppTool showToastWithText:[NSString stringWithFormat:@"需要完成%@，才可以操作此阶段", self.orderInfo.stage_list[stage-1].stageName]];
+            [YGAppTool showToastWithText:[NSString stringWithFormat:@"需要完成%@，才可以操作此阶段", self.orderInfo.paymentList[stage-1].name]];
         }
         else {
             [YGAppTool showToastWithText:@"暂时还不能进行此操作，请稍后再试"];
@@ -182,7 +182,7 @@
                             
                             //通知列表，更新视图
                             self.orderListInfo.status = 2;
-                            self.orderListInfo.stage_list.firstObject.stageState = 4;
+                            self.orderListInfo.paymentList.firstObject.status = 4;
                             if (self.orderRefreshBlock) {
                                 self.orderRefreshBlock(self.orderListInfo);
                             }
@@ -233,7 +233,7 @@
             next.repairSuccess = ^(WKDecorationOrderDetailModel *orderInfo) {
                 [self.orderVM.orderCell configOrderInfo:orderInfo];
                 //通知前一个视图，更新数据
-                self.orderListInfo.stage_list[stage].stageState = 3;
+                self.orderListInfo.paymentList[stage].status = 3;
                 if (self.orderRefreshBlock) {
                     self.orderRefreshBlock(self.orderListInfo);
                 }
