@@ -31,7 +31,7 @@
 #define KPLAYERSHOWBACKBUTTON 0
 
 /** 是否显示全屏按钮  */
-#define KPLAYERSHOWFULLSCREENBUTTON 0
+#define KPLAYERSHOWFULLSCREENBUTTON 1
 
 /** 延时隐藏控制视图时间  */
 #define SQPlayerAnimationTimeInterval 3

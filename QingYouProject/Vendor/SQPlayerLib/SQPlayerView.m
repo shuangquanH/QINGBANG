@@ -56,11 +56,8 @@ typedef NS_ENUM(NSInteger, SQPlayerState) {
 /** 是否自动播放 */
 @property (nonatomic, assign) BOOL                isAutoPlay;
 
-
-@property (nonatomic, assign) CGFloat             playerOrignX;
-@property (nonatomic, assign) CGFloat             playerOrignY;
-@property (nonatomic, assign) CGFloat             playerWidth;
-@property (nonatomic, assign) CGFloat             playerHeight;
+@property (nonatomic, assign) CGRect            startFrame;
+@property (nonatomic, weak) UIView            *startView;
 
 @end
 
@@ -92,7 +89,7 @@ typedef NS_ENUM(NSInteger, SQPlayerState) {
 /***初始化player*/
 - (void)initializeThePlayer{
     //每次开始播放时都设置屏幕为竖直方向
-     [self interfaceOrientation:UIInterfaceOrientationPortrait];
+    [self backToNormalWindowPlayer];
 }
 - (void)dealloc{
     self.playerItem = nil;
@@ -118,20 +115,11 @@ typedef NS_ENUM(NSInteger, SQPlayerState) {
     }
     // fix iOS7 crash bug
     [self layoutIfNeeded];
-    if (!self.playerOrignX) {
-        self.playerOrignX = self.frame.origin.x;
-    }
-    if (!self.playerOrignY) {
-        self.playerOrignY = self.frame.origin.y;
-    }
     
-    if (!self.playerWidth) {
-        self.playerWidth = self.frame.size.width;
+    if (!self.startFrame.size.height) {
+        self.startFrame = self.frame;
+        self.startView = self.superview;
     }
-    if (!self.playerHeight) {
-        self.playerHeight = self.frame.size.height;
-    }
-    
 }
 
 
@@ -203,7 +191,7 @@ typedef NS_ENUM(NSInteger, SQPlayerState) {
     self.player = nil;
     // 重置控制层View
     [self.controlView resetControlView];
-   
+    
     // 非重播时，移除当前playerView
     if (!self.repeatToPlay) { [self removeFromSuperview]; }
 }
@@ -248,9 +236,9 @@ typedef NS_ENUM(NSInteger, SQPlayerState) {
  单击控制显示层显示和隐藏事件
  */
 - (void)tapAction:(UITapGestureRecognizer *)gesture{
-    if (gesture.state == UIGestureRecognizerStateRecognized) {
+//    if (gesture.state == UIGestureRecognizerStateRecognized) {
         self.isMaskShowing ? ([self hideControlView]) : ([self animateShow]);
-    }
+//    }
 }
 /**
  *  双击控制播放和暂停手势
@@ -280,7 +268,12 @@ typedef NS_ENUM(NSInteger, SQPlayerState) {
 - (void)play{
     self.controlView.startBtn.selected = YES;
     self.isPauseByUser = NO;
-    [_player play];
+    
+    if (self.playerItem) {
+        [_player play];
+    } else {
+        [self configSQPlayer];
+    }
 }
 /**
  暂停方法
@@ -292,8 +285,8 @@ typedef NS_ENUM(NSInteger, SQPlayerState) {
 }
 /**
  *  返回按钮点击事件
-    说明：如果处于全屏状态，点击返回变为竖屏状态。如果为竖屏状态点击返回则变成横屏状态。
-*/
+ 说明：如果处于全屏状态，点击返回变为竖屏状态。如果为竖屏状态点击返回则变成横屏状态。
+ */
 - (void)backButtonAction{
     //非全屏状态
     if (!self.isFullScreen) {
@@ -303,7 +296,7 @@ typedef NS_ENUM(NSInteger, SQPlayerState) {
             self.goBackBlock();
         }
     }else {//全屏状态
-        [self interfaceOrientation:UIInterfaceOrientationPortrait];
+        [self backToNormalWindowPlayer];
     }
 }
 
@@ -319,48 +312,37 @@ typedef NS_ENUM(NSInteger, SQPlayerState) {
     }
     sender.selected = !sender.selected;
     self.isFullScreen = sender.selected;
-    
-    if (self.isFullScreen) {
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.top.mas_equalTo(0);
-            make.height.mas_equalTo(ScreenWidth);
-            make.width.mas_equalTo(ScreenHeight);
-        }];
-    } else {
-        [self mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.playerOrignX);
-            make.top.mas_equalTo(self.playerOrignY);
-            make.height.mas_equalTo(self.playerHeight);
-            make.width.mas_equalTo(self.playerWidth);
-        }];
-    }
-    
-    UIDeviceOrientation orientation             = [UIDevice currentDevice].orientation;
-    UIInterfaceOrientation interfaceOrientation = (UIInterfaceOrientation)orientation;
-    switch (interfaceOrientation) {
-            
-        case UIInterfaceOrientationPortraitUpsideDown:{
-            [self interfaceOrientation:UIInterfaceOrientationPortrait];
-        }
-            break;
-        case UIInterfaceOrientationPortrait:{
-            [self interfaceOrientation:UIInterfaceOrientationLandscapeRight];
-        }
-            break;
-        case UIInterfaceOrientationLandscapeLeft:{
-                [self interfaceOrientation:UIInterfaceOrientationPortrait];
-        }
-            break;
-        case UIInterfaceOrientationLandscapeRight:{
-                [self interfaceOrientation:UIInterfaceOrientationPortrait];
-        }
-            break;
-            
-        default: {
-                [self interfaceOrientation:UIInterfaceOrientationPortrait];
-        }
-            break;
-    }
+    (self.isFullScreen)?[self changeToFullScreenPlayer]:[self backToNormalWindowPlayer];
+}
+
+/** 切换到全屏  */
+- (void)changeToFullScreenPlayer {
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    [self removeFromSuperview];
+    [[UIApplication sharedApplication].keyWindow addSubview:self];
+    [self layoutIfNeeded];
+    self.controlView.fullScreenBtn.hidden = YES;
+    [UIView animateWithDuration:0.2 animations:^{
+        self.transform = CGAffineTransformMakeRotation(M_PI_2);
+        self.frame = [UIScreen mainScreen].bounds;
+    } completion:^(BOOL finished) {
+        self.controlView.fullScreenBtn.hidden = NO;
+    }];
+}
+
+/** 恢复窗口播放  */
+- (void)backToNormalWindowPlayer {
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    [self removeFromSuperview];
+    [self.startView addSubview:self];
+    [self layoutIfNeeded];
+    self.controlView.fullScreenBtn.hidden = YES;
+    [UIView animateWithDuration:0.2 animations:^{
+        self.transform = CGAffineTransformIdentity;
+        self.frame = self.startFrame;
+    } completion:^(BOOL finished) {
+        self.controlView.fullScreenBtn.hidden = NO;
+    }];
 }
 /**
  重播按钮回调事件
@@ -449,7 +431,7 @@ typedef NS_ENUM(NSInteger, SQPlayerState) {
 }
 /**
  *  从多少秒开始播放视频
-*/
+ */
 - (void)seekToTime:(NSInteger)dragedSeconds completionHandler:(void (^)(BOOL finished))completionHandler{
     if (self.player.currentItem.status == AVPlayerItemStatusReadyToPlay) {
         // seekTime:completionHandler:不能精确定位
@@ -547,7 +529,6 @@ typedef NS_ENUM(NSInteger, SQPlayerState) {
         [self.controlView hideControlView];
         if (self.isFullScreen) { //全屏状态
             self.controlView.backBtn.alpha = 0;
-            [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
         }else {
             self.controlView.backBtn.alpha = 0;
         }
@@ -564,90 +545,11 @@ typedef NS_ENUM(NSInteger, SQPlayerState) {
             [self.controlView hideControlView];
         } // 播放完了，隐藏控制层的上部和底部，不包含返回和重播按钮
         else { [self.controlView showControlView]; }
-        [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     } completion:^(BOOL finished) {
         self.isMaskShowing = YES;
         [self autoFadeOutControlBar];
     }];
 }
-
-
-
-#pragma mark - 屏幕旋转相关
-/**
- *  强制屏幕转屏
- *
- *  @param orientation 屏幕方向
- */
-- (void)interfaceOrientation:(UIInterfaceOrientation)orientation{
-    if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
-        SEL selector             = NSSelectorFromString(@"setOrientation:");
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[UIDevice instanceMethodSignatureForSelector:selector]];
-        [invocation setSelector:selector];
-        [invocation setTarget:[UIDevice currentDevice]];
-        int val                  = orientation;
-        // 从2开始是因为0 1 两个参数已经被selector和target占用
-        [invocation setArgument:&val atIndex:2];
-        [invocation invoke];
-    }
-}
-
-/**
- * 屏幕方向发生变化
-   说明：这是系统方法
- */
-- (void)onDeviceOrientationChange{
-    if (_isCellVideo) { return; }
-    UIDeviceOrientation orientation             = [UIDevice currentDevice].orientation;
-    UIInterfaceOrientation interfaceOrientation = (UIInterfaceOrientation)orientation;
-    
-    switch (interfaceOrientation) {
-        case UIInterfaceOrientationPortraitUpsideDown:{
-            // 设置返回按钮的约束
-            [self.controlView.backBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.top.mas_equalTo(20);
-                make.leading.mas_equalTo(7);
-                make.width.height.mas_equalTo(40);
-            }];
-        }
-            
-            break;
-        case UIInterfaceOrientationPortrait:{
-            [self.controlView.backBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.top.mas_equalTo(5);
-                make.leading.mas_equalTo(7);
-                make.width.height.mas_equalTo(40);
-            }];
-            
-        }
-            break;
-        case UIInterfaceOrientationLandscapeLeft:{
-            [self.controlView.backBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.top.mas_equalTo(20);
-                make.leading.mas_equalTo(7);
-                make.width.height.mas_equalTo(40);
-            }];
-        }
-            break;
-            
-        case UIInterfaceOrientationLandscapeRight:{
-            [self.controlView.backBtn mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.top.mas_equalTo(20);
-                make.leading.mas_equalTo(7);
-                make.width.height.mas_equalTo(40);
-            }];
-        }
-            break;
-            
-        default:
-            break;
-    }
-    
-}
-
-
-
-
 
 
 
@@ -673,9 +575,7 @@ typedef NS_ENUM(NSInteger, SQPlayerState) {
     // 返回按钮点击事件
     [self.controlView.backBtn addTarget:self action:@selector(backButtonAction) forControlEvents:UIControlEventTouchUpInside];
     // 全屏按钮点击事件
-    if (KPLAYERSHOWFULLSCREENBUTTON) {
-        [self.controlView.fullScreenBtn addTarget:self action:@selector(fullScreenAction:) forControlEvents:UIControlEventTouchUpInside];        
-    }
+    [self.controlView.fullScreenBtn addTarget:self action:@selector(fullScreenAction:) forControlEvents:UIControlEventTouchUpInside];
     // 重播
     [self.controlView.repeatBtn addTarget:self action:@selector(repeatPlay:) forControlEvents:UIControlEventTouchUpInside];
     // 中间按钮播放
@@ -691,20 +591,8 @@ typedef NS_ENUM(NSInteger, SQPlayerState) {
         weakSelf.controlView.startBtn.selected = YES;
         [weakSelf seekToTime:dragedSeconds completionHandler:^(BOOL finished) {}];
     };
-    // 监测设备方向
-    [self listeningRotating];
 }
-/**
- *  监听设备旋转通知
- */
-- (void)listeningRotating{
-    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onDeviceOrientationChange)
-                                                 name:UIDeviceOrientationDidChangeNotification
-                                               object:nil
-     ];
-}
+
 
 
 
@@ -717,9 +605,9 @@ typedef NS_ENUM(NSInteger, SQPlayerState) {
                 //MARK:-暂时没有添加拖动手势
                 // 加载完成后，再添加平移手势
                 // 添加平移手势，用来控制音量、亮度、快进快退
-//                UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panDirection:)];
-//                pan.delegate                = self;
-//                [self addGestureRecognizer:pan];
+                //                UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panDirection:)];
+                //                pan.delegate                = self;
+                //                [self addGestureRecognizer:pan];
                 // 跳到多少秒播放视频
                 if (self.seekTime) {
                     [self seekToTime:self.seekTime completionHandler:nil];
@@ -770,7 +658,7 @@ typedef NS_ENUM(NSInteger, SQPlayerState) {
  *  缓冲较差时候回调这里
  */
 - (void)bufferingSomeSecond{
-   
+    
     // playbackBufferEmpty会反复进入，因此在bufferingOneSecond延时播放执行完之前再调用bufferingSomeSecond都忽略
     __block BOOL isBuffering = NO;
     if (isBuffering) return;
@@ -815,7 +703,7 @@ typedef NS_ENUM(NSInteger, SQPlayerState) {
 #pragma mark -setter方法
 /**
  *  设置视频播放的URL地址
-    注意：设置播放地址URL时，内部会调用品目方向发生变化的方法。
+ 注意：设置播放地址URL时，内部会调用品目方向发生变化的方法。
  */
 - (void)setVideoURL:(NSURL *)videoURL{
     _videoURL = videoURL;
@@ -827,13 +715,11 @@ typedef NS_ENUM(NSInteger, SQPlayerState) {
     // 每次加载视频URL都设置重播为NO
     self.repeatToPlay = NO;
     self.playDidEnd   = NO;
-    // 添加通知
-//    self.state = SQPlayerStateBuffering;
     [self addNotifications];
     
     
     // 根据屏幕的方向设置相关UI
-    [self onDeviceOrientationChange];
+    //    [self onDeviceOrientationChange];
     
     self.isPauseByUser = YES;
     self.controlView.playeBtn.hidden = NO;
@@ -880,7 +766,7 @@ typedef NS_ENUM(NSInteger, SQPlayerState) {
     if (state == SQPlayerStatePlaying) {
         UIImage *image = [self buttonImageFromColor:[UIColor blackColor]];
         self.layer.contents = (id) image.CGImage;
-       
+        
     } else if (state == SQPlayerStateFailed) {
         
     }
@@ -948,3 +834,4 @@ typedef NS_ENUM(NSInteger, SQPlayerState) {
 
 
 @end
+

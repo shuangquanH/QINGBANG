@@ -277,11 +277,8 @@
 
 - (SQPlayerView *)playerView {
     if (!_playerView) {
-        _playerView = [SQPlayerView sharedPlayerView];
+        _playerView = [[SQPlayerView alloc] initWithFrame:_projectVideoImageView.frame];
         [self.view addSubview:_playerView];
-        [_playerView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.height.left.top.equalTo(_projectVideoImageView);
-        }];
     }
     return _playerView;
 }
