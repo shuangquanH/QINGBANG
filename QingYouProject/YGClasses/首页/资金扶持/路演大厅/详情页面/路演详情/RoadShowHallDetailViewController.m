@@ -9,7 +9,7 @@
 #import "RoadShowHallDetailViewController.h"
 #import "YGSegmentView.h"
 #import "AskBPViewController.h"
-#import "ZWPlayer.h"
+#import "SQPlayer.h"
 
 
 @interface RoadShowHallDetailViewController ()<UIScrollViewDelegate,SDCycleScrollViewDelegate,YGSegmentViewDelegate> {
@@ -19,17 +19,7 @@
 
 }
 //播放器
-@property(nonatomic,strong)ZWPlayerView    *playerView;
-@property (nonatomic, strong) ZWPlayerControlView       *controlView;
-//离开页面时候是否在播放
-@property (nonatomic, assign) BOOL          isPlaying;
-@property (nonatomic, assign) BOOL          playing;
-//是否在cell中播放
-@property(nonatomic,assign)BOOL             isInCell;
-//记录当前在哪一个cell上播放对应的indexPath
-@property(nonatomic,strong) NSIndexPath     *currentIndexPath;
-//播放器在哪个cell上播放
-@property(nonatomic,strong)UIView *currentCell;
+@property(nonatomic,strong)SQPlayerView    *playerView;
 
 @end
 
@@ -53,75 +43,35 @@
     int   _selectIndex;
     
     UIView *_bottomView;
-//    ZFPlayerModel *_playerModel;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self configAttribute];
     [self configUI];
     [self loadData];
 }
--(void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
 
-    // push出下一级页面时候暂停
-    if (self.navigationController.viewControllers.count == 3 && self.playerView && !self.playerView.isPauseByUser)
-    {
-        self.isPlaying = YES;
-        [self.playerView pause];
-    }
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    [self.playerView resetPlayer];
-
-}
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    // 调用playerView的layoutSubviews方法
-    if (self.playerView) { [self.playerView setNeedsLayout]; }
-    // pop回来时候是否自动播放
-    if (self.navigationController.viewControllers.count == 2 && self.playerView && self.isPlaying) {
-        self.isPlaying = NO;
-        [self.playerView play];
-    }
-    if (self.isPlaying == NO) {
-        [self.playerView resetPlayer];
-    }
-}
 #pragma mark ---- 重写导航条
-- (void)configAttribute
-{
+- (void)configAttribute {
     self.naviTitle = @"路演项目";
     _roadShowWebContentArray = [[NSMutableArray alloc] init];
 }
--(void)loadData
-{
+-(void)loadData {
     [self startPostWithURLString:REQUEST_getRoadShowDetails parameters:@{@"id":_roadShowProjectModel.id} showLoadingView:NO scrollView:nil];
 }
 
-- (void)didReceiveSuccessResponeseWithURLString:(NSString *)URLString parameters:(id)parameters responeseObject:(id)responseObject
-{
+- (void)didReceiveSuccessResponeseWithURLString:(NSString *)URLString parameters:(id)parameters responeseObject:(id)responseObject {
     [_roadShowProjectModel setValuesForKeysWithDictionary:responseObject[@"rsDetails"]];
-//    _roadShowProjectModel.roadshowGrade = responseObject[@"rsDetails"][@"roadshowGrade"];
-//    _roadShowProjectModel.teamIntroduction = responseObject[@"rsDetails"][@"teamIntroduction"];
-//    _roadShowProjectModel.roadshowIntroduction = responseObject[@"rsDetails"][@"roadshowIntroduction"];
-//    _roadShowProjectModel.competitiveAdvantage = responseObject[@"rsDetails"][@"competitiveAdvantage"];
-//    _roadShowProjectModel.companyName
     _nameLabel.text = responseObject[@"usmUser"][@"name"];
     [_identityButton setTitle:_roadShowProjectModel.companyName forState:UIControlStateNormal];
     [_identityButton sizeToFit];
     [_avaterImageView sd_setImageWithURL:[NSURL URLWithString:responseObject[@"usmUser"][@"img"]] placeholderImage:YGDefaultImgAvatar];
     _roadShowWebContentArray = @[_roadShowProjectModel.roadshowGrade,_roadShowProjectModel.teamIntroduction,_roadShowProjectModel.roadshowIntroduction,_roadShowProjectModel.competitiveAdvantage];
     
+    self.playerView.videoURL = [NSURL URLWithString:_roadShowProjectModel.videoData];
+    [self.playerView autoPlayTheVideo];
 }
 #pragma mark ---- 配置UI
--(void)configUI
-{
+-(void)configUI {
     
     /********************* _scrollView ***************/
     _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, YGScreenWidth, YGScreenHeight - YGNaviBarHeight -YGStatusBarHeight)];
@@ -148,18 +98,20 @@
     [_baseView addSubview:_projectVideoImageView];
 
     
-    UIView *coverView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _projectVideoImageView.width, _projectVideoImageView.height)];
-    coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
-    coverView.userInteractionEnabled = YES;
-    [_projectVideoImageView addSubview:coverView];
-
-    UIButton  *playBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [playBtn setImage:[UIImage imageNamed:@"steward_capital_play_btn"] forState:UIControlStateNormal];
-    playBtn.imageView.contentMode = UIViewContentModeScaleAspectFill;
-    [_projectVideoImageView addSubview:playBtn];
-    [playBtn addTarget:self action:@selector(playAction:) forControlEvents:UIControlEventTouchUpInside];
-    playBtn.frame = CGRectMake(coverView.width/2-20, coverView.height/2-20, 40, 40);
-    playBtn.center = coverView.center;
+//    UIView *coverView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _projectVideoImageView.width, _projectVideoImageView.height)];
+//    coverView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
+//    coverView.userInteractionEnabled = YES;
+//    [_projectVideoImageView addSubview:coverView];
+//
+//    UIButton  *playBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [playBtn setImage:[UIImage imageNamed:@"steward_capital_play_btn"] forState:UIControlStateNormal];
+//    playBtn.imageView.contentMode = UIViewContentModeScaleAspectFill;
+//    [_projectVideoImageView addSubview:playBtn];
+//    [playBtn addTarget:self action:@selector(playAction:) forControlEvents:UIControlEventTouchUpInside];
+//    playBtn.frame = CGRectMake(coverView.width/2-20, coverView.height/2-20, 40, 40);
+//    playBtn.center = coverView.center;
+    
+    
   
     
     //热门推荐label
@@ -244,7 +196,6 @@
     
     //默认第0页
     [self segmentButtonClickWithIndex:0];
-    
     _bottomView = [[UIView alloc] initWithFrame:CGRectMake(0,_segmentView.y+_segmentView.height, YGScreenWidth, 100)];
     _bottomView.backgroundColor = colorWithYGWhite;
     [_baseView addSubview:_bottomView];
@@ -261,23 +212,9 @@
     [_bottomView addSubview:_contentLabel];
     
     /****************************** 按钮 **************************/
-    if (_roadShowProjectModel.auditStatus != nil)
-    {
+    if (_roadShowProjectModel.auditStatus != nil) {
         _scrollView.frame  = CGRectMake(0, 0, YGScreenWidth, YGScreenHeight - YGNaviBarHeight -YGStatusBarHeight);
-//        NSArray *typeArry = @[@"",@"待审核",@"募集中",@"审核不通过",@"已完成"];
-//        //热门推荐label
-//        UILabel *statusLabel = [[UILabel alloc]init];
-//        statusLabel.textColor = colorWithYGWhite;
-//        statusLabel.font = [UIFont systemFontOfSize:YGFontSizeNormal];
-//        statusLabel.text = typeArry[[_roadShowProjectModel.auditStatus intValue]];
-//        statusLabel.frame = CGRectMake(0, 20,100, 30);
-//        statusLabel.textAlignment = NSTextAlignmentCenter;
-//        statusLabel.backgroundColor = [colorWithMainColor colorWithAlphaComponent:0.5];
-//        [coverView addSubview:statusLabel];
-//        _scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, YGScreenWidth, YGScreenHeight - YGNaviBarHeight-YGStatusBarHeight)];
-//
-    }else
-    {
+    } else {
         _scrollView.frame  = CGRectMake(0, 0, YGScreenWidth, YGScreenHeight-YGStatusBarHeight-YGNaviBarHeight-45-YGBottomMargin);
 
         UIButton *coverButton = [[UIButton alloc]initWithFrame:CGRectMake(0,YGScreenHeight-YGStatusBarHeight-YGNaviBarHeight-45-YGBottomMargin,YGScreenWidth,45+YGBottomMargin)];
@@ -293,28 +230,23 @@
 
 
 #pragma mark ---- 改变当前Controller
--(void)segmentButtonClickWithIndex:(int)buttonIndex
-{
+-(void)segmentButtonClickWithIndex:(int)buttonIndex {
     _selectIndex = buttonIndex;
     [self loadControllerWithIndex:buttonIndex];
 }
 
 #pragma mark ---- 加载Controller
--(void)loadControllerWithIndex:(int)index
-{
+-(void)loadControllerWithIndex:(int)index {
     if (_roadShowWebContentArray.count >0) {
         CGFloat height = [self getLabelHeightWithText:_roadShowWebContentArray[index] withLabel:_contentLabel];
         _contentLabel.frame = CGRectMake(_contentLabel.x, _contentLabel.y, _contentLabel.width, height+20);
         _bottomView.frame = CGRectMake(_bottomView.x, _bottomView.y, _bottomView.width, _contentLabel.height);
         _scrollView.contentSize = CGSizeMake(YGScreenWidth, _bottomView.y+_bottomView.height+20);
     }
- 
 }
 
-- (CGFloat)getLabelHeightWithText:(NSString *)content withLabel:(UILabel *)label
-{
+- (CGFloat)getLabelHeightWithText:(NSString *)content withLabel:(UILabel *)label {
     // 调整行间距
-    
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:content];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:5];
@@ -330,14 +262,12 @@
     NSDictionary *attribute =@{NSFontAttributeName:label.font,NSParagraphStyleAttributeName:paragraphStyle,NSForegroundColorAttributeName:colorWithDeepGray};
     
     CGSize size = [content boundingRectWithSize:CGSizeMake(YGScreenWidth -20, MAXFLOAT) options:NSStringDrawingTruncatesLastVisibleLine |NSStringDrawingUsesLineFragmentOrigin |NSStringDrawingUsesFontLeading attributes:attribute context:nil].size;
-    
     return size.height;
 }
 
 #pragma mark ---- 按钮点击
 
-- (void)contanctWithCustomerServiceOrOrderAction:(UIButton *)btn
-{
+- (void)contanctWithCustomerServiceOrOrderAction:(UIButton *)btn {
     AskBPViewController *askBP = [[AskBPViewController alloc] init];
     askBP.roadshowId = _roadShowProjectModel.id;
     [self.navigationController pushViewController:askBP animated:YES];
@@ -345,33 +275,16 @@
 
 
 
-- (ZWPlayerView *)playerView
-{
-    if (!_playerView)
-    {
-        _playerView = [ZWPlayerView sharedPlayerView];
-        //（可选设置）可以设置视频的填充模式，默认为（等比例填充，直到一个维度到达区域边界）
-        _playerView.playerLayerGravity = ZWPlayerLayerGravityResizeAspect;
+- (SQPlayerView *)playerView {
+    if (!_playerView) {
+        _playerView = [[SQPlayerView alloc] initWithFrame:_projectVideoImageView.frame];
+        [self.view addSubview:_playerView];
     }
     return _playerView;
 }
--(void)zf_playerBackAction {
-    [self.playerView resetPlayer];
-}
-- (ZWPlayerControlView *)controlView {
-    if (!_controlView) {
-        _controlView = [[ZWPlayerControlView alloc] init];
-    }
-    return _controlView;
-}
-
-- (void)playAction:(UIButton *)btn {
-    [self.playerView resetToPlayNewURL];
-    NSURL *videoUrl = [NSURL URLWithString:_roadShowProjectModel.videoData];
-    self.playerView.videoURL = videoUrl;
-    self.playerView.playerLayerGravity = ZWPlayerLayerGravityResize;
-    //设置自动播放
-    [self.playerView autoPlayTheVideo];
+- (void)dealloc {
+    [_playerView resetToPlayNewURL];
+    [_playerView removeFromSuperview];
 }
 
 @end

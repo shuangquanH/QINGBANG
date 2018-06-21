@@ -1,8 +1,8 @@
 //
-//  ZWPlayerView.h
-//  ZWPlayerDemo
+//  SQPlayerView.h
+//  SQPlayerDemo
 //
-//  Created by 郑亚伟 on 2017/2/9.
+//  Created by qwer on 2017/2/9.
 //  Copyright © 2017年 zhengyawei. All rights reserved.
 //
 
@@ -10,34 +10,31 @@
 #import <AVFoundation/AVFoundation.h>
 #import <MediaPlayer/MediaPlayer.h>
 
-#import "ZWPlayer.h"
-#import "ZWPlayerControlView.h"
+#import "SQPlayer.h"
+#import "SQPlayerControlView.h"
 
 // 返回按钮回调的block
-typedef void(^ZWPlayerGoBackBlock)(void);
-
+typedef void(^SQPlayerGoBackBlock)(void);
 
 #pragma mark -和cell上播放相关
 //全屏按钮的回调  主要是配合cell使用
-typedef void(^ZWPlayerFullScreenBtnBlock)(UIButton *fullScreenBtn);
+typedef void(^SQPlayerFullScreenBtnBlock)(UIButton *fullScreenBtn);
 //播放完成的回调  主要是配合cell使用
-typedef void(^ZWPlayerPlayCompletedBlock)(void);
+typedef void(^SQPlayerPlayCompletedBlock)(void);
 
 
 // playerLayer的填充模式（默认：等比例填充，直到一个维度到达区域边界）
-typedef NS_ENUM(NSInteger, ZWPlayerLayerGravity) {
-    ZWPlayerLayerGravityResize,           // 非均匀模式。两个维度完全填充至整个视图区域
-    ZWPlayerLayerGravityResizeAspect,     // 等比例填充，直到一个维度到达区域边界
-    ZWPlayerLayerGravityResizeAspectFill  // 等比例填充，直到填充满整个视图区域，其中一个维度的部分区域会被裁剪
+typedef NS_ENUM(NSInteger, SQPlayerLayerGravity) {
+    SQPlayerLayerGravityResize,           // 非均匀模式。两个维度完全填充至整个视图区域
+    SQPlayerLayerGravityResizeAspect,     // 等比例填充，直到一个维度到达区域边界
+    SQPlayerLayerGravityResizeAspectFill  // 等比例填充，直到填充满整个视图区域，其中一个维度的部分区域会被裁剪
 };
 
-@interface ZWPlayerView : UIView
+@interface SQPlayerView : UIView
 /** 视频URL */
 @property (nonatomic, strong) NSURL                *videoURL;
-/** 返回按钮Block */
-@property (nonatomic, copy  ) ZWPlayerGoBackBlock  goBackBlock;
 /** 设置playerLayer的填充模式 */
-@property (nonatomic, assign) ZWPlayerLayerGravity playerLayerGravity;
+@property (nonatomic, assign) SQPlayerLayerGravity playerLayerGravity;
 /** 从xx秒开始播放视频跳转 */
 @property (nonatomic, assign) NSInteger            seekTime;
 /** 播放前占位图片的名称，不设置就显示默认占位图（需要在设置视频URL之前设置） */
@@ -47,7 +44,7 @@ typedef NS_ENUM(NSInteger, ZWPlayerLayerGravity) {
 
 
 /** 控制层View */
-@property (nonatomic, strong) ZWPlayerControlView *controlView;
+@property (nonatomic, strong) SQPlayerControlView *controlView;
 /** playerLayer */
 @property (nonatomic, strong) AVPlayerLayer       *playerLayer;
 
@@ -58,10 +55,13 @@ typedef NS_ENUM(NSInteger, ZWPlayerLayerGravity) {
 @property (nonatomic, assign) BOOL                isCellVideo;
 /** 是否缩小视频在底部 */
 @property (nonatomic, assign) BOOL                isBottomVideo;
+
+/** 返回按钮Block */
+@property (nonatomic, copy  ) SQPlayerGoBackBlock  goBackBlock;
 /** 全屏按钮的Block */
-@property (nonatomic, copy  ) ZWPlayerFullScreenBtnBlock  fullScreenBtnBlock;
+@property (nonatomic, copy  ) SQPlayerFullScreenBtnBlock  fullScreenBtnBlock;
 /** 播放完成的Block */
-@property (nonatomic, copy  )ZWPlayerPlayCompletedBlock playCompletedBlock;
+@property (nonatomic, copy  )SQPlayerPlayCompletedBlock playCompletedBlock;
 
 
 

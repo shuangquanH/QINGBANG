@@ -198,10 +198,17 @@
     [_backgroundImageView addSubview:_registButton];
     
     //logo
-    _logoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"login_title_green"]];
+    _logoImageView = [[UIImageView alloc] init];
     _logoImageView.frame = CGRectMake(0,YGScreenHeight*0.07+20, YGScreenWidth, YGScreenHeight*0.18);
-    _logoImageView.contentMode = UIViewContentModeCenter;
     [_backgroundImageView addSubview:_logoImageView];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:_logoImageView.bounds];
+    titleLabel.text = @"欢迎来到青邦";
+    titleLabel.font = KFONT(68);
+    titleLabel.textColor = KCOLOR(@"1b1817");
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    [_logoImageView addSubview:titleLabel];
+    
     
     //快捷登录
     _nimbleButton = [[UIButton alloc] initWithFrame:CGRectMake(YGScreenWidth / 2-110, _logoImageView.y+_logoImageView.height+200, 100, 45)];
