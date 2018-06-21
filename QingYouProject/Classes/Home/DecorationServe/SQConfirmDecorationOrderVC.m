@@ -157,8 +157,9 @@
 - (void)pingPPPayWithResponde:(NSDictionary *)response {
     [Pingpp createPayment:response[@"charge"] viewController:self appURLScheme:@"qingyouhui" withCompletion:^(NSString *result, PingppError *error){
         if ([result isEqualToString:@"success"]) {
-            
+            NSLog(@"支付成功!");
         } else {
+            NSLog(@"支付失败!");
             if (error.code == PingppErrWxNotInstalled) {
                 [YGAppTool showToastWithText:@"请安装微信客户端"];
             }

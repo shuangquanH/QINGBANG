@@ -132,6 +132,13 @@
 	<string>我们需要使用麦克风获取声音信息</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>我们需要使用相册选取您想上传的照片</string>
+    <key>NSPhotoLibraryAddUsageDescriptio</key>
+    <string>需要您的权限才能保存到您的相册</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>需要您的权限才能保存到您的相册</string>
+    
+    
+    
 	<key>Required background modes </key>
 	<array>
 		<string>App downloads content in response to push notifications</string>

@@ -306,7 +306,6 @@
         _horizontalLabel.backgroundColor = [UIColor colorWithWhite:0.3 alpha:0.5];
         _horizontalLabel.layer.cornerRadius = 10;
         _horizontalLabel.clipsToBounds = YES;
-        //_horizontalLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:SQPlayerSrcName(@"ZFPlayer_management_mask")]];
     }
     return _horizontalLabel;
 }
