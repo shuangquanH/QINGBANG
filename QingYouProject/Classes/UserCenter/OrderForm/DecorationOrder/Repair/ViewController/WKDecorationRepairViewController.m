@@ -12,7 +12,7 @@
 #import "WKDecorationRepairPhotoCell.h"
 #import "WKImageCollectionView.h"
 
-#import "WKDecorationOrderDetailModel.h"
+#import "WKDecorationOrderListModel.h"
 #import "WKOrderRepairModel.H"
 
 #import "NSString+SQStringSize.h"

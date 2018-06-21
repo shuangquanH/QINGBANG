@@ -24,16 +24,16 @@
     return self;
 }
 
-- (void)configOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {
-    if (_orderState == orderInfo.status) return;
+- (void)configOrderDetailInfo:(WKDecorationOrderDetailModel *)orderDetailInfo {
+    if (_orderState == orderDetailInfo.orderInfo.status) return;
     
-    _orderState = orderInfo.status;
+    _orderState = orderDetailInfo.orderInfo.status;
     CGFloat itemH = KSCAL(98);
     switch (_orderState) {
         case 4:
         {//受理中、装修中
             CGFloat itemW = (kScreenW - 1.0) / 2.0;
-
+            
             if (!_downContractBtn) {
                 _downContractBtn = [self setupButtonWithTitle:@"下载报价单" withTag:0];
                 [self addSubview:_downContractBtn];
@@ -58,7 +58,7 @@
         {//已完成
             
             CGFloat itemW = (kScreenW - 2.0) / 3.0;
-
+            
             if (!_downContractBtn) {
                 _downContractBtn = [self setupButtonWithTitle:@"下载报价单" withTag:0];
                 [self addSubview:_downContractBtn];

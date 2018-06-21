@@ -49,7 +49,7 @@ const CGFloat kFunctionButtonTopMargin  = 0.0;
     }
     else  {//待付款以及未激活状态（未激活状态显示按钮的样式与待付款相同）
         if (stage == 0) {//订金
-            if (inDetail) {
+            if (inDetail) {//在列表中展示付款、取消，在详情中展示付款
                 [self reSetFunctionButtonsWithTitles:@[@"付款"] types:@[@(WKDecorationOrderActionTypePay)]];
             }
             else {
@@ -57,7 +57,7 @@ const CGFloat kFunctionButtonTopMargin  = 0.0;
             }
         }
         else {
-            if (inDetail) {
+            if (inDetail) {//在列表中展示付款、补登，在详情中展示付款
                 [self reSetFunctionButtonsWithTitles:@[@"付款"] types:@[@(WKDecorationOrderActionTypePay)]];
             }
             else {

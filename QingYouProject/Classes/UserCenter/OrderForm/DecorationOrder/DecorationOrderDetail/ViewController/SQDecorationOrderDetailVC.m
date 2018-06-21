@@ -15,7 +15,7 @@
 
 #import "SQDecorationOrderCell.h"
 #import "WKDecorationOrderAlertView.h"
-#import "WKAnimationAlert.h"
+#import "WKDecorationOrderPayAlertView.h"
 
 #import "WKDecorationDetailViewModel.h"
 
@@ -25,11 +25,11 @@
 
 @property (nonatomic, strong) UIView        *contentView;
 
-@property (nonatomic, strong) UIView        *bottomPayView;
+@property (nonatomic, strong) WKDecorationOrderPayAlertView *payView;
 
 @property (nonatomic, strong) WKDecorationDetailViewModel  *orderVM;
 
-@property (nonatomic, strong) WKDecorationOrderDetailModel *orderInfo;
+@property (nonatomic, strong) WKDecorationOrderDetailModel *orderDetailInfo;
 
 @end
 
@@ -49,12 +49,17 @@
     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
     @weakify(self)
     [self.orderVM sendOrderDetailRequestWithOrderNum:self.orderListInfo.orderNum completed:^(WKDecorationOrderDetailModel *order, NSError *error) {
+        @strongify(self)
         if (order) {
-            @strongify(self)
-            self.orderInfo = order;
+            self.orderDetailInfo = order;
             [self sqaddSubVies];
+            [YGNetService dissmissLoadingView];
         }
-        [YGNetService dissmissLoadingView];
+        else {
+            [YGNetService dissmissLoadingView];
+            [YGAppTool showToastWithText:error.domain];
+            [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@YES afterDelay:1.0];
+        }
     }];
 }
 
@@ -68,10 +73,7 @@
     }];
 
     for (UIView<WKDecorationDetailViewProtocol> *v in self.orderVM.subviewArray) {
-        [v configOrderInfo:self.orderInfo];
-        if ([v respondsToSelector:@selector(configAddressInfo:)]) {
-            [v configAddressInfo:self.orderInfo.addressInfo];
-        }
+        [v configOrderDetailInfo:self.orderDetailInfo];
         [self.contentView addSubview:v];
     }
     
@@ -129,7 +131,7 @@
     }
     else {
         SQApplyAfterSaleViewController *next = [SQApplyAfterSaleViewController new];
-        next.orderInfo = self.orderInfo;
+        next.orderInfo = self.orderDetailInfo;
         [self.navigationController pushViewController:next animated:YES];
     }
 }
@@ -140,26 +142,26 @@
     }
     else if (functionType == 1) {
         WKCheckContractViewController *next = [WKCheckContractViewController new];
-        next.orderInfo = self.orderInfo;
+        next.orderDetailInfo = self.orderDetailInfo;
         [self.navigationController pushViewController:next animated:YES];
     }
     else {
-        if (self.orderInfo.isInRepairApply) {//已经申请过发票
+        if (self.orderDetailInfo.orderInfo.invoice) {//已经申请过发票
             [YGAppTool showToastWithText:@"开票申请已提交，请耐心等待！"];
             return;
         }
         SQTicketApplyViewController *next = [SQTicketApplyViewController new];
-        next.orderDetailInfo = self.orderInfo;
+        next.orderDetailInfo = self.orderDetailInfo;
         [self.navigationController pushViewController:next animated:YES];
     }
 }
 
 - (void)orderCell:(SQDecorationOrderCell *)orderCell didClickAction:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage {
     
-    WKDecorationStageModel *stageInfo = self.orderInfo.paymentList[stage];
+    WKDecorationStageModel *stageInfo = self.orderDetailInfo.orderInfo.paymentList[stage];
     if (stageInfo.status == 0) {//当前状态还没有被激活
         if (stage >= 1) {
-            [YGAppTool showToastWithText:[NSString stringWithFormat:@"需要完成%@，才可以操作此阶段", self.orderInfo.paymentList[stage-1].name]];
+            [YGAppTool showToastWithText:[NSString stringWithFormat:@"需要完成%@，才可以操作此阶段", self.orderDetailInfo.orderInfo.paymentList[stage-1].name]];
         }
         else {
             [YGAppTool showToastWithText:@"暂时还不能进行此操作，请稍后再试"];
@@ -170,7 +172,7 @@
     switch (actionType) {
         case WKDecorationOrderActionTypePay://支付
         {
-            [WKAnimationAlert showAlertWithInsideView:self.bottomPayView animation:WKAlertAnimationTypeBottom canTouchDissmiss:YES];
+            [self.payView showPaymentViewInSuperView:nil];
         }
             break;
         case WKDecorationOrderActionTypeDelete://删除订单
@@ -178,7 +180,7 @@
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"确认删除订单" preferredStyle:UIAlertControllerStyleAlert];
             [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-                [SQRequest post:KAPI_DELETEORDER param:@{@"orderNum": self.orderInfo.orderNum} success:^(id response) {
+                [SQRequest post:KAPI_DELETEORDER param:@{@"orderNum": self.orderDetailInfo.orderInfo.orderNum} success:^(id response) {
                     [YGNetService dissmissLoadingView];
                     if ([response[@"code"] longLongValue] == 0) {
                         if (self.orderRefreshBlock) {//通知列表，更新视图
@@ -202,11 +204,12 @@
         case WKDecorationOrderActionTypeRepair://补登
         {
             WKDecorationRepairViewController *next = [WKDecorationRepairViewController new];
-            next.orderInfo = self.orderInfo;
+            next.orderInfo = self.orderDetailInfo.orderInfo;
             next.stageIndex = stage;
-            next.repairSuccess = ^(WKDecorationOrderDetailModel *orderInfo) {
-                [self.orderVM.orderCell configOrderInfo:orderInfo];
-                //通知前一个视图，更新数据
+            next.repairSuccess = ^(WKDecorationOrderListModel *orderInfo) {
+            
+                [self.orderVM.orderCell configOrderDetailInfo:self.orderDetailInfo];
+                //通知前一个列表，更新数据
                 self.orderListInfo.paymentList[stage].status = 2;
                 if (self.orderRefreshBlock) {
                     self.orderRefreshBlock(self.orderListInfo);
@@ -232,16 +235,14 @@
         case WKDecorationOrderActionTypeRefund://申请退款
         {
             [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-            [SQRequest post:KAPI_APPLYREFUND param:@{@"orderNum": self.orderInfo.orderNum} success:^(id response) {
+            [SQRequest post:KAPI_APPLYREFUND param:@{@"orderNum": self.orderDetailInfo.orderInfo.orderNum} success:^(id response) {
                 [YGNetService dissmissLoadingView];
                 if ([response[@"code"] longLongValue] == 0) {
                     //修改当前状态为申请退款中状态
-                    self.orderInfo.isInRefund = YES;
-                    self.orderInfo.canRefund = NO;
-                    [self.orderVM.orderCell configOrderInfo:self.orderInfo];
-                    
-                    self.orderListInfo.isInRefund = YES;
-                    self.orderListInfo.canRefund = NO;
+                    self.orderDetailInfo.orderInfo.refund = YES;
+                    [self.orderVM.orderCell configOrderDetailInfo:self.orderDetailInfo];
+
+                    self.orderListInfo.refund = YES;
                     if (self.orderRefreshBlock) {
                         self.orderRefreshBlock(self.orderListInfo);
                     }
@@ -260,7 +261,7 @@
         case WKDecorationOrderActionTypeRefundDetail://退款详情
         {
             WKDecorationRefundDetailViewController *next = [WKDecorationRefundDetailViewController new];
-            next.orderInfo = self.orderInfo;
+            next.orderDetailInfo = self.orderDetailInfo;
             [self.navigationController pushViewController:next animated:YES];
         }
             break;
@@ -285,12 +286,14 @@
     return _contentView;
 }
 
-- (UIView *)bottomPayView {
-    if (!_bottomPayView) {
-        _bottomPayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, 200)];
-        _bottomPayView.backgroundColor = KCOLOR_MAIN;
+- (WKDecorationOrderPayAlertView *)payView {
+    if (!_payView) {
+        _payView = [[WKDecorationOrderPayAlertView alloc] initWithFrame:CGRectZero];
+        _payView.paymentAction = ^(WKDecorationPayType payType) {
+            
+        };
     }
-    return _bottomPayView;
+    return _payView;
 }
 
 

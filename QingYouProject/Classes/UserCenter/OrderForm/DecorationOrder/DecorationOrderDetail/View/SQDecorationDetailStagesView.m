@@ -136,25 +136,25 @@ static const CGFloat kCircleWidth = 26;
 }
 
 #pragma mark - SQDecorationDetailViewProtocol
-- (void)configOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {
-    
-    CGFloat perW = (kScreenW - 2 * KSCAL(30)) / 6.0;
 
-    if (orderInfo.status == 3) {//受理中，订金已支付
+- (void)configOrderDetailInfo:(WKDecorationOrderDetailModel *)orderDetailInfo {
+    CGFloat perW = (kScreenW - 2 * KSCAL(30)) / 6.0;
+    
+    if (orderDetailInfo.orderInfo.status == 3) {//受理中，订金已支付
         _shadowView.center = CGPointMake(KSCAL(30)+perW*1, KSCAL(40)+0.5);
         _centerStateLabel.text = @"待支付";
         _rightStateLabel.text = @"待支付";
         return;
     }
     
-    if (orderInfo.status == 4) {//阶段款待支付
+    if (orderDetailInfo.orderInfo.status == 4) {//阶段款待支付
         _centerStateLabel.text = @"待支付";
         _shadowView.center = CGPointMake(KSCAL(30)+perW*3, KSCAL(40)+0.5);
         _rightStateLabel.text = @"待支付";
         return;
     }
     
-    if (orderInfo.status == 5) {//尾款已支付
+    if (orderDetailInfo.orderInfo.status == 5) {//尾款已支付
         _centerStateLabel.text = @"已支付";
         _shadowView.center = CGPointMake(KSCAL(30)+perW*5, KSCAL(40)+0.5);
         _rightStateLabel.text = @"已支付";

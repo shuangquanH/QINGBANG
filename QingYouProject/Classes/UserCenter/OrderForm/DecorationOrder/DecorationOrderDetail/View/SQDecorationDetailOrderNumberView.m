@@ -24,17 +24,18 @@
     return self;
 }
 
-- (void)configOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {
+
+- (void)configOrderDetailInfo:(WKDecorationOrderDetailModel *)orderDetailInfo {
+    [self setupSubviewsByOrderInfo:orderDetailInfo];
     
-    [self setupSubviewsByOrderInfo:orderInfo];
+    _numberLab.text     = [NSString stringWithFormat:@"订单编号：%@", orderDetailInfo.orderInfo.orderNum];
+    _createTimeLab.text = [NSString stringWithFormat:@"创建时间：%@", orderDetailInfo.orderInfo.createDate];
     
-    _numberLab.text     = [NSString stringWithFormat:@"订单编号：%@", orderInfo.orderNum];
-    _createTimeLab.text = [NSString stringWithFormat:@"创建时间：%@", orderInfo.createTime];
-    _payTimeLab.text  = [NSString stringWithFormat:@"付款时间：%@", orderInfo.payTime];
-    _finishedLab.text = [NSString stringWithFormat:@"完成时间：%@", orderInfo.finishTime];
 }
 
 - (void)setupSubviewsByOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {
+    
+    
     
     if (!_numberLab) {
         _numberLab = [UILabel labelWithFont:KSCAL(28) textColor:kCOLOR_666 textAlignment:NSTextAlignmentCenter];
@@ -55,7 +56,7 @@
         }];
     }
 
-    if (orderInfo.status == 3 || orderInfo.status == 4 || orderInfo.status == 5) {
+    if (orderInfo.orderInfo.status == 3 || orderInfo.orderInfo.status == 4 || orderInfo.orderInfo.status == 5) {
         if (!_payTimeLab) {
             _payTimeLab = [UILabel labelWithFont:KSCAL(28) textColor:kCOLOR_666 textAlignment:NSTextAlignmentCenter];
             [self addSubview:_payTimeLab];
@@ -66,12 +67,13 @@
             }];
         }
         _payTimeLab.hidden = NO;
+        _payTimeLab.text  = [NSString stringWithFormat:@"付款时间：%@", orderInfo.orderInfo.paymentList.firstObject.payDate];
     }
     else {
         _payTimeLab.hidden = YES;
     }
     
-    if (orderInfo.status == 5) {
+    if (orderInfo.orderInfo.status == 5) {
         if (!_finishedLab) {
             _finishedLab = [UILabel labelWithFont:KSCAL(28) textColor:kCOLOR_666 textAlignment:NSTextAlignmentCenter];
             [self addSubview:_finishedLab];
@@ -81,6 +83,7 @@
             }];
         }
         _finishedLab.hidden = NO;
+        _finishedLab.text = [NSString stringWithFormat:@"完成时间：%@", orderInfo.orderInfo.paymentList.lastObject.payDate];
     }
     else {
         _finishedLab.hidden = YES;

@@ -129,13 +129,13 @@
     
     NSDictionary *param;
     if (self.sendSwitch.isOn) {
-        param =  @{@"orderNum": self.orderDetailInfo.orderNum,
+        param =  @{@"orderNum": self.orderDetailInfo.orderInfo.orderNum,
                    @"invoice_id": self.invoiceInfo.invoice_id,
                    @"address_id": self.postInfo.ID
                    };
     }
     else {
-        param =  @{@"orderNum": self.orderDetailInfo.orderNum,
+        param =  @{@"orderNum": self.orderDetailInfo.orderInfo.orderNum,
                    @"invoice_id": self.invoiceInfo.invoice_id
                    };
     }
@@ -144,7 +144,7 @@
         [YGNetService dissmissLoadingView];
         if ([response[@"code"] longLongValue] == 0) {
             [YGAppTool showToastWithText:@"申请成功，等待审核"];
-            self.orderDetailInfo.isInRepairApply = YES;
+            self.orderDetailInfo.orderInfo.invoice = YES;
             [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.5];
         } else {
             [YGAppTool showToastWithText:response[@"msg"]];

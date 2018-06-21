@@ -8,19 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import "WKDecorationOrderDetailModel.h"
-#import "ManageMailPostModel.h"
 #import "SQDecorationCellPayButtonView.h"
 
 @class WKDecorationDetailViewModel, SQDecorationDetailFunctionView, SQDecorationDetailServerView, SQDecorationOrderCell, WKDecorationAddressModel;
 
 @protocol WKDecorationDetailViewProtocol<NSObject>
-
-- (void)configOrderInfo:(WKDecorationOrderDetailModel *)orderInfo;
+//订单详情模型
+- (void)configOrderDetailInfo:(WKDecorationOrderDetailModel *)orderDetailInfo;
 
 - (CGSize)viewSize;
 
 @optional
-- (void)configAddressInfo:(WKDecorationAddressModel *)addressInfo;
+//订单列表模型
+- (void)configOrderInfo:(WKDecorationOrderListModel *)orderInfo;
 
 @end
 
@@ -38,7 +38,6 @@
 
 @interface WKDecorationDetailViewModel : NSObject
 
-
 @property (nonatomic, strong, readonly) NSArray<UIView<WKDecorationDetailViewProtocol> *> *subviewArray;
 
 @property (nonatomic, strong, readonly) SQDecorationOrderCell *orderCell;
@@ -47,6 +46,8 @@
 
 - (void)setupByOrderInfo:(WKDecorationOrderDetailModel *)orderInfo;
 
-- (void)sendOrderDetailRequestWithOrderNum:(NSString *)orderNum completed:(void(^)(WKDecorationOrderDetailModel *order, NSError *error))completed;
+- (void)sendOrderDetailRequestWithOrderNum:(NSString *)orderNum
+                                 completed:(void(^)(WKDecorationOrderDetailModel *order,
+                                                    NSError *error))completed;
 
 @end

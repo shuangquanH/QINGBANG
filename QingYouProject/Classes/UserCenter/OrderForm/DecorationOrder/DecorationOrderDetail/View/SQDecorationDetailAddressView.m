@@ -68,17 +68,17 @@
  
 }
 
-- (void)configOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {}
-- (void)configAddressInfo:(WKDecorationAddressModel *)addressInfo {
-    _nameLab.text = [NSString stringWithFormat:@"联系人：%@", addressInfo.name];
-    _phoneLab.text = addressInfo.phone;
+- (void)configOrderDetailInfo:(WKDecorationOrderDetailModel *)orderDetailInfo {
+    _nameLab.text = [NSString stringWithFormat:@"联系人：%@", orderDetailInfo.addressInfo.name];
+    _phoneLab.text = orderDetailInfo.addressInfo.phone;
     
-    NSString *addressStr = [NSString stringWithFormat:@"联系地址：%@", addressInfo.detail];
+    NSString *addressStr = [NSString stringWithFormat:@"联系地址：%@", orderDetailInfo.addressInfo.detail];
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     [style setLineSpacing:3.0];
     NSAttributedString *address = [[NSAttributedString alloc] initWithString:addressStr attributes:@{NSParagraphStyleAttributeName : style}];
     _addressLab.attributedText = address;
 }
+
 
 - (CGSize)viewSize {
     CGFloat nameH = [_nameLab.text sizeWithFont:KFONT(28.0) andMaxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)].height;

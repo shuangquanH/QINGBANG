@@ -12,10 +12,10 @@
 
 #import "WKDecorationStateCell.h"
 #import "SQDecorationOrderCell.h"
-#import "WKDecorationOrderDetailModel.h"
+#import "WKDecorationOrderListModel.h"
 
-#import "WKAnimationAlert.h"
 #import "WKDecorationOrderAlertView.h"
+#import "WKDecorationOrderPayAlertView.h"
 
 @interface SQDecorationOrderVC () <UITableViewDataSource, UITableViewDelegate, decorationOrderCellDelegate>
 
@@ -25,9 +25,9 @@
 
 @property (nonatomic, assign) NSInteger         pageSize;
 
-@property (nonatomic, strong) NSMutableArray<WKDecorationOrderDetailModel *> *orderList;
+@property (nonatomic, strong) NSMutableArray<WKDecorationOrderListModel *> *orderList;
 
-@property (nonatomic, strong) UIView *bottomPayView;
+@property (nonatomic, strong) WKDecorationOrderPayAlertView *payView;
 
 @end
 
@@ -67,7 +67,7 @@
     
     [SQRequest post:KAPI_MYDECORATION_ORDERLIST param:@{@"page": @(tmpPage), @"pageSize": @(self.pageSize)} success:^(id response) {
         if ([response[@"code"] longLongValue] == 0) {
-            NSArray<WKDecorationOrderDetailModel *> *tmp = [NSArray yy_modelArrayWithClass:[WKDecorationOrderDetailModel class] json:response[@"data"][@"orderList"]];
+            NSArray<WKDecorationOrderListModel *> *tmp = [NSArray yy_modelArrayWithClass:[WKDecorationOrderListModel class] json:response[@"data"][@"orderList"]];
             if (tmp.count) {
                 if (headerAction) {
                     [self.orderList removeAllObjects];
@@ -87,6 +87,7 @@
         else {
             [self.tableView.mj_footer endRefreshing];
         }
+        NSLog(@"订单列表：%@", response);
     } failure:^(NSError *error) {
         NSError *underlyingError = error.userInfo[NSUnderlyingErrorKey];
         NSHTTPURLResponse *reponse = underlyingError.userInfo[AFNetworkingOperationFailingURLResponseErrorKey];
@@ -115,7 +116,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView
           cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    WKDecorationOrderDetailModel *order = [self.orderList objectAtIndex:indexPath.section];
+    WKDecorationOrderListModel *order = [self.orderList objectAtIndex:indexPath.section];
     //订单状态头部
     if (indexPath.row == 0) {
         WKDecorationStateCell *cell = [WKDecorationStateCell cellWithTableView:tableView];
@@ -147,10 +148,10 @@
     vc.orderListInfo = [self.orderList objectAtIndex:indexPath.section];
     [self.navigationController pushViewController:vc animated:YES];
     
-    vc.orderRefreshBlock = ^(WKDecorationOrderDetailModel *orderInfo) {
-        if (!orderInfo) {
+    vc.orderRefreshBlock = ^(WKDecorationOrderListModel *orderInfo) {
+        if (!orderInfo) {//删除订单
             [self.orderList removeObjectAtIndex:indexPath.section];
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationNone];
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationFade];
         }
         else {
             [self.tableView reloadData];
@@ -161,7 +162,7 @@
     if (indexPath.row == 0) {
         return KSCAL(110);
     }
-    WKDecorationOrderDetailModel *order = [self.orderList objectAtIndex:indexPath.section];
+    WKDecorationOrderListModel *order = [self.orderList objectAtIndex:indexPath.section];
     if (order.status == 1 || order.status == 2) {//待付款、已关闭状态，只有一个订金阶段需要展示
         return [SQDecorationOrderCell cellHeightWithOrderInfo:order];
     }
@@ -185,7 +186,7 @@
     NSIndexPath *targetIndex = [self.tableView indexPathForCell:decorationCell];
     if (!targetIndex) return;
     
-    WKDecorationOrderDetailModel *orderInfo = [self.orderList objectAtIndex:targetIndex.section];
+    WKDecorationOrderListModel *orderInfo = [self.orderList objectAtIndex:targetIndex.section];
     WKDecorationStageModel *stageInfo = orderInfo.paymentList[stage];
     if (stageInfo.status == 0 && stage >= 1) {//当前状态还没有被激活
         [YGAppTool showToastWithText:[NSString stringWithFormat:@"需要完成%@，才可以操作此阶段", orderInfo.paymentList[stage-1].name]];
@@ -194,11 +195,7 @@
     
     switch (actionType) {
         case WKDecorationOrderActionTypePay: {//支付
-            [WKAnimationAlert showAlertWithInsideView:self.bottomPayView
-                                            animation:WKAlertAnimationTypeBottom
-                                     canTouchDissmiss:YES
-                                            superView:nil
-                                               offset:0];
+            [self.payView showPaymentViewInSuperView:nil];
         }
             break;
         case WKDecorationOrderActionTypeCancel: {//取消订单
@@ -208,7 +205,7 @@
                     [SQRequest post:KAPI_CANCELORDER param:@{@"orderNum": orderInfo.orderNum} success:^(id response) {
                         [YGNetService dissmissLoadingView];
                         if ([response[@"code"] longLongValue] == 0) {
-                            //直接修改本地模型
+                            //直接修改本地模型->已关闭订单，阶段已关闭状态
                             orderInfo.orderTitle = nil;
                             orderInfo.status = 2;
                             orderInfo.paymentList.firstObject.status = 4;
@@ -259,7 +256,7 @@
             WKDecorationRepairViewController *next = [WKDecorationRepairViewController new];
             next.orderInfo = self.orderList[targetIndex.section];
             next.stageIndex = stage;
-            next.repairSuccess = ^(WKDecorationOrderDetailModel *orderInfo) {
+            next.repairSuccess = ^(WKDecorationOrderListModel *orderInfo) {
                 [decorationCell configOrderInfo:orderInfo];
             };
             [self.navigationController pushViewController:next animated:YES];
@@ -297,12 +294,14 @@
     return _tableView;
 }
 
-- (UIView *)bottomPayView {
-    if (!_bottomPayView) {
-        _bottomPayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, 200)];
-        _bottomPayView.backgroundColor = KCOLOR_MAIN;
+- (WKDecorationOrderPayAlertView *)payView {
+    if (!_payView) {
+        _payView = [[WKDecorationOrderPayAlertView alloc] initWithFrame:CGRectZero];
+        _payView.paymentAction = ^(WKDecorationPayType payType) {
+            
+        };
     }
-    return _bottomPayView;
+    return _payView;
 }
 
 @end

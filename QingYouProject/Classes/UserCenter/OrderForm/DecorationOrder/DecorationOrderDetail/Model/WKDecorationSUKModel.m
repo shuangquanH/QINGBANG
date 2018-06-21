@@ -48,19 +48,6 @@
     return _skuProductDescAttributeString;
 }
 
-- (NSAttributedString *)skuProductNameAttributeString {
-    if (!_skuProductNameAttributeString) {
-        if (!self.skuDesc.length) {
-            _skuProductNameAttributeString = [[NSAttributedString alloc] initWithString:@"暂无商品名称"];
-            return _skuProductNameAttributeString;
-        }
-        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-        [paragraphStyle setLineSpacing:2];
-        _skuProductNameAttributeString = [[NSAttributedString alloc] initWithString:self.skuDesc attributes:@{NSParagraphStyleAttributeName: paragraphStyle}];
-    }
-    return _skuProductNameAttributeString;
-}
-
 - (NSAttributedString *)skuProductPriceAttributeString {
     if (!_skuProductPriceAttributeString) {
         if (!self.skuPrice.length) {

@@ -22,6 +22,8 @@
 @property (nonatomic, weak) id<WKDecorationStageViewDelegate> delegate;
 
 //设置订单模型-阶段索引-是否在首页
-- (void)configOrderInfo:(WKDecorationOrderDetailModel *)orderInfo withStage:(NSInteger)stage withInDetail:(BOOL)inDetail;
+- (void)configOrderDetailInfo:(WKDecorationOrderDetailModel *)orderDetailInfo withStage:(NSInteger)stage withInDetail:(BOOL)inDetail;
+
+- (void)configOrderInfo:(WKDecorationOrderListModel *)orderInfo withStage:(NSInteger)stage withInDetail:(BOOL)inDetail;
 
 @end
