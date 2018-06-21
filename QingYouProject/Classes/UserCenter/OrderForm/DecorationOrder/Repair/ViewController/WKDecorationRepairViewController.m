@@ -320,7 +320,7 @@ const CGFloat kItemHorizontalMargin = 10;
     [SQRequest post:KAPI_APPLYREPAIR param:param success:^(id response) {
         [YGNetService dissmissLoadingView];
         if ([response[@"code"] longLongValue] == 0) {
-            stage.status = 3;
+            stage.status = 2;
             if (self.repairSuccess) {
                 self.repairSuccess(self.orderInfo);
             }

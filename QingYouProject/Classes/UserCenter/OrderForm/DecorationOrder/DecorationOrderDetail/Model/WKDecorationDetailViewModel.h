@@ -11,7 +11,7 @@
 #import "ManageMailPostModel.h"
 #import "SQDecorationCellPayButtonView.h"
 
-@class WKDecorationDetailViewModel, SQDecorationDetailFunctionView, SQDecorationDetailServerView, SQDecorationOrderCell;
+@class WKDecorationDetailViewModel, SQDecorationDetailFunctionView, SQDecorationDetailServerView, SQDecorationOrderCell, WKDecorationAddressModel;
 
 @protocol WKDecorationDetailViewProtocol<NSObject>
 
@@ -20,7 +20,7 @@
 - (CGSize)viewSize;
 
 @optional
-- (void)configAddressInfo:(ManageMailPostModel *)addressInfo;
+- (void)configAddressInfo:(WKDecorationAddressModel *)addressInfo;
 
 @end
 

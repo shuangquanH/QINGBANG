@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 //地址信息
-#import "ManageMailPostModel.h"
+#import "WKDecorationAddressModel.h"
 //商品信息
 #import "WKDecorationSUKModel.h"
 //订单列表信息
@@ -41,12 +41,14 @@
 
 @property (nonatomic, strong) WKDecorationOrderModel *orderDetails;
 
-@property (nonatomic, strong) ManageMailPostModel *address_info;
+@property (nonatomic, strong) WKDecorationAddressModel *addressInfo;
 
 @property (nonatomic, strong) NSArray<WKDecorationStageModel *> *paymentList;
 
+#pragma mark - 本地添加的辅助参数
 @property (nonatomic, copy  ) NSString *orderTitle;
 
+@property (nonatomic, strong) WKDecorationStageModel *activityStageInfo;
 
 
 

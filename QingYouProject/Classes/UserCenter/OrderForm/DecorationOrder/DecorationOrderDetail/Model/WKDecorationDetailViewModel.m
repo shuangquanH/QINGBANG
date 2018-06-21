@@ -37,7 +37,7 @@
         completed(nil, nil);
         return;
     }
-    [SQRequest post:KAPI_DECORATIONORDERDETAIL param:nil success:^(id response) {
+    [SQRequest post:KAPI_DECORATIONORDERDETAIL param:@{@"orderNum": orderNum} success:^(id response) {
         if ([response[@"code"] longLongValue] == 0) {
            WKDecorationOrderDetailModel *order = [WKDecorationOrderDetailModel yy_modelWithJSON:response[@"data"][@"detail_info"]];
             [self setupByOrderInfo:order];

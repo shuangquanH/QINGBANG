@@ -16,7 +16,7 @@
 @property (nonatomic, copy  ) NSString *name;
 /** 阶段价格 */
 @property (nonatomic, copy  ) NSString *amount;
-/** 阶段状态 1:待付款,补登 3:已支付 2:补登审核 4:已关闭 默认0 未激活 */
+/** 阶段状态 1:待付款,补登 2:补登审核 3:已支付 4:已关闭 默认0:未激活 */
 @property (nonatomic, assign) NSInteger status;
 
 @end

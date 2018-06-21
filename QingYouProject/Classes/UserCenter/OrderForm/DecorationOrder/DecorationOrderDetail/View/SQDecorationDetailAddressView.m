@@ -69,11 +69,11 @@
 }
 
 - (void)configOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {}
-- (void)configAddressInfo:(ManageMailPostModel *)addressInfo {
+- (void)configAddressInfo:(WKDecorationAddressModel *)addressInfo {
     _nameLab.text = [NSString stringWithFormat:@"联系人：%@", addressInfo.name];
     _phoneLab.text = addressInfo.phone;
     
-    NSString *addressStr = [NSString stringWithFormat:@"联系地址：%@%@%@%@", addressInfo.prov?:@"", addressInfo.city?:@"", addressInfo.dist?:@"", addressInfo.address?:@""];
+    NSString *addressStr = [NSString stringWithFormat:@"联系地址：%@", addressInfo.detail];
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     [style setLineSpacing:3.0];
     NSAttributedString *address = [[NSAttributedString alloc] initWithString:addressStr attributes:@{NSParagraphStyleAttributeName : style}];

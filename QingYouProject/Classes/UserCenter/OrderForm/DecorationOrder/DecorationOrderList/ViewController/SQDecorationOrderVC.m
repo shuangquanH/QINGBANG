@@ -169,7 +169,7 @@
         return [WKDecorationDealingOrderCell cellHeightWithOrderInfo:order];
     }
     else {//其余所有状态
-        return [WKDecorationOrderMutableStageCell cellHeightWithOrderInfo:order];  
+        return [WKDecorationOrderMutableStageCell cellHeightWithOrderInfo:order];
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -188,12 +188,7 @@
     WKDecorationOrderDetailModel *orderInfo = [self.orderList objectAtIndex:targetIndex.section];
     WKDecorationStageModel *stageInfo = orderInfo.paymentList[stage];
     if (stageInfo.status == 0 && stage >= 1) {//当前状态还没有被激活
-        if (stage >= 1) {
-            [YGAppTool showToastWithText:[NSString stringWithFormat:@"需要完成%@，才可以操作此阶段", orderInfo.paymentList[stage-1].name]];
-        }
-        else {
-            [YGAppTool showToastWithText:@"暂时还不能进行此操作，请稍后再试"];
-        }
+        [YGAppTool showToastWithText:[NSString stringWithFormat:@"需要完成%@，才可以操作此阶段", orderInfo.paymentList[stage-1].name]];
         return;
     }
     
@@ -212,7 +207,8 @@
                     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
                     [SQRequest post:KAPI_CANCELORDER param:@{@"orderNum": orderInfo.orderNum} success:^(id response) {
                         [YGNetService dissmissLoadingView];
-                        if ([response[@"state"] isEqualToString:@"success"]) {
+                        if ([response[@"code"] longLongValue] == 0) {
+                            //直接修改本地模型
                             orderInfo.orderTitle = nil;
                             orderInfo.status = 2;
                             orderInfo.paymentList.firstObject.status = 4;

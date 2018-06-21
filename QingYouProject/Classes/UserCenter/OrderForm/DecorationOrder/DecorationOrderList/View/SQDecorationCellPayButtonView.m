@@ -38,7 +38,16 @@ const CGFloat kFunctionButtonTopMargin  = 0.0;
         _buttons = [NSMutableArray array];
     }
     
-    if (stageModel.status == 1) {//待付款
+    if (stageModel.status == 3) {//已支付
+        [self reSetFunctionButtonsWithTitles:@[@"已支付"] types:@[@(WKDecorationOrderActionTypeAlreadyPay)]];
+    }
+    else if (stageModel.status == 2) {//补登审核中
+        [self showLabelWithTitle:@"补登审核中"];
+    }
+    else if (stageModel.status == 4) {//已关闭
+        [self reSetFunctionButtonsWithTitles:@[@"删除订单"] types:@[@(WKDecorationOrderActionTypeDelete)]];
+    }
+    else  {//待付款以及未激活状态（未激活状态显示按钮的样式与待付款相同）
         if (stage == 0) {//订金
             if (inDetail) {
                 [self reSetFunctionButtonsWithTitles:@[@"付款"] types:@[@(WKDecorationOrderActionTypePay)]];
@@ -55,18 +64,6 @@ const CGFloat kFunctionButtonTopMargin  = 0.0;
                 [self reSetFunctionButtonsWithTitles:@[@"补登", @"付款"] types:@[@(WKDecorationOrderActionTypeRepair), @(WKDecorationOrderActionTypePay)]];
             }
         }
-    }
-    else if (stageModel.status == 3) {//已支付
-        [self reSetFunctionButtonsWithTitles:@[@"已支付"] types:@[@(WKDecorationOrderActionTypeAlreadyPay)]];
-    }
-    else if (stageModel.status == 2) {//补登审核中
-        [self showLabelWithTitle:@"补登审核中"];
-    }
-    else if (stageModel.status == 4) {//已关闭
-        [self reSetFunctionButtonsWithTitles:@[@"删除订单"] types:@[@(WKDecorationOrderActionTypeDelete)]];
-    }
-    else {//无其他阶段
-        [_buttons makeObjectsPerformSelector:@selector(setHidden:) withObject:@(YES)];
     }
 }
 

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		040084EA20C521150094CF22 /* WKDecorationRepairViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040084E920C521150094CF22 /* WKDecorationRepairViewController.m */; };
 		040084ED20C52C520094CF22 /* WKAfterSaleRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 040084EC20C52C520094CF22 /* WKAfterSaleRecordCell.m */; };
+		04171E2320DA7B06006A0BF8 /* WKDecorationAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04171E2220DA7B06006A0BF8 /* WKDecorationAddressModel.m */; };
 		042AF70320CFBB61005ECDBF /* WKCheckContactScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042AF70220CFBB61005ECDBF /* WKCheckContactScaleView.m */; };
 		042AF70E20D0B192005ECDBF /* WKImageCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042AF70D20D0B192005ECDBF /* WKImageCollectionView.m */; };
 		045EDEDC20D89A4600969EB3 /* WKCheckContactScaleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EDEDB20D89A4600969EB3 /* WKCheckContactScaleCell.m */; };
@@ -784,6 +785,8 @@
 		040084E920C521150094CF22 /* WKDecorationRepairViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKDecorationRepairViewController.m; sourceTree = "<group>"; };
 		040084EB20C52C520094CF22 /* WKAfterSaleRecordCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKAfterSaleRecordCell.h; sourceTree = "<group>"; };
 		040084EC20C52C520094CF22 /* WKAfterSaleRecordCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKAfterSaleRecordCell.m; sourceTree = "<group>"; };
+		04171E2120DA7B06006A0BF8 /* WKDecorationAddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKDecorationAddressModel.h; sourceTree = "<group>"; };
+		04171E2220DA7B06006A0BF8 /* WKDecorationAddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKDecorationAddressModel.m; sourceTree = "<group>"; };
 		042AF70120CFBB61005ECDBF /* WKCheckContactScaleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKCheckContactScaleView.h; sourceTree = "<group>"; };
 		042AF70220CFBB61005ECDBF /* WKCheckContactScaleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKCheckContactScaleView.m; sourceTree = "<group>"; };
 		042AF70C20D0B192005ECDBF /* WKImageCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKImageCollectionView.h; sourceTree = "<group>"; };
@@ -2428,6 +2431,8 @@
 				04B7A91120D3C491008675F5 /* WKDecorationSUKModel.m */,
 				04B7A91320D3C549008675F5 /* WKDecorationOrderModel.h */,
 				04B7A91420D3C549008675F5 /* WKDecorationOrderModel.m */,
+				04171E2120DA7B06006A0BF8 /* WKDecorationAddressModel.h */,
+				04171E2220DA7B06006A0BF8 /* WKDecorationAddressModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6001,6 +6006,7 @@
 				18C15A121FC8208A0010ACD3 /* MyFinancialAccountTableViewCell.m in Sources */,
 				18C158FD1FC820890010ACD3 /* ConfirmOrderOfficePurchase.m in Sources */,
 				E2E5B1481FB0675A00205F70 /* MJRefreshBackNormalFooter.m in Sources */,
+				04171E2320DA7B06006A0BF8 /* WKDecorationAddressModel.m in Sources */,
 				18C158E71FC820890010ACD3 /* BuyOrderPayWayModel.m in Sources */,
 				E2E5B1341FB0675A00205F70 /* LXScrollContentView.m in Sources */,
 				18C158E21FC820890010ACD3 /* FinancialAccountingOrderModel.m in Sources */,

@@ -51,7 +51,7 @@
 - (NSAttributedString *)skuProductNameAttributeString {
     if (!_skuProductNameAttributeString) {
         if (!self.skuDesc.length) {
-            _skuProductNameAttributeString = [[NSAttributedString alloc] initWithString:@""];
+            _skuProductNameAttributeString = [[NSAttributedString alloc] initWithString:@"暂无商品名称"];
             return _skuProductNameAttributeString;
         }
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];

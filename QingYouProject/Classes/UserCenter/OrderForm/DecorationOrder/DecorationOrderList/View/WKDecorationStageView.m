@@ -19,13 +19,13 @@
 
 @end
 
-@implementation WKDecorationStageView
-{
+@implementation WKDecorationStageView {
     CALayer *lineLayer;
     UILabel *stageTitleLabel;
     UILabel *stagePriceLab;
     SQDecorationCellPayButtonView *stageStateView;
 }
+
 - (instancetype)init {
     if (self == [super init]) {
         [self setupSubviews];
@@ -78,11 +78,13 @@
 }
 
 - (void)configOrderInfo:(WKDecorationOrderDetailModel *)orderInfo withStage:(NSInteger)stage withInDetail:(BOOL)inDetail {
+    
+    if (!orderInfo.paymentList.count) return;
+    
     WKDecorationStageModel *stageInfo = orderInfo.paymentList[stage];
     stageTitleLabel.text = [NSString stringWithFormat:@"%@：", stageInfo.name];
     stagePriceLab.text   = [NSString stringWithFormat:@"¥ %@", stageInfo.amount];
     [stageStateView configStageModel:stageInfo withStage:stage inDetail:inDetail];
-    
     
     if (stage == 0 && inDetail) {//订金阶段&&在详情中
         if (orderInfo.isInRefund) {//有过退款记录，可以查看退款详情
@@ -107,7 +109,6 @@
             }];
             return;
         }
-        
     }
     else {
         if (!_refundBtn || _refundBtn.hidden) {

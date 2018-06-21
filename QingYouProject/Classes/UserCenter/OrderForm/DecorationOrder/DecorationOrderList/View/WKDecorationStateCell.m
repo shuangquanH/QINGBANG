@@ -108,7 +108,7 @@
         _otherStateLabel.hidden = NO;
         _otherStateLabel.text = @"(待退款)";
     }
-    else if (orderInfo.status == 4) {//阶段款
+    else if (orderInfo.status == 4 && orderInfo.activityStageInfo) {//阶段款
         if (!_otherStateLabel) {
             _otherStateLabel = [UILabel labelWithFont:KSCAL(28) textColor:KCOLOR_MAIN];
             [self.contentView addSubview:_otherStateLabel];
@@ -119,7 +119,7 @@
         }
         
         _otherStateLabel.hidden = NO;
-        _otherStateLabel.text = [NSString stringWithFormat:@"(%@)", orderInfo.paymentList.lastObject.name];
+        _otherStateLabel.text = [NSString stringWithFormat:@"(%@)", orderInfo.activityStageInfo.name];
     }
     else {
         _otherStateLabel.hidden = YES;

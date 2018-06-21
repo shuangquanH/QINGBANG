@@ -15,6 +15,7 @@
 
 #import "SQDecorationOrderCell.h"
 #import "WKDecorationOrderAlertView.h"
+#import "WKAnimationAlert.h"
 
 #import "WKDecorationDetailViewModel.h"
 
@@ -23,6 +24,8 @@
 @property (nonatomic, strong) UIScrollView  *contentScrollView;
 
 @property (nonatomic, strong) UIView        *contentView;
+
+@property (nonatomic, strong) UIView        *bottomPayView;
 
 @property (nonatomic, strong) WKDecorationDetailViewModel  *orderVM;
 
@@ -43,7 +46,7 @@
 
 - (void)sendReqeust {
     
-    [YGNetService showLoadingViewWithSuperView:nil];
+    [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
     @weakify(self)
     [self.orderVM sendOrderDetailRequestWithOrderNum:self.orderListInfo.orderNum completed:^(WKDecorationOrderDetailModel *order, NSError *error) {
         if (order) {
@@ -67,7 +70,7 @@
     for (UIView<WKDecorationDetailViewProtocol> *v in self.orderVM.subviewArray) {
         [v configOrderInfo:self.orderInfo];
         if ([v respondsToSelector:@selector(configAddressInfo:)]) {
-            [v configAddressInfo:self.orderInfo.address_info];
+            [v configAddressInfo:self.orderInfo.addressInfo];
         }
         [self.contentView addSubview:v];
     }
@@ -167,36 +170,7 @@
     switch (actionType) {
         case WKDecorationOrderActionTypePay://支付
         {
-            
-        }
-            break;
-        case WKDecorationOrderActionTypeCancel://取消订单
-        {
-            [WKDecorationOrderAlertView alertWithDetail:@"确认取消订单?" titles:@[@"确定", @"取消"] bgColors:@[KCOLOR_MAIN, KCOLOR(@"98999A")] handler:^(NSInteger index) {
-                if (index == 0) {
-                    [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-                    [SQRequest post:KAPI_CANCELORDER param:@{@"orderNum": self.orderInfo.orderNum} success:^(id response) {
-                        if ([response[@"state"] isEqualToString:@"success"]) {
-                            //重新请求数据，更新状态
-                            [self sendReqeust];
-                            
-                            //通知列表，更新视图
-                            self.orderListInfo.status = 2;
-                            self.orderListInfo.paymentList.firstObject.status = 4;
-                            if (self.orderRefreshBlock) {
-                                self.orderRefreshBlock(self.orderListInfo);
-                            }
-                        }
-                        else {
-                            [YGNetService dissmissLoadingView];
-                            [YGAppTool showToastWithText:response[@"data"][@"msg"]];
-                        }
-                    } failure:^(NSError *error) {
-                        [YGNetService dissmissLoadingView];
-                        [YGAppTool showToastWithText:@"网络错误"];
-                    }];
-                }
-            }];
+            [WKAnimationAlert showAlertWithInsideView:self.bottomPayView animation:WKAlertAnimationTypeBottom canTouchDissmiss:YES];
         }
             break;
         case WKDecorationOrderActionTypeDelete://删除订单
@@ -233,7 +207,7 @@
             next.repairSuccess = ^(WKDecorationOrderDetailModel *orderInfo) {
                 [self.orderVM.orderCell configOrderInfo:orderInfo];
                 //通知前一个视图，更新数据
-                self.orderListInfo.paymentList[stage].status = 3;
+                self.orderListInfo.paymentList[stage].status = 2;
                 if (self.orderRefreshBlock) {
                     self.orderRefreshBlock(self.orderListInfo);
                 }
@@ -310,6 +284,15 @@
     }
     return _contentView;
 }
+
+- (UIView *)bottomPayView {
+    if (!_bottomPayView) {
+        _bottomPayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, 200)];
+        _bottomPayView.backgroundColor = KCOLOR_MAIN;
+    }
+    return _bottomPayView;
+}
+
 
 
 @end
