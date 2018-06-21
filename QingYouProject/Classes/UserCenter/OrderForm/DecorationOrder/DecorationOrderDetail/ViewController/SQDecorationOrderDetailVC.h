@@ -8,12 +8,12 @@
 
 #import "RootViewController.h"
 
-@class WKDecorationOrderDetailModel;
+@class WKDecorationOrderListModel;
 
 @interface SQDecorationOrderDetailVC : RootViewController
 
-@property (nonatomic, strong) WKDecorationOrderDetailModel *orderListInfo;
+@property (nonatomic, strong) WKDecorationOrderListModel *orderListInfo;
 
-@property (nonatomic, copy  ) void (^ orderRefreshBlock)(WKDecorationOrderDetailModel *orderInfo);
+@property (nonatomic, copy  ) void (^ orderRefreshBlock)(WKDecorationOrderListModel *orderInfo);
 
 @end

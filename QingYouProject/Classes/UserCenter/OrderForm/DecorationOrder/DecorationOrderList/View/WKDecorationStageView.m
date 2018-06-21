@@ -19,13 +19,13 @@
 
 @end
 
-@implementation WKDecorationStageView
-{
+@implementation WKDecorationStageView {
     CALayer *lineLayer;
     UILabel *stageTitleLabel;
     UILabel *stagePriceLab;
     SQDecorationCellPayButtonView *stageStateView;
 }
+
 - (instancetype)init {
     if (self == [super init]) {
         [self setupSubviews];
@@ -77,15 +77,22 @@
     lineLayer.frame = CGRectMake(0, 0, self.width, 1);
 }
 
-- (void)configOrderInfo:(WKDecorationOrderDetailModel *)orderInfo withStage:(NSInteger)stage withInDetail:(BOOL)inDetail {
+- (void)configOrderInfo:(WKDecorationOrderListModel *)orderInfo withStage:(NSInteger)stage withInDetail:(BOOL)inDetail {
+    
+    if (!orderInfo.paymentList.count) return;
+    
     WKDecorationStageModel *stageInfo = orderInfo.paymentList[stage];
     stageTitleLabel.text = [NSString stringWithFormat:@"%@：", stageInfo.name];
     stagePriceLab.text   = [NSString stringWithFormat:@"¥ %@", stageInfo.amount];
     [stageStateView configStageModel:stageInfo withStage:stage inDetail:inDetail];
     
+}
+
+- (void)configOrderDetailInfo:(WKDecorationOrderDetailModel *)orderDetailInfo withStage:(NSInteger)stage withInDetail:(BOOL)inDetail {
+    
     
     if (stage == 0 && inDetail) {//订金阶段&&在详情中
-        if (orderInfo.isInRefund) {//有过退款记录，可以查看退款详情
+        if (orderDetailInfo.orderInfo.refund) {//有过退款记录，可以查看退款详情
             self.refundDetailBtn.hidden = NO;
             _refundBtn.hidden = YES;
             [stageStateView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -96,7 +103,7 @@
             }];
             return;
         }
-        if (orderInfo.canRefund && orderInfo.status == 3) {//可以退款&&处于处理中状态
+        if (!orderDetailInfo.orderInfo.refund && orderDetailInfo.orderInfo.status == 3) {//可以退款&&处于处理中状态
             self.refundBtn.hidden = NO;
             _refundDetailBtn.hidden = YES;
             [stageStateView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -107,7 +114,6 @@
             }];
             return;
         }
-        
     }
     else {
         if (!_refundBtn || _refundBtn.hidden) {
@@ -122,7 +128,10 @@
             make.height.mas_equalTo(KSCAL(45));
         }];
     }
+    
+    [self configOrderInfo:orderDetailInfo.orderInfo withStage:stage withInDetail:inDetail];
 }
+
 
 - (void)click_refundDetailBtn {
     if ([self.delegate respondsToSelector:@selector(stageView:didClickActionType:forStage:)]) {

@@ -63,7 +63,7 @@
     _bgView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_bgView];
     
-    self.contractUrls = [self.orderInfo.contractImages componentsSeparatedByString:@";"];
+    self.contractUrls = [self.orderDetailInfo.orderInfo.contractImgUrl componentsSeparatedByString:@","];
 
     _tipLabel = [UILabel labelWithFont:KSCAL(32) textColor:kCOLOR_333 text:@"合同文件"];
     [_tipLabel setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];

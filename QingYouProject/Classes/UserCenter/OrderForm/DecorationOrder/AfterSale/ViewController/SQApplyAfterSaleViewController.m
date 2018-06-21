@@ -165,7 +165,7 @@
     
     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
     NSString *images = @"1.jpg,2.jpg";
-    NSDictionary *param = @{@"orderNum": self.orderInfo.orderNum,
+    NSDictionary *param = @{@"orderNum": self.orderInfo.orderInfo.orderNum,
                             @"apply_images": images,
                             @"desc": _afterSaleText
                             };

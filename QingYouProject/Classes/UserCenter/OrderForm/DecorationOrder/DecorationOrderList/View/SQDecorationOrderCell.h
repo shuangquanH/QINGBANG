@@ -33,7 +33,7 @@
 /** 是否在订单详情中(详情中可能需要展示退款) */
 @property (nonatomic, assign) BOOL isInOrderDetail;
 
-+ (CGFloat)cellHeightWithOrderInfo:(WKDecorationOrderDetailModel *)orderInfo;
++ (CGFloat)cellHeightWithOrderInfo:(WKDecorationOrderListModel *)orderInfo;
 
 @end
 

@@ -22,7 +22,7 @@
 
     @public
     WKDecorationStageView *paymentStageView;//订金阶段视图
-    WKDecorationOrderDetailModel *_orderInfo;//订单信息
+    WKDecorationOrderListModel *_orderListInfo;//订单列表信息
     CALayer *bottomLineLayer;
 
 }
@@ -115,22 +115,26 @@
 }
 
 #pragma mark - SQDecorationDetailViewProtocol
-- (void)configOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {
+- (void)configOrderInfo:(WKDecorationOrderListModel *)orderInfo {
     
-    _orderInfo = orderInfo;
+    _orderListInfo = orderInfo;
     
     [orderImage sd_setImageWithURL:[NSURL URLWithString:orderInfo.skuDetails.skuImgUrl] placeholderImage:nil];
     
     orderPrice.attributedText = orderInfo.skuDetails.skuProductPriceAttributeString;
     orderPrice.lineBreakMode = NSLineBreakByTruncatingTail;
 
-    orderTitle.attributedText = orderInfo.skuDetails.skuProductNameAttributeString;
+    orderTitle.attributedText = orderInfo.skuProductNameAttributeString;
     orderTitle.lineBreakMode = NSLineBreakByTruncatingTail;
     
     orderDesc.attributedText = orderInfo.skuDetails.skuProductDescAttributeString;
     orderDesc.lineBreakMode = NSLineBreakByTruncatingTail;
 
     [paymentStageView configOrderInfo:orderInfo withStage:0 withInDetail:self.isInOrderDetail];
+}
+
+- (void)configOrderDetailInfo:(WKDecorationOrderDetailModel *)orderDetailInfo {
+    [self configOrderInfo:orderDetailInfo.orderInfo];
 }
 
 - (CGSize)viewSize {
@@ -170,7 +174,7 @@
     [super setModel:model];
 }
 
-- (void)configOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {
+- (void)configOrderInfo:(WKDecorationOrderListModel *)orderInfo {
     
     [super configOrderInfo:orderInfo];
     
@@ -206,11 +210,11 @@
 }
 
 - (CGSize)viewSize {
-    CGFloat height = MAX(0, _orderInfo.paymentList.count-1) * KSCAL(88.0) + [super viewSize].height;
+    CGFloat height = MAX(0, _orderListInfo.paymentList.count-1) * KSCAL(88.0) + [super viewSize].height;
     return CGSizeMake(kScreenW, height);
 }
 
-+ (CGFloat)cellHeightWithOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {
++ (CGFloat)cellHeightWithOrderInfo:(WKDecorationOrderListModel *)orderInfo {
     return orderInfo.paymentList.count * KSCAL(88.0) + 3 * KSCAL(KSPACE) + KSCAL(180);
 }
 
@@ -274,8 +278,7 @@
         make.top.equalTo(dealingBgView.mas_centerY).offset(KSCAL(10));
     }];
 }
-
-- (void)configOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {
+- (void)configOrderInfo:(WKDecorationOrderListModel *)orderInfo {
     [super configOrderInfo:orderInfo];
     
     UIView *lastView;
@@ -301,11 +304,11 @@
     if ([self.delegate respondsToSelector:@selector(decorationCell:tapedOrderActionType:forStage:)]) {
         [self.delegate decorationCell:self
                  tapedOrderActionType:WKDecorationOrderActionTypeCallService
-                             forStage:1];
+                             forStage:0];
     }
 }
 
-+ (CGFloat)cellHeightWithOrderInfo:(WKDecorationOrderDetailModel *)orderInfo {
++ (CGFloat)cellHeightWithOrderInfo:(WKDecorationOrderListModel *)orderInfo {
     return orderInfo.paymentList.count * KSCAL(88.0) + 2 * KSCAL(KSPACE) + KSCAL(180) + KSCAL(175);
 }
 

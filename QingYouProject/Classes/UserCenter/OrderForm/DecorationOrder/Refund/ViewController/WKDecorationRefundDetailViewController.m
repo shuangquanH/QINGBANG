@@ -140,9 +140,10 @@
 }
 
 #pragma mark - request
+//退款详情
 - (void)sendRefundDetailReqeust {
     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-    [SQRequest post:KAPI_REFUNDDETAIL param:@{@"orderNum": self.orderInfo.orderNum  } success:^(id response) {
+    [SQRequest post:KAPI_REFUNDDETAIL param:@{@"orderNum": self.orderDetailInfo.orderInfo.orderNum  } success:^(id response) {
         if ([response[@"code"] longLongValue] == 0) {
             self.refundInfo = [WKDecorationRefundModel yy_modelWithJSON:response[@"data"][@"refund_info"]];
             [self setupSubviews];
@@ -156,10 +157,10 @@
         [YGNetService dissmissLoadingView];
     }];
 }
-
+//撤销退款
 - (void)click_cancelButton {
     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-    [SQRequest post:KAPI_CANCELREFUND param:@{@"orderNum": self.orderInfo.orderNum} success:^(id response) {
+    [SQRequest post:KAPI_CANCELREFUND param:@{@"orderNum": self.orderDetailInfo.orderInfo.orderNum} success:^(id response) {
         [YGNetService dissmissLoadingView];
         if ([response[@"code"] longLongValue] == 0) {
             [YGAppTool showToastWithText:@"撤销退款成功"];

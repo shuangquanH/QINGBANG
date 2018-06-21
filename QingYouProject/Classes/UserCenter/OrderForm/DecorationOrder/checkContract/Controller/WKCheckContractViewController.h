@@ -12,6 +12,6 @@
 
 @interface WKCheckContractViewController : RootViewController
 
-@property (nonatomic, strong) WKDecorationOrderDetailModel *orderInfo;
+@property (nonatomic, strong) WKDecorationOrderDetailModel *orderDetailInfo;
 
 @end
