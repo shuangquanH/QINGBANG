@@ -19,7 +19,8 @@
     UILabel *orderTitle;
     UILabel *orderDesc;
     UILabel *orderPrice;
-
+    UIView  *skuActionView;
+    
     @public
     WKDecorationStageView *paymentStageView;//订金阶段视图
     WKDecorationOrderListModel *_orderListInfo;//订单列表信息
@@ -134,7 +135,21 @@
 }
 
 - (void)configOrderDetailInfo:(WKDecorationOrderDetailModel *)orderDetailInfo {
-    [self configOrderInfo:orderDetailInfo.orderInfo];
+    _orderListInfo = orderDetailInfo.orderInfo;
+    
+    [orderImage sd_setImageWithURL:[NSURL URLWithString:orderDetailInfo.orderInfo.skuDetails.skuImgUrl] placeholderImage:nil];
+    
+    orderPrice.attributedText = orderDetailInfo.orderInfo.skuDetails.skuProductPriceAttributeString;
+    orderPrice.lineBreakMode = NSLineBreakByTruncatingTail;
+    
+    orderTitle.attributedText = orderDetailInfo.orderInfo.skuProductNameAttributeString;
+    orderTitle.lineBreakMode = NSLineBreakByTruncatingTail;
+    
+    orderDesc.attributedText = orderDetailInfo.orderInfo.skuDetails.skuProductDescAttributeString;
+    orderDesc.lineBreakMode = NSLineBreakByTruncatingTail;
+    
+    [paymentStageView configOrderDetailInfo:orderDetailInfo withStage:0 withInDetail:self.isInOrderDetail];
+
 }
 
 - (CGSize)viewSize {
@@ -248,18 +263,10 @@
     [connectServiceBtn sq_setImagePosition:SQImagePositionLeft spacing:5];
     [connectServiceBtn addTarget:self action:@selector(click_connectService) forControlEvents:UIControlEventTouchUpInside];
     [dealingBgView addSubview:connectServiceBtn];
-    
-    UIView *lastView;
-    if (stageViewArray.count) {
-        lastView = stageViewArray.lastObject;
-    }
-    else {
-        lastView = paymentStageView;
-    }
-    
+ 
     [dealingBgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(paymentStageView);
-        make.top.equalTo(lastView.mas_bottom);
+        make.top.equalTo(paymentStageView.mas_bottom);
         make.height.mas_equalTo(KSCAL(175));
     }];
     
@@ -278,23 +285,7 @@
         make.top.equalTo(dealingBgView.mas_centerY).offset(KSCAL(10));
     }];
 }
-- (void)configOrderInfo:(WKDecorationOrderListModel *)orderInfo {
-    [super configOrderInfo:orderInfo];
-    
-    UIView *lastView;
-    if (stageViewArray.count) {
-        lastView = stageViewArray.lastObject;
-    }
-    else {
-        lastView = paymentStageView;
-    }
-    
-    [dealingBgView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(paymentStageView);
-        make.top.equalTo(lastView.mas_bottom);
-        make.height.mas_equalTo(KSCAL(175));
-    }];
-}
+
 
 - (CGSize)viewSize {
     return CGSizeMake(kScreenW, [super viewSize].height + KSCAL(155));

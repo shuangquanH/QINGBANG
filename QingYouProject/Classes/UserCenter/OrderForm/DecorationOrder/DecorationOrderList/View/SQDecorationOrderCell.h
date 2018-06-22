@@ -44,7 +44,7 @@
 @end
 
 /** 受理中状态cell */
-@interface WKDecorationDealingOrderCell: WKDecorationOrderMutableStageCell
+@interface WKDecorationDealingOrderCell: SQDecorationOrderCell
 
 @end
 

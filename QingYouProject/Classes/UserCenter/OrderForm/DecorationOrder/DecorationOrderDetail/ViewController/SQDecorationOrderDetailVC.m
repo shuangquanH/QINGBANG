@@ -19,6 +19,8 @@
 
 #import "WKDecorationDetailViewModel.h"
 
+#import <Pingpp.h>
+
 @interface SQDecorationOrderDetailVC () <WKDecorationDetailViewModelDelegate>
 
 @property (nonatomic, strong) UIScrollView  *contentScrollView;
@@ -30,6 +32,8 @@
 @property (nonatomic, strong) WKDecorationDetailViewModel  *orderVM;
 
 @property (nonatomic, strong) WKDecorationOrderDetailModel *orderDetailInfo;
+
+@property (nonatomic, strong) NSDictionary *paymentDict;
 
 @end
 
@@ -113,6 +117,19 @@
     }
 }
 
+//支付回调
+- (void)pingPPPayWithResponde:(NSDictionary *)response {
+    [Pingpp createPayment:response[@"charge"] viewController:self appURLScheme:@"qingyouhui" withCompletion:^(NSString *result, PingppError *error){
+        if ([result isEqualToString:@"success"]) {
+            
+        } else {
+            if (error.code == PingppErrWxNotInstalled) {
+                [YGAppTool showToastWithText:@"请安装微信客户端"];
+            }
+        }
+    }];
+}
+
 
 #pragma mark - SQDecorationDetailViewModelDelegate
 - (void)serviceView:(SQDecorationDetailServerView *)serviceView didClickServiceType:(NSInteger)serviceType {
@@ -158,6 +175,12 @@
 
 - (void)orderCell:(SQDecorationOrderCell *)orderCell didClickAction:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage {
     
+    
+    if (self.orderDetailInfo.orderInfo.paymentList.count <= stage) {
+        NSLog(@"不存在阶段款--%zd", stage);
+        return;
+    }
+    
     WKDecorationStageModel *stageInfo = self.orderDetailInfo.orderInfo.paymentList[stage];
     if (stageInfo.status == 0) {//当前状态还没有被激活
         if (stage >= 1) {
@@ -180,7 +203,7 @@
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"确认删除订单" preferredStyle:UIAlertControllerStyleAlert];
             [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-                [SQRequest post:KAPI_DELETEORDER param:@{@"orderNum": self.orderDetailInfo.orderInfo.orderNum} success:^(id response) {
+                [SQRequest postCustomApi:[NSString stringWithFormat:@"http://192.168.2.27:8089/%@", KAPI_DELETEORDER] param:@{@"orderNum": self.orderDetailInfo.orderInfo.orderNum} success:^(id response) {
                     [YGNetService dissmissLoadingView];
                     if ([response[@"code"] longLongValue] == 0) {
                         if (self.orderRefreshBlock) {//通知列表，更新视图
@@ -195,7 +218,7 @@
                 } failure:^(NSError *error) {
                     [YGNetService dissmissLoadingView];
                     [YGAppTool showToastWithText:@"网络错误"];
-                }];
+                } showLoadingView:NO];
             }]];
             [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil]];
             [self presentViewController:alert animated:YES completion:nil];
@@ -289,13 +312,20 @@
 - (WKDecorationOrderPayAlertView *)payView {
     if (!_payView) {
         _payView = [[WKDecorationOrderPayAlertView alloc] initWithFrame:CGRectZero];
+        @weakify(self)
         _payView.paymentAction = ^(WKDecorationPayType payType) {
-            
+            @strongify(self)
+            NSDictionary *param;
+            if (!param) return;
+            [SQRequest postCustomApi:@"" param:param success:^(id response) {
+                NSLog(@"%@", response);
+                [self pingPPPayWithResponde:response[@"data"]];
+            } failure:^(NSError *error) {
+                NSLog(@"dd");
+            } showLoadingView:YES];
         };
     }
     return _payView;
 }
-
-
 
 @end

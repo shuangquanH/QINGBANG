@@ -37,7 +37,8 @@
         completed(nil, nil);
         return;
     }
-    [SQRequest post:KAPI_DECORATIONORDERDETAIL param:@{@"orderNum": orderNum} success:^(id response) {
+    
+    [SQRequest postCustomApi:[NSString stringWithFormat:@"http://192.168.2.27:8089/%@", KAPI_DECORATIONORDERDETAIL] param:@{@"orderNum": orderNum} success:^(id response) {
         if ([response[@"code"] longLongValue] == 0) {
            WKDecorationOrderDetailModel *order = [WKDecorationOrderDetailModel yy_modelWithJSON:response[@"data"]];
             [self setupByOrderInfo:order];
@@ -56,7 +57,7 @@
         else {
             completed(nil, [NSError errorWithDomain:@"网络错误，请稍后重试" code:reponse.statusCode userInfo:nil]);
         }
-    }];
+    } showLoadingView:NO];
   
 }
 
@@ -143,14 +144,24 @@
         };
     }
 
-    //组分割视图
-    SQDecorationDetailSectionView *section_2 = [SQDecorationDetailSectionView new];
-    [tmp addObject:section_2];
-    
-    //联系客服
-    SQDecorationDetailServerView *serverView = [[SQDecorationDetailServerView alloc] initWithFrame:CGRectZero];
-    [tmp addObject:serverView];
-    
+    if (orderInfo.orderInfo.status != 3) {
+        //组分割视图
+        SQDecorationDetailSectionView *section_2 = [SQDecorationDetailSectionView new];
+        [tmp addObject:section_2];
+        
+        //联系客服
+        SQDecorationDetailServerView *serverView = [[SQDecorationDetailServerView alloc] initWithFrame:CGRectZero];
+        [tmp addObject:serverView];
+        
+        @weakify(self)
+        @weakify(serverView)
+        serverView.serviceBlock = ^(NSInteger tag) {
+            @strongify(self)
+            @strongify(serverView)
+            [self.orderDetailDelegate serviceView:serverView didClickServiceType:tag];
+        };
+    }
+  
     //组分割视图
     SQDecorationDetailSectionView *section_3 = [SQDecorationDetailSectionView new];
     [tmp addObject:section_3];
@@ -160,14 +171,6 @@
     [tmp addObject:numberView];
     
     _subviewArray = [tmp copy];
-    
-    @weakify(self)
-    @weakify(serverView)
-    serverView.serviceBlock = ^(NSInteger tag) {
-        @strongify(self)
-        @strongify(serverView)
-        [self.orderDetailDelegate serviceView:serverView didClickServiceType:tag];
-    };
 
 }
 

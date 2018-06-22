@@ -16,8 +16,7 @@
     NSMutableDictionary *muParam = [NSMutableDictionary dictionaryWithDictionary:param];
     
     if ([YGSingleton sharedManager].user.userId) {
-        [muParam setValue:@"8af0c2c9546e4a618dca3f9e80ef75bb" forKey:@"userId"];
-//        [muParam setValue:[YGSingleton sharedManager].user.userId forKey:@"userid"];
+        [muParam setValue:[YGSingleton sharedManager].user.userId forKey:@"userid"];
     }
     if ([[YGSingleton sharedManager].user.isInGarden isEqualToString:@"yes"]) {
         [muParam setValue:@"yes" forKey:@"isInner"];
@@ -71,7 +70,8 @@
     NSMutableDictionary *muParam = [NSMutableDictionary dictionaryWithDictionary:param];
     
     if ([YGSingleton sharedManager].user.userId) {
-        [muParam setValue:[YGSingleton sharedManager].user.userId forKey:@"userid"];
+//        [muParam setValue:[YGSingleton sharedManager].user.userId forKey:@"userid"];
+        [muParam setValue:@"0c2715a0701c41b2a38469f055d748bd" forKey:@"userId"];
     }
     if ([[YGSingleton sharedManager].user.isInGarden isEqualToString:@"yes"]) {
         [muParam setValue:@"yes" forKey:@"isInner"];

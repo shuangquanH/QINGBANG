@@ -17,6 +17,8 @@
 #import "WKDecorationOrderAlertView.h"
 #import "WKDecorationOrderPayAlertView.h"
 
+#import <Pingpp.h>
+
 @interface SQDecorationOrderVC () <UITableViewDataSource, UITableViewDelegate, decorationOrderCellDelegate>
 
 @property (nonatomic, strong) UITableView       *tableView;
@@ -28,6 +30,8 @@
 @property (nonatomic, strong) NSMutableArray<WKDecorationOrderListModel *> *orderList;
 
 @property (nonatomic, strong) WKDecorationOrderPayAlertView *payView;
+//支付信息记录
+@property (nonatomic, strong) NSDictionary *payStageDict;
 
 @end
 
@@ -54,7 +58,7 @@
         make.edges.mas_equalTo(0);
     }];
 }
-
+//刷新列表
 - (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
 
     NSInteger tmpPage = self.page;
@@ -65,7 +69,7 @@
         tmpPage += 1;
     }
     
-    [SQRequest post:KAPI_MYDECORATION_ORDERLIST param:@{@"page": @(tmpPage), @"pageSize": @(self.pageSize)} success:^(id response) {
+    [SQRequest postCustomApi:[NSString stringWithFormat:@"http://192.168.2.27:8089/%@", KAPI_MYDECORATION_ORDERLIST] param:@{@"page": @(tmpPage), @"pageSize": @(self.pageSize)} success:^(id response) {
         if ([response[@"code"] longLongValue] == 0) {
             NSArray<WKDecorationOrderListModel *> *tmp = [NSArray yy_modelArrayWithClass:[WKDecorationOrderListModel class] json:response[@"data"][@"orderList"]];
             if (tmp.count) {
@@ -91,18 +95,63 @@
     } failure:^(NSError *error) {
         NSError *underlyingError = error.userInfo[NSUnderlyingErrorKey];
         NSHTTPURLResponse *reponse = underlyingError.userInfo[AFNetworkingOperationFailingURLResponseErrorKey];
-        if (reponse && reponse.statusCode >= 500) {
-            [YGAppTool showToastWithText:@"服务器错误"];
-        }
-        else {
+        if (!reponse || reponse.statusCode == 408) {
             [YGAppTool showToastWithText:@"网络错误"];
         }
-
+        else {
+            [YGAppTool showToastWithText:@"服务器错误"];
+        }
+    
         if (headerAction) {
             [self.tableView.mj_header endRefreshing];
         }
         else {
             [self.tableView.mj_footer endRefreshing];
+        }
+    } showLoadingView:NO];
+}
+
+- (void)sendGetSigleOrderInfoByOrderNumber:(NSString *)orderNum complete:(void(^)(WKDecorationOrderListModel *order))complete {
+    [SQRequest postCustomApi:[NSString stringWithFormat:@"http://192.168.2.27:8089/%@", KAPI_DECORATIONORDERDETAIL] param:@{@"orderNum": orderNum} success:^(id response) {
+        if ([response[@"code"] longLongValue] == 0) {
+            WKDecorationOrderDetailModel *order = [WKDecorationOrderDetailModel yy_modelWithJSON:response[@"data"]];
+            complete(order.orderInfo);
+        }
+        else {
+            complete(nil);
+        }
+        NSLog(@"订单详情：%@", response);
+    } failure:^(NSError *error) {
+        complete(nil);
+    } showLoadingView:NO];
+}
+
+//支付回调
+- (void)pingPPPayWithResponde:(NSDictionary *)response {
+    [Pingpp createPayment:response[@"charge"] viewController:self appURLScheme:@"qingyouhui" withCompletion:^(NSString *result, PingppError *error){
+        if ([result isEqualToString:@"success"]) {
+            
+            //支付成功，重新获取当前订单的状态数据，替换原始订单
+            WKDecorationOrderListModel *order = self.payStageDict[@"orderInfo"];
+            @weakify(self)
+            [self sendGetSigleOrderInfoByOrderNumber:order.orderNum complete:^(WKDecorationOrderListModel *order) {
+                @strongify(self)
+                if (order) {
+                    NSIndexPath *indexPath = self.payStageDict[@"indexPath"];
+                    [self.orderList replaceObjectAtIndex:indexPath.section withObject:order];
+                    [self.tableView reloadData];
+                }
+                else {
+                    [self.tableView.mj_header beginRefreshing];
+                }
+                [YGNetService dissmissLoadingView];
+                [YGAppTool showToastWithText:@"支付成功"];
+            }];
+        } else {
+            [YGNetService dissmissLoadingView];
+            if (error.code == PingppErrWxNotInstalled) {
+                [YGAppTool showToastWithText:@"请安装微信客户端"];
+            }
         }
     }];
 }
@@ -195,6 +244,10 @@
     
     switch (actionType) {
         case WKDecorationOrderActionTypePay: {//支付
+            self.payStageDict = @{@"indexPath": targetIndex,
+                                  @"orderInfo": orderInfo,
+                                  @"stageIndex": @(stage)
+                                  };
             [self.payView showPaymentViewInSuperView:nil];
         }
             break;
@@ -202,7 +255,7 @@
             [WKDecorationOrderAlertView alertWithDetail:@"确认取消订单?" titles:@[@"确定", @"取消"] bgColors:@[KCOLOR_MAIN, KCOLOR(@"98999A")] handler:^(NSInteger index) {
                 if (index == 0) {
                     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-                    [SQRequest post:KAPI_CANCELORDER param:@{@"orderNum": orderInfo.orderNum} success:^(id response) {
+                    [SQRequest postCustomApi:[NSString stringWithFormat:@"http://192.168.2.27:8089/%@", KAPI_CANCELORDER] param:@{@"orderNum": orderInfo.orderNum} success:^(id response) {
                         [YGNetService dissmissLoadingView];
                         if ([response[@"code"] longLongValue] == 0) {
                             //直接修改本地模型->已关闭订单，阶段已关闭状态
@@ -224,7 +277,7 @@
                     } failure:^(NSError *error) {
                         [YGNetService dissmissLoadingView];
                         [YGAppTool showToastWithText:@"网络错误"];
-                    }];
+                    } showLoadingView:NO];
                 }
             }];
         }
@@ -233,7 +286,7 @@
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"确认删除订单" preferredStyle:UIAlertControllerStyleAlert];
             [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-                [SQRequest post:KAPI_DELETEORDER param:@{@"orderNum": orderInfo.orderNum} success:^(id response) {
+                [SQRequest postCustomApi:[NSString stringWithFormat:@"http://192.168.2.27:8089/%@", KAPI_DELETEORDER] param:@{@"orderNum": orderInfo.orderNum} success:^(id response) {
                     [YGNetService dissmissLoadingView];
                     if ([response[@"code"] longLongValue] == 0) {
                         [self.orderList removeObjectAtIndex:targetIndex.section];
@@ -246,7 +299,7 @@
                 } failure:^(NSError *error) {
                     [YGNetService dissmissLoadingView];
                     [YGAppTool showToastWithText:@"网络错误"];
-                }];
+                } showLoadingView:NO];
             }]];
             [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil]];
             [self presentViewController:alert animated:YES completion:nil];
@@ -297,8 +350,21 @@
 - (WKDecorationOrderPayAlertView *)payView {
     if (!_payView) {
         _payView = [[WKDecorationOrderPayAlertView alloc] initWithFrame:CGRectZero];
+        @weakify(self)
         _payView.paymentAction = ^(WKDecorationPayType payType) {
-            
+            @strongify(self)
+            WKDecorationOrderListModel *order = self.payStageDict[@"orderInfo"];
+            NSInteger stageIndex = [self.payStageDict[@"stageIndex"] integerValue];
+            NSDictionary *param = @{@"paymentId": order.paymentList[stageIndex].ID,
+                                    @"payType" : (payType == WKDecorationPayTypeAliPay ? @"alipay" : @"wxpay")
+                                    };
+            [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
+            [SQRequest postCustomApi:@"http://192.168.2.27:8089/pingpp/pay" param:param success:^(id response) {
+                NSLog(@"%@", response);
+                [self pingPPPayWithResponde:response[@"data"]];
+            } failure:^(NSError *error) {
+                [YGNetService dissmissLoadingView];
+            } showLoadingView:NO];
         };
     }
     return _payView;
