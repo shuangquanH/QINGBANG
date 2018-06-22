@@ -4,7 +4,7 @@
 //
 //  Created by qwuser on 2018/5/18.
 //  Copyright © 2018年 ccyouge. All rights reserved.
-//
+//  详情
 
 #import "SQDecorationOrderDetailVC.h"
 #import "SQTicketApplyViewController.h"
