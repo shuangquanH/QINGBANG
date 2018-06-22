@@ -89,7 +89,9 @@ typedef NS_ENUM(NSInteger, SQPlayerState) {
 /***初始化player*/
 - (void)initializeThePlayer{
     //每次开始播放时都设置屏幕为竖直方向
-    [self backToNormalWindowPlayer];
+    if (self.isFullScreen) {
+        [self backToNormalWindowPlayer];
+    }
 }
 - (void)dealloc{
     self.playerItem = nil;
@@ -236,9 +238,9 @@ typedef NS_ENUM(NSInteger, SQPlayerState) {
  单击控制显示层显示和隐藏事件
  */
 - (void)tapAction:(UITapGestureRecognizer *)gesture{
-//    if (gesture.state == UIGestureRecognizerStateRecognized) {
+    if (gesture.state == UIGestureRecognizerStateRecognized) {
         self.isMaskShowing ? ([self hideControlView]) : ([self animateShow]);
-//    }
+    }
 }
 /**
  *  双击控制播放和暂停手势
@@ -717,10 +719,10 @@ typedef NS_ENUM(NSInteger, SQPlayerState) {
     self.playDidEnd   = NO;
     [self addNotifications];
     
-    
     // 根据屏幕的方向设置相关UI
-    //    [self onDeviceOrientationChange];
-    
+    if (self.isFullScreen) {
+        [self backToNormalWindowPlayer];
+    }
     self.isPauseByUser = YES;
     self.controlView.playeBtn.hidden = NO;
     [self.controlView hideControlView];
@@ -829,7 +831,6 @@ typedef NS_ENUM(NSInteger, SQPlayerState) {
     UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext(); return img;
 }
-
 
 
 

@@ -344,6 +344,8 @@
 
 #define KAPI_DECORHOME      @"getFitmentTypeList"//装修首页
 
+#define KAPI_CREATORDER     @"order/createOrder"//创建订单
+
 /********************************************* 新版本新增个人中心接口  ********************************************/
 #define KAPI_MYDECORATION_ORDERLIST    @"order/getOrderList"//我的装修订单列表
 #define KAPI_DECORATIONORDERDETAIL     @"order/getOrderInfo"//装修订单详情

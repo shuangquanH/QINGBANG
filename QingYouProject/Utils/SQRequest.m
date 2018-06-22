@@ -11,8 +11,14 @@
 
 @implementation SQRequest
 
++ (void)setApiAddress:(NSString *)apiAddress {
+    [YGSingleton sharedManager].apiAddress = apiAddress;
+}
+
+
 + (void)post:(NSString  *)api param:(NSDictionary   *)param success:(void(^)(id response))success failure:(void(^)(NSError *error))failure {
-    NSString    *apiString = [NSString stringWithFormat:@"%@%@", KAPI_ADDRESS, api];
+    NSString    *apiAddress = (YGSingletonMarco.apiAddress)?YGSingletonMarco.apiAddress:KAPI_ADDRESS;
+    NSString    *apiString = [NSString stringWithFormat:@"%@%@", apiAddress, api];
     NSMutableDictionary *muParam = [NSMutableDictionary dictionaryWithDictionary:param];
     
     if ([YGSingleton sharedManager].user.userId) {

@@ -16,6 +16,8 @@
 //token
 @property (nonatomic,strong) NSString * deviceToken;
 
+@property (nonatomic, copy) NSString       *apiAddress;
+
 //当前user
 @property (nonatomic,strong) YGUser * user;
 

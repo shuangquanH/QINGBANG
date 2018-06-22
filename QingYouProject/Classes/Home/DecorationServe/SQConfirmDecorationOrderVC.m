@@ -133,14 +133,14 @@
     self.payType = type;
 }
 - (void)confirmButtonAction {
-    NSDictionary    *param = @{@"addressId":@"20", @"payType":@"alipay", @"remarks":@"beizhu", @"skuId":self.skuId, @"userId":@"0c2715a0701c41b2a38469f055d748bd"};
-    [SQRequest postCustomApi:@"http://192.168.2.27:8089/order/createOrder" param:param success:^(id response) {
-        NSLog(@"%@", response);
-        [self pingPPPayWithResponde:response[@"data"]];
+    NSDictionary    *param = @{@"addressId":@"20", @"payType":@"alipay", @"remarks":@"beizhu", @"skuId":self.skuId};
+    [SQRequest setApiAddress:KAPI_ADDRESS_TEST_MH];
+    [SQRequest post:KAPI_CREATORDER param:param success:^(id response) {
         
     } failure:^(NSError *error) {
-        NSLog(@"dd");
-    } showLoadingView:YES];
+        
+    }];
+    [SQRequest setApiAddress:nil];
     
     
 //    if (self.payType) {
@@ -157,8 +157,9 @@
 - (void)pingPPPayWithResponde:(NSDictionary *)response {
     [Pingpp createPayment:response[@"charge"] viewController:self appURLScheme:@"qingyouhui" withCompletion:^(NSString *result, PingppError *error){
         if ([result isEqualToString:@"success"]) {
-            
+            NSLog(@"支付成功!");
         } else {
+            NSLog(@"支付失败!");
             if (error.code == PingppErrWxNotInstalled) {
                 [YGAppTool showToastWithText:@"请安装微信客户端"];
             }

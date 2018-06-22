@@ -697,6 +697,7 @@
 		E92ABB6F20DA08E8003B374D /* SQPlayer.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E92ABB6B20DA08E8003B374D /* SQPlayer.bundle */; };
 		E92ABB7020DA08E8003B374D /* SQPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E92ABB6D20DA08E8003B374D /* SQPlayerView.m */; };
 		E92ABB7120DA08E8003B374D /* SQPlayerControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = E92ABB6E20DA08E8003B374D /* SQPlayerControlView.m */; };
+		E92ABB7420DBB1DD003B374D /* SQSaveWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E92ABB7320DBB1DD003B374D /* SQSaveWebImage.m */; };
 		E94137A0209C3891003F3649 /* AppStartManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E941379F209C3891003F3649 /* AppStartManager.m */; };
 		E94137A7209C4295003F3649 /* SQLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E94137A6209C4295003F3649 /* SQLocationManager.m */; };
 		E99DE1C020AC4FAF009CEF88 /* SQBaseHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1AE20AC4FAF009CEF88 /* SQBaseHeaderFooterView.m */; };
@@ -2078,6 +2079,8 @@
 		E92ABB6C20DA08E8003B374D /* SQPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQPlayer.h; sourceTree = "<group>"; };
 		E92ABB6D20DA08E8003B374D /* SQPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQPlayerView.m; sourceTree = "<group>"; };
 		E92ABB6E20DA08E8003B374D /* SQPlayerControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQPlayerControlView.m; sourceTree = "<group>"; };
+		E92ABB7220DBB1DD003B374D /* SQSaveWebImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQSaveWebImage.h; sourceTree = "<group>"; };
+		E92ABB7320DBB1DD003B374D /* SQSaveWebImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQSaveWebImage.m; sourceTree = "<group>"; };
 		E941379E209C3891003F3649 /* AppStartManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppStartManager.h; sourceTree = "<group>"; };
 		E941379F209C3891003F3649 /* AppStartManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppStartManager.m; sourceTree = "<group>"; };
 		E94137A5209C4295003F3649 /* SQLocationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQLocationManager.h; sourceTree = "<group>"; };
@@ -5355,6 +5358,8 @@
 			children = (
 				E94137A5209C4295003F3649 /* SQLocationManager.h */,
 				E94137A6209C4295003F3649 /* SQLocationManager.m */,
+				E92ABB7220DBB1DD003B374D /* SQSaveWebImage.h */,
+				E92ABB7320DBB1DD003B374D /* SQSaveWebImage.m */,
 			);
 			path = SQTools;
 			sourceTree = "<group>";
@@ -6387,6 +6392,7 @@
 				E94137A7209C4295003F3649 /* SQLocationManager.m in Sources */,
 				18C159941FC8208A0010ACD3 /* YGCityPikerView1.m in Sources */,
 				18C159281FC820890010ACD3 /* OrderDeatilBottomPictureView.m in Sources */,
+				E92ABB7420DBB1DD003B374D /* SQSaveWebImage.m in Sources */,
 				E2E5B1831FB0675A00205F70 /* YYAnimatedImageView.m in Sources */,
 				18C15A4F1FC8208B0010ACD3 /* FundSupportModel.m in Sources */,
 				E2E5B3861FB0675B00205F70 /* UIView+LG.m in Sources */,

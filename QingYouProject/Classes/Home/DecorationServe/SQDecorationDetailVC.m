@@ -12,6 +12,8 @@
 #import "SQConfirmDecorationOrderVC.h"
 #import "SQLinkJSWebView.h"
 
+#import "SQSaveWebImage.h"
+
 
 @interface SQDecorationDetailVC () <YGSegmentViewDelegate, decorationDetailBottomViewDelegate, UIScrollViewDelegate>
 
@@ -40,6 +42,7 @@
     self.navigationItem.titleView = self.seg;
     [self.view addSubview:self.bottomView];
     [self.view addSubview:self.webView];
+    
 }
 
 
@@ -142,7 +145,7 @@
         _webView.scrollView.delegate = self;
         [_webView loadWebWithUrl:self.styleModel.linkurl];
         
-        NSArray *regisArr = @[@"GETHTMLHEIGHTFORIOS", @"CHOOSESKUPARAMFORIOS"];
+        NSArray *regisArr = @[@"GETHTMLHEIGHTFORIOS", @"CHOOSESKUPARAMFORIOS", @"DOWNLOADIMAGEFORIOS"];
         
         WeakSelf(weakSelf);
         [_webView registJSFunctionWithName:regisArr back:^(NSString *methodName, id  _Nullable paramValue) {
@@ -152,6 +155,8 @@
             } else if ([methodName isEqualToString:@"GETHTMLHEIGHTFORIOS"]) {
                 weakSelf.productInfoHeight = [paramValue[@"productInfoHeight"] floatValue];
                 weakSelf.priceSheetHeight = [paramValue[@"priceSheetHeight"] floatValue];
+            } else if ([methodName isEqualToString:@"DOWNLOADIMAGEFORIOS"]) {
+                [SQSaveWebImage saveImageWithUrl:paramValue];
             }
         }];
     }
