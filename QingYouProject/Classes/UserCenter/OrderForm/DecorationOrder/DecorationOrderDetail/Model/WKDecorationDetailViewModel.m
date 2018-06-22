@@ -38,7 +38,7 @@
         return;
     }
     
-    [SQRequest postCustomApi:[NSString stringWithFormat:@"http://192.168.2.27:8089/%@", KAPI_DECORATIONORDERDETAIL] param:@{@"orderNum": orderNum} success:^(id response) {
+    [SQRequest post:KAPI_DECORATIONORDERDETAIL param:@{@"orderNum": orderNum} success:^(id response) {
         if ([response[@"code"] longLongValue] == 0) {
            WKDecorationOrderDetailModel *order = [WKDecorationOrderDetailModel yy_modelWithJSON:response[@"data"]];
             [self setupByOrderInfo:order];
@@ -57,7 +57,7 @@
         else {
             completed(nil, [NSError errorWithDomain:@"网络错误，请稍后重试" code:reponse.statusCode userInfo:nil]);
         }
-    } showLoadingView:NO];
+    }];
   
 }
 

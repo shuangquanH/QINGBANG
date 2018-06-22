@@ -203,7 +203,7 @@
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"确认删除订单" preferredStyle:UIAlertControllerStyleAlert];
             [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-                [SQRequest postCustomApi:[NSString stringWithFormat:@"http://192.168.2.27:8089/%@", KAPI_DELETEORDER] param:@{@"orderNum": self.orderDetailInfo.orderInfo.orderNum} success:^(id response) {
+                [SQRequest post:KAPI_DELETEORDER param:@{@"orderNum": self.orderDetailInfo.orderInfo.orderNum} success:^(id response) {
                     [YGNetService dissmissLoadingView];
                     if ([response[@"code"] longLongValue] == 0) {
                         if (self.orderRefreshBlock) {//通知列表，更新视图
@@ -218,7 +218,7 @@
                 } failure:^(NSError *error) {
                     [YGNetService dissmissLoadingView];
                     [YGAppTool showToastWithText:@"网络错误"];
-                } showLoadingView:NO];
+                }];
             }]];
             [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil]];
             [self presentViewController:alert animated:YES completion:nil];
@@ -317,12 +317,12 @@
             @strongify(self)
             NSDictionary *param;
             if (!param) return;
-            [SQRequest postCustomApi:@"" param:param success:^(id response) {
+            [SQRequest post:@"" param:param success:^(id response) {
                 NSLog(@"%@", response);
                 [self pingPPPayWithResponde:response[@"data"]];
             } failure:^(NSError *error) {
                 NSLog(@"dd");
-            } showLoadingView:YES];
+            }];
         };
     }
     return _payView;
