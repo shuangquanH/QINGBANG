@@ -43,7 +43,6 @@
     [self.view addSubview:self.bottomView];
     [self.view addSubview:self.webView];
     
-    [SQSaveWebImage saveImageWithUrl:@"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1529586573845&di=238d6bb8d20b0366cb0224468c036b4b&imgtype=0&src=http%3A%2F%2Fd.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fb64543a98226cffc9d56fb38b5014a90f603ea38.jpg"];
 }
 
 
@@ -146,7 +145,7 @@
         _webView.scrollView.delegate = self;
         [_webView loadWebWithUrl:self.styleModel.linkurl];
         
-        NSArray *regisArr = @[@"GETHTMLHEIGHTFORIOS", @"CHOOSESKUPARAMFORIOS"];
+        NSArray *regisArr = @[@"GETHTMLHEIGHTFORIOS", @"CHOOSESKUPARAMFORIOS", @"DOWNLOADIMAGEFORIOS"];
         
         WeakSelf(weakSelf);
         [_webView registJSFunctionWithName:regisArr back:^(NSString *methodName, id  _Nullable paramValue) {
@@ -156,6 +155,8 @@
             } else if ([methodName isEqualToString:@"GETHTMLHEIGHTFORIOS"]) {
                 weakSelf.productInfoHeight = [paramValue[@"productInfoHeight"] floatValue];
                 weakSelf.priceSheetHeight = [paramValue[@"priceSheetHeight"] floatValue];
+            } else if ([methodName isEqualToString:@"DOWNLOADIMAGEFORIOS"]) {
+                [SQSaveWebImage saveImageWithUrl:paramValue];
             }
         }];
     }
