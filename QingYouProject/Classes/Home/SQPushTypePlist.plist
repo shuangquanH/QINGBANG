@@ -220,5 +220,15 @@
 		<key>needLogin</key>
 		<true/>
 	</dict>
+	<dict>
+		<key>targetTpye</key>
+		<string>200</string>
+		<key>targetController</key>
+		<string>EvaluateViewController</string>
+		<key>controllerTitle</key>
+		<string>用户反馈</string>
+		<key>needLogin</key>
+		<true/>
+	</dict>
 </array>
 </plist>

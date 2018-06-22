@@ -104,7 +104,7 @@
     //获取首页收据
     [SQRequest setApiAddress:KAPI_ADDRESS_TEST_HJK];
     [SQRequest post:KAPI_INDEXPAGE param:nil success:^(id response) {
-        self.model = [SQHomeIndexPageModel yy_modelWithDictionary:response];
+        self.model = [SQHomeIndexPageModel yy_modelWithDictionary:response[@"data"]];
         self.headerView.model = self.model;
         //获取定制功能数据
         [SQRequest post:KAPI_CUSBANN param:nil  success:^(id response) {

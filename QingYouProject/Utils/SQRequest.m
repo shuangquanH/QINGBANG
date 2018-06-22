@@ -22,7 +22,7 @@
     NSMutableDictionary *muParam = [NSMutableDictionary dictionaryWithDictionary:param];
     
     if ([YGSingleton sharedManager].user.userId) {
-        [muParam setValue:[YGSingleton sharedManager].user.userId forKey:@"userid"];
+        [muParam setValue:[YGSingleton sharedManager].user.userId forKey:@"userId"];
     }
     if ([[YGSingleton sharedManager].user.isInGarden isEqualToString:@"yes"]) {
         [muParam setValue:@"1" forKey:@"isInner"];
