@@ -69,6 +69,17 @@
     }];
 }
 
+
+
+
+
+
+
+
+
+
+
+
 + (void)postCustomApi:(NSString  *)api param:(NSDictionary   *)param success:(void(^)(id response))success failure:(void(^)(NSError *error))failure showLoadingView:(BOOL)show {
     if (show) {
         [[YGConnectionService sharedConnectionService] showLoadingViewWithSuperView:YGAppDelegate.window];

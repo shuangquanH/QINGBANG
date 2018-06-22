@@ -61,19 +61,15 @@
 }
 
 - (void)loadLaunches {
+    [KNOTI_CENTER addObserver:self selector:@selector(requestData) name:kNOTI_DIDICHOOSEINNER object:nil];
     if (![YGUserDefaults objectForKey:USERDEF_FIRSTOPENAPP]) {
-        [KNOTI_CENTER addObserver:self selector:@selector(lastPage) name:KNOTI_LASTLAUNCHPAGE object:nil];
         NSMutableArray *imageNameArray = [NSMutableArray array];
         for (int i = 0; i<4; i++) {
-            [imageNameArray addObject:[NSString stringWithFormat:@"%d_%.0f", i+1, YGScreenHeight]];
+            [imageNameArray addObject:[NSString stringWithFormat:@"guide_bg%d", i+1]];
         }
         [YGStartPageView showWithLocalPhotoNamesArray:imageNameArray];
         [self isLoginWithParam:[SQChooseGardenVC new]];
     }
-    [KNOTI_CENTER addObserver:self selector:@selector(requestData) name:kNOTI_DIDICHOOSEINNER object:nil];
-}
-- (void)lastPage {
-    [YGUserDefaults setObject:@"1" forKey:USERDEF_FIRSTOPENAPP];
 }
 
 - (void)configAttribute {
@@ -107,8 +103,7 @@
 - (void)requestData {
     //获取首页收据
     [SQRequest setApiAddress:KAPI_ADDRESS_TEST_HJK];
-    [SQRequest postCustomApi:KAPI_INDEXPAGE param:nil success:^(id response) {
-        
+    [SQRequest post:KAPI_INDEXPAGE param:nil success:^(id response) {
         self.model = [SQHomeIndexPageModel yy_modelWithDictionary:response];
         self.headerView.model = self.model;
         //获取定制功能数据
@@ -117,10 +112,10 @@
             [self.collectionView reloadData];
             [self endRefreshWithScrollView:self.collectionView];
         } failure:nil];
-        
     } failure:^(NSError *error) {
-        NSLog(@"dd");
-    } showLoadingView:YES];
+        NSLog(@"");
+    }];
+    [SQRequest setApiAddress:nil];
     
 
 }

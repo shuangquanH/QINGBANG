@@ -56,9 +56,12 @@
         [scrollView addSubview:imageView];
         if (i == _localPhotoNamesArray.count-1) {
             UIButton *noticeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            noticeBtn.frame = CGRectMake(YGScreenWidth/2-100, YGScreenHeight*0.80, 200, 45);
-            [noticeBtn setImage:[UIImage imageNamed:@"guidepage_04_btn"] forState:UIControlStateNormal];
-            [noticeBtn addTarget:self action:@selector(clickToPush) forControlEvents:UIControlEventTouchUpInside];
+            noticeBtn.frame = CGRectMake(YGScreenWidth/2-100, YGScreenHeight-100, 200, 45);
+            noticeBtn.titleLabel.font = KFONT(32);
+            [noticeBtn setTitleColor:kWhiteColor forState:UIControlStateNormal];
+            [noticeBtn setTitle:@"马上体验" forState:UIControlStateNormal];
+            [noticeBtn setBackgroundImage:[UIImage imageNamed:@"guide_btn"] forState:UIControlStateNormal];
+            [noticeBtn addTarget:self action:@selector(didLaunched) forControlEvents:UIControlEventTouchUpInside];
             [noticeBtn.imageView sizeToFit];
             noticeBtn.centerx = self.centerx;
             [imageView addSubview:noticeBtn];
@@ -82,8 +85,7 @@
     //如果是最后一页,把自己干掉
     else
     {
-        [[NSNotificationCenter defaultCenter] postNotificationName:KNOTI_LASTLAUNCHPAGE object:nil];
-        [self removeFromSuperview];
+        [self didLaunched];
     }
 }
 
@@ -108,9 +110,11 @@
     }
     
 }
-- (void)clickToPush
-{
+
+/** 引导页执行完毕  */
+- (void)didLaunched {
     [[NSNotificationCenter defaultCenter] postNotificationName:KNOTI_LASTLAUNCHPAGE object:nil];
+    [YGUserDefaults setObject:@"1" forKey:USERDEF_FIRSTOPENAPP];
     [self removeFromSuperview];
 }
 @end

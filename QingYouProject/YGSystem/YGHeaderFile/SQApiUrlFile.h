@@ -337,7 +337,7 @@
 
 
 /********************************************* 新版本新增接口  ********************************************/
-#define KAPI_INDEXPAGE      @"getIndexPage"//首页
+#define KAPI_INDEXPAGE      @"indexpage/getIndexPage"//首页
 #define KAPI_CUSBANN        @"getCusBann"//首页定制功能
 #define KAPI_WEATHER        @"getWeatherInfo"//获取天气
 #define KAPI_ORDERNUM       @"getOrderNum"//首页获取订单数量
