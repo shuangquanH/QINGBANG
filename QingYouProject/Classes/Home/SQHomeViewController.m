@@ -106,7 +106,9 @@
 
 - (void)requestData {
     //获取首页收据
-    [SQRequest post:KAPI_INDEXPAGE param:nil success:^(id response) {
+    [SQRequest setApiAddress:KAPI_ADDRESS_TEST_HJK];
+    [SQRequest postCustomApi:KAPI_INDEXPAGE param:nil success:^(id response) {
+        
         self.model = [SQHomeIndexPageModel yy_modelWithDictionary:response];
         self.headerView.model = self.model;
         //获取定制功能数据
@@ -115,9 +117,12 @@
             [self.collectionView reloadData];
             [self endRefreshWithScrollView:self.collectionView];
         } failure:nil];
+        
     } failure:^(NSError *error) {
-        [self endRefreshWithScrollView:self.collectionView];
-    }];
+        NSLog(@"dd");
+    } showLoadingView:YES];
+    
+
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {

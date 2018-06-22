@@ -11,13 +11,19 @@
 
 @implementation SQRequest
 
++ (void)setApiAddress:(NSString *)apiAddress {
+    [YGSingleton sharedManager].apiAddress = apiAddress;
+}
+
+
 + (void)post:(NSString  *)api param:(NSDictionary   *)param success:(void(^)(id response))success failure:(void(^)(NSError *error))failure {
-    NSString    *apiString = [NSString stringWithFormat:@"%@%@", KAPI_ADDRESS, api];
+    NSString    *apiAddress = (YGSingletonMarco.apiAddress)?YGSingletonMarco.apiAddress:KAPI_ADDRESS;
+    NSString    *apiString = [NSString stringWithFormat:@"%@%@", apiAddress, api];
     NSMutableDictionary *muParam = [NSMutableDictionary dictionaryWithDictionary:param];
     
     if ([YGSingleton sharedManager].user.userId) {
-        [muParam setValue:@"8af0c2c9546e4a618dca3f9e80ef75bb" forKey:@"userId"];
-//        [muParam setValue:[YGSingleton sharedManager].user.userId forKey:@"userid"];
+//        [muParam setValue:@"8af0c2c9546e4a618dca3f9e80ef75bb" forKey:@"userId"];
+        [muParam setValue:[YGSingleton sharedManager].user.userId forKey:@"userid"];
     }
     if ([[YGSingleton sharedManager].user.isInGarden isEqualToString:@"yes"]) {
         [muParam setValue:@"yes" forKey:@"isInner"];
