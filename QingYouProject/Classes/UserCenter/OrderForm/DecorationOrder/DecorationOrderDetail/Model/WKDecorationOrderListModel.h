@@ -32,7 +32,7 @@
 /** 订单号 */
 @property (nonatomic, copy  ) NSString *orderNum;
 /** 订单创建时间 */
-@property (nonatomic, copy  ) NSString *createDate;
+@property (nonatomic, copy  ) NSString *createTime;
 /** 商品名称 */
 @property (nonatomic, copy  ) NSString *productName;
 /** 1:待付款 2:已关闭 3:受理中 4:装修中,待付款 5:已完成 */

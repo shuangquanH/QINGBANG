@@ -17,6 +17,8 @@
 #import "WKDecorationOrderAlertView.h"
 #import "WKDecorationOrderPayAlertView.h"
 
+#import "WKDecorationOrderServer.h"
+
 #import <Pingpp.h>
 
 @interface SQDecorationOrderVC () <UITableViewDataSource, UITableViewDelegate, decorationOrderCellDelegate>
@@ -39,7 +41,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.naviTitle = @"我的装修订单";
     
     self.orderList = [NSMutableArray array];
@@ -62,7 +64,7 @@
 }
 //刷新列表
 - (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
-
+    
     NSInteger tmpPage = self.page;
     if (headerAction) {
         tmpPage = 1;
@@ -103,7 +105,7 @@
         else {
             [YGAppTool showToastWithText:@"服务器错误"];
         }
-    
+        
         if (headerAction) {
             [self.tableView.mj_header endRefreshing];
         }
@@ -113,46 +115,31 @@
     }];
 }
 
-- (void)sendGetSigleOrderInfoByOrderNumber:(NSString *)orderNum complete:(void(^)(WKDecorationOrderListModel *order))complete {
-    [SQRequest post:KAPI_DECORATIONORDERDETAIL param:@{@"orderNum": orderNum} success:^(id response) {
-        if ([response[@"code"] longLongValue] == 0) {
-            WKDecorationOrderDetailModel *order = [WKDecorationOrderDetailModel yy_modelWithJSON:response[@"data"]];
-            complete(order.orderInfo);
-        }
-        else {
-            complete(nil);
-        }
-        NSLog(@"订单详情：%@", response);
-    } failure:^(NSError *error) {
-        complete(nil);
-    }];
-}
-
 //支付回调
 - (void)pingPPPayWithResponde:(NSDictionary *)response {
-    [Pingpp createPayment:response[@"charge"] viewController:self appURLScheme:@"qingyouhui" withCompletion:^(NSString *result, PingppError *error){
+    [Pingpp createPayment:response[@"charge"] appURLScheme:@"qingyouhui" withCompletion:^(NSString *result, PingppError *error){
+        NSLog(@"/*************  付款回调 %@ %@  **************/", result, error);
         if ([result isEqualToString:@"success"]) {
-            
             //支付成功，重新获取当前订单的状态数据，替换原始订单
+            [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
             WKDecorationOrderListModel *order = self.payStageDict[@"orderInfo"];
-            @weakify(self)
-            [self sendGetSigleOrderInfoByOrderNumber:order.orderNum complete:^(WKDecorationOrderListModel *order) {
-                @strongify(self)
-                if (order) {
+            [WKDecorationOrderServer sendOrderDetailWithOrderNumber:order.orderNum completed:^(WKDecorationOrderDetailModel *detailInfo, NSString *errMsg) {
+                if (detailInfo) {
                     NSIndexPath *indexPath = self.payStageDict[@"indexPath"];
-                    [self.orderList replaceObjectAtIndex:indexPath.section withObject:order];
+                    [self.orderList replaceObjectAtIndex:indexPath.section withObject:detailInfo.orderInfo];
                     [self.tableView reloadData];
-                }
-                else {
+                } else {
                     [self.tableView.mj_header beginRefreshing];
                 }
                 [YGNetService dissmissLoadingView];
                 [YGAppTool showToastWithText:@"支付成功"];
             }];
         } else {
-            [YGNetService dissmissLoadingView];
             if (error.code == PingppErrWxNotInstalled) {
                 [YGAppTool showToastWithText:@"请安装微信客户端"];
+            }
+            else {
+                [YGAppTool showToastWithText:@"支付失败"];
             }
         }
     }];
@@ -166,7 +153,7 @@
     return 2;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView
-          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WKDecorationOrderListModel *order = [self.orderList objectAtIndex:indexPath.section];
     //订单状态头部
     if (indexPath.row == 0) {
@@ -204,7 +191,8 @@
             [self.orderList removeObjectAtIndex:indexPath.section];
             [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationFade];
         }
-        else {
+        else {//替换订单模型，刷新
+            [self.orderList replaceObjectAtIndex:indexPath.section withObject:orderInfo];
             [self.tableView reloadData];
         }
     };
@@ -256,55 +244,40 @@
         case WKDecorationOrderActionTypeCancel: {//取消订单
             [WKDecorationOrderAlertView alertWithDetail:@"确认取消订单?" titles:@[@"确定", @"取消"] bgColors:@[KCOLOR_MAIN, KCOLOR(@"98999A")] handler:^(NSInteger index) {
                 if (index == 0) {
-                    [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-                    [SQRequest post:KAPI_CANCELORDER param:@{@"orderNum": orderInfo.orderNum} success:^(id response) {
-                        [YGNetService dissmissLoadingView];
-                        if ([response[@"code"] longLongValue] == 0) {
+                    [WKDecorationOrderServer sendCancelOrderWithOrderNumber:orderInfo.orderNum completed:^(BOOL success, NSString *errMsg) {
+                        if (success) {
                             //直接修改本地模型->已关闭订单，阶段已关闭状态
                             orderInfo.orderTitle = nil;
                             orderInfo.status = 2;
                             orderInfo.paymentList.firstObject.status = 4;
-                            WKDecorationStateCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:targetIndex.section]];
-                            if (cell) {
-                                [cell configOrderInfo:orderInfo];
-                                [decorationCell configOrderInfo:orderInfo];
-                            }
-                            else {
-                                [self.tableView reloadData];
-                            }
+                            [self.tableView reloadData];
                         }
                         else {
-                            [YGAppTool showToastWithText:response[@"data"][@"msg"]];
+                            [YGAppTool showToastWithText:errMsg];
                         }
-                    } failure:^(NSError *error) {
-                        [YGNetService dissmissLoadingView];
-                        [YGAppTool showToastWithText:@"网络错误"];
                     }];
                 }
             }];
         }
             break;
         case WKDecorationOrderActionTypeDelete: {//删除订单
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"确认删除订单" preferredStyle:UIAlertControllerStyleAlert];
-            [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-                [SQRequest post:KAPI_DELETEORDER param:@{@"orderNum": orderInfo.orderNum} success:^(id response) {
-                    [YGNetService dissmissLoadingView];
-                    if ([response[@"code"] longLongValue] == 0) {
-                        [self.orderList removeObjectAtIndex:targetIndex.section];
-                        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:targetIndex.section] withRowAnimation:UITableViewRowAnimationLeft];
-                    }
-                    else {
-                        [YGAppTool showToastWithText:response[@"msg"]];
-                    }
-                    
-                } failure:^(NSError *error) {
-                    [YGNetService dissmissLoadingView];
-                    [YGAppTool showToastWithText:@"网络错误"];
-                }];
-            }]];
-            [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil]];
-            [self presentViewController:alert animated:YES completion:nil];
+            [YGAlertView showAlertWithTitle:@"确认删除订单？"
+                          buttonTitlesArray:@[@"确认", @"取消"]
+                          buttonColorsArray:@[[UIColor blueColor],
+                                              [UIColor redColor]]
+                                    handler:^(NSInteger buttonIndex) {
+                                        if (buttonIndex == 0) {
+                                            [WKDecorationOrderServer sendDeleteOrderWithOrderNumber:orderInfo.orderNum completed:^(BOOL success, NSString *errMsg) {
+                                                if (success) {
+                                                    [self.orderList removeObjectAtIndex:targetIndex.section];
+                                                    [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:targetIndex.section] withRowAnimation:UITableViewRowAnimationLeft];
+                                                }
+                                                else {
+                                                    [YGAppTool showToastWithText:errMsg];
+                                                }
+                                            }];
+                                        }
+                                    }];
         }
             break;
         case WKDecorationOrderActionTypeRepair: {//补登
@@ -358,14 +331,14 @@
             WKDecorationOrderListModel *order = self.payStageDict[@"orderInfo"];
             NSInteger stageIndex = [self.payStageDict[@"stageIndex"] integerValue];
             NSDictionary *param = @{@"paymentId": order.paymentList[stageIndex].ID,
-                                    @"payType" : (payType == WKDecorationPayTypeAliPay ? @"alipay" : @"wxpay")
-                                    };
-            [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-            [SQRequest post:KAPI_PAY param:param success:^(id response) {
-                NSLog(@"%@", response);
-                [self pingPPPayWithResponde:response[@"data"]];
-            } failure:^(NSError *error) {
-                [YGNetService dissmissLoadingView];
+                                    @"payType": (payType == WKDecorationPayTypeAliPay ? @"alipay" : @"wxpay")};
+            
+            [WKDecorationOrderServer sendPayWithParam:param completed:^(id response, NSString *errMsg) {
+                if (response) {
+                    [self pingPPPayWithResponde:response];
+                } else {
+                    [YGAppTool showToastWithText:errMsg];
+                }
             }];
         };
     }

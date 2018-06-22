@@ -29,7 +29,7 @@
     [self setupSubviewsByOrderInfo:orderDetailInfo];
     
     _numberLab.text     = [NSString stringWithFormat:@"订单编号：%@", orderDetailInfo.orderInfo.orderNum];
-    _createTimeLab.text = [NSString stringWithFormat:@"创建时间：%@", orderDetailInfo.orderInfo.createDate];
+    _createTimeLab.text = [NSString stringWithFormat:@"创建时间：%@", orderDetailInfo.orderInfo.createTime];
     
 }
 

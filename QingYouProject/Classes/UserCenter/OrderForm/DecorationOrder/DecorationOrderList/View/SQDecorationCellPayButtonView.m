@@ -26,6 +26,10 @@ const CGFloat kFunctionButtonTopMargin  = 0.0;
     return self;
 }
 
+- (void)removeAllAction {
+    [_buttons makeObjectsPerformSelector:@selector(setHidden:) withObject:@(YES)];
+}
+
 - (void)configStageModel:(WKDecorationStageModel *)stageModel withStage:(NSInteger)stage inDetail:(BOOL)inDetail {
     if (stage < 0) {
         NSLog(@"%@ %ld 阶段不符合规则", NSStringFromClass([self class]), stage);
@@ -84,6 +88,9 @@ const CGFloat kFunctionButtonTopMargin  = 0.0;
             btn = [_buttons objectAtIndex:i];
             btn.hidden = NO;
             [btn setTitle:titles[i] forState:UIControlStateNormal];
+            UIColor *titleColor = [self colorWithActionType:[types[i] integerValue]];
+            btn.layer.borderColor = titleColor.CGColor;
+            [btn setTitleColor:titleColor forState:UIControlStateNormal];
         }
         else {
             btn = [self setupButtonWithTitle:titles[i] actionType:[types[i] integerValue]];
@@ -92,7 +99,7 @@ const CGFloat kFunctionButtonTopMargin  = 0.0;
             
             [_buttons addObject:btn];
         }
-
+        
         btn.tag = [types objectAtIndex:i].integerValue;
         
         [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
