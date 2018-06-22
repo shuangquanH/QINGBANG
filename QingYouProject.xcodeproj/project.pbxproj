@@ -698,6 +698,7 @@
 		E92ABB7020DA08E8003B374D /* SQPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E92ABB6D20DA08E8003B374D /* SQPlayerView.m */; };
 		E92ABB7120DA08E8003B374D /* SQPlayerControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = E92ABB6E20DA08E8003B374D /* SQPlayerControlView.m */; };
 		E92ABB7420DBB1DD003B374D /* SQSaveWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E92ABB7320DBB1DD003B374D /* SQSaveWebImage.m */; };
+		E92ABB7C20DCFA30003B374D /* SQHouseRentPushTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E92ABB7B20DCFA30003B374D /* SQHouseRentPushTool.m */; };
 		E94137A0209C3891003F3649 /* AppStartManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E941379F209C3891003F3649 /* AppStartManager.m */; };
 		E94137A7209C4295003F3649 /* SQLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E94137A6209C4295003F3649 /* SQLocationManager.m */; };
 		E99DE1C020AC4FAF009CEF88 /* SQBaseHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1AE20AC4FAF009CEF88 /* SQBaseHeaderFooterView.m */; };
@@ -2081,6 +2082,8 @@
 		E92ABB6E20DA08E8003B374D /* SQPlayerControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQPlayerControlView.m; sourceTree = "<group>"; };
 		E92ABB7220DBB1DD003B374D /* SQSaveWebImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQSaveWebImage.h; sourceTree = "<group>"; };
 		E92ABB7320DBB1DD003B374D /* SQSaveWebImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQSaveWebImage.m; sourceTree = "<group>"; };
+		E92ABB7A20DCFA30003B374D /* SQHouseRentPushTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQHouseRentPushTool.h; sourceTree = "<group>"; };
+		E92ABB7B20DCFA30003B374D /* SQHouseRentPushTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQHouseRentPushTool.m; sourceTree = "<group>"; };
 		E941379E209C3891003F3649 /* AppStartManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppStartManager.h; sourceTree = "<group>"; };
 		E941379F209C3891003F3649 /* AppStartManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppStartManager.m; sourceTree = "<group>"; };
 		E94137A5209C4295003F3649 /* SQLocationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQLocationManager.h; sourceTree = "<group>"; };
@@ -5353,6 +5356,42 @@
 			path = SQPlayerLib;
 			sourceTree = "<group>";
 		};
+		E92ABB7520DCF836003B374D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE22520B59286009CEF88 /* SQHomeCollectionHeader.h */,
+				E99DE22620B59286009CEF88 /* SQHomeCollectionHeader.m */,
+				E99DE21120B40D82009CEF88 /* SQCardScrollView.h */,
+				E99DE21020B40D82009CEF88 /* SQCardScrollView.m */,
+				E99DE21620B561A0009CEF88 /* SQCollectionViewLayout.h */,
+				E99DE21720B561A0009CEF88 /* SQCollectionViewLayout.m */,
+				E99DE23120B665E4009CEF88 /* SQHomeCollectionViewCell.h */,
+				E99DE23220B665E4009CEF88 /* SQHomeCollectionViewCell.m */,
+				E99DE20C20B4013A009CEF88 /* SQOvalFuncButtons.h */,
+				E99DE20B20B4013A009CEF88 /* SQOvalFuncButtons.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E92ABB7620DCF83F003B374D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE25620BD3777009CEF88 /* SQPushTypePlist.plist */,
+				E99DE24A20BBDD68009CEF88 /* SQHomeIndexPageModel.h */,
+				E99DE24B20BBDD68009CEF88 /* SQHomeIndexPageModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E92ABB7D20DCFA33003B374D /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				E92ABB7A20DCFA30003B374D /* SQHouseRentPushTool.h */,
+				E92ABB7B20DCFA30003B374D /* SQHouseRentPushTool.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		E94137A1209C3D89003F3649 /* SQTools */ = {
 			isa = PBXGroup;
 			children = (
@@ -5476,23 +5515,13 @@
 		E99DE1E820AE9D7D009CEF88 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				E99DE25620BD3777009CEF88 /* SQPushTypePlist.plist */,
+				E92ABB7D20DCFA33003B374D /* Tools */,
+				E92ABB7620DCF83F003B374D /* Model */,
+				E92ABB7520DCF836003B374D /* View */,
 				E99DE1F320AEB9C9009CEF88 /* SQHomeViewController.h */,
 				E99DE1F420AEB9C9009CEF88 /* SQHomeViewController.m */,
 				E99DE28C20C23941009CEF88 /* SQChooseGardenVC.h */,
 				E99DE28D20C23941009CEF88 /* SQChooseGardenVC.m */,
-				E99DE24A20BBDD68009CEF88 /* SQHomeIndexPageModel.h */,
-				E99DE24B20BBDD68009CEF88 /* SQHomeIndexPageModel.m */,
-				E99DE22520B59286009CEF88 /* SQHomeCollectionHeader.h */,
-				E99DE22620B59286009CEF88 /* SQHomeCollectionHeader.m */,
-				E99DE21120B40D82009CEF88 /* SQCardScrollView.h */,
-				E99DE21020B40D82009CEF88 /* SQCardScrollView.m */,
-				E99DE21620B561A0009CEF88 /* SQCollectionViewLayout.h */,
-				E99DE21720B561A0009CEF88 /* SQCollectionViewLayout.m */,
-				E99DE23120B665E4009CEF88 /* SQHomeCollectionViewCell.h */,
-				E99DE23220B665E4009CEF88 /* SQHomeCollectionViewCell.m */,
-				E99DE20C20B4013A009CEF88 /* SQOvalFuncButtons.h */,
-				E99DE20B20B4013A009CEF88 /* SQOvalFuncButtons.m */,
 				E99DE1E920AE9D97009CEF88 /* DecorationServe */,
 			);
 			path = Home;
@@ -6185,6 +6214,7 @@
 				18C1599E1FC8208A0010ACD3 /* MyIntegrationIndustryCommerceController.m in Sources */,
 				E2E5B14E1FB0675A00205F70 /* MJRefreshConst.m in Sources */,
 				E99DE1C020AC4FAF009CEF88 /* SQBaseHeaderFooterView.m in Sources */,
+				E92ABB7C20DCFA30003B374D /* SQHouseRentPushTool.m in Sources */,
 				E99DE1C720AC4FAF009CEF88 /* SQBaseModel.m in Sources */,
 				E2E5B35B1FB0675B00205F70 /* UploadImageTool.m in Sources */,
 				E2E5B15F1FB0675A00205F70 /* QNResponseInfo.m in Sources */,
