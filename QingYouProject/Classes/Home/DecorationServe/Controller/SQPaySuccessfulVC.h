@@ -4,7 +4,7 @@
 //
 //  Created by qwuser on 2018/6/7.
 //  Copyright © 2018年 ccyouge. All rights reserved.
-//
+//  付款成功页面
 
 #import "RootViewController.h"
 

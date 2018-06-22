@@ -4,7 +4,7 @@
 //
 //  Created by qwuser on 2018/5/18.
 //  Copyright © 2018年 ccyouge. All rights reserved.
-//
+//  装修首页tableviewHeader
 
 #import <UIKit/UIKit.h>
 #import "SQDecorationHomeModel.h"

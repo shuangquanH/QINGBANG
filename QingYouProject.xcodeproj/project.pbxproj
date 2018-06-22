@@ -5392,6 +5392,73 @@
 			path = Tools;
 			sourceTree = "<group>";
 		};
+		E92ABB7E20DCFF6C003B374D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE1F320AEB9C9009CEF88 /* SQHomeViewController.h */,
+				E99DE1F420AEB9C9009CEF88 /* SQHomeViewController.m */,
+				E99DE28C20C23941009CEF88 /* SQChooseGardenVC.h */,
+				E99DE28D20C23941009CEF88 /* SQChooseGardenVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E92ABB7F20DCFF89003B374D /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				E92ABB7E20DCFF6C003B374D /* Controller */,
+				E92ABB7D20DCFA33003B374D /* Tools */,
+				E92ABB7620DCF83F003B374D /* Model */,
+				E92ABB7520DCF836003B374D /* View */,
+			);
+			path = HomePage;
+			sourceTree = "<group>";
+		};
+		E92ABB8020DCFF9D003B374D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E9E1E59F20C779D900A807BE /* SQDecorationHomeModel.h */,
+				E9E1E5A020C779D900A807BE /* SQDecorationHomeModel.m */,
+				E9E1E5A520C7E64A00A807BE /* SQDecorationAddressModel.h */,
+				E9E1E5A620C7E64A00A807BE /* SQDecorationAddressModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E92ABB8120DCFFA1003B374D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE1ED20AEA207009CEF88 /* SQDecorationServeCell.h */,
+				E99DE1EE20AEA207009CEF88 /* SQDecorationServeCell.m */,
+				E99DE1F020AEA6AB009CEF88 /* SQDecorationSeveTableHeader.h */,
+				E99DE1F120AEA6AB009CEF88 /* SQDecorationSeveTableHeader.m */,
+				E99DE23E20B7B7C9009CEF88 /* SQDecorationDetailBottomView.h */,
+				E99DE23F20B7B7C9009CEF88 /* SQDecorationDetailBottomView.m */,
+				E9E1E5A820C7F9E300A807BE /* SQConfirmDecorationCell.h */,
+				E9E1E5A920C7F9E300A807BE /* SQConfirmDecorationCell.m */,
+				E9E1E5A220C7DA9400A807BE /* SQChooseDecorationAddressView.h */,
+				E9E1E5A320C7DA9400A807BE /* SQChooseDecorationAddressView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E92ABB8220DCFFA7003B374D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E99DE1EA20AE9DE4009CEF88 /* SQDecorationServeVC.h */,
+				E99DE1EB20AE9DE4009CEF88 /* SQDecorationServeVC.m */,
+				E99DE23820B6AA61009CEF88 /* SQDecorationSecondVC.h */,
+				E99DE23920B6AA61009CEF88 /* SQDecorationSecondVC.m */,
+				E99DE23B20B6AB22009CEF88 /* SQDecorationDetailVC.h */,
+				E99DE23C20B6AB22009CEF88 /* SQDecorationDetailVC.m */,
+				E99DE24120B7BEDA009CEF88 /* SQConfirmDecorationOrderVC.h */,
+				E99DE24220B7BEDA009CEF88 /* SQConfirmDecorationOrderVC.m */,
+				E9E1E5AB20C90B1500A807BE /* SQPaySuccessfulVC.h */,
+				E9E1E5AC20C90B1500A807BE /* SQPaySuccessfulVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		E94137A1209C3D89003F3649 /* SQTools */ = {
 			isa = PBXGroup;
 			children = (
@@ -5515,13 +5582,7 @@
 		E99DE1E820AE9D7D009CEF88 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				E92ABB7D20DCFA33003B374D /* Tools */,
-				E92ABB7620DCF83F003B374D /* Model */,
-				E92ABB7520DCF836003B374D /* View */,
-				E99DE1F320AEB9C9009CEF88 /* SQHomeViewController.h */,
-				E99DE1F420AEB9C9009CEF88 /* SQHomeViewController.m */,
-				E99DE28C20C23941009CEF88 /* SQChooseGardenVC.h */,
-				E99DE28D20C23941009CEF88 /* SQChooseGardenVC.m */,
+				E92ABB7F20DCFF89003B374D /* HomePage */,
 				E99DE1E920AE9D97009CEF88 /* DecorationServe */,
 			);
 			path = Home;
@@ -5530,30 +5591,9 @@
 		E99DE1E920AE9D97009CEF88 /* DecorationServe */ = {
 			isa = PBXGroup;
 			children = (
-				E9E1E59F20C779D900A807BE /* SQDecorationHomeModel.h */,
-				E9E1E5A020C779D900A807BE /* SQDecorationHomeModel.m */,
-				E99DE1EA20AE9DE4009CEF88 /* SQDecorationServeVC.h */,
-				E99DE1EB20AE9DE4009CEF88 /* SQDecorationServeVC.m */,
-				E99DE1ED20AEA207009CEF88 /* SQDecorationServeCell.h */,
-				E99DE1EE20AEA207009CEF88 /* SQDecorationServeCell.m */,
-				E99DE1F020AEA6AB009CEF88 /* SQDecorationSeveTableHeader.h */,
-				E99DE1F120AEA6AB009CEF88 /* SQDecorationSeveTableHeader.m */,
-				E99DE23820B6AA61009CEF88 /* SQDecorationSecondVC.h */,
-				E99DE23920B6AA61009CEF88 /* SQDecorationSecondVC.m */,
-				E99DE23B20B6AB22009CEF88 /* SQDecorationDetailVC.h */,
-				E99DE23C20B6AB22009CEF88 /* SQDecorationDetailVC.m */,
-				E99DE23E20B7B7C9009CEF88 /* SQDecorationDetailBottomView.h */,
-				E99DE23F20B7B7C9009CEF88 /* SQDecorationDetailBottomView.m */,
-				E99DE24120B7BEDA009CEF88 /* SQConfirmDecorationOrderVC.h */,
-				E99DE24220B7BEDA009CEF88 /* SQConfirmDecorationOrderVC.m */,
-				E9E1E5A820C7F9E300A807BE /* SQConfirmDecorationCell.h */,
-				E9E1E5A920C7F9E300A807BE /* SQConfirmDecorationCell.m */,
-				E9E1E5A220C7DA9400A807BE /* SQChooseDecorationAddressView.h */,
-				E9E1E5A320C7DA9400A807BE /* SQChooseDecorationAddressView.m */,
-				E9E1E5A520C7E64A00A807BE /* SQDecorationAddressModel.h */,
-				E9E1E5A620C7E64A00A807BE /* SQDecorationAddressModel.m */,
-				E9E1E5AB20C90B1500A807BE /* SQPaySuccessfulVC.h */,
-				E9E1E5AC20C90B1500A807BE /* SQPaySuccessfulVC.m */,
+				E92ABB8220DCFFA7003B374D /* Controller */,
+				E92ABB8120DCFFA1003B374D /* Views */,
+				E92ABB8020DCFF9D003B374D /* Model */,
 			);
 			path = DecorationServe;
 			sourceTree = "<group>";
