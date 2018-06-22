@@ -23,14 +23,11 @@
     
     if ([YGSingleton sharedManager].user.userId) {
         [muParam setValue:[YGSingleton sharedManager].user.userId forKey:@"userid"];
-        
-        //调试用户Id
-        [muParam setValue:@"0c2715a0701c41b2a38469f055d748bd" forKey:@"userId"];
     }
     if ([[YGSingleton sharedManager].user.isInGarden isEqualToString:@"yes"]) {
-        [muParam setValue:@"yes" forKey:@"isInner"];
+        [muParam setValue:@"1" forKey:@"isInner"];
     } else {
-        [muParam setValue:@"no" forKey:@"isInner"];
+        [muParam setValue:@"0" forKey:@"isInner"];
     }
     
     [[YGConnectionService sharedConnectionService].requestManager POST:apiString

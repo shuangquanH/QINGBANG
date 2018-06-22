@@ -113,7 +113,7 @@
             [self endRefreshWithScrollView:self.collectionView];
         } failure:nil];
     } failure:^(NSError *error) {
-        NSLog(@"");
+        NSLog(@"ooooo");
     }];
     [SQRequest setApiAddress:nil];
     
@@ -237,19 +237,11 @@
     [self.manager cityNumberWithCity:city cityNumber:^(NSString *cityNumber) {
         [KCURRENTCITYINFODEFAULTS setObject:cityNumber forKey:@"cityNumber"];
     }];
-    [SQRequest post:KAPI_WEATHER param:@{@"city":city} success:^(id response) {
-        NSString    *titlestring = [NSString stringWithFormat:@"%@ %@℃ %@", city, response[@"temp"], response[@"weatherinfo"]];
-        NSMutableAttributedString   *attstr = [[NSMutableAttributedString alloc] initWithString:titlestring];
-        [attstr appendImage:[UIImage imageNamed:@"home_nav_icon"] withType:SQAppendImageInLeft];
-        self.attriTitle = attstr;
-    } failure:^(NSError *error) {
-        NSMutableAttributedString   *attstr = [[NSMutableAttributedString alloc] initWithString:city];
-        self.attriTitle = attstr;
-    }];
+    [self cityName:city];
 }
 
 #pragma mark - JFCityViewControllerDelegate  选中城市
-- (void)cityName:(NSString *)name {
+- (void)cityName:(NSString *)name {//获取城市天气
     [SQRequest post:KAPI_WEATHER param:@{@"city":name} success:^(id response) {
         NSString    *titlestring = [NSString stringWithFormat:@"%@ %@℃ %@", name, response[@"temp"], response[@"weatherinfo"]];
         NSMutableAttributedString   *attstr = [[NSMutableAttributedString alloc] initWithString:titlestring];
