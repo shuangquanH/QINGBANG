@@ -445,9 +445,12 @@
  *
  *  @param text 要显示的文字
  */
+
+
+MBProgressHUD *hud;
 + (void)showToastWithText:(NSString *)text
 {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:YGAppDelegate.window animated:YES];
+    hud = [MBProgressHUD showHUDAddedTo:YGAppDelegate.window animated:YES];
     hud.mode = MBProgressHUDModeText;
     hud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;
     hud.bezelView.backgroundColor =  [[UIColor blackColor] colorWithAlphaComponent:0.6];
@@ -457,7 +460,11 @@
     hud.animationType = MBProgressHUDAnimationZoomIn;
     hud.removeFromSuperViewOnHide = YES;
     hud.userInteractionEnabled = NO;
-    [hud hideAnimated:YES afterDelay:2];
+    [hud hideAnimated:YES afterDelay:1.6];
+}
++ (void)dismissToast {
+    [hud hideAnimated:YES];
+    [hud removeFromSuperview];
 }
 
 /**

@@ -109,6 +109,8 @@
     [self.ovalContentView removeFromSuperview];
     self.ovalContentView = tempView;
     [self.infoButton setBackgroundImage:[UIImage imageNamed:@"rectangle"] forState:UIControlStateNormal];
+    
+    
     NSString    *name = [YGSingleton sharedManager].user.userName;
     NSString    *title = [NSString string];
     if (name) {
