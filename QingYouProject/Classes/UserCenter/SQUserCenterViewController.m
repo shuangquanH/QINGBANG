@@ -30,6 +30,8 @@
     [self layoutNavigation];
     [self readViewControllerByPlistFile];
     [self setupSubviews];
+    
+    [SQRequest setApiAddress:KAPI_ADDRESS_TEST_MH];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

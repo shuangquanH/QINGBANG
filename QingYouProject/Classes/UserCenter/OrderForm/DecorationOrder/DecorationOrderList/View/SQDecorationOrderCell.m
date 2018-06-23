@@ -14,18 +14,18 @@
 #define KSPACE 20
 
 @implementation SQDecorationOrderCell {
-
+    
     UIImageView *orderImage;
     UILabel *orderTitle;
     UILabel *orderDesc;
     UILabel *orderPrice;
     UIView  *skuActionView;
     
-    @public
+@public
     WKDecorationStageView *paymentStageView;//订金阶段视图
     WKDecorationOrderListModel *_orderListInfo;//订单列表信息
     CALayer *bottomLineLayer;
-
+    
 }
 
 
@@ -65,7 +65,7 @@
 
 
 - (void)sqlayoutSubviews {
-
+    
     [orderImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView).offset(KSCAL(30));
         make.top.mas_equalTo(KSCAL(KSPACE));
@@ -124,13 +124,13 @@
     
     orderPrice.attributedText = orderInfo.skuDetails.skuProductPriceAttributeString;
     orderPrice.lineBreakMode = NSLineBreakByTruncatingTail;
-
+    
     orderTitle.attributedText = orderInfo.skuProductNameAttributeString;
     orderTitle.lineBreakMode = NSLineBreakByTruncatingTail;
     
     orderDesc.attributedText = orderInfo.skuDetails.skuProductDescAttributeString;
     orderDesc.lineBreakMode = NSLineBreakByTruncatingTail;
-
+    
     [paymentStageView configOrderInfo:orderInfo withStage:0 withInDetail:self.isInOrderDetail];
 }
 
@@ -149,7 +149,7 @@
     orderDesc.lineBreakMode = NSLineBreakByTruncatingTail;
     
     [paymentStageView configOrderDetailInfo:orderDetailInfo withStage:0 withInDetail:self.isInOrderDetail];
-
+    
 }
 
 - (CGSize)viewSize {
@@ -174,7 +174,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 @implementation WKDecorationOrderMutableStageCell {
-    @public
+@public
     NSMutableArray<WKDecorationStageView *> *stageViewArray;
 }
 
@@ -189,10 +189,7 @@
     [super setModel:model];
 }
 
-- (void)configOrderInfo:(WKDecorationOrderListModel *)orderInfo {
-    
-    [super configOrderInfo:orderInfo];
-    
+- (void)setupStagesByOrderInfo:(WKDecorationOrderListModel *)orderInfo {
     //清除多余单阶段视图
     while (stageViewArray.count > (orderInfo.paymentList.count - 1)) {
         WKDecorationStageView *v = stageViewArray.lastObject;
@@ -224,13 +221,25 @@
     }
 }
 
+- (void)configOrderDetailInfo:(WKDecorationOrderDetailModel *)orderDetailInfo {
+    [super configOrderDetailInfo:orderDetailInfo];
+    [self setupStagesByOrderInfo:orderDetailInfo.orderInfo];
+}
+
+- (void)configOrderInfo:(WKDecorationOrderListModel *)orderInfo {
+    [super configOrderInfo:orderInfo];
+    [self setupStagesByOrderInfo:orderInfo];
+}
+
 - (CGSize)viewSize {
-    CGFloat height = MAX(0, _orderListInfo.paymentList.count-1) * KSCAL(88.0) + [super viewSize].height;
+    NSInteger count = _orderListInfo.paymentList.count ? _orderListInfo.paymentList.count - 1 : 0;
+    CGFloat height = MAX(count, 0) * KSCAL(88.0) + KSCAL(88.0) + KSCAL(180.0) + 3 * KSCAL(KSPACE);
     return CGSizeMake(kScreenW, height);
 }
 
 + (CGFloat)cellHeightWithOrderInfo:(WKDecorationOrderListModel *)orderInfo {
-    return orderInfo.paymentList.count * KSCAL(88.0) + 3 * KSCAL(KSPACE) + KSCAL(180);
+    NSInteger count = orderInfo.paymentList.count ? : 0;
+    return count * KSCAL(88.0) + 3 * KSCAL(KSPACE) + KSCAL(180);
 }
 
 @end
@@ -263,7 +272,7 @@
     [connectServiceBtn sq_setImagePosition:SQImagePositionLeft spacing:5];
     [connectServiceBtn addTarget:self action:@selector(click_connectService) forControlEvents:UIControlEventTouchUpInside];
     [dealingBgView addSubview:connectServiceBtn];
- 
+    
     [dealingBgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(paymentStageView);
         make.top.equalTo(paymentStageView.mas_bottom);
@@ -288,7 +297,7 @@
 
 
 - (CGSize)viewSize {
-    return CGSizeMake(kScreenW, [super viewSize].height + KSCAL(155));
+    return CGSizeMake(kScreenW, KSCAL(88.0) + KSCAL(180.0) + 3 * KSCAL(KSPACE) + KSCAL(155));
 }
 
 - (void)click_connectService {
@@ -300,7 +309,7 @@
 }
 
 + (CGFloat)cellHeightWithOrderInfo:(WKDecorationOrderListModel *)orderInfo {
-    return orderInfo.paymentList.count * KSCAL(88.0) + 2 * KSCAL(KSPACE) + KSCAL(180) + KSCAL(175);
+    return KSCAL(88.0) + KSCAL(180.0) + 3 * KSCAL(KSPACE) + KSCAL(155);
 }
 
 @end

@@ -49,7 +49,7 @@
     stagePriceLab.textColor = kCOLOR_PRICE_RED;
     [stagePriceLab setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     [self addSubview:stagePriceLab];
-
+    
     stageStateView = [[SQDecorationCellPayButtonView alloc] init];
     stageStateView.actionDelegate = self;
     [self addSubview:stageStateView];
@@ -79,7 +79,14 @@
 
 - (void)configOrderInfo:(WKDecorationOrderListModel *)orderInfo withStage:(NSInteger)stage withInDetail:(BOOL)inDetail {
     
-    if (!orderInfo.paymentList.count) return;
+    if (!orderInfo.paymentList.count) {
+        stagePriceLab.text = @"";
+        stageTitleLabel.text = @"";
+        [stageStateView removeAllAction];
+        _refundBtn.hidden = YES;
+        _refundDetailBtn.hidden = YES;
+        return;
+    }
     
     WKDecorationStageModel *stageInfo = orderInfo.paymentList[stage];
     stageTitleLabel.text = [NSString stringWithFormat:@"%@：", stageInfo.name];
