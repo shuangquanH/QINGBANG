@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "WKDecorationOrderDetailModel.h"
-#import "SQDecorationCellPayButtonView.h"
+#import "WKDecorationCellPayButtonView.h"
 
-@class WKDecorationDetailViewModel, SQDecorationDetailFunctionView, SQDecorationDetailServerView, SQDecorationOrderCell, WKDecorationAddressModel;
+@class WKDecorationDetailViewModel, SQDecorationDetailFunctionView, SQDecorationDetailServerView, WKDecorationOrderBaseCell, WKDecorationAddressModel;
 
 @protocol WKDecorationDetailViewProtocol<NSObject>
 //订单详情模型
@@ -32,7 +32,7 @@
 /** 0：下载报价单 1：查看合同 2：开票申请 */
 - (void)functionView:(SQDecorationDetailFunctionView *)functionView didClickFunctionType:(NSInteger)functionType;
 /** 点击了按钮动作 */
-- (void)orderCell:(SQDecorationOrderCell *)orderCell didClickAction:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage;
+- (void)orderCell:(WKDecorationOrderBaseCell *)orderCell didClickAction:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage;
 
 @end
 
@@ -40,7 +40,7 @@
 
 @property (nonatomic, strong, readonly) NSArray<UIView<WKDecorationDetailViewProtocol> *> *subviewArray;
 
-@property (nonatomic, strong, readonly) SQDecorationOrderCell *orderCell;
+@property (nonatomic, strong, readonly) WKDecorationOrderBaseCell *orderCell;
 
 @property (nonatomic, weak) id<WKDecorationDetailViewModelDelegate> orderDetailDelegate;
 

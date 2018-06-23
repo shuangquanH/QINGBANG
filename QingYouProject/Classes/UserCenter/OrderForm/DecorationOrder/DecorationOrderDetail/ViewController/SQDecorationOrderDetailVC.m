@@ -13,7 +13,7 @@
 #import "WKDecorationRepairViewController.h"
 #import "WKCheckContractViewController.h"
 
-#import "SQDecorationOrderCell.h"
+#import "WKDecorationOrderBaseCell.h"
 #import "WKDecorationOrderAlertView.h"
 #import "WKDecorationOrderPayAlertView.h"
 
@@ -183,7 +183,7 @@
     }
 }
 
-- (void)orderCell:(SQDecorationOrderCell *)orderCell didClickAction:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage {
+- (void)orderCell:(WKDecorationOrderBaseCell *)orderCell didClickAction:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage {
     
     
     if (self.orderDetailInfo.orderInfo.paymentList.count <= stage) {

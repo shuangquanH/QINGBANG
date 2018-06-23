@@ -11,12 +11,11 @@
 #import "WKDecorationRepairViewController.h"
 
 #import "WKDecorationStateCell.h"
-#import "SQDecorationOrderCell.h"
-#import "WKDecorationOrderListModel.h"
-
+#import "WKDecorationOrderBaseCell.h"
 #import "WKDecorationOrderAlertView.h"
 #import "WKDecorationOrderPayAlertView.h"
 
+#import "WKDecorationOrderListModel.h"
 #import "WKDecorationOrderServer.h"
 
 #import <Pingpp.h>
@@ -163,9 +162,9 @@
         return cell;
     }
     //订单详情
-    SQDecorationOrderCell *cell;
+    WKDecorationOrderBaseCell *cell;
     if (order.status == 1 || order.status == 2) {//待付款、已关闭状态，只有一个订金阶段需要展示
-        cell = [SQDecorationOrderCell cellWithTableView:tableView];
+        cell = [WKDecorationOrderBaseCell cellWithTableView:tableView];
     }
     else if (order.status == 3) {//受理中状态
         cell = [WKDecorationDealingOrderCell cellWithTableView:tableView];
@@ -203,7 +202,7 @@
     }
     WKDecorationOrderListModel *order = [self.orderList objectAtIndex:indexPath.section];
     if (order.status == 1 || order.status == 2) {//待付款、已关闭状态，只有一个订金阶段需要展示
-        return [SQDecorationOrderCell cellHeightWithOrderInfo:order];
+        return [WKDecorationOrderBaseCell cellHeightWithOrderInfo:order];
     }
     else if (order.status == 3) {//受理中状态
         return [WKDecorationDealingOrderCell cellHeightWithOrderInfo:order];
@@ -220,7 +219,7 @@
 }
 
 #pragma mark - decorationOrderCellDelegate
-- (void)decorationCell:(SQDecorationOrderCell *)decorationCell tapedOrderActionType:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage {
+- (void)decorationCell:(WKDecorationOrderBaseCell *)decorationCell tapedOrderActionType:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage {
     
     NSIndexPath *targetIndex = [self.tableView indexPathForCell:decorationCell];
     if (!targetIndex) return;
