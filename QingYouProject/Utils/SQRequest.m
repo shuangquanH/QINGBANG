@@ -69,6 +69,34 @@
     }];
 }
 
++ (void)get:(NSString   *)api param:(NSDictionary   *)param success:(void(^)(id response))success failure:(void(^)(NSError *error))failure showLoadingView:(BOOL)show {
+    
+    if (show) {
+        [[YGConnectionService sharedConnectionService] showLoadingViewWithSuperView:YGAppDelegate.window];
+    }
+    
+    
+    [[YGConnectionService sharedConnectionService].requestManager GET:api parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        if (success) {
+            success(responseObject);
+        }
+        if (show) {
+            [[YGConnectionService sharedConnectionService] dissmissLoadingView];
+        }
+        
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        if (failure) {
+            failure(error);
+        }
+        if (show) {
+            [[YGConnectionService sharedConnectionService] dissmissLoadingView];
+        }
+        
+    }];
+}
 
 
 

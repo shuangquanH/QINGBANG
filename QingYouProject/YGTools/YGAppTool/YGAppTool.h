@@ -178,6 +178,7 @@
  */
 + (void)showToastWithText:(NSString *)text;
 
++ (void)dismissToast;
 /**
  *  将int快速转为string
  *

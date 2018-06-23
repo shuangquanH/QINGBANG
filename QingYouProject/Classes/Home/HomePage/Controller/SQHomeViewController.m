@@ -34,7 +34,7 @@
 
 
 
-
+#import "AFNetworking.h"
 #define KCURRENTCITYINFODEFAULTS [NSUserDefaults standardUserDefaults]
 
 @interface SQHomeViewController () <SQCollectionViewLayoutDelegate, UICollectionViewDataSource, UICollectionViewDelegate, SQHomeCollectionHeaderDeleage, JFLocationDelegate, JFCityViewControllerDelegate>
@@ -115,7 +115,7 @@
     }];
     [SQRequest setApiAddress:nil];
     
-
+    
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -162,7 +162,7 @@
 
 - (void)pushToPageWithPushType:(NSString    *)pushType {
     if ([pushType isEqualToString:@"1"]) {
-        [SQHouseRentPushTool pushToHouseRentWithController:self];        
+        [SQHouseRentPushTool pushToHouseRentWithController:self];
     } else {
         
         NSString    *plistFile = [[NSBundle mainBundle]pathForResource:@"SQPushTypePlist" ofType:@"plist"];
@@ -219,14 +219,22 @@
 
 #pragma mark - JFCityViewControllerDelegate  选中城市
 - (void)cityName:(NSString *)name {//获取城市天气
-    [SQRequest post:KAPI_WEATHER param:@{@"city":name} success:^(id response) {
-        NSString    *titlestring = [NSString stringWithFormat:@"%@ %@℃ %@", name, response[@"temp"], response[@"weatherinfo"]];
-        NSMutableAttributedString   *attstr = [[NSMutableAttributedString alloc] initWithString:titlestring];
-        [attstr appendImage:[UIImage imageNamed:@"home_nav_icon"] withType:SQAppendImageInLeft];
-        self.attriTitle = attstr;
-    } failure:^(NSError *error) {
-        NSMutableAttributedString   *attstr = [[NSMutableAttributedString alloc] initWithString:name];
-        self.attriTitle = attstr;
+    [YGAppTool showToastWithText:@"正在获取天气信息..."];
+    NSString *apistr = [NSString stringWithFormat:@"https://www.sojson.com/open/api/weather/json.shtml"];
+    NSDictionary    *cityParam = @{@"city":name};
+    [[AFHTTPSessionManager manager] GET:apistr parameters:cityParam progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if ([responseObject[@"status"] isEqual:@200]) {
+            NSArray *info = [NSArray arrayWithArray:responseObject[@"data"][@"forecast"]];
+            NSString    *titlestring = [NSString stringWithFormat:@"%@ %@℃ %@", name, responseObject[@"data"][@"wendu"], info.firstObject[@"type"]];
+            NSMutableAttributedString   *attstr = [[NSMutableAttributedString alloc] initWithString:titlestring];
+            [attstr appendImage:[UIImage imageNamed:@"home_nav_icon"] withType:SQAppendImageInLeft];
+            self.attriTitle = attstr;
+        } else {
+            [YGAppTool showToastWithText:@"获取天气信息失败!"];
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [YGAppTool showToastWithText:@"获取天气信息失败!"];
     }];
 }
 
@@ -235,10 +243,11 @@
 - (SQBaseCollectionView *)collectionView {
     if (!_collectionView) {
         SQCollectionViewLayout *layout = [SQCollectionViewLayout waterFallLayoutWithColumnCount:2];
-        [layout setColumnSpacing:0 rowSpacing:0 sectionInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+        [layout setColumnSpacing:KSCAL(20) rowSpacing:KSCAL(20) sectionInset:UIEdgeInsetsMake(-KSCAL(20), KSCAL(30), 0, KSCAL(30))];
         CGRect collectFrame = CGRectMake(0, 0, YGScreenWidth, KAPP_HEIGHT-KNAV_HEIGHT-KTAB_HEIGHT);
         _collectionView = [[SQBaseCollectionView alloc] initWithFrame:collectFrame collectionViewLayout:layout];
-        _collectionView.backgroundColor = self.view.backgroundColor;
+        //        self.view.backgroundColor;
+        _collectionView.backgroundColor = kWhiteColor;
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
         layout.delegate = self;
