@@ -98,20 +98,9 @@
 - (void)configOrderDetailInfo:(WKDecorationOrderDetailModel *)orderDetailInfo withStage:(NSInteger)stage withInDetail:(BOOL)inDetail {
     
     [self configOrderInfo:orderDetailInfo.orderInfo withStage:stage withInDetail:inDetail];
-
     if (stage == 0 && inDetail) {//订金阶段&&在详情中
-        if (orderDetailInfo.orderInfo.refund) {//有过退款记录，可以查看退款详情
-            self.refundDetailBtn.hidden = NO;
-            _refundBtn.hidden = YES;
-            [stageStateView mas_remakeConstraints:^(MASConstraintMaker *make) {
-                make.centerY.height.equalTo(stagePriceLab);
-                make.right.mas_equalTo(0);
-                make.left.equalTo(self.refundDetailBtn.mas_right).offset(KSCAL(15));
-                make.height.mas_equalTo(KSCAL(45));
-            }];
-            return;
-        }
-        if (!orderDetailInfo.orderInfo.refund && orderDetailInfo.orderInfo.status == 3) {//可以退款&&处于处理中状态
+        
+        if (orderDetailInfo.orderInfo.refund && orderDetailInfo.orderInfo.status == 3) {//可以退款&&处于处理中状态
             self.refundBtn.hidden = NO;
             _refundDetailBtn.hidden = YES;
             [stageStateView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -122,6 +111,19 @@
             }];
             return;
         }
+        
+        if (!orderDetailInfo.orderInfo.refund) {//不能退款
+            self.refundDetailBtn.hidden = NO;
+            _refundBtn.hidden = YES;
+            [stageStateView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.centerY.height.equalTo(stagePriceLab);
+                make.right.mas_equalTo(0);
+                make.left.equalTo(self.refundDetailBtn.mas_right).offset(KSCAL(15));
+                make.height.mas_equalTo(KSCAL(45));
+            }];
+            return;
+        }
+        
     }
     else {
         if (!_refundBtn || _refundBtn.hidden) {
@@ -136,9 +138,7 @@
             make.height.mas_equalTo(KSCAL(45));
         }];
     }
-    
 }
-
 
 - (void)click_refundDetailBtn {
     if ([self.delegate respondsToSelector:@selector(stageView:didClickActionType:forStage:)]) {

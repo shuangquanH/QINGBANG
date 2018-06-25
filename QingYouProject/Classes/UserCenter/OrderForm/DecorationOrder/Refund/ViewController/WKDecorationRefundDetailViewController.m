@@ -54,20 +54,20 @@
     _detailLabel = [UILabel labelWithFont:KSCAL(28.0) textColor:kCOLOR_666];
     [_labelBgView addSubview:_detailLabel];
     
-    if (self.refundInfo.refundState == 1) {//审核中
-        _stateLabel.text = [NSString stringWithFormat:@"等待平台退款 ¥%@", self.refundInfo.refundPrice];
-        [_stateLabel setTextColor:kCOLOR_PRICE_RED andRange:NSMakeRange(7, self.refundInfo.refundPrice.length+1)];
+    if (self.refundInfo.status == 0) {//审核中
+        _stateLabel.text = [NSString stringWithFormat:@"等待平台退款 ¥%@", self.refundInfo.amount];
+        [_stateLabel setTextColor:kCOLOR_PRICE_RED andRange:NSMakeRange(7, self.refundInfo.amount.length+1)];
         
-        NSString *detailStr = [NSString stringWithFormat:@"退款申请已提交，等待平台处理。在%@天%@小时%@分内平台未处理，系统将按您的支付方式原路退还", self.refundInfo.limitDay?:@"0", self.refundInfo.limitHour?:@"0", self.refundInfo.limitMinute?:@"0"];
+        NSString *detailStr = [NSString stringWithFormat:@"退款申请已提交，等待平台处理。在%@天%@小时%@分内平台未处理，系统将按您的支付方式原路退还", self.refundInfo.day, self.refundInfo.hours, self.refundInfo.minutes];
         NSMutableAttributedString *detail = [[NSMutableAttributedString alloc] initWithString:detailStr];
         NSUInteger loc = 16;
-        [detail setAttributes:@{NSForegroundColorAttributeName: kCOLOR_PRICE_RED} range:NSMakeRange(loc, self.refundInfo.limitDay.length?:1)];
+        [detail setAttributes:@{NSForegroundColorAttributeName: kCOLOR_PRICE_RED} range:NSMakeRange(loc, self.refundInfo.day.length?:1)];
         loc += 1;
-        loc += self.refundInfo.limitDay.length?:1;
-        [detail setAttributes:@{NSForegroundColorAttributeName: kCOLOR_PRICE_RED} range:NSMakeRange(loc, self.refundInfo.limitHour.length?:1)];
+        loc += self.refundInfo.day.length?:1;
+        [detail setAttributes:@{NSForegroundColorAttributeName: kCOLOR_PRICE_RED} range:NSMakeRange(loc, self.refundInfo.hours.length?:1)];
         loc += 2;
-        loc += self.refundInfo.limitHour.length?:1;
-        [detail setAttributes:@{NSForegroundColorAttributeName: kCOLOR_PRICE_RED} range:NSMakeRange(loc, self.refundInfo.limitMinute.length?:1)];
+        loc += self.refundInfo.hours.length?:1;
+        [detail setAttributes:@{NSForegroundColorAttributeName: kCOLOR_PRICE_RED} range:NSMakeRange(loc, self.refundInfo.minutes.length?:1)];
         
         _detailLabel.attributedText = detail;
         
@@ -77,19 +77,19 @@
         [_cancelRefundBtn addTarget:self action:@selector(click_cancelButton) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_cancelRefundBtn];
     }
-    else if (self.refundInfo.refundState == 2) {//退款成功
-        _stateLabel.text = [NSString stringWithFormat:@"退款成功 ¥%@", self.refundInfo.refundPrice];
-        [_stateLabel setTextColor:kCOLOR_PRICE_RED andRange:NSMakeRange(5, self.refundInfo.refundPrice.length+1)];
+    else if (self.refundInfo.status == 1) {//退款成功
+        _stateLabel.text = [NSString stringWithFormat:@"退款成功 ¥%@", self.refundInfo.amount];
+        [_stateLabel setTextColor:kCOLOR_PRICE_RED andRange:NSMakeRange(5, self.refundInfo.amount.length+1)];
         _detailLabel.text = @"您的款项已按您的支付方式原路退还。";
     }
-    else if (self.refundInfo.refundState == 3) {//退款已撤销
+    else if (self.refundInfo.status == 2) {//退款已撤销
         _stateLabel.text = @"退款已撤销";
-        _detailLabel.text = [NSString stringWithFormat:@"您于%@撤销退款，不支持再次发起申请退款。", self.refundInfo.cancelTime];
+        _detailLabel.text = [NSString stringWithFormat:@"您于%@撤销退款，不支持再次发起申请退款。", self.refundInfo.updateDate];
     }
     else {//退款失败
         _stateLabel.text = @"退款审核不通过";
-        _detailLabel.text = [NSString stringWithFormat:@"您于%@发起的退款，因%@不予通过。", self.refundInfo.createTime, self.refundInfo.refundFailReason];
-        [_detailLabel setTextColor:kCOLOR_PRICE_RED andRange:NSMakeRange(9+self.refundInfo.createTime.length, self.refundInfo.refundFailReason.length)];
+        _detailLabel.text = [NSString stringWithFormat:@"您于%@发起的退款，因%@不予通过。", self.refundInfo.createDate, self.refundInfo.comment];
+        [_detailLabel setTextColor:kCOLOR_PRICE_RED andRange:NSMakeRange(9+self.refundInfo.createDate.length, self.refundInfo.comment.length)];
         
         _line = [UIView new];
         _line.backgroundColor = colorWithLine;
@@ -101,7 +101,6 @@
         [_serviceBtn addTarget:self action:@selector(click_connectServiceBtn) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_serviceBtn];
     }
-    
     
     [_labelBgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
@@ -143,35 +142,46 @@
 //退款详情
 - (void)sendRefundDetailReqeust {
     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-    [SQRequest post:KAPI_REFUNDDETAIL param:@{@"orderNum": self.orderDetailInfo.orderInfo.orderNum  } success:^(id response) {
+    [SQRequest post:KAPI_REFUNDDETAIL param:@{@"orderId": @([self.orderDetailInfo.orderInfo.ID longLongValue])} success:^(id response) {
         if ([response[@"code"] longLongValue] == 0) {
-            self.refundInfo = [WKDecorationRefundModel yy_modelWithJSON:response[@"data"][@"refund_info"]];
+            self.refundInfo = [WKDecorationRefundModel yy_modelWithJSON:response[@"data"][@"refundInfo"]];
             [self setupSubviews];
             [YGNetService dissmissLoadingView];
         }
         else {
             [YGNetService dissmissLoadingView];
             [YGAppTool showToastWithText:response[@"msg"]];
+            [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@YES afterDelay:1.0];
         }
     } failure:^(NSError *error) {
         [YGNetService dissmissLoadingView];
+        [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@YES afterDelay:1.0];
     }];
 }
 //撤销退款
 - (void)click_cancelButton {
-    [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-    [SQRequest post:KAPI_CANCELREFUND param:@{@"orderNum": self.orderDetailInfo.orderInfo.orderNum} success:^(id response) {
-        [YGNetService dissmissLoadingView];
-        if ([response[@"code"] longLongValue] == 0) {
-            [YGAppTool showToastWithText:@"撤销退款成功"];
-            [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.0];
-        }
-        else {
-            [YGAppTool showToastWithText:response[@"msg"]];
-        }
-    } failure:^(NSError *error) {
-        [YGNetService dissmissLoadingView];
-    }];
+    
+    [YGAlertView showAlertWithTitle:@"撤销退款后，不支持再次发起退款，确定撤销？"
+                  buttonTitlesArray:@[@"确认", @"取消"]
+                  buttonColorsArray:@[[UIColor blueColor],
+                                      [UIColor redColor]]
+                            handler:^(NSInteger buttonIndex) {
+                                if (buttonIndex == 0) {
+                                    [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
+                                    [SQRequest post:KAPI_CANCELREFUND param:@{@"orderId": @([self.orderDetailInfo.orderInfo.ID longLongValue]), @"id": @([self.refundInfo.ID longLongValue])} success:^(id response) {
+                                        [YGNetService dissmissLoadingView];
+                                        if ([response[@"code"] longLongValue] == 0) {
+                                            [YGAppTool showToastWithText:@"撤销退款成功"];
+                                            [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.0];
+                                        }
+                                        else {
+                                            [YGAppTool showToastWithText:response[@"msg"]];
+                                        }
+                                    } failure:^(NSError *error) {
+                                        [YGNetService dissmissLoadingView];
+                                    }];
+                                }
+                            }];
 }
 
 - (void)click_connectServiceBtn {

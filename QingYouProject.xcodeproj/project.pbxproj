@@ -14,6 +14,8 @@
 		04171E2F20DBA845006A0BF8 /* WKDecorationOrderDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04171E2E20DBA845006A0BF8 /* WKDecorationOrderDetailModel.m */; };
 		042AF70320CFBB61005ECDBF /* WKCheckContactScaleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042AF70220CFBB61005ECDBF /* WKCheckContactScaleView.m */; };
 		042AF70E20D0B192005ECDBF /* WKImageCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042AF70D20D0B192005ECDBF /* WKImageCollectionView.m */; };
+		045AD0A920E0CB5A00A3FF8F /* WKInvoiceAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 045AD0A820E0CB5A00A3FF8F /* WKInvoiceAddressModel.m */; };
+		045AD0AD20E0FB1F00A3FF8F /* WKRefundAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 045AD0AC20E0FB1F00A3FF8F /* WKRefundAlertView.m */; };
 		045EDEDC20D89A4600969EB3 /* WKCheckContactScaleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EDEDB20D89A4600969EB3 /* WKCheckContactScaleCell.m */; };
 		0470A40220C0F712003F23C6 /* SQDecorationDetailStagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A40120C0F712003F23C6 /* SQDecorationDetailStagesView.m */; };
 		0470A40520C0FB93003F23C6 /* SQDecorationDetailFunctionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A40420C0FB93003F23C6 /* SQDecorationDetailFunctionView.m */; };
@@ -37,6 +39,14 @@
 		04935C7720DDF37800E84802 /* MyPushInformationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04935C7020DDF37700E84802 /* MyPushInformationController.m */; };
 		04935C7820DDF37800E84802 /* MyInformationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04935C7220DDF37700E84802 /* MyInformationModel.m */; };
 		04935C7920DDF37800E84802 /* MyPushInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04935C7320DDF37700E84802 /* MyPushInformationCell.m */; };
+		04935CE020E078FC00E84802 /* WKInvoiceAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04935CDF20E078FC00E84802 /* WKInvoiceAddressViewController.m */; };
+		04935CE320E07AFF00E84802 /* WKInvoiceFunctionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04935CE220E07AFF00E84802 /* WKInvoiceFunctionCell.m */; };
+		04935CFA20E0921F00E84802 /* addressJson.txt in Resources */ = {isa = PBXBuildFile; fileRef = 04935CF120E0921E00E84802 /* addressJson.txt */; };
+		04935D0D20E098B000E84802 /* YZLAreaPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04935D0020E098AD00E84802 /* YZLAreaPickerView.m */; };
+		04935D0F20E098B000E84802 /* WKInvoiceAddressAreaPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 04935D0320E098AE00E84802 /* WKInvoiceAddressAreaPicker.m */; };
+		04935D1020E098B000E84802 /* YZLAreaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04935D0420E098AE00E84802 /* YZLAreaModel.m */; };
+		04935D1220E098B000E84802 /* YZLAreaCacheTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 04935D0820E098AF00E84802 /* YZLAreaCacheTool.m */; };
+		04935D1620E09E4800E84802 /* WKAddInvoiceAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04935D1520E09E4800E84802 /* WKAddInvoiceAddressViewController.m */; };
 		04A6167020D0FC5C00D347D2 /* WKUserCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6166F20D0FC5C00D347D2 /* WKUserCenterCell.m */; };
 		04B7A91220D3C491008675F5 /* WKDecorationSUKModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B7A91120D3C491008675F5 /* WKDecorationSUKModel.m */; };
 		04FD9BFF20C61B2F00B3D153 /* WKAnimationAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FD9BFD20C61AA300B3D153 /* WKAnimationAlert.m */; };
@@ -803,6 +813,10 @@
 		042AF70220CFBB61005ECDBF /* WKCheckContactScaleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKCheckContactScaleView.m; sourceTree = "<group>"; };
 		042AF70C20D0B192005ECDBF /* WKImageCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKImageCollectionView.h; sourceTree = "<group>"; };
 		042AF70D20D0B192005ECDBF /* WKImageCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKImageCollectionView.m; sourceTree = "<group>"; };
+		045AD0A720E0CB5A00A3FF8F /* WKInvoiceAddressModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKInvoiceAddressModel.h; sourceTree = "<group>"; };
+		045AD0A820E0CB5A00A3FF8F /* WKInvoiceAddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKInvoiceAddressModel.m; sourceTree = "<group>"; };
+		045AD0AB20E0FB1F00A3FF8F /* WKRefundAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKRefundAlertView.h; sourceTree = "<group>"; };
+		045AD0AC20E0FB1F00A3FF8F /* WKRefundAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKRefundAlertView.m; sourceTree = "<group>"; };
 		045EDEDA20D89A4600969EB3 /* WKCheckContactScaleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKCheckContactScaleCell.h; sourceTree = "<group>"; };
 		045EDEDB20D89A4600969EB3 /* WKCheckContactScaleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKCheckContactScaleCell.m; sourceTree = "<group>"; };
 		0470A40020C0F712003F23C6 /* SQDecorationDetailStagesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationDetailStagesView.h; sourceTree = "<group>"; };
@@ -850,6 +864,21 @@
 		04935C7320DDF37700E84802 /* MyPushInformationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPushInformationCell.m; sourceTree = "<group>"; };
 		04935C7420DDF37700E84802 /* MyPushInformationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPushInformationController.h; sourceTree = "<group>"; };
 		04935C7520DDF37700E84802 /* MyInformationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyInformationModel.h; sourceTree = "<group>"; };
+		04935CDE20E078FC00E84802 /* WKInvoiceAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKInvoiceAddressViewController.h; sourceTree = "<group>"; };
+		04935CDF20E078FC00E84802 /* WKInvoiceAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKInvoiceAddressViewController.m; sourceTree = "<group>"; };
+		04935CE120E07AFF00E84802 /* WKInvoiceFunctionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKInvoiceFunctionCell.h; sourceTree = "<group>"; };
+		04935CE220E07AFF00E84802 /* WKInvoiceFunctionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKInvoiceFunctionCell.m; sourceTree = "<group>"; };
+		04935CF120E0921E00E84802 /* addressJson.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = addressJson.txt; sourceTree = "<group>"; };
+		04935D0020E098AD00E84802 /* YZLAreaPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZLAreaPickerView.m; sourceTree = "<group>"; };
+		04935D0320E098AE00E84802 /* WKInvoiceAddressAreaPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKInvoiceAddressAreaPicker.m; sourceTree = "<group>"; };
+		04935D0420E098AE00E84802 /* YZLAreaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZLAreaModel.m; sourceTree = "<group>"; };
+		04935D0520E098AF00E84802 /* WKInvoiceAddressAreaPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKInvoiceAddressAreaPicker.h; sourceTree = "<group>"; };
+		04935D0820E098AF00E84802 /* YZLAreaCacheTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZLAreaCacheTool.m; sourceTree = "<group>"; };
+		04935D0A20E098B000E84802 /* YZLAreaPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZLAreaPickerView.h; sourceTree = "<group>"; };
+		04935D0B20E098B000E84802 /* YZLAreaCacheTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZLAreaCacheTool.h; sourceTree = "<group>"; };
+		04935D0C20E098B000E84802 /* YZLAreaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZLAreaModel.h; sourceTree = "<group>"; };
+		04935D1420E09E4800E84802 /* WKAddInvoiceAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKAddInvoiceAddressViewController.h; sourceTree = "<group>"; };
+		04935D1520E09E4800E84802 /* WKAddInvoiceAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKAddInvoiceAddressViewController.m; sourceTree = "<group>"; };
 		04A6166E20D0FC5C00D347D2 /* WKUserCenterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKUserCenterCell.h; sourceTree = "<group>"; };
 		04A6166F20D0FC5C00D347D2 /* WKUserCenterCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKUserCenterCell.m; sourceTree = "<group>"; };
 		04B7A91020D3C491008675F5 /* WKDecorationSUKModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKDecorationSUKModel.h; sourceTree = "<group>"; };
@@ -2311,6 +2340,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		045AD0AA20E0FB0500A3FF8F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				045AD0AB20E0FB1F00A3FF8F /* WKRefundAlertView.h */,
+				045AD0AC20E0FB1F00A3FF8F /* WKRefundAlertView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		0470A40C20C116CC003F23C6 /* DecorationOrderDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -2357,6 +2395,37 @@
 			path = "消息";
 			sourceTree = "<group>";
 		};
+		04935CDD20E0789A00E84802 /* Address */ = {
+			isa = PBXGroup;
+			children = (
+				04935CDE20E078FC00E84802 /* WKInvoiceAddressViewController.h */,
+				04935CDF20E078FC00E84802 /* WKInvoiceAddressViewController.m */,
+				04935D1420E09E4800E84802 /* WKAddInvoiceAddressViewController.h */,
+				04935D1520E09E4800E84802 /* WKAddInvoiceAddressViewController.m */,
+				04935CE120E07AFF00E84802 /* WKInvoiceFunctionCell.h */,
+				04935CE220E07AFF00E84802 /* WKInvoiceFunctionCell.m */,
+				045AD0A720E0CB5A00A3FF8F /* WKInvoiceAddressModel.h */,
+				045AD0A820E0CB5A00A3FF8F /* WKInvoiceAddressModel.m */,
+			);
+			path = Address;
+			sourceTree = "<group>";
+		};
+		04935CFE20E098A000E84802 /* WKAreaPicker */ = {
+			isa = PBXGroup;
+			children = (
+				04935CF120E0921E00E84802 /* addressJson.txt */,
+				04935D0B20E098B000E84802 /* YZLAreaCacheTool.h */,
+				04935D0820E098AF00E84802 /* YZLAreaCacheTool.m */,
+				04935D0C20E098B000E84802 /* YZLAreaModel.h */,
+				04935D0420E098AE00E84802 /* YZLAreaModel.m */,
+				04935D0A20E098B000E84802 /* YZLAreaPickerView.h */,
+				04935D0020E098AD00E84802 /* YZLAreaPickerView.m */,
+				04935D0520E098AF00E84802 /* WKInvoiceAddressAreaPicker.h */,
+				04935D0320E098AE00E84802 /* WKInvoiceAddressAreaPicker.m */,
+			);
+			path = WKAreaPicker;
+			sourceTree = "<group>";
+		};
 		04A6167120D20D3900D347D2 /* WKUserCenterCollect */ = {
 			isa = PBXGroup;
 			children = (
@@ -2384,6 +2453,7 @@
 		04FFB4B120C7670400B8843E /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				04935CDD20E0789A00E84802 /* Address */,
 				04FFB4B820C7670400B8843E /* WKSettingViewController.h */,
 				04FFB4B220C7670400B8843E /* WKSettingViewController.m */,
 				04FFB4BA20C7670400B8843E /* EvaluateViewController.h */,
@@ -2401,6 +2471,7 @@
 		04FFB4C720C7F24C00B8843E /* Refund */ = {
 			isa = PBXGroup;
 			children = (
+				045AD0AA20E0FB0500A3FF8F /* View */,
 				04FFB4F020C91D2D00B8843E /* Model */,
 				04FFB4EF20C91D2200B8843E /* ViewController */,
 			);
@@ -5024,6 +5095,7 @@
 		E2E5B08A1FB0675900205F70 /* YGOwnLib */ = {
 			isa = PBXGroup;
 			children = (
+				04935CFE20E098A000E84802 /* WKAreaPicker */,
 				2CB40DA51FBA8CA500133211 /* UIAlertController+supportedInterfaceOrientations */,
 				E2E5B08E1FB0675900205F70 /* UITextField+YG */,
 				E2E5B0911FB0675900205F70 /* UIView + Animate */,
@@ -5867,6 +5939,7 @@
 				E2E5B3921FB0675B00205F70 /* xianzhi_luzhi_right.png in Resources */,
 				18C158E91FC820890010ACD3 /* BuyOrderTableViewCell.xib in Resources */,
 				E99DE28820C0E72A009CEF88 /* SQServiceFormListPlist.plist in Resources */,
+				04935CFA20E0921F00E84802 /* addressJson.txt in Resources */,
 				18C159AF1FC8208A0010ACD3 /* equirectangular-projection-lines.png in Resources */,
 				E2E5B3951FB0675B00205F70 /* xianzhi_luzhi_shanguang.png in Resources */,
 				18C15A731FC8208B0010ACD3 /* time.plist in Resources */,
@@ -6039,6 +6112,7 @@
 				E2E5B1821FB0675A00205F70 /* UIImageView+YYWebImage.m in Sources */,
 				E2E5B34E1FB0675B00205F70 /* AsyncSocket.m in Sources */,
 				E2E5B1291FB0675A00205F70 /* AnimOperation.m in Sources */,
+				04935CE020E078FC00E84802 /* WKInvoiceAddressViewController.m in Sources */,
 				18C15A271FC8208A0010ACD3 /* RSCorwFundingSubscribeModel.m in Sources */,
 				E2E5B19C1FB0675A00205F70 /* HXTagCollectionViewCell.m in Sources */,
 				E2E5B1861FB0675A00205F70 /* YYImageCoder.m in Sources */,
@@ -6085,10 +6159,12 @@
 				E9E1E5A420C7DA9400A807BE /* SQChooseDecorationAddressView.m in Sources */,
 				18C159441FC8208A0010ACD3 /* WaitToDealRepairOrderViewController.m in Sources */,
 				E99DE28E20C23941009CEF88 /* SQChooseGardenVC.m in Sources */,
+				045AD0A920E0CB5A00A3FF8F /* WKInvoiceAddressModel.m in Sources */,
 				5201C1681FCC49B40049F22C /* ProjectApplyDetailViewController.m in Sources */,
 				18C15A1A1FC8208A0010ACD3 /* ServiceEvalutionModel.m in Sources */,
 				18C15A7E1FC8208B0010ACD3 /* PayHeaderView.m in Sources */,
 				E2E5B17A1FB0675A00205F70 /* YYDiskCache.m in Sources */,
+				04935CE320E07AFF00E84802 /* WKInvoiceFunctionCell.m in Sources */,
 				2CA019121FCD3DD800B21863 /* MineProjectApplyWaitCheckViewController.m in Sources */,
 				2CA16F521FCB99D200BE7CAD /* ProjectApplyMainTableViewCell.m in Sources */,
 				18C159D31FC8208A0010ACD3 /* ManageMailPostTableViewCell.m in Sources */,
@@ -6162,6 +6238,7 @@
 				18C159C51FC8208A0010ACD3 /* RecommendCollectionCell.m in Sources */,
 				18C15A651FC8208B0010ACD3 /* MeetingBookViewController.m in Sources */,
 				E2E5B3841FB0675B00205F70 /* YGAlertView.m in Sources */,
+				04935D1020E098B000E84802 /* YZLAreaModel.m in Sources */,
 				0470A42D20C14B56003F23C6 /* SQAddTicketApplyInputCell.m in Sources */,
 				E2E5B1231FB0675900205F70 /* UIImage+ColorAtPoint.m in Sources */,
 				E2E5B1431FB0675A00205F70 /* MJRefreshHeader.m in Sources */,
@@ -6442,6 +6519,7 @@
 				E2E5B1221FB0675900205F70 /* EBMuteDetector.m in Sources */,
 				18C159D91FC8208A0010ACD3 /* CheckUserInfoViewController.m in Sources */,
 				18C15A181FC8208A0010ACD3 /* ServiceEvaluationViewController.m in Sources */,
+				04935D0F20E098B000E84802 /* WKInvoiceAddressAreaPicker.m in Sources */,
 				18C159891FC8208A0010ACD3 /* AdvertisesForInfoDetailModel.m in Sources */,
 				E2E5B1411FB0675A00205F70 /* MJRefreshComponent.m in Sources */,
 				18C159A31FC8208A0010ACD3 /* AdvertisementDetailController.m in Sources */,
@@ -6455,6 +6533,7 @@
 				18C159B61FC8208A0010ACD3 /* AdvertisementLocationViewCell.m in Sources */,
 				E2E5B34B1FB0675B00205F70 /* Reachability.m in Sources */,
 				18C159011FC820890010ACD3 /* IntegralView.m in Sources */,
+				045AD0AD20E0FB1F00A3FF8F /* WKRefundAlertView.m in Sources */,
 				E2E5B1261FB0675A00205F70 /* UICKeyChainStore.m in Sources */,
 				18C15A421FC8208B0010ACD3 /* MyRoadShowViewController.m in Sources */,
 				E2E5B1441FB0675A00205F70 /* MJRefreshAutoGifFooter.m in Sources */,
@@ -6528,6 +6607,7 @@
 				18C159781FC8208A0010ACD3 /* JobOutsourceTradeRecoredWaitViewController.m in Sources */,
 				E2E5B1601FB0675A00205F70 /* QNSessionManager.m in Sources */,
 				18C159241FC820890010ACD3 /* WaitToDealModel.m in Sources */,
+				04935D0D20E098B000E84802 /* YZLAreaPickerView.m in Sources */,
 				18C159AB1FC8208A0010ACD3 /* OrderListModel.m in Sources */,
 				E9E1E5AD20C90B1500A807BE /* SQPaySuccessfulVC.m in Sources */,
 				18C15A1B1FC8208A0010ACD3 /* ServiceIntroduceViewController.m in Sources */,
@@ -6577,6 +6657,7 @@
 				04FFB4BF20C7670400B8843E /* PasswordSetValidateController.m in Sources */,
 				18C159351FC8208A0010ACD3 /* WaitReplyViewController.m in Sources */,
 				18C159EE1FC8208A0010ACD3 /* BreakContractBillViewController.m in Sources */,
+				04935D1620E09E4800E84802 /* WKAddInvoiceAddressViewController.m in Sources */,
 				E2E5B17B1FB0675A00205F70 /* YYKVStorage.m in Sources */,
 				E2E5B33B1FB0675B00205F70 /* NSSet+HYBUnicodeReadable.m in Sources */,
 				E99DE1EC20AE9DE4009CEF88 /* SQDecorationServeVC.m in Sources */,
@@ -6639,6 +6720,7 @@
 				18C158EA1FC820890010ACD3 /* BuyOrderViewController.m in Sources */,
 				18C15A0D1FC8208A0010ACD3 /* FinancialAccountingCell.m in Sources */,
 				18C158FA1FC820890010ACD3 /* CustomerCommentViewController.m in Sources */,
+				04935D1220E098B000E84802 /* YZLAreaCacheTool.m in Sources */,
 				E2E5B1651FB0675A00205F70 /* QNResumeUpload.m in Sources */,
 				E2E5B39B1FB0675B00205F70 /* YGPreviewViewController.m in Sources */,
 				2C7CDCB81FCE5149005437C6 /* ProjectApplyForWebDetailViewController.m in Sources */,

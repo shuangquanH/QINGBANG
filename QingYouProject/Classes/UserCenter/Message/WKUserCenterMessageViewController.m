@@ -52,28 +52,28 @@
 }
 
 - (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
-    if (headerAction) {
-        [SQRequest post:KAPI_MESSAGELIST param:nil success:^(id response) {
-            [self.tableView.mj_header endRefreshing];
-            if ([response[@"code"] longLongValue] == 0) {
-                NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKUserCenterMessageModel class] json:response[@"data"][@"message_list"]];
-                if (tmp.count) {
-                    [self.messageList removeAllObjects];
-                    [self.messageList addObjectsFromArray:tmp];
-                    [self.tableView reloadData];
-                }
-            }
-            else {
-               [YGAppTool showToastWithText:response[@"msg"]];
-            }
-        } failure:^(NSError *error) {
-            [YGAppTool showToastWithText:@"网络错误"];
-            [self.tableView.mj_header endRefreshing];
-        }];
-    }
-    else {
-        [self.tableView.mj_footer endRefreshing];
-    }
+//    if (headerAction) {
+//        [SQRequest post:KAPI_MESSAGELIST param:nil success:^(id response) {
+//            [self.tableView.mj_header endRefreshing];
+//            if ([response[@"code"] longLongValue] == 0) {
+//                NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKUserCenterMessageModel class] json:response[@"data"][@"message_list"]];
+//                if (tmp.count) {
+//                    [self.messageList removeAllObjects];
+//                    [self.messageList addObjectsFromArray:tmp];
+//                    [self.tableView reloadData];
+//                }
+//            }
+//            else {
+//               [YGAppTool showToastWithText:response[@"msg"]];
+//            }
+//        } failure:^(NSError *error) {
+//            [YGAppTool showToastWithText:@"网络错误"];
+//            [self.tableView.mj_header endRefreshing];
+//        }];
+//    }
+//    else {
+//        [self.tableView.mj_footer endRefreshing];
+//    }
 }
 
 #pragma mark - UITableViewDataSource

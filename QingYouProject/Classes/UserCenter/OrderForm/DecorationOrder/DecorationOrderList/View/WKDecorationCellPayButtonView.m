@@ -51,7 +51,7 @@ const CGFloat kFunctionButtonTopMargin  = 0.0;
     else if (stageModel.status == 4) {//已关闭
         [self reSetFunctionButtonsWithTitles:@[@"删除订单"] types:@[@(WKDecorationOrderActionTypeDelete)]];
     }
-    else  {//待付款以及未激活状态（未激活状态显示按钮的样式与待付款相同）
+    else if (stageModel.status == 1) {//待付款->表示已激活
         if (stage == 0) {//订金
             if (inDetail) {//在列表中展示付款、取消，在详情中展示付款
                 [self reSetFunctionButtonsWithTitles:@[@"付款"] types:@[@(WKDecorationOrderActionTypePay)]];
@@ -67,6 +67,19 @@ const CGFloat kFunctionButtonTopMargin  = 0.0;
             else {
                 [self reSetFunctionButtonsWithTitles:@[@"补登", @"付款"] types:@[@(WKDecorationOrderActionTypeRepair), @(WKDecorationOrderActionTypePay)]];
             }
+        }
+    }
+    else  {//未激活
+        if (stage == 0) {//订金
+            if (inDetail) {//在列表中展示付款、取消，在详情中展示付款
+                [self reSetFunctionButtonsWithTitles:@[@"付款"] types:@[@(WKDecorationOrderActionTypePay)]];
+            }
+            else {
+                [self reSetFunctionButtonsWithTitles:@[@"付款", @"取消订单"] types:@[@(WKDecorationOrderActionTypePay), @(WKDecorationOrderActionTypeCancel)]];
+            }
+        }
+        else {
+            [self reSetFunctionButtonsWithTitles:@[@"付款"] types:@[@(WKDecorationOrderActionTypePay)]];
         }
     }
 }

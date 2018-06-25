@@ -11,8 +11,12 @@
 @class WKInvoiceModel;
 
 @interface SQTicketApplyListViewController : RootViewController
-
+//选择发票回调
 @property (nonatomic, copy) void (^ selectInvoiceBlock)(WKInvoiceModel *invoiceInfo);
+//发票管理发生数据刷新时的回调
+@property (nonatomic, copy) void (^ managerRefresh)(NSArray<WKInvoiceModel *> *invoiceList);
+
+@property (nonatomic, copy) NSString *defaultInvoiceId;
 
 - (instancetype)initWithIsTicketApplyManager:(BOOL)isTicketApplyManager;
 

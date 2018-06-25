@@ -99,7 +99,7 @@
 }
 
 - (void)configOrderInfo:(WKDecorationOrderListModel *)orderInfo {
-    if (orderInfo.status == 3 && orderInfo.refund) {//受理中，待退款
+    if (orderInfo.status == 4 && orderInfo.activityStageInfo) {//阶段款
         if (!_otherStateLabel) {
             _otherStateLabel = [UILabel labelWithFont:KSCAL(28) textColor:KCOLOR_MAIN];
             [self.contentView addSubview:_otherStateLabel];
@@ -108,22 +108,20 @@
                 make.centerY.equalTo(_stateLabel);
             }];
         }
-
-        _otherStateLabel.hidden = NO;
-        _otherStateLabel.text = @"(待退款)";
-    }
-    else if (orderInfo.status == 4 && orderInfo.activityStageInfo) {//阶段款
-        if (!_otherStateLabel) {
-            _otherStateLabel = [UILabel labelWithFont:KSCAL(28) textColor:KCOLOR_MAIN];
-            [self.contentView addSubview:_otherStateLabel];
-            [_otherStateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.left.equalTo(_stateLabel.mas_right);
-                make.centerY.equalTo(_stateLabel);
-            }];
-        }
-        
         _otherStateLabel.hidden = NO;
         _otherStateLabel.text = [NSString stringWithFormat:@"(%@)", orderInfo.activityStageInfo.name];
+    }
+    else if (orderInfo.isInRefund) {//退款中
+        if (!_otherStateLabel) {
+            _otherStateLabel = [UILabel labelWithFont:KSCAL(28) textColor:KCOLOR_MAIN];
+            [self.contentView addSubview:_otherStateLabel];
+            [_otherStateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(_stateLabel.mas_right);
+                make.centerY.equalTo(_stateLabel);
+            }];
+        }
+        _otherStateLabel.hidden = NO;
+        _otherStateLabel.text = @"(待退款)";
     }
     else {
         _otherStateLabel.hidden = YES;

@@ -75,7 +75,6 @@
         [[YGConnectionService sharedConnectionService] showLoadingViewWithSuperView:YGAppDelegate.window];
     }
     
-    
     [[YGConnectionService sharedConnectionService].requestManager GET:api parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         if (success) {

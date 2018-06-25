@@ -24,11 +24,8 @@
 }
 -(void)configAttribute
 {
-    
 
-    
     _textFieldPlaceHolderArray = @[@"请输入手机号码",@"请选择",@"请填写详细地址，街道及门牌号"];
-//    _textFieldContentArray = @[_model.phone,_model.firstaddress,_model.secondaddress];
 
     if ([_state isEqualToString:@"修改"])
     {
@@ -330,11 +327,12 @@
     }
     
     [self dismiss];
-
+    
+  
     NSArray *cityArray = [firstTextField.text componentsSeparatedByString:@" "];
     if ([_state isEqualToString:@"修改"])
     {
-            NSDictionary *dict = @{@"id":_model.ID,@"type":@"0",@"name":_nameTextField.text,@"phone":phoneTextField.text,@"prov":cityArray[0],@"city":cityArray[1],@"dist":cityArray[2],@"address":_addressTextView.text,@"defAddress":_model.defAddress};
+        NSDictionary *dict = @{@"id":_model.ID,@"type":@"0",@"name":_nameTextField.text,@"phone":phoneTextField.text,@"prov":cityArray[0],@"city":cityArray[1],@"dist":cityArray[2],@"address":_addressTextView.text,@"defAddress":_model.defAddress};
         [self startPostWithURLString:REQUEST_AddressEdit parameters:dict showLoadingView:NO scrollView:nil];
     }
     else
@@ -342,8 +340,9 @@
         NSDictionary *dict = @{@"userId":YGSingletonMarco.user.userId,@"type":@"0",@"name":_nameTextField.text,@"phone":phoneTextField.text,@"prov":cityArray[0],@"city":cityArray[1],@"dist":cityArray[2],@"address":_addressTextView.text,@"defAddress":@"0"};
         [self startPostWithURLString:REQUEST_AddAddress parameters:dict showLoadingView:NO scrollView:nil];
     }
-
+    
 }
+
 -(void)didReceiveSuccessResponeseWithURLString:(NSString *)URLString parameters:(id)parameters responeseObject:(id)responseObject{
     if ([URLString isEqualToString:REQUEST_AddressEdit]) {
         [YGAppTool showToastWithText:@"修改地址成功"];

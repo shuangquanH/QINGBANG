@@ -72,4 +72,30 @@
     }];
 }
 
++ (void)sendRefundWithOrderNumber:(NSString *)orderNumber paymentId:(NSString *)paymentId amount:(NSString *)amount comment:(NSString *)comment completed:(void (^)(BOOL, NSString *))completed {
+    
+    if (!orderNumber.length || !paymentId.length || !amount.length || !comment.length) {
+        completed(NO, @"请求参数不完整");
+        return;
+    }
+    [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
+    [SQRequest post:KAPI_APPLYREFUND param:@{@"orderId": orderNumber,
+                                             @"paymentId": paymentId,
+                                             @"amount": amount,
+                                             @"comment": comment}
+            success:^(id response) {
+                [YGNetService dissmissLoadingView];
+                if ([response[@"code"] longLongValue] == 0) {
+                    completed(YES, nil);
+                }
+                else {
+                    completed(NO, response[@"msg"]);
+                }
+            } failure:^(NSError *error) {
+                [YGNetService dissmissLoadingView];
+                completed(NO, @"网络错误");
+            }];
+}
+
+
 @end

@@ -19,5 +19,11 @@
 + (void)sendPayWithParam:(NSDictionary *)param completed:(void(^)(id response, NSString *errMsg))completed;
 //订单详情
 + (void)sendOrderDetailWithOrderNumber:(NSString *)orderNumber completed:(void(^)(WKDecorationOrderDetailModel *detailInfo, NSString *errMsg))completed;
+//申请退款
++ (void)sendRefundWithOrderNumber:(NSString *)orderNumber
+                        paymentId:(NSString *)paymentId
+                           amount:(NSString *)amount
+                          comment:(NSString *)comment
+                        completed:(void(^)(BOOL success, NSString *errMsg))completed;
 
 @end

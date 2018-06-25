@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #define baseViewHeight 240
 @implementation YGCityPikerView
+
 - (instancetype)init
 {
     self = [super init];

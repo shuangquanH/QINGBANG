@@ -9,5 +9,7 @@
 #import "WKInvoiceModel.h"
 
 @implementation WKInvoiceModel
-
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"ID" : @"id", @"isDefault": @"default"};
+}
 @end

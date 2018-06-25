@@ -51,28 +51,28 @@
 }
 
 - (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
-    if (headerAction) {
-        [SQRequest post:KAPI_COLLECTLIST param:nil success:^(id response) {
-            [self.tableView.mj_header endRefreshing];
-            if ([response[@"code"] longLongValue] == 0) {
-                NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKUserCenterCollectModel class] json:response[@"data"][@"collect_list"]];
-                if (tmp.count) {
-                    [self.collectList removeAllObjects];
-                    [self.collectList addObjectsFromArray:tmp];
-                    [self.tableView reloadData];
-                }
-            }
-            else {
-                [YGAppTool showToastWithText:response[@"msg"]];
-            }
-        } failure:^(NSError *error) {
-            [YGAppTool showToastWithText:@"网络错误"];
-            [self.tableView.mj_header endRefreshing];
-        }];
-    }
-    else {
-        [self.tableView.mj_footer endRefreshing];
-    }
+//    if (headerAction) {
+//        [SQRequest post:KAPI_COLLECTLIST param:nil success:^(id response) {
+//            [self.tableView.mj_header endRefreshing];
+//            if ([response[@"code"] longLongValue] == 0) {
+//                NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKUserCenterCollectModel class] json:response[@"data"][@"collect_list"]];
+//                if (tmp.count) {
+//                    [self.collectList removeAllObjects];
+//                    [self.collectList addObjectsFromArray:tmp];
+//                    [self.tableView reloadData];
+//                }
+//            }
+//            else {
+//                [YGAppTool showToastWithText:response[@"msg"]];
+//            }
+//        } failure:^(NSError *error) {
+//            [YGAppTool showToastWithText:@"网络错误"];
+//            [self.tableView.mj_header endRefreshing];
+//        }];
+//    }
+//    else {
+//        [self.tableView.mj_footer endRefreshing];
+//    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -91,27 +91,27 @@
 
 #pragma mark - WKUserCenterCollectCellDelegate
 - (void)collectCell:(WKUserCenterCollectCell *)collectCell didClickCancelCollectInfo:(WKUserCenterCollectModel *)collectInfo {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"确认取消收藏？" preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        
-        [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-        [SQRequest post:KAPI_DELETECOLLECT param:@{@"product_id": collectInfo.product_id} success:^(id response) {
-            [YGNetService dissmissLoadingView];
-            if ([response[@"code"] longLongValue] == 0) {
-                NSInteger index = [self.collectList indexOfObject:collectInfo];
-                [self.collectList removeObjectAtIndex:index];
-                [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationLeft];
-            }
-            else {
-                [YGAppTool showToastWithText:response[@"msg"]];
-            }
-        } failure:^(NSError *error) {
-            [YGNetService dissmissLoadingView];
-            [YGAppTool showToastWithText:@"网络错误"];
-        }];
-    }]];
-    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
-    [self presentViewController:alert animated:YES completion:nil];
+//    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"确认取消收藏？" preferredStyle:UIAlertControllerStyleAlert];
+//    [alert addAction:[UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//        
+//        [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
+//        [SQRequest post:KAPI_DELETECOLLECT param:@{@"product_id": collectInfo.product_id} success:^(id response) {
+//            [YGNetService dissmissLoadingView];
+//            if ([response[@"code"] longLongValue] == 0) {
+//                NSInteger index = [self.collectList indexOfObject:collectInfo];
+//                [self.collectList removeObjectAtIndex:index];
+//                [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationLeft];
+//            }
+//            else {
+//                [YGAppTool showToastWithText:response[@"msg"]];
+//            }
+//        } failure:^(NSError *error) {
+//            [YGNetService dissmissLoadingView];
+//            [YGAppTool showToastWithText:@"网络错误"];
+//        }];
+//    }]];
+//    [alert addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+//    [self presentViewController:alert animated:YES completion:nil];
 }
 
 

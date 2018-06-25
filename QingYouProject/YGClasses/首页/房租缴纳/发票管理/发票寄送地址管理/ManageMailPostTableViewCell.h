@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ManageMailPostModel.h"
+#import "WKInvoiceAddressModel.h"
 
 @protocol ManageMailPostTableViewCellDelegate <NSObject>
 @optional
@@ -23,4 +24,7 @@
 @property (nonatomic,strong) NSIndexPath *indexPath;
 
 @property (nonatomic,assign) id <ManageMailPostTableViewCellDelegate> delegate;
+
+@property (nonatomic, strong) WKInvoiceAddressModel *invoiceModel;
+
 @end

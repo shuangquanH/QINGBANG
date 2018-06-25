@@ -44,8 +44,9 @@
 
 - (void)setupSubviews {
     
-    if (!_invoiceInfo) {
+    if (!_invoiceInfo) {//默认添加企业
         _invoiceInfo = [WKInvoiceModel new];
+        _invoiceInfo.type = 2;
     }
 
     _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
@@ -84,25 +85,31 @@
 
 - (void)fillInvoiceInfoWithIndexPath:(NSIndexPath *)indexPath forCell:(SQAddTicketApplyInputCell *)cell {
     if (indexPath.row == 1) {
-        [cell configTitle:@"名称" placeHodler:@"请输入抬头名称" content:self.invoiceInfo.invoiceName necessary:YES];
+        [cell configTitle:@"名称" placeHodler:@"请输入抬头名称" content:self.invoiceInfo.title necessary:YES];
+        cell.keyboardType = UIKeyboardTypeDefault;
         return;
     }
     
-    if (!self.invoiceInfo.is_personal) {
+    if (self.invoiceInfo.type == 2) {//企业发票
         if (indexPath.row == 2) {
-            [cell configTitle:@"税号" placeHodler:@"请输入纳税人识别号" content:self.invoiceInfo.invoiceDutyNum necessary:YES];
+            [cell configTitle:@"税号" placeHodler:@"请输入纳税人识别号" content:self.invoiceInfo.taxNo necessary:YES];
+            cell.keyboardType = UIKeyboardTypeDefault;
         }
         else if (indexPath.row == 3) {
-            [cell configTitle:@"企业地址" placeHodler:@"请输入企业注册地址" content:self.invoiceInfo.companyAddress necessary:NO];
+            [cell configTitle:@"企业地址" placeHodler:@"请输入企业注册地址" content:self.invoiceInfo.address necessary:NO];
+            cell.keyboardType = UIKeyboardTypeDefault;
         }
         else if (indexPath.row == 4) {
-            [cell configTitle:@"电话号码" placeHodler:@"请输入企业电话号码" content:self.invoiceInfo.companyPhone necessary:NO];
+            [cell configTitle:@"电话号码" placeHodler:@"请输入企业电话号码" content:self.invoiceInfo.tel necessary:NO];
+            cell.keyboardType = UIKeyboardTypeNumberPad;
         }
         else if (indexPath.row == 5) {
-            [cell configTitle:@"开户银行" placeHodler:@"请输入企业开户银行" content:self.invoiceInfo.companyBank necessary:NO];
+            [cell configTitle:@"开户银行" placeHodler:@"请输入企业开户银行" content:self.invoiceInfo.bankName necessary:NO];
+            cell.keyboardType = UIKeyboardTypeDefault;
         }
         else if (indexPath.row == 6) {
-            [cell configTitle:@"银行账户" placeHodler:@"请输入企业银行账户" content:self.invoiceInfo.companyBankAccount necessary:NO];
+            [cell configTitle:@"银行账户" placeHodler:@"请输入企业银行账户" content:self.invoiceInfo.bankNo necessary:NO];
+            cell.keyboardType = UIKeyboardTypeNumberPad;
         }
     }
 }
@@ -110,31 +117,44 @@
 #pragma mark - action
 - (void)click_confirmButton {
     
-    if (!_invoiceInfo.invoiceName.length) {
+    if (!_invoiceInfo.title.length) {
         [YGAppTool showToastWithText:@"请填写发票抬头名称"];
         return;
     }
     
-    if (!_invoiceInfo.is_personal && !_invoiceInfo.invoiceDutyNum.length) {//企业税号必填
+    if (_invoiceInfo.type == 2 && !_invoiceInfo.taxNo.length) {//企业税号必填
         [YGAppTool showToastWithText:@"请填写发票抬头税号"];
         return;
     }
     
     if (_personalBtn.isSelected) {//个人，不需要其它数据
-        self.invoiceInfo.companyBank = nil;
-        self.invoiceInfo.companyPhone = nil;
-        self.invoiceInfo.companyAddress = nil;
-        self.invoiceInfo.companyBankAccount = nil;
-        self.invoiceInfo.invoiceDutyNum = nil;
+        self.invoiceInfo.bankName = nil;
+        self.invoiceInfo.tel = nil;
+        self.invoiceInfo.address = nil;
+        self.invoiceInfo.bankNo = nil;
+        self.invoiceInfo.taxNo = nil;
     }
 
-    NSDictionary *param = [self.invoiceInfo yy_modelToJSONObject];
+    
+    NSMutableDictionary *param = [NSMutableDictionary dictionaryWithDictionary:[self.invoiceInfo yy_modelToJSONObject]];
+    param[@"isDefault"] = @(self.invoiceInfo.isDefault);
+    param[@"default"] = nil;
+    if (_isEdit) {
+        param[@"id"] = self.invoiceInfo.ID;
+    }
     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-    [SQRequest post:(_isEdit?KAPI_EDITINVOICE:KAPI_ADDINVOICE) param:param success:^(id response) {
+    [SQRequest post:(_isEdit?KAPI_EDITINVOICE:KAPI_ADDINVOICE) param:[param copy] success:^(id response) {
         [YGNetService dissmissLoadingView];
         if ([response[@"code"] longLongValue] == 0) {
+            if (self.invoiceHandler) {
+                if (_isEdit) {
+                    self.invoiceHandler(self.invoiceInfo);
+                } else {
+                    self.invoiceHandler(nil);
+                }
+            }
             [YGAppTool showToastWithText:(_isEdit?@"修改成功":@"添加成功")];
-            [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.5];
+            [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.0];
         } else {
             [YGAppTool showToastWithText:response[@"msg"]];
         }
@@ -148,13 +168,13 @@
     if (sender.isSelected) return;
     
     if (sender == _personalBtn) {
-        self.invoiceInfo.is_personal = YES;
+        self.invoiceInfo.type = 1;
     }
     else {
-        self.invoiceInfo.is_personal = NO;
+        self.invoiceInfo.type = 2;
     }
     
-    if (_invoiceInfo.is_personal) {
+    if (_invoiceInfo.type == 1) {
         [_personalBtn setImage:[UIImage imageNamed:@"invoicetitle_circle_selected"] forState:UIControlStateNormal];
         [_companyBtn setImage:[UIImage imageNamed:@"invoicetitle_circle"] forState:UIControlStateNormal];
     }
@@ -176,12 +196,11 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        if (self.invoiceInfo.is_personal) {
+        if (self.invoiceInfo.type == 1) {
             return 2;
         }
         return 7;
     }
-    
     return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -241,24 +260,24 @@
     if (!indexPath) return;
     
     if (indexPath.row == 1) {
-        self.invoiceInfo.invoiceName = textField.text;
+        self.invoiceInfo.title = textField.text;
         return;
     }
-    if (!self.invoiceInfo.is_personal) {
+    if (self.invoiceInfo.type == 2) {
         if (indexPath.row == 2) {
-            self.invoiceInfo.invoiceDutyNum = textField.text;
+            self.invoiceInfo.taxNo = textField.text;
         }
         else if (indexPath.row == 3) {
-            self.invoiceInfo.companyAddress = textField.text;
+            self.invoiceInfo.address = textField.text;
         }
         else if (indexPath.row == 4) {
-            self.invoiceInfo.companyPhone = textField.text;
+            self.invoiceInfo.tel = textField.text;
         }
         else if (indexPath.row == 5) {
-            self.invoiceInfo.companyBank = textField.text;
+            self.invoiceInfo.bankName = textField.text;
         }
         else if (indexPath.row == 6) {
-            self.invoiceInfo.companyBankAccount = textField.text;
+            self.invoiceInfo.bankNo = textField.text;
         }
     }
 }
@@ -278,7 +297,7 @@
         [_personalBtn addTarget:self action:@selector(click_selectButton:) forControlEvents:UIControlEventTouchUpInside];
         [_selectView addSubview:_personalBtn];
        
-        if (_invoiceInfo.is_personal) {
+        if (_invoiceInfo.type == 1) {
             [_personalBtn setImage:[UIImage imageNamed:@"invoicetitle_circle_selected"] forState:UIControlStateNormal];
             [_companyBtn setImage:[UIImage imageNamed:@"invoicetitle_circle"] forState:UIControlStateNormal];
         }

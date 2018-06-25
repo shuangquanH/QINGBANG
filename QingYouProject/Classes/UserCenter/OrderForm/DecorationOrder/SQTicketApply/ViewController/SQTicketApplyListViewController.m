@@ -16,6 +16,10 @@
 
 @property (nonatomic, assign) BOOL isFirstLoad;
 @property (nonatomic, assign) BOOL isTicketApplyManager;
+
+@property (nonatomic, assign) NSInteger currentPage;
+@property (nonatomic, assign) NSInteger pageSize;
+
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UIButton *addButton;
 @property (nonatomic, strong) NSMutableArray<WKInvoiceModel *> *invoiceList;
@@ -41,12 +45,10 @@
     self.invoiceList = [NSMutableArray array];
     
     _isFirstLoad = YES;
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+    _currentPage = 1;
+    _pageSize = 10;
     
-    [self refreshInvoiceList];
+    [self refreshActionWithIsRefreshHeaderAction:YES];
 }
 
 - (void)viewWillLayoutSubviews {
@@ -92,52 +94,113 @@
 }
 
 - (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
-    if (headerAction) {
-        [self refreshInvoiceList];
-    }
-    else {
-        [self.tableView.mj_footer endRefreshing];
-    }
-}
-
-- (void)refreshInvoiceList {
     
     if (_isFirstLoad) {
         [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
     }
     
-    [SQRequest post:KAPI_INVOICELIST param:nil success:^(id response) {
-        NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKInvoiceModel class] json:response[@"data"][@"invoice_list"]];
-        [self.invoiceList removeAllObjects];
-        [self.invoiceList addObjectsFromArray:tmp];
-        [self.tableView.mj_header endRefreshing];
-        [self.tableView reloadData];
+    NSInteger tmpPage = 1;
+    if (!headerAction) {
+        tmpPage = _currentPage + 1;
+    }
+    [SQRequest post:KAPI_INVOICELIST param:@{@"currentPage": [NSString stringWithFormat:@"%ld", tmpPage], @"pageSize": [NSString stringWithFormat:@"%ld", self.pageSize]} success:^(id response) {
         
         if (_isFirstLoad) {
             [YGNetService dissmissLoadingView];
             _isFirstLoad = NO;
         }
+        
+        if ([response[@"code"] longLongValue] == 0) {
+            NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKInvoiceModel class] json:response[@"data"][@"invoiceInfoList"]];
+            if (tmp.count) {
+                if (headerAction) {
+                    [self.invoiceList removeAllObjects];
+                }
+                self.currentPage = tmpPage;
+                [self.invoiceList addObjectsFromArray:tmp];
+                [self.tableView reloadData];
+            }
+        } else {
+            [YGAppTool showToastWithText:response[@"msg"]];
+        }
+       
+        if (headerAction) {
+            [self.tableView.mj_header endRefreshing];
+        } else {
+            [self.tableView.mj_footer endRefreshing];
+        }
+        self.pageSize = 10;
+        [self addNoDataImageViewWithArray:self.invoiceList shouldAddToView:_tableView headerAction:YES];
     } failure:^(NSError *error) {
         
         if (_isFirstLoad) {
             [YGNetService dissmissLoadingView];
             _isFirstLoad = NO;
         }
-        
         [YGAppTool showToastWithText:@"网络错误"];
-        [self.tableView.mj_header endRefreshing];
+        if (headerAction) {
+            [self.tableView.mj_header endRefreshing];
+        } else {
+            [self.tableView.mj_footer endRefreshing];
+        }
+        self.pageSize = 10;
+        [self addNoDataImageViewWithArray:self.invoiceList shouldAddToView:_tableView headerAction:YES];
     }];
 }
 
-#pragma mark - action
-- (void)click_confirm {
-    SQAddTicketApplyViewController *next = [SQAddTicketApplyViewController new];
-    [self.navigationController pushViewController:next animated:YES];
-}
 
+#pragma mark - action
+//添加发票
+- (void)click_confirm {
+    [self pushToManagerInvoice:nil];
+}
+//发票列表管理
 - (void)click_managerBtn {
     SQTicketApplyListViewController *next = [[SQTicketApplyListViewController alloc] initWithIsTicketApplyManager:YES];
     [self.navigationController pushViewController:next animated:YES];
+    next.managerRefresh = ^(NSArray<WKInvoiceModel *> *invoiceList) {
+        if (!invoiceList) {//添加新的抬头，需要刷新
+            [self.tableView.mj_header beginRefreshing];
+        } else {
+            [self.invoiceList removeAllObjects];
+            [self.invoiceList addObjectsFromArray:invoiceList];
+            BOOL needClearApplyInvoice = YES;//是否需要清除申请列表默认的抬头
+            for (WKInvoiceModel *m in self.invoiceList) {
+                if ([m.ID isEqualToString:self.defaultInvoiceId]) {
+                    needClearApplyInvoice = NO;
+                    break;
+                }
+            }
+            if (needClearApplyInvoice) {
+                self.selectInvoiceBlock(nil);
+            }
+            [self.tableView reloadData];
+        }
+    };
+}
+//添加/编辑发票信息
+- (void)pushToManagerInvoice:(WKInvoiceModel *)invoice {
+    SQAddTicketApplyViewController *next = [SQAddTicketApplyViewController new];
+    next.invoiceInfo = invoice;
+    [self.navigationController pushViewController:next animated:YES];
+    
+    NSInteger index = [self.invoiceList indexOfObject:invoice];
+    next.invoiceHandler = ^(WKInvoiceModel *invoice) {
+        (void)index;
+        if (invoice) {//替换、刷新
+            [self.invoiceList replaceObjectAtIndex:index withObject:invoice];
+            [self.tableView reloadData];
+            if (self.managerRefresh) {
+                self.managerRefresh(self.invoiceList);
+            }
+        } else {//重新请求
+            self.pageSize = MAX(self.invoiceList.count, 10);
+            [self.tableView.mj_header beginRefreshing];
+            if (self.managerRefresh) {
+                self.managerRefresh(nil);
+            }
+        }
+    };
 }
 
 #pragma mark - UITableViewDataSource
@@ -162,9 +225,7 @@
         }
     }
     else {//编辑抬头
-        SQAddTicketApplyViewController *next = [SQAddTicketApplyViewController new];
-        next.invoiceInfo = [self.invoiceList objectAtIndex:indexPath.row];
-        [self.navigationController pushViewController:next animated:YES];
+        [self pushToManagerInvoice:[self.invoiceList objectAtIndex:indexPath.row]];
     }
 }
 
@@ -177,12 +238,11 @@
     NSMutableArray *actions = [NSMutableArray array];
     
     WKInvoiceModel *invoice = self.invoiceList[indexPath.row];
-    if (!invoice.isDefault) {
+    if (!invoice.isDefault) {//设置默认
         UITableViewRowAction *setDefaultAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"设为默认" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
             [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-            [SQRequest post:KAPI_EDITINVOICE
-                      param:@{@"invoice_id": invoice.invoice_id,
-                              @"isDefault": @"1"}
+            [SQRequest post:KAPI_SETDEFAULTINVOICE
+                      param:@{@"invoiceInfoId": invoice.ID}
                     success:^(id response) {
                         [YGNetService dissmissLoadingView];
                         if ([response[@"code"] longLongValue] == 0) {
@@ -191,6 +251,9 @@
                             }
                             invoice.isDefault = YES;
                             [self.tableView reloadData];
+                            if (self.managerRefresh) {
+                                self.managerRefresh(self.invoiceList);
+                            }
                         }
                         else {
                             [YGAppTool showToastWithText:response[@"msg"]];
@@ -206,16 +269,19 @@
 
     UITableViewRowAction *deleteAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDestructive title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
         [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-        [SQRequest post:KAPI_DELETEINVOICE param:@{@"invoice_id": invoice.invoice_id} success:^(id response) {
+        [SQRequest post:KAPI_DELETEINVOICE param:@{@"invoiceInfoId": invoice.ID} success:^(id response) {
             [YGNetService dissmissLoadingView];
             if ([response[@"code"] longLongValue] == 0) {
                 [self.invoiceList removeObjectAtIndex:indexPath.row];
                 [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+                if (self.managerRefresh) {
+                    self.managerRefresh(self.invoiceList);
+                }
             }
             else {
                 [YGAppTool showToastWithText:response[@"msg"]];
             }
-            
+            [self addNoDataImageViewWithArray:self.invoiceList shouldAddToView:_tableView headerAction:YES];
         } failure:^(NSError *error) {
             [YGNetService dissmissLoadingView];
             [YGAppTool showToastWithText:@"网络错误"];
@@ -223,7 +289,6 @@
     }];
     [actions insertObject:deleteAction atIndex:0];
     return actions;
-
 }
 
 @end
