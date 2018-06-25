@@ -10,6 +10,7 @@
 #import "MyPushInformationCell.h"
 #import "MyInformationModel.h"
 
+
 @interface MyPushInformationController () <UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_tableView;

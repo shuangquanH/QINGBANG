@@ -21,7 +21,7 @@
 
 /** 引导页相关  */
 #import "YGStartPageView.h"
-/** 手势相关  */
+/** 手势  */
 #import "UIView+SQGesture.h"
 
 #import "NSMutableAttributedString+AppendImage.h"
@@ -31,8 +31,6 @@
 #import "UILabel+SQAttribut.h"
 
 #import "SQHouseRentPushTool.h"
-
-
 
 #import "AFNetworking.h"
 #define KCURRENTCITYINFODEFAULTS [NSUserDefaults standardUserDefaults]
@@ -89,9 +87,6 @@
     [self createRefreshWithScrollView:self.collectionView containFooter:NO];
     self.collectionView.mj_header.ignoredScrollViewContentInsetTop=self.headerView.height;
     self.collectionView.contentOffset=CGPointMake(0, -self.headerView.height);
-    
-    self.locationManager = [[JFLocation alloc] init];
-    self.locationManager.delegate = self;
 }
 
 - (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
@@ -114,8 +109,13 @@
         NSLog(@"ooooo");
     }];
     [SQRequest setApiAddress:nil];
-    
-    
+    [self startLoacation];
+}
+
+/** 开始定位  */
+- (void)startLoacation {
+    self.locationManager = [[JFLocation alloc] init];
+    self.locationManager.delegate = self;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -164,12 +164,10 @@
     if ([pushType isEqualToString:@"1"]) {
         [SQHouseRentPushTool pushToHouseRentWithController:self];
     } else {
-        
-        NSString    *plistFile = [[NSBundle mainBundle]pathForResource:@"SQPushTypePlist" ofType:@"plist"];
+        NSString    *plistFile = KPLIST_FILE(@"SQPushTypePlist");
         NSArray     *pushControlArray = [NSArray arrayWithContentsOfFile: plistFile];
         
         for (NSDictionary *dic in pushControlArray) {
-            
             if ([pushType isEqualToString:dic[@"targetTpye"]]) {
                 Class controllerClass = NSClassFromString(dic[@"targetController"]);
                 UIViewController *viewController = [[controllerClass alloc] init];
@@ -186,7 +184,12 @@
         }
     }
     
-    
+}
+
+
+- (void)homePageDataSource:(SQHomeIndexPageModel *)model {
+    self.model = model;
+    self.headerView.model = self.model;
 }
 
 

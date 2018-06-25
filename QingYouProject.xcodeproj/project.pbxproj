@@ -704,6 +704,10 @@
 		E92ABB7120DA08E8003B374D /* SQPlayerControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = E92ABB6E20DA08E8003B374D /* SQPlayerControlView.m */; };
 		E92ABB7420DBB1DD003B374D /* SQSaveWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E92ABB7320DBB1DD003B374D /* SQSaveWebImage.m */; };
 		E92ABB7C20DCFA30003B374D /* SQHouseRentPushTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E92ABB7B20DCFA30003B374D /* SQHouseRentPushTool.m */; };
+		E92ABB9E20E09250003B374D /* CYGifHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = E92ABB9520E09250003B374D /* CYGifHeader.m */; };
+		E92ABB9F20E09250003B374D /* CYGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = E92ABB9620E09250003B374D /* CYGifFooter.m */; };
+		E92ABBA020E09250003B374D /* CYNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = E92ABB9720E09250003B374D /* CYNormalFooter.m */; };
+		E92ABBA120E09250003B374D /* CYNormalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = E92ABB9820E09250003B374D /* CYNormalHeader.m */; };
 		E94137A0209C3891003F3649 /* AppStartManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E941379F209C3891003F3649 /* AppStartManager.m */; };
 		E94137A7209C4295003F3649 /* SQLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E94137A6209C4295003F3649 /* SQLocationManager.m */; };
 		E99DE1C020AC4FAF009CEF88 /* SQBaseHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1AE20AC4FAF009CEF88 /* SQBaseHeaderFooterView.m */; };
@@ -2098,6 +2102,14 @@
 		E92ABB7320DBB1DD003B374D /* SQSaveWebImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQSaveWebImage.m; sourceTree = "<group>"; };
 		E92ABB7A20DCFA30003B374D /* SQHouseRentPushTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQHouseRentPushTool.h; sourceTree = "<group>"; };
 		E92ABB7B20DCFA30003B374D /* SQHouseRentPushTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQHouseRentPushTool.m; sourceTree = "<group>"; };
+		E92ABB9520E09250003B374D /* CYGifHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYGifHeader.m; sourceTree = "<group>"; };
+		E92ABB9620E09250003B374D /* CYGifFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYGifFooter.m; sourceTree = "<group>"; };
+		E92ABB9720E09250003B374D /* CYNormalFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYNormalFooter.m; sourceTree = "<group>"; };
+		E92ABB9820E09250003B374D /* CYNormalHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CYNormalHeader.m; sourceTree = "<group>"; };
+		E92ABB9A20E09250003B374D /* CYGifFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYGifFooter.h; sourceTree = "<group>"; };
+		E92ABB9B20E09250003B374D /* CYGifHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYGifHeader.h; sourceTree = "<group>"; };
+		E92ABB9C20E09250003B374D /* CYNormalHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYNormalHeader.h; sourceTree = "<group>"; };
+		E92ABB9D20E09250003B374D /* CYNormalFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYNormalFooter.h; sourceTree = "<group>"; };
 		E941379E209C3891003F3649 /* AppStartManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppStartManager.h; sourceTree = "<group>"; };
 		E941379F209C3891003F3649 /* AppStartManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppStartManager.m; sourceTree = "<group>"; };
 		E94137A5209C4295003F3649 /* SQLocationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQLocationManager.h; sourceTree = "<group>"; };
@@ -5490,9 +5502,25 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		E92ABB9420E09250003B374D /* freshing */ = {
+			isa = PBXGroup;
+			children = (
+				E92ABB9B20E09250003B374D /* CYGifHeader.h */,
+				E92ABB9520E09250003B374D /* CYGifHeader.m */,
+				E92ABB9A20E09250003B374D /* CYGifFooter.h */,
+				E92ABB9620E09250003B374D /* CYGifFooter.m */,
+				E92ABB9D20E09250003B374D /* CYNormalFooter.h */,
+				E92ABB9720E09250003B374D /* CYNormalFooter.m */,
+				E92ABB9C20E09250003B374D /* CYNormalHeader.h */,
+				E92ABB9820E09250003B374D /* CYNormalHeader.m */,
+			);
+			path = freshing;
+			sourceTree = "<group>";
+		};
 		E94137A1209C3D89003F3649 /* SQTools */ = {
 			isa = PBXGroup;
 			children = (
+				E92ABB9420E09250003B374D /* freshing */,
 				E94137A5209C4295003F3649 /* SQLocationManager.h */,
 				E94137A6209C4295003F3649 /* SQLocationManager.m */,
 				E92ABB7220DBB1DD003B374D /* SQSaveWebImage.h */,
@@ -6330,6 +6358,7 @@
 				18C159CA1FC8208A0010ACD3 /* HistoryPayRecoredViewController.m in Sources */,
 				E99DE1D520AC646B009CEF88 /* SQOrderViewController.m in Sources */,
 				18C159B21FC8208A0010ACD3 /* AdvertisementInstructionCell.m in Sources */,
+				E92ABB9F20E09250003B374D /* CYGifFooter.m in Sources */,
 				E9E1E5BF20D3C6A100A807BE /* AreaSelectDetailViewController.m in Sources */,
 				18C15A171FC8208A0010ACD3 /* FinacialAccountPopView.m in Sources */,
 				18C15A411FC8208B0010ACD3 /* MyRoadShowFinishViewController.m in Sources */,
@@ -6353,6 +6382,7 @@
 				18C159811FC8208A0010ACD3 /* MyRecruitBeInviteInterviewTableViewCell.m in Sources */,
 				18C15A3B1FC8208B0010ACD3 /* MyInvestSubViewController.m in Sources */,
 				E2E5B3521FB0675B00205F70 /* SocketEnterRoomModel.m in Sources */,
+				E92ABBA120E09250003B374D /* CYNormalHeader.m in Sources */,
 				04FFB4C320C77E8700B8843E /* WKDecorationStageView.m in Sources */,
 				E2E5B3481FB0675B00205F70 /* UIView+LDFrame.m in Sources */,
 				0470A40F20C119A1003F23C6 /* SQDecorationDetailServerView.m in Sources */,
@@ -6512,6 +6542,7 @@
 				042AF70E20D0B192005ECDBF /* WKImageCollectionView.m in Sources */,
 				1824E2E81FD0F3F900769A6A /* IntegrationtryJudgeViewController.m in Sources */,
 				18C159D41FC8208A0010ACD3 /* ManageMailPostViewController.m in Sources */,
+				E92ABBA020E09250003B374D /* CYNormalFooter.m in Sources */,
 				18C159E71FC8208A0010ACD3 /* UpLoadPersonTableViewCell.m in Sources */,
 				18C15A4A1FC8208B0010ACD3 /* ServiceContentViewController.m in Sources */,
 				18C159931FC8208A0010ACD3 /* MyResumeViewController.m in Sources */,
@@ -6581,6 +6612,7 @@
 				E2E5B33B1FB0675B00205F70 /* NSSet+HYBUnicodeReadable.m in Sources */,
 				E99DE1EC20AE9DE4009CEF88 /* SQDecorationServeVC.m in Sources */,
 				18C1597F1FC8208A0010ACD3 /* MyRecruitBeCheckedTableViewCell.m in Sources */,
+				E92ABB9E20E09250003B374D /* CYGifHeader.m in Sources */,
 				E2E5B12A1FB0675A00205F70 /* AnimOperationManager.m in Sources */,
 				18C159821FC8208A0010ACD3 /* MyRecruitBeInviteInterviewViewController.m in Sources */,
 				E2E5B1841FB0675A00205F70 /* YYFrameImage.m in Sources */,

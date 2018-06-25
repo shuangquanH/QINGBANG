@@ -78,6 +78,7 @@
 #define KiOS9_1Later        ([UIDevice currentDevice].systemVersion.floatValue >= 9.1f)
 #define KiOS11Later         ([UIDevice currentDevice].systemVersion.floatValue >= 11.0f)
 
+#define KPLIST_FILE(a)         [[NSBundle mainBundle]pathForResource:a ofType:@"plist"]
 
 
 #endif /* SQMacroFile_h */

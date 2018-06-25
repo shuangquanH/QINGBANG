@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "YGConnectionService.h"
 #import "UINavigationController+FDFullscreenPopGesture.h"
-#import "MJRefresh.h"
+#import "CYNormalHeader.h"
+#import "CYNormalFooter.h"
 
 
 typedef enum : NSUInteger {
