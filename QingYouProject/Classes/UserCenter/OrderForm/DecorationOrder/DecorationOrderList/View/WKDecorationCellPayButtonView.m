@@ -6,13 +6,13 @@
 //  Copyright © 2018年 ccyouge. All rights reserved.
 //
 
-#import "SQDecorationCellPayButtonView.h"
+#import "WKDecorationCellPayButtonView.h"
 
 const CGFloat kFunctionButtonWidth      = 150.0;
 const CGFloat kFunctionButtonLeftMargin = 20.0;
 const CGFloat kFunctionButtonTopMargin  = 0.0;
 
-@implementation SQDecorationCellPayButtonView
+@implementation WKDecorationCellPayButtonView
 {
     NSMutableArray<UIButton *> *_buttons;
     UILabel *_stateLabel;

@@ -13,7 +13,7 @@
 #import "WKDecorationOrderDetailModel.h"
 #import "UILabel+SQAttribut.h"
 
-@interface WKDecorationOrderPayAlertView()<UITableViewDelegate, UITableViewDataSource>
+@interface WKDecorationOrderPayAlertView()
 
 @end
 

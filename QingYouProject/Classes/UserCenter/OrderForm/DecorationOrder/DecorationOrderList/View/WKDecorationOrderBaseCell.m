@@ -6,22 +6,23 @@
 //  Copyright © 2018年 ccyouge. All rights reserved.
 //
 
-#import "SQDecorationOrderCell.h"
-#import "NSString+SQStringSize.h"
+#import "WKDecorationOrderBaseCell.h"
 #import "WKDecorationStageView.h"
 #import "UIButton+SQImagePosition.h"
+#import "NSString+SQStringSize.h"
 
 #define KSPACE 20
 
-@implementation SQDecorationOrderCell {
+@implementation WKDecorationOrderBaseCell {
     
     UIImageView *orderImage;
     UILabel *orderTitle;
     UILabel *orderDesc;
     UILabel *orderPrice;
     UIView  *skuActionView;
+    UIButton *avoidClickBtn;//避免点击到阶段部分时调用cell的select方法
     
-@public
+    @public
     WKDecorationStageView *paymentStageView;//订金阶段视图
     WKDecorationOrderListModel *_orderListInfo;//订单列表信息
     CALayer *bottomLineLayer;
@@ -50,6 +51,9 @@
         orderPrice.numberOfLines = 1;
         [self.contentView addSubview:orderPrice];
         
+        avoidClickBtn = [UIButton new];
+        [self.contentView addSubview:avoidClickBtn];
+        
         paymentStageView = [[WKDecorationStageView alloc] init];
         paymentStageView.delegate = self;
         [self.contentView addSubview:paymentStageView];
@@ -57,7 +61,7 @@
         bottomLineLayer = [CALayer layer];
         bottomLineLayer.backgroundColor = colorWithLine.CGColor;
         [self.contentView.layer addSublayer:bottomLineLayer];
-        
+
         [self sqlayoutSubviews];
     }
     return self;
@@ -89,6 +93,11 @@
         make.bottom.equalTo(orderImage.mas_bottom);
     }];
     
+    [avoidClickBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.top.equalTo(orderImage.mas_bottom).offset(KSCAL(KSPACE));
+    }];
+    
     [paymentStageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(orderImage);
         make.centerX.mas_equalTo(0);
@@ -99,27 +108,14 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
     bottomLineLayer.frame = CGRectMake(KSCAL(30), self.contentView.height-KSCAL(KSPACE), self.contentView.width-KSCAL(60), 1);
-}
-
-- (void)setModel:(id)model {
-    orderImage.backgroundColor = [UIColor orangeColor];
-    orderImage.image = [UIImage imageNamed:@"mine_instashot"];
-    orderTitle.text = @"产品名称产品名称产品名称产品名称产品名称产品名称产品名称";
-    orderDesc.text = @"产品描述产品描述产品描述产品描述产品描述产品描述产品描述";
-    orderPrice.text = @"189230元";
 }
 
 - (CGSize)intrinsicContentSize {
     return [self viewSize];
 }
 
-#pragma mark - SQDecorationDetailViewProtocol
-- (void)configOrderInfo:(WKDecorationOrderListModel *)orderInfo {
-    
-    _orderListInfo = orderInfo;
-    
+- (void)setupTextWithOrderInfo:(WKDecorationOrderListModel *)orderInfo {
     [orderImage sd_setImageWithURL:[NSURL URLWithString:orderInfo.skuDetails.skuImgUrl] placeholderImage:nil];
     
     orderPrice.attributedText = orderInfo.skuDetails.skuProductPriceAttributeString;
@@ -130,26 +126,19 @@
     
     orderDesc.attributedText = orderInfo.skuDetails.skuProductDescAttributeString;
     orderDesc.lineBreakMode = NSLineBreakByTruncatingTail;
-    
+}
+
+#pragma mark - SQDecorationDetailViewProtocol
+- (void)configOrderInfo:(WKDecorationOrderListModel *)orderInfo {
+    _orderListInfo = orderInfo;
+    [self setupTextWithOrderInfo:orderInfo];
     [paymentStageView configOrderInfo:orderInfo withStage:0 withInDetail:self.isInOrderDetail];
 }
 
 - (void)configOrderDetailInfo:(WKDecorationOrderDetailModel *)orderDetailInfo {
     _orderListInfo = orderDetailInfo.orderInfo;
-    
-    [orderImage sd_setImageWithURL:[NSURL URLWithString:orderDetailInfo.orderInfo.skuDetails.skuImgUrl] placeholderImage:nil];
-    
-    orderPrice.attributedText = orderDetailInfo.orderInfo.skuDetails.skuProductPriceAttributeString;
-    orderPrice.lineBreakMode = NSLineBreakByTruncatingTail;
-    
-    orderTitle.attributedText = orderDetailInfo.orderInfo.skuProductNameAttributeString;
-    orderTitle.lineBreakMode = NSLineBreakByTruncatingTail;
-    
-    orderDesc.attributedText = orderDetailInfo.orderInfo.skuDetails.skuProductDescAttributeString;
-    orderDesc.lineBreakMode = NSLineBreakByTruncatingTail;
-    
+    [self setupTextWithOrderInfo:orderDetailInfo.orderInfo];
     [paymentStageView configOrderDetailInfo:orderDetailInfo withStage:0 withInDetail:self.isInOrderDetail];
-    
 }
 
 - (CGSize)viewSize {
@@ -171,10 +160,7 @@
 
 @end
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 @implementation WKDecorationOrderMutableStageCell {
-@public
     NSMutableArray<WKDecorationStageView *> *stageViewArray;
 }
 
@@ -183,10 +169,6 @@
     [super sqlayoutSubviews];
     
     stageViewArray = [NSMutableArray array];
-}
-
-- (void)setModel:(id)model {
-    [super setModel:model];
 }
 
 - (void)setupStagesByOrderInfo:(WKDecorationOrderListModel *)orderInfo {
@@ -221,6 +203,7 @@
     }
 }
 
+#pragma mark - SQDecorationDetailViewProtocol
 - (void)configOrderDetailInfo:(WKDecorationOrderDetailModel *)orderDetailInfo {
     [super configOrderDetailInfo:orderDetailInfo];
     [self setupStagesByOrderInfo:orderDetailInfo.orderInfo];
@@ -295,11 +278,6 @@
     }];
 }
 
-
-- (CGSize)viewSize {
-    return CGSizeMake(kScreenW, KSCAL(88.0) + KSCAL(180.0) + 3 * KSCAL(KSPACE) + KSCAL(155));
-}
-
 - (void)click_connectService {
     if ([self.delegate respondsToSelector:@selector(decorationCell:tapedOrderActionType:forStage:)]) {
         [self.delegate decorationCell:self
@@ -308,6 +286,16 @@
     }
 }
 
+#pragma mark - SQDecorationDetailViewProtocol
+- (void)configOrderDetailInfo:(WKDecorationOrderDetailModel *)orderDetailInfo {
+    [super configOrderDetailInfo:orderDetailInfo];
+}
+- (void)configOrderInfo:(WKDecorationOrderListModel *)orderInfo {
+    [super configOrderInfo:orderInfo];
+}
+- (CGSize)viewSize {
+    return CGSizeMake(kScreenW, KSCAL(88.0) + KSCAL(180.0) + 3 * KSCAL(KSPACE) + KSCAL(155));
+}
 + (CGFloat)cellHeightWithOrderInfo:(WKDecorationOrderListModel *)orderInfo {
     return KSCAL(88.0) + KSCAL(180.0) + 3 * KSCAL(KSPACE) + KSCAL(155);
 }

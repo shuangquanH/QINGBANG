@@ -7,11 +7,11 @@
 //
 
 #import "WKDecorationStageView.h"
-#import "SQDecorationCellPayButtonView.h"
+#import "WKDecorationCellPayButtonView.h"
 
 #import "WKDecorationOrderDetailModel.h"
 
-@interface WKDecorationStageView()<SQDecorationCellPayButtonViewDelegate>
+@interface WKDecorationStageView()<WKDecorationCellPayButtonViewDelegate>
 
 @property (nonatomic, strong) UIButton *refundDetailBtn;
 
@@ -23,7 +23,7 @@
     CALayer *lineLayer;
     UILabel *stageTitleLabel;
     UILabel *stagePriceLab;
-    SQDecorationCellPayButtonView *stageStateView;
+    WKDecorationCellPayButtonView *stageStateView;
 }
 
 - (instancetype)init {
@@ -50,7 +50,7 @@
     [stagePriceLab setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
     [self addSubview:stagePriceLab];
     
-    stageStateView = [[SQDecorationCellPayButtonView alloc] init];
+    stageStateView = [[WKDecorationCellPayButtonView alloc] init];
     stageStateView.actionDelegate = self;
     [self addSubview:stageStateView];
 }
@@ -97,7 +97,8 @@
 
 - (void)configOrderDetailInfo:(WKDecorationOrderDetailModel *)orderDetailInfo withStage:(NSInteger)stage withInDetail:(BOOL)inDetail {
     
-    
+    [self configOrderInfo:orderDetailInfo.orderInfo withStage:stage withInDetail:inDetail];
+
     if (stage == 0 && inDetail) {//订金阶段&&在详情中
         if (orderDetailInfo.orderInfo.refund) {//有过退款记录，可以查看退款详情
             self.refundDetailBtn.hidden = NO;
@@ -136,7 +137,6 @@
         }];
     }
     
-    [self configOrderInfo:orderDetailInfo.orderInfo withStage:stage withInDetail:inDetail];
 }
 
 
@@ -152,8 +152,8 @@
     }
 }
 
-#pragma mark - SQDecorationCellPayButtonViewDelegate
-- (void)actionView:(SQDecorationCellPayButtonView *)actionView didClickActionType:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage {
+#pragma mark - WKDecorationCellPayButtonViewDelegate
+- (void)actionView:(WKDecorationCellPayButtonView *)actionView didClickActionType:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage {
     if ([self.delegate respondsToSelector:@selector(stageView:didClickActionType:forStage:)]) {
         [self.delegate stageView:self didClickActionType:actionType forStage:stage];
     }

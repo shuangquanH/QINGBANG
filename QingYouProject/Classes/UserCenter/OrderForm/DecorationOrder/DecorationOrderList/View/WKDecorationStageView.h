@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SQDecorationCellPayButtonView.h"
+#import "WKDecorationCellPayButtonView.h"
 
 @class WKDecorationStageModel, WKDecorationStageView;
 

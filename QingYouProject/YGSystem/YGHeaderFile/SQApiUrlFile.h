@@ -303,12 +303,12 @@
 
 
 //地址（公用）
-#define REQUEST_AddAddress                       @"AddAddress"               //添加地址
-#define REQUEST_AddressEdit                       @"AddressEdit"               //编辑地址
-#define REQUEST_SetDefAddress                       @"SetDefAddress"               //设置默认地址
+#define REQUEST_AddAddress                         @"AddAddress"               //添加地址
+#define REQUEST_AddressEdit                        @"AddressEdit"               //编辑地址
+#define REQUEST_SetDefAddress                      @"SetDefAddress"               //设置默认地址
 #define REQUEST_DeteleAddress                      @"DeteleAddress"               // 删除地址
 #define REQUEST_AddressDetail                      @"AddressDetail"               // 地址详情
-#define REQUEST_AddressList                     @"AddressList"               // 地址列表
+#define REQUEST_AddressList                        @"AddressList"               // 地址列表
 
 
 

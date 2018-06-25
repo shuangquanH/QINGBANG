@@ -33,6 +33,10 @@
 		0470A43420C152DF003F23C6 /* SQAfterSaleListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A43320C152DF003F23C6 /* SQAfterSaleListViewController.m */; };
 		048E813320C6C3DE00845372 /* WKInvoiceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 048E813220C6C3DE00845372 /* WKInvoiceModel.m */; };
 		04935C6D20DD1D4800E84802 /* WKDecorationOrderServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04935C6B20DD1D4800E84802 /* WKDecorationOrderServer.m */; };
+		04935C7620DDF37800E84802 /* MyPushInformationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04935C6F20DDF37700E84802 /* MyPushInformationCell.xib */; };
+		04935C7720DDF37800E84802 /* MyPushInformationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04935C7020DDF37700E84802 /* MyPushInformationController.m */; };
+		04935C7820DDF37800E84802 /* MyInformationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04935C7220DDF37700E84802 /* MyInformationModel.m */; };
+		04935C7920DDF37800E84802 /* MyPushInformationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04935C7320DDF37700E84802 /* MyPushInformationCell.m */; };
 		04A6167020D0FC5C00D347D2 /* WKUserCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6166F20D0FC5C00D347D2 /* WKUserCenterCell.m */; };
 		04B7A91220D3C491008675F5 /* WKDecorationSUKModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B7A91120D3C491008675F5 /* WKDecorationSUKModel.m */; };
 		04FD9BFF20C61B2F00B3D153 /* WKAnimationAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FD9BFD20C61AA300B3D153 /* WKAnimationAlert.m */; };
@@ -717,8 +721,8 @@
 		E99DE1D820AC64C7009CEF88 /* SQOrderTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1D720AC64C7009CEF88 /* SQOrderTableHeaderView.m */; };
 		E99DE1DA20AD23B2009CEF88 /* SQOrderFormListPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = E99DE1D920AD23B2009CEF88 /* SQOrderFormListPlist.plist */; };
 		E99DE1DD20AD50AC009CEF88 /* SQDecorationOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1DC20AD50AC009CEF88 /* SQDecorationOrderVC.m */; };
-		E99DE1E020AD5182009CEF88 /* SQDecorationOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1DF20AD5182009CEF88 /* SQDecorationOrderCell.m */; };
-		E99DE1E320AD54CC009CEF88 /* SQDecorationCellPayButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1E220AD54CC009CEF88 /* SQDecorationCellPayButtonView.m */; };
+		E99DE1E020AD5182009CEF88 /* WKDecorationOrderBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1DF20AD5182009CEF88 /* WKDecorationOrderBaseCell.m */; };
+		E99DE1E320AD54CC009CEF88 /* WKDecorationCellPayButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1E220AD54CC009CEF88 /* WKDecorationCellPayButtonView.m */; };
 		E99DE1E720AE6473009CEF88 /* SQDecorationOrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1E620AE6473009CEF88 /* SQDecorationOrderDetailVC.m */; };
 		E99DE1EC20AE9DE4009CEF88 /* SQDecorationServeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1EB20AE9DE4009CEF88 /* SQDecorationServeVC.m */; };
 		E99DE1EF20AEA207009CEF88 /* SQDecorationServeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1EE20AEA207009CEF88 /* SQDecorationServeCell.m */; };
@@ -839,6 +843,13 @@
 		048E813220C6C3DE00845372 /* WKInvoiceModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKInvoiceModel.m; sourceTree = "<group>"; };
 		04935C6B20DD1D4800E84802 /* WKDecorationOrderServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKDecorationOrderServer.m; sourceTree = "<group>"; };
 		04935C6C20DD1D4800E84802 /* WKDecorationOrderServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKDecorationOrderServer.h; sourceTree = "<group>"; };
+		04935C6F20DDF37700E84802 /* MyPushInformationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPushInformationCell.xib; sourceTree = "<group>"; };
+		04935C7020DDF37700E84802 /* MyPushInformationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPushInformationController.m; sourceTree = "<group>"; };
+		04935C7120DDF37700E84802 /* MyPushInformationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPushInformationCell.h; sourceTree = "<group>"; };
+		04935C7220DDF37700E84802 /* MyInformationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyInformationModel.m; sourceTree = "<group>"; };
+		04935C7320DDF37700E84802 /* MyPushInformationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPushInformationCell.m; sourceTree = "<group>"; };
+		04935C7420DDF37700E84802 /* MyPushInformationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPushInformationController.h; sourceTree = "<group>"; };
+		04935C7520DDF37700E84802 /* MyInformationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyInformationModel.h; sourceTree = "<group>"; };
 		04A6166E20D0FC5C00D347D2 /* WKUserCenterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKUserCenterCell.h; sourceTree = "<group>"; };
 		04A6166F20D0FC5C00D347D2 /* WKUserCenterCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKUserCenterCell.m; sourceTree = "<group>"; };
 		04B7A91020D3C491008675F5 /* WKDecorationSUKModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKDecorationSUKModel.h; sourceTree = "<group>"; };
@@ -2119,10 +2130,10 @@
 		E99DE1D920AD23B2009CEF88 /* SQOrderFormListPlist.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = SQOrderFormListPlist.plist; sourceTree = "<group>"; };
 		E99DE1DB20AD50AC009CEF88 /* SQDecorationOrderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationOrderVC.h; sourceTree = "<group>"; };
 		E99DE1DC20AD50AC009CEF88 /* SQDecorationOrderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationOrderVC.m; sourceTree = "<group>"; };
-		E99DE1DE20AD5182009CEF88 /* SQDecorationOrderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationOrderCell.h; sourceTree = "<group>"; };
-		E99DE1DF20AD5182009CEF88 /* SQDecorationOrderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationOrderCell.m; sourceTree = "<group>"; };
-		E99DE1E120AD54CC009CEF88 /* SQDecorationCellPayButtonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationCellPayButtonView.h; sourceTree = "<group>"; };
-		E99DE1E220AD54CC009CEF88 /* SQDecorationCellPayButtonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationCellPayButtonView.m; sourceTree = "<group>"; };
+		E99DE1DE20AD5182009CEF88 /* WKDecorationOrderBaseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKDecorationOrderBaseCell.h; sourceTree = "<group>"; };
+		E99DE1DF20AD5182009CEF88 /* WKDecorationOrderBaseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKDecorationOrderBaseCell.m; sourceTree = "<group>"; };
+		E99DE1E120AD54CC009CEF88 /* WKDecorationCellPayButtonView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKDecorationCellPayButtonView.h; sourceTree = "<group>"; };
+		E99DE1E220AD54CC009CEF88 /* WKDecorationCellPayButtonView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKDecorationCellPayButtonView.m; sourceTree = "<group>"; };
 		E99DE1E520AE6473009CEF88 /* SQDecorationOrderDetailVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationOrderDetailVC.h; sourceTree = "<group>"; };
 		E99DE1E620AE6473009CEF88 /* SQDecorationOrderDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationOrderDetailVC.m; sourceTree = "<group>"; };
 		E99DE1EA20AE9DE4009CEF88 /* SQDecorationServeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationServeVC.h; sourceTree = "<group>"; };
@@ -2332,6 +2343,20 @@
 			path = AfterSale;
 			sourceTree = "<group>";
 		};
+		04935C6E20DDF37700E84802 /* 消息 */ = {
+			isa = PBXGroup;
+			children = (
+				04935C7520DDF37700E84802 /* MyInformationModel.h */,
+				04935C7220DDF37700E84802 /* MyInformationModel.m */,
+				04935C7120DDF37700E84802 /* MyPushInformationCell.h */,
+				04935C7320DDF37700E84802 /* MyPushInformationCell.m */,
+				04935C6F20DDF37700E84802 /* MyPushInformationCell.xib */,
+				04935C7420DDF37700E84802 /* MyPushInformationController.h */,
+				04935C7020DDF37700E84802 /* MyPushInformationController.m */,
+			);
+			path = "消息";
+			sourceTree = "<group>";
+		};
 		04A6167120D20D3900D347D2 /* WKUserCenterCollect */ = {
 			isa = PBXGroup;
 			children = (
@@ -2396,6 +2421,7 @@
 		04FFB4D520C8FB3F00B8843E /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				04935C6E20DDF37700E84802 /* 消息 */,
 				04FFB4D120C8E5F200B8843E /* WKUserCenterMessageViewController.h */,
 				04FFB4D220C8E5F200B8843E /* WKUserCenterMessageViewController.m */,
 				04FFB4D620C8FB8300B8843E /* WKUserCenterMessageCell.h */,
@@ -2561,12 +2587,12 @@
 		04FFB4F320C91D7000B8843E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E99DE1DE20AD5182009CEF88 /* SQDecorationOrderCell.h */,
-				E99DE1DF20AD5182009CEF88 /* SQDecorationOrderCell.m */,
+				E99DE1DE20AD5182009CEF88 /* WKDecorationOrderBaseCell.h */,
+				E99DE1DF20AD5182009CEF88 /* WKDecorationOrderBaseCell.m */,
 				04FFB4E220C90BD800B8843E /* WKDecorationStateCell.h */,
 				04FFB4E320C90BD800B8843E /* WKDecorationStateCell.m */,
-				E99DE1E120AD54CC009CEF88 /* SQDecorationCellPayButtonView.h */,
-				E99DE1E220AD54CC009CEF88 /* SQDecorationCellPayButtonView.m */,
+				E99DE1E120AD54CC009CEF88 /* WKDecorationCellPayButtonView.h */,
+				E99DE1E220AD54CC009CEF88 /* WKDecorationCellPayButtonView.m */,
 				04FFB4C120C77E8700B8843E /* WKDecorationStageView.h */,
 				04FFB4C220C77E8700B8843E /* WKDecorationStageView.m */,
 				04FFB4F420C91DC700B8843E /* WKDecorationOrderAlertView.h */,
@@ -5857,6 +5883,7 @@
 				E2E5B37A1FB0675B00205F70 /* share_weibo@3x.png in Resources */,
 				E2E5B1A21FB0675A00205F70 /* tabbar.plist in Resources */,
 				18C15A891FC8208B0010ACD3 /* ReserveChooseCell.xib in Resources */,
+				04935C7620DDF37800E84802 /* MyPushInformationCell.xib in Resources */,
 				18C159B51FC8208A0010ACD3 /* AdvertisementLocationCell.xib in Resources */,
 				D210B95C1FA3622800C4574B /* Assets.xcassets in Resources */,
 				18C15A851FC8208B0010ACD3 /* RefundHearderView.xib in Resources */,
@@ -6007,6 +6034,7 @@
 				18C15A291FC8208A0010ACD3 /* RSCrowFundingSubscribeTableViewCell.m in Sources */,
 				E2E5B15B1FB0675A00205F70 /* QNPHAssetFile.m in Sources */,
 				04FFB4BE20C7670400B8843E /* AboutusViewController.m in Sources */,
+				04935C7720DDF37800E84802 /* MyPushInformationController.m in Sources */,
 				04A6167020D0FC5C00D347D2 /* WKUserCenterCell.m in Sources */,
 				E2E5B1821FB0675A00205F70 /* UIImageView+YYWebImage.m in Sources */,
 				E2E5B34E1FB0675B00205F70 /* AsyncSocket.m in Sources */,
@@ -6124,7 +6152,7 @@
 				E2E5B3541FB0675B00205F70 /* SocketNoTalkModel.m in Sources */,
 				E99DE1C120AC4FAF009CEF88 /* SQBaseTableViewCell.m in Sources */,
 				E99DE1FF20B25C57009CEF88 /* NSString+SQStringSize.m in Sources */,
-				E99DE1E320AD54CC009CEF88 /* SQDecorationCellPayButtonView.m in Sources */,
+				E99DE1E320AD54CC009CEF88 /* WKDecorationCellPayButtonView.m in Sources */,
 				18C1591D1FC820890010ACD3 /* IndoorMaintenanceViewController.m in Sources */,
 				18C1598B1FC8208A0010ACD3 /* AdvertisesForInfoModel.m in Sources */,
 				18C1590A1FC820890010ACD3 /* AfterSaleViewController.m in Sources */,
@@ -6149,12 +6177,14 @@
 				18C15A1E1FC8208A0010ACD3 /* TradeRecordViewController.m in Sources */,
 				18C159791FC8208A0010ACD3 /* JobOutsourceViewController.m in Sources */,
 				E9E1E59E20C6B61C00A807BE /* SQLinkJSWebView.m in Sources */,
+				04935C7920DDF37800E84802 /* MyPushInformationCell.m in Sources */,
 				18C1597E1FC8208A0010ACD3 /* MyRecruitViewController.m in Sources */,
 				18C158F51FC820890010ACD3 /* OfficePurchaseDetailViewController.m in Sources */,
 				048E813320C6C3DE00845372 /* WKInvoiceModel.m in Sources */,
 				18C1591C1FC820890010ACD3 /* OfficePurchaseViewController.m in Sources */,
 				18C15A531FC8208B0010ACD3 /* RoadShowHallAllViewController.m in Sources */,
 				18C15A361FC8208A0010ACD3 /* SubscribeSumOfMoneyViewController.m in Sources */,
+				04935C7820DDF37800E84802 /* MyInformationModel.m in Sources */,
 				E9E1E59A20C65D3800A807BE /* MyCollectionModel.m in Sources */,
 				E2E5B3851FB0675B00205F70 /* UILabel+SizeToFit.m in Sources */,
 				18C15A2D1FC8208A0010ACD3 /* CrowdFundingAddProjectDescriptionViewController.m in Sources */,
@@ -6599,7 +6629,7 @@
 				04FFB58820CE6CAD00B8843E /* WKOrderRepairModel.m in Sources */,
 				E2E5B3561FB0675B00205F70 /* YGSocketServe.m in Sources */,
 				18C15A551FC8208B0010ACD3 /* RoadShowHallViewController.m in Sources */,
-				E99DE1E020AD5182009CEF88 /* SQDecorationOrderCell.m in Sources */,
+				E99DE1E020AD5182009CEF88 /* WKDecorationOrderBaseCell.m in Sources */,
 				18C15A461FC8208B0010ACD3 /* SubscribeDetailViewController.m in Sources */,
 				18C1598D1FC8208A0010ACD3 /* AdvertisesForInfoTableViewCell.m in Sources */,
 				18C159061FC820890010ACD3 /* AllOfficePurchaseDetailModel.m in Sources */,

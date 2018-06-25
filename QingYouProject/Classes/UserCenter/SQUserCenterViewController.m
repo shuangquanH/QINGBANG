@@ -9,7 +9,7 @@
 #import "SQUserCenterViewController.h"
 #import "PersonalInformationViewController.h"
 #import "SQOrderViewController.h"
-#import "WKUserCenterMessageViewController.h"
+#import "MyPushInformationController.h"
 
 #import "SQUserCenterTableViewHeader.h"
 #import "WKUserCenterCell.h"
@@ -30,8 +30,6 @@
     [self layoutNavigation];
     [self readViewControllerByPlistFile];
     [self setupSubviews];
-    
-    [SQRequest setApiAddress:KAPI_ADDRESS_TEST_MH];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -64,7 +62,7 @@
 }
 
 - (void)click_toMessage {
-    WKUserCenterMessageViewController *next = [WKUserCenterMessageViewController new];
+    MyPushInformationController *next = [MyPushInformationController new];
     [self.navigationController pushViewController:next animated:YES];
 }
 

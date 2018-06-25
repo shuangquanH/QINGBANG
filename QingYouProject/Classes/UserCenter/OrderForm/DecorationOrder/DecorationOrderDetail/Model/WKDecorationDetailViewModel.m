@@ -13,13 +13,13 @@
 #import "SQDecorationDetailFunctionView.h"
 #import "SQDecorationDetailServerView.h"
 #import "SQDecorationDetailOrderNumberView.h"
-#import "SQDecorationOrderCell.h"
+#import "WKDecorationOrderBaseCell.h"
 #import "SQDecorationDetailStateHeadView.h"
 #import "WKDecorationStateCell.h"
 
-@interface SQDecorationDetailSectionView: UIView<WKDecorationDetailViewProtocol>
+@interface WKDecorationDetailSectionView: UIView<WKDecorationDetailViewProtocol>
 @end
-@implementation SQDecorationDetailSectionView
+@implementation WKDecorationDetailSectionView
 - (void)configOrderDetailInfo:(WKDecorationOrderDetailModel *)orderDetailInfo {}
 - (CGSize)viewSize { return CGSizeMake(kScreenW, KSCAL(20)); }
 @end
@@ -116,7 +116,7 @@
         _orderCell = [[WKDecorationDealingOrderCell alloc] init];
     }
     else if (orderInfo.orderInfo.status == 1 || orderInfo.orderInfo.status == 2) {//待付款、已关闭
-        _orderCell = [[SQDecorationOrderCell alloc] init];
+        _orderCell = [[WKDecorationOrderBaseCell alloc] init];
     }
     else {
         _orderCell = [[WKDecorationOrderMutableStageCell alloc] init];
@@ -129,7 +129,7 @@
     //订单动作
     if (orderInfo.orderInfo.status == 4 || orderInfo.orderInfo.status == 5) {//装修中，已完成
         //组分割视图
-        SQDecorationDetailSectionView *section_1 = [SQDecorationDetailSectionView new];
+        WKDecorationDetailSectionView *section_1 = [WKDecorationDetailSectionView new];
         [tmp addObject:section_1];
         
         SQDecorationDetailFunctionView *functionView = [SQDecorationDetailFunctionView new];
@@ -146,7 +146,7 @@
 
     if (orderInfo.orderInfo.status != 3) {
         //组分割视图
-        SQDecorationDetailSectionView *section_2 = [SQDecorationDetailSectionView new];
+        WKDecorationDetailSectionView *section_2 = [WKDecorationDetailSectionView new];
         [tmp addObject:section_2];
         
         //联系客服
@@ -163,7 +163,7 @@
     }
   
     //组分割视图
-    SQDecorationDetailSectionView *section_3 = [SQDecorationDetailSectionView new];
+    WKDecorationDetailSectionView *section_3 = [WKDecorationDetailSectionView new];
     [tmp addObject:section_3];
     
     //订单编号信息
@@ -175,7 +175,7 @@
 }
 
 #pragma mark - decorationOrderCellDelegate
-- (void)decorationCell:(SQDecorationOrderCell *)decorationCell tapedOrderActionType:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage {
+- (void)decorationCell:(WKDecorationOrderBaseCell *)decorationCell tapedOrderActionType:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage {
     if ([self.orderDetailDelegate respondsToSelector:@selector(orderCell:didClickAction:forStage:)]) {
         [self.orderDetailDelegate orderCell:decorationCell
                              didClickAction:actionType

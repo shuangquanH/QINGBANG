@@ -20,16 +20,16 @@ typedef NS_ENUM(NSUInteger, WKDecorationOrderActionType) {
     WKDecorationOrderActionTypeRefundDetail //退款详情
 };
 
-@class SQDecorationCellPayButtonView;
-@protocol SQDecorationCellPayButtonViewDelegate<NSObject>
+@class WKDecorationCellPayButtonView;
+@protocol WKDecorationCellPayButtonViewDelegate<NSObject>
 
-- (void)actionView:(SQDecorationCellPayButtonView *)actionView didClickActionType:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage;
+- (void)actionView:(WKDecorationCellPayButtonView *)actionView didClickActionType:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage;
 
 @end
 
-@interface SQDecorationCellPayButtonView : UIView
+@interface WKDecorationCellPayButtonView : UIView
 
-@property (nonatomic, weak) id<SQDecorationCellPayButtonViewDelegate> actionDelegate;
+@property (nonatomic, weak) id<WKDecorationCellPayButtonViewDelegate> actionDelegate;
 /** 设置阶段模型 */
 - (void)configStageModel:(WKDecorationStageModel *)stageModel withStage:(NSInteger)stage inDetail:(BOOL)inDetail;
 
