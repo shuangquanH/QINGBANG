@@ -14,15 +14,16 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-//        self.contentMode = UIViewContentModeScaleAspectFill;
+        self.contentMode = UIViewContentModeScaleAspectFill;
     }
     return self;
 }
 - (void)setImageWithUrl:(NSString *)url {
-    [self setImageWithUrl:url placeHolder:nil];
+    
+    [self setImageWithUrl:url placeHolder:[UIImage imageNamed:@"placeholderfigure_rectangle_230x172_4_3"]];
 }
 - (void)setImageWithURL:(NSURL *)URL {
-    [self setImageWithURL:URL placeHolder:nil];
+    [self setImageWithURL:URL placeHolder:[UIImage imageNamed:@"placeholderfigure_rectangle_230x172_4_3"]];
 }
 
 - (void)setImageWithUrl:(NSString *)url placeHolder:(UIImage *)image {
