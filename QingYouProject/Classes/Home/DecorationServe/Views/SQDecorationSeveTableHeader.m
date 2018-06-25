@@ -17,7 +17,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:self.bounds delegate:self placeholderImage:[UIImage imageNamed:@"mine_instashot"]];
+        cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:self.bounds delegate:self placeholderImage:[UIImage imageNamed:@"placeholderfigure_rectangle_336x200"]];
+        cycleScrollView.contentMode = UIViewContentModeScaleAspectFill;
         cycleScrollView.autoScroll = YES;
         cycleScrollView.infiniteLoop = YES;
         [self addSubview:cycleScrollView];
@@ -32,7 +33,7 @@
     
     NSMutableArray * imgArry = [NSMutableArray array];
     for (SQDecorationStyleModel *styleModel in model.banners) {
-        [imgArry addObject:styleModel.imgurl];
+        [imgArry addObject:styleModel.imageUrl];
     }
     cycleScrollView.imageURLStringsGroup = imgArry;
 }

@@ -11,10 +11,11 @@
 #import "LoginViewController.h"
 #import "SQChooseGardenVC.h"
 
+
 @interface RootViewController ()
 {
     SEL _superCmd;
-    MJRefreshGifHeader *_refreshGifHeader;
+    CYNormalHeader *_refreshGifHeader;
 }
 @end
 
@@ -109,25 +110,11 @@
 
 //一键刷新加载
 - (void)createRefreshWithScrollView:(UITableView *)tableView containFooter:(BOOL)containFooter {
-    _refreshGifHeader = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeaderAction)];
-    NSMutableArray *gifArray = [[NSMutableArray alloc] init];
-    for (int i = 1; i <= 10; ++i) {
-        [gifArray addObject:[UIImage imageNamed:[NSString stringWithFormat:@"loading_animation_refresh_%d",i]]];
-    }
-    [_refreshGifHeader setImages:gifArray duration:1 forState:MJRefreshStateIdle];
-    [_refreshGifHeader setImages:gifArray duration:1 forState:MJRefreshStatePulling];
-    [_refreshGifHeader setImages:gifArray duration:1 forState:MJRefreshStateRefreshing];
-    [_refreshGifHeader setImages:gifArray duration:1 forState:MJRefreshStateWillRefresh];
-    [_refreshGifHeader setTitle:@"下拉刷新数据" forState:MJRefreshStateIdle];
-    [_refreshGifHeader setTitle:@"下拉刷新数据" forState:MJRefreshStatePulling];
-    [_refreshGifHeader setTitle:@"下拉刷新数据" forState:MJRefreshStateRefreshing];
-    [_refreshGifHeader setTitle:@"下拉刷新数据" forState:MJRefreshStateWillRefresh];
-    [_refreshGifHeader setTitle:@"没有更多数据了哦" forState:MJRefreshStateNoMoreData];
-    _refreshGifHeader.lastUpdatedTimeLabel.hidden = YES;
+//    _refreshGifHeader = [CYGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeaderAction)];
+    _refreshGifHeader = [CYNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeaderAction)];
     tableView.mj_header = _refreshGifHeader;
-    _refreshGifHeader.stateLabel.hidden = YES;
     if (containFooter) {
-        tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooterAction)];
+        tableView.mj_footer = [CYNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooterAction)];
         tableView.mj_footer.automaticallyHidden = YES;
     }
 

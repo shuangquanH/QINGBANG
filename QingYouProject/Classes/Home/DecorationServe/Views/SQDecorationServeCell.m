@@ -24,18 +24,14 @@
         productImage.backgroundColor = colorWithMainColor;
         [self.contentView addSubview:productImage];
         
-//        productTitle = [[UILabel alloc] init];
-//        productTitle.numberOfLines = 0;
-//        productTitle.backgroundColor = [UIColor lightGrayColor];
-//        [self.contentView addSubview:productTitle];
-        
         [self sqlayoutSubviews];
-        
     }
     return self;
 }
 
 - (void)sqlayoutSubviews {
+    
+    
     [productImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView).offset(KSPACE);
         make.left.right.equalTo(self.contentView);
@@ -43,21 +39,13 @@
         make.bottom.equalTo(self.contentView);
     }];
     
-//    [productTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.contentView).offset(KSPACE);
-//        make.right.equalTo(self.contentView).offset(-KSPACE);
-//        make.top.equalTo(productImage.mas_bottom).offset(KSPACE);
-//        make.bottom.equalTo(self.contentView).offset(-KSPACE);
-//    }];
-    
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self);
     }];
-    
 }
 
 - (void)setModel:(SQDecorationStyleModel *)model {
-    [productImage setImageWithUrl:model.imgurl placeHolder:[UIImage imageNamed:@"placeholderfigure_square_750x750"]];
+    [productImage setImageWithUrl:model.imageUrl placeHolder:[UIImage imageNamed:@"placeholderfigure_square_750x750"]];
     [self layoutIfNeeded];
 }
 

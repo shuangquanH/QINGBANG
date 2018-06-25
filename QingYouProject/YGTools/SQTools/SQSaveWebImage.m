@@ -29,10 +29,10 @@
     // Was there an error?
     if (error != NULL) {
         // Show error message…
-        NSLog(@"图片保存失败");
+        [YGAppTool showToastWithText:@"图片保存失败"];
     } else {
         // Show message image successfully saved
-        NSLog(@"图片保存成功");
+        [YGAppTool showToastWithText:@"图片保存成功!"];
     }
 }
 

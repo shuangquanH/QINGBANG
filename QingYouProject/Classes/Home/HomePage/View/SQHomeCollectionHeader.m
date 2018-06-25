@@ -11,6 +11,7 @@
 #import "SQCardScrollView.h"
 #import "UIButton+SQWebImage.h"
 #import "UIView+SQGesture.h"
+#import "NSString+SQStringSize.h"
 
 
 @interface SQHomeCollectionHeader () <SDCycleScrollViewDelegate>
@@ -60,7 +61,10 @@
     self.infoButton.titleLabel.textColor = KCOLOR_WHITE;
     self.infoButton.titleLabel.font = KFONT(24);
     [self.ovalFuncsView addSubview:self.infoButton];
-    [self.infoButton addTarget:self action:@selector(didselectButtonToPushNextPage) forControlEvents:UIControlEventTouchUpInside];
+    [self.infoButton addTarget:self action:@selector(infobuttonAction) forControlEvents:UIControlEventTouchUpInside];
+}
+- (void)infobuttonAction {
+    [self didselectButtonToPushNextPageWithModel:self.selectedModel];
 }
 
 - (void)addScrollView {
@@ -119,6 +123,7 @@
         title = [NSString stringWithFormat:@"hello,欢迎来到青邦!"];
     }
     [self.infoButton setTitle:title forState:UIControlStateNormal];
+    [self.infoButton setImage:nil forState:UIControlStateNormal];
 }
 
 //功能定制按钮数据
@@ -159,6 +164,14 @@
 #pragma actions
 //头部功能按钮
 - (void)btnaction:(UIButton *)sender {
+    SQHomeHeadsModel *theSelectModel = self.model.heads[sender.tag-1000];
+    
+    if (![theSelectModel.funcs_target isEqualToString:@"17"]) {
+        [self didselectButtonToPushNextPageWithModel:theSelectModel];
+        return;
+    }
+    
+    
     self.selectedModel = self.model.heads[sender.tag-1000];
     for (UIButton *button in self.ovalContentView.subviews) {
         if (button==sender) {
@@ -167,14 +180,26 @@
             button.selected = NO;
         }
     }
+    
 }
 
 - (void)setSelectedModel:(id)selectedModel {
     _selectedModel = selectedModel;
     if ([YGSingleton sharedManager].user&&selectedModel) {
         [SQRequest post:KAPI_ORDERNUM param:@{@"type":@"home", @"userid":[YGSingleton sharedManager].user.userid} success:^(id response) {
-            NSString    *titlestr = [NSString stringWithFormat:@"您有%@笔订单待支付,去看看", response[@"ordernum"]];
-            [self.infoButton setTitle:titlestr forState:UIControlStateNormal];
+            int orderCount = [response[@"ordernum"] intValue];
+            if (orderCount>0) {
+                NSString    *titlestr = [NSString stringWithFormat:@"您有%d笔订单待支付~ 去看看", orderCount];
+                NSString    *sizeStr = [NSString stringWithFormat:@"您有%@笔订单待支付~", response[@"ordernum"]];
+                CGSize titleSize = [sizeStr sizeWithFont:KFONT(24) andMaxSize:CGSizeMake(500, 20)];
+                
+                [self.infoButton setTitle:titlestr forState:UIControlStateNormal];
+                [self.infoButton setImage:[UIImage imageNamed:@"order_list_btn_down"] forState:UIControlStateNormal];
+                self.infoButton.imageEdgeInsets = UIEdgeInsetsMake(0, titleSize.width+self.infoButton.titleLabel.frame.origin.x, 0, 0);
+            } else {
+                [self.infoButton setImage:nil forState:UIControlStateNormal];
+            }
+            
         } failure:nil];
         
     }
@@ -189,11 +214,13 @@
 
 #pragma delegates
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
-    [self.delegate tapedFuncsWithModel:self.model.banners[index]];
+    if (self.delegate) {
+        [self.delegate tapedFuncsWithModel:self.model.banners[index]];
+    }
 }
-- (void)didselectButtonToPushNextPage {
-    if (self.selectedModel) {
-        [self.delegate tapedFuncsWithModel:self.selectedModel];
+- (void)didselectButtonToPushNextPageWithModel:(id)model {
+    if (self.delegate) {
+        [self.delegate tapedFuncsWithModel:model];
     }
 }
 

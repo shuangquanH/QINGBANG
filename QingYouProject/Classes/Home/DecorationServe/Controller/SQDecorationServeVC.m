@@ -36,7 +36,7 @@
     
     self.tableview.tableHeaderView = self.header;
     [self.view addSubview:self.tableview];
-    [self createRefreshWithScrollView:self.tableview containFooter:YES];
+    [self createRefreshWithScrollView:self.tableview containFooter:NO];
     
     [self requestData];
 }
@@ -48,8 +48,9 @@
 }
 
 - (void)requestData {
+    [SQRequest setApiAddress:KAPI_ADDRESS_TEST_HJK];
     [SQRequest post:KAPI_DECORHOME param:nil success:^(id response) {
-        self.model = [SQDecorationHomeModel yy_modelWithDictionary:response];
+        self.model = [SQDecorationHomeModel yy_modelWithDictionary:response[@"data"]];
         self.header.model = self.model;
         [self.tableview reloadData];
         [self endRefreshWithScrollView:self.tableview];
@@ -71,14 +72,21 @@
     [self contactWithCustomerServerWithType:ContactServerPropertyRepair button:nil];
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    SQDecorationDetailVC    *vc = [[SQDecorationDetailVC alloc] init];
-    vc.styleModel = self.model.contents[indexPath.row];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self setPushtTypeWithModel:self.model.contents[indexPath.row]];
+
 }
 - (void)didSelectedBannerWithIndex:(NSInteger)index {
-    SQDecorationDetailVC    *vc = [[SQDecorationDetailVC alloc] init];
-    vc.styleModel = self.model.banners[index];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self setPushtTypeWithModel:self.model.banners[index]];
+}
+- (void)setPushtTypeWithModel:(SQDecorationStyleModel *)model {
+    if ([model.type isEqualToString:@"1"]) {
+        SQDecorationDetailVC    *vc = [[SQDecorationDetailVC alloc] init];
+        vc.styleModel = model;
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if ([model.type isEqualToString:@"2"]) {
+        //广告
+        
+    }
 }
 
 #pragma mark LazyLoad
