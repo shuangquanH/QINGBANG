@@ -139,7 +139,6 @@ static NSString *functionCellIdentifier = @"WKInvoiceFunctionCell";
         [cell configAddress:model];
         return cell;
     }
-    
     WKInvoiceFunctionCell *cell = [tableView dequeueReusableCellWithIdentifier:functionCellIdentifier];
     cell.functionDelegate = self;
     [cell configIndexPath:indexPath isDefault:model.isdef];

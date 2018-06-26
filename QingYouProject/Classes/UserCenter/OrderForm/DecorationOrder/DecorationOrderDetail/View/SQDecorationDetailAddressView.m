@@ -57,7 +57,7 @@
     [_addressLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(_nameLab);
         make.right.equalTo(_phoneLab);
-        make.top.equalTo(_phoneLab.mas_bottom).offset(4);
+        make.top.equalTo(_nameLab.mas_bottom).offset(4);
     }];
 
     [_flagImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -69,16 +69,15 @@
 }
 
 - (void)configOrderDetailInfo:(WKDecorationOrderDetailModel *)orderDetailInfo {
-    _nameLab.text = [NSString stringWithFormat:@"联系人：%@", orderDetailInfo.addressInfo.name];
+    _nameLab.text = [NSString stringWithFormat:@"联系人：%@", orderDetailInfo.addressInfo.name?:@""];
     _phoneLab.text = orderDetailInfo.addressInfo.phone;
     
-    NSString *addressStr = [NSString stringWithFormat:@"联系地址：%@", orderDetailInfo.addressInfo.detail];
+    NSString *addressStr = [NSString stringWithFormat:@"联系地址：%@", orderDetailInfo.addressInfo.detail?:@""];
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     [style setLineSpacing:3.0];
     NSAttributedString *address = [[NSAttributedString alloc] initWithString:addressStr attributes:@{NSParagraphStyleAttributeName : style}];
     _addressLab.attributedText = address;
 }
-
 
 - (CGSize)viewSize {
     CGFloat nameH = [_nameLab.text sizeWithFont:KFONT(28.0) andMaxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)].height;
