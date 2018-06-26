@@ -312,12 +312,10 @@ const CGFloat kItemHorizontalMargin = 10;
     
     
     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-    
+
     WKDecorationStageModel *stage = [self.orderInfo.paymentList objectAtIndex:self.stageIndex];
-    
     NSDictionary *param = @{@"imgUrl": @"1.jpg,2.jpg",
-                            @"paymentId": stage.ID
-                            };
+                            @"paymentId": stage.ID};
     [SQRequest post:KAPI_APPLYREPAIR param:param success:^(id response) {
         [YGNetService dissmissLoadingView];
         if ([response[@"code"] longLongValue] == 0) {
@@ -346,7 +344,6 @@ const CGFloat kItemHorizontalMargin = 10;
     TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithMaxImagesCount:(5 - self.repairImageArray.count) columnNumber:4 delegate:nil];
     imagePickerVc.allowTakePicture = YES; // 在内部显示拍照按钮
     imagePickerVc.allowPickingVideo = NO;
-    imagePickerVc.allowPickingImage = YES;
     imagePickerVc.allowPickingOriginalPhoto = YES;
     imagePickerVc.sortAscendingByModificationDate = YES;
     [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
@@ -370,8 +367,7 @@ const CGFloat kItemHorizontalMargin = 10;
     cell.delegate = self;
     if (self.repairImageArray.count > indexPath.item) {
         cell.imageView.image = self.repairImageArray[indexPath.item];
-    }
-    else {
+    } else {
         cell.imageView.image = nil;
     }
     cell.photoSelect = (_selectIndex == indexPath.item);
@@ -399,12 +395,10 @@ const CGFloat kItemHorizontalMargin = 10;
         if (deleteIndexPath.item == _selectIndex) {//删除索引为选中索引，如果还有图片选择第一张，如果没有回到初始化状态
             if (!self.repairImageArray.count) {
                 _selectIndex = -1;
-            }
-            else {
+            } else {
                 _selectIndex = 0;
             }
-        }
-        else if (deleteIndexPath.item < _selectIndex) {//删除索小于选择索引，选择索引前移
+        } else if (deleteIndexPath.item < _selectIndex) {//删除索小于选择索引，选择索引前移
             _selectIndex -= 1;
         }
         [self.collectionView reloadData];

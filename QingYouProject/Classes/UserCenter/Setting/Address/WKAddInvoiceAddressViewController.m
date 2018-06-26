@@ -87,9 +87,6 @@
     if (self.editAddress.cityName.length) {
         [tmp appendString:[NSString stringWithFormat:@" %@", self.editAddress.cityName]];
     }
-    if (self.editAddress.distName.length) {
-        [tmp appendString:[NSString stringWithFormat:@" %@", self.editAddress.distName]];
-    }
     self.areaString = [tmp copy];
 }
 
@@ -125,11 +122,11 @@
         NSDictionary *param = @{@"name": self.editAddress.name,
                                 @"phone": self.editAddress.phone,
                                 @"prov": self.editAddress.provName,
-                                @"provId": [NSString stringWithFormat:@"%@", @(self.editAddress.provId)],
+                                @"provId": @"0",
                                 @"city": self.editAddress.cityName?:@"",
                                 @"cityId": [NSString stringWithFormat:@"%@", self.editAddress.cityId==-1?@"":@(self.editAddress.cityId)],
-                                @"dist": self.editAddress.distName?:@"",
-                                @"distId": [NSString stringWithFormat:@"%@", self.editAddress.distId==-1?@"":@(self.editAddress.distId)],
+                                @"dist": @"",
+                                @"distId": @"0",
                                 @"address": self.editAddress.detail,
                                 @"id": self.editAddress.ID
                                 };
@@ -153,11 +150,11 @@
         NSDictionary *param = @{@"name": self.editAddress.name,
                                 @"phone": self.editAddress.phone,
                                 @"prov": self.editAddress.provName,
-                                @"provId": [NSString stringWithFormat:@"%@", @(self.editAddress.provId)],
+                                @"provId": @"0",
                                 @"city": self.editAddress.cityName?:@"",
                                 @"cityId": [NSString stringWithFormat:@"%@", self.editAddress.cityId==-1?@"":@(self.editAddress.cityId)],
-                                @"dist": self.editAddress.distName?:@"",
-                                @"distId": [NSString stringWithFormat:@"%@", self.editAddress.distId==-1?@"":@(self.editAddress.distId)],
+                                @"dist": @"",
+                                @"distId": @"0",
                                 @"address": self.editAddress.detail
                                 };
         [SQRequest post:KAPI_INVOICEADDRESSADD param:param success:^(id response) {
@@ -260,14 +257,10 @@
             
             YZLAreaModel *province = addressDic[@"province"];
             YZLAreaModel *city = addressDic[@"city"];
-            YZLAreaModel *county = addressDic[@"county"];
-            
             self.editAddress.provName = province.name;
-            self.editAddress.provId = province.ID;
             self.editAddress.cityName = city.name;
             self.editAddress.cityId = city.ID;
-            self.editAddress.distName = county.name;
-            self.editAddress.distId = county.ID;
+
             [self setupAreaString];
             [self.tableView reloadData];
         };

@@ -13,14 +13,11 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *phone;
 @property (nonatomic, strong) NSString *cityName;
-@property (nonatomic, strong) NSString *distName;
 @property (nonatomic, strong) NSString *provName;
 @property (nonatomic, strong) NSString *ID;
 /** 地址详情 */
 @property (nonatomic, strong) NSString *detail;
 @property (nonatomic, assign) BOOL isdef;
 @property (nonatomic, assign) long long cityId;
-@property (nonatomic, assign) long long distId;
-@property (nonatomic, assign) long long provId;
 
 @end

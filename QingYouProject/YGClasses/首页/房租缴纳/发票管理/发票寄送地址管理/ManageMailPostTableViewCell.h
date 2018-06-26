@@ -25,6 +25,4 @@
 
 @property (nonatomic,assign) id <ManageMailPostTableViewCellDelegate> delegate;
 
-@property (nonatomic, strong) WKInvoiceAddressModel *invoiceModel;
-
 @end

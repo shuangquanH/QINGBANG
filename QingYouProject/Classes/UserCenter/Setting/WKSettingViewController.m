@@ -141,8 +141,9 @@
             return;
         }
         if(indexPath.section == 2) {
-            ManageMailPostViewController *vc = [ManageMailPostViewController new];
-            vc.pageType = @"personCenter";
+//            ManageMailPostViewController *vc = [ManageMailPostViewController new];
+//            vc.pageType = @"personCenter";
+            WKInvoiceAddressViewController *vc = [WKInvoiceAddressViewController new];
             [self.navigationController pushViewController:vc animated:YES];
             return;
         }

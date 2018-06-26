@@ -8,7 +8,7 @@
 
 #import "YZLAreaPickerView.h"
 #import "YZLAreaModel.h"
-#import "ManageMailPostModel.h"
+#import "YZLAreaCacheTool.h"
 
 @interface YZLAreaPickerView()<UITableViewDelegate, UITableViewDataSource>
 {
@@ -36,7 +36,7 @@ static NSString *areaCell = @"areaCell";
 #pragma mark - lazy load
 - (UITableView *)provinceTableView {
     if (!_provinceTableView) {
-        _provinceTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, (self.frame.size.width - 1) / 3, self.frame.size.height)];
+        _provinceTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, (self.frame.size.width - 1) / 2, self.frame.size.height)];
         _provinceTableView.delegate = self;
         _provinceTableView.dataSource = self;
         _provinceTableView.backgroundColor = [UIColor whiteColor];
@@ -50,7 +50,7 @@ static NSString *areaCell = @"areaCell";
 }
 - (UITableView *)cityTableView {
     if (!_cityTableView) {
-        _cityTableView = [[UITableView alloc] initWithFrame:CGRectMake(self.frame.size.width / 3 + 0.5 , 0, (self.frame.size.width - 1) / 3 ,  self.frame.size.height)];
+        _cityTableView = [[UITableView alloc] initWithFrame:CGRectMake((self.frame.size.width - 1) / 2 + 1, 0, (self.frame.size.width - 1) / 2 , self.frame.size.height)];
         _cityTableView.delegate = self;
         _cityTableView.dataSource = self;
         [_cityTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:areaCell];
@@ -64,15 +64,15 @@ static NSString *areaCell = @"areaCell";
 }
 - (UITableView *)countyTableView {
     if (!_countyTableView) {
-        _countyTableView = [[UITableView alloc] initWithFrame:CGRectMake(self.frame.size.width / 3 * 2 + 1, 0, (self.frame.size.width - 1) / 3 , self.frame.size.height)];
-        _countyTableView.backgroundColor = [UIColor whiteColor];
-        _countyTableView.delegate = self;
-        _countyTableView.dataSource = self;
-        [_countyTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:areaCell];
-        _countyTableView.showsVerticalScrollIndicator = NO;
-        [_countyTableView setSeparatorInset:UIEdgeInsetsZero];
-        _countyTableView.tableFooterView = [[UIView alloc] init];
-        [self addSubview:_countyTableView];
+//        _countyTableView = [[UITableView alloc] initWithFrame:CGRectMake(self.frame.size.width / 3 * 2 + 1, 0, (self.frame.size.width - 1) / 3 , self.frame.size.height)];
+//        _countyTableView.backgroundColor = [UIColor whiteColor];
+//        _countyTableView.delegate = self;
+//        _countyTableView.dataSource = self;
+//        [_countyTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:areaCell];
+//        _countyTableView.showsVerticalScrollIndicator = NO;
+//        [_countyTableView setSeparatorInset:UIEdgeInsetsZero];
+//        _countyTableView.tableFooterView = [[UIView alloc] init];
+//        [self addSubview:_countyTableView];
     }
     return _countyTableView;
 }
@@ -95,54 +95,54 @@ static NSString *areaCell = @"areaCell";
     }
     return _serviceProvinceArr;
 }
-
-- (void)setInvoceAddress:(ManageMailPostModel *)invoceAddress {
-    _invoceAddress = invoceAddress;
-    
-    //清空记录
-    _provinceInfo = nil;
-    _countyInfo = nil;
-    _cityInfo = nil;
-    _cityArr = nil;
-    _countyArr = nil;
-    //遍历
-    if (invoceAddress != nil && self.provinceArr != nil) {
-        for (YZLAreaModel *province in self.provinceArr) {
-            if (province.ID == invoceAddress.provId) {
-                _provinceInfo = province;
-                _cityArr = province.sons;
-                for (YZLAreaModel *city in province.sons) {
-                    if (city.ID == invoceAddress.cityId) {
-                        _cityInfo = city;
-                        _countyArr = city.sons;
-                        for (YZLAreaModel *county in city.sons) {
-                            if (county.ID == invoceAddress.distId) {
-                                _countyInfo = county;
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    [self.provinceTableView reloadData];
-    [self.cityTableView reloadData];
-    [self.countyTableView reloadData];
-    
-    
-    if (_provinceArr && _provinceInfo) {
-        [self.provinceTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[_provinceArr indexOfObject:_provinceInfo] inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-    }
-    
-    if (_cityArr && _cityInfo) {
-        [self.cityTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[_cityArr indexOfObject:_cityInfo] inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-    }
-    if (_countyArr && _countyInfo) {
-        [self.countyTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[_countyArr indexOfObject:_countyInfo] inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-    }
-}
+//
+//- (void)setInvoceAddress:(ManageMailPostModel *)invoceAddress {
+//    _invoceAddress = invoceAddress;
+//    
+//    //清空记录
+//    _provinceInfo = nil;
+//    _countyInfo = nil;
+//    _cityInfo = nil;
+//    _cityArr = nil;
+//    _countyArr = nil;
+//    //遍历
+//    if (invoceAddress != nil && self.provinceArr != nil) {
+//        for (YZLAreaModel *province in self.provinceArr) {
+//            if (province.ID == invoceAddress.provId) {
+//                _provinceInfo = province;
+//                _cityArr = province.sons;
+//                for (YZLAreaModel *city in province.sons) {
+//                    if (city.ID == invoceAddress.cityId) {
+//                        _cityInfo = city;
+//                        _countyArr = city.sons;
+//                        for (YZLAreaModel *county in city.sons) {
+//                            if (county.ID == invoceAddress.distId) {
+//                                _countyInfo = county;
+//                                break;
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//    
+//    [self.provinceTableView reloadData];
+//    [self.cityTableView reloadData];
+//    [self.countyTableView reloadData];
+//    
+//    
+//    if (_provinceArr && _provinceInfo) {
+//        [self.provinceTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[_provinceArr indexOfObject:_provinceInfo] inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+//    }
+//    
+//    if (_cityArr && _cityInfo) {
+//        [self.cityTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[_cityArr indexOfObject:_cityInfo] inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+//    }
+//    if (_countyArr && _countyInfo) {
+//        [self.countyTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[_countyArr indexOfObject:_countyInfo] inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+//    }
+//}
 
 //- (void)setRouteArr:(NSArray<YZLDriverRouteModel *> *)routeArr {
 //    if (_provinceArr == nil) {
@@ -211,70 +211,75 @@ static NSString *areaCell = @"areaCell";
 //    [self.countyTableView reloadData];
 //}
 
-- (void)setProvinceArr:(NSArray *)provinceArr {
+- (void)setProvinceArr:(NSArray<YZLAreaModel *> *)provinceArr {
     //外部传入之前选择的区域信息，与数据源进行比对，替换掉数据源中与之前选择的区域相同的地址信息，生成新的数据源，即可实现页面加载时能重新展示之前所选择的区域信息。
+    
+    _provinceArr = provinceArr;
+    _cityArr = provinceArr.firstObject.sons;
+    [self.provinceTableView reloadData];
+    [self.cityTableView reloadData];
     
     //_limitDic = [USER_DEFAULT objectForKey:Area_Limit_Data];
     
-    if (self.isService && self.serviceProvinceArr.count > 0) {
-        NSMutableArray *tempProvinceArr = [NSMutableArray arrayWithArray:provinceArr];
-        NSInteger count = 0;
-        for (YZLAreaModel *serverArea in self.serviceProvinceArr) {
-            for (int i = 0; i < tempProvinceArr.count; i++) {
-                YZLAreaModel *sourceArea = tempProvinceArr[i];
-                count ++;
-                if ([serverArea.name isEqualToString:sourceArea.name]) {
-                    [tempProvinceArr replaceObjectAtIndex:i withObject:serverArea];
-                    continue;
-                }
-            }
-        }
-        _provinceArr = tempProvinceArr;
-        YZLAreaModel *provinceInfo = self.serviceProvinceArr.firstObject;
-        _cityArr = provinceInfo.sons;
-        for (YZLAreaModel *tempCityInfo in _cityArr) {
-            if (tempCityInfo.selectCount > 0) {
-                _countyArr = tempCityInfo.sons;
-                _cityInfo = tempCityInfo;
-                break;
-            }
-        }
-        _provinceInfo = provinceInfo;
-    } else {
-        
-        if (_provinceArr == nil && self.areaPickerType == YZLAreaPickerTypeCountryAndLimit) {//添加全国组
-            YZLAreaModel *limitProvinceInfo = [YZLAreaModel new];
-            limitProvinceInfo.level = 1;
-            limitProvinceInfo.ID = -100;
-            limitProvinceInfo.name = @"全国";
-            
-            NSMutableArray *tmpProvinceArr = [NSMutableArray arrayWithArray:provinceArr];
-            [tmpProvinceArr insertObject:limitProvinceInfo atIndex:0];
-            provinceArr = [NSArray arrayWithArray:tmpProvinceArr];
-        }
-        
-        if (_provinceArr == nil && self.areaPickerType == YZLAreaPickerTypeLimit) {//给第一组添加不限
-            YZLAreaModel *province = provinceArr.firstObject;
-            
-            YZLAreaModel *limitCityInfo = [YZLAreaModel new];
-            limitCityInfo.level = 2;
-            limitCityInfo.ID = -100;
-            limitCityInfo.name = @"不限";
-            
-            [province.sons insertObject:limitCityInfo atIndex:0];
-        }
-        
-        _provinceArr = provinceArr;
-        YZLAreaModel *provinceInfo = _provinceArr.firstObject;
-        
-        _cityArr = provinceInfo.sons;
-        YZLAreaModel *cityInfo = _cityArr.firstObject;
-        
-        _countyArr = cityInfo.sons;
-    }
-    [self.provinceTableView reloadData];
-    [self.countyTableView reloadData];
-    [self.cityTableView reloadData];
+//    if (self.isService && self.serviceProvinceArr.count > 0) {
+//        NSMutableArray *tempProvinceArr = [NSMutableArray arrayWithArray:provinceArr];
+//        NSInteger count = 0;
+//        for (YZLAreaModel *serverArea in self.serviceProvinceArr) {
+//            for (int i = 0; i < tempProvinceArr.count; i++) {
+//                YZLAreaModel *sourceArea = tempProvinceArr[i];
+//                count ++;
+//                if ([serverArea.name isEqualToString:sourceArea.name]) {
+//                    [tempProvinceArr replaceObjectAtIndex:i withObject:serverArea];
+//                    continue;
+//                }
+//            }
+//        }
+//        _provinceArr = tempProvinceArr;
+//        YZLAreaModel *provinceInfo = self.serviceProvinceArr.firstObject;
+//        _cityArr = provinceInfo.sons;
+//        for (YZLAreaModel *tempCityInfo in _cityArr) {
+//            if (tempCityInfo.selectCount > 0) {
+//                _countyArr = tempCityInfo.sons;
+//                _cityInfo = tempCityInfo;
+//                break;
+//            }
+//        }
+//        _provinceInfo = provinceInfo;
+//    } else {
+//
+//        if (_provinceArr == nil && self.areaPickerType == YZLAreaPickerTypeCountryAndLimit) {//添加全国组
+//            YZLAreaModel *limitProvinceInfo = [YZLAreaModel new];
+//            limitProvinceInfo.level = 1;
+//            limitProvinceInfo.ID = -100;
+//            limitProvinceInfo.name = @"全国";
+//
+//            NSMutableArray *tmpProvinceArr = [NSMutableArray arrayWithArray:provinceArr];
+//            [tmpProvinceArr insertObject:limitProvinceInfo atIndex:0];
+//            provinceArr = [NSArray arrayWithArray:tmpProvinceArr];
+//        }
+//
+//        if (_provinceArr == nil && self.areaPickerType == YZLAreaPickerTypeLimit) {//给第一组添加不限
+//            YZLAreaModel *province = provinceArr.firstObject;
+//
+//            YZLAreaModel *limitCityInfo = [YZLAreaModel new];
+//            limitCityInfo.level = 2;
+//            limitCityInfo.ID = -100;
+//            limitCityInfo.name = @"不限";
+//
+//            [province.sons insertObject:limitCityInfo atIndex:0];
+//        }
+//
+//        _provinceArr = provinceArr;
+//        YZLAreaModel *provinceInfo = _provinceArr.firstObject;
+//
+//        _cityArr = provinceInfo.sons;
+//        YZLAreaModel *cityInfo = _cityArr.firstObject;
+//
+//        _countyArr = cityInfo.sons;
+//    }
+//    [self.provinceTableView reloadData];
+//    [self.countyTableView reloadData];
+//    [self.cityTableView reloadData];
 }
 
 - (void)setIsService:(BOOL)isService {
@@ -295,9 +300,10 @@ static NSString *areaCell = @"areaCell";
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    self.provinceTableView.frame = CGRectMake(0, 0, (self.frame.size.width - 1) / 3, self.frame.size.height);
-    self.cityTableView.frame = CGRectMake(self.frame.size.width / 3 + 0.5 , 0, (self.frame.size.width - 1) / 3 ,  self.frame.size.height);
-    self.countyTableView.frame = CGRectMake(self.frame.size.width / 3 * 2 + 1, 0, (self.frame.size.width - 1) / 3 , self.frame.size.height);
+    self.provinceTableView.frame = CGRectMake(0, 0, (self.frame.size.width - 1) / 2, self.frame.size.height);
+    self.cityTableView.frame = CGRectMake((self.frame.size.width - 1) / 2 + 1, 0, (self.frame.size.width - 1) / 2 , self.frame.size.height);
+    
+//    self.countyTableView.frame = CGRectMake(self.frame.size.width / 3 * 2 + 1, 0, (self.frame.size.width - 1) / 3 , self.frame.size.height);
 
 }
 
@@ -579,10 +585,15 @@ static NSString *areaCell = @"areaCell";
 - (void)selectAdress:(areaPickerBlock)address {
     if (_countyInfo || (_cityInfo.sons.count == 0 && _cityInfo) || _provinceInfo.sons.count == 0) {
         if (address) {
+            
+            
+            
             NSDictionary *areaDic = @{@"province": _provinceInfo?_provinceInfo:[YZLAreaModel new],
                                       @"city": _cityInfo?_cityInfo:[YZLAreaModel new],
                                       @"county": _countyInfo?_countyInfo:[YZLAreaModel new]};
-            address(areaDic);
+            [YZLAreaCacheTool querySelectAreaIDWithDict:areaDic completed:^(NSDictionary *dict) {
+                address(dict);
+            }];
         }
     }
 }

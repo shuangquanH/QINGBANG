@@ -73,13 +73,17 @@
     [SQRequest post:KAPI_MYDECORATION_ORDERLIST param:@{@"page": @(tmpPage), @"pageSize": @(self.pageSize)} success:^(id response) {
         if ([response[@"code"] longLongValue] == 0) {
             NSArray<WKDecorationOrderListModel *> *tmp = [NSArray yy_modelArrayWithClass:[WKDecorationOrderListModel class] json:response[@"data"][@"orderList"]];
-            if (tmp.count) {
-                if (headerAction) {
-                    [self.orderList removeAllObjects];
-                }
+            if (headerAction) {
+                [self.orderList removeAllObjects];
                 [self.orderList addObjectsFromArray:tmp];
                 self.page = tmpPage;
                 [self.tableView reloadData];
+            } else {
+                if (tmp.count) {
+                    [self.orderList addObjectsFromArray:tmp];
+                    self.page = tmpPage;
+                    [self.tableView reloadData];
+                }
             }
         }
         else {

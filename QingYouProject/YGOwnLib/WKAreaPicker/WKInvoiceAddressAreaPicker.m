@@ -49,20 +49,17 @@
         [confirmButton addTarget:self action:@selector(confirmButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         [cancelButton addTarget:self action:@selector(cancelButtonClick:) forControlEvents:UIControlEventTouchUpInside];
         
-        self.cityPicker = [[YZLAreaPickerView alloc] init];
-        self.cityPicker.provinceArr = [YZLAreaCacheTool getAreaData];
-        [self addSubview:self.cityPicker];
-        [self.cityPicker mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.bottom.mas_equalTo(0);
-            make.top.mas_equalTo(KSCAL(100) + 1);
+        [YZLAreaCacheTool getAreaDataCompleted:^(NSArray<YZLAreaModel *> *province) {
+            self.cityPicker = [[YZLAreaPickerView alloc] init];
+            self.cityPicker.provinceArr = [YZLAreaCacheTool getAreaData];
+            [self addSubview:self.cityPicker];
+            [self.cityPicker mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.right.bottom.mas_equalTo(0);
+                make.top.mas_equalTo(KSCAL(100) + 1);
+            }];
         }];
     }
     return self;
-}
-
-- (void)setInvoceAddress:(ManageMailPostModel *)invoceAddress {
-    _invoceAddress = invoceAddress;
-    self.cityPicker.invoceAddress = invoceAddress;
 }
 
 //- (void)setUserModel:(YZLUserBeanModel *)userModel {

@@ -18,4 +18,5 @@
 @property (nonatomic, assign) NSInteger level;
 @property (nonatomic, assign) NSInteger parent_id;
 @property (nonatomic, strong) NSMutableArray<YZLAreaModel *> *sons;
+
 @end

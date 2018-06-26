@@ -166,12 +166,14 @@
 
 - (void)click_selectButton:(UIButton *)sender {
     if (sender.isSelected) return;
-    
+    sender.selected = YES;
     if (sender == _personalBtn) {
         self.invoiceInfo.type = 1;
+        _companyBtn.selected = NO;
     }
     else {
         self.invoiceInfo.type = 2;
+        _personalBtn.selected = NO;
     }
     
     if (_invoiceInfo.type == 1) {
@@ -298,12 +300,10 @@
         [_selectView addSubview:_personalBtn];
        
         if (_invoiceInfo.type == 1) {
-            [_personalBtn setImage:[UIImage imageNamed:@"invoicetitle_circle_selected"] forState:UIControlStateNormal];
-            [_companyBtn setImage:[UIImage imageNamed:@"invoicetitle_circle"] forState:UIControlStateNormal];
+            [self click_selectButton:_personalBtn];
         }
         else {
-            [_personalBtn setImage:[UIImage imageNamed:@"invoicetitle_circle"] forState:UIControlStateNormal];
-            [_companyBtn setImage:[UIImage imageNamed:@"invoicetitle_circle_selected"] forState:UIControlStateNormal];
+            [self click_selectButton:_companyBtn];
         }
         
         [_companyBtn sizeToFit];

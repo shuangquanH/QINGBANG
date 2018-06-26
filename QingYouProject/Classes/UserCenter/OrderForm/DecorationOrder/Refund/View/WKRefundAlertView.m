@@ -18,6 +18,7 @@
     UITableView *_tableView;
     UIButton *_confirmButton;
     NSString *_reason;
+    NSAttributedString *_amountStr;
     
     UILabel *_titleLabel;
     UIButton *_dismissBtn;
@@ -78,6 +79,13 @@
 
 - (void)setStageInfo:(WKDecorationStageModel *)stageInfo {
     _stageInfo = stageInfo;
+    if (stageInfo.amount.length) {
+       NSMutableAttributedString *tmp = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"退款金额\t¥%@", stageInfo.amount]];
+        [tmp setAttributes:@{NSForegroundColorAttributeName: kCOLOR_PRICE_RED} range:NSMakeRange(5, stageInfo.amount.length+1)];
+        _amountStr = [tmp copy];
+    } else {
+        _amountStr = nil;
+    }
     [_tableView reloadData];
 }
 
@@ -90,10 +98,9 @@
 
 - (void)click_confirm {
     if (_inReason) {//退出原因选择
-        [self intoReasonMode];
+        [self quiteReasonMode];
     }
     else {
-        
         if (!_reason.length) {
             [YGAppTool showToastWithText:@"请选择原因"];
             return;
@@ -180,7 +187,6 @@
         if (!cell) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"selectCell"];
             cell.textLabel.textColor = kCOLOR_333;
-            cell.detailTextLabel.textColor = kCOLOR_999;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.textLabel.font = KFONT(28);
             cell.detailTextLabel.font = KFONT(28);
@@ -189,8 +195,10 @@
         }
         if (_reason.length) {
             cell.detailTextLabel.text = _reason;
+            cell.detailTextLabel.textColor = kCOLOR_333;
         } else {
             cell.detailTextLabel.text = @"请选择";
+            cell.detailTextLabel.textColor = kCOLOR_999;
         }
         return cell;
     }
@@ -199,16 +207,13 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"priceCell"];
         cell.textLabel.textColor = kCOLOR_333;
-        cell.detailTextLabel.textColor = kCOLOR_PRICE_RED;
         cell.textLabel.font = KFONT(28);
-        cell.detailTextLabel.font = KFONT(28);
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.text = @"退款金额";
     }
-    if (self.stageInfo.amount.length) {
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"¥ %@", self.stageInfo.amount];
+    if (_amountStr.length) {
+        cell.textLabel.attributedText = _amountStr;
     } else {
-        cell.detailTextLabel.text = @"";
+        cell.textLabel.text = @"退款金额";
     }
     return cell;
 }

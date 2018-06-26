@@ -39,15 +39,14 @@
     [super viewDidLoad];
 
     [self layoutNavigation];
-    
     [self setupSubviews];
     
     self.invoiceList = [NSMutableArray array];
-    
     _isFirstLoad = YES;
     _currentPage = 1;
     _pageSize = 10;
     
+    //[SQRequest setApiAddress:KAPI_ADDRESS_TEST_MH];
     [self refreshActionWithIsRefreshHeaderAction:YES];
 }
 
@@ -109,16 +108,19 @@
             [YGNetService dissmissLoadingView];
             _isFirstLoad = NO;
         }
-        
         if ([response[@"code"] longLongValue] == 0) {
             NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKInvoiceModel class] json:response[@"data"][@"invoiceInfoList"]];
-            if (tmp.count) {
-                if (headerAction) {
-                    [self.invoiceList removeAllObjects];
-                }
-                self.currentPage = tmpPage;
+            if (headerAction) {
+                [self.invoiceList removeAllObjects];
                 [self.invoiceList addObjectsFromArray:tmp];
+                self.currentPage = tmpPage;
                 [self.tableView reloadData];
+            } else {
+                if (tmp.count) {
+                    self.currentPage = tmpPage;
+                    [self.invoiceList addObjectsFromArray:tmp];
+                    [self.tableView reloadData];
+                }
             }
         } else {
             [YGAppTool showToastWithText:response[@"msg"]];
@@ -189,12 +191,18 @@
         (void)index;
         if (invoice) {//替换、刷新
             [self.invoiceList replaceObjectAtIndex:index withObject:invoice];
+            if (invoice.isDefault) {//设置为默认
+                for (WKInvoiceModel *m in self.invoiceList) {
+                    if (m == invoice) continue;
+                    m.isDefault = NO;
+                }
+            }
             [self.tableView reloadData];
             if (self.managerRefresh) {
                 self.managerRefresh(self.invoiceList);
             }
         } else {//重新请求
-            self.pageSize = MAX(self.invoiceList.count, 10);
+            self.pageSize = MAX(self.invoiceList.count+1, 10);
             [self.tableView.mj_header beginRefreshing];
             if (self.managerRefresh) {
                 self.managerRefresh(nil);

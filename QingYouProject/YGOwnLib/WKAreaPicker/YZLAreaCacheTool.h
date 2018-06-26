@@ -13,7 +13,11 @@
 
 
 + (NSArray<YZLAreaModel *> *)getAreaData;
++ (void)getAreaDataCompleted:(void(^)(NSArray<YZLAreaModel *> *))completed;
 + (void)setAreaData:(id)AreaData;
 
-+(void)reloadAreaData;
++ (void)reloadAreaData;
+
++ (void)querySelectAreaIDWithDict:(NSDictionary *)dict completed:(void (^) (NSDictionary *dict))complted;
+
 @end
