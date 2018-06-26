@@ -31,16 +31,20 @@ target 'QingYouProject' do
 #  pod 'MOBFoundation_IDFA'
   #载入图
   pod 'MBProgressHUD'
-  #SMSSDK必须
-  pod 'SMSSDK'
   
+  #SMSSDK必须
+#  pod 'SMSSDK'
+
   #播放器
 #  pod 'ZFPlayer'
   #地图
 #  pod 'AMapLocation'
 
+  #日历
   pod 'FSCalendar'
+  #七牛
   pod 'HappyDNS', '~> 0.2'
+  #ping++
   pod 'Pingpp', '~> 2.2.17'
 
   #yymodel
@@ -48,6 +52,4 @@ target 'QingYouProject' do
   
   pod 'FMDB'
   
-  
-  #测试一下哈哈哈哈哈
 end
