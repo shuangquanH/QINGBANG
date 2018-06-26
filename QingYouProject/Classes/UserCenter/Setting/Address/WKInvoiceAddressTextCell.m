@@ -61,7 +61,7 @@
 - (void)configAddress:(WKInvoiceAddressModel *)addressInfo {
     _nameLabel.text = addressInfo.name?:@"";
     _phoneLabel.text = addressInfo.phone?:@"";
-    NSString *address = [NSString stringWithFormat:@"%@%@%@%@", addressInfo.provName?:@"", addressInfo.cityName?:@"", addressInfo.distName?:@"", addressInfo.detail?:@""];
+    NSString *address = [NSString stringWithFormat:@"%@%@%@", addressInfo.provName?:@"", addressInfo.cityName?:@"", addressInfo.detail?:@""];
     NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
     style.lineSpacing = 3.0;
     _addressLabel.attributedText = [[NSAttributedString alloc] initWithString:address attributes:@{NSParagraphStyleAttributeName: style}];

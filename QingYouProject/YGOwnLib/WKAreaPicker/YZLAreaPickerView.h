@@ -9,10 +9,9 @@
 typedef enum {
     YZLAreaPickerTypeBase,//无全国、无不限
     YZLAreaPickerTypeLimit,//无全国、有不限
-    YZLAreaPickerTypeCountryAndLimit//有全国、有不限
+    YZLAreaPickerTypeCountryAndLimit,//有全国、有不限
+    YZLAreaPickerTypeNoCounty//没有区，只有省市
 }YZLAreaPickerType;
-
-@class ManageMailPostModel;
 
 typedef void(^areaPickerBlock)(NSDictionary *);
 
@@ -24,8 +23,6 @@ typedef void(^areaPickerBlock)(NSDictionary *);
 @property (nonatomic, strong) NSMutableArray *serviceProvinceArr;//区域选择省数组
 
 @property (nonatomic, assign) YZLAreaPickerType areaPickerType;
-
-@property (nonatomic, strong) ManageMailPostModel *invoceAddress;
 
 - (void)selectAdress:(areaPickerBlock)address;
 

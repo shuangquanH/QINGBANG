@@ -108,12 +108,4 @@
     
 }
 
-- (void)setInvoiceModel:(WKInvoiceAddressModel *)invoiceModel {
-    _invoiceModel = invoiceModel;
-    _nameLabel.text = invoiceModel.name;
-    _phoneLabel.text = invoiceModel.phone;
-    _addressLabel.text = [NSString stringWithFormat:@"%@%@%@",invoiceModel.provName?:@"",invoiceModel.cityName?:@"",invoiceModel.distName?:@""];
-    _detailAddressLabel.text = invoiceModel.detail;
-}
-
 @end
