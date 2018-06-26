@@ -106,8 +106,9 @@
             [self endRefreshWithScrollView:self.collectionView];
         } failure:nil];
     } failure:^(NSError *error) {
-        NSLog(@"ooooo");
-    }];
+        [self endRefreshWithScrollView:self.collectionView];
+    } showLoadingView:YES];
+    
     [SQRequest setApiAddress:nil];
     [self startLoacation];
 }

@@ -137,7 +137,7 @@ typedef enum : NSUInteger {
 - (void)endRefreshWithScrollView:(UIScrollView *)scrollView;
 
 /**
- 当下拉没有更多数据的时候调用
+ 当上拉没有更多数据的时候调用
  */
 - (void)noMoreDataFormatWithScrollView:(UITableView *)scrollView;
 
