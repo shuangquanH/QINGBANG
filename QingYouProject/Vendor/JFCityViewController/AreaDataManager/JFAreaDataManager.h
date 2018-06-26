@@ -15,6 +15,19 @@
 - (void)areaSqliteDBData;
 
 
+
+/** 获取所有的省或者直辖市  */
+- (void)getAllProvince:(void(^)(NSMutableArray *dataArray))provinces;
+
+/** 获取某个省所有的市  */
+- (void)getCityWithProvinceName:(NSString *)province cities:(void (^)(NSMutableArray *dataArray))city;
+
+/** 获取某个城市的地址id  */
+- (void)getCityIDWithCityName:(NSString *)cityName cityID:(void(^)(NSString *cityId))cityId;
+
+
+
+
 /**
  从shop_area.sqlite获取所有市
 

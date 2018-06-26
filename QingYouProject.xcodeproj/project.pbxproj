@@ -719,6 +719,7 @@
 		E92ABB9F20E09250003B374D /* CYGifFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = E92ABB9620E09250003B374D /* CYGifFooter.m */; };
 		E92ABBA020E09250003B374D /* CYNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = E92ABB9720E09250003B374D /* CYNormalFooter.m */; };
 		E92ABBA120E09250003B374D /* CYNormalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = E92ABB9820E09250003B374D /* CYNormalHeader.m */; };
+		E92ABBA620E1E96A003B374D /* t_area.sql in Resources */ = {isa = PBXBuildFile; fileRef = E92ABBA520E1E96A003B374D /* t_area.sql */; };
 		E94137A0209C3891003F3649 /* AppStartManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E941379F209C3891003F3649 /* AppStartManager.m */; };
 		E94137A7209C4295003F3649 /* SQLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E94137A6209C4295003F3649 /* SQLocationManager.m */; };
 		E99DE1C020AC4FAF009CEF88 /* SQBaseHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE1AE20AC4FAF009CEF88 /* SQBaseHeaderFooterView.m */; };
@@ -774,7 +775,6 @@
 		E99DE27F20BED24F009CEF88 /* JFCityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE26F20BED24F009CEF88 /* JFCityTableViewCell.m */; };
 		E99DE28020BED24F009CEF88 /* JFCityCollectionFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE27020BED24F009CEF88 /* JFCityCollectionFlowLayout.m */; };
 		E99DE28120BED24F009CEF88 /* JFButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE27220BED24F009CEF88 /* JFButton.m */; };
-		E99DE28220BED24F009CEF88 /* shop_area.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E99DE27620BED24F009CEF88 /* shop_area.sqlite */; };
 		E99DE28520BFD2C2009CEF88 /* NSMutableAttributedString+AppendImage.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE28420BFD2C2009CEF88 /* NSMutableAttributedString+AppendImage.m */; };
 		E99DE28820C0E72A009CEF88 /* SQServiceFormListPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = E99DE28720C0E72A009CEF88 /* SQServiceFormListPlist.plist */; };
 		E99DE28B20C0E7D0009CEF88 /* SQServiceFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE28A20C0E7D0009CEF88 /* SQServiceFormViewController.m */; };
@@ -2142,6 +2142,7 @@
 		E92ABB9B20E09250003B374D /* CYGifHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYGifHeader.h; sourceTree = "<group>"; };
 		E92ABB9C20E09250003B374D /* CYNormalHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYNormalHeader.h; sourceTree = "<group>"; };
 		E92ABB9D20E09250003B374D /* CYNormalFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CYNormalFooter.h; sourceTree = "<group>"; };
+		E92ABBA520E1E96A003B374D /* t_area.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = t_area.sql; sourceTree = "<group>"; };
 		E941379E209C3891003F3649 /* AppStartManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppStartManager.h; sourceTree = "<group>"; };
 		E941379F209C3891003F3649 /* AppStartManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppStartManager.m; sourceTree = "<group>"; };
 		E94137A5209C4295003F3649 /* SQLocationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQLocationManager.h; sourceTree = "<group>"; };
@@ -2249,7 +2250,6 @@
 		E99DE27220BED24F009CEF88 /* JFButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFButton.m; sourceTree = "<group>"; };
 		E99DE27320BED24F009CEF88 /* JFCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCityViewController.h; sourceTree = "<group>"; };
 		E99DE27420BED24F009CEF88 /* JFCityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCityTableViewCell.h; sourceTree = "<group>"; };
-		E99DE27620BED24F009CEF88 /* shop_area.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = shop_area.sqlite; sourceTree = "<group>"; };
 		E99DE27720BED24F009CEF88 /* JFSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFSearchView.h; sourceTree = "<group>"; };
 		E99DE27820BED24F009CEF88 /* JFCityHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFCityHeaderView.h; sourceTree = "<group>"; };
 		E99DE28320BFD2C2009CEF88 /* NSMutableAttributedString+AppendImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+AppendImage.h"; sourceTree = "<group>"; };
@@ -5833,7 +5833,7 @@
 		E99DE27520BED24F009CEF88 /* AreaDB */ = {
 			isa = PBXGroup;
 			children = (
-				E99DE27620BED24F009CEF88 /* shop_area.sqlite */,
+				E92ABBA520E1E96A003B374D /* t_area.sql */,
 			);
 			path = AreaDB;
 			sourceTree = "<group>";
@@ -6032,6 +6032,7 @@
 				E2E5B3971FB0675B00205F70 /* xianzhi_luzhi_shanguang@3x.png in Resources */,
 				18C15A7F1FC8208B0010ACD3 /* PayHeaderView.xib in Resources */,
 				E2E5B38C1FB0675B00205F70 /* xianzhi_luzhi_fanzhuan.png in Resources */,
+				E92ABBA620E1E96A003B374D /* t_area.sql in Resources */,
 				E2E5B14D1FB0675A00205F70 /* MJRefresh.bundle in Resources */,
 				18C159BF1FC8208A0010ACD3 /* ApplyRemarkCell.xib in Resources */,
 				18C158F71FC820890010ACD3 /* TestHTMLString.html in Resources */,
@@ -6065,7 +6066,6 @@
 				18C159C11FC8208A0010ACD3 /* CompanyTextViewCell.xib in Resources */,
 				18C159AC1FC8208A0010ACD3 /* button-screen-double.png in Resources */,
 				E2E5B11F1FB0675900205F70 /* EBBannerView.xib in Resources */,
-				E99DE28220BED24F009CEF88 /* shop_area.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -33,6 +33,10 @@
 #import "SQHouseRentPushTool.h"
 
 #import "AFNetworking.h"
+
+#import "JFAreaDataManager.h"
+
+
 #define KCURRENTCITYINFODEFAULTS [NSUserDefaults standardUserDefaults]
 
 @interface SQHomeViewController () <SQCollectionViewLayoutDelegate, UICollectionViewDataSource, UICollectionViewDelegate, SQHomeCollectionHeaderDeleage, JFLocationDelegate, JFCityViewControllerDelegate>
