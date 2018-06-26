@@ -333,7 +333,6 @@
 #define REQUEST_WXBINDING                       @"WxBinding"                        //微信绑定
 #define REQUEST_getUserAgreement                       @"getUserAgreement"                        //清网协议
 
-
 /********************************************* 支付接口 ************************************/
 #define KAPI_PAY           @"pingpp/pay"//支付
 
@@ -375,5 +374,8 @@
 #define KAPI_UNREADORDERBADGE          @"getOrderBadgeNumber"//未读订单提示数量
 #define KAPI_AFTERSALERECORD           @"afterSaleRecord"//售后记录
 #define KAPI_APPLYAFTERSALE            @"applyAfterSale"//申请售后
+
+/********************************************* 文件上传  ********************************************/
+#define KAPI_FILEUPLOAD                @"file/upFile"
 
 #endif /* SQApiUrlFile_h */

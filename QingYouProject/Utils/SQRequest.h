@@ -32,4 +32,7 @@
 
 /** get请求  */
 + (void)get:(NSString   *)api param:(NSDictionary   *)param success:(void(^)(id response))success failure:(void(^)(NSError *error))failure showLoadingView:(BOOL)show;
+
++ (void)uploadImages:(NSArray *)images param:(NSDictionary *)param progress:(void(^)(float progress))progress success:(void(^)(id response))success failure:(void(^)(NSError *error))failure;
+
 @end
