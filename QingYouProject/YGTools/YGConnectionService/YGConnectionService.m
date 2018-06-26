@@ -128,22 +128,21 @@ static YGConnectionService *sConnectionService;
     _coverView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, superView.width, superView.height)];
     [superView addSubview:_coverView];
     
-    UIImage *image = [UIImage imageNamed:@"loading_animation_refresh_1"];
+    UIImage *image = [UIImage imageNamed:@"loading_animation_load_1"];
     _hudView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, image.size.width+20, image.size.height+20)];
     _hudView.center = CGPointMake(_coverView.width/2, _coverView.height/2);
-    _hudView.backgroundColor = [[UIColor blackColor]colorWithAlphaComponent:0.2];
     _hudView.layer.cornerRadius = 10;
     [_coverView addSubview:_hudView];
     
-    _loadImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"loading_animation_refresh_1"]];
+    _loadImageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"loading_animation_load_1"]];
     [_loadImageView sizeToFit];
     _loadImageView.center = CGPointMake(_hudView.width/2, _hudView.height/2);
     [_hudView addSubview:_loadImageView];
     
     NSMutableArray *imgArray = [[NSMutableArray alloc]init];
-    for (int i = 1; i<=10; i++)
+    for (int i = 1; i<=38; i++)
     {
-        [imgArray addObject:[UIImage imageNamed:[NSString stringWithFormat:@"loading_animation_refresh_%d",i]]];
+        [imgArray addObject:[UIImage imageNamed:[NSString stringWithFormat:@"loading_animation_load_%d",i]]];
     }
     _loadImageView.animationImages = imgArray;
     _loadImageView.animationRepeatCount = -1;

@@ -58,6 +58,13 @@
     [super viewDidLoad];
     [self loadLaunches];
     [self requestData];
+    
+    [[JFAreaDataManager shareInstance] areaSqliteDBData];
+    [[JFAreaDataManager shareInstance] getCityWithProvinceName:@"天津市" cities:^(NSMutableArray *dataArray) {
+        NSLog(@"获取浙江省所有的城市:%@", dataArray);
+    }];
+
+
 }
 
 - (void)loadLaunches {

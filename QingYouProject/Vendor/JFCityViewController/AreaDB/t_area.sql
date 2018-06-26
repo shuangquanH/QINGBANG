@@ -1,8 +1,6 @@
 INSERT INTO `t_area` VALUES (1, '000000', '全国', '000000', '全国', NULL, NULL, 'admin', '2018-06-07 14:10:37', NULL, NULL, NULL, 0);
 INSERT INTO `t_area` VALUES (17, '110000', '北京市', '110100', '北京市', NULL, NULL, 'admin', '2018-06-05 16:50:26', NULL, NULL, NULL, 0);
-INSERT INTO `t_area` VALUES (19, '110000', '北京市', '110200', '北京市（县）', NULL, NULL, 'admin', '2018-06-05 16:50:26', NULL, NULL, NULL, 0);
 INSERT INTO `t_area` VALUES (34, '120000', '天津市', '120100', '天津市', NULL, NULL, 'admin', '2018-06-05 16:50:26', NULL, NULL, NULL, 0);
-INSERT INTO `t_area` VALUES (37, '120000', '天津市', '120200', '天津市（县）', NULL, NULL, 'admin', '2018-06-05 16:50:26', NULL, NULL, NULL, 0);
 INSERT INTO `t_area` VALUES (61, '130000', '河北省', '130100', '石家庄市', NULL, NULL, 'admin', '2018-06-05 16:50:26', NULL, NULL, NULL, 0);
 INSERT INTO `t_area` VALUES (76, '130000', '河北省', '130200', '唐山市', NULL, NULL, 'admin', '2018-06-05 16:50:26', NULL, NULL, NULL, 0);
 INSERT INTO `t_area` VALUES (84, '130000', '河北省', '130300', '秦皇岛市', NULL, NULL, 'admin', '2018-06-05 16:50:26', NULL, NULL, NULL, 0);
@@ -74,7 +72,6 @@ INSERT INTO `t_area` VALUES (769, '230000', '黑龙江', '231100', '黑河市', 
 INSERT INTO `t_area` VALUES (780, '230000', '黑龙江', '231200', '绥化市', NULL, NULL, 'admin', '2018-06-05 16:50:26', NULL, NULL, NULL, 0);
 INSERT INTO `t_area` VALUES (783, '230000', '黑龙江', '232700', '大兴安岭地区', NULL, NULL, 'admin', '2018-06-05 16:50:26', NULL, NULL, NULL, 0);
 INSERT INTO `t_area` VALUES (801, '310000', '上海', '310100', '上海市', NULL, NULL, 'admin', '2018-06-05 16:50:26', NULL, NULL, NULL, 0);
-INSERT INTO `t_area` VALUES (802, '310000', '上海', '310200', '上海（县）', NULL, NULL, 'admin', '2018-06-05 16:50:26', NULL, NULL, NULL, 0);
 INSERT INTO `t_area` VALUES (816, '320000', '江苏省', '320100', '南京市', NULL, NULL, 'admin', '2018-06-05 16:50:26', NULL, NULL, NULL, 0);
 INSERT INTO `t_area` VALUES (825, '320000', '江苏省', '320200', '无锡市', NULL, NULL, 'admin', '2018-06-05 16:50:26', NULL, NULL, NULL, 0);
 INSERT INTO `t_area` VALUES (837, '320000', '江苏省', '320300', '徐州市', NULL, NULL, 'admin', '2018-06-05 16:50:26', NULL, NULL, NULL, 0);
@@ -235,8 +232,6 @@ INSERT INTO `t_area` VALUES (2198, '460000', '海南省', '460100', '海口市',
 INSERT INTO `t_area` VALUES (2199, '460000', '海南省', '460200', '三亚市', NULL, NULL, 'admin', '2018-06-05 16:50:26', NULL, NULL, NULL, 0);
 INSERT INTO `t_area` VALUES (2218, '460000', '海南省', '469000', '省直辖县级行政单位', NULL, NULL, 'admin', '2018-06-05 16:50:26', NULL, NULL, NULL, 0);
 INSERT INTO `t_area` VALUES (2233, '500000', '重庆', '500100', '重庆市', NULL, NULL, 'admin', '2018-06-05 16:50:26', NULL, NULL, NULL, 0);
-INSERT INTO `t_area` VALUES (2254, '500000', '重庆', '500200', '重庆（县）', NULL, NULL, 'admin', '2018-06-05 16:50:26', NULL, NULL, NULL, 0);
-INSERT INTO `t_area` VALUES (2258, '500000', '重庆', '500300', '重庆（市）', NULL, NULL, 'admin', '2018-06-05 16:50:26', NULL, NULL, NULL, 0);
 INSERT INTO `t_area` VALUES (2278, '510000', '四川省', '510100', '成都市', NULL, NULL, 'admin', '2018-06-05 16:50:26', NULL, NULL, NULL, 0);
 INSERT INTO `t_area` VALUES (2285, '510000', '四川省', '510300', '自贡市', NULL, NULL, 'admin', '2018-06-05 16:50:26', NULL, NULL, NULL, 0);
 INSERT INTO `t_area` VALUES (2291, '510000', '四川省', '510400', '攀枝花市', NULL, NULL, 'admin', '2018-06-05 16:50:26', NULL, NULL, NULL, 0);
