@@ -155,21 +155,37 @@
         return;
     }
     
+    NSMutableDictionary *progressDict = [NSMutableDictionary dictionary];
+    [urls enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [progressDict setObject:@(0.0) forKey:obj];
+    }];
+    
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:YGAppDelegate.window animated:YES];
     hud.mode = MBProgressHUDModeDeterminate;
     hud.label.text = @"正在下载...";
     
-    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:@""] options:SDWebImageDownloaderContinueInBackground progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-        
-    } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
-        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-            [PHAssetChangeRequest creationRequestForAssetFromImage:image];
-        } completionHandler:^(BOOL success, NSError * _Nullable error) {
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [YGAppTool showToastWithText:(success ? @"已保存图片到相册" : @"保存失败")];
+    for (NSString *url in urls) {
+        [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:url] options:SDWebImageDownloaderContinueInBackground progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                progressDict[targetURL.absoluteURL] = @(receivedSize / expectedSize);
+                float currentProgress = 0;
+                for (NSString *key in progressDict.allKeys) {
+                    currentProgress += [progressDict[key] floatValue];
+                }
+                hud.progress = currentProgress / progressDict.allKeys.count;
             });
+        } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+            
+            
+            [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+                [PHAssetChangeRequest creationRequestForAssetFromImage:image];
+            } completionHandler:^(BOOL success, NSError * _Nullable error) {
+                dispatch_sync(dispatch_get_main_queue(), ^{
+                    [YGAppTool showToastWithText:(success ? @"已保存图片到相册" : @"保存失败")];
+                });
+            }];
         }];
-    }];
+    }
 }
 
 #pragma mark - SQDecorationDetailViewModelDelegate
