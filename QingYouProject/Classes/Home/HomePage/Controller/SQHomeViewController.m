@@ -95,7 +95,7 @@
 
 - (void)requestData {
     //获取首页收据
-    [SQRequest setApiAddress:KAPI_ADDRESS_TEST_HJK];
+//    [SQRequest setApiAddress:KAPI_ADDRESS_TEST_HJK];
     [SQRequest post:KAPI_INDEXPAGE param:nil success:^(id response) {
         self.model = [SQHomeIndexPageModel yy_modelWithDictionary:response[@"data"]];
         self.headerView.model = self.model;
@@ -109,7 +109,7 @@
         [self endRefreshWithScrollView:self.collectionView];
     } showLoadingView:YES];
     
-    [SQRequest setApiAddress:nil];
+//    [SQRequest setApiAddress:nil];
     [self startLoacation];
 }
 

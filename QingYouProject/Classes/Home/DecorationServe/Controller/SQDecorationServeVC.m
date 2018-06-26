@@ -48,7 +48,7 @@
 }
 
 - (void)requestData {
-    [SQRequest setApiAddress:KAPI_ADDRESS_TEST_HJK];
+//    [SQRequest setApiAddress:KAPI_ADDRESS_TEST_HJK];
     [SQRequest post:KAPI_DECORHOME param:nil success:^(id response) {
         self.model = [SQDecorationHomeModel yy_modelWithDictionary:response[@"data"]];
         self.header.model = self.model;

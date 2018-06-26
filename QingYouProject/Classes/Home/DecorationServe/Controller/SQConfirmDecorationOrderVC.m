@@ -134,14 +134,14 @@
 }
 - (void)confirmButtonAction {
     NSDictionary    *param = @{@"addressId":@"20", @"payType":@"alipay", @"remarks":@"beizhu", @"skuId":self.skuId};
-    [SQRequest setApiAddress:KAPI_ADDRESS_TEST_MH];
+//    [SQRequest setApiAddress:KAPI_ADDRESS_TEST_MH];
     [SQRequest post:KAPI_CREATORDER param:param success:^(id response) {
         [self pingPPPayWithResponde:response[@"data"]];
         
     } failure:^(NSError *error) {
         
     }];
-    [SQRequest setApiAddress:nil];
+//    [SQRequest setApiAddress:nil];
     
     
 //    if (self.payType) {
