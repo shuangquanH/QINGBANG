@@ -23,6 +23,8 @@
 #import "WKAnimationAlert.h"
 
 #import <Pingpp.h>
+#import <Photos/Photos.h>
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface SQDecorationOrderDetailVC () <WKDecorationDetailViewModelDelegate>
 
@@ -110,7 +112,6 @@
             }];
         }
         else {
-            
             if (i == self.orderVM.subviewArray.count - 1) {
                 [v mas_remakeConstraints:^(MASConstraintMaker *make) {
                     make.left.right.bottom.mas_equalTo(0);
@@ -126,7 +127,6 @@
                 }];
             }
         }
-        
         lastView = v;
     }
 }
@@ -136,15 +136,41 @@
     [Pingpp createPayment:response[@"charge"] viewController:self appURLScheme:@"qingyouhui" withCompletion:^(NSString *result, PingppError *error){
         if ([result isEqualToString:@"success"]) {
             //支付成功后，重新获取订单数据，刷新视图
+            [YGAppTool showToastWithText:@"付款成功"];
             [self sendReqeust];
         } else {
             if (error.code == PingppErrWxNotInstalled) {
                 [YGAppTool showToastWithText:@"请安装微信客户端"];
+            } else {
+                [YGAppTool showToastWithText:@"付款失败"];
             }
         }
     }];
 }
 
+- (void)downLoadContract {
+    NSArray *urls = [self.orderDetailInfo.orderInfo.contractImgUrl componentsSeparatedByString:@","];
+    if (!urls.count) {
+        [YGAppTool showToastWithText:@"暂无供下载的合同文件"];
+        return;
+    }
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:YGAppDelegate.window animated:YES];
+    hud.mode = MBProgressHUDModeDeterminate;
+    hud.label.text = @"正在下载...";
+    
+    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:@""] options:SDWebImageDownloaderContinueInBackground progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+        
+    } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+            [PHAssetChangeRequest creationRequestForAssetFromImage:image];
+        } completionHandler:^(BOOL success, NSError * _Nullable error) {
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                [YGAppTool showToastWithText:(success ? @"已保存图片到相册" : @"保存失败")];
+            });
+        }];
+    }];
+}
 
 #pragma mark - SQDecorationDetailViewModelDelegate
 - (void)serviceView:(SQDecorationDetailServerView *)serviceView didClickServiceType:(NSInteger)serviceType {
@@ -170,7 +196,7 @@
 - (void)functionView:(SQDecorationDetailFunctionView *)functionView didClickFunctionType:(NSInteger)functionType {
     /** 0：下载报价单 1：查看合同 2：开票申请 */
     if (functionType == 0) {
-        
+        [self downLoadContract];
     }
     else if (functionType == 1) {
         WKCheckContractViewController *next = [WKCheckContractViewController new];
@@ -178,10 +204,10 @@
         [self.navigationController pushViewController:next animated:YES];
     }
     else {
-//        if (self.orderDetailInfo.orderInfo.invoice) {//已经申请过发票
-//            [YGAppTool showToastWithText:@"开票申请已提交，请耐心等待！"];
-//            return;
-//        }
+        if (self.orderDetailInfo.orderInfo.invoice) {//已经申请过发票
+            [YGAppTool showToastWithText:@"开票申请已提交，请耐心等待！"];
+            return;
+        }
         SQTicketApplyViewController *next = [SQTicketApplyViewController new];
         next.orderDetailInfo = self.orderDetailInfo;
         [self.navigationController pushViewController:next animated:YES];
@@ -266,7 +292,6 @@
         {
             self.refundAlert.stageInfo = stageInfo;
             [WKAnimationAlert showAlertWithInsideView:self.refundAlert animation:WKAlertAnimationTypeBottom canTouchDissmiss:NO];
-            
         }
             break;
         case WKDecorationOrderActionTypeRefundDetail://退款详情
@@ -274,6 +299,10 @@
             WKDecorationRefundDetailViewController *next = [WKDecorationRefundDetailViewController new];
             next.orderDetailInfo = self.orderDetailInfo;
             [self.navigationController pushViewController:next animated:YES];
+            next.refundReback = ^{
+                //撤销退款，重新请求最新订单数据
+                [self sendReqeust];
+            };
         }
             break;
         default:
@@ -326,11 +355,10 @@
         _refundAlert.refundHandler = ^(NSString *reason) {
             @strongify(self)
             [WKDecorationOrderServer sendRefundWithOrderNumber:self.orderDetailInfo.orderInfo.ID paymentId:self.refundAlert.stageInfo.ID amount:self.refundAlert.stageInfo.amount comment:reason completed:^(BOOL success, NSString *errMsg) {
-                if (success) {
+                if (success) {//退款申请成功，修改本地数据，刷新列表
                     [YGAppTool showToastWithText:@"申请成功，等待审核"];
-                    //回调订单列表，修改当前状态为申请退款中状态
-                    self.orderDetailInfo.orderInfo.refund = NO;
-                    self.orderDetailInfo.orderInfo.isInRefund = YES;
+                    self.orderDetailInfo.orderInfo.refund = YES;//有过退款记录
+                    self.orderDetailInfo.orderInfo.isInRefund = YES;//申请中
                     for (UIView<WKDecorationDetailViewProtocol> *v in self.orderVM.subviewArray) {
                         [v configOrderDetailInfo:self.orderDetailInfo];
                         [self.contentView addSubview:v];

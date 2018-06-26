@@ -75,9 +75,7 @@
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
-    
-    [SQRequest setApiAddress:KAPI_ADDRESS_TEST_MH];
-    
+        
     [_confirmButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.right.mas_equalTo(0);
         make.height.mas_equalTo(KSCAL(100));

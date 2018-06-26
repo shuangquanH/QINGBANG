@@ -172,6 +172,14 @@
                                         [YGNetService dissmissLoadingView];
                                         if ([response[@"code"] longLongValue] == 0) {
                                             [YGAppTool showToastWithText:@"撤销退款成功"];
+                                            
+                                            //处理回调
+                                            self.orderDetailInfo.orderInfo.refund = YES;
+                                            self.orderDetailInfo.orderInfo.isInRefund = NO;
+                                            if (self.refundReback) {
+                                                self.refundReback();
+                                            }
+                                            
                                             [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.0];
                                         }
                                         else {

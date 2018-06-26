@@ -100,7 +100,7 @@
     [self configOrderInfo:orderDetailInfo.orderInfo withStage:stage withInDetail:inDetail];
     if (stage == 0 && inDetail) {//订金阶段&&在详情中
         
-        if (orderDetailInfo.orderInfo.refund && orderDetailInfo.orderInfo.status == 3) {//可以退款&&处于处理中状态
+        if (!orderDetailInfo.orderInfo.refund && orderDetailInfo.orderInfo.status == 3) {//没有过退款记录&&处于处理中状态->显示申请退款
             self.refundBtn.hidden = NO;
             _refundDetailBtn.hidden = YES;
             [stageStateView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -112,7 +112,7 @@
             return;
         }
         
-        if (!orderDetailInfo.orderInfo.refund) {//不能退款
+        if (orderDetailInfo.orderInfo.refund) {//有过退款记录的，不论在那个状态都可以查看退款记录
             self.refundDetailBtn.hidden = NO;
             _refundBtn.hidden = YES;
             [stageStateView mas_remakeConstraints:^(MASConstraintMaker *make) {

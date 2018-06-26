@@ -50,8 +50,6 @@
     [self.view addSubview:self.tableView];
     [self createRefreshWithScrollView:self.tableView containFooter:YES];
     [self.tableView.mj_header beginRefreshing];
-    
-    [SQRequest setApiAddress:KAPI_ADDRESS_TEST_MH];
 }
 
 - (void)viewWillLayoutSubviews {

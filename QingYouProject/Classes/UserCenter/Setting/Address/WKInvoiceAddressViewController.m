@@ -41,7 +41,6 @@ static NSString *functionCellIdentifier = @"WKInvoiceFunctionCell";
     if (!_dataArray) {
         [_tableView.mj_header beginRefreshing];
     }
-    [SQRequest setApiAddress:KAPI_ADDRESS_TEST_YSH];
 }
 
 - (void)viewWillLayoutSubviews {

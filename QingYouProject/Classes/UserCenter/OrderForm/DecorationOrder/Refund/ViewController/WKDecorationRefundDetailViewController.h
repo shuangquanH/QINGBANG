@@ -13,5 +13,7 @@
 @interface WKDecorationRefundDetailViewController : RootViewController
 
 @property (nonatomic, strong) WKDecorationOrderDetailModel *orderDetailInfo;
+//退款详情回调
+@property (nonatomic, copy  ) void (^ refundReback)(void);
 
 @end
