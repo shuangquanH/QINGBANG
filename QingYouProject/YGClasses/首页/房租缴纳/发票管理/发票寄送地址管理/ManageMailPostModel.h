@@ -20,4 +20,10 @@
 @property (nonatomic,assign) BOOL  isManager;
 @property (nonatomic,strong) NSString * defAddress;
 
+@property (nonatomic, assign) long long cityId;
+@property (nonatomic, assign) long long distId;
+@property (nonatomic, assign) long long provId;
+@property (nonatomic,strong) NSString *detail;
+
+
 @end

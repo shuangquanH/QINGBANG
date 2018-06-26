@@ -8,15 +8,15 @@
 
 #import "SQTicketApplyViewController.h"
 #import "SQTicketApplyListViewController.h"
-#import "ManageMailPostViewController.h"
+#import "WKInvoiceAddressViewController.h"
 
 #import "WKInvoiceModel.h"
-#import "ManageMailPostModel.h"
+#import "WKInvoiceAddressModel.h"
 #import "WKDecorationOrderDetailModel.h"
 
 #import "UILabel+SQAttribut.h"
 
-@interface SQTicketApplyViewController ()<UITableViewDelegate, UITableViewDataSource, ManageMailPostViewControllerDelegate>
+@interface SQTicketApplyViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -32,7 +32,7 @@
 
 @property (nonatomic, strong) WKInvoiceModel *invoiceInfo;
 
-@property (nonatomic, strong) ManageMailPostModel *postInfo;
+@property (nonatomic, strong) WKInvoiceAddressModel *postInfo;
 
 @end
 
@@ -76,6 +76,8 @@
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     
+    [SQRequest setApiAddress:KAPI_ADDRESS_TEST_MH];
+    
     [_confirmButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.bottom.right.mas_equalTo(0);
         make.height.mas_equalTo(KSCAL(100));
@@ -88,15 +90,18 @@
 
 #pragma mark - reqeust
 - (void)sendDefaultInfoReqeust {
+    [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
     [SQRequest post:KAPI_GETDEFAULTINFO param:nil success:^(id response) {
+        [YGNetService dissmissLoadingView];
         if ([response[@"code"] longLongValue] == 0) {
-            self.postInfo = [ManageMailPostModel yy_modelWithJSON:response[@"data"][@"addressInfo"]];
+            self.postInfo = [WKInvoiceAddressModel yy_modelWithJSON:response[@"data"][@"addressInfo"]];
             self.invoiceInfo = [WKInvoiceModel yy_modelWithJSON:response[@"data"][@"invoiceInfo"]];
             [self.tableView reloadData];
         } else {
             [YGAppTool showToastWithText:response[@"msg"]];
         }
     } failure:^(NSError *error) {
+        [YGNetService dissmissLoadingView];
         [YGAppTool showToastWithText:@"网络错误"];
     }];
 }
@@ -115,7 +120,7 @@
 
 - (void)click_confirmButton {
     
-    if (!self.invoiceInfo.invoiceName.length) {
+    if (!self.invoiceInfo.title.length) {
         [YGAppTool showToastWithText:@"请选择发票抬头"];
         return;
     }
@@ -129,14 +134,16 @@
     
     NSDictionary *param;
     if (self.sendSwitch.isOn) {
-        param =  @{@"orderNum": self.orderDetailInfo.orderInfo.orderNum,
-                   @"invoice_id": self.invoiceInfo.invoice_id,
-                   @"address_id": self.postInfo.ID
+        param =  @{@"orderId": self.orderDetailInfo.orderInfo.orderNum,
+                   @"invoiceInfoId": self.invoiceInfo.ID,
+                   @"addressId": self.postInfo.ID,
+                   @"ispost": @(1)
                    };
     }
     else {
-        param =  @{@"orderNum": self.orderDetailInfo.orderInfo.orderNum,
-                   @"invoice_id": self.invoiceInfo.invoice_id
+        param =  @{@"orderId": self.orderDetailInfo.orderInfo.orderNum,
+                   @"invoiceInfoId": self.invoiceInfo.ID,
+                   @"ispost": @(0)
                    };
     }
     
@@ -190,9 +197,9 @@
     }
     
     if (indexPath.section == 0 && indexPath.row == 2) {//发票抬头
-        if (self.invoiceInfo.invoiceName.length) {
+        if (self.invoiceInfo.title.length) {
             cell.detailTextLabel.textColor = kCOLOR_666;
-            cell.detailTextLabel.text = self.invoiceInfo.invoiceName;
+            cell.detailTextLabel.text = self.invoiceInfo.title;
         }
         else {
             cell.detailTextLabel.textColor = colorWithPlaceholder;
@@ -201,9 +208,9 @@
     }
     
     if (indexPath.section == 1 && indexPath.row == 1) {//邮寄地址
-        if (self.postInfo.address.length) {
+        if (self.postInfo.detail.length) {
             cell.detailTextLabel.textColor = kCOLOR_666;
-            cell.detailTextLabel.text = self.postInfo.address;
+            cell.detailTextLabel.text = self.postInfo.detail;
         }
         else {
             cell.detailTextLabel.textColor = colorWithPlaceholder;
@@ -221,6 +228,7 @@
     
     if (indexPath.section == 0 && indexPath.row == 2) {//发票抬头列表
         SQTicketApplyListViewController *next = [SQTicketApplyListViewController new];
+        next.defaultInvoiceId = self.invoiceInfo.ID;
         next.selectInvoiceBlock = ^(WKInvoiceModel *invoiceInfo) {
             self.invoiceInfo = invoiceInfo;
             [self.tableView reloadData];
@@ -230,9 +238,11 @@
     }
     
     if (indexPath.section == 1 && indexPath.row == 1) {//邮寄地址管理
-        ManageMailPostViewController *vc = [[ManageMailPostViewController alloc] init];
-        vc.shippingAddressViewControllerdelegate = self;
-        vc.pageType = @"personCenter";
+        WKInvoiceAddressViewController *vc = [[WKInvoiceAddressViewController alloc] init];
+        vc.addressSelecter = ^(WKInvoiceAddressModel *addressInfo) {
+            self.postInfo = addressInfo;
+            [self.tableView reloadData];
+        };
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
@@ -257,12 +267,6 @@
         return KSCAL(60);
     }
     return KSCAL(20);
-}
-
-#pragma mark - ManageMailPostViewControllerDelegate
-- (void)passModel:(ManageMailPostModel *)model {
-    self.postInfo = model;
-    [self.tableView reloadData];
 }
 
 #pragma mark - lazy load

@@ -15,6 +15,8 @@
 #import "EvaluateViewController.h"
 #import "YGPushSDK.h"
 
+#import "WKInvoiceAddressViewController.h"
+
 @interface WKSettingViewController () <UITableViewDelegate,UITableViewDataSource>
 {
     UITableView *_tableView;
@@ -139,8 +141,7 @@
             return;
         }
         if(indexPath.section == 2) {
-            ManageMailPostViewController *vc = [[ManageMailPostViewController alloc] init];
-            vc.pageType = @"personCenter";
+            WKInvoiceAddressViewController *vc = [WKInvoiceAddressViewController new];
             [self.navigationController pushViewController:vc animated:YES];
             return;
         }

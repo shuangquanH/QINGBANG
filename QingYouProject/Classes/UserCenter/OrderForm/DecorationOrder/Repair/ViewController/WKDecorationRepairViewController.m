@@ -34,7 +34,6 @@ const CGFloat kItemHorizontalMargin = 10;
 @property (nonatomic, strong) NSMutableArray<UIImage *> *repairImageArray;
 //选择图片索引 默认-1 没有选择
 @property (nonatomic, assign) NSInteger selectIndex;
-
 //重新补登相关
 @property (nonatomic, strong) WKOrderRepairModel *repairInfo;
 
@@ -248,8 +247,7 @@ const CGFloat kItemHorizontalMargin = 10;
 - (void)sendRepairStateRequest {
     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
     [SQRequest post:KAPI_GETREPAIRINFO
-              param:@{@"orderNum": self.orderInfo.orderNum,
-                      @"stageId": self.orderInfo.paymentList[self.stageIndex].ID}
+              param:@{@"paymentId": self.orderInfo.paymentList[self.stageIndex].ID}
             success:^(id response) {
         [YGNetService dissmissLoadingView];
         if ([response[@"code"] longLongValue] == 0) {
@@ -258,12 +256,16 @@ const CGFloat kItemHorizontalMargin = 10;
         }
         else {
             [YGAppTool showToastWithText:response[@"msg"]];
-            [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.5];
+            [self.navigationController performSelector:@selector(popViewControllerAnimated:)
+                                            withObject:@(YES)
+                                            afterDelay:1.5];
         }
     } failure:^(NSError *error) {
         [YGNetService dissmissLoadingView];
         [YGAppTool showToastWithText:@"网络错误，请检查网络"];
-        [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.5];
+        [self.navigationController performSelector:@selector(popViewControllerAnimated:)
+                                        withObject:@(YES)
+                                        afterDelay:1.5];
     }];
 }
 
@@ -313,9 +315,8 @@ const CGFloat kItemHorizontalMargin = 10;
     
     WKDecorationStageModel *stage = [self.orderInfo.paymentList objectAtIndex:self.stageIndex];
     
-    NSDictionary *param = @{@"orderNum": self.orderInfo.orderNum,
-                            @"images": @"1.jpg,2.jpg",
-                            @"stageId": stage.ID
+    NSDictionary *param = @{@"imgUrl": @"1.jpg,2.jpg",
+                            @"paymentId": stage.ID
                             };
     [SQRequest post:KAPI_APPLYREPAIR param:param success:^(id response) {
         [YGNetService dissmissLoadingView];

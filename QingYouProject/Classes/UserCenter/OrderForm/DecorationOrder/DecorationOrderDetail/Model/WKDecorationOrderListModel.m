@@ -40,16 +40,13 @@
 }
 
 - (WKDecorationStageModel *)activityStageInfo {
-    if (!_activityStageInfo) {
-        for (NSInteger i = self.paymentList.count - 1; i >= 0; i--) {
-            WKDecorationStageModel *stageInfo = self.paymentList[i];
-            if (stageInfo.status > 0) {
-                _activityStageInfo = stageInfo;
-                break;
-            }
+    for (NSInteger i = self.paymentList.count - 1; i >= 0; i--) {
+        WKDecorationStageModel *stageInfo = self.paymentList[i];
+        if (stageInfo.status > 0) {
+            return stageInfo;
         }
     }
-    return _activityStageInfo;
+    return nil;
 }
 
 - (NSAttributedString *)skuProductNameAttributeString {

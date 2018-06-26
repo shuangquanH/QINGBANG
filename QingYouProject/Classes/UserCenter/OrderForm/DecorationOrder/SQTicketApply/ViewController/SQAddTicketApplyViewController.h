@@ -14,4 +14,6 @@
 
 @property (nonatomic, strong) WKInvoiceModel *invoiceInfo;
 
+@property (nonatomic, copy  ) void (^ invoiceHandler)(WKInvoiceModel *invoice);
+
 @end

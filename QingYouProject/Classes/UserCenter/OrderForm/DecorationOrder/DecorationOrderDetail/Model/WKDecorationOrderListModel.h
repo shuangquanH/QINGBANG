@@ -45,8 +45,10 @@
 #pragma mark - 订单详情时后台返回的额外参数
 /** 是否有申请过发票 */
 @property (nonatomic, assign) BOOL invoice;
-/** 是否退款中 */
+/** 是否可退款->判断详情中显示退款按钮还是显示退款详情按钮 */
 @property (nonatomic, assign) BOOL refund;
+/** 是否退款中->判断title显示，退款中显示待退款，否则不显示 */
+@property (nonatomic, assign) BOOL isInRefund;
 /** 合同图片 */
 @property (nonatomic, copy  ) NSString *contractImgUrl;
 
@@ -58,9 +60,5 @@
 /** 商品名称 */
 @property (nonatomic, strong) NSAttributedString *skuProductNameAttributeString;
 
-
-@property (nonatomic, copy  ) NSString *payTime;
-
-@property (nonatomic, copy  ) NSString *finishTime;
 
 @end

@@ -20,6 +20,12 @@
 
 @property (nonatomic, weak) id<SQAddTicketApplyInputCellDelegate> delegate;
 
+@property (nonatomic, assign) NSTextAlignment contentAlignment;
+
+@property (nonatomic, assign) BOOL editEnable;
+
+@property (nonatomic, assign) UIKeyboardType keyboardType;
+
 - (void)configTitle:(NSString *)title placeHodler:(NSString *)placeHodler content:(NSString *)content necessary:(BOOL)necessary;
 
 @end

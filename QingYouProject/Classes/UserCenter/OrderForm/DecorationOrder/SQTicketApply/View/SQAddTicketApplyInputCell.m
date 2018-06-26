@@ -18,6 +18,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self == [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.editEnable = YES;
         [self setupSubviews];
     }
     return self;
@@ -46,6 +47,16 @@
         make.right.equalTo(_inputTF.mas_left);
     }];
     
+}
+
+- (void)setContentAlignment:(NSTextAlignment)contentAlignment {
+    _inputTF.textAlignment = contentAlignment;
+}
+- (void)setEditEnable:(BOOL)editEnable {
+    _inputTF.enabled = editEnable;
+}
+- (void)setKeyboardType:(UIKeyboardType)keyboardType {
+    _inputTF.keyboardType = keyboardType;
 }
 
 - (void)textFieldChanged:(UITextField *)textField {

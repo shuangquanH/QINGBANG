@@ -9,5 +9,7 @@
 #import "WKDecorationRefundModel.h"
 
 @implementation WKDecorationRefundModel
-
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{@"ID" : @"id"};
+}
 @end

@@ -350,24 +350,30 @@
 /********************************************* 新版本新增个人中心接口  ********************************************/
 #define KAPI_MYDECORATION_ORDERLIST    @"order/getOrderList"//我的装修订单列表
 #define KAPI_DECORATIONORDERDETAIL     @"order/getOrderInfo"//装修订单详情
-#define KAPI_INVOICELIST               @"getInvoiceInfo"//发票抬头列表
+#define KAPI_INVOICELIST               @"order/getUserInvoiceInfoList"//发票抬头列表
 #define KAPI_CANCELORDER               @"order/cancelOrder"//取消订单
 #define KAPI_DELETEORDER               @"order/deleteOrder"//删除订单
-#define KAPI_GETDEFAULTINFO            @"getDefaultInfo"//获取默认邮寄地址和发票抬头
-#define KAPI_APPLYINVOICE              @"applyInvoice"//开票申请
-#define KAPI_ADDINVOICE                @"addInvoice"//添加发票抬头
-#define KAPI_EDITINVOICE               @"editInvoice"//编辑发票抬头
+#define KAPI_GETDEFAULTINFO            @"order/getDefaultInfo"//获取默认邮寄地址和发票抬头
+#define KAPI_APPLYINVOICE              @"order/applyInvoice"//开票申请
+#define KAPI_ADDINVOICE                @"order/addInvoiceInfo"//添加发票抬头
+#define KAPI_EDITINVOICE               @"order/editInvoiceInfo"//编辑发票抬头
+#define KAPI_DELETEINVOICE             @"order/deleteInvoiceInfo"//删除发票
+#define KAPI_SETDEFAULTINVOICE         @"order/setDefault"//设置默认发票
+#define KAPI_APPLYREPAIR               @"order/applyRepair"//申请补登
+#define KAPI_GETREPAIRINFO             @"order/offlineStatus"//补登状态
+
+#define KAPI_REFUNDDETAIL              @"refund/getRefundInfo"//退款详情
+#define KAPI_CANCELREFUND              @"refund/revokeRefund"//撤销退款
+#define KAPI_APPLYREFUND               @"refund/applyRefund"//申请退款
+
+#define KAPI_INVOICEADDRESSLIST        @"address/getList"//发票地址列表
+#define KAPI_INVOICEADDRESSDELETE      @"address/delete"//删除地址
+#define KAPI_INVOICEADDRESSADD         @"address/add"//添加地址
+#define KAPI_INVOICEADDRESSUPDATE      @"address/update"//编辑地址
+#define KAPI_INVOICEADDRESSSETDEFAUTL  @"address/setDefault"//设置默认地址
+
 #define KAPI_UNREADORDERBADGE          @"getOrderBadgeNumber"//未读订单提示数量
-#define KAPI_REFUNDDETAIL              @"refundDetail"//退款详情
-#define KAPI_APPLYREFUND               @"applyRefund"//申请退款
 #define KAPI_AFTERSALERECORD           @"afterSaleRecord"//售后记录
-#define KAPI_MESSAGELIST               @"getMessage"//消息记录
-#define KAPI_COLLECTLIST               @"getMyCollection"//收藏记录
 #define KAPI_APPLYAFTERSALE            @"applyAfterSale"//申请售后
-#define KAPI_APPLYREPAIR               @"applyRepair"//申请补登
-#define KAPI_GETREPAIRINFO             @"getRepairInfo"//补登状态
-#define KAPI_CANCELREFUND              @"cancelRefund"//撤销退款
-#define KAPI_DELETECOLLECT             @"deleteCollect"//取消收藏
-#define KAPI_DELETEINVOICE             @"deleteInvoice"//删除发票
 
 #endif /* SQApiUrlFile_h */

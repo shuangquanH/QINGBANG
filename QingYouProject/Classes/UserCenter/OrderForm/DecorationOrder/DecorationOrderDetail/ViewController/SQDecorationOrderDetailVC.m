@@ -16,9 +16,11 @@
 #import "WKDecorationOrderBaseCell.h"
 #import "WKDecorationOrderAlertView.h"
 #import "WKDecorationOrderPayAlertView.h"
+#import "WKRefundAlertView.h"
 
 #import "WKDecorationDetailViewModel.h"
 #import "WKDecorationOrderServer.h"
+#import "WKAnimationAlert.h"
 
 #import <Pingpp.h>
 
@@ -29,6 +31,8 @@
 @property (nonatomic, strong) UIView        *contentView;
 
 @property (nonatomic, strong) WKDecorationOrderPayAlertView *payView;
+
+@property (nonatomic, strong) WKRefundAlertView            *refundAlert;
 
 @property (nonatomic, strong) WKDecorationDetailViewModel  *orderVM;
 
@@ -64,12 +68,13 @@
             self.orderDetailInfo = order;
             [self sqaddSubVies];
             [YGNetService dissmissLoadingView];
+            [self addNoDataImageViewWithArray:@[@""] shouldAddToView:self.view headerAction:YES];
         }
         else {
             [YGNetService dissmissLoadingView];
             [YGAppTool showToastWithText:error.domain];
             if (!self.orderDetailInfo) {
-                [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@YES afterDelay:1.0];
+                [self addNoDataImageViewWithArray:@[] shouldAddToView:self.view headerAction:YES];
             }
         }
     }];
@@ -173,10 +178,10 @@
         [self.navigationController pushViewController:next animated:YES];
     }
     else {
-        if (self.orderDetailInfo.orderInfo.invoice) {//已经申请过发票
-            [YGAppTool showToastWithText:@"开票申请已提交，请耐心等待！"];
-            return;
-        }
+//        if (self.orderDetailInfo.orderInfo.invoice) {//已经申请过发票
+//            [YGAppTool showToastWithText:@"开票申请已提交，请耐心等待！"];
+//            return;
+//        }
         SQTicketApplyViewController *next = [SQTicketApplyViewController new];
         next.orderDetailInfo = self.orderDetailInfo;
         [self.navigationController pushViewController:next animated:YES];
@@ -185,20 +190,15 @@
 
 - (void)orderCell:(WKDecorationOrderBaseCell *)orderCell didClickAction:(WKDecorationOrderActionType)actionType forStage:(NSInteger)stage {
     
-    
     if (self.orderDetailInfo.orderInfo.paymentList.count <= stage) {
         NSLog(@"不存在阶段款--%zd", stage);
         return;
     }
     
     WKDecorationStageModel *stageInfo = self.orderDetailInfo.orderInfo.paymentList[stage];
-    if (stageInfo.status == 0) {//当前状态还没有被激活
-        if (stage >= 1) {
-            [YGAppTool showToastWithText:[NSString stringWithFormat:@"需要完成%@，才可以操作此阶段", self.orderDetailInfo.orderInfo.paymentList[stage-1].name]];
-        }
-        else {
-            [YGAppTool showToastWithText:@"暂时还不能进行此操作，请稍后再试"];
-        }
+    if (stageInfo.status == 0 && self.orderDetailInfo.orderInfo.activityStageInfo) {//当前状态还没有被激活
+        NSString *alertString = self.orderDetailInfo.orderInfo.activityStageInfo.status == 2 ? [NSString stringWithFormat:@"需要等待%@补登审核通过后，才可以进行后续操作", self.orderDetailInfo.orderInfo.activityStageInfo.name] : [NSString stringWithFormat:@"需要完成%@，才可以进行后续操作", self.orderDetailInfo.orderInfo.activityStageInfo.name];
+        [YGAppTool showToastWithText:alertString];
         return;
     }
     
@@ -264,25 +264,9 @@
             break;
         case WKDecorationOrderActionTypeRefund://申请退款
         {
-            [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-            [SQRequest post:KAPI_APPLYREFUND param:@{@"orderNum": self.orderDetailInfo.orderInfo.orderNum} success:^(id response) {
-                [YGNetService dissmissLoadingView];
-                if ([response[@"code"] longLongValue] == 0) {
-                    //回调订单列表，修改当前状态为申请退款中状态
-                    self.orderDetailInfo.orderInfo.refund = YES;
-                    [self.orderVM.orderCell configOrderDetailInfo:self.orderDetailInfo];
-                    if (self.orderRefreshBlock) {
-                        self.orderRefreshBlock(self.orderDetailInfo.orderInfo);
-                    }
-                    [YGAppTool showToastWithText:@"申请成功，等待审核"];
-                }
-                else {
-                    [YGAppTool showToastWithText:response[@"msg"]];
-                }
-            } failure:^(NSError *error) {
-                [YGNetService dissmissLoadingView];
-                [YGAppTool showToastWithText:@"网络错误"];
-            }];
+            self.refundAlert.stageInfo = stageInfo;
+            [WKAnimationAlert showAlertWithInsideView:self.refundAlert animation:WKAlertAnimationTypeBottom canTouchDissmiss:NO];
+            
         }
             break;
         case WKDecorationOrderActionTypeRefundDetail://退款详情
@@ -333,6 +317,34 @@
         };
     }
     return _payView;
+}
+
+- (WKRefundAlertView *)refundAlert {
+    if (!_refundAlert) {
+        _refundAlert = [WKRefundAlertView refundAlert];
+        @weakify(self)
+        _refundAlert.refundHandler = ^(NSString *reason) {
+            @strongify(self)
+            [WKDecorationOrderServer sendRefundWithOrderNumber:self.orderDetailInfo.orderInfo.ID paymentId:self.refundAlert.stageInfo.ID amount:self.refundAlert.stageInfo.amount comment:reason completed:^(BOOL success, NSString *errMsg) {
+                if (success) {
+                    [YGAppTool showToastWithText:@"申请成功，等待审核"];
+                    //回调订单列表，修改当前状态为申请退款中状态
+                    self.orderDetailInfo.orderInfo.refund = NO;
+                    self.orderDetailInfo.orderInfo.isInRefund = YES;
+                    for (UIView<WKDecorationDetailViewProtocol> *v in self.orderVM.subviewArray) {
+                        [v configOrderDetailInfo:self.orderDetailInfo];
+                        [self.contentView addSubview:v];
+                    }
+                    if (self.orderRefreshBlock) {
+                        self.orderRefreshBlock(self.orderDetailInfo.orderInfo);
+                    }
+                } else {
+                    [YGAppTool showToastWithText:errMsg];
+                }
+            }];
+        };
+    }
+    return _refundAlert;
 }
 
 @end

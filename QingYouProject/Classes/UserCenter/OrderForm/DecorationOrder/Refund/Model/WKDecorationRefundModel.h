@@ -9,21 +9,24 @@
 #import <Foundation/Foundation.h>
 
 @interface WKDecorationRefundModel : NSObject
-/** 退款状态 1.审核中 2.退款成功 3.退款已撤销 4.退款申请失败 */
-@property (nonatomic, assign) NSInteger refundState;
+
+@property (nonatomic, copy  ) NSString *ID;
+
+/** 退款状态 0.审核中 1.退款成功 2.退款已撤销 3.退款申请失败 */
+@property (nonatomic, assign) NSInteger status;
 /** 退款金额 */
-@property (nonatomic, copy  ) NSString *refundPrice;
+@property (nonatomic, copy  ) NSString *amount;
 /** 退款失败原因 */
-@property (nonatomic, copy  ) NSString *refundFailReason;
+@property (nonatomic, copy  ) NSString *comment;
 /** 退款发起时间 */
-@property (nonatomic, copy  ) NSString *createTime;
+@property (nonatomic, copy  ) NSString *createDate;
 /** 退款撤销时间 */
-@property (nonatomic, copy  ) NSString *cancelTime;
+@property (nonatomic, copy  ) NSString *updateDate;
 /** 退款天数 */
-@property (nonatomic, copy  ) NSString *limitDay;
+@property (nonatomic, copy  ) NSString *day;
 /** 退款小时数 */
-@property (nonatomic, copy  ) NSString *limitHour;
+@property (nonatomic, copy  ) NSString *hours;
 /** 退款分钟数 */
-@property (nonatomic, copy  ) NSString *limitMinute;
+@property (nonatomic, copy  ) NSString *minutes;
 
 @end

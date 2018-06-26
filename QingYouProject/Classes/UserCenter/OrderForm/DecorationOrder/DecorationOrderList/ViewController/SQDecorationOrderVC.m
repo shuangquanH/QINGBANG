@@ -94,7 +94,7 @@
         else {
             [self.tableView.mj_footer endRefreshing];
         }
-        NSLog(@"订单列表：%@", response);
+        [self addNoDataImageViewWithArray:self.orderList shouldAddToView:self.tableView headerAction:YES];
     } failure:^(NSError *error) {
         NSError *underlyingError = error.userInfo[NSUnderlyingErrorKey];
         NSHTTPURLResponse *reponse = underlyingError.userInfo[AFNetworkingOperationFailingURLResponseErrorKey];
@@ -111,6 +111,7 @@
         else {
             [self.tableView.mj_footer endRefreshing];
         }
+        [self addNoDataImageViewWithArray:self.orderList shouldAddToView:self.tableView headerAction:YES];
     }];
 }
 
@@ -226,8 +227,9 @@
     
     WKDecorationOrderListModel *orderInfo = [self.orderList objectAtIndex:targetIndex.section];
     WKDecorationStageModel *stageInfo = orderInfo.paymentList[stage];
-    if (stageInfo.status == 0 && stage >= 1) {//当前状态还没有被激活
-        [YGAppTool showToastWithText:[NSString stringWithFormat:@"需要完成%@，才可以操作此阶段", orderInfo.paymentList[stage-1].name]];
+    if (stageInfo.status == 0 && orderInfo.activityStageInfo) {//当前状态还没有被激活
+        NSString *alertString = orderInfo.activityStageInfo.status == 2 ? [NSString stringWithFormat:@"需要等待%@补登审核通过后，才可以进行后续操作", orderInfo.activityStageInfo.name] : [NSString stringWithFormat:@"需要完成%@，才可以进行后续操作", orderInfo.activityStageInfo.name];
+        [YGAppTool showToastWithText:alertString];
         return;
     }
     

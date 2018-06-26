@@ -28,6 +28,11 @@
 
 @implementation PlaceholderAndNoticeTextView
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    _placeholderView.frame = self.bounds;
+}
+
 - (void)textValueDidChanged:(CM_textHeightChangedBlock)block{
     
     _textChangedBlock = block;

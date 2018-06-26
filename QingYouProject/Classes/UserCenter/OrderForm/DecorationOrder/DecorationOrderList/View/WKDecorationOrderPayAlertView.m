@@ -56,13 +56,14 @@
     UILabel *headerTipLab = [UILabel labelWithFont:KSCAL(38) textColor:[UIColor whiteColor] text:@"确认支付"];
     [_headerView addSubview:headerTipLab];
     
-    _dismissButton = [UIButton buttonWithTitle:nil titleFont:0 titleColor:nil normalImage:@"" highlightImage:@""];
+    _dismissButton = [UIButton new];
+    [_dismissButton setBackgroundImage:[UIImage imageNamed:@"order_pay_cancelBtn"] forState:UIControlStateNormal];
     [_dismissButton addTarget:self action:@selector(click_dismissButton) forControlEvents:UIControlEventTouchUpInside];
     [_headerView addSubview:_dismissButton];
     
     [_headerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.mas_equalTo(0);
-        make.height.mas_equalTo(KSCAL(100));
+        make.height.mas_equalTo(KSCAL(70));
     }];
     [headerTipLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.mas_equalTo(0);
@@ -71,7 +72,7 @@
     [_dismissButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(0);
         make.right.mas_equalTo(-KSCAL(15));
-        make.width.height.mas_equalTo(KSCAL(36));
+        make.width.height.mas_equalTo(KSCAL(70));
     }];
     
     _tipLabel = [UILabel labelWithFont:KSCAL(38) textColor:kCOLOR_333 textAlignment:NSTextAlignmentCenter text:@"支付方式"];

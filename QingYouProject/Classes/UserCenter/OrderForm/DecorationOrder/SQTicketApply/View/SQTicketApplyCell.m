@@ -63,10 +63,10 @@
 }
 
 - (void)configInvoiceInfo:(WKInvoiceModel *)invoiceInfo {
-    if (invoiceInfo.is_personal) {
+    if (invoiceInfo.type == 1) {
         _organizationLab.text = @"个人";
         _numberLab.hidden = YES;
-        _nameLab.text = invoiceInfo.invoiceName;
+        _nameLab.text = invoiceInfo.title;
         
         [_nameLab mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(KSCAL(30));
@@ -76,8 +76,8 @@
     else {
         _organizationLab.text = @"公司";
         _numberLab.hidden = NO;
-        _numberLab.text = invoiceInfo.invoiceDutyNum;
-        _nameLab.text = invoiceInfo.invoiceName;
+        _numberLab.text = invoiceInfo.taxNo;
+        _nameLab.text = invoiceInfo.title;
         
         [_nameLab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(KSCAL(30));
