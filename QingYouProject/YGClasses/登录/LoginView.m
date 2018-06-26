@@ -8,7 +8,7 @@
 
 #import "LoginView.h"
 #import "JKCountDownButton.h"
-#import <SMS_SDK/SMSSDK.h>
+
 
 @implementation LoginView
 {
