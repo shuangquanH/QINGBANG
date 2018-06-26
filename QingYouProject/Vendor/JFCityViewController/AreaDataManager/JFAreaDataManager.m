@@ -27,7 +27,27 @@ static JFAreaDataManager *manager = nil;
     return manager;
 }
 
+//判断文件是否已经在沙盒中已经存在？
+-(BOOL) isFileExist:(NSString *)fileName {
+    NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *filePath = [path stringByAppendingPathComponent:fileName];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL result = [fileManager fileExistsAtPath:filePath];
+//    NSLog(@"这个文件已经存在：%@",result?@"是的":@"不存在");
+    return result;
+}
+
 - (void)getSQLData {
+    if ([self isFileExist:@"t_area.sqlite"]) {
+        //1.获得数据库文件的路径
+        NSString *doc=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        NSString *fileName=[doc stringByAppendingPathComponent:@"t_area.sqlite"];
+        //2.获得数据库
+        FMDatabase *db=[FMDatabase databaseWithPath:fileName];
+        self.db = db;
+        [self.db open];
+        return;
+    }
     
     //1.获得数据库文件的路径
     NSString *doc=[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -40,13 +60,10 @@ static JFAreaDataManager *manager = nil;
     if ([db open]) {
         //4.创表
         NSString *sqlStr = @"CREATE TABLE IF NOT EXISTS t_area (area_id INTEGER ,area_number TEXT ,area_name TEXT ,city_number TEXT ,city_name TEXT ,longitude INTEGER ,latitude INTEGER ,create_by TEXT ,create_date TEXT ,update_by TEXT ,update_date TEXT ,remarks TEXT ,isdeleted INTEGER);";
-        
-//                          area_id, area_number, area_name, city_number, city_name
-//INSERT INTO `t_area` VALUES (350, '140000', '山西省', '141100', '吕梁市', NULL, NULL, 'admin', '2018-06-05 16:50:26', NULL, NULL, NULL, 0);
+
         BOOL result = [db executeUpdate:sqlStr];
         
         if (result) {
-            
             NSString *filePath = [[NSBundle mainBundle] pathForResource:@"t_area" ofType:@"sql"];
             NSError *error;
             NSString *sql = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
@@ -54,8 +71,6 @@ static JFAreaDataManager *manager = nil;
             for (NSString *str in array) {
                 if ([self.db executeUpdate:str]) {
                     //插入数据成功
-                } else {
-//                    [YGAppTool showToastWithText:@"数据库出错！"];
                 }
             }
         } else {
