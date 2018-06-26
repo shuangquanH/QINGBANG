@@ -10,10 +10,10 @@
 #import "WKAddInvoiceAddressViewController.h"
 
 #import "WKInvoiceAddressModel.h"
-#import "ManageMailPostTableViewCell.h"
+#import "WKInvoiceAddressTextCell.h"
 #import "WKInvoiceFunctionCell.h"
 
-@interface WKInvoiceAddressViewController ()<UITableViewDelegate,UITableViewDataSource,ManageMailPostTableViewCellDelegate, WKInvoiceFunctionCellDelegate>
+@interface WKInvoiceAddressViewController ()<UITableViewDelegate,UITableViewDataSource, WKInvoiceFunctionCellDelegate>
 
 @end
 
@@ -34,6 +34,7 @@ static NSString *functionCellIdentifier = @"WKInvoiceFunctionCell";
     [super viewDidLoad];
     
     [self configAttribute];
+//    [SQRequest setApiAddress:KAPI_ADDRESS_TEST_YSH];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -64,10 +65,11 @@ static NSString *functionCellIdentifier = @"WKInvoiceFunctionCell";
 
 - (void)configUI {
     _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
-    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    [_tableView registerClass:[ManageMailPostTableViewCell class] forCellReuseIdentifier:addressCellIdentifier];
+    _tableView.tableFooterView = [UIView new];
+    _tableView.separatorInset = UIEdgeInsetsMake(0, KSCAL(30), 0, KSCAL(30));
+    [_tableView registerClass:[WKInvoiceAddressTextCell class] forCellReuseIdentifier:addressCellIdentifier];
     [_tableView registerClass:[WKInvoiceFunctionCell class] forCellReuseIdentifier:functionCellIdentifier];
     [self.view addSubview:_tableView];
     [self createRefreshWithScrollView:_tableView containFooter:NO];
@@ -133,11 +135,8 @@ static NSString *functionCellIdentifier = @"WKInvoiceFunctionCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WKInvoiceAddressModel *model = [_dataArray objectAtIndex:indexPath.section];
     if (indexPath.row == 0) {
-        ManageMailPostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:addressCellIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.delegate = self;
-        cell.invoiceModel = model;
-        cell.indexPath = indexPath;
+        WKInvoiceAddressTextCell *cell = [tableView dequeueReusableCellWithIdentifier:addressCellIdentifier];
+        [cell configAddress:model];
         return cell;
     }
     
@@ -149,16 +148,27 @@ static NSString *functionCellIdentifier = @"WKInvoiceFunctionCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        return [tableView fd_heightForCellWithIdentifier:addressCellIdentifier cacheByIndexPath:indexPath configuration:^(ManageMailPostTableViewCell *cell) {
-            WKInvoiceAddressModel *model = [_dataArray objectAtIndex:indexPath.section];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.invoiceModel = model;
-            cell.indexPath = indexPath;
-            cell.delegate = self;
+        @weakify(self)
+        return [tableView fd_heightForCellWithIdentifier:addressCellIdentifier cacheByIndexPath:indexPath configuration:^(WKInvoiceAddressTextCell *cell) {
+            @strongify(self)
+            WKInvoiceAddressModel *model = [self->_dataArray objectAtIndex:indexPath.section];
+            [cell configAddress:model];
         }];
     }
-    return KSCAL(100);
+    return KSCAL(88);
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return KSCAL(25);
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UITableViewHeaderFooterView *footer = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"footer"];
+    if (!footer) {
+        footer = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"footer"];
+    }
+    return footer;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 1) return;
     WKInvoiceAddressModel *model = [_dataArray objectAtIndex:indexPath.section];

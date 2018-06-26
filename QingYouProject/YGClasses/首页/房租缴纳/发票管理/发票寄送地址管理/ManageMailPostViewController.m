@@ -8,11 +8,15 @@
 
 #import "ManageMailPostViewController.h"
 #import "ManageMailPostModel.h"
-#import "ManageMailPostTableViewCell.h"
 #import "AddAddressViewController.h"
 
-@interface ManageMailPostViewController ()
-<UITableViewDelegate,UITableViewDataSource,ManageMailPostTableViewCellDelegate>
+#import "WKInvoiceFunctionCell.h"
+#import "WKInvoiceAddressTextCell.h"
+
+static NSString *addressCellIdentifier  = @"ManageMailPostTableViewCell";
+static NSString *functionCellIdentifier = @"WKInvoiceFunctionCell";
+
+@interface ManageMailPostViewController () <UITableViewDelegate, UITableViewDataSource, WKInvoiceFunctionCellDelegate>
 @end
 
 @implementation ManageMailPostViewController {
@@ -54,13 +58,13 @@
 
 - (void)configUI {
     
-    _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStyleGrouped];
-    _tableView.showsVerticalScrollIndicator = NO;
-    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, YGScreenWidth, CGFLOAT_MIN)];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
-    [_tableView registerClass:[ManageMailPostTableViewCell class] forCellReuseIdentifier:[NSString      stringWithFormat:@"ManageMailPostTableViewCell"]];
+    _tableView.tableFooterView = [UIView new];
+    _tableView.separatorInset = UIEdgeInsetsMake(0, KSCAL(30), 0, KSCAL(30));
+    [_tableView registerClass:[WKInvoiceAddressTextCell class] forCellReuseIdentifier:addressCellIdentifier];
+    [_tableView registerClass:[WKInvoiceFunctionCell class] forCellReuseIdentifier:functionCellIdentifier];
     [self.view addSubview:_tableView];
     [self createRefreshWithScrollView:_tableView containFooter:YES];
     
@@ -75,98 +79,7 @@
     [self.view addSubview:_addButton];
 }
 
-- (void)configFooterForFooter:(UIView *)footerView withSection:(NSInteger)section {
-    
-    UIView *contentView = [footerView subviews].firstObject;
-    if (!contentView.subviews.count) {
-        
-        footerView.backgroundColor = colorWithYGWhite;
-        
-        UIButton *defultButton = [[UIButton alloc]initWithFrame:CGRectMake(10,7,80,25)];
-        [defultButton setImage:[UIImage imageNamed:@"nochoice_btn_gray"] forState:UIControlStateNormal];
-        [defultButton setImage:[UIImage imageNamed:@"choice_btn_green"] forState:UIControlStateSelected];
-        [defultButton setTitle:@"默认地址" forState:UIControlStateNormal];
-        [defultButton setImageEdgeInsets:UIEdgeInsetsMake(0, -20, 0, 0)];
-        [defultButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 5, 0, 0)];
-        [defultButton setTitleColor:colorWithBlack forState:UIControlStateNormal];
-        [defultButton addTarget:self action:@selector(defultButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-        defultButton.titleLabel.font = [UIFont systemFontOfSize:YGFontSizeNormal];
-        [defultButton sizeToFit];
-        [contentView addSubview:defultButton];
-        defultButton.frame = CGRectMake(10,5,defultButton.width+40,30);
-        
-        UIButton *editButton = [[UIButton alloc]initWithFrame:CGRectMake(10,0,40,40)];
-        [editButton setImage:[UIImage imageNamed:@"steward_edit_black"] forState:UIControlStateNormal];
-        editButton.contentMode = UIViewContentModeCenter;
-        [editButton addTarget:self action:@selector(editButtonButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-        [contentView addSubview:editButton];
-        
-        UIButton *deleteButton = [[UIButton alloc]initWithFrame:CGRectMake(10,0,40,40)];
-        [deleteButton setImage:[UIImage imageNamed:@"steward_delete_black"] forState:UIControlStateNormal];
-        deleteButton.contentMode = UIViewContentModeCenter;
-        [deleteButton addTarget:self action:@selector(deleteButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-        [contentView addSubview:deleteButton];
-        deleteButton.frame = CGRectMake(YGScreenWidth-deleteButton.width-10,deleteButton.y,deleteButton.width,deleteButton.height);;
-        editButton.frame = CGRectMake(deleteButton.x-editButton.width-15,editButton.y,editButton.width,editButton.height);;
-    }
-    
-    ManageMailPostModel *model = [_dataArray objectAtIndex:section];
-    UIButton *defaultButton = contentView.subviews.firstObject;
-    defaultButton.tag = 10000+section;
-    UIButton *editButton = contentView.subviews[1];
-    editButton.tag = 1000+section;;
-    UIButton *deleteButton = contentView.subviews[2];
-    deleteButton.tag = 555+section;
-    if ([model.defAddress isEqualToString:@"1"]) {
-        defaultButton.selected = YES;
-    }
-    else {
-        defaultButton.selected = NO;
-    }
-}
-
 #pragma mark - action
-- (void)defultButtonAction:(UIButton *)btn {
-    
-    for (ManageMailPostModel *model in _dataArray) {
-        model.defAddress = @"0";
-    }
-    
-    ManageMailPostModel *model = [_dataArray objectAtIndex:btn.tag-10000];
-    if (btn.selected == YES) {
-        btn.selected = NO;
-        model.defAddress = @"0";
-        
-    }else
-    {
-        btn.selected = YES;
-        model.defAddress = @"1";
-    }
-    [self startPostWithURLString:REQUEST_SetDefAddress parameters:@{@"id":model.ID,@"type":@"0"} showLoadingView:NO scrollView:_tableView];
-    [_tableView reloadData];
-    
-}
-- (void)deleteButtonAction:(UIButton *)btn {
-    //1.更新数据
-    ManageMailPostModel *model = [_dataArray objectAtIndex:btn.tag-555];
-    [YGNetService YGPOST:REQUEST_DeteleAddress parameters:@{@"id":model.ID} showLoadingView:NO scrollView:nil success:^(id responseObject) {
-        [_dataArray removeObjectAtIndex:btn.tag-555];
-        [YGAppTool showToastWithText:@"选择删除成功"];
-        [_tableView reloadData];
-    } failure:^(NSError *error) {
-        
-    }];
-}
-
-- (void)editButtonButtonAction:(UIButton *)btn {
-    ManageMailPostModel *model = _dataArray[btn.tag -1000];
-    AddAddressViewController *VC = [[AddAddressViewController alloc]init];
-    VC.model = model;
-    VC.navTitle = @"修改地址";
-    VC.state = @"修改";
-    VC.ID = model.ID;
-    [self.navigationController pushViewController:VC animated:YES];
-}
 //添加地址
 - (void)addButtonClick {
     AddAddressViewController *VC = [[AddAddressViewController alloc]init];
@@ -196,60 +109,76 @@
     return _dataArray.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return 2;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellIdentifier = @"ManageMailPostTableViewCell";
-    ManageMailPostTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
     ManageMailPostModel *model = [_dataArray objectAtIndex:indexPath.section];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.model = model;
-    cell.indexPath = indexPath;
-    cell.delegate = self;
+    if (indexPath.row == 0) {
+        WKInvoiceAddressTextCell *cell = [tableView dequeueReusableCellWithIdentifier:addressCellIdentifier];
+        [cell configMailAddress:model];
+        return cell;
+    }
+    WKInvoiceFunctionCell *cell = [tableView dequeueReusableCellWithIdentifier:functionCellIdentifier];
+    cell.functionDelegate = self;
+    [cell configIndexPath:indexPath isDefault:[model.defAddress boolValue]];
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [tableView fd_heightForCellWithIdentifier:@"ManageMailPostTableViewCell" cacheByIndexPath:indexPath configuration:^(ManageMailPostTableViewCell *cell) {
-        ManageMailPostModel *model = [_dataArray objectAtIndex:indexPath.section];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.model = model;
-        cell.indexPath = indexPath;
-        cell.delegate = self;
-    }];
+    if (indexPath.row == 0) {
+        return [tableView fd_heightForCellWithIdentifier:@"ManageMailPostTableViewCell" cacheByIndexPath:indexPath configuration:^(WKInvoiceAddressTextCell *cell) {
+            ManageMailPostModel *model = [_dataArray objectAtIndex:indexPath.section];
+            [cell configMailAddress:model];
+        }];
+    }
+    return KSCAL(88);
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     UIView *footerView = [tableView dequeueReusableCellWithIdentifier:@"footer"];
     if (!footerView) {
-        footerView = [[UITableViewHeaderFooterView alloc] initWithFrame:CGRectMake(0, 0, YGScreenWidth, 45)];
+        footerView = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"footer"];
     }
-    [self configFooterForFooter:footerView withSection:section];
     return footerView;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 45;
-}
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return nil;
-    }
-    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, YGScreenWidth, 10)];
-    footerView.backgroundColor = colorWithTable;
-    return footerView;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return 0;
-    }
-    return 10;
+    return KSCAL(20);
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    //当离开某行时，让某行的选中状态消失
-    [_tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row == 0) {
+        ManageMailPostModel *model = [_dataArray objectAtIndex:indexPath.section];
+        if (![self.pageType isEqualToString:@"personCenter"]) {
+            [self.shippingAddressViewControllerdelegate passModel:model];
+            [self back];
+        }
+    }
+}
+
+#pragma mark - WKInvoiceFunctionCellDelegate
+- (void)functionCell:(WKInvoiceFunctionCell *)functionCell didClickType:(NSInteger)type withIndexPath:(NSIndexPath *)indexPath {
     ManageMailPostModel *model = [_dataArray objectAtIndex:indexPath.section];
-    if (![self.pageType isEqualToString:@"personCenter"]) {
-        [self.shippingAddressViewControllerdelegate passModel:model];
-        [self back];
+    if (type == 0) {//设置默认
+        if ([model.defAddress boolValue]) return;
+        for (ManageMailPostModel *m in _dataArray) {
+            m.defAddress = @"0";
+        }
+        model.defAddress = @"1";
+        [self startPostWithURLString:REQUEST_SetDefAddress parameters:@{@"id": model.ID, @"type": @"0"} showLoadingView:NO scrollView:_tableView];
+        [_tableView reloadData];
+    } else if (type == 1) {//编辑
+        AddAddressViewController *VC = [[AddAddressViewController alloc]init];
+        VC.model = model;
+        VC.navTitle = @"修改地址";
+        VC.state = @"修改";
+        VC.ID = model.ID;
+        [self.navigationController pushViewController:VC animated:YES];
+    } else {//删除
+        [YGNetService YGPOST:REQUEST_DeteleAddress parameters:@{@"id":model.ID} showLoadingView:NO scrollView:nil success:^(id responseObject) {
+            [_dataArray removeObjectAtIndex:indexPath.section];
+            [YGAppTool showToastWithText:@"选择删除成功"];
+            [_tableView reloadData];
+        } failure:^(NSError *error) {
+            
+        }];
     }
 }
 

@@ -150,26 +150,69 @@
 
 - (void)downLoadContract {
     NSArray *urls = [self.orderDetailInfo.orderInfo.contractImgUrl componentsSeparatedByString:@","];
+    urls = @[@"https://mir-s3-cdn-cf.behance.net/project_modules/1400/d06e6066466703.5b170d0566db6.jpg",
+             @"https://mir-s3-cdn-cf.behance.net/project_modules/1400/d1006e66466703.5b170d0567927.jpg",
+             @"https://mir-s3-cdn-cf.behance.net/project_modules/1400/e6b7e966466703.5b170d056677f.jpg",
+             @"https://mir-s3-cdn-cf.behance.net/project_modules/1400/c5998966466703.5b170d0566304.jpg"];
+    
     if (!urls.count) {
         [YGAppTool showToastWithText:@"暂无供下载的合同文件"];
         return;
     }
     
+    NSMutableDictionary *progressDict = [NSMutableDictionary dictionary];
+    NSMutableArray *loadImages = [NSMutableArray arrayWithCapacity:progressDict.allKeys.count];
+    [urls enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [progressDict setObject:@(0.0) forKey:obj];
+    }];
+    
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:YGAppDelegate.window animated:YES];
     hud.mode = MBProgressHUDModeDeterminate;
     hud.label.text = @"正在下载...";
+    hud.removeFromSuperViewOnHide = YES;
     
-    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:@""] options:SDWebImageDownloaderContinueInBackground progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-        
-    } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
-        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
-            [PHAssetChangeRequest creationRequestForAssetFromImage:image];
-        } completionHandler:^(BOOL success, NSError * _Nullable error) {
-            dispatch_sync(dispatch_get_main_queue(), ^{
-                [YGAppTool showToastWithText:(success ? @"已保存图片到相册" : @"保存失败")];
+    for (NSString *url in urls) {
+        [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:url] options:SDWebImageDownloaderContinueInBackground progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                progressDict[targetURL.absoluteString] = @(receivedSize / expectedSize);
+                float currentProgress = 0;
+                for (NSString *key in progressDict.allKeys) {
+                    currentProgress += [progressDict[key] floatValue];
+                }
+                float progress = currentProgress / progressDict.allKeys.count;
+                NSLog(@"下载进度---%f", progress);
+                hud.progress = progress;
             });
+        } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+            if (error) {//下载失败，取消所有下载
+                [[SDWebImageDownloader sharedDownloader] cancelAllDownloads];
+                [hud hideAnimated:YES];
+                [YGAppTool showToastWithText:@"合同下载失败，请稍后再试"];
+                NSLog(@"下载失败--%@", error);
+            } else {
+                [loadImages addObject:image];
+                if (loadImages.count == progressDict.allKeys.count) {//下载完毕
+                    NSLog(@"下载完成--%@", loadImages);
+                    NSArray *tmpLoadImages = [loadImages copy];
+                    for (UIImage *saveImage in tmpLoadImages) {
+                        [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
+                            [PHAssetChangeRequest creationRequestForAssetFromImage:saveImage];
+                        } completionHandler:^(BOOL success, NSError * _Nullable error) {
+                            dispatch_sync(dispatch_get_main_queue(), ^{
+                                [loadImages removeObject:saveImage];
+                                if (loadImages.count == 0) {//保存完成
+                                    hud.progress = 1.0;
+                                    [hud hideAnimated:YES];
+                                    [YGAppTool showToastWithText:@"合同下载成功，已保存到相册"];
+                                    NSLog(@"保存完成");
+                                }
+                            });
+                        }];
+                    }
+                }
+            }
         }];
-    }];
+    }
 }
 
 #pragma mark - SQDecorationDetailViewModelDelegate

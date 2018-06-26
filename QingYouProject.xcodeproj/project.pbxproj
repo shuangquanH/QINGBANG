@@ -16,6 +16,7 @@
 		042AF70E20D0B192005ECDBF /* WKImageCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 042AF70D20D0B192005ECDBF /* WKImageCollectionView.m */; };
 		045AD0A920E0CB5A00A3FF8F /* WKInvoiceAddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 045AD0A820E0CB5A00A3FF8F /* WKInvoiceAddressModel.m */; };
 		045AD0AD20E0FB1F00A3FF8F /* WKRefundAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 045AD0AC20E0FB1F00A3FF8F /* WKRefundAlertView.m */; };
+		045AD0B020E1ECE800A3FF8F /* WKInvoiceAddressTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 045AD0AF20E1ECE800A3FF8F /* WKInvoiceAddressTextCell.m */; };
 		045EDEDC20D89A4600969EB3 /* WKCheckContactScaleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 045EDEDB20D89A4600969EB3 /* WKCheckContactScaleCell.m */; };
 		0470A40220C0F712003F23C6 /* SQDecorationDetailStagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A40120C0F712003F23C6 /* SQDecorationDetailStagesView.m */; };
 		0470A40520C0FB93003F23C6 /* SQDecorationDetailFunctionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0470A40420C0FB93003F23C6 /* SQDecorationDetailFunctionView.m */; };
@@ -821,6 +822,8 @@
 		045AD0A820E0CB5A00A3FF8F /* WKInvoiceAddressModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKInvoiceAddressModel.m; sourceTree = "<group>"; };
 		045AD0AB20E0FB1F00A3FF8F /* WKRefundAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKRefundAlertView.h; sourceTree = "<group>"; };
 		045AD0AC20E0FB1F00A3FF8F /* WKRefundAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKRefundAlertView.m; sourceTree = "<group>"; };
+		045AD0AE20E1ECE800A3FF8F /* WKInvoiceAddressTextCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKInvoiceAddressTextCell.h; sourceTree = "<group>"; };
+		045AD0AF20E1ECE800A3FF8F /* WKInvoiceAddressTextCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKInvoiceAddressTextCell.m; sourceTree = "<group>"; };
 		045EDEDA20D89A4600969EB3 /* WKCheckContactScaleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKCheckContactScaleCell.h; sourceTree = "<group>"; };
 		045EDEDB20D89A4600969EB3 /* WKCheckContactScaleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKCheckContactScaleCell.m; sourceTree = "<group>"; };
 		0470A40020C0F712003F23C6 /* SQDecorationDetailStagesView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationDetailStagesView.h; sourceTree = "<group>"; };
@@ -2416,6 +2419,8 @@
 				04935D1520E09E4800E84802 /* WKAddInvoiceAddressViewController.m */,
 				04935CE120E07AFF00E84802 /* WKInvoiceFunctionCell.h */,
 				04935CE220E07AFF00E84802 /* WKInvoiceFunctionCell.m */,
+				045AD0AE20E1ECE800A3FF8F /* WKInvoiceAddressTextCell.h */,
+				045AD0AF20E1ECE800A3FF8F /* WKInvoiceAddressTextCell.m */,
 				045AD0A720E0CB5A00A3FF8F /* WKInvoiceAddressModel.h */,
 				045AD0A820E0CB5A00A3FF8F /* WKInvoiceAddressModel.m */,
 			);
@@ -6291,6 +6296,7 @@
 				18C15A361FC8208A0010ACD3 /* SubscribeSumOfMoneyViewController.m in Sources */,
 				04935C7820DDF37800E84802 /* MyInformationModel.m in Sources */,
 				E9E1E59A20C65D3800A807BE /* MyCollectionModel.m in Sources */,
+				045AD0B020E1ECE800A3FF8F /* WKInvoiceAddressTextCell.m in Sources */,
 				E2E5B3851FB0675B00205F70 /* UILabel+SizeToFit.m in Sources */,
 				18C15A2D1FC8208A0010ACD3 /* CrowdFundingAddProjectDescriptionViewController.m in Sources */,
 				E99DE27C20BED24F009CEF88 /* JFCityHeaderView.m in Sources */,

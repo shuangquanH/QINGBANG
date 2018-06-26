@@ -14,6 +14,9 @@
 #import "SQUserCenterTableViewHeader.h"
 #import "WKUserCenterCell.h"
 
+#import <Photos/Photos.h>
+#import <MBProgressHUD/MBProgressHUD.h>
+
 @interface SQUserCenterViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) NSArray                     *userCenterArr;
 @property (nonatomic, strong) SQBaseTableView             *tableview;
