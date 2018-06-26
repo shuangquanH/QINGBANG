@@ -43,6 +43,7 @@
 }
 
 
+//首页banner
 - (void)addCycleView {
     CGRect frame = CGRectMake(0, 0, YGScreenWidth, KSCAL(320));
     self.cycleView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:nil];
@@ -50,6 +51,7 @@
     [self addSubview:self.cycleView];
     
 }
+//首页头部功能按钮
 - (void)addOvalFuncView {
     CGRect frame = CGRectMake(0, self.cycleView.sqbottom+KSCAL(20), KAPP_WIDTH, KSCAL(320));
     self.ovalFuncsView = [[SQBaseImageView alloc] initWithFrame:frame];
@@ -66,7 +68,7 @@
 - (void)infobuttonAction {
     [self didselectButtonToPushNextPageWithModel:self.selectedModel];
 }
-
+//首页个性定制
 - (void)addScrollView {
     CGRect frame = CGRectMake(0, self.ovalFuncsView.sqbottom+KSCAL(20), KAPP_WIDTH, KSCAL(200));
     self.scrollview = [[SQCardScrollView alloc] initWithFrame:frame];

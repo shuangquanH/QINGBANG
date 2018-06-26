@@ -58,13 +58,6 @@
     [super viewDidLoad];
     [self loadLaunches];
     [self requestData];
-    
-    [[JFAreaDataManager shareInstance] areaSqliteDBData];
-    [[JFAreaDataManager shareInstance] getCityWithProvinceName:@"天津市" cities:^(NSMutableArray *dataArray) {
-        NSLog(@"获取浙江省所有的城市:%@", dataArray);
-    }];
-
-
 }
 
 - (void)loadLaunches {
@@ -109,11 +102,11 @@
     [SQRequest post:KAPI_INDEXPAGE param:nil success:^(id response) {
         self.model = [SQHomeIndexPageModel yy_modelWithDictionary:response[@"data"]];
         self.headerView.model = self.model;
+        [self.collectionView reloadData];
+        [self endRefreshWithScrollView:self.collectionView];
         //获取定制功能数据
         [SQRequest post:KAPI_CUSBANN param:nil  success:^(id response) {
             self.headerView.cusModel = [SQHomeCustomModel yy_modelWithDictionary:response];
-            [self.collectionView reloadData];
-            [self endRefreshWithScrollView:self.collectionView];
         } failure:nil];
     } failure:^(NSError *error) {
         [self endRefreshWithScrollView:self.collectionView];
