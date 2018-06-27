@@ -309,30 +309,38 @@ const CGFloat kItemHorizontalMargin = 10;
         [YGAppTool showToastWithText:@"请至少添加一张回执单图片"];
         return;
     }
-    
-    
-    [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
 
-    WKDecorationStageModel *stage = [self.orderInfo.paymentList objectAtIndex:self.stageIndex];
-    NSDictionary *param = @{@"imgUrl": @"1.jpg,2.jpg",
-                            @"paymentId": stage.ID};
-    [SQRequest post:KAPI_APPLYREPAIR param:param success:^(id response) {
-        [YGNetService dissmissLoadingView];
-        if ([response[@"code"] longLongValue] == 0) {
-            stage.status = 2;
-            if (self.repairSuccess) {
-                self.repairSuccess(self.orderInfo);
+    [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
+    [SQRequest uploadImages:self.repairImageArray param:nil progress:^(float progress) {
+        
+    } success:^(id response) {
+        NSArray *urls = response;
+        WKDecorationStageModel *stage = [self.orderInfo.paymentList objectAtIndex:self.stageIndex];
+        NSDictionary *param = @{@"imgUrl": [urls componentsJoinedByString:@","],
+                                @"paymentId": stage.ID};
+        [SQRequest post:KAPI_APPLYREPAIR param:param success:^(id response) {
+            [YGNetService dissmissLoadingView];
+            if ([response[@"code"] longLongValue] == 0) {
+                stage.status = 2;
+                if (self.repairSuccess) {
+                    self.repairSuccess(self.orderInfo);
+                }
+                [YGAppTool showToastWithText:@"申请成功，等待人员审核"];
+                [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.5];
             }
-            [YGAppTool showToastWithText:@"申请成功，等待人员审核"];
-            [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.5];
-        }
-        else {
-            [YGAppTool showToastWithText:response[@"msg"]];
-        }
+            else {
+                [YGAppTool showToastWithText:response[@"msg"]];
+            }
+        } failure:^(NSError *error) {
+            [YGNetService dissmissLoadingView];
+            [YGAppTool showToastWithText:@"网络错误"];
+        }];
     } failure:^(NSError *error) {
         [YGNetService dissmissLoadingView];
         [YGAppTool showToastWithText:@"网络错误"];
     }];
+    
+    
 }
 
 - (void)pushImagePickerController {

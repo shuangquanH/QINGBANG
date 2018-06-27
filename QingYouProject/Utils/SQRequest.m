@@ -148,17 +148,82 @@
     
 }
 
-+ (void)uploadImages:(NSArray *)images param:(NSDictionary *)param success:(void(^)(id response))success failure:(void(^)(NSError *error))failure {
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [manager POST:@"" parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        [formData appendPartWithFileData:[NSData new] name:@"phototname" fileName:@"fileName" mimeType:@"image/jpeg"];
-    } progress:^(NSProgress * _Nonnull uploadProgress) {
++ (void)uploadImages:(NSArray *)images param:(NSDictionary *)param progress:(void(^)(float progress))progress success:(void(^)(id response))success failure:(void(^)(NSError *error))failure {
+    if (!images.count) {
+        if (failure) {
+            failure([NSError errorWithDomain:@"上传图片为空" code:-1 userInfo:nil]);
+        }
+        return;
+    }
+    
+    NSString *apiAddress = (YGSingletonMarco.apiAddress)?YGSingletonMarco.apiAddress:KAPI_ADDRESS;
+    NSString *apiString = [NSString stringWithFormat:@"%@%@", apiAddress, KAPI_FILEUPLOAD];
+    
+    NSMutableArray   *urls = [NSMutableArray array];//请求成功的url数组
+    NSMutableDictionary *taskDict = [NSMutableDictionary dictionary];//任务字典
+    NSMutableDictionary *progressDict = [NSMutableDictionary dictionary];//上传进度地址
+    __block NSError *uploadError = nil;//请求错误
+    
+    for (int i = 0; i < images.count; i++) {
         
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (uploadError) {
+            break;
+        }
         
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        UIImage *image = [images objectAtIndex:i];
+        NSData *imageData = UIImageJPEGRepresentation(image, 0.9);
+        if (!imageData) {//创建图片数据失败，退出请求
+            uploadError = [NSError errorWithDomain:@"创建图片数据错误" code:-1 userInfo:nil];
+            //取消所有下载
+            for (NSURLSessionDataTask *t in taskDict.allValues) {
+                [t cancel];
+            }
+            [taskDict removeAllObjects];
+            if (failure) {
+                failure(uploadError);
+            }
+            break;
+        }
+
         
-    }];
+        __block NSURLSessionDataTask *dataTask = [[YGConnectionService sharedConnectionService].requestManager POST:apiString parameters:param constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+            [formData appendPartWithFileData:imageData
+                                        name:@"file"
+                                    fileName:@"file.jpeg"
+                                    mimeType:@"image/jpeg"];
+        } progress:^(NSProgress * _Nonnull uploadProgress) {
+            if (progress && dataTask) {
+                float percent = (float)uploadProgress.completedUnitCount / (float)uploadProgress.totalUnitCount;
+                progressDict[@(dataTask.taskIdentifier)] = @(percent);
+                float completePercent = 0;
+                for (NSNumber *p in progressDict.allValues) {
+                    completePercent += [p floatValue];
+                }
+                float currentProgress = completePercent / (float)images.count;
+                NSLog(@"%@", progressDict);
+                progress(currentProgress);
+            }
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [taskDict removeObjectForKey:@(task.taskIdentifier)];
+            NSString *url = responseObject[@"data"][@"imgUrl"];
+            [urls addObject:url];
+            if (urls.count == images.count && success) {
+                success(urls);
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            uploadError = error;
+            //取消所有上传
+            for (NSURLSessionDataTask *t in taskDict.allValues) {
+                if (t.taskIdentifier == task.taskIdentifier) continue;
+                [t cancel];
+            }
+            [taskDict removeAllObjects];
+            if (failure) {
+                failure(uploadError);
+            }
+        }];
+        [taskDict setObject:dataTask forKey:@(dataTask.taskIdentifier)];
+    }
 }
 
 
