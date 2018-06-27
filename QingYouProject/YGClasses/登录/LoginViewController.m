@@ -55,11 +55,14 @@
         self.fd_prefersNavigationBarHidden = YES;
         UIButton   *backButton = [[UIButton alloc] initWithFrame:CGRectMake(8, KSTATU_HEIGHT, 40, 40)];
         [backButton setImage:[UIImage imageNamed:@"back_black"] forState:UIControlStateNormal];
-        [backButton addTarget:self.navigationController action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
+        [backButton addTarget:self action:@selector(controllerBack) forControlEvents:UIControlEventTouchUpInside];
         [_loginView addSubview:backButton];
     } else {
         self.fd_prefersNavigationBarHidden = NO;
     }
+}
+- (void)controllerBack {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

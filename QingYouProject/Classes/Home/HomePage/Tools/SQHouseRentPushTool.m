@@ -11,9 +11,38 @@
 #import "CheckUserInfoViewController.h"
 #import "UpLoadIDFatherViewController.h"
 
-
+/** 水电缴费的type  */
+#define KHOUSERENTTYPE @"1"
+/** 跳转列表的plist文件  */
+#define KSQPUSHTYPEPLIST @"SQPushTypePlist"
 
 @implementation SQHouseRentPushTool
+
++ (void)pushControllerWithType:(NSString    *)target controller:(RootViewController *)vc {
+    
+    if ([target isEqualToString: KHOUSERENTTYPE]) {
+        [self pushToHouseRentWithController:vc];
+    } else {
+        NSString    *plistFile = KPLIST_FILE(KSQPUSHTYPEPLIST);
+        NSArray     *pushControlArray = [NSArray arrayWithContentsOfFile: plistFile];
+        
+        for (NSDictionary *dic in pushControlArray) {
+            if ([target isEqualToString:dic[@"targetTpye"]]) {
+                Class controllerClass = NSClassFromString(dic[@"targetController"]);
+                RootViewController *viewController = [[controllerClass alloc] init];
+                viewController.funcs_target_params = dic[@"funcs_target_params"];
+                bool    needlogin = [dic[@"needLogin"] boolValue];
+                if (needlogin) {
+                    if ([vc loginOrNot]) {
+                        [vc.navigationController pushViewController:viewController animated:YES];
+                    }
+                } else {
+                    [vc.navigationController pushViewController:viewController animated:YES];
+                }
+            }
+        }
+    }
+}
 
 + (void)pushToHouseRentWithController:(RootViewController *)vc {
     if ([vc loginOrNot]) {

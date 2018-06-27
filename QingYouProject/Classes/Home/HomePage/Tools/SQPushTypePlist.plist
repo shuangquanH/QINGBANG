@@ -98,7 +98,7 @@
 		<key>controllerTitle</key>
 		<string>办公家具</string>
 		<key>needLogin</key>
-		<true/>
+		<false/>
 	</dict>
 	<dict>
 		<key>targetTpye</key>
@@ -138,7 +138,7 @@
 		<key>controllerTitle</key>
 		<string>水电缴费订单</string>
 		<key>needLogin</key>
-		<false/>
+		<true/>
 	</dict>
 	<dict>
 		<key>targetTpye</key>
@@ -188,7 +188,7 @@
 		<key>controllerTitle</key>
 		<string>会议室预定订单</string>
 		<key>needLogin</key>
-		<false/>
+		<true/>
 	</dict>
 	<dict>
 		<key>targetTpye</key>
@@ -229,6 +229,16 @@
 		<string>用户反馈</string>
 		<key>needLogin</key>
 		<true/>
+	</dict>
+	<dict>
+		<key>targetTpye</key>
+		<string>300</string>
+		<key>targetController</key>
+		<string>SQWebAdViewController</string>
+		<key>controllerTitle</key>
+		<string>广告页面</string>
+		<key>needLogin</key>
+		<false/>
 	</dict>
 </array>
 </plist>

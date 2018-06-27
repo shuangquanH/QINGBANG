@@ -11,9 +11,6 @@
 #import "SQHomeCollectionHeader.h"
 #import "SQHomeCollectionViewCell.h"
 
-/** 装修板块  */
-#import "SQDecorationServeVC.h"
-
 /** 定位相关  */
 #import "JFLocation.h"
 #import "JFAreaDataManager.h"
@@ -23,18 +20,14 @@
 #import "YGStartPageView.h"
 /** 手势  */
 #import "UIView+SQGesture.h"
-
 #import "NSMutableAttributedString+AppendImage.h"
+#import "UILabel+SQAttribut.h"
 /** 选择园区  */
 #import "SQChooseGardenVC.h"
-
-#import "UILabel+SQAttribut.h"
-
+/** 跳转工具  */
 #import "SQHouseRentPushTool.h"
-
-#import "AFNetworking.h"
-
-#import "JFAreaDataManager.h"
+/** 天气工具  */
+#import "SQGetWeatherTool.h"
 
 
 #define KCURRENTCITYINFODEFAULTS [NSUserDefaults standardUserDefaults]
@@ -54,14 +47,16 @@
 
 @implementation SQHomeViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadLaunches];
     [self requestData];
+    [self startLoacation];
 }
 
 - (void)loadLaunches {
-    [KNOTI_CENTER addObserver:self selector:@selector(requestData) name:kNOTI_DIDICHOOSEINNER object:nil];
+    [KNOTI_CENTER addObserver:self selector:@selector(requestData)name:kNOTI_DIDICHOOSEINNER object:nil];
     if (![YGUserDefaults objectForKey:USERDEF_FIRSTOPENAPP]) {
         NSMutableArray *imageNameArray = [NSMutableArray array];
         for (int i = 0; i<4; i++) {
@@ -106,9 +101,8 @@
         [self endRefreshWithScrollView:self.collectionView];
     } failure:^(NSError *error) {
         [self endRefreshWithScrollView:self.collectionView];
-    } showLoadingView:YES];
+    } showLoadingView:NO];
     
-    [self startLoacation];
 }
 
 /** 开始定位  */
@@ -153,42 +147,7 @@
         SQHomeFuncsModel   *sqmodel = model;
         pushType = sqmodel.funcs_target;
     }
-    
-    [self pushToPageWithPushType:pushType];
-}
-
-
-
-- (void)pushToPageWithPushType:(NSString    *)pushType {
-    if ([pushType isEqualToString:@"1"]) {
-        [SQHouseRentPushTool pushToHouseRentWithController:self];
-    } else {
-        NSString    *plistFile = KPLIST_FILE(@"SQPushTypePlist");
-        NSArray     *pushControlArray = [NSArray arrayWithContentsOfFile: plistFile];
-        
-        for (NSDictionary *dic in pushControlArray) {
-            if ([pushType isEqualToString:dic[@"targetTpye"]]) {
-                Class controllerClass = NSClassFromString(dic[@"targetController"]);
-                UIViewController *viewController = [[controllerClass alloc] init];
-                
-                bool    needlogin = [dic[@"needLogin"] boolValue];
-                if (needlogin) {
-                    if ([self loginOrNot]) {
-                        [self.navigationController pushViewController:viewController animated:YES];
-                    }
-                } else {
-                    [self.navigationController pushViewController:viewController animated:YES];
-                }
-            }
-        }
-    }
-    
-}
-
-
-- (void)homePageDataSource:(SQHomeIndexPageModel *)model {
-    self.model = model;
-    self.headerView.model = self.model;
+    [SQHouseRentPushTool pushControllerWithType:pushType controller:self];
 }
 
 
@@ -221,22 +180,11 @@
 
 #pragma mark - JFCityViewControllerDelegate  选中城市
 - (void)cityName:(NSString *)name {//获取城市天气
-    [YGAppTool showToastWithText:@"正在获取天气信息..."];
-    NSString *apistr = [NSString stringWithFormat:@"https://www.sojson.com/open/api/weather/json.shtml"];
-    NSDictionary    *cityParam = @{@"city":name};
-    [[AFHTTPSessionManager manager] GET:apistr parameters:cityParam progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if ([responseObject[@"status"] isEqual:@200]) {
-            NSArray *info = [NSArray arrayWithArray:responseObject[@"data"][@"forecast"]];
-            NSString    *titlestring = [NSString stringWithFormat:@"%@ %@℃ %@", name, responseObject[@"data"][@"wendu"], info.firstObject[@"type"]];
-            NSMutableAttributedString   *attstr = [[NSMutableAttributedString alloc] initWithString:titlestring];
-            [attstr appendImage:[UIImage imageNamed:@"home_nav_icon"] withType:SQAppendImageInLeft];
-            self.attriTitle = attstr;
-        } else {
-            [YGAppTool showToastWithText:@"获取天气信息失败!"];
-        }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [YGAppTool showToastWithText:@"获取天气信息失败!"];
+    [SQGetWeatherTool getTemAndWeatherWithCity:name success:^(NSString *tem, NSString *weather) {
+        NSString    *titlestring = [NSString stringWithFormat:@"%@ %@℃ %@", name, tem, weather];
+        NSMutableAttributedString   *attstr = [[NSMutableAttributedString alloc] initWithString:titlestring];
+        [attstr appendImage:[UIImage imageNamed:@"home_nav_icon"] withType:SQAppendImageInLeft];
+        self.attriTitle = attstr;
     }];
 }
 
