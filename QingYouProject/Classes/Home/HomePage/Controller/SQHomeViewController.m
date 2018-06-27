@@ -245,7 +245,7 @@
 - (SQBaseCollectionView *)collectionView {
     if (!_collectionView) {
         SQCollectionViewLayout *layout = [SQCollectionViewLayout waterFallLayoutWithColumnCount:2];
-        [layout setColumnSpacing:KSCAL(10) rowSpacing:KSCAL(10) sectionInset:UIEdgeInsetsMake(-KSCAL(10), KSCAL(20), KSCAL(30), KSCAL(20))];
+        [layout setColumnSpacing:0 rowSpacing:0 sectionInset:UIEdgeInsetsMake(0, 0, KSCAL(30), 0)];
         CGRect collectFrame = CGRectMake(0, 0, YGScreenWidth, KAPP_HEIGHT-KNAV_HEIGHT-KTAB_HEIGHT);
         _collectionView = [[SQBaseCollectionView alloc] initWithFrame:collectFrame collectionViewLayout:layout];
         _collectionView.backgroundColor = self.view.backgroundColor;;
