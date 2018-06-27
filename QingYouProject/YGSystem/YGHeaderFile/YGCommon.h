@@ -155,7 +155,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:rgbAlpha]
 
 #define KNOTI_LASTLAUNCHPAGE        @"NOTIFICATION_LASTLAUNCHPAGE_KEY"//引导图最后一张
 #define kNOTI_DIDICHOOSEINNER       @"kNOTIFICATION_DIDICHOOSEINNER_KEY"//选择是否是园区
-
+#define KNOTI_FIRSTLAUNCHLOGINBACK  @"KNOTI_FIRSTLAUNCHLOGINBACK"//第一次打开app登录后返回
 
 
 

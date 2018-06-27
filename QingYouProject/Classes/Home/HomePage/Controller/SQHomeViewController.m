@@ -47,15 +47,16 @@
 
 @implementation SQHomeViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadLaunches];
     [self requestData];
+    [self startLoacation];
 }
 
 - (void)loadLaunches {
-    [KNOTI_CENTER addObserver:self selector:@selector(requestData)
-                         name:kNOTI_DIDICHOOSEINNER object:nil];
+    [KNOTI_CENTER addObserver:self selector:@selector(requestData)name:kNOTI_DIDICHOOSEINNER object:nil];
     if (![YGUserDefaults objectForKey:USERDEF_FIRSTOPENAPP]) {
         NSMutableArray *imageNameArray = [NSMutableArray array];
         for (int i = 0; i<4; i++) {
@@ -100,9 +101,8 @@
         [self endRefreshWithScrollView:self.collectionView];
     } failure:^(NSError *error) {
         [self endRefreshWithScrollView:self.collectionView];
-    } showLoadingView:YES];
+    } showLoadingView:NO];
     
-    [self startLoacation];
 }
 
 /** 开始定位  */

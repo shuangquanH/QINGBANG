@@ -16,7 +16,6 @@
 + (void)getTemAndWeatherWithCity:(NSString *)city success:(void(^)(NSString *tem, NSString *weather))success {
     
     [self getWeatherInfoWithCity:city success:^(NSDictionary *info) {
-        NSLog(@"%@", info);
         NSString    *temp = [NSString stringWithFormat:@"%@", info[@"wendu"]];
         NSArray     *forecast = [NSArray arrayWithArray:info[@"forecast"]];
         NSDictionary *todyForecast = [NSDictionary dictionaryWithDictionary:forecast.firstObject];
@@ -28,7 +27,7 @@
 
 
 + (void)getWeatherInfoWithCity:(NSString *)city success:(void(^)(NSDictionary *info))success {
-    [YGAppTool showToastWithText:@"正在获取天气信息..."];
+//    [YGAppTool showToastWithText:@"正在获取天气信息..."];
     NSString *apistr = [NSString stringWithFormat:KGETWEATHERINFOAPI];
     NSDictionary    *cityParam = @{@"city":city};
     [[AFHTTPSessionManager manager] GET:apistr parameters:cityParam progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
