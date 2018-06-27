@@ -104,10 +104,6 @@
         self.headerView.model = self.model;
         [self.collectionView reloadData];
         [self endRefreshWithScrollView:self.collectionView];
-        //获取定制功能数据
-        [SQRequest post:KAPI_CUSBANN param:nil  success:^(id response) {
-            self.headerView.cusModel = [SQHomeCustomModel yy_modelWithDictionary:response];
-        } failure:nil];
     } failure:^(NSError *error) {
         [self endRefreshWithScrollView:self.collectionView];
     } showLoadingView:YES];
@@ -249,7 +245,7 @@
 - (SQBaseCollectionView *)collectionView {
     if (!_collectionView) {
         SQCollectionViewLayout *layout = [SQCollectionViewLayout waterFallLayoutWithColumnCount:2];
-        [layout setColumnSpacing:KSCAL(20) rowSpacing:KSCAL(20) sectionInset:UIEdgeInsetsMake(-KSCAL(20), KSCAL(20), KSCAL(30), KSCAL(20))];
+        [layout setColumnSpacing:KSCAL(10) rowSpacing:KSCAL(10) sectionInset:UIEdgeInsetsMake(-KSCAL(10), KSCAL(20), KSCAL(30), KSCAL(20))];
         CGRect collectFrame = CGRectMake(0, 0, YGScreenWidth, KAPP_HEIGHT-KNAV_HEIGHT-KTAB_HEIGHT);
         _collectionView = [[SQBaseCollectionView alloc] initWithFrame:collectFrame collectionViewLayout:layout];
         _collectionView.backgroundColor = self.view.backgroundColor;;

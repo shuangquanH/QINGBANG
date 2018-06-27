@@ -51,18 +51,11 @@
 + (NSDictionary *)modelContainerPropertyGenericClass {
     return @{@"banners" : SQHomeBannerModel.class,
              @"funcs" : SQHomeFuncsModel.class,
-             @"heads" : SQHomeHeadsModel.class };
+             @"heads" : SQHomeHeadsModel.class,
+             @"cusBanners" : SQHomeBannerModel.class};
 }
 @end
 
 
 
-
-
-@implementation SQHomeCustomModel
-// 返回容器类中的所需要存放的数据类型 (以 Class 或 Class Name 的形式)。
-+ (NSDictionary *)modelContainerPropertyGenericClass {
-    return @{@"banners" : SQHomeBannerModel.class};
-}
-@end
 

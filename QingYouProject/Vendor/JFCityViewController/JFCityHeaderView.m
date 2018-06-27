@@ -45,13 +45,14 @@
     searchBar.delegate = self;
     searchBar.searchBarStyle = UISearchBarStyleMinimal;
     searchBar.placeholder = @"输入城市名称";
+    
     [self addSubview:searchBar];
     self.searchBar = searchBar;
     
     [searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.offset(self.bounds.size.width - 10);
-        make.height.offset(40);
-        make.top.equalTo(self.mas_top).offset(0);
+        make.height.offset(32);
+        make.top.equalTo(self.mas_top).offset(4);
     }];
     
     UIView *separator = [[UIView alloc] init];
@@ -60,7 +61,7 @@
     [separator mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.offset(self.bounds.size.width);
         make.height.offset(0.5);
-        make.top.equalTo(searchBar.mas_bottom).offset(0);
+        make.top.equalTo(searchBar.mas_bottom).offset(4);
     }];
 }
 
