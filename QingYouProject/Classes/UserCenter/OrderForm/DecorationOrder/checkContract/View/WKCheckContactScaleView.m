@@ -140,6 +140,7 @@ static const CGFloat kScaleAnimationDuraction = 0.7;
         [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:selectIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
         self.collectionView.hidden = NO;
         self.maskImageView.hidden = YES;
+        [self.collectionView reloadData];
     }];
 }
 
@@ -148,7 +149,7 @@ static const CGFloat kScaleAnimationDuraction = 0.7;
     UIImage *image;
     UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:self.selectIndex inSection:0]];
     if (cell && cell.contentView.subviews.count) {
-        image = ((UIImageView *)cell.contentView.subviews.firstObject).image;
+        image = ((UIImageView *)cell.contentView.subviews.firstObject.subviews.firstObject).image;
     }
     
     if (image) {

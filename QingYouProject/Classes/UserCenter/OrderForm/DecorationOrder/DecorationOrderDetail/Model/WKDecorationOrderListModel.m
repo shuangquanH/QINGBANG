@@ -29,7 +29,7 @@
                 _orderTitle = @"受理中";
                 break;
             case 4:
-                _orderTitle = @"装修中,待付款";
+                _orderTitle = @"待付阶段款";
                 break;
             case 5:
                 _orderTitle = @"已完成";

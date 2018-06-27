@@ -57,7 +57,7 @@
     [_headerView addSubview:headerTipLab];
     
     _dismissButton = [UIButton new];
-    [_dismissButton setBackgroundImage:[UIImage imageNamed:@"order_pay_cancelBtn"] forState:UIControlStateNormal];
+    [_dismissButton setImage:[UIImage imageNamed:@"alert_dismiss_btn"] forState:UIControlStateNormal];
     [_dismissButton addTarget:self action:@selector(click_dismissButton) forControlEvents:UIControlEventTouchUpInside];
     [_headerView addSubview:_dismissButton];
     
@@ -72,7 +72,7 @@
     [_dismissButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(0);
         make.right.mas_equalTo(-KSCAL(15));
-        make.width.height.mas_equalTo(KSCAL(70));
+        make.width.height.mas_equalTo(KSCAL(50));
     }];
     
     _tipLabel = [UILabel labelWithFont:KSCAL(38) textColor:kCOLOR_333 textAlignment:NSTextAlignmentCenter text:@"支付方式"];

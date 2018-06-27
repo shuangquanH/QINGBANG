@@ -372,8 +372,8 @@
 #define KAPI_INVOICEADDRESSSETDEFAUTL  @"address/setDefault"//设置默认地址
 
 #define KAPI_UNREADORDERBADGE          @"getOrderBadgeNumber"//未读订单提示数量
-#define KAPI_AFTERSALERECORD           @"afterSaleRecord"//售后记录
-#define KAPI_APPLYAFTERSALE            @"applyAfterSale"//申请售后
+#define KAPI_AFTERSALERECORD           @"aftersale/afterSaleRecord "//售后记录
+#define KAPI_APPLYAFTERSALE            @"aftersale/applyAfterSale"//申请售后
 
 /********************************************* 文件上传  ********************************************/
 #define KAPI_FILEUPLOAD                @"file/upFile"
