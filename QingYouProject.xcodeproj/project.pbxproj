@@ -779,6 +779,8 @@
 		E99DE28820C0E72A009CEF88 /* SQServiceFormListPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = E99DE28720C0E72A009CEF88 /* SQServiceFormListPlist.plist */; };
 		E99DE28B20C0E7D0009CEF88 /* SQServiceFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE28A20C0E7D0009CEF88 /* SQServiceFormViewController.m */; };
 		E99DE28E20C23941009CEF88 /* SQChooseGardenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E99DE28D20C23941009CEF88 /* SQChooseGardenVC.m */; };
+		E9C14A3F20E39046003A2A1A /* SQWebAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C14A3E20E39046003A2A1A /* SQWebAdViewController.m */; };
+		E9C14A4220E39459003A2A1A /* SQGetWeatherTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C14A4120E39459003A2A1A /* SQGetWeatherTool.m */; };
 		E9E1E58020C63F0A00A807BE /* SeccondCertifyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E57F20C63F0A00A807BE /* SeccondCertifyProfileViewController.m */; };
 		E9E1E58320C63F4C00A807BE /* TobeLeaderOfAllianceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E58220C63F4B00A807BE /* TobeLeaderOfAllianceViewController.m */; };
 		E9E1E58620C63F9300A807BE /* TobeLeaderOfAllianceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E58520C63F9300A807BE /* TobeLeaderOfAllianceTableViewCell.m */; };
@@ -2259,6 +2261,10 @@
 		E99DE28A20C0E7D0009CEF88 /* SQServiceFormViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQServiceFormViewController.m; sourceTree = "<group>"; };
 		E99DE28C20C23941009CEF88 /* SQChooseGardenVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQChooseGardenVC.h; sourceTree = "<group>"; };
 		E99DE28D20C23941009CEF88 /* SQChooseGardenVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQChooseGardenVC.m; sourceTree = "<group>"; };
+		E9C14A3D20E39046003A2A1A /* SQWebAdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQWebAdViewController.h; sourceTree = "<group>"; };
+		E9C14A3E20E39046003A2A1A /* SQWebAdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQWebAdViewController.m; sourceTree = "<group>"; };
+		E9C14A4020E39459003A2A1A /* SQGetWeatherTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQGetWeatherTool.h; sourceTree = "<group>"; };
+		E9C14A4120E39459003A2A1A /* SQGetWeatherTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQGetWeatherTool.m; sourceTree = "<group>"; };
 		E9E1E57E20C63F0A00A807BE /* SeccondCertifyProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeccondCertifyProfileViewController.h; sourceTree = "<group>"; };
 		E9E1E57F20C63F0A00A807BE /* SeccondCertifyProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeccondCertifyProfileViewController.m; sourceTree = "<group>"; };
 		E9E1E58120C63F4B00A807BE /* TobeLeaderOfAllianceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TobeLeaderOfAllianceViewController.h; sourceTree = "<group>"; };
@@ -5496,7 +5502,6 @@
 		E92ABB7620DCF83F003B374D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E99DE25620BD3777009CEF88 /* SQPushTypePlist.plist */,
 				E99DE24A20BBDD68009CEF88 /* SQHomeIndexPageModel.h */,
 				E99DE24B20BBDD68009CEF88 /* SQHomeIndexPageModel.m */,
 			);
@@ -5506,8 +5511,11 @@
 		E92ABB7D20DCFA33003B374D /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				E99DE25620BD3777009CEF88 /* SQPushTypePlist.plist */,
 				E92ABB7A20DCFA30003B374D /* SQHouseRentPushTool.h */,
 				E92ABB7B20DCFA30003B374D /* SQHouseRentPushTool.m */,
+				E9C14A4020E39459003A2A1A /* SQGetWeatherTool.h */,
+				E9C14A4120E39459003A2A1A /* SQGetWeatherTool.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -5718,6 +5726,7 @@
 		E99DE1E820AE9D7D009CEF88 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				E9C14A3C20E39019003A2A1A /* WebAdPage */,
 				E92ABB7F20DCFF89003B374D /* HomePage */,
 				E99DE1E920AE9D97009CEF88 /* DecorationServe */,
 			);
@@ -5846,6 +5855,15 @@
 				E99DE28A20C0E7D0009CEF88 /* SQServiceFormViewController.m */,
 			);
 			path = ServiceForm;
+			sourceTree = "<group>";
+		};
+		E9C14A3C20E39019003A2A1A /* WebAdPage */ = {
+			isa = PBXGroup;
+			children = (
+				E9C14A3D20E39046003A2A1A /* SQWebAdViewController.h */,
+				E9C14A3E20E39046003A2A1A /* SQWebAdViewController.m */,
+			);
+			path = WebAdPage;
 			sourceTree = "<group>";
 		};
 		E9E1E58D20C65CEC00A807BE /* Collections */ = {
@@ -6421,6 +6439,7 @@
 				D210B95D1FA3622800C4574B /* main.m in Sources */,
 				18C159001FC820890010ACD3 /* GoodsPlaceView.m in Sources */,
 				E9E1E58920C65C3800A807BE /* MyCollectionListController.m in Sources */,
+				E9C14A3F20E39046003A2A1A /* SQWebAdViewController.m in Sources */,
 				18C15A4E1FC8208B0010ACD3 /* ServiceResonModel.m in Sources */,
 				18C15A661FC8208B0010ACD3 /* MeetingChildBookingViewController.m in Sources */,
 				E99DE27D20BED24F009CEF88 /* JFSearchView.m in Sources */,
@@ -6589,6 +6608,7 @@
 				18C158FC1FC820890010ACD3 /* OfficePurchaseTableViewCell.m in Sources */,
 				18C15A501FC8208B0010ACD3 /* FundSupportTableViewCell.m in Sources */,
 				18C159CF1FC8208A0010ACD3 /* InvoiceHistoryViewController.m in Sources */,
+				E9C14A4220E39459003A2A1A /* SQGetWeatherTool.m in Sources */,
 				E2E5B3821FB0675B00205F70 /* YGSpreadView.m in Sources */,
 				18C15A301FC8208A0010ACD3 /* CrowdFundingAddProjectTableViewCell.m in Sources */,
 				04FFB4AF20C766EC00B8843E /* EditNameViewController.m in Sources */,

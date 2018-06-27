@@ -40,12 +40,13 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) UIImageView *noDataImageView;
 @property (nonatomic, strong) UIView *noNetBaseView;
 @property (nonatomic, strong) UILabel *naviTitleLabel;
-//是否已经加载过缓存
-@property (nonatomic, assign) BOOL isAlreadyLoadCache;
 //用我设置导航栏标题
 @property (nonatomic, strong) NSString *naviTitle;
-
 @property (nonatomic, strong) NSMutableAttributedString       *attriTitle;
+
+/** 参数  */
+@property (nonatomic, copy) NSString       *funcs_target_params;
+
 
 /**
  网络请求方法，根据自己的喜好选择用此方法还是YGNetService

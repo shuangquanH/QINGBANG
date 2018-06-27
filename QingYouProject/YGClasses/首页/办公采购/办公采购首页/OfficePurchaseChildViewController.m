@@ -117,15 +117,15 @@ static NSString * const LDOfficePurchaseCollectionViewCellId = @"LDOfficePurchas
                                  };
     NSString *url = @"ProcurementAllCommodity";
     
-    //如果不是加载过缓存
-    if (!self.isAlreadyLoadCache)
-    {
-        //加载缓存数据
-        NSDictionary *cacheDic = [YGNetService loadCacheWithURLString:url parameter:parameters];
-        [self.dataArray addObjectsFromArray:[OfficePurchaseModel mj_objectArrayWithKeyValuesArray:cacheDic[@"commodityList"]]];
-        [self.collectionView reloadData];
-        self.isAlreadyLoadCache = YES;
-    }
+//    //如果不是加载过缓存
+//    if (!self.isAlreadyLoadCache)
+//    {
+//        //加载缓存数据
+//        NSDictionary *cacheDic = [YGNetService loadCacheWithURLString:url parameter:parameters];
+//        [self.dataArray addObjectsFromArray:[OfficePurchaseModel mj_objectArrayWithKeyValuesArray:cacheDic[@"commodityList"]]];
+//        [self.collectionView reloadData];
+//        self.isAlreadyLoadCache = YES;
+//    }
     
     [YGNetService YGPOST:url
               parameters:parameters

@@ -230,5 +230,15 @@
 		<key>needLogin</key>
 		<true/>
 	</dict>
+	<dict>
+		<key>targetTpye</key>
+		<string>300</string>
+		<key>targetController</key>
+		<string>SQWebAdViewController</string>
+		<key>controllerTitle</key>
+		<string>广告页面</string>
+		<key>needLogin</key>
+		<true/>
+	</dict>
 </array>
 </plist>
