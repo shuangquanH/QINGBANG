@@ -159,7 +159,7 @@
     NSString *apiAddress = (YGSingletonMarco.apiAddress)?YGSingletonMarco.apiAddress:KAPI_ADDRESS;
     NSString *apiString = [NSString stringWithFormat:@"%@%@", apiAddress, KAPI_FILEUPLOAD];
     
-    NSMutableArray   *urls = [NSMutableArray array];//请求成功的url数组
+    NSMutableArray      *urls = [NSMutableArray array];//请求成功的url数组
     NSMutableDictionary *taskDict = [NSMutableDictionary dictionary];//任务字典
     NSMutableDictionary *progressDict = [NSMutableDictionary dictionary];//上传进度地址
     __block NSError *uploadError = nil;//请求错误

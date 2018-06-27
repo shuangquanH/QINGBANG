@@ -35,7 +35,7 @@
             CGFloat itemW = (kScreenW - 1.0) / 2.0;
             
             if (!_downContractBtn) {
-                _downContractBtn = [self setupButtonWithTitle:@"下载报价单" withTag:0];
+                _downContractBtn = [self setupButtonWithTitle:@"下载合同" withTag:0];
                 [self addSubview:_downContractBtn];
             }
             
@@ -60,7 +60,7 @@
             CGFloat itemW = (kScreenW - 2.0) / 3.0;
             
             if (!_downContractBtn) {
-                _downContractBtn = [self setupButtonWithTitle:@"下载报价单" withTag:0];
+                _downContractBtn = [self setupButtonWithTitle:@"下载合同" withTag:0];
                 [self addSubview:_downContractBtn];
             }
             

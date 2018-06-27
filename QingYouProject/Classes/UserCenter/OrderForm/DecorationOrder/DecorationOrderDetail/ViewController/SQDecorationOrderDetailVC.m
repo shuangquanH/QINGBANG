@@ -150,11 +150,6 @@
 
 - (void)downLoadContract {
     NSArray *urls = [self.orderDetailInfo.orderInfo.contractImgUrl componentsSeparatedByString:@","];
-    urls = @[@"https://mir-s3-cdn-cf.behance.net/project_modules/1400/d06e6066466703.5b170d0566db6.jpg",
-             @"https://mir-s3-cdn-cf.behance.net/project_modules/1400/d1006e66466703.5b170d0567927.jpg",
-             @"https://mir-s3-cdn-cf.behance.net/project_modules/1400/e6b7e966466703.5b170d056677f.jpg",
-             @"https://mir-s3-cdn-cf.behance.net/project_modules/1400/c5998966466703.5b170d0566304.jpg"];
-    
     if (!urls.count) {
         [YGAppTool showToastWithText:@"暂无供下载的合同文件"];
         return;
@@ -204,7 +199,6 @@
                                     hud.progress = 1.0;
                                     [hud hideAnimated:YES];
                                     [YGAppTool showToastWithText:@"合同下载成功，已保存到相册"];
-                                    NSLog(@"保存完成");
                                 }
                             });
                         }];
