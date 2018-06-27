@@ -37,15 +37,6 @@
 @property (nonatomic, strong) NSArray       *banners;
 @property (nonatomic, strong) NSArray       *funcs;
 @property (nonatomic, strong) NSArray       *heads;
+@property (nonatomic, strong) NSArray       *cusBanners;
 @property (nonatomic, copy) NSString       *bgimg_url;
-@end
-
-
-
-
-
-
-/** 首页定制功能model  */
-@interface SQHomeCustomModel : SQBaseModel
-@property (nonatomic, strong) NSArray       *banners;
 @end

@@ -18,7 +18,7 @@
           itemSize:(CGSize) itemsize {
     
     UIView  *contentview = [[UIView alloc] init];
-    contentview.backgroundColor = [UIColor whiteColor];
+    contentview.backgroundColor = colorWithTable;
     
     [self addSubview:contentview];
     

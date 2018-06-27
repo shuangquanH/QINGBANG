@@ -126,16 +126,13 @@
     }
     [self.infoButton setTitle:title forState:UIControlStateNormal];
     [self.infoButton setImage:nil forState:UIControlStateNormal];
-}
-
-//功能定制按钮数据
-- (void)setCusModel:(SQHomeCustomModel *)cusModel {
-    _cusModel = cusModel;
+    
+    
     [self.scrollview.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     NSMutableArray  *headsBtnArr = [NSMutableArray array];
     
-    for (int i = 0; i<cusModel.banners.count; i++) {
-        SQHomeBannerModel *bannerModel = cusModel.banners[i];
+    for (int i = 0; i<model.cusBanners.count; i++) {
+        SQHomeBannerModel *bannerModel = model.cusBanners[i];
         SQBaseImageView *button = [[SQBaseImageView alloc] init];
         button.userInteractionEnabled = YES;
         [button setImageWithUrl:bannerModel.banner_image_url];
@@ -158,6 +155,8 @@
         cusbutton.frame = self.scrollview.bounds;
     }
 }
+
+
 
 
 
@@ -210,7 +209,7 @@
 
 //定制功能按钮
 - (void)cusBanTap:(UIGestureRecognizer   *)tap {
-    SQHomeBannerModel   *cusModel = self.cusModel.banners[tap.view.tag-2000];
+    SQHomeBannerModel   *cusModel = self.model.cusBanners[tap.view.tag-2000];
     [self.delegate tapedFuncsWithModel:cusModel];
 }
 

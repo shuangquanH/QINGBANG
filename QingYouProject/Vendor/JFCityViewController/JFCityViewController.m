@@ -174,7 +174,7 @@ JFSearchViewDelegate>
 - (JFSearchView *)searchView {
     if (!_searchView) {
         CGRect frame = [UIScreen mainScreen].bounds;
-        _searchView = [[JFSearchView alloc] initWithFrame:CGRectMake(0, 76, frame.size.width, frame.size.height-KNAV_HEIGHT-76)];
+        _searchView = [[JFSearchView alloc] initWithFrame:CGRectMake(0, 40, frame.size.width, frame.size.height-KNAV_HEIGHT-40)];
         _searchView.backgroundColor = [UIColor colorWithRed:155 / 255.0 green:155 / 255.0 blue:155 / 255.0 alpha:0.5];
         _searchView.delegate = self;
     }
