@@ -150,6 +150,7 @@
     
     NSMutableArray *tmp = [self.navigationController.viewControllers mutableCopy];
     [tmp removeObject:self];
+    [self.navigationController setValue:[tmp copy] forKey:@"viewControllers"];
 }
 
 - (void)click_confirmButton {
@@ -159,18 +160,20 @@
         return;
     }
     
-    if (!_afterSaleImageArray.count) {
-        [YGAppTool showToastWithText:@"请至少添加一张凭证图片"];
-        return;
-    }
-
-    [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
     NSMutableArray *total = [NSMutableArray array];
     for (id obj in self.afterSaleImageArray) {
         if ([obj isKindOfClass:[UIImage class]]) {
             [total addObject:obj];
         }
     }
+    
+    if (!total.count) {
+        [YGAppTool showToastWithText:@"请至少添加一张凭证图片"];
+        return;
+    }
+
+    [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
+    
     [SQRequest uploadImages:total param:nil progress:^(float progress) {
         
     } success:^(id response) {
