@@ -60,7 +60,7 @@
                 [self aspectFitImageViewForImage:image];
             }
             else {
-                [self aspectFitImageViewForImage:[UIImage imageNamed:@""]];
+                _imageView.image = nil;
             }
         }];
     }

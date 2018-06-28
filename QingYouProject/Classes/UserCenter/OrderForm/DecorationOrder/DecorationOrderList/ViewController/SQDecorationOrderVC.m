@@ -46,7 +46,7 @@
     self.orderList = [NSMutableArray array];
     self.page = 1;
     self.pageSize = 10;
-    
+        
     [self.view addSubview:self.tableView];
     [self createRefreshWithScrollView:self.tableView containFooter:YES];
     [self.tableView.mj_header beginRefreshing];
@@ -70,7 +70,7 @@
         tmpPage += 1;
     }
     
-    [SQRequest post:KAPI_MYDECORATION_ORDERLIST param:@{@"page": @(tmpPage), @"pageSize": @(self.pageSize)} success:^(id response) {
+    [SQRequest post:KAPI_MYDECORATION_ORDERLIST param:@{@"currentPage": @(tmpPage), @"pageSize": @(self.pageSize)} success:^(id response) {
         if ([response[@"code"] longLongValue] == 0) {
             NSArray<WKDecorationOrderListModel *> *tmp = [NSArray yy_modelArrayWithClass:[WKDecorationOrderListModel class] json:response[@"data"][@"orderList"]];
             if (headerAction) {
