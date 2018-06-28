@@ -13,9 +13,11 @@
 @end
 
 @implementation WKCheckContactScaleCell
-
-- (instancetype)init {
-    if (self == [super init]) {
+{
+    id _lastImage;
+}
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self == [super initWithFrame:frame]) {
         [self setupSubviews];
     }
     return self;
@@ -41,6 +43,9 @@
 }
 
 - (void)configImage:(id)image {
+    
+    if (_lastImage == image) return;
+    _lastImage = image;
     
     self.imageContentScrollView.zoomScale = 1.0;
     

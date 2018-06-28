@@ -60,5 +60,4 @@
 /** 商品名称 */
 @property (nonatomic, strong) NSAttributedString *skuProductNameAttributeString;
 
-
 @end

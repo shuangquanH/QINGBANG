@@ -45,11 +45,11 @@
             }
             
             
-            _downContractBtn.hidden = NO;
-            _downContractBtn.frame = CGRectMake(0, 0, itemW, itemH);
-            
             _checkContractBtn.hidden = NO;
-            _checkContractBtn.frame = CGRectMake(itemW + 1.0, 0, itemW, itemH);
+            _checkContractBtn.frame = CGRectMake(0, 0, itemW, itemH);
+            
+            _downContractBtn.hidden = NO;
+            _downContractBtn.frame = CGRectMake(itemW + 1.0, 0, itemW, itemH);
             
             _ticketApplyBtn.hidden = YES;
         }
@@ -74,11 +74,11 @@
                 [self addSubview:_ticketApplyBtn];
             }
             
-            _downContractBtn.hidden = NO;
-            _downContractBtn.frame = CGRectMake(0, 0, itemW, itemH);
-            
             _checkContractBtn.hidden = NO;
-            _checkContractBtn.frame = CGRectMake((itemW + 1.0), 0, itemW, itemH);
+            _checkContractBtn.frame = CGRectMake(0, 0, itemW, itemH);
+            
+            _downContractBtn.hidden = NO;
+            _downContractBtn.frame = CGRectMake((itemW + 1.0), 0, itemW, itemH);
             
             _ticketApplyBtn.hidden = NO;
             _ticketApplyBtn.frame = CGRectMake(2 * (itemW + 1.0), 0, itemW, itemH);

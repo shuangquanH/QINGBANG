@@ -43,7 +43,7 @@
     _tableView.estimatedSectionFooterHeight = 0.0;
     [self.view addSubview:_tableView];
     
-    [self createRefreshWithScrollView:_tableView containFooter:YES];
+    [self createRefreshWithScrollView:_tableView containFooter:NO];
     [self.tableView.mj_header beginRefreshing];
 }
 

@@ -44,6 +44,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [SQRequest setApiAddress:KAPI_ADDRESS_TEST_HJK];
+    
     self.afterSaleImageArray = [NSMutableArray arrayWithObjects:@"", @"", @"", nil];
     
     [self layoutNavigation];
@@ -162,27 +164,42 @@
         [YGAppTool showToastWithText:@"请至少添加一张凭证图片"];
         return;
     }
-    
+
     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
-    NSString *images = @"1.jpg,2.jpg";
-    NSDictionary *param = @{@"orderNum": self.orderInfo.orderInfo.orderNum,
-                            @"apply_images": images,
-                            @"desc": _afterSaleText
-                            };
-    [SQRequest post:KAPI_APPLYAFTERSALE param:param success:^(id response) {
-        if ([response[@"code"] longLongValue] == 0) {
-            [YGAppTool showToastWithText:@"申请成功"];
-            [YGNetService dissmissLoadingView];
-            [self performSelector:@selector(pushToListClearSelf) withObject:nil afterDelay:1.5];
+    NSMutableArray *total = [NSMutableArray array];
+    for (id obj in self.afterSaleImageArray) {
+        if ([obj isKindOfClass:[UIImage class]]) {
+            [total addObject:obj];
         }
-        else {
+    }
+    [SQRequest uploadImages:total param:nil progress:^(float progress) {
+        
+    } success:^(id response) {
+        NSString *images = [((NSArray *)response) componentsJoinedByString:@","];
+        NSDictionary *param = @{
+                                @"apply_images": images,
+                                @"desc": _afterSaleText,
+                                @"orderId": @([self.orderInfo.orderInfo.ID longLongValue])
+                                };
+        [SQRequest post:KAPI_APPLYAFTERSALE param:param success:^(id response) {
+            if ([response[@"code"] longLongValue] == 0) {
+                [YGNetService dissmissLoadingView];
+                [YGAppTool showToastWithText:@"申请成功"];
+                [self performSelector:@selector(pushToListClearSelf) withObject:nil afterDelay:1.0];
+            }
+            else {
+                [YGNetService dissmissLoadingView];
+                [YGAppTool showToastWithText:response[@"msg"]];
+            }
+        } failure:^(NSError *error) {
             [YGNetService dissmissLoadingView];
-            [YGAppTool showToastWithText:response[@"msg"]];
-        }
+            [YGAppTool showToastWithText:@"网络错误"];
+        }];
     } failure:^(NSError *error) {
         [YGNetService dissmissLoadingView];
-        [YGAppTool showToastWithText:@"网络错误"];
+        [YGAppTool showToastWithText:@"上传售后图片失败，请重试"];
     }];
+    
 }
 
 - (void)pushImagePickerController {
