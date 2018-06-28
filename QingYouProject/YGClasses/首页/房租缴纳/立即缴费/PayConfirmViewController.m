@@ -61,8 +61,9 @@
                            ];
     _lastIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [_listArray addObjectsFromArray:[BuyOrderPayWayModel mj_objectArrayWithKeyValuesArray:listArray]];
-    //接收支付结果的消息
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pushViewController:) name:@"paySuccess" object:nil];
+    
+//    //接收支付结果的消息
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pushViewController:) name:@"paySuccess" object:nil];
 }
 
 - (void)configUI
@@ -202,18 +203,40 @@
         [Pingpp createPayment:responseObject[@"charge"] viewController:Weakself appURLScheme:@"qingyouhui" withCompletion:^(NSString *result, PingppError *error){
             if ([result isEqualToString:@"success"])
             {
-                if ([channel isEqualToString:@"alipay"]) {
-                    //支付宝
-                    ResultViewController *controller = [[ResultViewController alloc] init];
-                    controller.pageType = ResultPageTypeSubmitHousePayResult;
-                    controller.earnPoints = 10;
-                    [self.navigationController pushViewController:controller animated:YES];
+                /** 原来代码 */
+//                if ([channel isEqualToString:@"alipay"]) {
+//                    //支付宝
+//                    ResultViewController *controller = [[ResultViewController alloc] init];
+//                    controller.pageType = ResultPageTypeSubmitHousePayResult;
+//                    controller.earnPoints = 10;
+//                    [self.navigationController pushViewController:controller animated:YES];
+//                }
+//
+                /** 新改代码 */
+                switch (_lastIndexPath.row) {
+                    case 0: {
+                        //支付宝
+                        ResultViewController *controller = [[ResultViewController alloc] init];
+                        controller.pageType = ResultPageTypeSubmitHousePayResult;
+                        controller.earnPoints = 10;
+                        [self.navigationController pushViewController:controller animated:YES];
+                    }
+                        break;
+                    case 1: {
+                        //微信
+                        ResultViewController *controller = [[ResultViewController alloc] init];
+                        controller.pageType = ResultPageTypeSubmitHousePayResult;
+                        [self.navigationController pushViewController:controller animated:YES];
+                    }
+                        break;
                 }
                
                 NSLog(@"success");
             } else {
                 if (error.code == PingppErrWxNotInstalled) {
                     [YGAppTool showToastWithText:@"请安装微信客户端"];
+                } else {
+                    [YGAppTool showToastWithText:@"支付失败"];
                 }
                 NSLog(@"PingppError: code=%lu msg=%@", error.code, [error getMsg]);
             }
@@ -228,49 +251,51 @@
     
     
 }
-- (void)pushViewController:(NSNotification *)notif
-{
-    NSString *state = notif.userInfo[@"successOrNot"];
-    
-    if ([state isEqualToString:@"1"])
-    {
-        switch (_lastIndexPath.row)
-        {
-                
-            case 0:
-            {
-                //支付宝
-                ResultViewController *controller = [[ResultViewController alloc] init];
-                controller.pageType = ResultPageTypeSubmitHousePayResult;
-                controller.earnPoints = 10;
-                [self.navigationController pushViewController:controller animated:YES];
-            }
-                break;
-            case 1:
-            {
-                //微信
-                ResultViewController *controller = [[ResultViewController alloc] init];
-                controller.pageType = ResultPageTypeSubmitHousePayResult;
-                [self.navigationController pushViewController:controller animated:YES];
-            }
-                break;
-//            case 2:
+
+/** 原来代码 **/
+//- (void)pushViewController:(NSNotification *)notif
+//{
+//    NSString *state = notif.userInfo[@"successOrNot"];
+//
+//    if ([state isEqualToString:@"1"])
+//    {
+//        switch (_lastIndexPath.row)
+//        {
+//
+//            case 0:
 //            {
-//                //余额
+//                //支付宝
 //                ResultViewController *controller = [[ResultViewController alloc] init];
-//                controller.pageType = ResultPageTypeSubmitResult;
+//                controller.pageType = ResultPageTypeSubmitHousePayResult;
+//                controller.earnPoints = 10;
 //                [self.navigationController pushViewController:controller animated:YES];
 //            }
 //                break;
-        }
-        
-        [YGAppTool showToastWithText:@"支付成功"];
-    }
-    else
-    {
-        [YGAppTool showToastWithText:@"支付失败"];
-    }
-}
+//            case 1:
+//            {
+//                //微信
+//                ResultViewController *controller = [[ResultViewController alloc] init];
+//                controller.pageType = ResultPageTypeSubmitHousePayResult;
+//                [self.navigationController pushViewController:controller animated:YES];
+//            }
+//                break;
+////            case 2:
+////            {
+////                //余额
+////                ResultViewController *controller = [[ResultViewController alloc] init];
+////                controller.pageType = ResultPageTypeSubmitResult;
+////                [self.navigationController pushViewController:controller animated:YES];
+////            }
+////                break;
+//        }
+//
+//        [YGAppTool showToastWithText:@"支付成功"];
+//    }
+//    else
+//    {
+//        [YGAppTool showToastWithText:@"支付失败"];
+//    }
+//}
 
 
 @end

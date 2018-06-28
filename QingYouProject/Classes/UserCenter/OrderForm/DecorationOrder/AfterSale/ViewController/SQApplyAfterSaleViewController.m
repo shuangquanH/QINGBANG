@@ -173,7 +173,7 @@
     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
     
     [SQRequest uploadImages:total param:nil progress:^(float progress) {
-        
+
     } success:^(id response) {
         NSString *images = [((NSArray *)response) componentsJoinedByString:@","];
         NSDictionary *param = @{
