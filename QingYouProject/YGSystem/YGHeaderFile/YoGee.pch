@@ -25,7 +25,7 @@
 #import "UIView+Animate.h"
 #import "YGConnectionService.h"
 #import "MJExtension.h"
-#import "YGButton.h"
+//#import "YGButton.h"
 #import "SDCycleScrollView.h"
 
 

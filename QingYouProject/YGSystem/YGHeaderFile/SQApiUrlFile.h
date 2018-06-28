@@ -26,65 +26,11 @@
 #define YGQNURL @"http://pic.huobanchina.com/"
 
 /********************************************首页*************************************************/
-//首页
-#define REQUEST_IndexInformationDetail                      @"IndexInformationDetail"               //首页
 
 
-//一起玩儿
+////一起玩儿
 #define REQUEST_createAlliance                      @"createAlliance"               //创建联盟
-#define REQUEST_dissolveAlliance                      @"dissolveAlliance"               //解散联盟
-#define REQUEST_viewAlliance                      @"viewAlliance"               //联盟信息展示
-#define REQUEST_updateAlliance                      @"updateAlliance"               //改联盟信息
-#define REQUEST_updateAllianceNotice                     @"updateAllianceNotice"               //改联盟公告信息
-#define REQUEST_getAllianceList                      @"getAllianceList"               //联盟列表
-#define REQUEST_getMineAllianceList                      @"getMineAllianceList"               //我的联盟列表
-#define REQUEST_getAllianceAttention                     @"getAllianceAttention"               //我的关注联盟列表
-#define REQUEST_attentionAlliance                      @"attentionAlliance"               //关注、取消联盟
-#define REQUEST_collectAlliance                      @"collectAlliance"               //收藏、取消联盟
-#define REQUEST_operateAllianceMember                      @"operateAllianceMember"               //加入退出移除联盟
-#define REQUEST_AllianceIndex                      @"AllianceIndex"               //联盟圈主页
-#define REQUEST_AllianceActivity                      @"AllianceActivity"               //联盟活动
-#define REQUEST_allianceMemberList                      @"allianceMemberList"               //联盟成员列表
-#define REQUEST_AllianceDetail                      @"AllianceDetail"               //联盟全详情页
-#define REQUEST_postedDynamic                      @"postedDynamic"               //发布动态
-#define REQUEST_getDynamic                      @"getDynamic"               //动态列表
-#define REQUEST_getAllianceActivity                    @"getAllianceActivity"               // 联盟圈活动列表
-#define REQUEST_likeAllianceDynamic                      @"likeAllianceDynamic"               //点赞/取消联盟圈动态
-#define REQUEST_getDynamicComment                      @"getDynamicComment"               //获取联盟圈动态评论
-#define REQUEST_getActiveTag                      @"getActiveTag"               //获取活动标签
-#define REQUEST_getActivityByTagId                     @"getActivityByTagId"               //  获取活动列表
-#define REQUEST_addActive                    @"addActive"               //  添加活动
-#define REQUEST_getActiveMessage                     @"getActiveMessage"               // 添加活动--报名设置--获取常用信息
-#define REQUEST_getActiveTag                     @"getActiveTag"               // 获取青网推荐
-#define REQUEST_postedDynamicComment                    @"postedDynamicComment"               //发布动态评论
-
-
-#define REQUEST_ActivityOrderList                    @"ActivityOrderList"               //  订单列表
-#define REQUEST_ActivityOrderDetail                   @"ActivityOrderDetail"               //  订单详情
-
-#define REQUEST_getAllianceSign                   @"getAllianceSign"               //获取联盟成员签到信息
-#define REQUEST_AllianceRankingList                   @"AllianceRankingList"               // 获取联盟成员签到排行榜
-#define REQUEST_AllianceUserSign                  @"AllianceUserSign"               //  联盟成员签到
-#define REQUEST_AllianceOrderDelete                  @"AllianceOrderDelete"               //  删除订单
-#define REQUEST_AllianceOrderCancel                  @"AllianceOrderCancel"               //  取消活动
-
-
-
-
-
-
-
-//二手置换
-#define REQUEST_MerchandiseClassification                    @"MerchandiseClassification"               //商品分类
-#define REQUEST_ReleaseGoods                    @"ReleaseGoods"               //发布商品
 #define REQUEST_ReplacementInformation                    @"ReplacementInformation"               //基本信息
-
-#define REQUEST_userInformation                    @"userInformation"               //认证信息查询
-#define REQUEST_getDozenDis                    @"getDozenDis"               //兜底
-#define REQUEST_editMyMerchandise                    @"editMyMerchandise"               // 我发布的编辑
-
-
-
 
 
 
@@ -98,19 +44,6 @@
 #define REQUEST_DeletApplication                     @"DeletApplication"               // 删除订单/取消申请
 #define REQUEST_SeachGradeProject                     @"SeachGradeProject"               // 查看添加申报基金项目详情
 
-
-
-
-//预约看房
-#define REQUEST_otSelectList                      @"otSelectList"               //预约看房过滤查询列表
-#define REQUEST_OtDegreeSelectList                       @"OtDegreeSelectList"                    //装修选择查询
-#define REQUEST_OtPriceSelectList                     @"OtPriceSelectList"                      //价格选择查询
-#define REQUEST_OtProportionSelectList                      @"OtProportionSelectList"                        //面积选择查询
-#define REQUEST_OtNameSelectList               @"OtNameSelectList"               //预约看房过滤查询列表(放大镜搜索)
-#define REQUEST_OtDetails               @"OtDetails"              //房源详情
-#define REQUEST_OtSaveReservation                @"OtSaveReservation"               //预约单
-#define REQUEST_MyReservation                @"MyReservation"               //我的预约单
-#define REQUEST_CancelReservation                @"CancelReservation"               //取消预约
 
 
 /********************************************管家*************************************************/
@@ -127,22 +60,11 @@
 #define REQUEST_myOrder               @"myOrder"   //我的订单
 #define REQUEST_delOrder               @"delOrder"   //删除订单
 #define REQUEST_onLinePay               @"onLinePay"   //线上支付
-//装修直通车
-//随手拍
-#define REQUEST_AddSnapshotOrder               @"AddSnapshotOrder"   //随手拍添加
-#define REQUEST_SearchSnapshotOrder               @"SearchSnapshotOrder"   //随手拍工单列表
-#define REQUEST_SnapshotOrderDetail               @"SnapshotOrderDetail"   //随手拍工单详情
-#define REQUEST_DeleteSnapshot               @"DeleteSnapshot"   //删除/取消 随手拍
-#define REQUEST_StochasticIntegral               @"StochasticIntegral"   //随手拍青币
 
-
-
-
-//网络管家
+////网络管家
 #define REQUEST_NetServiceRecord                        @"NetServiceRecord"               //交易记录
 #define REQUEST_NetServiceComment                        @"NetServiceComment"               //服务评价
-#define REQUEST_NetServiceInfo                        @"NetServiceInfo"               //服务介绍
-//办公采购
+
 //广告位
 #define REQUEST_AdsIndex               @"AdsIndex"   //广告首页
 #define REQUEST_AdsGarden               @"AdsGarden"   //选择园区广告
@@ -151,15 +73,8 @@
 #define REQUEST_AdsOrderCreate               @"AdsOrderCreate"   //生成订单
 #define REQUEST_AdsOrder               @"AdsOrder"   //广告订单列表
 #define REQUEST_AdsOrderDelete               @"AdsOrderDelete"   //广告订单删除
-//物业报修
-
-
-
-
-
 
 //人才招聘
-
 #define REQUEST_ChooseGarden                        @"ChooseGarden"               //选择园区
 #define REQUEST_RecruitmentIndexList                        @"RecruitmentIndexList"               //人才招聘首页
 #define REQUEST_PostJob                        @"PostJob"               //发布招聘信息
@@ -261,25 +176,6 @@
 #define REQUEST_HousePayIndexImg                          @"HousePayIndexImg"               //房屋缴纳首页轮播
 #define REQUEST_PaymentRecordsDetail                         @"PaymentRecordsDetail"               //我的历史缴费记录详情
 
-/********************************************抢购*************************************************/
-#define REQUEST_falshsaleBanner                          @"falshsaleBanner"               //抢购轮播
-#define REQUEST_falshsaleRound                          @"falshsaleRound"               //抢购场次
-#define REQUEST_falshsaleByRound                         @"falshsaleByRound"               //根据场次获取商品 (抢好货)
-#define REQUEST_falshsaleClassify                          @"falshsaleClassify"               //获取分类信息
-#define REQUEST_falshsaleReminding                          @"falshsaleReminding"               //用户提醒记录添加/取消
-#define REQUEST_getFalshsaleCommodity                          @"getFalshsaleCommodity"               //获取商品信息
-#define REQUEST_falshsaleCollect                          @"falshsaleCollect"               //用户收藏记录添加/取消
-#define REQUEST_falshsaleCommoditySize                          @"falshsaleCommoditySize"               //商品规格
-#define REQUEST_createFalshsaleOrder                          @"createFalshsaleOrder"               //创建订单
-#define REQUEST_payFalshsaleOrder                          @"payFalshsaleOrder"               //订单支付
-#define REQUEST_getFalshsaleCommodityYQG                          @"getFalshsaleCommodityYQG"               //易企购商品列表
-#define REQUEST_getFalshsaleOrderList                          @"getFalshsaleOrderList"               //获取订单列表
-#define REQUEST_getFalshsaleOrder                          @"getFalshsaleOrder"               //获取订单详情
-#define REQUEST_outFalshsaleOrder                          @"outFalshsaleOrder"               //申请退款
-#define REQUEST_checkedFalshsaleOrder                          @"checkedFalshsaleOrder"               //确认收货
-#define REQUEST_deleteFalshsaleOrder                         @"deleteFalshsaleOrder"               //删除订单
-#define REQUEST_continueFalshsaleOrder                          @"continueFalshsaleOrder"               //继续付款
-#define REQUEST_cancelFalshsaleOrder                          @"cancelFalshsaleOrder"               //取消订单
 
 /********************************************我的*************************************************/
 //资金扶持
@@ -294,12 +190,6 @@
 
 #define REQUEST_Renewed                       @"Renewed"               //续期投资
 #define REQUEST_Termination                       @"Termination"               //终止投资
-
-
-
-
-
-
 
 
 //地址（公用）
