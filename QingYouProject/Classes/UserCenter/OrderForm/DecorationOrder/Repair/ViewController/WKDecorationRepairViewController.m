@@ -251,7 +251,7 @@ const CGFloat kItemHorizontalMargin = 10;
             success:^(id response) {
         [YGNetService dissmissLoadingView];
         if ([response[@"code"] longLongValue] == 0) {
-            self.repairInfo = [WKOrderRepairModel yy_modelWithJSON:response[@"data"][@"repairInfo"]];
+            self.repairInfo = [WKOrderRepairModel yy_modelWithJSON:response[@"repairInfo"]];
             [self setupSubviews];
         }
         else {

@@ -99,55 +99,6 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-+ (void)postCustomApi:(NSString  *)api param:(NSDictionary   *)param success:(void(^)(id response))success failure:(void(^)(NSError *error))failure showLoadingView:(BOOL)show {
-    if (show) {
-        [[YGConnectionService sharedConnectionService] showLoadingViewWithSuperView:YGAppDelegate.window];
-    }
-    NSMutableDictionary *muParam = [NSMutableDictionary dictionaryWithDictionary:param];
-    
-    if ([YGSingleton sharedManager].user.userId) {
-        [muParam setValue:[YGSingleton sharedManager].user.userId forKey:@"userid"];
-    }
-    if ([[YGSingleton sharedManager].user.isInGarden isEqualToString:@"yes"]) {
-        [muParam setValue:@"yes" forKey:@"isInner"];
-    } else {
-        [muParam setValue:@"no" forKey:@"isInner"];
-    }
-    
-    [[YGConnectionService sharedConnectionService].requestManager POST:api
-                                                            parameters:muParam
-                                                              progress:nil
-                                                               success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-     {
-         if (success) {
-             success(responseObject);
-         }
-         if (show) {
-             [[YGConnectionService sharedConnectionService] dissmissLoadingView];
-         }
-     }
-                                                               failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-     {
-         if (failure) {
-             failure(error);
-         }
-         if (show) {
-             [[YGConnectionService sharedConnectionService] dissmissLoadingView];
-         }
-     }];
-    
-    
-}
-
 + (void)uploadImages:(NSArray *)images param:(NSDictionary *)param progress:(void(^)(float progress))progress success:(void(^)(id response))success failure:(void(^)(NSError *error))failure {
     if (!images.count) {
         if (failure) {
