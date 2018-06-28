@@ -44,8 +44,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [SQRequest setApiAddress:KAPI_ADDRESS_TEST_HJK];
-    
     self.afterSaleImageArray = [NSMutableArray arrayWithObjects:@"", @"", @"", nil];
     
     [self layoutNavigation];
@@ -181,7 +179,7 @@
         NSDictionary *param = @{
                                 @"apply_images": images,
                                 @"desc": _afterSaleText,
-                                @"orderId": @([self.orderInfo.orderInfo.ID longLongValue])
+                                @"orderNum": self.orderInfo.orderInfo.orderNum
                                 };
         [SQRequest post:KAPI_APPLYAFTERSALE param:param success:^(id response) {
             if ([response[@"code"] longLongValue] == 0) {
@@ -223,6 +221,5 @@
 - (void)cell:(SQAddTicketApplyInputCell *)cell didEditTextField:(UITextField *)textField {
     _afterSaleText = textField.text;
 }
-
 
 @end

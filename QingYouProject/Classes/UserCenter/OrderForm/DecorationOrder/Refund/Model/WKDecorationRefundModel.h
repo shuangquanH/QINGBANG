@@ -12,7 +12,7 @@
 
 @property (nonatomic, copy  ) NSString *ID;
 
-/** 退款状态 0.审核中 1.退款成功 2.退款已撤销 3.退款申请失败 */
+/** 退款状态 0.审核中 5.退款成功 2.退款已撤销 6.退款申请失败 */
 @property (nonatomic, assign) NSInteger status;
 /** 退款金额 */
 @property (nonatomic, copy  ) NSString *amount;

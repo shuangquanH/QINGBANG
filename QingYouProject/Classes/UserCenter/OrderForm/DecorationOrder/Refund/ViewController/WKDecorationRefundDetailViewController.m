@@ -77,7 +77,7 @@
         [_cancelRefundBtn addTarget:self action:@selector(click_cancelButton) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_cancelRefundBtn];
     }
-    else if (self.refundInfo.status == 1) {//退款成功
+    else if (self.refundInfo.status == 5) {//退款成功
         _stateLabel.text = [NSString stringWithFormat:@"退款成功 ¥%@", self.refundInfo.amount];
         [_stateLabel setTextColor:kCOLOR_PRICE_RED andRange:NSMakeRange(5, self.refundInfo.amount.length+1)];
         _detailLabel.text = @"您的款项已按您的支付方式原路退还。";
