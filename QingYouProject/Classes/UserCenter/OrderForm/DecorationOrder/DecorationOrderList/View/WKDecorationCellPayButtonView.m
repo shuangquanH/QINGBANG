@@ -27,7 +27,9 @@ const CGFloat kFunctionButtonTopMargin  = 0.0;
 }
 
 - (void)removeAllAction {
-    [_buttons makeObjectsPerformSelector:@selector(setHidden:) withObject:@(YES)];
+    for (UIButton *btn in _buttons) {
+        btn.hidden = YES;
+    }
 }
 
 - (void)configStageModel:(WKDecorationStageModel *)stageModel withStage:(NSInteger)stage inDetail:(BOOL)inDetail {
@@ -128,7 +130,7 @@ const CGFloat kFunctionButtonTopMargin  = 0.0;
 
 - (void)showLabelWithTitle:(NSString *)title {
     
-    [_buttons makeObjectsPerformSelector:@selector(setHidden:) withObject:@(YES)];
+    [self removeAllAction];
     
     if (!_stateLabel) {
         _stateLabel = [UILabel labelWithFont:KSCAL(28) textColor:KCOLOR_MAIN];

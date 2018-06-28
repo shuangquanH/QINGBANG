@@ -14,6 +14,7 @@
 #import "NSString+SQStringSize.h"
 #import "UIButton+SQImagePosition.h"
 #import "UILabel+SQAttribut.h"
+#import "SQCallPhoneFunction.h"
 
 @interface WKDecorationRefundDetailViewController ()
 //联系客服
@@ -195,12 +196,10 @@
 - (void)click_connectServiceBtn {
     [YGAlertView showAlertWithTitle:@"是否要拨打客服电话？"
                   buttonTitlesArray:@[@"YES", @"NO"]
-                  buttonColorsArray:@[[UIColor blueColor],
-                                      [UIColor redColor]]
+                  buttonColorsArray:@[KCOLOR_MAIN,kCOLOR_666]
                             handler:^(NSInteger buttonIndex) {
                                 if (buttonIndex == 0) {
-                                    NSString *url = @"tel:057812345";
-                                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+                                    [SQCallPhoneFunction callServicePhone];
                                 }
                             }];
 }
