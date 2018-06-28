@@ -48,7 +48,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     OfficePurchaseCollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:LDOfficePurchaseCollectionViewCellId forIndexPath:indexPath];
-    
+//
     cell.model = self.dataArray[indexPath.row];
     
     

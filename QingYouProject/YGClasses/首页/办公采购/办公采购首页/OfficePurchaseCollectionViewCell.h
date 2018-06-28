@@ -8,7 +8,7 @@
 
 #import "SQBaseTableViewCell.h"
 @class OfficePurchaseModel;
-@interface OfficePurchaseCollectionViewCell : SQBaseTableViewCell
+@interface OfficePurchaseCollectionViewCell : SQBaseCollectionViewCell
 /** model  */
 @property (nonatomic,strong) OfficePurchaseModel * model;
 @end
