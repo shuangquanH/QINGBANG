@@ -6,9 +6,9 @@
 //  Copyright © 2017年 ccyouge. All rights reserved.
 //
 
-#import "LDBaseModel.h"
+#import "SQBaseModel.h"
 
-@interface OfficePurchaseDetailShowModel : LDBaseModel
+@interface OfficePurchaseDetailShowModel : SQBaseModel
 @property (nonatomic,strong) NSArray *commodityArry;
 @property (nonatomic,strong) NSString *commentCount;
 @property (nonatomic,strong) NSString *isCollect;

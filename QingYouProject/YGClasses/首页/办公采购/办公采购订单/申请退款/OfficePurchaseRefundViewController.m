@@ -25,6 +25,12 @@
 #import "YGActionSheetView.h"
 #import "AllOfficePurchaseDetailModel.h"
 
+#import "NSString+SQAttributeString.h"
+
+
+
+
+
 @interface OfficePurchaseRefundViewController ()<TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UITextViewDelegate>
 {
     NSMutableArray *_selectedPhotos;
@@ -56,7 +62,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.naviTitle = @"申请退款";
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem backItemWithimage:nil highImage:nil target:self action:@selector(rightBarButtonClick:) title:@"提交" normalColor:LDMainColor highColor:LDMainColor titleFont:LDFont(14)];
+    self.navigationItem.rightBarButtonItem = [self createBarbuttonWithNormalTitleString:@"提交" selectedTitleString:@"提交" selector:@selector(rightBarButtonClick:)];
     [self setupUI];
     // Do any additional setup after loading the view.
 }
@@ -178,7 +184,7 @@
     
     self.describe.text = [NSString stringWithFormat:@"最多能退回¥%@元，含发货邮费#%@",self.model.totalPrice,self.model.freight];
 
-    self.refundMoney.attributedText = [[NSString stringWithFormat:@"¥%@",self.model.totalPrice] ld_attributedStringFromNSString:[NSString stringWithFormat:@"¥%@",self.model.totalPrice] startLocation:1 forwardFont:[UIFont systemFontOfSize:12] backFont:[UIFont systemFontOfSize:17] forwardColor:kRedColor backColor:kRedColor];
+    self.refundMoney.attributedText = [[NSString stringWithFormat:@"¥%@",self.model.totalPrice] attributedStringFromNSString:[NSString stringWithFormat:@"¥%@",self.model.totalPrice] startLocation:1 forwardFont:[UIFont systemFontOfSize:12] backFont:[UIFont systemFontOfSize:17] forwardColor:kRedColor backColor:kRedColor];
 }
 
 //转换image数组存到本地然后返回路径数组

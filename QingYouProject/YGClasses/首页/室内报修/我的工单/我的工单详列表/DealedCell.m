@@ -9,6 +9,8 @@
 #import "DealedCell.h"
 #import "WaitToDealModel.h"
 
+
+
 @interface DealedCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageView;

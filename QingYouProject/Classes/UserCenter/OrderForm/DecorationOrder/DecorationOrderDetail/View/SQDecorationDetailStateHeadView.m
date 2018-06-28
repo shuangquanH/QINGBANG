@@ -36,7 +36,7 @@
 }
 
 - (CGSize)viewSize {
-    return CGSizeMake(kScreenW, KSCAL(110));
+    return CGSizeMake(KAPP_WIDTH, KSCAL(110));
 }
 
 @end

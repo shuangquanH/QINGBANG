@@ -250,7 +250,7 @@
 #pragma mark -
 - (WKInvoiceAddressAreaPicker *)areaPicker {
     if (!_areaPicker) {
-        _areaPicker = [[WKInvoiceAddressAreaPicker alloc] initWithFrame:CGRectMake(0, 0, kScreenW, KSCAL(600))];
+        _areaPicker = [[WKInvoiceAddressAreaPicker alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, KSCAL(600))];
         @weakify(self)
         _areaPicker.areaPickerBlock = ^(NSDictionary *addressDic) {
             @strongify(self)

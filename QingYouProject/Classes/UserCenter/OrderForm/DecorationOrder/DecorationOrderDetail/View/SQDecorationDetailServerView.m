@@ -111,7 +111,7 @@
             make.height.mas_equalTo(KSCAL(20));
         }];
         
-        CGFloat itemW = (kScreenW - 1) / 2.0;
+        CGFloat itemW = (KAPP_WIDTH - 1) / 2.0;
         UIBezierPath *contactPath = [UIBezierPath bezierPath];
         [contactPath moveToPoint:CGPointZero];
         [contactPath addLineToPoint:CGPointMake(itemW, 0)];
@@ -140,7 +140,7 @@
             make.height.mas_equalTo(KSCAL(20));
         }];
         
-        CGFloat itemW = kScreenW;
+        CGFloat itemW = KAPP_WIDTH;
         UIBezierPath *contactPath = [UIBezierPath bezierPath];
         [contactPath moveToPoint:CGPointZero];
         [contactPath addLineToPoint:CGPointMake(itemW, 0)];
@@ -160,7 +160,7 @@
 }
 
 - (CGSize)viewSize {
-    return CGSizeMake(kScreenW, KSCAL(98));
+    return CGSizeMake(KAPP_WIDTH, KSCAL(98));
 }
 
 @end

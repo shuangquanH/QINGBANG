@@ -6,9 +6,9 @@
 //  Copyright © 2017年 ccyouge. All rights reserved.
 //
 
-#import "LDBaseModel.h"
+#import "SQBaseModel.h"
 
-@interface AllOfficePurchaseModel : LDBaseModel
+@interface AllOfficePurchaseModel : SQBaseModel
 /** 订单类型 : 待付款,待发货,已发货,交易成功,退款中,退款成功,退款失败 */
 //@property (nonatomic,assign) int cellType;
 /** 订单号  */

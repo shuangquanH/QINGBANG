@@ -7,6 +7,10 @@
 //
 
 #import "IntegralView.h"
+#import "NSString+SQAttributeString.h"
+
+
+
 
 @interface IntegralView ()
 /** 左侧标语  */
@@ -26,15 +30,16 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.leftTitleLabel = [UILabel ld_labelWithTextColor:kBlackColor textAlignment:NSTextAlignmentLeft font:LDFont(14) numberOfLines:0];
+        
+        self.leftTitleLabel = [UILabel labelWithFont:14 textColor:kBlackColor textAlignment:NSTextAlignmentLeft];
         [self addSubview:self.leftTitleLabel];
         
-        self.detailTitleLabel = [UILabel ld_labelWithTextColor:kBlackColor textAlignment:NSTextAlignmentLeft font:LDFont(12) numberOfLines:0];
+        self.detailTitleLabel = [UILabel labelWithFont:12 textColor:kBlackColor textAlignment:NSTextAlignmentLeft];
         [self addSubview:self.detailTitleLabel];
         
-        self.lineTop = [[UIView alloc] initWithFrame:CGRectMake(LDHPadding, 0, self.ld_width - 2 * LDHPadding, 0.5)];
+        self.lineTop = [[UIView alloc] initWithFrame:CGRectMake(LDHPadding, 0, self.width - 2 * LDHPadding, 0.5)];
         [self addSubview:self.lineTop];
-        self.lineBottom = [[UIView alloc] initWithFrame:CGRectMake(LDHPadding, self.ld_height - 0.5, self.ld_width - 2 * LDHPadding, 0.5)];
+        self.lineBottom = [[UIView alloc] initWithFrame:CGRectMake(LDHPadding, self.height - 0.5, self.width - 2 * LDHPadding, 0.5)];
         [self addSubview:self.lineBottom];
         
         self.rightButton = [UIButton buttonWithType:UIButtonTypeCustom normalImage:@"nochoice_btn_gray" selectedImage:@"choice_btn_green" normalTitle:nil selectedTitle:nil normalTitleColor:nil selectedTitleColor:nil backGroundColor:kWhiteColor normalBackGroundImageStr:nil selectedBackGroundImageStr:nil titleFont:0];
@@ -82,7 +87,7 @@
     
     NSRange range = [detailTitle rangeOfString:@"￥"];
     
-    self.detailTitleLabel.attributedText = [detailTitle ld_attributedStringFromNSString:detailTitle startLocation:range.location forwardFont:LDFont(12) backFont:LDFont(12) forwardColor:LD9ATextColor backColor:LDFFTextColor];
+    self.detailTitleLabel.attributedText = [detailTitle attributedStringFromNSString:detailTitle startLocation:range.location forwardFont:LDFont(12) backFont:LDFont(12) forwardColor:LD9ATextColor backColor:LDFFTextColor];
    
 }
 @end

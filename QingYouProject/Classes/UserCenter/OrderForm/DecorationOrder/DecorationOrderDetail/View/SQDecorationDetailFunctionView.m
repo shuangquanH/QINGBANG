@@ -32,7 +32,7 @@
     switch (_orderState) {
         case 4:
         {//受理中、装修中
-            CGFloat itemW = (kScreenW - 1.0) / 2.0;
+            CGFloat itemW = (KAPP_WIDTH - 1.0) / 2.0;
             
             if (!_downContractBtn) {
                 _downContractBtn = [self setupButtonWithTitle:@"下载合同" withTag:0];
@@ -57,7 +57,7 @@
         case 5:
         {//已完成
             
-            CGFloat itemW = (kScreenW - 2.0) / 3.0;
+            CGFloat itemW = (KAPP_WIDTH - 2.0) / 3.0;
             
             if (!_downContractBtn) {
                 _downContractBtn = [self setupButtonWithTitle:@"下载合同" withTag:0];
@@ -90,7 +90,7 @@
 }
 
 - (CGSize)viewSize {
-    return CGSizeMake(kScreenW, KSCAL(98.0));
+    return CGSizeMake(KAPP_WIDTH, KSCAL(98.0));
 }
 
 - (UIButton *)setupButtonWithTitle:(NSString *)title withTag:(NSInteger)tag {

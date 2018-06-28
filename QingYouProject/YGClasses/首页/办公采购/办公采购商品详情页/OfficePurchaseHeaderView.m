@@ -7,6 +7,7 @@
 //
 
 #import "OfficePurchaseHeaderView.h"
+#import "NSString+SQAttributeString.h"
 
 @interface OfficePurchaseHeaderView()<SDCycleScrollViewDelegate>
 /** 轮播图  */
@@ -118,7 +119,7 @@
     self.goodsNameLabel.text = goodsName;
     self.deliveryLabel.text = [NSString stringWithFormat:@"快递:%@",deliveryPrice];
     if (price.length > 0) {
-        self.goodsPriceLabel.attributedText = [price ld_attributedStringFromNSString:price startLocation:1 forwardFont:LDFont(13) backFont:LDFont(15) forwardColor:LDFFTextColor backColor:LDFFTextColor];
+        self.goodsPriceLabel.attributedText = [price attributedStringFromNSString:price startLocation:1 forwardFont:LDFont(13) backFont:LDFont(15) forwardColor:LDFFTextColor backColor:LDFFTextColor];
     }else{
 
         LDLog(@"price为空")

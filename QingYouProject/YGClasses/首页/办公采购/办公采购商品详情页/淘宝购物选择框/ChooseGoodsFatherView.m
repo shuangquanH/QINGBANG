@@ -8,6 +8,9 @@
 
 #import "ChooseGoodsFatherView.h"
 #import "ChooseGoodsChildView.h"
+#import "NSString+SQAttributeString.h"
+
+
 
 @interface ChooseGoodsFatherView ()
 /** 移除遮盖Button  */
@@ -65,7 +68,7 @@
     
     self.price = price;   
     NSString * goodsPrice = [NSString stringWithFormat:@"￥%.2f",[self.price floatValue] * countInteger];
-    self.goodsPriceLabel.attributedText = [goodsPrice ld_attributedStringFromNSString:goodsPrice startLocation:1 forwardFont:LDFont(13) backFont:LDFont(15) forwardColor:kRedColor backColor:kRedColor];
+    self.goodsPriceLabel.attributedText = [goodsPrice attributedStringFromNSString:goodsPrice startLocation:1 forwardFont:LDFont(13) backFont:LDFont(15) forwardColor:kRedColor backColor:kRedColor];
 //    self.goodsTitleLabel.text = detailTitle;
 
 }
@@ -155,7 +158,7 @@
         price = price - [self.price floatValue];
     }
     NSString * goodsPrice = [NSString stringWithFormat:@"￥%.2f",price];
-    self.goodsPriceLabel.attributedText = [goodsPrice ld_attributedStringFromNSString:goodsPrice startLocation:1 forwardFont:LDFont(13) backFont:LDFont(15) forwardColor:kRedColor backColor:kRedColor];
+    self.goodsPriceLabel.attributedText = [goodsPrice attributedStringFromNSString:goodsPrice startLocation:1 forwardFont:LDFont(13) backFont:LDFont(15) forwardColor:kRedColor backColor:kRedColor];
  
     
     self.goodsCountTextField.text = [NSString stringWithFormat:@"%ld",(long)countInteger];
@@ -234,7 +237,8 @@
         make.top.offset(headerBackViewY);
     }];
    
-    self.goodsNameLabel = [UILabel ld_labelWithTextColor:LD16TextColor textAlignment:NSTextAlignmentLeft font:LDFont(15) numberOfLines:2];
+    
+    self.goodsNameLabel = [UILabel labelWithFont:15 textColor:LD16TextColor textAlignment:NSTextAlignmentLeft];
     [self.headerBackView addSubview:self.goodsNameLabel];
     self.goodsNameLabel.hidden = YES;
     self.goodsNameLabel.frame = CGRectMake(LDHPadding, LDVPadding, kScreenW - 2 * LDHPadding, 0);

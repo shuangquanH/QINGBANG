@@ -6,9 +6,9 @@
 //  Copyright © 2017年 ccyouge. All rights reserved.
 //
 
-#import "LDBaseModel.h"
+#import "SQBaseModel.h"
 
-@interface ComplaintsDetailModel : LDBaseModel
+@interface ComplaintsDetailModel : SQBaseModel
 @property (nonatomic,strong) NSString * ID;
 @property (nonatomic,strong) NSString * message;
 @property (nonatomic,strong) NSString * createDate;

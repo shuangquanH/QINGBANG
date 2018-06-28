@@ -6,7 +6,7 @@
 //  Copyright © 2017年 ccyouge. All rights reserved.
 //
 
-#import "LDBaseViewCell.h"
+#import "SQBaseTableViewCell.h"
 
 @protocol PendingPaymentOfficePurchaseCellDelegate <NSObject>//协议
 - (void)pendingPaymentOfficePurchaseCellCancelBtnClick:(UIButton *)btn WithRow:(int)row;//协议方法
@@ -14,7 +14,7 @@
 @end
 
 @class AllOfficePurchaseModel;
-@interface PendingPaymentOfficePurchaseCell : LDBaseViewCell
+@interface PendingPaymentOfficePurchaseCell : SQBaseTableViewCell
 - (void)reloadData;
 /** AllOfficePurchaseModel  */
 @property (nonatomic,strong) AllOfficePurchaseModel * model;

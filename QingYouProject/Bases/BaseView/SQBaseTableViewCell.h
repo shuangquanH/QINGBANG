@@ -22,4 +22,7 @@
  */
 + (instancetype)nibCellWithTableView:(UITableView *)tableView;
 
+
+- (UIViewController *)getCellViewController;;
+
 @end

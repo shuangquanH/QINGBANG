@@ -8,6 +8,10 @@
 
 #import "ChooseGoodsChildView.h"
 
+
+
+
+
 @interface ChooseGoodsChildView ()
 /** 选中Button  */
 @property (nonatomic,strong) UIButton * selectButton;
@@ -82,8 +86,8 @@
         //计算选项Button Size
         NSDictionary * dict = [NSDictionary dictionaryWithObject:LDFont(13) forKey:NSFontAttributeName];
         CGSize tagButtonSize = [tagNameString sizeWithAttributes:dict];
-        tagButton.ld_width = tagButtonSize.width + 15;
-        tagButton.ld_height = tagButtonSize.height + 12;
+        tagButton.width = tagButtonSize.width + 15;
+        tagButton.height = tagButtonSize.height + 12;
 
         //计算选项Button X Y
         //如果该Button的宽度 + 上一个 button的宽度大于屏幕宽 = 换行
@@ -105,11 +109,11 @@
 
             }else {
                 
-                tagButton.x += contentViewRowW - tagButton.ld_width;
+                tagButton.x += contentViewRowW - tagButton.width;
             }
         }
         
-        tagButton.y += rowCount * (tagButton.ld_height + LDVPadding) + LDVPadding;
+        tagButton.y += rowCount * (tagButton.height + LDVPadding) + LDVPadding;
         
         contentViewH = CGRectGetMaxY(tagButton.frame) + LDVPadding;
         
@@ -124,9 +128,9 @@
     
     }
     
-    self.contentView.ld_height = contentViewH;
-    self.backView.ld_height = self.contentView.ld_height + CGRectGetMaxY(self.titleLabel.frame);
-    self.ld_height = self.backView.height + 0.5;
+    self.contentView.height = contentViewH;
+    self.backView.height = self.contentView.height + CGRectGetMaxY(self.titleLabel.frame);
+    self.height = self.backView.height + 0.5;
     
     [self reloadData];
 //    self.backgroundColor = kYellowColor;

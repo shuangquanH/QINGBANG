@@ -89,7 +89,7 @@ static NSString * const LDOfficePurchaseCollectionViewCellId = @"LDOfficePurchas
         layOut.minimumLineSpacing = 15;
         layOut.minimumInteritemSpacing = 15;
         
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, kScreenH - YGNaviBarHeight - YGStatusBarHeight - YGNaviBarHeight - floorf(kScreenW / Banner_W_H_Scale)) collectionViewLayout:layOut];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, KAPP_HEIGHT - YGNaviBarHeight - YGStatusBarHeight - YGNaviBarHeight - floorf(KAPP_WIDTH / 2)) collectionViewLayout:layOut];
 //        _collectionView.contentInset = UIEdgeInsetsMake(2, LDHPadding,2 * LDVPadding, LDVPadding);
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
@@ -98,7 +98,7 @@ static NSString * const LDOfficePurchaseCollectionViewCellId = @"LDOfficePurchas
 //        [self refreshActionWithIsRefreshHeaderAction:YES];
         [self.collectionView.mj_header beginRefreshing];
         
-        _collectionView.backgroundColor = kWhiteColor;
+        _collectionView.backgroundColor = KCOLOR_WHITE;
         
         [_collectionView registerNib:[UINib nibWithNibName:@"OfficePurchaseCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:LDOfficePurchaseCollectionViewCellId];
         

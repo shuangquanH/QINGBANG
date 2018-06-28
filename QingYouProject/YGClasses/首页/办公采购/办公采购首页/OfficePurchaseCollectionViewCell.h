@@ -6,9 +6,9 @@
 //  Copyright © 2017年 ccyouge. All rights reserved.
 //
 
-#import "LDBaseCollectionViewCell.h"
+#import "SQBaseTableViewCell.h"
 @class OfficePurchaseModel;
-@interface OfficePurchaseCollectionViewCell : LDBaseCollectionViewCell
+@interface OfficePurchaseCollectionViewCell : SQBaseTableViewCell
 /** model  */
 @property (nonatomic,strong) OfficePurchaseModel * model;
 @end

@@ -4,7 +4,7 @@
 //
 //  Created by Mac on 17/5/4.
 //  Copyright © 2017年 Mac. All rights reserved.
-//
+// 文字轮播
 
 #import <UIKit/UIKit.h>
 

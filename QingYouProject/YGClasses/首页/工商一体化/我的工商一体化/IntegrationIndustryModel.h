@@ -6,9 +6,9 @@
 //  Copyright © 2017年 ccyouge. All rights reserved.
 //
 
-#import "LDBaseModel.h"
+#import "SQBaseModel.h"
 
-@interface IntegrationIndustryModel : LDBaseModel
+@interface IntegrationIndustryModel : SQBaseModel
 @property (nonatomic, strong) NSString *refundReason;
 @property (nonatomic, strong) NSString *addressPhone;
 @property (nonatomic, strong) NSString *refundDate;

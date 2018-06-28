@@ -131,9 +131,9 @@
 
 - (CGSize)viewSize {
     if (self.isInDetail) {
-        return CGSizeMake(kScreenW, KSCAL(78));
+        return CGSizeMake(KAPP_WIDTH, KSCAL(78));
     }
-    return CGSizeMake(kScreenW, KSCAL(110));
+    return CGSizeMake(KAPP_WIDTH, KSCAL(110));
 }
 
 @end

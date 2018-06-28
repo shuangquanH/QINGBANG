@@ -6,9 +6,9 @@
 //  Copyright © 2017年 ccyouge. All rights reserved.
 //
 
-#import "LDBaseModel.h"
+#import "SQBaseModel.h"
 
-@interface OfficePurchaseDetailModel : LDBaseModel
+@interface OfficePurchaseDetailModel : SQBaseModel
 ///** 用户头像  */
 //@property (nonatomic,strong) NSString * imageUrl;
 ///** 用户名称  */

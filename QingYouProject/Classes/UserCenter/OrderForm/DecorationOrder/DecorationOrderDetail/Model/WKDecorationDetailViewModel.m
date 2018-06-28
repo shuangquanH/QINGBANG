@@ -21,7 +21,7 @@
 @end
 @implementation WKDecorationDetailSectionView
 - (void)configOrderDetailInfo:(WKDecorationOrderDetailModel *)orderDetailInfo {}
-- (CGSize)viewSize { return CGSizeMake(kScreenW, KSCAL(20)); }
+- (CGSize)viewSize { return CGSizeMake(KAPP_WIDTH, KSCAL(20)); }
 @end
 
 @interface WKDecorationDetailViewModel()<decorationOrderCellDelegate>

@@ -6,14 +6,14 @@
 //  Copyright © 2017年 ccyouge. All rights reserved.
 //
 
-#import "LDBaseViewCell.h"
+#import "SQBaseTableViewCell.h"
 @class AllOfficePurchaseModel;
 
 @protocol TransactionSuccessCellDelegate <NSObject>//协议
 - (void)transactionSuccessCellDeleteWithRow:(int)row;//协议方法
 @end
 
-@interface TransactionSuccessCell : LDBaseViewCell
+@interface TransactionSuccessCell : SQBaseTableViewCell
 /** AllOfficePurchaseModel  */
 @property (nonatomic,strong) AllOfficePurchaseModel * model;
 @property (nonatomic, assign) int row;

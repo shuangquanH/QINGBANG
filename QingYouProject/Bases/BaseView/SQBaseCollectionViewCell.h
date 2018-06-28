@@ -22,4 +22,7 @@
  */
 + (instancetype)nibCellWithCollectionView:(UICollectionView *)collectionView forIndexPath:(NSIndexPath *)indexPath;
 
+
+- (UIViewController *)getCellViewController;
+
 @end

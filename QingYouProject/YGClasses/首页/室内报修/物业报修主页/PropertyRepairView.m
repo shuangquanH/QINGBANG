@@ -8,10 +8,11 @@
 
 #import "PropertyRepairView.h"
 
+
 @interface PropertyRepairView ()
 
 /** 头部imageView  */
-@property (nonatomic,strong) UIImageView * headerImageView;
+@property (nonatomic,strong) SQBaseImageView * headerImageView;
 /** 底部label  */
 @property (nonatomic,strong) UILabel * bottomLabel;
 @end
@@ -21,7 +22,7 @@
 - (void)reloadDataWithImage:(NSString *)url andTitle:(NSString *)title{
     
     self.bottomLabel.text = title;
-    self.headerImageView.image = LDImage(url);
+    [self.headerImageView setImageWithUrl:url];
 }
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -30,8 +31,8 @@
         self.layer.cornerRadius = 5;
         self.layer.masksToBounds = YES;
         
-        self.backgroundColor = kWhiteColor;
-        self.headerImageView = [[UIImageView alloc] init];
+        self.backgroundColor = KCOLOR_WHITE;
+        self.headerImageView = [[SQBaseImageView alloc] init];
 //        self.headerImageView.layer.cornerRadius = 30;
 //        self.headerImageView.layer.masksToBounds = YES;
         [self addSubview:self.headerImageView];

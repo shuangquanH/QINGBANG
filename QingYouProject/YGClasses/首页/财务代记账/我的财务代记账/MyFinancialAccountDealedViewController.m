@@ -138,25 +138,25 @@
     switch (type) {
         case 3:
         {
-        UILabel *processingLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, LDVPadding, YGScreenWidth - 30, 20)];
+        UILabel *processingLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 10, YGScreenWidth - 30, 20)];
         processingLabel.textColor = colorWithPlaceholder;
         processingLabel.font = [UIFont systemFontOfSize:14.0];
             processingLabel.text = [NSString stringWithFormat:@"您的服务正在受理中！ %@",model.beginDate];
         [footView addSubview:processingLabel];
         
-        UILabel *processedLabel = [[UILabel alloc]initWithFrame:CGRectMake(15,processingLabel.y+processingLabel.height +  LDVPadding, YGScreenWidth - 30, 20)];
+        UILabel *processedLabel = [[UILabel alloc]initWithFrame:CGRectMake(15,processingLabel.y+processingLabel.height +  10, YGScreenWidth - 30, 20)];
         processedLabel.textColor = colorWithPlaceholder;
         processedLabel.font = [UIFont systemFontOfSize:14.0];
             processedLabel.text = [NSString stringWithFormat:@"您的服务已经处理完！ %@",model.endDate];
         [footView addSubview:processedLabel];
         
         
-        UILabel *lineTwo = [[UILabel alloc]initWithFrame:CGRectMake(0, processedLabel.y +processedLabel.height + LDVPadding, YGScreenWidth, 1)];
+        UILabel *lineTwo = [[UILabel alloc]initWithFrame:CGRectMake(0, processedLabel.y +processedLabel.height + 10, YGScreenWidth, 1)];
         lineTwo.backgroundColor = colorWithLine;
         [footView addSubview:lineTwo];
         
         UIButton *judgeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        judgeButton.frame = CGRectMake(YGScreenWidth - 15 - 90, lineTwo.y + lineTwo.height + LDVPadding, 90, 30);
+        judgeButton.frame = CGRectMake(YGScreenWidth - 15 - 90, lineTwo.y + lineTwo.height + 10, 90, 30);
         [judgeButton setTitle:@"立即评价" forState:UIControlStateNormal];
         [judgeButton setTitleColor:colorWithMainColor forState:UIControlStateNormal];
         judgeButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
@@ -170,7 +170,7 @@
         [footView addSubview:judgeButton];
         
         UIButton *delButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        delButton.frame = CGRectMake(YGScreenWidth - 15 - 90*2  -10, lineTwo.y + lineTwo.height + LDVPadding, 90, 30);
+        delButton.frame = CGRectMake(YGScreenWidth - 15 - 90*2  -10, lineTwo.y + lineTwo.height + 10, 90, 30);
         [delButton setTitle:@"删除订单" forState:UIControlStateNormal];
         [delButton setTitleColor:colorWithBlack forState:UIControlStateNormal];
         delButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
@@ -184,27 +184,27 @@
             if([model.isComment isEqualToString:@"1"])
             {
                 judgeButton.hidden =YES;
-                delButton.frame = CGRectMake(YGScreenWidth - 15 - 90, lineTwo.y + lineTwo.height + LDVPadding, 90, 30);
+                delButton.frame = CGRectMake(YGScreenWidth - 15 - 90, lineTwo.y + lineTwo.height + 10, 90, 30);
             }
         
     }
             break;
     case 6:
     {
-            CGFloat LabelW = [UILabel calculateWidthWithString:@"退款原因：" textFont:leftFont numerOfLines:1].width;
-        UILabel *reasonLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, line.y + LDVPadding,LabelW, 25)];
+            CGFloat LabelW = [UILabel calculateWidthWithString:@"退款原因：" textFont:[UIFont systemFontOfSize:15] numerOfLines:1].width;
+        UILabel *reasonLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, line.y + 10,LabelW, 25)];
         reasonLabel.textColor = colorWithBlack;
         reasonLabel.font = [UIFont systemFontOfSize:14.0];
         reasonLabel.text = @"退款原因：";
         
-        UILabel *reasonDetailLabel = [[UILabel alloc]initWithFrame:CGRectMake(reasonLabel.x +reasonLabel.width , line.y + LDVPadding, YGScreenWidth - reasonLabel.x +reasonLabel.width - 2*LDHPadding , 25)];
+        UILabel *reasonDetailLabel = [[UILabel alloc]initWithFrame:CGRectMake(reasonLabel.x +reasonLabel.width , line.y + 10, YGScreenWidth - reasonLabel.x +reasonLabel.width - 2*10 , 25)];
         reasonDetailLabel.textColor = colorWithPlaceholder;
         reasonDetailLabel.font = [UIFont systemFontOfSize:14.0];
         reasonDetailLabel.text = model.refundReason;
         
         [footView addSubview:reasonDetailLabel];
         
-        UILabel *reasonTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(reasonDetailLabel.x , reasonDetailLabel.y + reasonDetailLabel.height, YGScreenWidth - reasonLabel.x +reasonLabel.width - 2*LDHPadding , 25)];
+        UILabel *reasonTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(reasonDetailLabel.x , reasonDetailLabel.y + reasonDetailLabel.height, YGScreenWidth - reasonLabel.x +reasonLabel.width - 2*10 , 25)];
         reasonTimeLabel.textColor = colorWithPlaceholder;
         reasonTimeLabel.font = [UIFont systemFontOfSize:14.0];
         reasonTimeLabel.text = model.refundDate;
@@ -215,12 +215,12 @@
         sateLabel.text = @"申请状态：";
         [footView addSubview:sateLabel];
         
-        UILabel *staeDetailLabel = [[UILabel alloc]initWithFrame:CGRectMake(reasonLabel.x +reasonLabel.width , reasonTimeLabel.y + reasonTimeLabel.height, YGScreenWidth - reasonLabel.x +reasonLabel.width - 2*LDHPadding , 25)];
+        UILabel *staeDetailLabel = [[UILabel alloc]initWithFrame:CGRectMake(reasonLabel.x +reasonLabel.width , reasonTimeLabel.y + reasonTimeLabel.height, YGScreenWidth - reasonLabel.x +reasonLabel.width - 2*10 , 25)];
         staeDetailLabel.textColor = colorWithPlaceholder;
         staeDetailLabel.font = [UIFont systemFontOfSize:14.0];
         staeDetailLabel.text = @"您的申请已受理，正在退款中！";
         
-        UILabel *stateTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(reasonDetailLabel.x , staeDetailLabel.y + staeDetailLabel.height, YGScreenWidth - reasonLabel.x +reasonLabel.width - 2*LDHPadding , 25)];
+        UILabel *stateTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(reasonDetailLabel.x , staeDetailLabel.y + staeDetailLabel.height, YGScreenWidth - reasonLabel.x +reasonLabel.width - 2*10 , 25)];
         stateTimeLabel.textColor = colorWithPlaceholder;
         stateTimeLabel.font = [UIFont systemFontOfSize:14.0];
         stateTimeLabel.text = model.refundProcessingDate;
@@ -231,22 +231,22 @@
         returnMoneyLabel.text = @"退款金额：";
         [footView addSubview:returnMoneyLabel];
 
-        UILabel *returnMoney = [[UILabel alloc]initWithFrame:CGRectMake(reasonLabel.x +reasonLabel.width , stateTimeLabel.y + stateTimeLabel.height, YGScreenWidth - reasonLabel.x +reasonLabel.width - 2*LDHPadding , 25)];
+        UILabel *returnMoney = [[UILabel alloc]initWithFrame:CGRectMake(reasonLabel.x +reasonLabel.width , stateTimeLabel.y + stateTimeLabel.height, YGScreenWidth - reasonLabel.x +reasonLabel.width - 2*10 , 25)];
         returnMoney.textColor = colorWithPlaceholder;
         returnMoney.font = [UIFont systemFontOfSize:14.0];
         returnMoney.text = [NSString stringWithFormat:@"¥%@",model.cost];
         
-        UILabel *returnTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(reasonDetailLabel.x , returnMoney.y + returnMoney.height, YGScreenWidth - reasonLabel.x +reasonLabel.width - 2*LDHPadding , 25)];
+        UILabel *returnTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(reasonDetailLabel.x , returnMoney.y + returnMoney.height, YGScreenWidth - reasonLabel.x +reasonLabel.width - 2*10 , 25)];
         returnTimeLabel.textColor = colorWithPlaceholder;
         returnTimeLabel.font = [UIFont systemFontOfSize:14.0];
         returnTimeLabel.text = model.refundSuccessDate;
         
-        UILabel *lineTwo = [[UILabel alloc]initWithFrame:CGRectMake(0, returnTimeLabel.y +returnTimeLabel.height + LDVPadding, YGScreenWidth, 1)];
+        UILabel *lineTwo = [[UILabel alloc]initWithFrame:CGRectMake(0, returnTimeLabel.y +returnTimeLabel.height + 10, YGScreenWidth, 1)];
         lineTwo.backgroundColor = colorWithLine;
         [footView addSubview:lineTwo];
         
         UIButton *delButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        delButton.frame = CGRectMake(YGScreenWidth - 15 - 90, lineTwo.y + lineTwo.height + LDVPadding, 90, 30);
+        delButton.frame = CGRectMake(YGScreenWidth - 15 - 90, lineTwo.y + lineTwo.height + 10, 90, 30);
         [delButton setTitle:@"删除订单" forState:UIControlStateNormal];
         [delButton setTitleColor:colorWithBlack forState:UIControlStateNormal];
         delButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
@@ -293,7 +293,7 @@ static NSString * const MyFinancialAccountTableViewCellID = @"MyFinancialAccount
 
 - (UITableView *)tableView{
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, self.view.height) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, self.view.height) style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         //        _tableView.estimatedRowHeight = 120;

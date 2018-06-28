@@ -31,7 +31,7 @@
     self.view.backgroundColor = colorWithTable;
     self.naviTitle = @"立即评价";
     // 右边按钮
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem backItemWithimage:nil highImage:nil target:self action:@selector(rightBarButtonClick:) title:@"提交" normalColor:LDMainColor highColor:LDMainColor titleFont:LDFont(14)];
+    self.navigationItem.rightBarButtonItem = [self createBarbuttonWithNormalTitleString:@"提交" selectedTitleString:@"提交" selector:@selector(rightBarButtonClick:)];
     
     
     //    绘制UI

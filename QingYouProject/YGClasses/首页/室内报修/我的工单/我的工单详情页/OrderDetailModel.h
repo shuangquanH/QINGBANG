@@ -6,9 +6,9 @@
 //  Copyright © 2017年 ccyouge. All rights reserved.
 //
 
-#import "LDBaseModel.h"
+#import "SQBaseModel.h"
 
-@interface OrderDetailModel : LDBaseModel
+@interface OrderDetailModel : SQBaseModel
 /** 创建时间  */
 @property (nonatomic,strong) NSString * createDate;
 /** 更新时间 */

@@ -1,14 +1,15 @@
 //
-//  UIButton+LDButton.m
+//  UIButton+SQInstance.m
 //  QingYouProject
 //
-//  Created by LDSmallCat on 2017/10/9.
-//  Copyright © 2017年 ccyouge. All rights reserved.
+//  Created by qwuser on 2018/6/28.
+//  Copyright © 2018年 ccyouge. All rights reserved.
 //
 
-#import "UIButton+LDButton.h"
+#import "UIButton+SQInstance.h"
 
-@implementation UIButton (LDButton)
+@implementation UIButton (SQInstance)
+
 + (instancetype)buttonWithType:(UIButtonType) buttonType normalImage:(NSString *)normalImageStr selectedImage:(NSString *)selectedImageStr normalTitle:(NSString *)normalTitle selectedTitle:(NSString *)selectedTitle normalTitleColor:(UIColor *)normalTitleColor selectedTitleColor:(UIColor *)selectedTitleColor backGroundColor:(UIColor *)backGroundColor normalBackGroundImageStr:(NSString *)normalBackGroundImageStr selectedBackGroundImageStr:(NSString *)selectedBackGroundImageStr titleFont:(CGFloat)fontNum{
     
     
@@ -66,9 +67,10 @@
     UIButton *button = [UIButton buttonWithTitle:title titleFont:titleFont titleColor:titleColor];
     [button setImage:[UIImage imageNamed:normalImage] forState:UIControlStateNormal];
     if (highlightImage) {
-      [button setImage:[UIImage imageNamed:highlightImage] forState:UIControlStateHighlighted];
+        [button setImage:[UIImage imageNamed:highlightImage] forState:UIControlStateHighlighted];
     }
     return button;
 }
+
 
 @end

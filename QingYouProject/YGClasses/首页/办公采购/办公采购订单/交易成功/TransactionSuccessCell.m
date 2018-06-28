@@ -15,6 +15,10 @@
 #import "TotalPrice.h"//合计多少钱
 #import "AllOfficePurchaseModel.h"//订单模型
 
+
+
+
+
 @interface TransactionSuccessCell ()
 /** 订单号,订单状态  */
 @property (nonatomic,strong) DeliveryWayView * orderNumberAndStaus;

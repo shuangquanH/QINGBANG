@@ -8,7 +8,7 @@
 
 #ifndef YoGeeLiveShop_pch
 #define YoGeeLiveShop_pch
-#import "LDPrefix.h"
+//#import "LDPrefix.h"
 #import "UIView+LG.h"
 #import "YGCommon.h"
 #import "AppDelegate.h"
@@ -40,6 +40,10 @@
 #import "SQBaseCollectionView.h"
 #import "SQBaseCollectionViewCell.h"
 #import "SQRequest.h"
+
+#import "UIButton+SQInstance.h"
+#import "UILabel+Factory.h"
+
 
 #import "UILabel+Factory.h"
 #import "RACEXTScope.h"

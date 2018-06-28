@@ -4,7 +4,7 @@
 //
 //  Created by Bartosz Ciechanowski on 23.12.2012.
 //  Copyright (c) 2012 Bartosz Ciechanowski. All rights reserved.
-//
+// 动画效果
 
 #import <UIKit/UIKit.h>
 

@@ -7,6 +7,7 @@
 //
 
 #import "FinancialAccountingCell.h"
+#import "NSString+SQAttributeString.h"
 
 @implementation FinancialAccountingCell
 {
@@ -35,14 +36,14 @@
     {
         _titleLabel.text = model.financeName;
         NSString *desStr = [NSString stringWithFormat:@"¥%@",model.financePrice];
-        _describeLabel.attributedText = [desStr ld_attributedStringFromNSString:desStr startLocation:0 forwardFont:[UIFont systemFontOfSize:YGFontSizeSmallThree] backFont:[UIFont systemFontOfSize:YGFontSizeBigOne] forwardColor:colorWithOrangeColor backColor:colorWithOrangeColor];
+        _describeLabel.attributedText = [desStr attributedStringFromNSString:desStr startLocation:0 forwardFont:[UIFont systemFontOfSize:YGFontSizeSmallThree] backFont:[UIFont systemFontOfSize:YGFontSizeBigOne] forwardColor:colorWithOrangeColor backColor:colorWithOrangeColor];
         [_leftImageView sd_setImageWithURL:[NSURL URLWithString:model.financeImg] placeholderImage:YGDefaultImgFour_Three];
     }
     else
     {
         _titleLabel.text = model.commerceName;
         NSString *desStr = [NSString stringWithFormat:@"¥%@",model.commercePrice];
-        _describeLabel.attributedText = [desStr ld_attributedStringFromNSString:desStr startLocation:0 forwardFont:[UIFont systemFontOfSize:YGFontSizeSmallThree] backFont:[UIFont systemFontOfSize:YGFontSizeBigOne] forwardColor:colorWithOrangeColor backColor:colorWithOrangeColor];
+        _describeLabel.attributedText = [desStr attributedStringFromNSString:desStr startLocation:0 forwardFont:[UIFont systemFontOfSize:YGFontSizeSmallThree] backFont:[UIFont systemFontOfSize:YGFontSizeBigOne] forwardColor:colorWithOrangeColor backColor:colorWithOrangeColor];
         [_leftImageView sd_setImageWithURL:[NSURL URLWithString:model.commerceImg] placeholderImage:YGDefaultImgFour_Three];
     }
 

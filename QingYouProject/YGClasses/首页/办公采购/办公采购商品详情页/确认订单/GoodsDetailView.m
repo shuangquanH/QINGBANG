@@ -8,6 +8,20 @@
 
 #import "GoodsDetailView.h"
 
+
+
+//刷新LDTextView数据
+#define  ReloadLDTextViewData @"ReloadLDTextViewData"
+#define LDManagerBannerImage @"1" //轮播图占位图
+#define Banner_W_H_Scale 2   //轮播图比例
+#define LDHPadding  10.0
+#define LDVPadding  10.0
+#define kScreenWidthRatio  (kScreenW / 414.0)
+#define kScreenHeightRatio (kScreenH / 736.0)
+#define AdaptedWidth(x)  floorf((x) * kScreenWidthRatio)
+#define AdaptedHeight(x) floorf((x) * kScreenHeightRatio)
+#define AdaptedFont(x)     [UIFont systemFontOfSize:AdaptedWidth(x)]
+
 @interface GoodsDetailView ()
 
 /** 商品图片  */
@@ -39,7 +53,8 @@
             make.width.height.offset(80);
         }];
         //商品价格
-        self.goodsPrice = [UILabel ld_labelWithTextColor:kBlackColor textAlignment:NSTextAlignmentRight font:LDFont(12) numberOfLines:1];
+        
+        self.goodsPrice = [UILabel labelWithFont:12 textColor:kBlackColor textAlignment:NSTextAlignmentRight];
         [self addSubview:self.goodsPrice];
         [self.goodsPrice mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.offset(-LDHPadding);
@@ -47,7 +62,7 @@
         }];
         
         //商品名称
-        self.goodsNamelabel = [UILabel ld_labelWithTextColor:kBlackColor textAlignment:NSTextAlignmentLeft font:LDFont(14) numberOfLines:2];
+        self.goodsNamelabel = [UILabel labelWithFont:14 textColor:kBlackColor textAlignment:NSTextAlignmentLeft];
         [self addSubview:self.goodsNamelabel];
         [self.goodsNamelabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.goodsImageView.mas_right).offset(LDHPadding);
@@ -55,7 +70,7 @@
             make.top.equalTo(self.goodsPrice);
         }];
         //商品数量
-        self.goodsCount = [UILabel ld_labelWithTextColor:LD9ATextColor textAlignment:NSTextAlignmentRight font:LDFont(12) numberOfLines:1];
+        self.goodsCount = [UILabel labelWithFont:12 textColor:kBlackColor textAlignment:NSTextAlignmentRight];
         [self addSubview:self.goodsCount];
         [self.goodsCount mas_makeConstraints:^(MASConstraintMaker *make) {
             
@@ -63,7 +78,7 @@
             make.bottom.equalTo(self.goodsImageView).offset(-LDVPadding - 4);
         }];
         //商品规格
-        self.goodsRule = [UILabel ld_labelWithTextColor:LD9ATextColor textAlignment:NSTextAlignmentLeft font:LDFont(12) numberOfLines:2];
+        self.goodsRule = [UILabel labelWithFont:12 textColor:kBlackColor textAlignment:NSTextAlignmentRight];
         [self addSubview:self.goodsRule];
         [self.goodsRule mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.goodsNamelabel);

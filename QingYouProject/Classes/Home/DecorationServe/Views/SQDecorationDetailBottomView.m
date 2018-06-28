@@ -40,11 +40,11 @@
         contactBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [contactBtn setTitle:@"咨询" forState:UIControlStateNormal];
         contactBtn.titleLabel.font = KFONT(20);
-        contactBtn.titleLabel.textColor = kGrayColor;
+        contactBtn.titleLabel.textColor = kCOLOR_666;
         [contactBtn setImage:[UIImage imageNamed:@"Details_page_tab__icon2"] forState:UIControlStateNormal];
         [contactBtn setImage:[UIImage imageNamed:@"Details_page_tab__icon2_down"] forState:UIControlStateSelected];
         [self addSubview:contactBtn];
-        [contactBtn setTitleColor:kGrayColor forState:UIControlStateNormal];
+        [contactBtn setTitleColor:kCOLOR_666 forState:UIControlStateNormal];
         
         [contactBtn sq_setImagePosition:SQImagePositionTop spacing:2];
         
@@ -72,7 +72,7 @@
         payButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //        [payButton setBackgroundImage:[UIImage imageNamed:@"Details_page_tab_but_nor"] forState:UIControlStateNormal];
         [payButton setTitle:@"支付定金" forState:UIControlStateNormal];
-        [payButton setTitleColor:kWhiteColor forState:UIControlStateNormal];
+        [payButton setTitleColor:KCOLOR_WHITE forState:UIControlStateNormal];
         payButton.titleLabel.font = KFONT(30);
         [self addSubview:payButton];
         

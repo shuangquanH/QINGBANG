@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OrderDeatilBottomPictureCollectionViewCell : LDBaseCollectionViewCell
+@interface OrderDeatilBottomPictureCollectionViewCell : SQBaseCollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *pictureView;
 

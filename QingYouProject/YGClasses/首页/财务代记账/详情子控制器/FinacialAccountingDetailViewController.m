@@ -530,7 +530,6 @@
             [self configUI];
         } failure:^(NSError *error) {
             
-            LDLog(@"%@",error);
         }];
     }
     else
@@ -559,7 +558,6 @@
             
         } failure:^(NSError *error) {
             
-            LDLog(@"%@",error);
         }];
     }
 

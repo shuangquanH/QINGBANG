@@ -1,15 +1,17 @@
 //
-//  NSString+LDAttributedString.m
+//  NSString+SQAttributeString.m
 //  QingYouProject
 //
-//  Created by LDSmallCat on 2017/9/25.
-//  Copyright © 2017年 ccyouge. All rights reserved.
+//  Created by qwuser on 2018/6/28.
+//  Copyright © 2018年 ccyouge. All rights reserved.
 //
 
-#import "NSString+LDAttributedString.h"
+#import "NSString+SQAttributeString.h"
 
-@implementation NSString (LDAttributedString)
-- (NSAttributedString *)ld_attributedStringFromNSString:(NSString *)normalString startLocation:(NSInteger)location forwardFont:(UIFont *)forwardFont backFont:(UIFont *)backFont forwardColor:(UIColor *)forwardColor backColor:(UIColor *)backColor{
+@implementation NSString (SQAttributeString)
+
+
+- (NSAttributedString *)attributedStringFromNSString:(NSString *)normalString startLocation:(NSInteger)location forwardFont:(UIFont *)forwardFont backFont:(UIFont *)backFont forwardColor:(UIColor *)forwardColor backColor:(UIColor *)backColor{
     
     NSAssert(location < normalString.length,@"normalString字符串的长度要大于 startLocation");
     
@@ -29,7 +31,7 @@
                         range:NSMakeRange(0,location)];
     }
     
-
+    
     //后段文字 设置 : Font 和 Color
     [attrStr addAttribute:NSFontAttributeName
                     value:backFont
@@ -43,7 +45,7 @@
     return attrStr;
     
 }
--(NSAttributedString *)ld_getAttributedStringWithString:(NSString *)string lineSpace:(CGFloat)lineSpace {
+-(NSAttributedString *)getAttributedStringWithString:(NSString *)string lineSpace:(CGFloat)lineSpace {
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:string];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineSpacing = lineSpace; // 调整行间距

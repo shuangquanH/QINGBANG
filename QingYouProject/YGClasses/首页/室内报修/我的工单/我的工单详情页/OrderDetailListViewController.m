@@ -11,6 +11,22 @@
 #import "OrderDeatilBottomPictureView.h"//底部图片展示CollectionView
 #import "OrderDetailModel.h"
 
+
+//刷新LDTextView数据
+#define  ReloadLDTextViewData @"ReloadLDTextViewData"
+#define LDManagerBannerImage @"1" //轮播图占位图
+#define Banner_W_H_Scale 2   //轮播图比例
+#define LDHPadding  10.0
+#define LDVPadding  10.0
+#define kScreenWidthRatio  (kScreenW / 414.0)
+#define kScreenHeightRatio (kScreenH / 736.0)
+#define AdaptedWidth(x)  floorf((x) * kScreenWidthRatio)
+#define AdaptedHeight(x) floorf((x) * kScreenHeightRatio)
+#define AdaptedFont(x)     [UIFont systemFontOfSize:AdaptedWidth(x)]
+
+
+
+
 @interface OrderDetailListViewController ()<UITextViewDelegate>
 /** 图片底部CollectionView  */
 @property (nonatomic,strong) OrderDeatilBottomPictureView * bottomPictureView;
@@ -73,7 +89,7 @@
 - (void)setupNav{
     
     // 右边按钮
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem backItemWithimage:nil highImage:nil target:self action:@selector(rightBarButtonClick:) title:@"提交" normalColor:LDMainColor highColor:LDMainColor titleFont:LDFont(14)];
+    self.navigationItem.rightBarButtonItem = [self createBarbuttonWithNormalTitleString:@"提交" selectedTitleString:@"提交" selector:@selector(rightBarButtonClick:)];
     
 }
 #pragma mark - 导航栏右侧按钮点击
@@ -154,7 +170,7 @@
     
     
     //订单状态
-    self.orderStatusDetailOne = [UILabel ld_labelWithTextColor:kBlackColor textAlignment:NSTextAlignmentLeft font:LDFont(13) numberOfLines:1];
+    self.orderStatusDetailOne = [UILabel labelWithFont:13 textColor:LD9ATextColor textAlignment:NSTextAlignmentLeft];
     [container addSubview:self.orderStatusDetailOne];
     
     [self.orderStatusDetailOne mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -176,7 +192,7 @@
     
     
     [self.orderStatusDetailTwo mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.offset(self.orderStatusDetailTwo.ld_width);
+        make.width.offset(self.orderStatusDetailTwo.width);
         make.left.offset(LDHPadding -5);
 //        make.right.offset(-LDHPadding);
         make.top.equalTo(self.orderStatusDetailOne.mas_bottom).offset(5);
@@ -280,7 +296,7 @@
     self.orderStatusDetailTwo.textColor = colorWithLightGray;
 
     //订单状态
-    self.orderStatus = [UILabel ld_labelWithTextColor:kBlackColor textAlignment:NSTextAlignmentLeft font:LDFont(14) numberOfLines:1];
+    self.orderStatus = [UILabel labelWithFont:14 textColor:LD9ATextColor textAlignment:NSTextAlignmentLeft];
     [container addSubview:self.orderStatus];
     
     [self.orderStatus mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -291,7 +307,7 @@
         make.height.offset(15);
     }];
     //订单号
-    self.orderNumber = [UILabel ld_labelWithTextColor:kBlackColor textAlignment:NSTextAlignmentLeft font:LDFont(14) numberOfLines:1];
+    self.orderNumber = [UILabel labelWithFont:14 textColor:LD9ATextColor textAlignment:NSTextAlignmentLeft];
     [container addSubview:self.orderNumber];
     [self.orderNumber mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(LDHPadding);
@@ -300,7 +316,7 @@
         make.height.offset(15);
     }];
     //订单时间
-    self.orderTime = [UILabel ld_labelWithTextColor:kBlackColor textAlignment:NSTextAlignmentLeft font:LDFont(14) numberOfLines:1];
+    self.orderTime = [UILabel labelWithFont:14 textColor:LD9ATextColor textAlignment:NSTextAlignmentLeft];
     [container addSubview:self.orderTime];
     
     [self.orderTime mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -392,10 +408,10 @@
     
     
     [self.comName mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.offset(self.comName.ld_width);
+        make.width.offset(self.comName.width);
         make.right.offset(-LDHPadding);
         make.top.equalTo(comLabel.mas_top).offset(0);
-        make.height.offset(self.comName.ld_height);
+        make.height.offset(self.comName.height);
     }];
     
 //    __weak typeof(self) weakSelf = self;
@@ -445,10 +461,10 @@
 //    self.comPlace.backgroundColor =[UIColor cyanColor];
     
     [self.comPlace mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.offset(self.comPlace.ld_width);
+        make.width.offset(self.comPlace.width);
         make.right.offset(-LDHPadding);
         make.top.equalTo(comPlaceLabel.mas_top).offset(0);
-        make.height.offset(self.comName.ld_height);
+        make.height.offset(self.comName.height);
     }];
     
     
@@ -534,8 +550,7 @@
     }];
     
     //留言描述
-    UILabel * messageLabel = [UILabel ld_labelWithTextColor:LD9ATextColor textAlignment:NSTextAlignmentLeft font:LD14Font numberOfLines:1];
-    [applyView addSubview:messageLabel];
+    UILabel * messageLabel = [UILabel labelWithFont:14 textColor:LD9ATextColor textAlignment:NSTextAlignmentLeft];
     [messageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(LDHPadding);
         make.top.equalTo(lineSix.mas_bottom).offset(LDVPadding);
@@ -546,7 +561,8 @@
     }];
     
     //留言具体内容
-    self.messageDetailLabel = [UILabel ld_labelWithTextColor:kBlackColor textAlignment:NSTextAlignmentLeft font:LDFont(14) numberOfLines:0];
+    
+    self.messageDetailLabel = [UILabel labelWithFont:14 textColor:kBlackColor textAlignment:NSTextAlignmentLeft];
     
     [applyView addSubview:self.messageDetailLabel];
     [self.messageDetailLabel mas_makeConstraints:^(MASConstraintMaker *make) {

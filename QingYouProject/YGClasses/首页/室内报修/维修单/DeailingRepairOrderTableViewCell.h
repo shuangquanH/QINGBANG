@@ -6,9 +6,9 @@
 //  Copyright © 2017年 ccyouge. All rights reserved.
 //
 
-#import "LDBaseViewCell.h"
+#import "SQBaseTableViewCell.h"
 @class WaitToDealModel;
-@interface DeailingRepairOrderTableViewCell : LDBaseViewCell
+@interface DeailingRepairOrderTableViewCell : SQBaseTableViewCell
 @property (nonatomic,strong) WaitToDealModel * model;
 
 @end

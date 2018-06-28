@@ -97,8 +97,6 @@
 //    CGFloat propertyRepairViewY = (kScreenH - YGNaviBarHeight - YGStatusBarHeight - kScreenW  / (35 / 17) - 4*LDHPadding  - 20 )/4;
     CGFloat propertyRepairViewY = 0;
     
-    CGFloat propertyRepairViewH = (kScreenW - 1) / 2;
-    
     self.propertyRepairView0 = [[PropertyRepairView alloc] initWithFrame:CGRectMake(LDHPadding, self.cycleScrollView.height +  LDHPadding , kScreenW - 2*LDHPadding ,propertyRepairViewY)];
     self.button0 = [UIButton buttonWithType:UIButtonTypeCustom];
     self.button0.tag = 0;

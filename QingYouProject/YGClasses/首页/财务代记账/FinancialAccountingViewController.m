@@ -56,7 +56,7 @@
 - (void)setupNav{
     
     // 右边按钮
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithimage:[UIImage imageNamed:@"service_green"] highImage:[UIImage imageNamed:@"service_green"] target:self action:@selector(rightBarButtonClick:)];
+    self.navigationItem.rightBarButtonItem = [self createBarbuttonWithNormalImageName:@"service_green" selectedImageName:@"service_green" selector:@selector(rightBarButtonClick:)];
     
 }
 #pragma mark - 导航栏右侧按钮点击
@@ -107,7 +107,7 @@
     _titleLabel.frame = CGRectMake(_leftImageView.x+_leftImageView.width+10, _leftImageView.y,YGScreenWidth-_leftImageView.width-25, 40);
     [headerTopView addSubview:_titleLabel];
     
-        CGFloat LabelW = [UILabel calculateWidthWithString:@"资深注册" textFont:leftFont numerOfLines:1].width;
+        CGFloat LabelW = [UILabel calculateWidthWithString:@"资深注册" textFont:[UIFont systemFontOfSize:15] numerOfLines:1].width;
     for(int i=0;i<3;i++)
     {
         //新鲜事内容label
@@ -135,7 +135,7 @@
 //    [headerTopView addSubview:_describeLabel];
     
     
-    UIView *headerMiddleView = [[UIView alloc] initWithFrame:CGRectMake(0,headerTopView.y+headerTopView.height+ LDHPadding, YGScreenWidth, (YGScreenWidth-20)*0.28+20)];
+    UIView *headerMiddleView = [[UIView alloc] initWithFrame:CGRectMake(0,headerTopView.y+headerTopView.height+ 10, YGScreenWidth, (YGScreenWidth-20)*0.28+20)];
     headerMiddleView.backgroundColor = colorWithYGWhite;
     [_headerView addSubview:headerMiddleView];
     
@@ -477,8 +477,6 @@
         [self configUI];
     
     } failure:^(NSError *error) {
-        
-        LDLog(@"%@",error);
     }];
 }
 -(void)introduceBtnClick

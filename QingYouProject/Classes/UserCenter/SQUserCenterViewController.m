@@ -60,7 +60,7 @@
     self.headerImageView = [UIImageView new];
     self.headerImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.headerImageView.image = [UIImage imageNamed:@"usercenter_bg"];
-    self.headerImageView.frame = CGRectMake(0, 0, kScreenW, self.tableHeader.height);
+    self.headerImageView.frame = CGRectMake(0, 0, KAPP_WIDTH, self.tableHeader.height);
     [self.tableview insertSubview:self.headerImageView belowSubview:self.tableHeader];
 }
 
@@ -112,7 +112,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (scrollView.contentOffset.y <= 0) {
-        self.headerImageView.frame = CGRectMake(0, scrollView.contentOffset.y, kScreenW, KSCAL(340)-scrollView.contentOffset.y);
+        self.headerImageView.frame = CGRectMake(0, scrollView.contentOffset.y, KAPP_WIDTH, KSCAL(340)-scrollView.contentOffset.y);
     }
 }
 

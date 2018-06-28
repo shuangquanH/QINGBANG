@@ -6,9 +6,9 @@
 //  Copyright © 2017年 ccyouge. All rights reserved.
 //
 
-#import "LDBaseModel.h"
+#import "SQBaseModel.h"
 
-@interface WaitReplyModel : LDBaseModel
+@interface WaitReplyModel : SQBaseModel
 ///** 文字内容  */
 //@property (nonatomic,strong) NSString * text;
 ///** 时间  */

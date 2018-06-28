@@ -7,6 +7,9 @@
 //
 
 #import "TotalPrice.h"
+#import "NSString+SQAttributeString.h"
+
+
 
 @interface TotalPrice ()
 /** 顶部线  */
@@ -26,13 +29,14 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.lineTop = [[UIView alloc] initWithFrame:CGRectMake(LDHPadding, 0, self.ld_width - 2 * LDHPadding, 0.5)];
+        self.lineTop = [[UIView alloc] initWithFrame:CGRectMake(LDHPadding, 0, self.width - 2 * LDHPadding, 0.5)];
         [self addSubview:self.lineTop];
-        self.lineBottom = [[UIView alloc] initWithFrame:CGRectMake(LDHPadding, self.ld_height - 0.5, self.ld_width - 2 * LDHPadding, 0.5)];
+        self.lineBottom = [[UIView alloc] initWithFrame:CGRectMake(LDHPadding, self.height - 0.5, self.width - 2 * LDHPadding, 0.5)];
         [self addSubview:self.lineBottom];
         
         //左侧文字
-        self.leftLabel = [UILabel ld_labelWithTextColor:kBlackColor textAlignment:NSTextAlignmentLeft font:LDFont(13) numberOfLines:1];
+        
+        self.leftLabel = [UILabel labelWithFont:13 textColor:kBlackColor textAlignment:NSTextAlignmentLeft];
         [self addSubview:self.leftLabel];
         
         [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -42,7 +46,7 @@
         }];
         
         //右侧文字
-        self.rightLabel = [UILabel ld_labelWithTextColor:kBlackColor textAlignment:NSTextAlignmentRight font:LDFont(13) numberOfLines:1];
+        self.rightLabel = [UILabel labelWithFont:13 textColor:kBlackColor textAlignment:NSTextAlignmentRight];
         [self addSubview:self.rightLabel];
         [self.rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.leftLabel.mas_right).offset(LDHPadding);
@@ -60,7 +64,7 @@
     self.rightLabel.text = rightText;
 
     NSRange range = [rightText rangeOfString:@"("];
-    self.rightLabel.attributedText = [rightText ld_attributedStringFromNSString:rightText startLocation:range.location forwardFont:LDFont(15) backFont:LDFont(12) forwardColor:LDFFTextColor backColor:LD9ATextColor];
+    self.rightLabel.attributedText = [rightText attributedStringFromNSString:rightText startLocation:range.location forwardFont:LDFont(15) backFont:LDFont(12) forwardColor:LDFFTextColor backColor:LD9ATextColor];
     
     //左侧标题
     self.leftLabel.text = leftText;

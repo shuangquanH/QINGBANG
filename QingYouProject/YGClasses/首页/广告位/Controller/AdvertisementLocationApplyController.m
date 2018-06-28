@@ -12,6 +12,7 @@
 
 
 
+
 @interface AdvertisementLocationApplyController () <UIScrollViewDelegate,YGSegmentViewDelegate>
 
 /** 父控制器 上 加scrollowView  */
@@ -65,7 +66,7 @@
 #pragma mark - titleView点击代理方法
 -(void)segmentButtonClickWithIndex:(int)buttonIndex{
     [self addChildVcViewIntoScrollView:buttonIndex];
-    CGFloat offsetX = self.backScrollowView.ld_width * buttonIndex;
+    CGFloat offsetX = self.backScrollowView.width * buttonIndex;
     self.backScrollowView.contentOffset = CGPointMake(offsetX, self.backScrollowView.contentOffset.y);
 }
 
@@ -101,8 +102,8 @@
     UIView *childVcView = childVc.view;
     
     // 设置子控制器view的frame
-    CGFloat scrollViewW = self.backScrollowView.ld_width;
-    childVcView.frame = CGRectMake(index * scrollViewW, 0, scrollViewW, self.backScrollowView.ld_height);
+    CGFloat scrollViewW = self.backScrollowView.width;
+    childVcView.frame = CGRectMake(index * scrollViewW, 0, scrollViewW, self.backScrollowView.height);
     // 添加子控制器的view到scrollView中
     [self.backScrollowView addSubview:childVcView];
 }
@@ -115,11 +116,11 @@
         //获取titleView最大Y值,即为背景sscrollowView的Y值
         CGFloat Y = CGRectGetMaxY(self.titleView.frame);
         //获取scrollowView的高度
-        CGFloat H = kScreenH - YGNaviBarHeight - YGStatusBarHeight - self.titleView.ld_height;
+        CGFloat H = kScreenH - YGNaviBarHeight - YGStatusBarHeight - self.titleView.height;
         
         _backScrollowView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, Y, kScreenW, H)];
         
-        _backScrollowView.contentSize = CGSizeMake(YGScreenWidth * self.childArray.count, _backScrollowView.ld_height);
+        _backScrollowView.contentSize = CGSizeMake(YGScreenWidth * self.childArray.count, _backScrollowView.height);
         
         _backScrollowView.showsVerticalScrollIndicator = NO;
         _backScrollowView.showsHorizontalScrollIndicator = NO;

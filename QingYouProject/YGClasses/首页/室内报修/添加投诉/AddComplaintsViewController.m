@@ -51,7 +51,7 @@
 - (void)setupNav{
     
     // 右边按钮
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem backItemWithimage:nil highImage:nil target:self action:@selector(rightBarButtonClick:) title:@"发布" normalColor:LDMainColor highColor:LDMainColor titleFont:LDFont(14)];
+    self.navigationItem.rightBarButtonItem = [self createBarbuttonWithNormalTitleString:@"发布" selectedTitleString:@"完成" selector:@selector(rightBarButtonClick:)];
 }
 
 
@@ -181,7 +181,7 @@
     //所在园区点击事件
     self.parkLabelNameCoverButton = [UIButton buttonWithType:UIButtonTypeCustom normalImage:nil selectedImage:nil normalTitle:nil selectedTitle:nil normalTitleColor:nil selectedTitleColor:nil backGroundColor:kClearColor normalBackGroundImageStr:nil selectedBackGroundImageStr:nil titleFont:0];
     
-    self.parkLabelNameCoverButton.frame = CGRectMake(parkLabelW + 5 + LDHPadding, parkLabel.ld_y + 10, kScreenW - (CGRectGetMaxX(parkLabel.frame) + 5 + LDHPadding), 50);
+    self.parkLabelNameCoverButton.frame = CGRectMake(parkLabelW + 5 + LDHPadding, parkLabel.y + 10, kScreenW - (CGRectGetMaxX(parkLabel.frame) + 5 + LDHPadding), 50);
     [applyView addSubview:self.parkLabelNameCoverButton];
     [self.parkLabelNameCoverButton addTarget:self action:@selector(parkLabelNameCoverButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -276,10 +276,10 @@
     
     
     [self.comName mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.offset(self.comName.ld_width);
+        make.width.offset(self.comName.width);
         make.right.offset(-LDHPadding);
         make.top.equalTo(comLabel.mas_top).offset(8);
-        make.height.offset(self.comName.ld_height -16 );
+        make.height.offset(self.comName.height -16 );
     }];
     
     __weak typeof(self) weakSelf = self;
@@ -327,10 +327,10 @@
     [applyView addSubview:self.comPlace];
     
     [self.comPlace mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.offset(self.comPlace.ld_width);
+        make.width.offset(self.comPlace.width);
         make.right.offset(-LDHPadding);
         make.top.equalTo(comPlaceLabel.mas_top).offset(8);
-        make.height.offset(self.comName.ld_height -16);
+        make.height.offset(self.comName.height -16);
     }];
     
     

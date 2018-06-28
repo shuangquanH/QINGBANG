@@ -7,7 +7,13 @@
 //
 
 #import "DeliveryWayView.h"
+#import "UILabel+Factory.h"
+#import "NSString+SQAttributeString.h"
 
+
+#define LD9ATextColor YGUIColorFromRGB(0x9a9a9a, 1)
+#define kClearColor         [UIColor clearColor]
+#define LDHPadding  10.0
 
 @interface DeliveryWayView ()
 /** 左侧标语  */
@@ -27,15 +33,16 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.leftTitleLabel = [UILabel ld_labelWithTextColor:kBlackColor textAlignment:NSTextAlignmentLeft font:LDFont(14) numberOfLines:0];
+        
+        self.leftTitleLabel = [UILabel labelWithFont:14 textColor:kCOLOR_333 textAlignment:NSTextAlignmentLeft];
         [self addSubview:self.leftTitleLabel];
         
-        self.rightTitleLabel = [UILabel ld_labelWithTextColor:kBlackColor textAlignment:NSTextAlignmentRight font:LDFont(14) numberOfLines:0];
+        self.rightTitleLabel = [UILabel labelWithFont:14 textColor:kCOLOR_333 textAlignment:NSTextAlignmentLeft];
         [self addSubview:self.rightTitleLabel];
         
-        self.lineTop = [[UIView alloc] initWithFrame:CGRectMake(LDHPadding, 0, self.ld_width - 2 * LDHPadding, 0.5)];
+        self.lineTop = [[UIView alloc] initWithFrame:CGRectMake(LDHPadding, 0, self.width - 2 * LDHPadding, 0.5)];
         [self addSubview:self.lineTop];
-        self.lineBottom = [[UIView alloc] initWithFrame:CGRectMake(LDHPadding, self.ld_height - 0.5, self.ld_width - 2 * LDHPadding, 0.5)];
+        self.lineBottom = [[UIView alloc] initWithFrame:CGRectMake(LDHPadding, self.height - 0.5, self.width - 2 * LDHPadding, 0.5)];
         [self addSubview:self.lineBottom];
         
         
@@ -98,7 +105,7 @@
     self.lineTop.backgroundColor = kClearColor;
     self.lineBottom.backgroundColor = kClearColor;
     
-    self.rightTitleLabel.attributedText = [rightTitle ld_attributedStringFromNSString:rightTitle startLocation:range.location forwardFont:LDFont(14) backFont:LDFont(14) forwardColor:kBlackColor backColor:LD9ATextColor];
+    self.rightTitleLabel.attributedText = [rightTitle attributedStringFromNSString:rightTitle startLocation:range.location forwardFont:KFONT(28) backFont:KFONT(28) forwardColor:kCOLOR_333 backColor:LD9ATextColor];
     
 }
 

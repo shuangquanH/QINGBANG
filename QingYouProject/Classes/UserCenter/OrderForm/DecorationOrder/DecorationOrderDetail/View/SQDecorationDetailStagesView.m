@@ -43,9 +43,9 @@ static const CGFloat kCircleWidth = 26;
     line_layer.startPoint = CGPointZero;
     line_layer.endPoint = CGPointMake(1.0, 0);
     [self.layer addSublayer:line_layer];
-    line_layer.frame = CGRectMake(KSCAL(30), KSCAL(40), kScreenW-KSCAL(60), 1);
+    line_layer.frame = CGRectMake(KSCAL(30), KSCAL(40), KAPP_WIDTH-KSCAL(60), 1);
 
-    CGFloat perW = (kScreenW - 2 * KSCAL(30)) / 6.0;
+    CGFloat perW = (KAPP_WIDTH - 2 * KSCAL(30)) / 6.0;
 
     UIImageView *leftArrowImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"orderdetails_flowchart_triangle"]];
     leftArrowImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -64,7 +64,7 @@ static const CGFloat kCircleWidth = 26;
     [self stageViewWithTitle:@"尾款"   state:@"已支付" centerX:KSCAL(30)+perW*5 tag:2];
 
     _bottomLineImageView = [UIImageView new];
-    _bottomLineImageView.frame = CGRectMake(KSCAL(30.0), 0, kScreenW-KSCAL(60.0), 2.0);
+    _bottomLineImageView.frame = CGRectMake(KSCAL(30.0), 0, KAPP_WIDTH-KSCAL(60.0), 2.0);
     _bottomLineImageView.image = [[UIImage imageNamed:@"orderdetails_horizontalline"] resizableImageWithCapInsets:UIEdgeInsetsZero resizingMode:UIImageResizingModeTile];
     [self addSubview:_bottomLineImageView];
     [_bottomLineImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -138,7 +138,7 @@ static const CGFloat kCircleWidth = 26;
 #pragma mark - SQDecorationDetailViewProtocol
 
 - (void)configOrderDetailInfo:(WKDecorationOrderDetailModel *)orderDetailInfo {
-    CGFloat perW = (kScreenW - 2 * KSCAL(30)) / 6.0;
+    CGFloat perW = (KAPP_WIDTH - 2 * KSCAL(30)) / 6.0;
     
     if (orderDetailInfo.orderInfo.status == 3) {//受理中，订金已支付
         _shadowView.center = CGPointMake(KSCAL(30)+perW*1, KSCAL(40)+0.5);
@@ -162,7 +162,7 @@ static const CGFloat kCircleWidth = 26;
 }
 
 - (CGSize)viewSize {
-    return CGSizeMake(kScreenW, KSCAL(160));
+    return CGSizeMake(KAPP_WIDTH, KSCAL(160));
 }
 
 @end

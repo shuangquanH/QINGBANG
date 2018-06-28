@@ -6,9 +6,9 @@
 //  Copyright © 2017年 ccyouge. All rights reserved.
 //
 
-#import "LDBaseModel.h"
+#import "SQBaseModel.h"
 
-@interface OfficePurchaseModel : LDBaseModel
+@interface OfficePurchaseModel : SQBaseModel
 /** 产品名称  */
 @property (nonatomic,strong) NSString * commodityName;
 /** 产品价格  */

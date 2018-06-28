@@ -10,6 +10,9 @@
 #import "OfficePurchaseDetailModel.h"
 #import "KSPhotoBrowser.h"
 
+
+
+
 @interface OfficePurchaseTableViewCell()
 /** 头像  */
 @property (nonatomic,strong) UIImageView * headerImageView;
@@ -30,7 +33,7 @@
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        self.backgroundColor = kWhiteColor;
+        self.backgroundColor = KCOLOR_WHITE;
         [self setupUI];
     }
     return self;

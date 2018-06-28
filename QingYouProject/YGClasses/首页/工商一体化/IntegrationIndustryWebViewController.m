@@ -60,7 +60,6 @@
                                        ] baseURL:nil];
     } failure:^(NSError *error) {
         
-        LDLog(@"%@",error);
     }];
 }
 
