@@ -164,7 +164,7 @@
 
 - (UIView *)createLine {
     UIView *line = [UIView new];
-    line.backgroundColor = colorWithLine;
+    line.backgroundColor = KCOLOR_LINE;
     return line;
 }
 

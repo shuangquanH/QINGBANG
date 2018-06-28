@@ -36,7 +36,7 @@
 
 - (void)setupSubviews {
     lineLayer = [CALayer layer];
-    lineLayer.backgroundColor = colorWithLine.CGColor;
+    lineLayer.backgroundColor = KCOLOR_LINE.CGColor;
     [self.layer addSublayer:lineLayer];
     
     stageTitleLabel = [[UILabel alloc] init];

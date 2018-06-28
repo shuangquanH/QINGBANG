@@ -34,7 +34,6 @@ static NSString *functionCellIdentifier = @"WKInvoiceFunctionCell";
     [super viewDidLoad];
     
     [self configAttribute];
-//    [SQRequest setApiAddress:KAPI_ADDRESS_TEST_YSH];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

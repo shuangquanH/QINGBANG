@@ -92,7 +92,7 @@
         [_detailLabel setTextColor:kCOLOR_PRICE_RED andRange:NSMakeRange(9+self.refundInfo.createDate.length, self.refundInfo.comment.length)];
         
         _line = [UIView new];
-        _line.backgroundColor = colorWithLine;
+        _line.backgroundColor = KCOLOR_LINE;
         [_labelBgView addSubview:_line];
         
         _serviceBtn = [UIButton buttonWithTitle:@"联系客服" titleFont:KSCAL(28) titleColor:KCOLOR(@"328cea") bgColor:[UIColor whiteColor]];

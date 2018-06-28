@@ -372,7 +372,7 @@
             @strongify(self)
             
             NSDictionary *param = @{@"paymentId": self.orderDetailInfo.orderInfo.paymentList[self.payStageIndex].ID,
-                                    @"payType": (payType == WKDecorationPayTypeAliPay ? @"alipay" : @"wxpay")};
+                                    @"payType": (payType == WKDecorationPayTypeAliPay ? @"alipay" : @"wx")};
             [WKDecorationOrderServer sendPayWithParam:param completed:^(id response, NSString *errMsg) {
                 if (response) {
                     [self pingPPPayWithResponde:response];

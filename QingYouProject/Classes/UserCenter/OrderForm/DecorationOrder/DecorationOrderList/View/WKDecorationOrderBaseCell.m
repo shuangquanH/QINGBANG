@@ -59,7 +59,7 @@
         [self.contentView addSubview:paymentStageView];
         
         bottomLineLayer = [CALayer layer];
-        bottomLineLayer.backgroundColor = colorWithLine.CGColor;
+        bottomLineLayer.backgroundColor = KCOLOR_LINE.CGColor;
         [self.contentView.layer addSublayer:bottomLineLayer];
 
         [self sqlayoutSubviews];
@@ -143,7 +143,7 @@
 
 - (CGSize)viewSize {
     CGFloat height = KSCAL(88.0) + KSCAL(180.0) + 3 * KSCAL(KSPACE);
-    return CGSizeMake(kScreenW, height);
+    return CGSizeMake(KAPP_WIDTH, height);
 }
 
 #pragma mark - WKDecorationStageViewDelegate
@@ -217,7 +217,7 @@
 - (CGSize)viewSize {
     NSInteger count = _orderListInfo.paymentList.count ? _orderListInfo.paymentList.count - 1 : 0;
     CGFloat height = MAX(count, 0) * KSCAL(88.0) + KSCAL(88.0) + KSCAL(180.0) + 3 * KSCAL(KSPACE);
-    return CGSizeMake(kScreenW, height);
+    return CGSizeMake(KAPP_WIDTH, height);
 }
 
 + (CGFloat)cellHeightWithOrderInfo:(WKDecorationOrderListModel *)orderInfo {
@@ -245,7 +245,7 @@
     [self.contentView addSubview:dealingBgView];
     
     dealingLine = [UIView new];
-    dealingLine.backgroundColor = colorWithLine;
+    dealingLine.backgroundColor = KCOLOR_LINE;
     [dealingBgView addSubview:dealingLine];
     
     dealingTipLabel = [UILabel labelWithFont:KSCAL(28) textColor:kCOLOR_999 textAlignment:NSTextAlignmentCenter text:@"系统正在受理您的订单，请耐心等待~"];
@@ -294,7 +294,7 @@
     [super configOrderInfo:orderInfo];
 }
 - (CGSize)viewSize {
-    return CGSizeMake(kScreenW, KSCAL(88.0) + KSCAL(180.0) + 3 * KSCAL(KSPACE) + KSCAL(155));
+    return CGSizeMake(KAPP_WIDTH, KSCAL(88.0) + KSCAL(180.0) + 3 * KSCAL(KSPACE) + KSCAL(155));
 }
 + (CGFloat)cellHeightWithOrderInfo:(WKDecorationOrderListModel *)orderInfo {
     return KSCAL(88.0) + KSCAL(180.0) + 3 * KSCAL(KSPACE) + KSCAL(155);

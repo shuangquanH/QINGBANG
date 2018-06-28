@@ -28,6 +28,7 @@
 - (void)setupSubviews {
     _setDefaultBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _setDefaultBtn.titleLabel.font = KFONT(28);
+    [_setDefaultBtn setTitle:@"设置默认" forState:UIControlStateNormal];
     [_setDefaultBtn setTitleColor:kCOLOR_333 forState:UIControlStateNormal];
     [_setDefaultBtn setImage:[UIImage imageNamed:@"order_nochoice_btn_gray"] forState:UIControlStateNormal];
     [_setDefaultBtn setImage:[UIImage imageNamed:@"order_choice_btn_green"] forState:UIControlStateSelected];

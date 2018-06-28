@@ -315,7 +315,7 @@
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectZero];
-        _tableView.backgroundColor = colorWithTable;
+        _tableView.backgroundColor = KCOLOR_LIGHTBACK;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -334,7 +334,7 @@
             WKDecorationOrderListModel *order = self.payStageDict[@"orderInfo"];
             NSInteger stageIndex = [self.payStageDict[@"stageIndex"] integerValue];
             NSDictionary *param = @{@"paymentId": order.paymentList[stageIndex].ID,
-                                    @"payType": (payType == WKDecorationPayTypeAliPay ? @"alipay" : @"wxpay")};
+                                    @"payType": (payType == WKDecorationPayTypeAliPay ? @"alipay" : @"wx")};
             
             [WKDecorationOrderServer sendPayWithParam:param completed:^(id response, NSString *errMsg) {
                 if (response) {

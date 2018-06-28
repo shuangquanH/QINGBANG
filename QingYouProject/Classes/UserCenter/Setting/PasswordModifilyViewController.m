@@ -63,7 +63,7 @@
     
     //线
     UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, _passwordTextField.y + _passwordTextField.height + 15, _passwordBaseView.width, 0.5)];
-    lineView.backgroundColor = colorWithLine;
+    lineView.backgroundColor = KCOLOR_LINE;
     [_passwordBaseView addSubview:lineView];
     
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];

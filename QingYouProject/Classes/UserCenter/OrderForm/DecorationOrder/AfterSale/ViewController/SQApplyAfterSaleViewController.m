@@ -71,7 +71,7 @@
     [_bgView addSubview:_inputCell];
     
     _lineView = [UIView new];
-    _lineView.backgroundColor = colorWithLine;
+    _lineView.backgroundColor = KCOLOR_LINE;
     [_bgView addSubview:_lineView];
     
     _tipLabel = [UILabel labelWithFont:KSCAL(28.0) textColor:kCOLOR_333 text:@"上传凭证（最多3张）"];
