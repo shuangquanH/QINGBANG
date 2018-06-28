@@ -65,6 +65,8 @@
 /** 浅灰背景颜色  */
 #define KCOLOR_LIGHTBACK    [UIColor hexStringToColor:@"F0F0F0"]
 
+/** 分割线浅灰色 */
+#define KCOLOR_LINE         [UIColor hexStringToColor:@"eeeeee"]
 
 /** 颜色(传string格式) */
 #define KCOLOR(a)           [UIColor hexStringToColor:a]

@@ -59,7 +59,7 @@ const CGFloat kItemHorizontalMargin = 10;
 
 - (void)setupSubviews {
     
-    self.view.backgroundColor = colorWithTable;
+    self.view.backgroundColor = KCOLOR_LIGHTBACK;
     
     _topTipLabel = [UILabel labelWithFont:KSCAL(30.0) textColor:kCOLOR_333 textAlignment:NSTextAlignmentCenter text:@"我已在线下完成付款，申请补登更新订单状态："];
     _topTipLabel.backgroundColor = kCOLOR_RGB(210, 211, 212);

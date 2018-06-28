@@ -61,7 +61,7 @@
     _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, YGScreenWidth, YGScreenHeight - YGNaviBarHeight - YGStatusBarHeight) style:UITableViewStyleGrouped];
     [_tableView registerNib:[UINib nibWithNibName:@"MyPushInformationCell" bundle:nil] forCellReuseIdentifier:@"MyPushInformationCell"];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableView.backgroundColor = colorWithTable;
+    _tableView.backgroundColor = KCOLOR_LIGHTBACK;
     _tableView.estimatedRowHeight = 100;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, YGScreenWidth, 0.001)];
@@ -81,7 +81,7 @@
 {
     MyPushInformationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyPushInformationCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.backgroundColor = colorWithTable;
+    cell.backgroundColor = KCOLOR_LIGHTBACK;
     cell.model = _dataArray[indexPath.section];
     return cell;
 }
@@ -100,7 +100,7 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, YGScreenWidth, 10)];
-    view.backgroundColor = colorWithTable;
+    view.backgroundColor = KCOLOR_LIGHTBACK;
     return view;
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

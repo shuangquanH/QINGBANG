@@ -84,7 +84,7 @@
     
     //线
     UIView *lineView1 = [[UIView alloc] initWithFrame:CGRectMake(0, _verifyTextField.y + _verifyTextField.height + 10, _verifyBaseView.width, 0.5)];
-    lineView1.backgroundColor = colorWithLine;
+    lineView1.backgroundColor = KCOLOR_LINE;
     [_verifyBaseView addSubview:lineView1];
     
     UIButton *nextButton = [UIButton buttonWithType:UIButtonTypeCustom];

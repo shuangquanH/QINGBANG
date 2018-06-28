@@ -56,7 +56,7 @@ static const CGFloat kScaleAnimationDuraction = 0.7;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    NSInteger index = (scrollView.contentOffset.x / kScreenW);
+    NSInteger index = (scrollView.contentOffset.x / KAPP_WIDTH);
     self.selectIndex = index;
     self.pageLabel.text = [NSString stringWithFormat:@"%zd/%zd", index + 1, _imageUrls.count];
 }
@@ -89,7 +89,7 @@ static const CGFloat kScaleAnimationDuraction = 0.7;
     //初始化数据
     _imageUrls = imageUrls;
     _selectIndex = selectIndex;
-    _fromRect = CGRectMake(kScreenW/2.0, KNAV_HEIGHT + (kScreenH - KNAV_HEIGHT - KTAB_HEIGHT + 5.0) / 2.0, 80, 80);
+    _fromRect = CGRectMake(KAPP_WIDTH/2.0, KNAV_HEIGHT + (KAPP_HEIGHT - KNAV_HEIGHT - KTAB_HEIGHT + 5.0) / 2.0, 80, 80);
     _maskImageView.image = nil;
     _firstIndex = selectIndex;
     
@@ -178,7 +178,7 @@ static const CGFloat kScaleAnimationDuraction = 0.7;
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
         UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
-        layout.itemSize = CGSizeMake(kScreenW, kScreenH-KNAV_HEIGHT-KTAB_HEIGHT+5);
+        layout.itemSize = CGSizeMake(KAPP_WIDTH, KAPP_HEIGHT-KNAV_HEIGHT-KTAB_HEIGHT+5);
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         layout.minimumInteritemSpacing = 0.0;
         layout.minimumLineSpacing = 0.0;

@@ -34,7 +34,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self == [super initWithFrame:frame]) {
-        self.backgroundColor = colorWithLine;
+        self.backgroundColor = KCOLOR_LINE;
         _reasonArr = @[@"我有疑虑，后悔了", @"没有客服跟进", @"我不满意设计方案", @"其它原因"];
         _selectReasonIndex = -1;
         
