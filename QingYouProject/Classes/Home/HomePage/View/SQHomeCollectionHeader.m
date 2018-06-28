@@ -36,7 +36,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self addCycleView];
-        [self addOvalFuncView];
+        [self addHeadFuncView];
         [self addScrollView];
     }
     return self;
@@ -52,7 +52,7 @@
     
 }
 //首页头部功能按钮
-- (void)addOvalFuncView {
+- (void)addHeadFuncView {
     CGRect frame = CGRectMake(0, self.cycleView.sqbottom+KSCAL(20), KAPP_WIDTH, KSCAL(320));
     self.ovalFuncsView = [[SQBaseImageView alloc] initWithFrame:frame];
     self.ovalFuncsView.userInteractionEnabled = YES;
