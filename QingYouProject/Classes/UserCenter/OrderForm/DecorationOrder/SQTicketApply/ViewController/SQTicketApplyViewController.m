@@ -132,14 +132,14 @@
     
     NSDictionary *param;
     if (self.sendSwitch.isOn) {
-        param =  @{@"orderId": self.orderDetailInfo.orderInfo.orderNum,
+        param =  @{@"orderId": self.orderDetailInfo.orderInfo.ID,
                    @"invoiceInfoId": self.invoiceInfo.ID,
                    @"addressId": self.postInfo.ID,
                    @"ispost": @(1)
                    };
     }
     else {
-        param =  @{@"orderId": self.orderDetailInfo.orderInfo.orderNum,
+        param =  @{@"orderId": self.orderDetailInfo.orderInfo.ID,
                    @"invoiceInfoId": self.invoiceInfo.ID,
                    @"ispost": @(0)
                    };

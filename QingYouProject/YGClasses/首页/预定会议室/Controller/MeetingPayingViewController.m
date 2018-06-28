@@ -65,8 +65,8 @@
     [self.view addSubview:confirmButton];
     [self configHeader];
     
-    //接收支付结果的消息
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pushViewController:) name:@"paySuccess" object:nil];
+//    //接收支付结果的消息
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pushViewController:) name:@"paySuccess" object:nil];
 }
 
 -(void)configHeader
@@ -287,6 +287,22 @@
                 [Pingpp createPayment:responseObject[@"charge"] viewController:self appURLScheme:@"qingyouhui" withCompletion:^(NSString *result, PingppError *error){
                     if ([result isEqualToString:@"success"])
                     {
+                        /** 原来代码 */
+//                        if ([self.payStatus isEqualToString:@"alipay"]) {
+//                            //支付宝
+//                            ResultViewController *vc = [[ResultViewController alloc]init];
+//                            if ([self.isOrderoffPay isEqualToString:@"isOrder"]) {
+//                                vc.pageType = ResultPageTypeSubmitPurchsePayResult;
+//                            }
+//                            else
+//                            {
+//                                vc.pageType = ResultPageTypeMeetingResult;
+//                            }
+//                            vc.earnPoints = [self.earnPointString intValue];
+//                            [self.navigationController pushViewController:vc animated:YES];
+//                        }
+//                        NSLog(@"success");
+                        /** 新改代码 */
                         if ([self.payStatus isEqualToString:@"alipay"]) {
                             //支付宝
                             ResultViewController *vc = [[ResultViewController alloc]init];
@@ -300,14 +316,28 @@
                             vc.earnPoints = [self.earnPointString intValue];
                             [self.navigationController pushViewController:vc animated:YES];
                         }
-                        NSLog(@"success");
-                        
+                        if ([self.payStatus isEqualToString:@"wx"]) {
+                            //微信
+                            ResultViewController *vc = [[ResultViewController alloc] init];
+                            if ([self.isOrderoffPay isEqualToString:@"isOrder"]) {
+                                vc.pageType = ResultPageTypeSubmitPurchsePayResult;
+                            }
+                            else
+                            {
+                                vc.pageType = ResultPageTypeMeetingResult;
+                            }
+                            vc.earnPoints = [self.earnPointString intValue];
+                            [self.navigationController pushViewController:vc animated:YES];
+                        }
+                        [YGAppTool showToastWithText:@"购买成功"];
                     } else {
 //                        if (error.code == PingppErrWxNotInstalled || [self.payStatus isEqualToString:@"alipay"]) {
 //                            [YGAppTool showToastWithText:@"请安装支付宝客户端"];
 //                        }
                         if (error.code == PingppErrWxNotInstalled ) {
                             [YGAppTool showToastWithText:@"请安装微信客户端"];
+                        } else {
+                            [YGAppTool showToastWithText:@"购买失败"];
                         }
                         NSLog(@"PingppError: code=%lu msg=%@", error.code, [error getMsg]);
                     }
@@ -361,44 +391,45 @@
     }];
 }
 
-- (void)pushViewController:(NSNotification *)notif
-{
-    NSString *state = notif.userInfo[@"successOrNot"];
-    if ([state isEqualToString:@"1"])
-    {
-        if ([self.payStatus isEqualToString:@"alipay"]) {
-            //支付宝
-            ResultViewController *vc = [[ResultViewController alloc]init];
-            if ([self.isOrderoffPay isEqualToString:@"isOrder"]) {
-                vc.pageType = ResultPageTypeSubmitPurchsePayResult;
-            }
-            else
-            {
-                vc.pageType = ResultPageTypeMeetingResult;
-            }
-            vc.earnPoints = [self.earnPointString intValue];
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-        if ([self.payStatus isEqualToString:@"wx"]) {
-            //微信
-            ResultViewController *vc = [[ResultViewController alloc] init];
-            if ([self.isOrderoffPay isEqualToString:@"isOrder"]) {
-                vc.pageType = ResultPageTypeSubmitPurchsePayResult;
-            }
-            else
-            {
-                vc.pageType = ResultPageTypeMeetingResult;
-            }
-            vc.earnPoints = [self.earnPointString intValue];
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-        [YGAppTool showToastWithText:@"购买成功"];
-    }
-    else
-    {
-        [YGAppTool showToastWithText:@"购买失败"];
-    }
-}
+/** 原来代码 */
+//- (void)pushViewController:(NSNotification *)notif
+//{
+//    NSString *state = notif.userInfo[@"successOrNot"];
+//    if ([state isEqualToString:@"1"])
+//    {
+//        if ([self.payStatus isEqualToString:@"alipay"]) {
+//            //支付宝
+//            ResultViewController *vc = [[ResultViewController alloc]init];
+//            if ([self.isOrderoffPay isEqualToString:@"isOrder"]) {
+//                vc.pageType = ResultPageTypeSubmitPurchsePayResult;
+//            }
+//            else
+//            {
+//                vc.pageType = ResultPageTypeMeetingResult;
+//            }
+//            vc.earnPoints = [self.earnPointString intValue];
+//            [self.navigationController pushViewController:vc animated:YES];
+//        }
+//        if ([self.payStatus isEqualToString:@"wx"]) {
+//            //微信
+//            ResultViewController *vc = [[ResultViewController alloc] init];
+//            if ([self.isOrderoffPay isEqualToString:@"isOrder"]) {
+//                vc.pageType = ResultPageTypeSubmitPurchsePayResult;
+//            }
+//            else
+//            {
+//                vc.pageType = ResultPageTypeMeetingResult;
+//            }
+//            vc.earnPoints = [self.earnPointString intValue];
+//            [self.navigationController pushViewController:vc animated:YES];
+//        }
+//        [YGAppTool showToastWithText:@"购买成功"];
+//    }
+//    else
+//    {
+//        [YGAppTool showToastWithText:@"购买失败"];
+//    }
+//}
 
 
 

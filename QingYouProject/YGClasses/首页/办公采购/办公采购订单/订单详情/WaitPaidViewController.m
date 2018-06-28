@@ -64,7 +64,7 @@
     [self setupNav];
     //接收支付结果的消息
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pushViewController:) name:@"paySuccess" object:nil];
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pushViewController:) name:@"paySuccess" object:nil];
     
 }
 #pragma mark - 设置导航栏
@@ -260,6 +260,16 @@
                 [Pingpp createPayment:responseObject[@"charge"] viewController:Weakself appURLScheme:@"qingyouhui" withCompletion:^(NSString *result, PingppError *error){
                     if ([result isEqualToString:@"success"])
                     {
+                        /** origin code */
+//                        if([self.selectPayWay isEqualToString:@"alipay"])
+//                        {
+//                            //支付宝
+//                            ResultViewController *controller = [[ResultViewController alloc] init];
+//                            controller.pageType =  ResultPageTypeSubmitResult;
+//                            [self.navigationController pushViewController:controller animated:YES];
+//                        }
+//                        NSLog(@"success");
+                        /** new code */
                         if([self.selectPayWay isEqualToString:@"alipay"])
                         {
                             //支付宝
@@ -267,10 +277,20 @@
                             controller.pageType =  ResultPageTypeSubmitResult;
                             [self.navigationController pushViewController:controller animated:YES];
                         }
-                        NSLog(@"success");
+                        else if([self.selectPayWay isEqualToString:@"wx"])
+                        {
+                            //微信
+                            ResultViewController *controller = [[ResultViewController alloc] init];
+                            controller.pageType =  ResultPageTypeSubmitResult;
+                            [self.navigationController pushViewController:controller animated:YES];
+                        }
+                        
+                        [YGAppTool showToastWithText:@"购买成功"];
                     } else {
                         if (error.code == PingppErrWxNotInstalled) {
                             [YGAppTool showToastWithText:@"请安装微信客户端"];
+                        } else {
+                            [YGAppTool showToastWithText:@"购买失败"];
                         }
                         NSLog(@"PingppError: code=%lu msg=%@", error.code, [error getMsg]);
                     }
@@ -296,34 +316,34 @@
     }
     
 }
-- (void)pushViewController:(NSNotification *)notif
-{
-    NSString *state = notif.userInfo[@"successOrNot"];
-    
-    if ([state isEqualToString:@"1"])
-    {
-        if([self.selectPayWay isEqualToString:@"alipay"])
-        {
-            //支付宝
-            ResultViewController *controller = [[ResultViewController alloc] init];
-            controller.pageType =  ResultPageTypeSubmitResult;
-            [self.navigationController pushViewController:controller animated:YES];
-        }
-        else if([self.selectPayWay isEqualToString:@"wx"])
-        {
-            //微信
-            ResultViewController *controller = [[ResultViewController alloc] init];
-            controller.pageType =  ResultPageTypeSubmitResult;
-            [self.navigationController pushViewController:controller animated:YES];
-        }
-        
-        [YGAppTool showToastWithText:@"购买成功"];
-    }
-    else
-    {
-        [YGAppTool showToastWithText:@"购买失败"];
-    }
-}
+//- (void)pushViewController:(NSNotification *)notif
+//{
+//    NSString *state = notif.userInfo[@"successOrNot"];
+//
+//    if ([state isEqualToString:@"1"])
+//    {
+//        if([self.selectPayWay isEqualToString:@"alipay"])
+//        {
+//            //支付宝
+//            ResultViewController *controller = [[ResultViewController alloc] init];
+//            controller.pageType =  ResultPageTypeSubmitResult;
+//            [self.navigationController pushViewController:controller animated:YES];
+//        }
+//        else if([self.selectPayWay isEqualToString:@"wx"])
+//        {
+//            //微信
+//            ResultViewController *controller = [[ResultViewController alloc] init];
+//            controller.pageType =  ResultPageTypeSubmitResult;
+//            [self.navigationController pushViewController:controller animated:YES];
+//        }
+//
+//        [YGAppTool showToastWithText:@"购买成功"];
+//    }
+//    else
+//    {
+//        [YGAppTool showToastWithText:@"购买失败"];
+//    }
+//}
 #pragma mark - IntegralViewDelegate 青币点击代理事件
 - (void)integralViewRightButtonDidClick{
     

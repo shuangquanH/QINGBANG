@@ -40,7 +40,7 @@
     [self configUI];
     [self netService];
     //接收支付结果的消息
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pushViewController:) name:@"paySuccess" object:nil];
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pushViewController:) name:@"paySuccess" object:nil];
 }
 
 
@@ -315,19 +315,28 @@
                 [Pingpp createPayment:responseObject[@"charge"] viewController:Weakself appURLScheme:@"qingyouhui" withCompletion:^(NSString *result, PingppError *error){
                     if ([result isEqualToString:@"success"])
                     {
-                        if ([channel isEqualToString:@"alipay"]) {
-                            //支付宝
-                            ResultViewController *controller = [[ResultViewController alloc] init];
-                            controller.pageType =  ResultPageTypeIndustryFinancialResult;
-                            controller.earnPoints = [_getPoint intValue];
-                            [self.navigationController pushViewController:controller animated:YES];
-                            
-                            [YGAppTool showToastWithText:@"购买成功"];
-                        }
-                        NSLog(@"success");
+                        /** origin code */
+//                        if ([channel isEqualToString:@"alipay"]) {
+//                            //支付宝
+//                            ResultViewController *controller = [[ResultViewController alloc] init];
+//                            controller.pageType =  ResultPageTypeIndustryFinancialResult;
+//                            controller.earnPoints = [_getPoint intValue];
+//                            [self.navigationController pushViewController:controller animated:YES];
+//
+//                            [YGAppTool showToastWithText:@"购买成功"];
+//                        }
+//                        NSLog(@"success");
+                        /** new code */
+                        ResultViewController *controller = [[ResultViewController alloc] init];
+                        controller.pageType =  ResultPageTypeIndustryFinancialResult;
+                        controller.earnPoints = [_getPoint intValue];
+                        [self.navigationController pushViewController:controller animated:YES];
+                        [YGAppTool showToastWithText:@"购买成功"];
                     } else {
                         if (error.code == PingppErrWxNotInstalled) {
                             [YGAppTool showToastWithText:@"请安装微信客户端"];
+                        } else {
+                            [YGAppTool showToastWithText:@"购买失败"];
                         }
                         NSLog(@"PingppError: code=%lu msg=%@", error.code, [error getMsg]);
                     }
@@ -387,19 +396,30 @@
                 [Pingpp createPayment:responseObject[@"charge"] viewController:Weakself appURLScheme:@"qingyouhui" withCompletion:^(NSString *result, PingppError *error){
                     if ([result isEqualToString:@"success"])
                     {
-                        if ([channel isEqualToString:@"alipay"]) {
-                            //支付宝
-                            ResultViewController *controller = [[ResultViewController alloc] init];
-                            controller.pageType =  ResultPageTypeIndustryFinancialResult;
-                            controller.earnPoints = [_getPoint intValue];
-                            [self.navigationController pushViewController:controller animated:YES];
-                            
-                            [YGAppTool showToastWithText:@"购买成功"];
-                        }
-                        NSLog(@"success");
+                        /** origin code */
+//                        if ([channel isEqualToString:@"alipay"]) {
+//                            //支付宝
+//                            ResultViewController *controller = [[ResultViewController alloc] init];
+//                            controller.pageType =  ResultPageTypeIndustryFinancialResult;
+//                            controller.earnPoints = [_getPoint intValue];
+//                            [self.navigationController pushViewController:controller animated:YES];
+//
+//                            [YGAppTool showToastWithText:@"购买成功"];
+//                        }
+//                        NSLog(@"success");
+                        /** new code */
+                        //支付宝
+                        ResultViewController *controller = [[ResultViewController alloc] init];
+                        controller.pageType =  ResultPageTypeIndustryFinancialResult;
+                        controller.earnPoints = [_getPoint intValue];
+                        [self.navigationController pushViewController:controller animated:YES];
+                        [YGAppTool showToastWithText:@"购买成功"];
+                        
                     } else {
                         if (error.code == PingppErrWxNotInstalled) {
                             [YGAppTool showToastWithText:@"请安装微信客户端"];
+                        } else {
+                            [YGAppTool showToastWithText:@"购买失败"];
                         }
                         NSLog(@"PingppError: code=%lu msg=%@", error.code, [error getMsg]);
                     }
@@ -430,27 +450,27 @@
 
 }
 
-- (void)pushViewController:(NSNotification *)notif
-{
-    NSString *state = notif.userInfo[@"successOrNot"];
-    
-   
-    if ([state isEqualToString:@"1"])
-    {
-     
-        //支付宝
-        ResultViewController *controller = [[ResultViewController alloc] init];
-        controller.pageType =  ResultPageTypeIndustryFinancialResult;
-        controller.earnPoints = [_getPoint intValue];
-        [self.navigationController pushViewController:controller animated:YES];
-        
-        [YGAppTool showToastWithText:@"购买成功"];
-    }
-    else
-    {
-        [YGAppTool showToastWithText:@"购买失败"];
-    }
-}
+//- (void)pushViewController:(NSNotification *)notif
+//{
+//    NSString *state = notif.userInfo[@"successOrNot"];
+//
+//
+//    if ([state isEqualToString:@"1"])
+//    {
+//
+//        //支付宝
+//        ResultViewController *controller = [[ResultViewController alloc] init];
+//        controller.pageType =  ResultPageTypeIndustryFinancialResult;
+//        controller.earnPoints = [_getPoint intValue];
+//        [self.navigationController pushViewController:controller animated:YES];
+//
+//        [YGAppTool showToastWithText:@"购买成功"];
+//    }
+//    else
+//    {
+//        [YGAppTool showToastWithText:@"购买失败"];
+//    }
+//}
 
 
 -(void)netService
