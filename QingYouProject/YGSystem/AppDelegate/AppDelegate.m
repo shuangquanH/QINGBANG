@@ -55,67 +55,24 @@
     
     if (strarray.count > 1) {
         NSString *param = [strarray objectAtIndex:1];
-        
         NSArray *paramSrr = [param componentsSeparatedByString:@"&"];
-        
         NSString *params =[paramSrr firstObject];
-        
         NSString *sign =[strarray lastObject];
-        
         NSMutableDictionary *paraDic = @{}.mutableCopy;
-        
         [paraDic setObject:params forKey:@"params"];
-        
         [paraDic setObject:sign forKey:@"sign"];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"alipayCertifySuccess" object:nil userInfo:paraDic];
     }
 
     [Pingpp handleOpenURL:url withCompletion:nil];
-//    [Pingpp handleOpenURL:url withCompletion:^(NSString *result, PingppError *error) {
-//        NSString *state;
-//        if ([result isEqualToString:@"success"]) {
-//
-//            state = @"1";
-//
-//        }else if ([result isEqualToString:@"cancel"]) {
-//
-//            state = @"0";
-//
-//        }
-//        else if([result isEqualToString:@"fail"]) {
-//
-//            state = @"0";
-//            NSLog(@"PingppError: code=%lu msg=%@", error.code, [error getMsg]);
-//
-//        }
-//
-//        [[NSNotificationCenter defaultCenter]postNotificationName:@"paySuccess" object:nil userInfo:@{@"successOrNot":state}];
-//
-//
-//    }];
     BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url];
     if (!result) {
         // 其他如支付等SDK的回调
     }
-    
     return YES;
 }
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     [Pingpp handleOpenURL:url withCompletion:nil];
-//    [Pingpp handleOpenURL:url withCompletion:^(NSString *result, PingppError *error) {
-//        NSString *state;
-//        if ([result isEqualToString:@"success"]) {
-//            state = @"1";
-//
-//        } else if ([result isEqualToString:@"cancel"]) {
-//            state = @"0";
-//        } else if([result isEqualToString:@"fail"]) {
-//            state = @"0";
-//            NSLog(@"PingppError: code=%lu msg=%@", error.code, [error getMsg]);
-//        }
-//        [[NSNotificationCenter defaultCenter]postNotificationName:@"paySuccess" object:nil userInfo:@{@"successOrNot":state}];
-//    }];
-    
     BOOL result = [[UMSocialManager defaultManager] handleOpenURL:url];
     if (!result) {
         // 其他如支付等SDK的回调

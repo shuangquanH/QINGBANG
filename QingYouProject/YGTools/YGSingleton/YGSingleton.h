@@ -18,12 +18,17 @@
 
 @property (nonatomic, copy) NSString       *apiAddress;
 
+/** 客服电话  */
+@property (nonatomic, copy) NSString       *servicePhoneNumber;
+
 //当前user
 @property (nonatomic,strong) YGUser * user;
 
 @property (nonatomic,strong) RootViewController * roadShowHallAddVideoViewController;
 
 @property (nonatomic,strong) RootViewController * roadShowHallAddImageViewController;
+
+
 
 //单例
 + (YGSingleton *)sharedManager;

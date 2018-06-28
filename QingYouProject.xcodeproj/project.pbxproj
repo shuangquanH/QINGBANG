@@ -729,6 +729,7 @@
 		E9C14A4220E39459003A2A1A /* SQGetWeatherTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C14A4120E39459003A2A1A /* SQGetWeatherTool.m */; };
 		E9C14A4C20E48FE9003A2A1A /* UIButton+SQInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C14A4B20E48FE9003A2A1A /* UIButton+SQInstance.m */; };
 		E9C14A4F20E4927C003A2A1A /* NSString+SQAttributeString.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C14A4E20E4927C003A2A1A /* NSString+SQAttributeString.m */; };
+		E9C14A5220E4EA5D003A2A1A /* SQCallPhoneFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C14A5120E4EA5D003A2A1A /* SQCallPhoneFunction.m */; };
 		E9E1E58020C63F0A00A807BE /* SeccondCertifyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E57F20C63F0A00A807BE /* SeccondCertifyProfileViewController.m */; };
 		E9E1E58320C63F4C00A807BE /* TobeLeaderOfAllianceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E58220C63F4B00A807BE /* TobeLeaderOfAllianceViewController.m */; };
 		E9E1E58620C63F9300A807BE /* TobeLeaderOfAllianceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E58520C63F9300A807BE /* TobeLeaderOfAllianceTableViewCell.m */; };
@@ -2108,6 +2109,8 @@
 		E9C14A4B20E48FE9003A2A1A /* UIButton+SQInstance.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+SQInstance.m"; sourceTree = "<group>"; };
 		E9C14A4D20E4927C003A2A1A /* NSString+SQAttributeString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+SQAttributeString.h"; sourceTree = "<group>"; };
 		E9C14A4E20E4927C003A2A1A /* NSString+SQAttributeString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+SQAttributeString.m"; sourceTree = "<group>"; };
+		E9C14A5020E4EA5D003A2A1A /* SQCallPhoneFunction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQCallPhoneFunction.h; sourceTree = "<group>"; };
+		E9C14A5120E4EA5D003A2A1A /* SQCallPhoneFunction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQCallPhoneFunction.m; sourceTree = "<group>"; };
 		E9E1E57E20C63F0A00A807BE /* SeccondCertifyProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeccondCertifyProfileViewController.h; sourceTree = "<group>"; };
 		E9E1E57F20C63F0A00A807BE /* SeccondCertifyProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeccondCertifyProfileViewController.m; sourceTree = "<group>"; };
 		E9E1E58120C63F4B00A807BE /* TobeLeaderOfAllianceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TobeLeaderOfAllianceViewController.h; sourceTree = "<group>"; };
@@ -5152,6 +5155,8 @@
 				E94137A6209C4295003F3649 /* SQLocationManager.m */,
 				E92ABB7220DBB1DD003B374D /* SQSaveWebImage.h */,
 				E92ABB7320DBB1DD003B374D /* SQSaveWebImage.m */,
+				E9C14A5020E4EA5D003A2A1A /* SQCallPhoneFunction.h */,
+				E9C14A5120E4EA5D003A2A1A /* SQCallPhoneFunction.m */,
 			);
 			path = SQTools;
 			sourceTree = "<group>";
@@ -5752,6 +5757,7 @@
 				045AD0A920E0CB5A00A3FF8F /* WKInvoiceAddressModel.m in Sources */,
 				5201C1681FCC49B40049F22C /* ProjectApplyDetailViewController.m in Sources */,
 				18C15A1A1FC8208A0010ACD3 /* ServiceEvalutionModel.m in Sources */,
+				E9C14A5220E4EA5D003A2A1A /* SQCallPhoneFunction.m in Sources */,
 				18C15A7E1FC8208B0010ACD3 /* PayHeaderView.m in Sources */,
 				E2E5B17A1FB0675A00205F70 /* YYDiskCache.m in Sources */,
 				04935CE320E07AFF00E84802 /* WKInvoiceFunctionCell.m in Sources */,

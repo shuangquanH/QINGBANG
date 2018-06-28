@@ -206,17 +206,26 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:rgbAlpha]
 // 默认头像
 #define YGDefaultImgAvatar          [UIImage imageNamed:@"defaultavatar.png"]               //默认头像
 
-#define YGDefaultImgSquare          [UIImage imageNamed:@"placeholderfigure_square_750x750"] //正方形
+//    0.5 300*600
+//    1   300*300
+//    1.2 360*300
+//    1.4 420*300
+//    1.6 480*300
+//    1.8 540*300
+//    2.0 600*300
+//    4.0 800*200
 
-#define YGDefaultImgFour_Three      [UIImage imageNamed:@"placeholderfigure_rectangle_230x172_4_3"] //4：3
+#define YGDefaultImgSquare          [UIImage imageNamed:@"placeholderfigure_square_300x300"] //正方形
 
-#define YGDefaultImgTwo_One         [UIImage imageNamed:@"placeholderfigure_rectangle_750x375_2_1"] //2：1
+#define YGDefaultImgFour_Three      [UIImage imageNamed:@"placeholderfigure_square_420x300"] //4：3
 
-#define YGDefaultImgThree_Four      [UIImage imageNamed:@"placeholderfigure_rectangle_214x284_3_4"] //3：4
+#define YGDefaultImgTwo_One         [UIImage imageNamed:@"placeholderfigure_square_600x300"] //2：1
 
-#define YGDefaultImgSixteen_Nine    [UIImage imageNamed:@"placeholderfigure_rectangle_698x392_16_9"] //16：9
+#define YGDefaultImgThree_Four      [UIImage imageNamed:@"placeholderfigure_square_300x600"] //3：4
 
-#define YGDefaultImgHorizontal      [UIImage imageNamed:@"placeholderfigure_rectangle_698x110"]     //横条
+#define YGDefaultImgSixteen_Nine    [UIImage imageNamed:@"placeholderfigure_square_600x300"] //16：9
+
+#define YGDefaultImgHorizontal      [UIImage imageNamed:@"placeholderfigure_square_800x200"]     //横条
 
 
 /** 上面的define尽量不要用，以后全部删除掉  */

@@ -22,6 +22,9 @@
 #import <Pingpp.h>
 
 
+#import "WKInvoiceAddressViewController.h"
+#import "WKInvoiceAddressModel.h"
+
 @interface SQConfirmDecorationOrderVC () <SQConfirmDecorationPayDelegate>
 
 @property (nonatomic, assign) PayType       payType;
@@ -44,12 +47,17 @@
 
 - (void)requestData {
     //获取用户地址
-    NSDictionary    *param = @{@"userId":YGSingletonMarco.user.userId,@"type":@"0", @"total":@"0",@"count":@"1"};
-    [YGNetService YGPOST:REQUEST_AddressList parameters:param showLoadingView:nil scrollView:nil success:^(id responseObject) {
-        NSArray *addresslist = [NSArray arrayWithArray:responseObject[@"addressList"]];
-        self.chooseAddressView.model = [SQDecorationAddressModel yy_modelWithDictionary:addresslist.firstObject];
-    } failure: nil];
-    
+    [SQRequest post:KAPI_INVOICEADDRESSLIST param:nil success:^(id response) {
+        if ([response[@"code"] longLongValue] == 0) {
+            NSArray *addresslist = [NSArray yy_modelArrayWithClass:[WKInvoiceAddressModel class] json:response[@"data"][@"addressList"]];
+            self.chooseAddressView.model = [WKInvoiceAddressModel yy_modelWithDictionary:addresslist.firstObject];
+
+        } else {
+            [YGAppTool showToastWithText:response[@"msg"]];
+        }
+    } failure:^(NSError *error) {
+        [YGAppTool showToastWithText:@"网络错误"];
+    }];
 }
 
 
@@ -109,16 +117,11 @@
     /** 点击地址栏  */
     self.chooseAddressView.userInteractionEnabled = YES;
     [self.chooseAddressView sq_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
-        if (weakSelf.chooseAddressView.model) {
-            ManageMailPostViewController *managePostVC = [[ManageMailPostViewController alloc] init];
-            managePostVC.pageType = @"decorationAddress";
-            [weakSelf.navigationController pushViewController:managePostVC animated:YES];
-        } else {
-            AddAddressViewController *addVC = [[AddAddressViewController alloc]init];
-            addVC.navTitle = @"添加地址";
-            addVC.state = @"添加";
-            [weakSelf.navigationController pushViewController:addVC animated:YES];
-        }
+        WKInvoiceAddressViewController *vc = [[WKInvoiceAddressViewController alloc] init];
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+        vc.addressSelecter = ^(WKInvoiceAddressModel *model){
+            weakSelf.chooseAddressView.model = model;
+        };
     }];
     
     /** 点击提交订单按钮  */
@@ -133,34 +136,28 @@
     self.payType = type;
 }
 - (void)confirmButtonAction {
-    NSDictionary    *param = @{@"addressId":@"20", @"payType":@"alipay", @"remarks":@"beizhu", @"skuId":self.skuId};
-//    [SQRequest setApiAddress:KAPI_ADDRESS_TEST_MH];
+    if (!self.payType) {
+        [YGAlertView showAlertWithTitle:@"请选择支付方式" buttonTitlesArray:@[@"OK"] buttonColorsArray:@[KCOLOR_MAIN] handler:nil];
+        return;
+    }
+    NSString    *paytype = (self.payType==SQPayByAirPay)?@"alipay":@"wx";
+    NSString    *beizhu = self.confirmDecorationCell.leaveMessageStr;
+    NSDictionary    *param = @{@"addressId":@"20", @"payType":paytype, @"remarks":beizhu, @"skuId":self.skuId};
     [SQRequest post:KAPI_CREATORDER param:param success:^(id response) {
         [self pingPPPayWithResponde:response[@"data"]];
-        
-    } failure:^(NSError *error) {
-        
-    }];
-//    [SQRequest setApiAddress:nil];
-    
-    
-//    if (self.payType) {
-//        SQPaySuccessfulVC   *payvc = [[SQPaySuccessfulVC alloc] init];
-//        payvc.lastNav = self.navigationController;
-//        YGNavigationController  *nav = [[YGNavigationController alloc] initWithRootViewController:payvc];
-//        [self presentViewController:nav animated:YES completion:nil];
-//    } else {
-//        [YGAlertView showAlertWithTitle:@"请选择支付方式" buttonTitlesArray:@[@"OK"] buttonColorsArray:@[KCOLOR_MAIN] handler:nil];
-//    }
+    } failure:nil showLoadingView:YES];
 }
 
 
 - (void)pingPPPayWithResponde:(NSDictionary *)response {
     [Pingpp createPayment:response[@"charge"] viewController:self appURLScheme:@"qingyouhui" withCompletion:^(NSString *result, PingppError *error){
         if ([result isEqualToString:@"success"]) {
-            NSLog(@"支付成功!");
+            SQPaySuccessfulVC   *payvc = [[SQPaySuccessfulVC alloc] init];
+            payvc.lastNav = self.navigationController;
+            YGNavigationController  *nav = [[YGNavigationController alloc] initWithRootViewController:payvc];
+            [self presentViewController:nav animated:YES completion:nil];
         } else {
-            NSLog(@"支付失败!");
+            [YGAppTool showToastWithText:@"支付失败"];
             if (error.code == PingppErrWxNotInstalled) {
                 [YGAppTool showToastWithText:@"请安装微信客户端"];
             }

@@ -45,8 +45,8 @@
 }
 
 - (void)setModel:(SQDecorationStyleModel *)model {
-    [productImage setImageWithUrl:model.imageUrl placeHolder:[UIImage imageNamed:@"placeholderfigure_square_750x750"]];
-    [self layoutIfNeeded];
+    [productImage setImageWithUrl:model.imageUrl];
+//    [self layoutIfNeeded];
 }
 
 - (void)layoutSubviews {

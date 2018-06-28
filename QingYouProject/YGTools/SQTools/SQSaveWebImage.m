@@ -10,9 +10,6 @@
 
 @implementation SQSaveWebImage
 
-
-
-
 + (void)saveImageWithUrl:(NSString *)urlString {
     
     NSURL *url = [NSURL URLWithString: urlString];

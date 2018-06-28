@@ -24,6 +24,9 @@
 # define NSLog(...) {}
 #endif
 
+/** 客服电话  */
+#define KSERVICE_PHONE      [YGSingleton sharedManager].servicePhoneNumber
+
 /** 通知中心单利  */
 #define KNOTI_CENTER        [NSNotificationCenter defaultCenter]
 

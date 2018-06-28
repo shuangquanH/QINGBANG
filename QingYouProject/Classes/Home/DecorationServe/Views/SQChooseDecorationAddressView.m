@@ -47,9 +47,9 @@
     return self;
 }
 
-- (void)setModel:(SQDecorationAddressModel *)model {
+- (void)setModel:(WKInvoiceAddressModel *)model {
     _model = model;
-    if (model.addressid) {
+    if (model.ID) {
         [addAddressButton removeFromSuperview];
         [self addSubview:nameLabel];
         [self addSubview:phoneLabel];
@@ -57,7 +57,7 @@
         
         nameLabel.text = model.name;
         phoneLabel.text = model.phone;
-        cityLabel.text = [NSString stringWithFormat:@"%@ %@ %@ %@", model.prov, model.city, model.dist, model.address];
+        cityLabel.text = [NSString stringWithFormat:@"%@ %@ %@", model.provName, model.cityName, model.detail];
         [nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(KSPACE);
             make.top.mas_equalTo(KSPACE);

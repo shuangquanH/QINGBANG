@@ -17,7 +17,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:self.bounds delegate:self placeholderImage:[UIImage imageNamed:@"placeholderfigure_rectangle_698x300"]];
+        cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:self.bounds delegate:self placeholderImage:[UIImage imageNamed:@"placeholderfigure_rectangle_600x300"]];
         cycleScrollView.contentMode = UIViewContentModeScaleAspectFill;
         cycleScrollView.autoScroll = YES;
         cycleScrollView.infiniteLoop = YES;

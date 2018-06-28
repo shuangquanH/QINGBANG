@@ -19,39 +19,37 @@
     return self;
 }
 - (void)setImageWithUrl:(NSString *)url {
-    //    placeholderfigure_rectangle_214x284_3_4   = 0.86
-    //    placeholderfigure_square_750x750          = 1
-    //    placeholderfigure_rectangle_750x560       = 1.34
-    //    placeholderfigure_rectangle_750x504       = 1.5
-    //    placeholderfigure_rectangle_336x200       = 1.68
-    //    placeholderfigure_rectangle_698x392_16_9  = 1.8
-    //    placeholderfigure_rectangle_750x375_2_1   = 2
-    //    placeholderfigure_rectangle_698x300       = 2.32
-    //    placeholderfigure_rectangle_698x110       = 6.35
-    
     CGFloat imageWidth = self.size.width;
     CGFloat imageHeight = self.size.height;
     CGFloat scale = imageWidth/imageHeight;
     
+//    0.5 300*600
+//    1   300*300
+//    1.2 360*300
+//    1.4 420*300
+//    1.6 480*300
+//    1.8 540*300
+//    2.0 600*300
+//    4.0 800*200
+    
+    
     UIImage *placeImage;
-    if (scale<=0.9) {
-        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_214x284_3_4"];
-    } else if (scale<=1.2) {
-        placeImage = [UIImage imageNamed:@"placeholderfigure_square_750x750"];
-    } else if (scale<=1.4) {
-        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_750x560"];
-    } else if (scale<=1.6) {
-        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_750x504"];
-    } else if (scale<=1.75) {
-        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_336x200"];
+    if (scale<=0.75) {
+        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_300x600"];
+    } else if (scale<=1.1) {
+        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_300x300"];
+    } else if (scale<=1.3) {
+        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_360x300"];
+    } else if (scale<=1.5) {
+        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_420x300"];
+    } else if (scale<=1.7) {
+        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_480x300"];
     } else if (scale<=1.9) {
-        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_698x392_16_9"];
+        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_540x300"];
     } else if (scale<2.1) {
-        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_750x375_2_1"];
-    } else if (scale<5) {
-        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_698x300"];
+        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_600x300"];
     } else {
-        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_698x110"];
+        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_800x200"];
     }
     
     [self setImageWithUrl:url placeHolder:placeImage];

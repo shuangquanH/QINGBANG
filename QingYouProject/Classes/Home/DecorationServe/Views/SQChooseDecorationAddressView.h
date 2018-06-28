@@ -7,12 +7,11 @@
 //  确认订单选择地址view
 
 #import <UIKit/UIKit.h>
-#import "SQDecorationAddressModel.h"
-
+#import "WKInvoiceAddressModel.h"
 
 
 @interface SQChooseDecorationAddressView : UIView
 
-@property (nonatomic, strong) SQDecorationAddressModel       *model;
+@property (nonatomic, strong) WKInvoiceAddressModel       *model;
 
 @end

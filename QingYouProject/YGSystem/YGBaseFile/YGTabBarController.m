@@ -10,6 +10,7 @@
 #import "YGNavigationController.h"
 #import "YGTabbar.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import "SQCallPhoneFunction.h"
 
 @interface YGTabBarController () <UITabBarControllerDelegate>
 
@@ -20,9 +21,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configUI];
+    [self getServerPhone];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
 
+- (void)getServerPhone {
+    [SQRequest post:KAPI_SERVICEPHONE param:nil success:^(id response) {
+        if ([response[@"code"] integerValue]==0) {
+            NSString *phone = response[@"data"][@"phone"];
+            KSERVICE_PHONE = phone;
+        }
+    } failure:nil];
+}
 
 -(void)configUI {
     self.delegate = self;
@@ -72,10 +82,12 @@
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
     AudioServicesPlaySystemSound(1104);
     if (viewController==self.viewControllers.lastObject) {
-        [YGAlertView showAlertWithTitle:@"是否要拨打客服电话?"
-                      buttonTitlesArray:@[@"YES", @"NO"]
-                      buttonColorsArray:@[[UIColor blueColor],
-                                          [UIColor redColor]] handler:nil];
+        [YGAlertView showAlertWithTitle:@"是否要拨打客服电话？" buttonTitlesArray:@[@"YES", @"NO"] buttonColorsArray:@[KCOLOR_MAIN,kCOLOR_666] handler:^(NSInteger buttonIndex) {
+            if (buttonIndex==0) {
+                [SQCallPhoneFunction callServicePhone];
+            }
+        }];
+        
         return NO;
     } else {
         return YES;
