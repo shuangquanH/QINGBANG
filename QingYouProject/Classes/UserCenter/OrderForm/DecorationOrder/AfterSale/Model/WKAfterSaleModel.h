@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface WKAfterSaleModel : NSObject
-/** 售后状态 1.等待处理 2.已回复 */
+/** 售后状态 0.等待处理 1.已回复 */
 @property (nonatomic, assign) NSInteger afterSaleState;
 /** 售后描述 */
 @property (nonatomic, copy  ) NSString *afterSaleDesc;

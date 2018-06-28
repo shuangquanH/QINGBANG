@@ -150,7 +150,6 @@
     
     NSMutableArray *tmp = [self.navigationController.viewControllers mutableCopy];
     [tmp removeObject:self];
-    [self.navigationController setValue:[tmp copy] forKey:@"viewControllers"];
 }
 
 - (void)click_confirmButton {
