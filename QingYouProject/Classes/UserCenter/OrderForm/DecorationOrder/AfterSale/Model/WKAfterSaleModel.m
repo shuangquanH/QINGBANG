@@ -19,7 +19,7 @@ static const CGFloat kImageVerticalSpace   = 20;
 
 - (void)setAfterSaleState:(NSInteger)afterSaleState {
     _afterSaleState = afterSaleState;
-    if (afterSaleState == 1) {
+    if (afterSaleState == 0) {
         _stateDesc = @"售后申请已提交，等待系统处理。";
     }
     else {

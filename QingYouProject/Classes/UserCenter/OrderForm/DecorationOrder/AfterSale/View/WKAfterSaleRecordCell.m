@@ -40,7 +40,7 @@
     
     _stateLab.text = info.stateDesc;
     _timeLab.text = [NSString stringWithFormat:@"您于%@发起了售后申请：", info.createTime];
-    _problemLab.text = [NSString stringWithFormat:@"问题描述：%@", info.afterSaleDesc];
+    _problemLab.text = [NSString stringWithFormat:@"问题描述：%@", info.afterSaleDesc?:@""];
     
     NSArray *urls = [info.images componentsSeparatedByString:@","];
     if (!urls.count) {
@@ -63,11 +63,11 @@
         }];
     }
     
-    if (info.afterSaleState == 1) {
+    if (info.afterSaleState == 0) {
         _resultLab.text = @"";
     }
     else {
-        _resultLab.text = [NSString stringWithFormat:@"处理结果：%@", info.afterSaleResult];
+        _resultLab.text = [NSString stringWithFormat:@"处理结果：%@", info.afterSaleResult?:@""];
     }
 }
 
