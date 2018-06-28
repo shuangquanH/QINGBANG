@@ -7,6 +7,7 @@
 //
 
 #import "SQDecorationServeVC.h"
+#import "SQWebAdViewController.h"
 
 #import "SQDecorationServeCell.h"
 #import "SQDecorationSeveTableHeader.h"
@@ -84,7 +85,9 @@
         [self.navigationController pushViewController:vc animated:YES];
     } else if ([model.type isEqualToString:@"2"]) {
         //广告
-        
+        SQWebAdViewController *web = [[SQWebAdViewController alloc] init];
+        web.funcs_target_params = model.linkurl;
+        [self.navigationController pushViewController:web animated:YES];
     }
 }
 

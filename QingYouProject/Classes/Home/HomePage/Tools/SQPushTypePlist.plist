@@ -58,7 +58,7 @@
 		<key>controllerTitle</key>
 		<string>办公装修</string>
 		<key>needLogin</key>
-		<false/>
+		<true/>
 	</dict>
 	<dict>
 		<key>targetTpye</key>

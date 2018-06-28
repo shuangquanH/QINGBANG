@@ -19,11 +19,45 @@
     return self;
 }
 - (void)setImageWithUrl:(NSString *)url {
+    //    placeholderfigure_rectangle_214x284_3_4   = 0.86
+    //    placeholderfigure_square_750x750          = 1
+    //    placeholderfigure_rectangle_750x560       = 1.34
+    //    placeholderfigure_rectangle_750x504       = 1.5
+    //    placeholderfigure_rectangle_336x200       = 1.68
+    //    placeholderfigure_rectangle_698x392_16_9  = 1.8
+    //    placeholderfigure_rectangle_750x375_2_1   = 2
+    //    placeholderfigure_rectangle_698x300       = 2.32
+    //    placeholderfigure_rectangle_698x110       = 6.35
     
-    [self setImageWithUrl:url placeHolder:[UIImage imageNamed:@"placeholderfigure_rectangle_230x172_4_3"]];
+    CGFloat imageWidth = self.size.width;
+    CGFloat imageHeight = self.size.height;
+    CGFloat scale = imageWidth/imageHeight;
+    
+    UIImage *placeImage;
+    if (scale<=0.9) {
+        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_214x284_3_4"];
+    } else if (scale<=1.2) {
+        placeImage = [UIImage imageNamed:@"placeholderfigure_square_750x750"];
+    } else if (scale<=1.4) {
+        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_750x560"];
+    } else if (scale<=1.6) {
+        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_750x504"];
+    } else if (scale<=1.75) {
+        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_336x200"];
+    } else if (scale<=1.9) {
+        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_698x392_16_9"];
+    } else if (scale<2.1) {
+        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_750x375_2_1"];
+    } else if (scale<5) {
+        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_698x300"];
+    } else {
+        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_698x110"];
+    }
+    
+    [self setImageWithUrl:url placeHolder:placeImage];
 }
 - (void)setImageWithURL:(NSURL *)URL {
-    [self setImageWithURL:URL placeHolder:[UIImage imageNamed:@"placeholderfigure_rectangle_230x172_4_3"]];
+    [self setImageWithURL:URL placeHolder:nil];
 }
 
 - (void)setImageWithUrl:(NSString *)url placeHolder:(UIImage *)image {

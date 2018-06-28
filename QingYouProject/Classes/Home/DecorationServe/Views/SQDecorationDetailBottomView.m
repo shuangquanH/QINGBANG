@@ -40,11 +40,9 @@
         contactBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [contactBtn setTitle:@"咨询" forState:UIControlStateNormal];
         contactBtn.titleLabel.font = KFONT(20);
-        contactBtn.titleLabel.textColor = kCOLOR_666;
+        [contactBtn setTitleColor:KCOLOR_WHITE forState:UIControlStateNormal];
         [contactBtn setImage:[UIImage imageNamed:@"Details_page_tab__icon2"] forState:UIControlStateNormal];
-        [contactBtn setImage:[UIImage imageNamed:@"Details_page_tab__icon2_down"] forState:UIControlStateSelected];
         [self addSubview:contactBtn];
-        [contactBtn setTitleColor:kCOLOR_666 forState:UIControlStateNormal];
         
         [contactBtn sq_setImagePosition:SQImagePositionTop spacing:2];
         
