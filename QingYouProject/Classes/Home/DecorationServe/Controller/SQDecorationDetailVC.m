@@ -121,8 +121,8 @@
         CGRect frame = CGRectMake(0, 0, YGScreenWidth - 150, 22);
         NSArray *titleArr = @[@"商品", @"详情", @"报价单"];
         _seg = [[YGSegmentView alloc] initWithFrame:frame titlesArray:titleArr lineColor:colorWithMainColor delegate:self];
-        _seg.backgroundColor = kBlackColor;
-        _seg.normalTitleColor = kWhiteColor;
+        _seg.backgroundColor = kCOLOR_333;
+        _seg.normalTitleColor = KCOLOR_WHITE;
         [_seg setTitleFont:KFONT(38)];
         [_seg hiddenBottomLine];
     }

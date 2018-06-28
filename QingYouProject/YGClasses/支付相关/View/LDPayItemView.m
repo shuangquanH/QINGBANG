@@ -8,6 +8,9 @@
 
 #import "LDPayItemView.h"
 
+
+
+
 @interface LDPayItemView ()
 /** 选中的coverButton  */
 @property (nonatomic,strong) UIButton * selectedCoverButton;

@@ -26,7 +26,7 @@
 {
     self = [super init];
     if (self) {
-        self.backgroundColor = kWhiteColor;
+        self.backgroundColor = KCOLOR_WHITE;
         
         orderImage = [[UIImageView alloc] init];
         orderImage.backgroundColor = [UIColor orangeColor];
@@ -57,7 +57,7 @@
         
         UIImageView *topLine = [[UIImageView alloc] init];
         topLine.image = [UIImage imageNamed:@"order_lis_line"];
-        topLine.backgroundColor = kGrayColor;
+        topLine.backgroundColor = kCOLOR_666;
         [self addSubview:topLine];
         
         payForPrice = [[UILabel alloc] init];
@@ -67,7 +67,7 @@
         
         UIImageView *centerLine = [[UIImageView alloc] init];
         centerLine.image = [UIImage imageNamed:@"order_lis_line"];
-        centerLine.backgroundColor = kGrayColor;
+        centerLine.backgroundColor = kCOLOR_666;
         [self addSubview:centerLine];
         
         
@@ -75,7 +75,7 @@
         [self addSubview:beizhuLabel];
         beizhuLabel.text = @"备注留言:";
         beizhuLabel.font = KFONT(28);
-        beizhuLabel.textColor = kGrayColor;
+        beizhuLabel.textColor = kCOLOR_666;
         
         
         beizhuTextView = [[UITextField alloc] init];
@@ -85,7 +85,7 @@
         
         UIImageView *bottomLine = [[UIImageView alloc] init];
         bottomLine.image = [UIImage imageNamed:@"order_lis_line"];
-        bottomLine.backgroundColor = kGrayColor;
+        bottomLine.backgroundColor = kCOLOR_666;
         [self addSubview:bottomLine];
         
         
@@ -196,7 +196,7 @@
 {
     self = [super init];
     if (self) {
-        self.backgroundColor = kWhiteColor;
+        self.backgroundColor = KCOLOR_WHITE;
         
         
         UILabel *zhifubao = [[UILabel alloc] init];

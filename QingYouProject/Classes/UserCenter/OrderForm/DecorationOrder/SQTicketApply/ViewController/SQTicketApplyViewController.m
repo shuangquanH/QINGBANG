@@ -280,7 +280,7 @@
 
 - (UIView *)footerView {
     if (!_footerView) {
-        _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, KSCAL(60))];
+        _footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, KSCAL(60))];
         UILabel *tipLab = [UILabel labelWithFont:KSCAL(26) textColor:colorWithLightGray text:@" 可联系客户经理索取"];
         [tipLab appendImage:[UIImage imageNamed:@"invoicetitle_redpoint"] imageFrame:CGRectMake(0, 0, 7, 7) withType:SQAppendImageInLeft];
         [_footerView addSubview:tipLab];

@@ -25,24 +25,24 @@
 {
     self = [super init];
     if (self) {
-        self.backgroundColor = kWhiteColor;
+        self.backgroundColor = KCOLOR_WHITE;
         addAddressButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [addAddressButton setTitle:@"新建地址" forState:UIControlStateNormal];
-        [addAddressButton setTitleColor:kBlackColor forState:UIControlStateNormal];
+        [addAddressButton setTitleColor:kCOLOR_333 forState:UIControlStateNormal];
         [addAddressButton setImage:[UIImage imageNamed:@"unfold_btn_gray"] forState:UIControlStateNormal];
         [addAddressButton sq_setImagePosition:SQImagePositionRight spacing:KSCAL(33)];
         
         nameLabel = [[UILabel alloc] init];
         nameLabel.font = KFONT(28);
-        nameLabel.textColor = kGrayColor;
+        nameLabel.textColor = kCOLOR_999;
         
         phoneLabel = [[UILabel alloc] init];
         phoneLabel.font = KFONT(28);
-        phoneLabel.textColor = kGrayColor;
+        phoneLabel.textColor = kCOLOR_999;
         
         cityLabel = [[UILabel alloc] init];
         cityLabel.font = KFONT(28);
-        cityLabel.textColor = kGrayColor;
+        cityLabel.textColor = kCOLOR_999;
     }
     return self;
 }

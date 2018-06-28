@@ -61,7 +61,7 @@
 - (void)setupNav{
     
     // 右边按钮
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithimage:[UIImage imageNamed:@"service_green"] highImage:[UIImage imageNamed:@"service_green"] target:self action:@selector(rightBarButtonClick:)];
+    self.navigationItem.rightBarButtonItem = [self createBarbuttonWithNormalImageName:@"service_green" selectedImageName:@"service_green" selector:@selector(rightBarButtonClick:)];
     
 }
 #pragma mark - 导航栏右侧按钮点击
@@ -113,7 +113,7 @@
     _titleLabel.frame = CGRectMake(_leftImageView.x+_leftImageView.width+10, _leftImageView.y,YGScreenWidth-_leftImageView.width-25, 40);
     [headerTopView addSubview:_titleLabel];
     
-    CGFloat LabelW = [UILabel calculateWidthWithString:@"资深注册" textFont:leftFont numerOfLines:1].width;
+    CGFloat LabelW = [UILabel calculateWidthWithString:@"资深注册" textFont:KFONT(30) numerOfLines:1].width;
     for(int i=0;i<3;i++)
     {
         //新鲜事内容label
@@ -187,7 +187,7 @@
     
     [headerMiddleView addSubview:desLabel];
     
-    headerMiddleView.frame=CGRectMake(0,headerTopView.y+headerTopView.height+ LDHPadding, YGScreenWidth, desLabel.y + desLabel.height +10);
+    headerMiddleView.frame=CGRectMake(0,headerTopView.y+headerTopView.height+ 10, YGScreenWidth, desLabel.y + desLabel.height +10);
     
     _headerView.frame = CGRectMake(0, 0, YGScreenWidth, headerMiddleView.y + headerMiddleView.height+10);
     
@@ -450,7 +450,6 @@
         
     } failure:^(NSError *error) {
         
-        LDLog(@"%@",error);
     }];
 }
 

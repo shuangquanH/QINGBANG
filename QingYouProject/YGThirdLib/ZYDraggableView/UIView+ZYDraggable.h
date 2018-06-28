@@ -4,7 +4,7 @@
 //
 //  Created by 张志延 on 16/8/25. (https://github.com/zzyspace)
 //  Copyright © 2016年 tongbu. All rights reserved.
-//
+// 拖拽弹回动画
 
 #import <UIKit/UIKit.h>
 
@@ -13,8 +13,8 @@
 /**
  *  Make view draggable.
  *
- *  @param view    Animator reference view, usually is super view.
- *  @param damping Value from 0.0 to 1.0. 0.0 is the least oscillation. default is 0.4.
+ * view    Animator reference view, usually is super view.
+ * damping Value from 0.0 to 1.0. 0.0 is the least oscillation. default is 0.4.
  */
 - (void)makeDraggable;
 - (void)makeDraggableInView:(UIView *)view damping:(CGFloat)damping;

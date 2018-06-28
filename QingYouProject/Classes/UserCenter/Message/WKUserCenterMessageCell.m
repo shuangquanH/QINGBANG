@@ -130,7 +130,7 @@ static const CGFloat kCircleW = 4.0;
 + (CGFloat)cellHeightWithMessageInfo:(WKUserCenterMessageModel *)messageInfo {
     CGFloat height = KSCAL(36) * 2 + 4 * KSCAL(20);
     
-    CGFloat maxW = kScreenW - KSCAL(80) * 2;
+    CGFloat maxW = KAPP_WIDTH - KSCAL(80) * 2;
     
     CGFloat titleH = [messageInfo.messageTitle sizeWithFont:KFONT(36) andMaxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)].height;
     CGFloat timeH = [messageInfo.messageTime sizeWithFont:KFONT(28) andMaxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)].height;

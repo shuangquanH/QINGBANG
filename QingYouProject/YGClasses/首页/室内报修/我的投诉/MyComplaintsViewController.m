@@ -31,7 +31,7 @@
 - (void)configAttribute
 {
     self.naviTitle = @"我的投诉";
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem backItemWithimage:[UIImage imageNamed:@"decorate_nav_icon"] highImage:nil target:self action:@selector(rightBarButtonClick:) title:nil normalColor:LDMainColor highColor:LDMainColor titleFont:LDFont(14)];
+    self.navigationItem.rightBarButtonItem = [self createBarbuttonWithNormalImageName:@"decorate_nav_icon" selectedImageName:nil selector:@selector(rightBarButtonClick:)];
     
     _segmentView = [[YGSegmentView alloc]initWithFrame:CGRectMake(0, 0, YGScreenWidth, 40) titlesArray:@[@"待回复",@"已回复"] lineColor:colorWithMainColor delegate:self];
     _segmentView.backgroundColor = colorWithYGWhite;

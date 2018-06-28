@@ -18,6 +18,12 @@
 #import "ResultViewController.h"
 #import "ManageMailPostViewController.h"
 
+#define LDEEPaddingColor YGUIColorFromRGB(0xeeeeee, 1)
+#define LDEFPaddingColor YGUIColorFromRGB(0xefeff4, 1)
+
+#define kClearColor         [UIColor clearColor]
+
+
 
 @interface ConfirmOrderOfficePurchase ()<IntegralViewDelegate,LDPayItemViewDelegate,GoodsPlaceViewDelegate,ManageMailPostViewControllerDelegate>
 /** 背景ScrollowView  */
@@ -106,25 +112,25 @@
     CGFloat goodsViewH = 100;
     CGFloat itemViewH = 40;
     
-    self.placeView = [[GoodsPlaceView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, placeViewH)];
+    self.placeView = [[GoodsPlaceView alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, placeViewH)];
     self.placeView.delegate = self;
     [self.placeView lableWithThick];
     [self.container addSubview:self.placeView];
     
     //商品View
-    self.goodsView = [[GoodsDetailView alloc] initWithFrame:CGRectMake(0, placeViewH, kScreenW, goodsViewH)];
+    self.goodsView = [[GoodsDetailView alloc] initWithFrame:CGRectMake(0, placeViewH, KAPP_WIDTH, goodsViewH)];
     [self.container addSubview:self.goodsView];
     //青币购
-    self.integralView = [[IntegralView alloc] initWithFrame:CGRectMake(0, placeViewH + goodsViewH , kScreenW, itemViewH)];
+    self.integralView = [[IntegralView alloc] initWithFrame:CGRectMake(0, placeViewH + goodsViewH , KAPP_WIDTH, itemViewH)];
     self.integralView.delegate = self;
     [self.container addSubview:self.integralView];
     
     //配送方式
-    self.deliveryView = [[DeliveryWayView alloc] initWithFrame:CGRectMake(0, placeViewH + goodsViewH + itemViewH, kScreenW, itemViewH)];
+    self.deliveryView = [[DeliveryWayView alloc] initWithFrame:CGRectMake(0, placeViewH + goodsViewH + itemViewH, KAPP_WIDTH, itemViewH)];
     [self.container addSubview:self.deliveryView];
  
     //合计总价
-    self.totalPrice = [[TotalPrice alloc] initWithFrame:CGRectMake(0, placeViewH + goodsViewH + itemViewH * 2, kScreenW, itemViewH)];
+    self.totalPrice = [[TotalPrice alloc] initWithFrame:CGRectMake(0, placeViewH + goodsViewH + itemViewH * 2, KAPP_WIDTH, itemViewH)];
     [self.container addSubview:self.totalPrice];
     
     //底部支付视图
@@ -138,9 +144,9 @@
     }];
     
     //底部确认支付按钮
-    UIButton * payButton = [UIButton buttonWithType:UIButtonTypeCustom normalImage:nil selectedImage:nil normalTitle:@"确认支付" selectedTitle:@"确认支付" normalTitleColor:kWhiteColor selectedTitleColor:kWhiteColor backGroundColor:LDMainColor normalBackGroundImageStr:nil selectedBackGroundImageStr:nil titleFont:15];
+    UIButton * payButton = [UIButton buttonWithType:UIButtonTypeCustom normalImage:nil selectedImage:nil normalTitle:@"确认支付" selectedTitle:@"确认支付" normalTitleColor:KCOLOR_WHITE selectedTitleColor:KCOLOR_WHITE backGroundColor:KCOLOR_MAIN normalBackGroundImageStr:nil selectedBackGroundImageStr:nil titleFont:15];
     [payButton addTarget:self action:@selector(payButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    payButton.frame = CGRectMake(0, kScreenH - (YGNaviBarHeight + YGBottomMargin) - YGNaviBarHeight - YGStatusBarHeight, kScreenW, YGNaviBarHeight + YGBottomMargin);
+    payButton.frame = CGRectMake(0, KAPP_HEIGHT - (YGNaviBarHeight + YGBottomMargin) - YGNaviBarHeight - YGStatusBarHeight, KAPP_WIDTH, YGNaviBarHeight + YGBottomMargin);
     [payButton setTitleEdgeInsets:UIEdgeInsetsMake(-YGBottomMargin, 0, 0, 0 )];
     [self.view addSubview:payButton];
     
@@ -351,12 +357,12 @@
 
 - (UIScrollView *)backScrollowView{
     if (!_backScrollowView) {
-        _backScrollowView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, kScreenH - YGNaviBarHeight - YGStatusBarHeight)];
-        _backScrollowView.backgroundColor = kWhiteColor;
+        _backScrollowView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, KAPP_HEIGHT - YGNaviBarHeight - YGStatusBarHeight)];
+        _backScrollowView.backgroundColor = KCOLOR_WHITE;
         _backScrollowView.alwaysBounceVertical = YES;
         //容器视图
         self.container = [[UIView alloc] init];
-        self.container.backgroundColor = kWhiteColor;  
+        self.container.backgroundColor = KCOLOR_WHITE;
         [self.backScrollowView addSubview:self.container];
         [self.container mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.bottom.left.right.offset(0);
@@ -368,6 +374,5 @@
 }
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    LDLogFunc
 }
 @end

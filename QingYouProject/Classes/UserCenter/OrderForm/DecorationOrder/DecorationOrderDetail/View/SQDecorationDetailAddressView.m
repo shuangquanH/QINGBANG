@@ -81,9 +81,9 @@
 
 - (CGSize)viewSize {
     CGFloat nameH = [_nameLab.text sizeWithFont:KFONT(28.0) andMaxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)].height;
-    CGFloat addressH = [_addressLab.text labelAutoCalculateRectWithLineSpace:3.0 Font:KFONT(28.0) MaxSize:CGSizeMake(kScreenW-KSCAL(116), MAXFLOAT)].height;
+    CGFloat addressH = [_addressLab.text labelAutoCalculateRectWithLineSpace:3.0 Font:KFONT(28.0) MaxSize:CGSizeMake(KAPP_WIDTH-KSCAL(116), MAXFLOAT)].height;
     CGFloat height = nameH + addressH + KSCAL(28) + 4;
-    return CGSizeMake(kScreenW, height);
+    return CGSizeMake(KAPP_WIDTH, height);
 }
 
 

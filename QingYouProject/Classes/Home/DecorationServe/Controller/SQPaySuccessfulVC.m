@@ -34,12 +34,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = kWhiteColor;
+    self.view.backgroundColor = KCOLOR_WHITE;
     
     titel = [[UILabel alloc] init];
     [self.view addSubview:titel];
     titel.font = KFONT(42);
-    titel.textColor = kBlackColor;
+    titel.textColor = kCOLOR_333;
     
     descLabel = [[UILabel alloc] init];
     [self.view addSubview:descLabel];

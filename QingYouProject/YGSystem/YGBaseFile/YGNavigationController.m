@@ -18,7 +18,7 @@
     [super viewDidLoad];
     self.navigationBar.translucent = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationBar.barTintColor = kBlackColor;
+    self.navigationBar.barTintColor = kCOLOR_333;
     
     UIColor * color = [UIColor whiteColor];
     NSMutableDictionary *dict=[NSMutableDictionary dictionary];

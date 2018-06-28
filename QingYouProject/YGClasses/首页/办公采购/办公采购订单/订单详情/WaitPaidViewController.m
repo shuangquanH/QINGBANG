@@ -20,6 +20,8 @@
 #import "ResultViewController.h"
 #import <Pingpp.h>
 
+
+
 @interface WaitPaidViewController ()<IntegralViewDelegate,LDPayItemViewDelegate,GoodsPlaceViewDelegate,OrderDetailBottomViewDelegate>
 /** 背景ScrollowView  */
 @property (nonatomic,strong) UIScrollView * backScrollowView;
@@ -71,7 +73,7 @@
 - (void)setupNav{
     
     // 右边按钮
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithimage:[UIImage imageNamed:@"service_green"] highImage:[UIImage imageNamed:@"service_green"] target:self action:@selector(rightBarButtonClick:)];
+    self.navigationItem.rightBarButtonItem = [self createBarbuttonWithNormalImageName:@"service_green" selectedImageName:@"service_green" selector:@selector(rightBarButtonClick:)];
 }
 #pragma mark - 导航栏右侧按钮点击
 - (void)rightBarButtonClick:(UIButton *)rightBarButton{

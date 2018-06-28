@@ -23,6 +23,12 @@
 #define imageCount 13 //控制评论cell最多有几张图片
 #define commentCellCount 3 //该页面展示几条评论cell
 
+
+
+
+
+
+
 @interface OfficePurchaseDetailViewController ()<UITableViewDelegate,UITableViewDataSource,OfficePurchaseHeaderViewDelegate,WKNavigationDelegate,ChooseGoodsWithCategoriesViewDelegate,UIScrollViewDelegate>
 {
     UIView          *_fadeNavibar; //假navi
@@ -41,7 +47,7 @@
 /** 用户评价Label  */
 @property (nonatomic,strong) UILabel * commentLabel;
 /** 查看更多Button  */
-@property (nonatomic,strong) LDExchangeButton * moreButton;
+@property (nonatomic,strong) UIButton * moreButton;
 /** tableView  */
 @property (nonatomic,strong) UITableView * tableView;
 /** headerView  */
@@ -440,8 +446,7 @@ static NSString * const  OfficePurchaseTableViewCellId = @"OfficePurchaseTableVi
         
         _sectionHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, 5 * LDVPadding)];
         
-        self.commentLabel = [UILabel ld_labelWithTextColor:kBlackColor textAlignment:NSTextAlignmentLeft font:LDFont(15) numberOfLines:1];
-        self.commentLabel.font = LDBoldFont(15);
+        self.commentLabel = [UILabel labelWithFont:15 textColor:kCOLOR_333 textAlignment:NSTextAlignmentLeft];
         [_sectionHeaderView addSubview:self.commentLabel];
         
         [self.commentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -449,7 +454,7 @@ static NSString * const  OfficePurchaseTableViewCellId = @"OfficePurchaseTableVi
             make.top.bottom.offset(0);
         }];
         
-        self.moreButton = [LDExchangeButton buttonWithType:UIButtonTypeCustom];
+        self.moreButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_sectionHeaderView addSubview:self.moreButton];
         [self.moreButton setTitleColor:colorWithMainColor forState:UIControlStateNormal];
         [self.moreButton setTitle:@"查看更多" forState:UIControlStateNormal];

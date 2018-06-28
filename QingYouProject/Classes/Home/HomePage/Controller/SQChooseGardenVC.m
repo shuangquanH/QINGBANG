@@ -37,7 +37,7 @@
     [backButton setBackgroundImage:[UIImage imageNamed:@"login_Choose_park_back"] forState:UIControlStateNormal];
     [backButton setTitle:@"跳过" forState:UIControlStateNormal];
     backButton.titleLabel.font = KFONT(24);
-    [backButton setTitleColor:kBlackColor forState:UIControlStateNormal];
+    [backButton setTitleColor:kCOLOR_333 forState:UIControlStateNormal];
     [self.view addSubview:backButton];
     [backButton addTarget:self.navigationController action:@selector(popToRootViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
     backButton.frame=  CGRectMake(KAPP_WIDTH-KSCAL(80)-KSCAL(30), KSCAL(60), KSCAL(80), KSCAL(40));
@@ -109,7 +109,7 @@
     [enterButton setBackgroundImage:[UIImage imageNamed:@"login_Choose_park_btn"] forState:UIControlStateNormal];
     [enterButton setTitle:@"进入" forState:UIControlStateNormal];
     enterButton.titleLabel.font = KFONT(32);
-    enterButton.titleLabel.textColor = kWhiteColor;
+    enterButton.titleLabel.textColor = KCOLOR_WHITE;
     [enterButton addTarget:self action:@selector(enterButton) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:enterButton];
     

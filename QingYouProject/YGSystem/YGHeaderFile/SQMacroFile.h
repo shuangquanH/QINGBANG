@@ -43,7 +43,8 @@
 #define KSCAL(a)            ([SQIphonePx shareInstance].uiScaling*a)
 /** 字体大小 */
 #define KFONT(a)            [UIFont systemFontOfSize:KSCAL(a)]
-
+/** 是否是iPhoneX  */
+#define KISIPHONEX          (KAPP_HEIGHT == 812)
 
 /** app主色调 */
 #define KCOLOR_MAIN         [UIColor hexStringToColor:@"f39700"]

@@ -36,7 +36,10 @@
     _productNameLabel.numberOfLines = 2;
     [self.contentView addSubview:_productNameLabel];
     
-    _cancelCollectBtn = [UIButton buttonWithTitle:@"取消收藏" titleFont:KSCAL(24) titleColor:kCOLOR_333];
+    _cancelCollectBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_cancelCollectBtn setTitle:@"取消收藏" forState:UIControlStateNormal];
+    _cancelCollectBtn.titleLabel.font = KFONT(24);
+    [_cancelCollectBtn setTitleColor:kCOLOR_333 forState:UIControlStateNormal];
     _cancelCollectBtn.layer.cornerRadius = KSCAL(22.5);
     _cancelCollectBtn.layer.borderColor = kCOLOR_666.CGColor;
     _cancelCollectBtn.layer.borderWidth = 1.0;

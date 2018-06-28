@@ -6,14 +6,14 @@
 //  Copyright © 2017年 ccyouge. All rights reserved.
 //
 
-#import "LDBaseViewCell.h"
+#import "SQBaseTableViewCell.h"
 @class AllOfficePurchaseModel;
 
 @protocol DeliveredCellDelegate <NSObject>//协议
 - (void)deliveredCellReturnWithRow:(int)row;//协议方法
 @end
 
-@interface DeliveredCell : LDBaseViewCell
+@interface DeliveredCell : SQBaseTableViewCell
 - (void)reloadData;
 /** AllOfficePurchaseModel  */
 @property (nonatomic,strong) AllOfficePurchaseModel * model;

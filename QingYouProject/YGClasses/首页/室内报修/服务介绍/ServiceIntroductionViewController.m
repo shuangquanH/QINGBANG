@@ -7,7 +7,6 @@
 //
 
 #import "ServiceIntroductionViewController.h"
-#import "NSString+LDAttributedString.h"//富文本属性
 #import "ServiceIntroduceModel.h"//Model
 #import <WebKit/WebKit.h>
 
@@ -55,7 +54,6 @@
     
     [YGNetService YGPOST:@"ServiceIntroduction" parameters:@{} showLoadingView:NO scrollView:nil success:^(id responseObject) {
         
-        LDLog(@"%@",responseObject);
         //字典转模型
         self.model = [ServiceIntroduceModel mj_objectWithKeyValues:responseObject[@"serviceIntroduction"]];
         
@@ -65,7 +63,6 @@
         NSArray * dataArray = @[picURl];
         
         self.cycleScrollView.imageURLStringsGroup = dataArray;
-        NSString * textStr = self.model.serviceIntroduce;
         
 //        self.bottomLabel.attributedText = [textStr ld_getAttributedStringWithString:textStr lineSpace:LDVPadding];
         [self.footerWebView loadHTMLString: [NSString stringWithFormat:
@@ -82,7 +79,6 @@
         
     } failure:^(NSError *error) {
        
-        LDLog(@"%@",error);
     }];
 }
 
@@ -90,7 +86,7 @@
 - (void)setupNav{
     
     // 右边按钮
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem backItemWithimage:[UIImage imageNamed:@"decorate_nav_icon"] highImage:[UIImage imageNamed:@"service_black"] target:self action:@selector(rightBarButtonClick:) title:nil normalColor:LDMainColor highColor:LDMainColor titleFont:LDFont(14)];
+    self.navigationItem.rightBarButtonItem = [self createBarbuttonWithNormalImageName:@"decorate_nav_icon" selectedImageName:@"service_black" selector:@selector(rightBarButtonClick:)];
     
 }
 #pragma mark - 导航栏右侧按钮点击
@@ -102,13 +98,13 @@
 - (void)setupUI{
     
     //背景scrollowView
-    UIScrollView * backScrollowView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, kScreenH - YGNaviBarHeight - YGStatusBarHeight)];
-    backScrollowView.backgroundColor = kWhiteColor;
+    UIScrollView * backScrollowView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, KAPP_HEIGHT - YGNaviBarHeight - YGStatusBarHeight)];
+    backScrollowView.backgroundColor = KCOLOR_WHITE;
     [self.view addSubview:backScrollowView];
     self.backScrollowView = backScrollowView;
     
     UIView * container = [[UIView alloc] init];
-    container.backgroundColor = kWhiteColor;
+    container.backgroundColor = KCOLOR_WHITE;
     [self.backScrollowView addSubview:container];
     
     [container mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -125,12 +121,11 @@
         make.top.offset(0);
         make.right.offset(0);
         make.left.offset(0);
-        make.height.offset(kScreenW / (35 / 17));
+        make.height.offset(KAPP_WIDTH / (35 / 17));
     }];
     
-    self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, kScreenW, kScreenW / (35 / 17)) delegate:self placeholderImage:YGDefaultImgTwo_One];
+    self.cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, KAPP_WIDTH, KAPP_HEIGHT / (35 / 17)) delegate:self placeholderImage:YGDefaultImgTwo_One];
     _cycleScrollView.autoScrollTimeInterval = 3;
-    _cycleScrollView.backgroundColor = kClearColor;
     [headerView addSubview:self.cycleScrollView];
     
     //底部试图
@@ -155,7 +150,7 @@
     [self.footerWebView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.offset(0);
 
-        make.top.equalTo(headerView.mas_bottom).offset(2 * LDVPadding);
+        make.top.equalTo(headerView.mas_bottom).offset(2 * 10);
         make.bottom.equalTo(container.mas_bottom).offset(-20);
 
     }];
@@ -183,10 +178,10 @@
         //获取页面高度，并重置webview的frame
         float webViewHeight = [result doubleValue];
         CGRect frame = webView.frame;
-        frame.size.height = webViewHeight + 3* LDVPadding;
+        frame.size.height = webViewHeight + 3* 10;
         webView.frame = frame;
         
-        self.backScrollowView.contentSize = CGSizeMake(0, webViewHeight + 4* LDVPadding + kScreenW / (35 / 17));
+        self.backScrollowView.contentSize = CGSizeMake(0, webViewHeight + 4* 10 + KAPP_WIDTH / (35 / 17));
     }];
 }
 

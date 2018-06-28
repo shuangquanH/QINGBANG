@@ -8,6 +8,10 @@
 
 #import "OrderDetailHeaderView.h"
 
+#import "UILabel+Factory.h"
+
+
+
 @interface OrderDetailHeaderView ()
 
 /** orderStatus 订单状态 */
@@ -34,20 +38,20 @@
 }
 - (void)setupUI{
     
-    self.statusLabel = [UILabel ld_labelWithTextColor:LDFFTextColor textAlignment:NSTextAlignmentLeft font:LDBoldFont(15) numberOfLines:0];
+    self.statusLabel = [UILabel labelWithFont:14 textColor:kCOLOR_333 textAlignment:NSTextAlignmentLeft];
     [self addSubview:self.statusLabel];
     [self.statusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.offset(LDHPadding);
-        make.right.offset(-LDHPadding);
-        make.top.offset(LDVPadding);
+        make.left.offset(10);
+        make.right.offset(-10);
+        make.top.offset(10);
     }];
     
-    self.orderTimeLabel = [UILabel ld_labelWithTextColor:LD9ATextColor textAlignment:NSTextAlignmentLeft font:LDFont(13) numberOfLines:0];
+    self.orderTimeLabel = [UILabel labelWithFont:14 textColor:kCOLOR_333 textAlignment:NSTextAlignmentLeft];
     [self addSubview:self.orderTimeLabel];
     [self.orderTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.offset(LDHPadding);
-        make.right.offset(-LDHPadding);
-        make.top.equalTo(self.statusLabel.mas_bottom).offset(LDVPadding);
+        make.left.offset(10);
+        make.right.offset(-10);
+        make.top.equalTo(self.statusLabel.mas_bottom).offset(10);
     }];
     
     UIView * line = [UIView new];
@@ -56,7 +60,7 @@
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.offset(0);
         make.left.right.offset(0);
-        make.height.offset(LDVPadding);
+        make.height.offset(10);
     }];
     
     

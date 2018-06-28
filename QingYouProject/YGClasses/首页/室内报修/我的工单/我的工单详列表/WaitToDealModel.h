@@ -6,9 +6,9 @@
 //  Copyright © 2017年 ccyouge. All rights reserved.
 //
 
-#import "LDBaseModel.h"
+#import "SQBaseModel.h"
 
-@interface WaitToDealModel : LDBaseModel
+@interface WaitToDealModel : SQBaseModel
 /** 留言描述  */
 @property (nonatomic,strong) NSString * indoorMessage;
 /** 创建时间  */

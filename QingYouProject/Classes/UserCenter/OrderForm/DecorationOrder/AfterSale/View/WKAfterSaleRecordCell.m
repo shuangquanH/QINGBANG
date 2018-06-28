@@ -150,17 +150,17 @@
     
     if (saleInfo.afterSaleState == 2) {
         NSString *result = [NSString stringWithFormat:@"处理结果：%@", saleInfo.afterSaleResult];
-        CGFloat resultH = [result sizeWithFont:KFONT(28) andMaxSize:CGSizeMake(kScreenW-KSCAL(60), MAXFLOAT)].height;
+        CGFloat resultH = [result sizeWithFont:KFONT(28) andMaxSize:CGSizeMake(KAPP_WIDTH-KSCAL(60), MAXFLOAT)].height;
         height += (resultH + KSCAL(20));
     }
-    CGFloat stateH = [@"38高度" sizeWithFont:KFONT(38) andMaxSize:CGSizeMake(kScreenW-KSCAL(60), MAXFLOAT)].height;
+    CGFloat stateH = [@"38高度" sizeWithFont:KFONT(38) andMaxSize:CGSizeMake(KAPP_WIDTH-KSCAL(60), MAXFLOAT)].height;
     height += stateH;
     
-    CGFloat timeH = [@"28高度" sizeWithFont:KFONT(28) andMaxSize:CGSizeMake(kScreenW-KSCAL(60), MAXFLOAT)].height;
+    CGFloat timeH = [@"28高度" sizeWithFont:KFONT(28) andMaxSize:CGSizeMake(KAPP_WIDTH-KSCAL(60), MAXFLOAT)].height;
     height += (timeH + KSCAL(30));
     
     NSString *problem = [NSString stringWithFormat:@"问题描述：%@", saleInfo.afterSaleDesc];
-    CGFloat problemH = [problem sizeWithFont:KFONT(28) andMaxSize:CGSizeMake(kScreenW-KSCAL(60), MAXFLOAT)].height;
+    CGFloat problemH = [problem sizeWithFont:KFONT(28) andMaxSize:CGSizeMake(KAPP_WIDTH-KSCAL(60), MAXFLOAT)].height;
     height += (problemH + KSCAL(20));
     
     return height;

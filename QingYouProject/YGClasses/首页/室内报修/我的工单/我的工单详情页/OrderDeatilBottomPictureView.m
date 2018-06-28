@@ -10,6 +10,9 @@
 #import "OrderDeatilBottomPictureCollectionViewCell.h"//collectionViewCell
 #import "KSPhotoBrowser.h"//图片查看器
 
+
+
+
 @interface OrderDeatilBottomPictureView ()<UICollectionViewDelegate,UICollectionViewDataSource>
 /** 图片描述  */
 @property (nonatomic,strong) UILabel * descriptionLabel;
@@ -76,7 +79,8 @@
 }
 - (void)setupUI{
     
-    UILabel * noticeLabel = [UILabel ld_labelWithTextColor:LD9ATextColor textAlignment:NSTextAlignmentLeft font:LDFont(14) numberOfLines:1];
+    
+    UILabel * noticeLabel = [UILabel labelWithFont:14 textColor:LD9ATextColor textAlignment:NSTextAlignmentLeft];
     noticeLabel.text = @"图片描述";
     
     noticeLabel.frame = CGRectMake(LDHPadding, 0, kScreenW - 2 * LDHPadding, 30);

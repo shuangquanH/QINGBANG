@@ -10,6 +10,8 @@
 #import "WaitToDealModel.h"
 #import "RepairOrderJudgeViewController.h"
 
+#define LDEFPaddingColor YGUIColorFromRGB(0xefeff4, 1)
+
 @interface DeiledRepairOrderTableViewCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *topLine;
@@ -46,7 +48,7 @@
     
     self.judgeBtn.layer.cornerRadius = 15;
     self.judgeBtn.layer.borderWidth = 1;
-    self.judgeBtn.layer.borderColor = LDMainColor.CGColor;
+    self.judgeBtn.layer.borderColor = KCOLOR_MAIN.CGColor;
     [self.judgeBtn setTitleColor:colorWithMainColor forState:UIControlStateNormal];
     
 }

@@ -8,6 +8,7 @@
 
 #import "OfficePurchaseCollectionViewCell.h"
 #import "OfficePurchaseModel.h"//模型
+#import "NSString+SQAttributeString.h"
 @interface OfficePurchaseCollectionViewCell()
 
 /**顶部图片*/
@@ -34,12 +35,12 @@
     if ([model.commodityPrice containsString:@"."]) {
         goosPrice = [NSString stringWithFormat:@"¥%.2f",[model.commodityPrice floatValue]];
     }
-    self.goodsPriceLabel.attributedText = [goosPrice ld_attributedStringFromNSString:goosPrice startLocation:1 forwardFont:LDFont(13) backFont:LDFont(15) forwardColor:kRedColor backColor:kRedColor];
+    self.goodsPriceLabel.attributedText = [goosPrice attributedStringFromNSString:goosPrice startLocation:1 forwardFont:KFONT(26) backFont:KFONT(30) forwardColor:[UIColor redColor] backColor:[UIColor redColor]];
 }
 - (void)awakeFromNib {
     [super awakeFromNib];
     //修改高度约束
-     CGFloat W = (kScreenW - 45) / 2;
+     CGFloat W = (KAPP_WIDTH - 45) / 2;
     self.topImgeViewHeight.constant = W;
     
     //假数据

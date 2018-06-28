@@ -7,7 +7,7 @@
 //
 
 #import "SMKCycleScrollView.h"
-#import "UIView+SEKExtension.h"
+
 
 #define SMKMaxSections 6
 

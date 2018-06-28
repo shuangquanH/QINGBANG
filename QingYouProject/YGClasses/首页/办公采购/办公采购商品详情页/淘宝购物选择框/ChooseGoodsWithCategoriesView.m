@@ -116,14 +116,14 @@
         _titleBaseView.frame = CGRectMake(_titleBaseView.x, _titleBaseView.y, _titleBaseView.width, size.height);
     }
     
-        _baseView.frame = CGRectMake(0, 0, YGScreenWidth, _titleBaseView.y+_titleBaseView.height + 40 + 2*LDHPadding);
+        _baseView.frame = CGRectMake(0, 0, YGScreenWidth, _titleBaseView.y+_titleBaseView.height + 40 + 2*YEARCOUNT);
     
     
      UIView *addView = [self createAddView];
-     addView.y = _titleBaseView.y+_titleBaseView.height + 2*LDHPadding;
+     addView.y = _titleBaseView.y+_titleBaseView.height + 2*YEARCOUNT;
      [_baseView addSubview:addView];
     
-    _backScrollView.contentSize = CGSizeMake(0, addView.y + addView.height + 3*LDHPadding);
+    _backScrollView.contentSize = CGSizeMake(0, addView.y + addView.height + 3*YEARCOUNT);
 
     
 //    _lineView.frame = CGRectMake(10, _baseView.height-1, YGScreenWidth-10, 1);

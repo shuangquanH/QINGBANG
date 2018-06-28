@@ -34,7 +34,7 @@ static const CGFloat kImageVerticalSpace   = 20;
 - (instancetype)initWithAfterSaleInfo:(WKAfterSaleModel *)afterSaleInfo {
     if (self == [super init]) {
         
-        CGFloat maxW = kScreenW - 2 * KSCAL(kLeftMargin);
+        CGFloat maxW = KAPP_WIDTH - 2 * KSCAL(kLeftMargin);
         CGFloat y = KSCAL(kTopMargin);
         
         CGSize stateDescSize = [afterSaleInfo.stateDesc sizeWithFont:KFONT(36) andMaxSize:CGSizeMake(maxW, MAXFLOAT)];

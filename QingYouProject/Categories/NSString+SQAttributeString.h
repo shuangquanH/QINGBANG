@@ -1,14 +1,14 @@
 //
-//  NSString+LDAttributedString.h
+//  NSString+SQAttributeString.h
 //  QingYouProject
 //
-//  Created by LDSmallCat on 2017/9/25.
-//  Copyright © 2017年 ccyouge. All rights reserved.
+//  Created by qwuser on 2018/6/28.
+//  Copyright © 2018年 ccyouge. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface NSString (LDAttributedString)
+@interface NSString (SQAttributeString)
 
 /**
  
@@ -23,11 +23,12 @@
  @param backColor 后一种样式(A)字体颜色
  @return 返回一个 NSAttributedString 对象
  */
-- (NSAttributedString *)ld_attributedStringFromNSString:(NSString *)normalString startLocation:(NSInteger)location forwardFont:(UIFont *)forwardFont backFont:(UIFont *)backFont forwardColor:(UIColor *)forwardColor backColor:(UIColor *)backColor;
+- (NSAttributedString *)attributedStringFromNSString:(NSString *)normalString startLocation:(NSInteger)location forwardFont:(UIFont *)forwardFont backFont:(UIFont *)backFont forwardColor:(UIColor *)forwardColor backColor:(UIColor *)backColor;
 
 
 
 
-- (NSAttributedString *)ld_getAttributedStringWithString:(NSString *)string lineSpace:(CGFloat)lineSpace;
+- (NSAttributedString *)getAttributedStringWithString:(NSString *)string lineSpace:(CGFloat)lineSpace;
+
 
 @end

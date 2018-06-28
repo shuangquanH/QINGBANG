@@ -28,7 +28,7 @@ static UIView *_insideView = nil;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self == [super initWithFrame:frame]) {
-        self.frame = CGRectMake(0, 0, kScreenW, kScreenH);
+        self.frame = CGRectMake(0, 0, KAPP_WIDTH, KAPP_HEIGHT);
         self.backgroundColor = COLOR(0, 0, 0, 0);
     }
     return self;

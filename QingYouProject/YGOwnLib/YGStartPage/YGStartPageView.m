@@ -58,7 +58,7 @@
             UIButton *noticeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             noticeBtn.frame = CGRectMake(YGScreenWidth/2-100, YGScreenHeight-100, 200, 45);
             noticeBtn.titleLabel.font = KFONT(32);
-            [noticeBtn setTitleColor:kWhiteColor forState:UIControlStateNormal];
+            [noticeBtn setTitleColor:KCOLOR_WHITE forState:UIControlStateNormal];
             [noticeBtn setTitle:@"马上体验" forState:UIControlStateNormal];
             [noticeBtn setBackgroundImage:[UIImage imageNamed:@"guide_btn"] forState:UIControlStateNormal];
             [noticeBtn addTarget:self action:@selector(didLaunched) forControlEvents:UIControlEventTouchUpInside];

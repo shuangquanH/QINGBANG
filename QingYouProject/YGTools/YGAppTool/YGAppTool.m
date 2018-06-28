@@ -8,7 +8,7 @@
 //
 
 #import "YGAppTool.h"
-#import "FCUUID.h"
+//#import "FCUUID.h"
 #import <MBProgressHUD.h>
 #import "YGShareView.h"
 
@@ -52,16 +52,16 @@
     return [infoDictionary objectForKey:@"CFBundleShortVersionString"];
 }
 
-/**
- *  得到UUID（唯一）
- *
- *  @return 获得的UUID
- */
-+ (NSString *)getUUID
-{
-    NSLog(@"-------%@--------", [FCUUID uuidForDevice]);
-    return [FCUUID uuidForDevice];
-}
+///**
+// *  得到UUID（唯一）
+// *
+// *  @return 获得的UUID
+// */
+//+ (NSString *)getUUID
+//{
+//    NSLog(@"-------%@--------", [FCUUID uuidForDevice]);
+//    return [FCUUID uuidForDevice];
+//}
 
 /**
  *  得到ios系统版本

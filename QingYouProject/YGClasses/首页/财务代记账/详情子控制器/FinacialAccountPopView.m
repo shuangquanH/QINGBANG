@@ -326,7 +326,7 @@
         _titleBaseView.frame = CGRectMake(_titleBaseView.x, _titleBaseView.y, _titleBaseView.width, size.height);
     }
     
-    _baseView.frame = CGRectMake(0, 0, YGScreenWidth, _titleBaseView.y+_titleBaseView.height + 40 + 2*LDHPadding);
+    _baseView.frame = CGRectMake(0, 0, YGScreenWidth, _titleBaseView.y+_titleBaseView.height + 40 + 2*10);
     
     if (![pageType containsString:@"IntegrationIndustryCommerceController"])
     {
@@ -336,7 +336,7 @@
         [_baseView addSubview:addView];
     }
 
-    _backScrollView.contentSize = CGSizeMake(0, _titleBaseView.y+_titleBaseView.height + 40 + 2*LDHPadding);
+    _backScrollView.contentSize = CGSizeMake(0, _titleBaseView.y+_titleBaseView.height + 40 + 2*10);
 
 //    float width = 0.0f;
     //选择年限按钮

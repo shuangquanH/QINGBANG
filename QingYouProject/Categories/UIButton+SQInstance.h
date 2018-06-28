@@ -1,14 +1,14 @@
 //
-//  UIButton+LDButton.h
+//  UIButton+SQInstance.h
 //  QingYouProject
 //
-//  Created by LDSmallCat on 2017/10/9.
-//  Copyright © 2017年 ccyouge. All rights reserved.
+//  Created by qwuser on 2018/6/28.
+//  Copyright © 2018年 ccyouge. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface UIButton (LDButton)
+@interface UIButton (SQInstance)
 
 + (instancetype)buttonWithType:(UIButtonType) buttonType normalImage:(NSString *)normalImageStr selectedImage:(NSString *)selectedImageStr normalTitle:(NSString *)normalTitle selectedTitle:(NSString *)selectedTitle normalTitleColor:(UIColor *)normalTitleColor selectedTitleColor:(UIColor *)selectedTitleColor backGroundColor:(UIColor *)backGroundColor normalBackGroundImageStr:(NSString *)normalBackGroundImageStr selectedBackGroundImageStr:(NSString *)selectedBackGroundImageStr titleFont:(CGFloat)fontNum;
 

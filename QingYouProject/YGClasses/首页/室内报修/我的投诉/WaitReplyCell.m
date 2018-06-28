@@ -8,6 +8,9 @@
 
 #import "WaitReplyCell.h"
 #import "WaitReplyModel.h"
+
+
+
 @interface WaitReplyCell ()
 @property (weak, nonatomic) IBOutlet UIView *topline;
 

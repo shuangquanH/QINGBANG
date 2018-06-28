@@ -52,11 +52,11 @@
         
     self.dealingButton.layer.cornerRadius = 15;
     self.dealingButton.layer.borderWidth = 1;
-    self.dealingButton.layer.borderColor = LDMainColor.CGColor;
+    self.dealingButton.layer.borderColor = KCOLOR_MAIN.CGColor;
     
     self.dealedButton.layer.cornerRadius = 15;
     self.dealedButton.layer.borderWidth = 1;
-    self.dealedButton.layer.borderColor = LDMainColor.CGColor;
+    self.dealedButton.layer.borderColor = KCOLOR_MAIN.CGColor;
    
     self.orderName.preferredMaxLayoutWidth = YGScreenWidth  - self.orderImageView.width - 28;
 

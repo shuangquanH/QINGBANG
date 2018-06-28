@@ -192,8 +192,8 @@ static NSString * const ShippedCellID = @"ShippedCellID";
 - (UITableView *)tableView{
     
     if (!_tableView) {
-        CGFloat H = kScreenH - YGNaviBarHeight - YGStatusBarHeight - YGNaviBarHeight;
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, H) style:UITableViewStyleGrouped];
+        CGFloat H = KAPP_HEIGHT - YGNaviBarHeight - YGStatusBarHeight - YGNaviBarHeight;
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, H) style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.rowHeight = 230;

@@ -86,7 +86,7 @@
 
 - (CGSize)viewSize {
     CGFloat height = 4 * [_numberLab.text sizeWithFont:KFONT(28.0) andMaxSize:CGSizeMake(MAXFLOAT, MAXFLOAT)].height + 3 * KSCAL(14) + KSCAL(72);
-    return CGSizeMake(kScreenW, height);
+    return CGSizeMake(KAPP_WIDTH, height);
 }
 
 @end

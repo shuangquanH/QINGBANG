@@ -31,7 +31,8 @@
        
 
         //收货人
-        self.receiveNameLable = [UILabel ld_labelWithTextColor:kBlackColor textAlignment:NSTextAlignmentLeft font:LDFont(14) numberOfLines:1];
+        
+        self.receiveNameLable = [UILabel labelWithFont:14 textColor:kCOLOR_333 textAlignment:NSTextAlignmentLeft];
         [self addSubview:self.receiveNameLable];
         [self.receiveNameLable mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.offset(15);
@@ -51,7 +52,7 @@
         }];
         
         //电话
-        self.phoneLable = [UILabel ld_labelWithTextColor:kBlackColor textAlignment:NSTextAlignmentRight font:LDFont(14) numberOfLines:1];
+        self.phoneLable = [UILabel labelWithFont:14 textColor:kCOLOR_333 textAlignment:NSTextAlignmentLeft];
         [self addSubview:self.phoneLable];
         [self.phoneLable mas_makeConstraints:^(MASConstraintMaker *make) {
 //            make.right.equalTo(self.arrowImageView.mas_left).offset(-LDHPadding);
@@ -86,7 +87,7 @@
         
         
         //收货地址
-        self.placeLable = [UILabel ld_labelWithTextColor:kBlackColor textAlignment:NSTextAlignmentLeft font:LDFont(14) numberOfLines:2];
+        self.placeLable = [UILabel labelWithFont:14 textColor:kCOLOR_333 textAlignment:NSTextAlignmentLeft];
         
         [self addSubview:self.placeLable];
         [self.placeLable mas_makeConstraints:^(MASConstraintMaker *make) {

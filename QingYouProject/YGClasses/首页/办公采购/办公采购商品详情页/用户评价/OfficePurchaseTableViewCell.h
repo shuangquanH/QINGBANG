@@ -6,9 +6,9 @@
 //  Copyright © 2017年 ccyouge. All rights reserved.
 //
 
-#import "LDBaseViewCell.h"
+#import "SQBaseTableViewCell.h"
 @class OfficePurchaseDetailModel;
-@interface OfficePurchaseTableViewCell : LDBaseViewCell
+@interface OfficePurchaseTableViewCell : SQBaseTableViewCell
 /** OfficePurchaseModel  */
 @property (nonatomic,strong) OfficePurchaseDetailModel * model;
 - (void)signUpSetModel:(OfficePurchaseDetailModel *)model;

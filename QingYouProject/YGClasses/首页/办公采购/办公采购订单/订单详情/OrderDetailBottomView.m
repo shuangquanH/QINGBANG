@@ -8,6 +8,8 @@
 
 #import "OrderDetailBottomView.h"
 
+
+
 @interface OrderDetailBottomView ()
 
 /** 订单底部相关字段  */
@@ -50,7 +52,8 @@
     
     for (int i = 0; i < number; i++) {
         
-        UILabel * lable = [UILabel ld_labelWithTextColor:LD9ATextColor textAlignment:NSTextAlignmentLeft font:[UIFont systemFontOfSize:YGFontSizeNormal] numberOfLines:1];
+        
+        UILabel * lable = [UILabel labelWithFont:YGFontSizeNormal textColor:LD9ATextColor textAlignment:NSTextAlignmentLeft];
         
         lable.frame = CGRectMake(X, Y + H * i, W, H);
         

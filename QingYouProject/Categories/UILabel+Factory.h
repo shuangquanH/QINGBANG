@@ -15,4 +15,7 @@
 + (UILabel *)labelWithFont:(CGFloat)font textColor:(UIColor *)textColor textAlignment:(NSTextAlignment)textAlignment;
 + (UILabel *)labelWithFont:(CGFloat)font textColor:(UIColor *)textColor textAlignment:(NSTextAlignment)textAlignment text:(NSString *)text;
 
+
++ (UILabel *)ld_labelWithTextColor:(UIColor *)textColor textAlignment:(NSTextAlignment)textAligement font:(UIFont *)font numberOfLines:(NSInteger)numberOflines;
+
 @end

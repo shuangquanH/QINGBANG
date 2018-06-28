@@ -166,8 +166,8 @@
 - (UITableView *)tableView{
     
     if (!_tableView) {
-        CGFloat H = kScreenH  - YGStatusBarHeight - YGNaviBarHeight;
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, H) style:UITableViewStyleGrouped];
+        CGFloat H = KAPP_HEIGHT  - YGStatusBarHeight - YGNaviBarHeight;
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, H) style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.rowHeight = 45;

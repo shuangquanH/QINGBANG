@@ -164,7 +164,7 @@ JFSearchViewDelegate>
         
         UILabel *tishilabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 76, KAPP_WIDTH-20, 20)];
         tishilabel.text = @"各城市服务内容不同,请选择您的服务城市";
-        tishilabel.textColor = kRedColor;
+        tishilabel.textColor = [UIColor redColor];
         tishilabel.font = [UIFont systemFontOfSize:14];
         [_headerView addSubview:tishilabel];
     }

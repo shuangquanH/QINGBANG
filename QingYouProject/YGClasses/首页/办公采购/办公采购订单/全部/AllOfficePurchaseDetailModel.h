@@ -6,9 +6,9 @@
 //  Copyright © 2017年 ccyouge. All rights reserved.
 //
 
-#import "LDBaseModel.h"
+#import "SQBaseModel.h"
 
-@interface AllOfficePurchaseDetailModel : LDBaseModel
+@interface AllOfficePurchaseDetailModel : SQBaseModel
 
 @property (nonatomic,strong) NSString * orderID;
 @property (nonatomic,strong) NSString * orderDate;

@@ -7,6 +7,7 @@
 //
 
 #import "BillDetailTableViewCell.h"
+#import "NSString+SQAttributeString.h"
 
 @implementation BillDetailTableViewCell
 {
@@ -116,7 +117,7 @@
         _statsLabel.text = [NSString stringWithFormat:@"逾期: %@天",_model.time];
         
     }
-    _statsLabel.attributedText =   [_statsLabel.text ld_attributedStringFromNSString:_statsLabel.text startLocation:3 forwardFont:[UIFont systemFontOfSize:YGFontSizeSmallOne] backFont:[UIFont systemFontOfSize:YGFontSizeSmallOne] forwardColor:colorWithPlaceholder backColor:colorWithOrangeColor];
+    _statsLabel.attributedText =   [_statsLabel.text attributedStringFromNSString:_statsLabel.text startLocation:3 forwardFont:[UIFont systemFontOfSize:YGFontSizeSmallOne] backFont:[UIFont systemFontOfSize:YGFontSizeSmallOne] forwardColor:colorWithPlaceholder backColor:colorWithOrangeColor];
     
     _rentMoney.text = [NSString stringWithFormat:@"%.2f",[_model.price floatValue]];
 }

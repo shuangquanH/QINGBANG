@@ -26,6 +26,9 @@
 #import <CoreLocation/CoreLocation.h>
 #import "PlaceholderAndNoticeTextView.h"
 
+
+
+
 @interface IndoorMaintenanceViewController ()<TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,CLLocationManagerDelegate> {
     NSMutableArray *_selectedPhotos;
     NSMutableArray *_selectedAssets;
@@ -99,7 +102,8 @@
 - (void)setupNav{
     
 //    // 右边按钮
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem backItemWithimage:nil highImage:nil target:self action:@selector(rightBarButtonClick:) title:@"提交" normalColor:LDMainColor highColor:LDMainColor titleFont:LDFont(14)];
+
+    self.navigationItem.rightBarButtonItem =  [self createBarbuttonWithNormalTitleString:@"提交" selectedTitleString:@"提交" selector:@selector(rightBarButtonClick:)];
 }
 #pragma mark - 导航栏右侧按钮点击
 - (void)rightBarButtonClick:(UIButton *)rightBarButton{
@@ -176,9 +180,8 @@
 
 #pragma mark - 设置UI视图
 - (void)setupUI{
-    
     //背景scrollowView
-    UIScrollView * backScrollowView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, kScreenH - YGNaviBarHeight - YGStatusBarHeight)];
+    UIScrollView * backScrollowView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, KAPP_HEIGHT - YGNaviBarHeight - YGStatusBarHeight)];
     [self.view addSubview:backScrollowView];
     self.backScrollowView = backScrollowView;
 
@@ -201,24 +204,24 @@
         make.left.right.offset(0);
         make.top.offset(0);
         make.bottom.equalTo(container.mas_bottom).offset(0);
-        make.height.offset(kScreenH * 1.5);
+        make.height.offset(KAPP_HEIGHT * 1.5);
     }];
     
-    self.backScrollowView.contentSize = CGSizeMake(YGScreenWidth, kScreenH);
+    self.backScrollowView.contentSize = CGSizeMake(YGScreenWidth, KAPP_HEIGHT);
     
-    UILabel * applyInfo = [[UILabel alloc] initWithFrame:CGRectMake(LDHPadding, 0, kScreenW - 2 * LDHPadding, LDVPadding)];
+    UILabel * applyInfo = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, KAPP_WIDTH - 2 * 10, 10)];
     [applyView addSubview:applyInfo];
     
     //所在园区
     UILabel * parkLabel = [UILabel new];
     [applyView addSubview:parkLabel];
-    CGFloat parkLabelW = [UILabel calculateWidthWithString:@"所在园区" textFont:leftFont numerOfLines:1].width;
-    parkLabel.font = leftFont;
+    CGFloat parkLabelW = [UILabel calculateWidthWithString:@"所在园区" textFont:[UIFont systemFontOfSize:15] numerOfLines:1].width;
+    parkLabel.font = [UIFont systemFontOfSize:15];
     [parkLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.offset(parkLabelW);
-        make.left.offset(LDHPadding);
+        make.left.offset(10);
         make.top.equalTo(applyInfo.mas_bottom);
-        make.height.offset(5 * LDVPadding);
+        make.height.offset(5 * 10);
     }];
     
     self.parkLabelName = [UITextField new];
@@ -226,7 +229,7 @@
     UIView * rightView = [[UIView alloc] initWithFrame:CGRectMake(5, 0, 17, 17)];
     UIImageView * image = [[UIImageView alloc] initWithFrame:rightView.frame];
     [rightView addSubview:image];
-    image.image = LDImage(@"unfold_btn_gray");
+    image.image = [UIImage imageNamed:@"unfold_btn_gray"];
     self.parkLabelName.rightView = rightView;
     self.parkLabelName.rightViewMode = UITextFieldViewModeAlways;
     self.parkLabelName.userInteractionEnabled = YES;
@@ -236,20 +239,20 @@
     [self.parkLabelName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(parkLabel.mas_right).offset(5);
         make.top.bottom.equalTo(parkLabel);
-        make.right.offset(-LDHPadding);
+        make.right.offset(-10);
     }];
     
     //所在园区点击事件
-    _parkLabelNameCoverButton = [UIButton buttonWithType:UIButtonTypeCustom normalImage:nil selectedImage:nil normalTitle:nil selectedTitle:nil normalTitleColor:nil selectedTitleColor:nil backGroundColor:kClearColor normalBackGroundImageStr:nil selectedBackGroundImageStr:nil titleFont:0];
+    _parkLabelNameCoverButton = [UIButton buttonWithType:UIButtonTypeCustom normalImage:nil selectedImage:nil normalTitle:nil selectedTitle:nil normalTitleColor:nil selectedTitleColor:nil backGroundColor:[UIColor clearColor] normalBackGroundImageStr:nil selectedBackGroundImageStr:nil titleFont:0];
     
-    _parkLabelNameCoverButton.frame = CGRectMake(parkLabelW + 5 + LDHPadding, parkLabel.ld_y + 10, kScreenW - (CGRectGetMaxX(parkLabel.frame) + 5 + LDHPadding), 50);
+    _parkLabelNameCoverButton.frame = CGRectMake(parkLabelW + 5 + 10, parkLabel.y + 10, KAPP_WIDTH - (CGRectGetMaxX(parkLabel.frame) + 5 + 10), 50);
     [applyView addSubview:_parkLabelNameCoverButton];
     [_parkLabelNameCoverButton addTarget:self action:@selector(parkLabelNameCoverButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     
     UIView * lineOne = [UIView new];
     [applyView addSubview:lineOne];
     [lineOne mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.offset(LDHPadding);
+        make.left.offset(10);
         make.right.offset(0);
         make.height.offset(1);
         make.top.equalTo(parkLabel.mas_bottom);
@@ -260,17 +263,17 @@
     //企业/个人名称
     UILabel * comLabel = [UILabel new];
     [applyView addSubview:comLabel];
-    CGFloat comLabelW = [UILabel calculateWidthWithString:@"企业名称" textFont:leftFont numerOfLines:1].width;
-    comLabel.font = leftFont;
+    CGFloat comLabelW = [UILabel calculateWidthWithString:@"企业名称" textFont:[UIFont systemFontOfSize:15] numerOfLines:1].width;
+    comLabel.font = [UIFont systemFontOfSize:15];
     
     [comLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.offset(comLabelW);
-        make.left.offset(LDHPadding);
+        make.left.offset(10);
         make.top.equalTo(lineOne.mas_bottom);
-        make.height.offset(5 * LDVPadding);
+        make.height.offset(5 * 10);
     }];
     
-    self.comName = [[LDTextView alloc] initWithFrame:CGRectMake(comLabelW + LDHPadding + 5, 244 + 7, kScreenW - (comLabelW + 2 * LDHPadding + 5), 50)];
+    self.comName = [[LDTextView alloc] initWithFrame:CGRectMake(comLabelW + 10 + 5, 244 + 7, KAPP_WIDTH - (comLabelW + 2 * 10 + 5), 50)];
     self.comName.maxNumberOfLines = 40;
     
     
@@ -278,10 +281,10 @@
     [applyView addSubview:self.comName];
     
     [self.comName mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.offset(self.comName.ld_width);
-        make.right.offset(-LDHPadding);
+        make.width.offset(self.comName.width);
+        make.right.offset(-10);
         make.top.equalTo(comLabel.mas_top).offset(8);
-        make.height.offset(self.comName.ld_height - 16);
+        make.height.offset(self.comName.height - 16);
     }];
     
     __weak typeof(self) weakSelf = self;
@@ -313,21 +316,21 @@
     //企业地址
     UILabel * comPlaceLabel = [UILabel new];
     [applyView addSubview:comPlaceLabel];
-    CGFloat comPlaceLabelW = [UILabel calculateWidthWithString:@"报修地址" textFont:leftFont numerOfLines:1].width;
-    comPlaceLabel.font = leftFont;
+    CGFloat comPlaceLabelW = [UILabel calculateWidthWithString:@"报修地址" textFont:[UIFont systemFontOfSize:15] numerOfLines:1].width;
+    comPlaceLabel.font = [UIFont systemFontOfSize:15];
     
     [comPlaceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.offset(comPlaceLabelW);
-        make.left.offset(LDHPadding);
+        make.left.offset(10);
         make.top.equalTo(lineFive.mas_bottom);
-        make.height.offset(5 * LDVPadding);
+        make.height.offset(5 * 10);
     }];
     
     self.companyCity = [UILabel new];
     [applyView addSubview:self.companyCity];
     [self.companyCity mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.offset(kScreenW - (comLabelW + 2 * LDHPadding + 5));
-        make.right.offset(-LDHPadding);
+        make.width.offset(KAPP_WIDTH - (comLabelW + 2 * 10 + 5));
+        make.right.offset(-10);
         make.top.equalTo(comPlaceLabel.mas_top).offset(7);
         make.height.offset(50 - 16);
     }];
@@ -339,8 +342,8 @@
     [applyView addSubview:companyCityButton];
 
     [companyCityButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.offset(kScreenW - (comLabelW + 2 * LDHPadding + 5));
-        make.right.offset(-LDHPadding);
+        make.width.offset(KAPP_WIDTH - (comLabelW + 2 * 10 + 5));
+        make.right.offset(-10);
         make.top.equalTo(comPlaceLabel.mas_top).offset(7);
         make.height.offset(50);
     }];
@@ -357,16 +360,16 @@
         make.top.equalTo(self.companyCity.mas_bottom).offset(8);;
     }];
     
-    self.comPlace = [[LDTextView alloc] initWithFrame:CGRectMake(comLabelW + LDHPadding + 5, 295 + 12, kScreenW - (comLabelW + 2 * LDHPadding + 5), 50)];
+    self.comPlace = [[LDTextView alloc] initWithFrame:CGRectMake(comLabelW + 10 + 5, 295 + 12, KAPP_WIDTH - (comLabelW + 2 * 10 + 5), 50)];
     self.comPlace.textAlignment = NSTextAlignmentRight;
     self.comPlace.maxNumberOfLines = 4;
     [applyView addSubview:self.comPlace];
     
     [self.comPlace mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.offset(self.comPlace.ld_width);
-        make.right.offset(-LDHPadding);
+        make.width.offset(self.comPlace.width);
+        make.right.offset(-10);
         make.top.equalTo(lineNew.mas_bottom).offset(8);
-        make.height.offset(self.comName.ld_height - 16);
+        make.height.offset(self.comName.height - 16);
     }];
     
     
@@ -395,13 +398,13 @@
     //联系人
     UILabel * contactLabel = [UILabel new];
     [applyView addSubview:contactLabel];
-    CGFloat contactLabelW = [UILabel calculateWidthWithString:@"联系人" textFont:leftFont numerOfLines:1].width;
-    contactLabel.font = leftFont;
+    CGFloat contactLabelW = [UILabel calculateWidthWithString:@"联系人" textFont:[UIFont systemFontOfSize:15] numerOfLines:1].width;
+    contactLabel.font = [UIFont systemFontOfSize:15];
     [contactLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.offset(contactLabelW);
-        make.left.offset(LDHPadding);
+        make.left.offset(10);
         make.top.equalTo(lineFour.mas_bottom);
-        make.height.offset(5 * LDVPadding);
+        make.height.offset(5 * 10);
     }];
     
     self.contactName = [UITextField new];
@@ -410,12 +413,12 @@
     [self.contactName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(contactLabel.mas_right).offset(5);
         make.top.bottom.equalTo(contactLabel);
-        make.right.offset(-LDHPadding);
+        make.right.offset(-10);
     }];
     UIView * lineThree = [UIView new];
     [applyView addSubview:lineThree];
     [lineThree mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.offset(LDHPadding);
+        make.left.offset(10);
         make.right.offset(0);
         make.height.offset(1);
         make.top.equalTo(contactLabel.mas_bottom);
@@ -424,13 +427,13 @@
     //联系电话
     UILabel * contactPhoneLabel = [UILabel new];
     [applyView addSubview:contactPhoneLabel];
-    CGFloat contactPhoneLabelW = [UILabel calculateWidthWithString:@"联系电话" textFont:leftFont numerOfLines:1].width;
-    contactPhoneLabel.font = leftFont;
+    CGFloat contactPhoneLabelW = [UILabel calculateWidthWithString:@"联系电话" textFont:[UIFont systemFontOfSize:15] numerOfLines:1].width;
+    contactPhoneLabel.font = [UIFont systemFontOfSize:15];
     [contactPhoneLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.offset(contactPhoneLabelW);
-        make.left.offset(LDHPadding);
+        make.left.offset(10);
         make.top.equalTo(lineThree.mas_bottom);
-        make.height.offset(5 * LDVPadding);
+        make.height.offset(5 * 10);
     }];
     
     self.contactPhone = [UITextField new];
@@ -439,7 +442,7 @@
     [self.contactPhone mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(contactLabel.mas_right).offset(5);
         make.top.bottom.equalTo(contactPhoneLabel);
-        make.right.offset(-LDHPadding);
+        make.right.offset(-10);
     }];
     
     UIView * lineSix = [UIView new];
@@ -447,23 +450,23 @@
     [lineSix mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.offset(0);
         make.right.offset(0);
-        make.height.offset(LDVPadding);
+        make.height.offset(10);
         make.top.equalTo(self.contactPhone.mas_bottom);
     }];
     
     //留言描述
     UILabel * messageLabel = [UILabel new];
     [applyView addSubview:messageLabel];
-    CGFloat messageLabelW = [UILabel calculateWidthWithString:@"留言描述：" textFont:leftFont numerOfLines:1].width;
-    messageLabel.font = leftFont;
+    CGFloat messageLabelW = [UILabel calculateWidthWithString:@"留言描述：" textFont:[UIFont systemFontOfSize:15] numerOfLines:1].width;
+    messageLabel.font = [UIFont systemFontOfSize:15];
     [messageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.offset(messageLabelW);
-        make.left.offset(LDHPadding);
+        make.left.offset(10);
         make.top.equalTo(lineSix.mas_bottom);
-        make.height.offset(3.5 * LDVPadding);
+        make.height.offset(3.5 * 10);
     }];
     
-    self.leaveMessage = [[PlaceholderAndNoticeTextView alloc] initWithFrame:CGRectMake(LDHPadding, 0, kScreenW - 2 * LDHPadding , 80)];
+    self.leaveMessage = [[PlaceholderAndNoticeTextView alloc] initWithFrame:CGRectMake(10, 0, KAPP_WIDTH - 2 * 10 , 80)];
     self.leaveMessage.textAlignment = NSTextAlignmentLeft;
     self.leaveMessage.font = [UIFont systemFontOfSize:16];
 
@@ -471,10 +474,10 @@
     self.leaveMessage.placeholder =@"请在此留言";
 
     [self.leaveMessage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.offset(self.leaveMessage.ld_width);
-        make.right.offset(-LDHPadding);
+        make.width.offset(self.leaveMessage.width);
+        make.right.offset(-10);
         make.top.equalTo(messageLabel.mas_bottom);
-        make.height.offset(self.leaveMessage.ld_height);
+        make.height.offset(self.leaveMessage.height);
     }];
     
     
@@ -496,20 +499,21 @@
     //"请在此留言
     self.leaveMessageLabel = [UILabel new];
     [applyView addSubview:self.leaveMessageLabel];
-    CGFloat leavemessageLabelW = [UILabel calculateWidthWithString:@"请在此留言" textFont:leftFont numerOfLines:1].width;
-    self.leaveMessageLabel.font = leftFont;
+    CGFloat leavemessageLabelW = [UILabel calculateWidthWithString:@"请在此留言" textFont:[UIFont systemFontOfSize:15] numerOfLines:1].width;
+    
+    self.leaveMessageLabel.font = [UIFont systemFontOfSize:15];
     [self.leaveMessageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.offset(leavemessageLabelW);
-        make.right.offset(-LDHPadding);
+        make.right.offset(-10);
         make.top.equalTo(self.leaveMessage.mas_bottom);
-        make.height.offset(3 * LDVPadding);
+        make.height.offset(3 * 10);
 //        make.bottom.equalTo(applyView.mas_bottom);
 
     }];
         self.leaveMessageLabel.hidden = YES;
 
     
-    if (iphoneX) {
+    if (KISIPHONEX) {
   
         if (@available(iOS 11.0, *)) {
             
@@ -527,12 +531,12 @@
     lineFive.backgroundColor = LDEEPaddingColor;
     lineSix.backgroundColor = LDEEPaddingColor;
     
-    self.comPlace.font = leftFont;
-    self.comName.font = leftFont;
+    self.comPlace.font = [UIFont systemFontOfSize:15];
+    self.comName.font = [UIFont systemFontOfSize:15];
 //    self.comName.placeholderColor = LD9ATextColor;
 //    self.comPlace.placeholderColor = LD9ATextColor;
     
-    self.companyCity.font = leftFont;
+    self.companyCity.font = [UIFont systemFontOfSize:15];
     
     parkLabel.text = @"所在园区";
     contactLabel.text = @"联系人";
@@ -550,17 +554,17 @@
     comPlaceLabel.textColor =colorWithDeepGray;
 
     applyInfo.textColor = LD16TextColor;
-    backScrollowView.backgroundColor = kWhiteColor;
-    container.backgroundColor = kWhiteColor;
-    self.leaveMessageLabel.textColor = kLightGrayColor;
+    backScrollowView.backgroundColor = KCOLOR_WHITE;
+    container.backgroundColor = KCOLOR_WHITE;
+    self.leaveMessageLabel.textColor = kCOLOR_999;
     
-    applyInfo.font = LD15Font;
-    self.parkLabelName.font = leftFont;
-    self.contactName.font = leftFont;
-    self.contactPhone.font = leftFont;
-    self.leaveMessageLabel.font = leftFont;
+    applyInfo.font = [UIFont systemFontOfSize:15];
+    self.parkLabelName.font = [UIFont systemFontOfSize:15];
+    self.contactName.font = [UIFont systemFontOfSize:15];
+    self.contactPhone.font = [UIFont systemFontOfSize:15];
+    self.leaveMessageLabel.font = [UIFont systemFontOfSize:15];
    
-    messageLabel.font =LD15Font;
+    messageLabel.font =[UIFont systemFontOfSize:15];
     
     self.parkLabelName.placeholder = @"请选择所在园区";
     self.contactName.placeholder = @"请输入姓名";

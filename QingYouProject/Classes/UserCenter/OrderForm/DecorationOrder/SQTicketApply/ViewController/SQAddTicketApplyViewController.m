@@ -250,7 +250,7 @@
     return CGFLOAT_MIN;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    return [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, KSCAL(20))];
+    return [[UIView alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, KSCAL(20))];
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     return nil;

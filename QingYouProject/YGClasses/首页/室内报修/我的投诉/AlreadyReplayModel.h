@@ -6,9 +6,9 @@
 //  Copyright © 2017年 ccyouge. All rights reserved.
 //
 
-#import "LDBaseModel.h"
+#import "SQBaseModel.h"
 
-@interface AlreadyReplayModel : LDBaseModel
+@interface AlreadyReplayModel : SQBaseModel
 /** 投诉内容  */
 @property (nonatomic,strong) NSString * message;
 /** 投诉时间  */

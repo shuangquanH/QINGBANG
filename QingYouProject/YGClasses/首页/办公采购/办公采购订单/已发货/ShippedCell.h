@@ -6,7 +6,7 @@
 //  Copyright © 2017年 ccyouge. All rights reserved.
 //
 
-#import "LDBaseViewCell.h"
+#import "SQBaseTableViewCell.h"
 @class AllOfficePurchaseModel;
 
 @protocol ShippedCellDelegate <NSObject>//协议
@@ -14,7 +14,7 @@
 - (void)shippedCellSureWithRow:(int)row;//协议方法
 
 @end
-@interface ShippedCell : LDBaseViewCell
+@interface ShippedCell : SQBaseTableViewCell
 /** AllOfficePurchaseModel  */
 @property (nonatomic,strong) AllOfficePurchaseModel * model;
 @property (nonatomic, assign) id <ShippedCellDelegate>delegate;

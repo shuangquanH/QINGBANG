@@ -39,7 +39,7 @@
  *
  *  @return 获得的UUID
  */
-+ (NSString *)getUUID;
+//+ (NSString *)getUUID;
 
 /**
  *  得到ios系统版本

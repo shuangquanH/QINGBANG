@@ -149,7 +149,7 @@
         case 1:
             {
                 UIButton *delButton = [UIButton buttonWithType:UIButtonTypeCustom];
-                delButton.frame = CGRectMake(YGScreenWidth - 15 - 90 , line.y+ line.height  + LDVPadding, 90, 30);
+                delButton.frame = CGRectMake(YGScreenWidth - 15 - 90 , line.y+ line.height  + 10, 90, 30);
                 [delButton setTitle:@"申请退款" forState:UIControlStateNormal];
                 [delButton setTitleColor:colorWithBlack forState:UIControlStateNormal];
                 delButton.titleLabel.font = [UIFont systemFontOfSize:14.0];
@@ -164,17 +164,17 @@
             break;
         case 4:
         {
-            UILabel *reasonLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, line.y + LDVPadding,80, 25)];
+            UILabel *reasonLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, line.y + 10,80, 25)];
             reasonLabel.textColor = colorWithBlack;
             reasonLabel.font = [UIFont systemFontOfSize:14.0];
             reasonLabel.text = @"退款原因：";
             
-            UILabel *reasonDetailLabel = [[UILabel alloc]initWithFrame:CGRectMake(reasonLabel.x +reasonLabel.width , line.y + LDVPadding, YGScreenWidth - reasonLabel.x +reasonLabel.width - 2*LDHPadding , 25)];
+            UILabel *reasonDetailLabel = [[UILabel alloc]initWithFrame:CGRectMake(reasonLabel.x +reasonLabel.width , line.y + 10, YGScreenWidth - reasonLabel.x +reasonLabel.width - 2*10 , 25)];
             reasonDetailLabel.textColor = colorWithDeepGray;
             reasonDetailLabel.font = [UIFont systemFontOfSize:14.0];
             reasonDetailLabel.text = model.refundReason ;
             
-            UILabel *reasonTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(reasonDetailLabel.x , reasonDetailLabel.y + reasonDetailLabel.height, YGScreenWidth - reasonLabel.x +reasonLabel.width - 2*LDHPadding , 25)];
+            UILabel *reasonTimeLabel = [[UILabel alloc]initWithFrame:CGRectMake(reasonDetailLabel.x , reasonDetailLabel.y + reasonDetailLabel.height, YGScreenWidth - reasonLabel.x +reasonLabel.width - 2*10 , 25)];
             reasonTimeLabel.textColor = colorWithDeepGray;
             reasonTimeLabel.font = [UIFont systemFontOfSize:14.0];
             reasonTimeLabel.text = model.refundDate;
@@ -212,7 +212,7 @@ static NSString * const MyIntegrationIndustryWtihCategoryTableViewCellID = @"MyI
 
 - (UITableView *)tableView{
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, self.view.height) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, self.view.height) style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         //        _tableView.estimatedRowHeight = 120;

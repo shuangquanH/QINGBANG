@@ -78,7 +78,7 @@
 }
 
 - (CGSize)intrinsicContentSize {
-    return CGSizeMake(kScreenW, KSCAL(90));
+    return CGSizeMake(KAPP_WIDTH, KSCAL(90));
 }
 
 @end

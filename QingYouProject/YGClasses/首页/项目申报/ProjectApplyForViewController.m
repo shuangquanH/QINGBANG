@@ -61,7 +61,7 @@
 - (void)configAttribute
 {
     UILabel *naviTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, YGScreenWidth - 100, 20)];
-    naviTitleLabel.textColor = kWhiteColor;
+    naviTitleLabel.textColor = KCOLOR_WHITE;
     naviTitleLabel.textAlignment = NSTextAlignmentCenter;
     naviTitleLabel.text = @"项目申报" ;
     

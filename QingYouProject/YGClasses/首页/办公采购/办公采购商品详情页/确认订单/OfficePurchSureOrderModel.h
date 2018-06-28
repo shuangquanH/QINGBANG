@@ -6,9 +6,9 @@
 //  Copyright © 2017年 ccyouge. All rights reserved.
 //
 
-#import "LDBaseModel.h"
+#import "SQBaseModel.h"
 
-@interface OfficePurchSureOrderModel : LDBaseModel
+@interface OfficePurchSureOrderModel : SQBaseModel
 @property (nonatomic,strong) NSString * point;
 @property (nonatomic,strong) NSDictionary * commodity;
 @property (nonatomic,strong) NSString * pointPrice;

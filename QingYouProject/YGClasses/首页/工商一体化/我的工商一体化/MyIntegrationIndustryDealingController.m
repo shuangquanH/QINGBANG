@@ -11,6 +11,8 @@
 #import "IntegrationIndustryModel.h"
 #import "MyIntegrationIndustryWtihCategoryTableViewCell.h"
 
+
+
 @interface MyIntegrationIndustryDealingController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITableView * tableView;
 /** 数据源  */

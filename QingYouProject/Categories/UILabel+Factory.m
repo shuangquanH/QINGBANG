@@ -32,4 +32,17 @@
     label.textAlignment = textAlignment;
     return label;
 }
+
++ (UILabel *)ld_labelWithTextColor:(UIColor *)textColor textAlignment:(NSTextAlignment)textAligement font:(UIFont *)font numberOfLines:(NSInteger)numberOflines{
+    
+    UILabel * label = [[UILabel alloc] init];
+    label.textColor = textColor;
+    label.textAlignment = textAligement;
+    label.font = font;
+    label.numberOfLines = numberOflines;
+    
+    return label;
+    
+}
+
 @end

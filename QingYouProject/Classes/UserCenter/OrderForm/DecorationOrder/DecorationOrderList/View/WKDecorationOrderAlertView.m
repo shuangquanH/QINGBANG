@@ -78,7 +78,10 @@ static WKDecorationOrderAlertView *_instance;
             [btn setBackgroundColor:bgColors[i]];
         }
         else {
-            btn = [UIButton buttonWithTitle:titles[i] titleFont:KSCAL(38) titleColor:[UIColor whiteColor] bgColor:bgColors[i]];
+            btn = [UIButton buttonWithType:UIButtonTypeCustom];
+            btn.titleLabel.font = KFONT(38);
+            [btn setTitleColor:KCOLOR_WHITE forState:UIControlStateNormal];
+            btn.backgroundColor = bgColors[i];
             btn.layer.cornerRadius = KSCAL(20);
             btn.layer.masksToBounds = YES;
             [btn addTarget:self action:@selector(click_actionButton:) forControlEvents:UIControlEventTouchUpInside];

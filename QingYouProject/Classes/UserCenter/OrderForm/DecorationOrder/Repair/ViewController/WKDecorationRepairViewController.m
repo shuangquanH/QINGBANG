@@ -71,7 +71,7 @@ const CGFloat kItemHorizontalMargin = 10;
     [_addPhotoBtn addTarget:self action:@selector(pushImagePickerController) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_addPhotoBtn];
     
-    CGFloat itemW = (kScreenW - 4 * KSCAL(kItemHorizontalMargin) - 2 * KSCAL(30)) / 5.0;
+    CGFloat itemW = (KAPP_WIDTH - 4 * KSCAL(kItemHorizontalMargin) - 2 * KSCAL(30)) / 5.0;
     CGFloat itemH = KSCAL(240);
     UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
     layout.itemSize = CGSizeMake(itemW-1, itemH);
@@ -167,7 +167,7 @@ const CGFloat kItemHorizontalMargin = 10;
         NSAttributedString *reason = [[NSAttributedString alloc] initWithString:reasonStr attributes:@{NSParagraphStyleAttributeName: para}];
         _repairFailReasonLabel.attributedText = reason;
         
-        CGFloat reasonH = [reasonStr labelAutoCalculateRectWithLineSpace:KSCAL(14) Font:KFONT(28) MaxSize:CGSizeMake(kScreenW-2*KSCAL(85), MAXFLOAT)].height;
+        CGFloat reasonH = [reasonStr labelAutoCalculateRectWithLineSpace:KSCAL(14) Font:KFONT(28) MaxSize:CGSizeMake(KAPP_WIDTH-2*KSCAL(85), MAXFLOAT)].height;
         
         [_roundRectBgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(0);

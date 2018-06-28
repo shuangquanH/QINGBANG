@@ -29,7 +29,7 @@
 }
 
 + (WKRefundAlertView *)refundAlert {
-    return [[WKRefundAlertView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, KSCAL(376)+1)];
+    return [[WKRefundAlertView alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, KSCAL(376)+1)];
 }
 
 - (instancetype)initWithFrame:(CGRect)frame {

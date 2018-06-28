@@ -6,13 +6,13 @@
 //  Copyright © 2017年 ccyouge. All rights reserved.
 //
 
-#import "LDBaseViewCell.h"
+#import "SQBaseTableViewCell.h"
 @class WaitReplyModel;
 @protocol WaitReplyCellDelegate <NSObject>//协议
 - (void)WaitReplyCellDelegateDeletewithrow:(int)row;//协议方法
 @end
 
-@interface WaitReplyCell : LDBaseViewCell
+@interface WaitReplyCell : SQBaseTableViewCell
 /** WaitReplyModel  */
 @property (nonatomic,strong) WaitReplyModel * model;
 @property (nonatomic, assign) id <WaitReplyCellDelegate>delegate;

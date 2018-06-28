@@ -33,10 +33,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.tableView];
-    CGFloat Y = kScreenH - YGNaviBarHeight - YGStatusBarHeight - YGNaviBarHeight - YGBottomMargin;
+    CGFloat Y = KAPP_HEIGHT - YGNaviBarHeight - YGStatusBarHeight - YGNaviBarHeight - YGBottomMargin;
 
     self.naviTitle =@"退款页面";
-    UIButton * submitBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, Y, kScreenW, YGNaviBarHeight + YGBottomMargin)];
+    UIButton * submitBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, Y, KAPP_WIDTH, YGNaviBarHeight + YGBottomMargin)];
     [submitBtn setTitle:@"提交" forState: UIControlStateNormal];
     [self.view addSubview:submitBtn];
     [submitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -180,8 +180,8 @@ static NSString * const MyIntegrationIndustryTableViewCellID = @"MyIntegrationIn
 
 - (UITableView *)tableView{
     if (!_tableView) {
-        CGFloat Y = kScreenH - YGNaviBarHeight - YGStatusBarHeight - YGNaviBarHeight - YGBottomMargin;
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenW, Y) style:UITableViewStyleGrouped];
+        CGFloat Y = KAPP_HEIGHT - YGNaviBarHeight - YGStatusBarHeight - YGNaviBarHeight - YGBottomMargin;
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, KAPP_WIDTH, Y) style:UITableViewStyleGrouped];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         //        _tableView.estimatedRowHeight = 120;

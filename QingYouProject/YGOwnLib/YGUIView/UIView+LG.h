@@ -23,6 +23,15 @@
 @property (nonatomic, assign) CGFloat sqright;
 
 
+/**
+ * 判断一个控件是否真正显示在主窗口
+ */
+- (BOOL)isShowingOnKeyWindow;
+
++ (instancetype)viewFromXib;
+
+- (UIView *)findFirstResponder;
+
 
 /**
  *  距右多少

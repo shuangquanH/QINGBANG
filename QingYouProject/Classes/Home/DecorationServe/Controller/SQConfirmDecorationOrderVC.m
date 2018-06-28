@@ -185,7 +185,7 @@
         _bottomPayView.backgroundColor = colorWithMainColor;
         _bottomPayView.font = KFONT(38);
         _bottomPayView.text = @"提交订单";
-        _bottomPayView.textColor = kWhiteColor;
+        _bottomPayView.textColor = KCOLOR_WHITE;
         _bottomPayView.textAlignment = NSTextAlignmentCenter;
     }
     return _bottomPayView;

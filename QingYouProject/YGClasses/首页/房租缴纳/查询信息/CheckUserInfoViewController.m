@@ -7,7 +7,6 @@
 //
 
 #import "CheckUserInfoViewController.h"
-#import "JKCountDownButton.h"
 #import "YGActionSheetView.h"
 #import "PayRentViewController.h"
 #import "MyHouseRentPayViewController.h"

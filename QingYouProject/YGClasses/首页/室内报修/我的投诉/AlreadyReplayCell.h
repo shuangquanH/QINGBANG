@@ -6,14 +6,14 @@
 //  Copyright © 2017年 ccyouge. All rights reserved.
 //
 
-#import "LDBaseViewCell.h"
+#import "SQBaseTableViewCell.h"
 @class AlreadyReplayModel;
 
 @protocol AlreadyReplayCellDelegate <NSObject>//协议
 - (void)alreadyReplayCellDeleteWithRow:(int)row;//协议方法
 @end
 
-@interface AlreadyReplayCell : LDBaseViewCell
+@interface AlreadyReplayCell : SQBaseTableViewCell
 /** WaitReplyModel  */
 @property (nonatomic,strong) AlreadyReplayModel * model;
 @property (nonatomic,assign) int  row;

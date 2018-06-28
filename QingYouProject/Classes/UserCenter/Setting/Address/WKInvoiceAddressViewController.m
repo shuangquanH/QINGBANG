@@ -74,7 +74,13 @@ static NSString *functionCellIdentifier = @"WKInvoiceFunctionCell";
     [self.view addSubview:_tableView];
     [self createRefreshWithScrollView:_tableView containFooter:NO];
     
-    _addButton = [UIButton buttonWithTitle:@"添加地址" titleFont:KSCAL(38) titleColor:[UIColor whiteColor] bgColor:KCOLOR_MAIN];
+    _addButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_addButton setTitle:@"添加地址" forState:UIControlStateNormal];
+    _addButton.titleLabel.font = KFONT(38);
+    [_addButton setTitleColor:KCOLOR_WHITE forState:UIControlStateNormal];
+    _addButton.backgroundColor = KCOLOR_MAIN;
+    
+    
     [_addButton addTarget:self action:@selector(addButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_addButton];
 }
