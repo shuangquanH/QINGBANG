@@ -21,7 +21,6 @@
     if (self) {
         self.backgroundColor = colorWithTable;
         productImage    = [[SQBaseImageView alloc] init];
-        productImage.backgroundColor = colorWithMainColor;
         [self.contentView addSubview:productImage];
         
         [self sqlayoutSubviews];

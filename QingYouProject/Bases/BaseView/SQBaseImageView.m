@@ -14,45 +14,12 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-//        self.contentMode = UIViewContentModeScaleAspectFill;
+        self.contentMode = UIViewContentModeScaleAspectFill;
     }
     return self;
 }
 - (void)setImageWithUrl:(NSString *)url {
-    CGFloat imageWidth = self.size.width;
-    CGFloat imageHeight = self.size.height;
-    CGFloat scale = imageWidth/imageHeight;
-    
-//    0.5 300*600
-//    1   300*300
-//    1.2 360*300
-//    1.4 420*300
-//    1.6 480*300
-//    1.8 540*300
-//    2.0 600*300
-//    4.0 800*200
-    
-    
-    UIImage *placeImage;
-    if (scale<=0.75) {
-        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_300x600"];
-    } else if (scale<=1.1) {
-        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_300x300"];
-    } else if (scale<=1.3) {
-        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_360x300"];
-    } else if (scale<=1.5) {
-        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_420x300"];
-    } else if (scale<=1.7) {
-        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_480x300"];
-    } else if (scale<=1.9) {
-        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_540x300"];
-    } else if (scale<2.1) {
-        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_600x300"];
-    } else {
-        placeImage = [UIImage imageNamed:@"placeholderfigure_rectangle_800x200"];
-    }
-    
-    [self setImageWithUrl:url placeHolder:placeImage];
+    [self setImageWithUrl:url placeHolder:nil];
 }
 - (void)setImageWithURL:(NSURL *)URL {
     [self setImageWithURL:URL placeHolder:nil];

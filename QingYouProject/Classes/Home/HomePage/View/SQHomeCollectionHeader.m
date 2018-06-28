@@ -46,7 +46,7 @@
 //首页banner
 - (void)addCycleView {
     CGRect frame = CGRectMake(0, 0, YGScreenWidth, KSCAL(320));
-    self.cycleView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:nil];
+    self.cycleView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:[UIImage imageNamed:@"placeholderfigure_rectangle_600x300"]];
     self.cycleView.backgroundColor = colorWithTable;
     [self addSubview:self.cycleView];
     

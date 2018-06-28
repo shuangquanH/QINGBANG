@@ -29,7 +29,6 @@
         self.backgroundColor = KCOLOR_WHITE;
         
         orderImage = [[UIImageView alloc] init];
-        orderImage.backgroundColor = [UIColor orangeColor];
         orderImage.contentMode = UIViewContentModeScaleAspectFill;
         orderImage.clipsToBounds = YES;
         [self addSubview:orderImage];
