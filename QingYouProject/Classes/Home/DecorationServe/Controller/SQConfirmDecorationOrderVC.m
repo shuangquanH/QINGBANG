@@ -152,15 +152,14 @@
     NSString    *beizhu = self.confirmDecorationCell.leaveMessageStr;
     NSDictionary    *param = @{@"addressId":self.chooseAddressView.model.ID, @"payType":paytype, @"remarks":beizhu, @"skuId":self.detailModel.productSkuId};
     [SQRequest post:KAPI_CREATORDER param:param success:^(id response) {
-        [self pingPPPayWithResponde:response[@"data"]];
+        if ([response[@"code"] integerValue]==0) {
+            [self pingPPPayWithResponde:response[@"data"]];            
+        }
     } failure:nil showLoadingView:YES];
 }
 
 
 - (void)pingPPPayWithResponde:(NSDictionary *)response {
-    if (![response.allKeys  containsObject: @"charge"]) {
-        return;
-    }
     [Pingpp createPayment:response[@"charge"] viewController:self appURLScheme:@"qingyouhui" withCompletion:^(NSString *result, PingppError *error){
         if ([result isEqualToString:@"success"]) {
             SQPaySuccessfulVC   *payvc = [[SQPaySuccessfulVC alloc] init];
