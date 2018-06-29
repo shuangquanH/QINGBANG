@@ -36,36 +36,44 @@
 
     if (!_numberLab) {
         _numberLab = [UILabel labelWithFont:KSCAL(28) textColor:kCOLOR_666];
+        _numberLab.numberOfLines = 1;
+        _numberLab.lineBreakMode = NSLineBreakByTruncatingTail;
         [self addSubview:_numberLab];
         
         _createTimeLab = [UILabel labelWithFont:KSCAL(28) textColor:kCOLOR_666];
+        _createTimeLab.numberOfLines = 1;
+        _createTimeLab.lineBreakMode = NSLineBreakByTruncatingTail;
         [self addSubview:_createTimeLab];
         
         _payTimeLab = [UILabel labelWithFont:KSCAL(28) textColor:kCOLOR_666];
+        _payTimeLab.numberOfLines = 1;
+        _payTimeLab.lineBreakMode = NSLineBreakByTruncatingTail;
         [self addSubview:_payTimeLab];
         
         _finishedLab = [UILabel labelWithFont:KSCAL(28) textColor:kCOLOR_666];
+        _finishedLab.numberOfLines = 1;
+        _finishedLab.lineBreakMode = NSLineBreakByTruncatingTail;
         [self addSubview:_finishedLab];
         
         [_numberLab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(KSCAL(30));
             make.top.mas_equalTo(KSCAL(36));
+            make.centerX.mas_equalTo(0);
         }];
         
         [_createTimeLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.centerX.equalTo(self->_numberLab);
-            make.top.equalTo(self->_numberLab.mas_bottom).offset(KSCAL(14.0));
+            make.left.right.equalTo(_numberLab);
+            make.top.equalTo(_numberLab.mas_bottom).offset(KSCAL(14.0));
         }];
  
         [_payTimeLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.centerX.equalTo(self->_numberLab);
-            make.top.equalTo(self->_createTimeLab.mas_bottom).offset(KSCAL(14));
+            make.left.right.equalTo(_numberLab);
+            make.top.equalTo(_createTimeLab.mas_bottom).offset(KSCAL(14));
         }];
-        
-        
+    
         [_finishedLab mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.centerX.equalTo(self->_numberLab);
-            make.top.equalTo(self->_payTimeLab.mas_bottom).offset(KSCAL(14.0));
+            make.left.right.equalTo(_numberLab);
+            make.top.equalTo(_payTimeLab.mas_bottom).offset(KSCAL(14.0));
         }];
     }
 
