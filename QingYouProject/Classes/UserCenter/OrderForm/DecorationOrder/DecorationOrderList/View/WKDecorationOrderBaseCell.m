@@ -116,7 +116,7 @@
 }
 
 - (void)setupTextWithOrderInfo:(WKDecorationOrderListModel *)orderInfo {
-    [orderImage sd_setImageWithURL:[NSURL URLWithString:orderInfo.skuDetails.skuImgUrl] placeholderImage:nil];
+    [orderImage sd_setImageWithURL:[NSURL URLWithString:[orderInfo.skuDetails.skuImgUrl componentsSeparatedByString:@","].firstObject] placeholderImage:nil];
     
     orderPrice.attributedText = orderInfo.skuDetails.skuProductPriceAttributeString;
     orderPrice.lineBreakMode = NSLineBreakByTruncatingTail;
