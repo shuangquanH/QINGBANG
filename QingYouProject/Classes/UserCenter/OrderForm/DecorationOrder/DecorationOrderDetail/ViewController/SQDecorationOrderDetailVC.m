@@ -21,6 +21,7 @@
 #import "WKDecorationDetailViewModel.h"
 #import "WKDecorationOrderServer.h"
 #import "WKAnimationAlert.h"
+#import "SQCallPhoneFunction.h"
 
 #import <Pingpp.h>
 #import <Photos/Photos.h>
@@ -215,12 +216,10 @@
     if (serviceType == 0) {
         [YGAlertView showAlertWithTitle:@"是否要拨打客服电话？"
                       buttonTitlesArray:@[@"YES", @"NO"]
-                      buttonColorsArray:@[[UIColor blueColor],
-                                          [UIColor redColor]]
+                      buttonColorsArray:@[KCOLOR_MAIN,kCOLOR_666]
                                 handler:^(NSInteger buttonIndex) {
                                     if (buttonIndex == 0) {
-                                        NSString *url = @"tel:057812345";
-                                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+                                        [SQCallPhoneFunction callServicePhone];
                                     }
                                 }];
     }
@@ -315,12 +314,10 @@
         {
             [YGAlertView showAlertWithTitle:@"是否要拨打客服电话？"
                           buttonTitlesArray:@[@"YES", @"NO"]
-                          buttonColorsArray:@[[UIColor blueColor],
-                                              [UIColor redColor]]
+                          buttonColorsArray:@[KCOLOR_MAIN,kCOLOR_666]
                                     handler:^(NSInteger buttonIndex) {
                                         if (buttonIndex == 0) {
-                                            NSString *url = @"tel:057812345";
-                                            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+                                            [SQCallPhoneFunction callServicePhone];
                                         }
                                     }];
         }
