@@ -134,7 +134,7 @@
         _webView.scrollView.showsHorizontalScrollIndicator = NO;
         _webView.scrollView.delegate = self;
         [_webView loadWebWithUrl:self.styleModel.linkurl];
-        [[YGConnectionService sharedConnectionService] showLoadingViewWithSuperView:YGAppDelegate.window];
+        [self showLodingAnimationView];
         
         NSArray *regisArr = @[@"DOWNLOADIMAGEFORIOS", @"GETPRODUCTINFOFORIOS"];
         
@@ -153,6 +153,16 @@
     return _webView;
 }
 
+- (void)showLodingAnimationView {
+    [[YGConnectionService sharedConnectionService] showLoadingViewWithSuperView:YGAppDelegate.window];
+    [self performSelector:@selector(timeOut) withObject:nil afterDelay:5];
+}
+- (void)timeOut {
+    if (!self.detailModel) {
+        [[YGConnectionService sharedConnectionService] dissmissLoadingView];
+        [YGAppTool showToastWithText:@"数据加载失败..."];
+    }
+}
 - (void)setDetailModel:(SQDecorationDetailModel *)detailModel {
     _detailModel = detailModel;
     self.bottomView.detailModel = detailModel;

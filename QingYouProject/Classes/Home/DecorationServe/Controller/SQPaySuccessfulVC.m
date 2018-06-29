@@ -8,6 +8,7 @@
 
 #import "SQPaySuccessfulVC.h"
 #import "SQDecorationOrderVC.h"
+#import "SQCallPhoneFunction.h"
 
 @interface SQPaySuccessfulVC ()
 
@@ -83,6 +84,7 @@
     descLabel.text = @"青邦将会在1小时内联系您沟通装修事宜!";
     timeLabel.text = @"(工作时间9:00---18:00)";
     [centerImage setImage:[UIImage imageNamed:@"paymentsuccess_tel_icon"] forState:UIControlStateNormal];
+    [centerImage addTarget:self action:@selector(callPhone) forControlEvents:UIControlEventTouchUpInside];
     
     
     [leftButton setTitle:@"返回首页" forState:UIControlStateNormal];
@@ -139,6 +141,8 @@
 }
 
 
-
+- (void)callPhone {
+    [SQCallPhoneFunction callServicePhoneWithPopver];
+}
 
 @end
