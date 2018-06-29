@@ -16,6 +16,7 @@
     if (self) {
         self.tableFooterView = [UIView new];
         self.backgroundColor = [UIColor whiteColor];
+        self.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return self;
 }
