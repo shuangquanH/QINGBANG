@@ -10,6 +10,7 @@
 
 @protocol decorationDetailBottomViewDelegate
 
+@optional
 - (void)clickedCollectionBtn;
 - (void)clickedContactButton;
 - (void)clickedPayButton;

@@ -39,10 +39,12 @@
 
 @implementation SQConfirmDecorationOrderVC
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self requestData];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self requestData];
 }
 
 - (void)requestData {
@@ -50,7 +52,7 @@
     [SQRequest post:KAPI_INVOICEADDRESSLIST param:nil success:^(id response) {
         if ([response[@"code"] longLongValue] == 0) {
             NSArray *addresslist = [NSArray yy_modelArrayWithClass:[WKInvoiceAddressModel class] json:response[@"data"][@"addressList"]];
-            self.chooseAddressView.model = [WKInvoiceAddressModel yy_modelWithDictionary:addresslist.firstObject];
+            self.chooseAddressView.model = addresslist.firstObject;
 
         } else {
             [YGAppTool showToastWithText:response[@"msg"]];
@@ -83,6 +85,7 @@
     
     /** 订单cell  */
     self.confirmDecorationCell = [[SQConfirmDecorationCell alloc] init];
+    self.confirmDecorationCell.detailModel = self.detailModel;
     [contentView addSubview:self.confirmDecorationCell];
     [self.confirmDecorationCell mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.chooseAddressView);
@@ -140,9 +143,13 @@
         [YGAlertView showAlertWithTitle:@"请选择支付方式" buttonTitlesArray:@[@"OK"] buttonColorsArray:@[KCOLOR_MAIN] handler:nil];
         return;
     }
+    if (!self.chooseAddressView.model.ID) {
+        [YGAlertView showAlertWithTitle:@"请添加收货地址" buttonTitlesArray:@[@"OK"] buttonColorsArray:@[KCOLOR_MAIN] handler:nil];
+        return;
+    }
     NSString    *paytype = (self.payType==SQPayByAirPay)?@"alipay":@"wx";
     NSString    *beizhu = self.confirmDecorationCell.leaveMessageStr;
-    NSDictionary    *param = @{@"addressId":@"20", @"payType":paytype, @"remarks":beizhu, @"skuId":self.skuId};
+    NSDictionary    *param = @{@"addressId":self.chooseAddressView.model.ID, @"payType":paytype, @"remarks":beizhu, @"skuId":self.detailModel.productSkuId};
     [SQRequest post:KAPI_CREATORDER param:param success:^(id response) {
         [self pingPPPayWithResponde:response[@"data"]];
     } failure:nil showLoadingView:YES];

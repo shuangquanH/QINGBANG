@@ -69,7 +69,7 @@
 }
 
 - (void)rightButtonItemAciton {
-    [self contactWithCustomerServerWithType:ContactServerPropertyRepair button:nil];
+    [self contactWithCustomerServerWithType:SQContactServerCallAction button:nil];
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self setPushtTypeWithModel:self.model.contents[indexPath.row]];

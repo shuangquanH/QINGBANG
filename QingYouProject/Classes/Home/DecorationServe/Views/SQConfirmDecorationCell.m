@@ -12,7 +12,7 @@
 #define KSPACE 20
 
 @implementation SQConfirmDecorationCell {
-    UIImageView *orderImage;
+    SQBaseImageView *orderImage;
     UILabel *orderTitle;
     UILabel *orderDesc;
     UILabel *orderPrice;
@@ -28,8 +28,7 @@
     if (self) {
         self.backgroundColor = KCOLOR_WHITE;
         
-        orderImage = [[UIImageView alloc] init];
-        orderImage.contentMode = UIViewContentModeScaleAspectFill;
+        orderImage = [[SQBaseImageView alloc] init];
         orderImage.clipsToBounds = YES;
         [self addSubview:orderImage];
         
@@ -175,6 +174,17 @@
         
     }
     return self;
+}
+
+- (void)setDetailModel:(SQDecorationDetailModel *)detailModel {
+    _detailModel = detailModel;
+    [orderImage setImageWithUrl:detailModel.imageUrl];
+    orderTitle.text = detailModel.title;
+    orderDesc.text = detailModel.properties;
+    orderPrice.text = detailModel.earnest;
+    totalPrice.text = detailModel.totalprice;
+    
+    
 }
 
 

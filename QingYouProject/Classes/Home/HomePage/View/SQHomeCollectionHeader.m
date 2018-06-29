@@ -90,7 +90,7 @@
     _cycleView.imageURLStringsGroup = bannerImageArr;
     
     //头部功能性按钮
-    [self.ovalFuncsView setImageWithUrl:self.model.bgimg_url];
+    [self.ovalFuncsView setImageWithUrl:self.model.bgimg_url placeHolder:[UIImage imageNamed:@"placeholderfigure_rectangle_600x300"]];
     UIView  *tempView = [[UIView alloc] initWithFrame:CGRectMake(0, KSCAL(60), self.width, KSCAL(100))];
     [self.ovalFuncsView addSubview:tempView];
     

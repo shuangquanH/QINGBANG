@@ -8,6 +8,7 @@
 
 #import "SQDecorationDetailBottomView.h"
 #import "UIButton+SQImagePosition.h"
+#import "SQCallPhoneFunction.h"
 
 @implementation SQDecorationDetailBottomView {
 //    UIButton    *collectBtn;
@@ -104,14 +105,15 @@
 }
 
 - (void)collectionAction {
-    if (self.delegate) {
-        [self.delegate clickedCollectionBtn];
-    }
+//    if (self.delegate) {
+//        [self.delegate clickedCollectionBtn];
+//    }
 }
 - (void)contactAction {
-    if (self.delegate) {
-        [self.delegate clickedContactButton];
-    }
+    [SQCallPhoneFunction callServicePhoneWithPopver];
+//    if (self.delegate) {
+//        [self.delegate clickedContactButton];
+//    }
 }
 - (void)payAction {
     if (self.delegate) {

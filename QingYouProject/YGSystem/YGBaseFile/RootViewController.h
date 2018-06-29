@@ -29,7 +29,9 @@ typedef enum : NSUInteger {
     ContactServerNetManagerVIP,//网络管家电话VIP
     ContactServerMine, //我的页面
     ContactServerIndoorCall, //法律客服
-    ContactServerIndoorCommonCall //法律客服
+    ContactServerIndoorCommonCall, //法律客服
+    
+    SQContactServerCallAction//新版联系客服
 
 } ContactWithServerType;
 @interface RootViewController : UIViewController

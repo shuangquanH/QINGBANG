@@ -10,6 +10,7 @@
 #import <UMMobClick/MobClick.h>
 #import "LoginViewController.h"
 #import "SQChooseGardenVC.h"
+#import "SQCallPhoneFunction.h"
 
 
 @interface RootViewController ()
@@ -264,6 +265,11 @@
 
 - (void)contactWithCustomerServerWithType:(ContactWithServerType)type button:(UIButton *)btn {
     btn.userInteractionEnabled = NO;
+    if (type==SQContactServerCallAction) {
+        [SQCallPhoneFunction callServicePhoneWithPopver];
+        return;
+    }
+    
     [YGNetService YGPOST:@"IndoorCall" parameters:@{@"rank":[NSString stringWithFormat:@"%ld",type]} showLoadingView:NO scrollView:nil success:^(id responseObject) {
         
         btn.userInteractionEnabled = YES;

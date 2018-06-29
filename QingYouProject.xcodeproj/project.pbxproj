@@ -731,6 +731,7 @@
 		E9C14A4C20E48FE9003A2A1A /* UIButton+SQInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C14A4B20E48FE9003A2A1A /* UIButton+SQInstance.m */; };
 		E9C14A4F20E4927C003A2A1A /* NSString+SQAttributeString.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C14A4E20E4927C003A2A1A /* NSString+SQAttributeString.m */; };
 		E9C14A5220E4EA5D003A2A1A /* SQCallPhoneFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C14A5120E4EA5D003A2A1A /* SQCallPhoneFunction.m */; };
+		E9C14A5520E5D6C8003A2A1A /* SQDecorationDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C14A5420E5D6C8003A2A1A /* SQDecorationDetailModel.m */; };
 		E9E1E58020C63F0A00A807BE /* SeccondCertifyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E57F20C63F0A00A807BE /* SeccondCertifyProfileViewController.m */; };
 		E9E1E58320C63F4C00A807BE /* TobeLeaderOfAllianceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E58220C63F4B00A807BE /* TobeLeaderOfAllianceViewController.m */; };
 		E9E1E58620C63F9300A807BE /* TobeLeaderOfAllianceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E1E58520C63F9300A807BE /* TobeLeaderOfAllianceTableViewCell.m */; };
@@ -2114,6 +2115,8 @@
 		E9C14A4E20E4927C003A2A1A /* NSString+SQAttributeString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+SQAttributeString.m"; sourceTree = "<group>"; };
 		E9C14A5020E4EA5D003A2A1A /* SQCallPhoneFunction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQCallPhoneFunction.h; sourceTree = "<group>"; };
 		E9C14A5120E4EA5D003A2A1A /* SQCallPhoneFunction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQCallPhoneFunction.m; sourceTree = "<group>"; };
+		E9C14A5320E5D6C8003A2A1A /* SQDecorationDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SQDecorationDetailModel.h; sourceTree = "<group>"; };
+		E9C14A5420E5D6C8003A2A1A /* SQDecorationDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SQDecorationDetailModel.m; sourceTree = "<group>"; };
 		E9E1E57E20C63F0A00A807BE /* SeccondCertifyProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeccondCertifyProfileViewController.h; sourceTree = "<group>"; };
 		E9E1E57F20C63F0A00A807BE /* SeccondCertifyProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SeccondCertifyProfileViewController.m; sourceTree = "<group>"; };
 		E9E1E58120C63F4B00A807BE /* TobeLeaderOfAllianceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TobeLeaderOfAllianceViewController.h; sourceTree = "<group>"; };
@@ -5095,6 +5098,8 @@
 			children = (
 				E9E1E59F20C779D900A807BE /* SQDecorationHomeModel.h */,
 				E9E1E5A020C779D900A807BE /* SQDecorationHomeModel.m */,
+				E9C14A5320E5D6C8003A2A1A /* SQDecorationDetailModel.h */,
+				E9C14A5420E5D6C8003A2A1A /* SQDecorationDetailModel.m */,
 				E9E1E5A520C7E64A00A807BE /* SQDecorationAddressModel.h */,
 				E9E1E5A620C7E64A00A807BE /* SQDecorationAddressModel.m */,
 			);
@@ -6263,6 +6268,7 @@
 				18C15A511FC8208B0010ACD3 /* FundSupportViewController.m in Sources */,
 				E99DE1F520AEB9C9009CEF88 /* SQHomeViewController.m in Sources */,
 				04FFB4F920C92BE200B8843E /* WKUserCenterMessageModel.m in Sources */,
+				E9C14A5520E5D6C8003A2A1A /* SQDecorationDetailModel.m in Sources */,
 				18C158E51FC820890010ACD3 /* AddressAskTableViewCell.m in Sources */,
 				E2E5B13B1FB0675A00205F70 /* NSObject+MJCoding.m in Sources */,
 				18C159251FC820890010ACD3 /* WaitToDealViewController.m in Sources */,

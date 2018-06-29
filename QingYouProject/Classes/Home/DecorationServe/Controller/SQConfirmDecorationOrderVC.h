@@ -7,9 +7,10 @@
 //  确认装修订单页面
 
 #import "RootViewController.h"
+#import "SQDecorationDetailModel.h"
 
 @interface SQConfirmDecorationOrderVC : RootViewController
-@property (nonatomic, copy) NSString       *skuId;
+@property (nonatomic, strong) SQDecorationDetailModel       *detailModel;
 
 
 @end
