@@ -12,6 +12,7 @@
 
 #import "WKDecorationOrderDetailModel.h"
 #import "UILabel+SQAttribut.h"
+#import "UIButton+WKTouchEdges.h"
 
 @interface WKDecorationOrderPayAlertView()
 
@@ -130,6 +131,7 @@
     [button setImage:[UIImage imageNamed:@"order_list_btn1"] forState:UIControlStateNormal];
     [button setImage:[UIImage imageNamed:@"order_list_btn1"] forState:UIControlStateHighlighted];
     [button addTarget:self action:@selector(click_selectButton:) forControlEvents:UIControlEventTouchUpInside];
+    [button setEnlargeEdgeWithTop:15 right:15 bottom:15 left:15];
     button.tag = payType;
     [view addSubview:button];
     if (payType == WKDecorationPayTypeAliPay) {
