@@ -267,8 +267,7 @@
         case WKDecorationOrderActionTypeDelete: {//删除订单
             [YGAlertView showAlertWithTitle:@"确认删除订单？"
                           buttonTitlesArray:@[@"确认", @"取消"]
-                          buttonColorsArray:@[[UIColor blueColor],
-                                              [UIColor redColor]]
+                          buttonColorsArray:@[KCOLOR_MAIN,kCOLOR_666]
                                     handler:^(NSInteger buttonIndex) {
                                         if (buttonIndex == 0) {
                                             [WKDecorationOrderServer sendDeleteOrderWithOrderNumber:orderInfo.orderNum completed:^(BOOL success, NSString *errMsg) {

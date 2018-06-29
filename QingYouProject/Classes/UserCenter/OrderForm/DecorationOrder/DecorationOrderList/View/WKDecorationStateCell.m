@@ -111,7 +111,7 @@
         _otherStateLabel.hidden = NO;
         _otherStateLabel.text = [NSString stringWithFormat:@"(%@)", orderInfo.activityStageInfo.name];
     }
-    else if (orderInfo.isInRefund) {//退款中
+    else if (orderInfo.inRefund) {//退款中
         if (!_otherStateLabel) {
             _otherStateLabel = [UILabel labelWithFont:KSCAL(28) textColor:KCOLOR_MAIN];
             [self.contentView addSubview:_otherStateLabel];

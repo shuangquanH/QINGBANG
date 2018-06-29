@@ -275,8 +275,7 @@
         {
             [YGAlertView showAlertWithTitle:@"确认删除订单？"
                           buttonTitlesArray:@[@"确认", @"取消"]
-                          buttonColorsArray:@[[UIColor blueColor],
-                                              [UIColor redColor]]
+                          buttonColorsArray:@[KCOLOR_MAIN,kCOLOR_666]
                                     handler:^(NSInteger buttonIndex) {
                                         if (buttonIndex == 0) {
                                             [WKDecorationOrderServer sendDeleteOrderWithOrderNumber:self.orderDetailInfo.orderInfo.orderNum completed:^(BOOL success, NSString *errMsg) {
@@ -392,7 +391,7 @@
                 if (success) {//退款申请成功，修改本地数据，刷新列表
                     [YGAppTool showToastWithText:@"申请成功，等待审核"];
                     self.orderDetailInfo.orderInfo.refund = YES;//有过退款记录
-                    self.orderDetailInfo.orderInfo.isInRefund = YES;//申请中
+                    self.orderDetailInfo.orderInfo.inRefund = YES;//申请中
                     for (UIView<WKDecorationDetailViewProtocol> *v in self.orderVM.subviewArray) {
                         [v configOrderDetailInfo:self.orderDetailInfo];
                         [self.contentView addSubview:v];

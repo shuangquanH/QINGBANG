@@ -48,7 +48,7 @@
 /** 是否有过退款申请->判断详情中显示退款按钮还是显示退款详情按钮 */
 @property (nonatomic, assign) BOOL refund;
 /** 是否退款中->判断title显示，退款中显示待退款，否则不显示 */
-@property (nonatomic, assign) BOOL isInRefund;
+@property (nonatomic, assign) BOOL inRefund;
 /** 合同图片 */
 @property (nonatomic, copy  ) NSString *contractImgUrl;
 
