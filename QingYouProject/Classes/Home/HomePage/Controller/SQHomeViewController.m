@@ -20,7 +20,6 @@
 #import "YGStartPageView.h"
 /** 手势  */
 #import "UIView+SQGesture.h"
-#import "NSMutableAttributedString+AppendImage.h"
 #import "UILabel+SQAttribut.h"
 /** 选择园区  */
 #import "SQChooseGardenVC.h"

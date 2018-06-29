@@ -35,8 +35,11 @@ typedef enum : NSUInteger {
 
 @end
 
-/** 支付方式  */
+
+/** 支付方式视图  */
 @interface SQConfirmDecorationPayLabel : UIView
+
+@property (nonatomic, strong) SQDecorationDetailModel       *detailModel;
 
 @property (nonatomic, weak) id <SQConfirmDecorationPayDelegate> delegate;
 

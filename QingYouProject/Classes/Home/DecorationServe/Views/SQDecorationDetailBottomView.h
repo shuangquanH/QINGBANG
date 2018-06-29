@@ -7,6 +7,7 @@
 //  装修详情页底部视图
 
 #import <UIKit/UIKit.h>
+#import "SQDecorationDetailModel.h"
 
 @protocol decorationDetailBottomViewDelegate
 
@@ -18,6 +19,8 @@
 @end
 
 @interface SQDecorationDetailBottomView : UIView
+
+@property (nonatomic, strong) SQDecorationDetailModel       *detailModel;
 
 @property (nonatomic, weak) id <decorationDetailBottomViewDelegate> delegate;
 

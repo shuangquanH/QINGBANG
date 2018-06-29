@@ -10,6 +10,66 @@
 
 @implementation NSString (SQAttributeString)
 
+- (NSAttributedString *)setTextColor:(UIColor *)color andRange:(NSRange)range {
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:self];
+    [attrStr addAttribute:NSForegroundColorAttributeName
+                    value:color
+                    range:range];
+    return attrStr;
+}
+
+- (NSAttributedString *)setTextFont:(UIFont *)font andRange:(NSRange)range {
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:self];
+    [attrStr addAttribute:NSFontAttributeName
+                    value:font
+                    range:range];
+    return attrStr;
+}
+
+- (NSAttributedString *)setTextColor:(UIColor *)color andFont:(UIFont *)font withRange:(NSRange)range {
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:self];
+    [attrStr addAttribute:NSForegroundColorAttributeName
+                    value:color
+                    range:range];
+    [attrStr addAttribute:NSFontAttributeName
+                    value:font
+                    range:range];
+    return attrStr;
+}
+
+
+
+
+
+- (NSAttributedString *)sqAttributeStringWithCutIndex:(NSInteger)index withLeftFont:(UIFont *)lfont rightFont:(UIFont *)rfont leftColor:(UIColor *)lcolor rightColor:(UIColor *)rcolor {
+    
+    NSAssert(index<self.length,@"分割点位置不能大于字符串长度!");
+    NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:self];
+    
+    if (lfont) {
+        [attrStr addAttribute:NSFontAttributeName
+                        value:lfont
+                        range:NSMakeRange(0,index)];
+    }
+    if (lcolor) {
+        [attrStr addAttribute:NSForegroundColorAttributeName
+                        value:lcolor
+                        range:NSMakeRange(0,index)];
+    }
+    
+    if (rfont) {
+        [attrStr addAttribute:NSFontAttributeName
+                        value:rfont
+                        range:NSMakeRange(index,self.length - index)];
+    }
+    if (rcolor) {
+        [attrStr addAttribute:NSForegroundColorAttributeName
+                        value:rcolor
+                        range:NSMakeRange(index,self.length - index)];
+    }
+    
+    return attrStr;
+}
 
 - (NSAttributedString *)attributedStringFromNSString:(NSString *)normalString startLocation:(NSInteger)location forwardFont:(UIFont *)forwardFont backFont:(UIFont *)backFont forwardColor:(UIColor *)forwardColor backColor:(UIColor *)backColor{
     

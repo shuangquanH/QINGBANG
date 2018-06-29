@@ -38,7 +38,6 @@
 - (void)configUI
 {
     UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(10, 10, 3, 20)];
-    leftView.backgroundColor = colorWithMainColor;
     [self.contentView addSubview:leftView];
     
     //新鲜事标题label

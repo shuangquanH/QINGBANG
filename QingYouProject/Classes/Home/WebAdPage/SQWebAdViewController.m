@@ -27,7 +27,7 @@
 
 - (SQLinkJSWebView  *)webView {
     if (!_webView) {
-        _webView = [[SQLinkJSWebView alloc] initWithFrame:CGRectMake(0, KNAV_HEIGHT, KAPP_WIDTH, KAPP_HEIGHT-KNAV_HEIGHT)];
+        _webView = [[SQLinkJSWebView alloc] initWithFrame:self.view.bounds];
         _webView.scrollView.showsHorizontalScrollIndicator = NO;
     }
     return _webView;

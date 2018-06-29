@@ -8,7 +8,7 @@
 
 #import "SQChooseDecorationAddressView.h"
 #import "UIButton+SQImagePosition.h"
-#import "NSMutableAttributedString+AppendImage.h"
+#import "UILabel+SQAttribut.h"
 
 
 #define KSPACE 20
@@ -28,22 +28,20 @@
     if (self) {
         self.backgroundColor = KCOLOR_WHITE;
         addAddressButton = [UILabel labelWithFont:KSCAL(32) textColor:kCOLOR_333];
-        NSMutableAttributedString *attstr = [[NSMutableAttributedString alloc] initWithString:@"新建地址 "];
-        [attstr appendImage:[UIImage imageNamed:@"go_gray"] withType:SQAppendImageInRight];
-        addAddressButton.attributedText = attstr;
+        [addAddressButton setText:@"新建地址" appendImage:[UIImage imageNamed:@"go_gray"] withType:SQAppendImageInRight];
         addAddressButton.userInteractionEnabled = YES;
         
         nameLabel = [[UILabel alloc] init];
         nameLabel.font = KFONT(28);
-        nameLabel.textColor = kCOLOR_999;
+        nameLabel.textColor = kCOLOR_333;
         
         phoneLabel = [[UILabel alloc] init];
         phoneLabel.font = KFONT(28);
-        phoneLabel.textColor = kCOLOR_999;
+        phoneLabel.textColor = kCOLOR_333;
         
         cityLabel = [[UILabel alloc] init];
         cityLabel.font = KFONT(28);
-        cityLabel.textColor = kCOLOR_999;
+        cityLabel.textColor = kCOLOR_666;
     }
     return self;
 }

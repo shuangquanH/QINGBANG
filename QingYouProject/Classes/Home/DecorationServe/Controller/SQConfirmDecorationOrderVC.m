@@ -106,6 +106,7 @@
     }];
     
     SQConfirmDecorationPayLabel *payTypeLabel = [[SQConfirmDecorationPayLabel alloc] init];
+    payTypeLabel.detailModel = self.detailModel;
     payTypeLabel.delegate = self;
     [contentView addSubview:payTypeLabel];
     [payTypeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -157,6 +158,9 @@
 
 
 - (void)pingPPPayWithResponde:(NSDictionary *)response {
+    if (![response.allKeys  containsObject: @"charge"]) {
+        return;
+    }
     [Pingpp createPayment:response[@"charge"] viewController:self appURLScheme:@"qingyouhui" withCompletion:^(NSString *result, PingppError *error){
         if ([result isEqualToString:@"success"]) {
             SQPaySuccessfulVC   *payvc = [[SQPaySuccessfulVC alloc] init];

@@ -7,7 +7,7 @@
 //
 
 #import "UILabel+SQAttribut.h"
-#import "NSMutableAttributedString+SQAttributColorFont.h"
+#import "NSString+SQAttributeString.h"
 
 @implementation UILabel (SQAttribut)
 - (void)setText:(NSString   *)text appendImage:(UIImage *)image withType:(SQAppendImageType)type {
@@ -16,18 +16,15 @@
     self.attributedText = mustring;
 }
 - (void)setText:(NSString   *)text andFont:(UIFont *)font withRange:(NSRange)range {
-    NSMutableAttributedString *mustring = [[NSMutableAttributedString alloc] initWithString:text];
-    [mustring setTextFont:font andRange:range];
+    NSAttributedString *mustring = [text setTextFont:font andRange:range];
     self.attributedText = mustring;
 }
 - (void)setText:(NSString   *)text andColor:(UIColor *)color withRange:(NSRange)range {
-    NSMutableAttributedString *mustring = [[NSMutableAttributedString alloc] initWithString:text];
-    [mustring setTextColor:color andRange:range];
+    NSAttributedString *mustring = [text setTextColor:color andRange:range];
     self.attributedText = mustring;
 }
 - (void)setText:(NSString   *)text andTextColor:(UIColor *)color andFont:(UIFont *)font withRange:(NSRange)range {
-    NSMutableAttributedString *mustring = [[NSMutableAttributedString alloc] initWithString:text];
-    [mustring setTextColor:color andFont:font withRange:range];
+    NSAttributedString *mustring = [text setTextColor:color andFont:font withRange:range];
     self.attributedText = mustring;
 }
 
@@ -52,18 +49,15 @@
     self.attributedText = mustring;
 }
 - (void)setTextFont:(UIFont *)font andRange:(NSRange)range {
-    NSMutableAttributedString *mustring = (self.attributedText)?self.attributedText.mutableCopy:[[NSMutableAttributedString alloc] initWithString:self.text];
-    [mustring setTextFont:font andRange:range];
+    NSAttributedString *mustring = [self.text setTextFont:font andRange:range];
     self.attributedText = mustring;
 }
 - (void)setTextColor:(UIColor *)color andRange:(NSRange)range {
-    NSMutableAttributedString *mustring = (self.attributedText)?self.attributedText.mutableCopy:[[NSMutableAttributedString alloc] initWithString:self.text];
-    [mustring setTextColor:color andRange:range];
+NSAttributedString *mustring = [self.text setTextColor:color andRange:range];
     self.attributedText = mustring;
 }
 - (void)setTextColor:(UIColor *)color andFont:(UIFont *)font withRange:(NSRange)range {
-    NSMutableAttributedString *mustring = (self.attributedText)?self.attributedText.mutableCopy:[[NSMutableAttributedString alloc] initWithString:self.text];
-    [mustring setTextColor:color andFont:font withRange:range];
+    NSAttributedString *mustring = [self.text setTextColor:color andFont:font withRange:range];
     self.attributedText = mustring;
 }
 

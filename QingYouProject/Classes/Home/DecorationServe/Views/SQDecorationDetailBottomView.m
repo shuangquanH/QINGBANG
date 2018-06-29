@@ -13,6 +13,7 @@
 @implementation SQDecorationDetailBottomView {
 //    UIButton    *collectBtn;
     UIButton    *contactBtn;
+    SQBaseImageView *rightLine;
     UIButton    *payButton;
 }
 
@@ -57,7 +58,7 @@
 //            make.centerY.equalTo(collectBtn);
 //        }];
         
-        SQBaseImageView *rightLine = [[SQBaseImageView alloc] init];
+        rightLine = [[SQBaseImageView alloc] init];
         rightLine.image = [UIImage imageNamed:@"tab_line"];
         [self addSubview:rightLine];
         
@@ -69,7 +70,7 @@
         
         
         payButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//        [payButton setBackgroundImage:[UIImage imageNamed:@"Details_page_tab_but_nor"] forState:UIControlStateNormal];
+        payButton.userInteractionEnabled = NO;
         [payButton setTitle:@"支付定金" forState:UIControlStateNormal];
         [payButton setTitleColor:KCOLOR_WHITE forState:UIControlStateNormal];
         payButton.titleLabel.font = KFONT(30);
@@ -89,10 +90,8 @@
         }];
         
         [payButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(KSCAL(330));
-            make.height.mas_equalTo(KSCAL(60));
-            make.right.equalTo(self.mas_right).offset(-KSCAL(52));
-            make.centerY.equalTo(self);
+            make.left.equalTo(rightLine.mas_right);
+            make.top.bottom.right.equalTo(self);
         }];
         
         
@@ -103,7 +102,20 @@
     }
     return self;
 }
-
+- (void)setDetailModel:(SQDecorationDetailModel *)detailModel  {
+    _detailModel = detailModel;
+    if ([detailModel.isOnSale isEqualToString:@"yes"]) {
+        rightLine.hidden = NO;
+        payButton.backgroundColor = KCOLOR_MAIN;
+        [payButton setTitle:@"支付定金   " forState:UIControlStateNormal];
+        payButton.userInteractionEnabled = YES;
+    } else {
+        rightLine.hidden = YES;
+        payButton.backgroundColor = kCOLOR_999;
+        [payButton setTitle:@"(已下架)立即预定   " forState:UIControlStateNormal];
+        payButton.userInteractionEnabled = NO;
+    }
+}
 - (void)collectionAction {
 //    if (self.delegate) {
 //        [self.delegate clickedCollectionBtn];

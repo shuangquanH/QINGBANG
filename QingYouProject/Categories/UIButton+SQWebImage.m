@@ -12,6 +12,7 @@
 @implementation UIButton (SQWebImage)
 
 - (void)sq_setButtonImageWithUrl:(NSString *)imageUrl {
+    self.contentMode = UIViewContentModeScaleAspectFit;
      self.contentHorizontalAlignment= UIControlContentHorizontalAlignmentFill;
      self.contentVerticalAlignment = UIControlContentVerticalAlignmentFill;
     

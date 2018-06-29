@@ -91,7 +91,7 @@
 
 
 - (void)clickedPayButton {
-    if (self.detailModel.productSkuId) {
+    if (self.detailModel.productSkuId.length!=0) {
         SQConfirmDecorationOrderVC  *vc = [[SQConfirmDecorationOrderVC alloc] init];
         vc.detailModel = self.detailModel;
         [self.navigationController pushViewController:vc animated:YES];
@@ -134,11 +134,13 @@
         _webView.scrollView.showsHorizontalScrollIndicator = NO;
         _webView.scrollView.delegate = self;
         [_webView loadWebWithUrl:self.styleModel.linkurl];
+        [[YGConnectionService sharedConnectionService] showLoadingViewWithSuperView:YGAppDelegate.window];
         
         NSArray *regisArr = @[@"DOWNLOADIMAGEFORIOS", @"GETPRODUCTINFOFORIOS"];
         
         WeakSelf(weakSelf);
         [_webView registJSFunctionWithName:regisArr back:^(NSString *methodName, id  _Nullable paramValue) {
+            [[YGConnectionService sharedConnectionService] dissmissLoadingView];
             [weakSelf.view bringSubviewToFront:weakSelf.bottomView];
             if ([methodName isEqualToString:@"DOWNLOADIMAGEFORIOS"]) {
                 [SQSaveWebImage saveImageWithUrl:paramValue];
@@ -151,6 +153,10 @@
     return _webView;
 }
 
+- (void)setDetailModel:(SQDecorationDetailModel *)detailModel {
+    _detailModel = detailModel;
+    self.bottomView.detailModel = detailModel;
+}
 
 
 @end

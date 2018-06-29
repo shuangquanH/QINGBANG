@@ -8,6 +8,7 @@
 
 #import "SQConfirmDecorationCell.h"
 #import "UIView+SQGesture.h"
+#import "NSString+SQAttributeString.h"
 
 #define KSPACE 20
 
@@ -34,28 +35,27 @@
         
         orderTitle = [[UILabel alloc] init];
         orderTitle.font = KFONT(28.0);
-        orderTitle.textColor = KCOLOR(@"666666");
+        orderTitle.textColor = kCOLOR_333;
         orderTitle.numberOfLines = 2;
         [self addSubview:orderTitle];
-        orderTitle.text = @"产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称产品名称";
+        orderTitle.text = @"产品名";
         
         orderDesc = [[UILabel alloc] init];
         orderDesc.font = KFONT(28.0);
-        orderDesc.textColor = KCOLOR(@"666666");
-        orderDesc.numberOfLines = 1;
+        orderDesc.textColor = kCOLOR_333;
+        orderDesc.numberOfLines = 2;
         [self addSubview:orderDesc];
-        orderDesc.text = @"属性名属性名属性名属性名属性名属性名属性名";
+        orderDesc.text = @"属性名";
         
         orderPrice = [[UILabel alloc] init];
+        orderPrice.textColor = kCOLOR_333;
         orderPrice.font = KFONT(28.0);
-        orderPrice.textColor = KCOLOR(@"333333");
         [self addSubview:orderPrice];
         orderPrice.text = @"10000元(预估价)";
         
         
         UIImageView *topLine = [[UIImageView alloc] init];
         topLine.image = [UIImage imageNamed:@"order_lis_line"];
-        topLine.backgroundColor = kCOLOR_666;
         [self addSubview:topLine];
         
         payForPrice = [[UILabel alloc] init];
@@ -65,7 +65,6 @@
         
         UIImageView *centerLine = [[UIImageView alloc] init];
         centerLine.image = [UIImage imageNamed:@"order_lis_line"];
-        centerLine.backgroundColor = kCOLOR_666;
         [self addSubview:centerLine];
         
         
@@ -83,7 +82,6 @@
         
         UIImageView *bottomLine = [[UIImageView alloc] init];
         bottomLine.image = [UIImage imageNamed:@"order_lis_line"];
-        bottomLine.backgroundColor = kCOLOR_666;
         [self addSubview:bottomLine];
         
         
@@ -181,8 +179,14 @@
     [orderImage setImageWithUrl:detailModel.imageUrl];
     orderTitle.text = detailModel.title;
     orderDesc.text = detailModel.properties;
-    orderPrice.text = detailModel.earnest;
-    totalPrice.text = detailModel.totalprice;
+    //预估价
+    orderPrice.text = [NSString stringWithFormat:@"¥%@(预估价)", detailModel.totalprice];
+    //定金
+    NSString    *earnestStr = [NSString stringWithFormat:@"定金: ¥%@", detailModel.earnest];
+    payForPrice.attributedText = [earnestStr sqAttributeStringWithCutIndex:3 withLeftFont:nil rightFont:nil leftColor:kCOLOR_333 rightColor:[UIColor redColor]];
+    //总价
+    NSString    *totalPriceStr = [NSString stringWithFormat:@"共计: ¥%@(定金)", detailModel.earnest];
+    totalPrice.attributedText = [totalPriceStr sqAttributeStringWithCutIndex:3 withLeftFont:nil rightFont:nil leftColor:kCOLOR_333 rightColor:[UIColor redColor]];
     
     
 }
@@ -199,6 +203,7 @@
     
     UIButton    *zfbBtn;
     UIButton    *wxBtn;
+    UILabel *zhifudingjin;
 }
 
 - (instancetype)init
@@ -285,7 +290,7 @@
         
         
         
-        UILabel *zhifudingjin = [[UILabel alloc] init];
+        zhifudingjin = [[UILabel alloc] init];
         [self configureLabel:zhifudingjin];
         [self addSubview:zhifudingjin];
         zhifudingjin.text = @"支付定金:10元";
@@ -327,6 +332,13 @@
     }
     wxBtn.selected = NO;
     zfbBtn.selected = YES;
+}
+
+- (void)setDetailModel:(SQDecorationDetailModel *)detailModel {
+    _detailModel = detailModel;
+    NSString *dingjin = [NSString stringWithFormat:@"支付定金: ¥%@", detailModel.earnest];
+    zhifudingjin.attributedText = [dingjin sqAttributeStringWithCutIndex:5 withLeftFont:nil rightFont:nil leftColor:nil rightColor:[UIColor redColor]];
+    
 }
 - (void)wxaction {
     if (self.delegate) {
