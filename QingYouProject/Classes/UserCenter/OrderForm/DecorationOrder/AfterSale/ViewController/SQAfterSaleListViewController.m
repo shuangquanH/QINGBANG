@@ -20,6 +20,8 @@
 
 @property (nonatomic, strong) WKCheckContactScaleView *imageDisplayView;
 
+@property (nonatomic, assign) NSInteger pageNum;
+
 @end
 
 @implementation SQAfterSaleListViewController
@@ -28,6 +30,8 @@
     [super viewDidLoad];
     
     self.naviTitle = @"售后记录";
+    _pageNum = 1;
+    
     [self setupSubviews];
 }
 
@@ -43,31 +47,49 @@
     _tableView.estimatedSectionFooterHeight = 0.0;
     [self.view addSubview:_tableView];
     
-    [self createRefreshWithScrollView:_tableView containFooter:NO];
+    [self createRefreshWithScrollView:_tableView containFooter:YES];
     [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)refreshActionWithIsRefreshHeaderAction:(BOOL)headerAction {
+    NSInteger tmpPage = _pageNum;
     if (headerAction) {
-        [SQRequest post:KAPI_AFTERSALERECORD param:nil success:^(id response) {
-            if ([response[@"code"] longLongValue] == 0) {
-                NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKAfterSaleModel class] json:response[@"data"][@"record_list"]];
+        tmpPage = 1;
+    } else {
+        tmpPage += 1;
+    }
+    [SQRequest post:KAPI_AFTERSALERECORD param:@{@"currentPage": @(tmpPage), @"pageSize": @(10)} success:^(id response) {
+        if ([response[@"code"] longLongValue] == 0) {
+            NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKAfterSaleModel class] json:response[@"data"][@"record_list"]];
+            if (headerAction) {
                 [self.afterSaleList removeAllObjects];
                 [self.afterSaleList addObjectsFromArray:tmp];
+                self.pageNum = tmpPage;
                 [self.tableView reloadData];
+            } else {
+                if (tmp.count) {
+                    [self.afterSaleList addObjectsFromArray:tmp];
+                    self.pageNum = tmpPage;
+                    [self.tableView reloadData];
+                }
             }
-            else {
-                [YGAppTool showToastWithText:response[@"msg"]];
-            }
+        }
+        else {
+            [YGAppTool showToastWithText:response[@"msg"]];
+        }
+        if (headerAction) {
             [self.tableView.mj_header endRefreshing];
-        } failure:^(NSError *error) {
+        } else {
+            [self.tableView.mj_footer endRefreshing];
+        }
+    } failure:^(NSError *error) {
+        [YGAppTool showToastWithText:@"网络错误"];
+        if (headerAction) {
             [self.tableView.mj_header endRefreshing];
-            [YGAppTool showToastWithText:@"网络错误"];
-        }];
-    }
-    else {
-        [self.tableView.mj_footer endRefreshing];
-    }
+        } else {
+            [self.tableView.mj_footer endRefreshing];
+        }
+    }];
 }
 
 #pragma mark - UITableViewDataSource

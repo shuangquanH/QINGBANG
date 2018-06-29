@@ -48,6 +48,7 @@
 		04935D1220E098B000E84802 /* YZLAreaCacheTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 04935D0820E098AF00E84802 /* YZLAreaCacheTool.m */; };
 		04935D1620E09E4800E84802 /* WKAddInvoiceAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04935D1520E09E4800E84802 /* WKAddInvoiceAddressViewController.m */; };
 		04A6167020D0FC5C00D347D2 /* WKUserCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6166F20D0FC5C00D347D2 /* WKUserCenterCell.m */; };
+		04AA259720E5C81F0028A1C4 /* UIButton+WKTouchEdges.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AA259620E5C81F0028A1C4 /* UIButton+WKTouchEdges.m */; };
 		04B7A91220D3C491008675F5 /* WKDecorationSUKModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B7A91120D3C491008675F5 /* WKDecorationSUKModel.m */; };
 		04FD9BFF20C61B2F00B3D153 /* WKAnimationAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FD9BFD20C61AA300B3D153 /* WKAnimationAlert.m */; };
 		04FD9C0020C61B3F00B3D153 /* AnimationUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FD9BFE20C61AA300B3D153 /* AnimationUtils.m */; };
@@ -838,6 +839,8 @@
 		04935D1520E09E4800E84802 /* WKAddInvoiceAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKAddInvoiceAddressViewController.m; sourceTree = "<group>"; };
 		04A6166E20D0FC5C00D347D2 /* WKUserCenterCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKUserCenterCell.h; sourceTree = "<group>"; };
 		04A6166F20D0FC5C00D347D2 /* WKUserCenterCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKUserCenterCell.m; sourceTree = "<group>"; };
+		04AA259520E5C81F0028A1C4 /* UIButton+WKTouchEdges.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+WKTouchEdges.h"; sourceTree = "<group>"; };
+		04AA259620E5C81F0028A1C4 /* UIButton+WKTouchEdges.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+WKTouchEdges.m"; sourceTree = "<group>"; };
 		04B7A91020D3C491008675F5 /* WKDecorationSUKModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKDecorationSUKModel.h; sourceTree = "<group>"; };
 		04B7A91120D3C491008675F5 /* WKDecorationSUKModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WKDecorationSUKModel.m; sourceTree = "<group>"; };
 		04FD9BFB20C61AA300B3D153 /* WKAnimationAlert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WKAnimationAlert.h; sourceTree = "<group>"; };
@@ -5319,6 +5322,8 @@
 				E99DE25C20BEAFB1009CEF88 /* UIControl+SQSound.m */,
 				E99DE25E20BEB0EF009CEF88 /* UIView+SQGesture.h */,
 				E99DE25F20BEB0EF009CEF88 /* UIView+SQGesture.m */,
+				04AA259520E5C81F0028A1C4 /* UIButton+WKTouchEdges.h */,
+				04AA259620E5C81F0028A1C4 /* UIButton+WKTouchEdges.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -5895,6 +5900,7 @@
 				18C159071FC820890010ACD3 /* AllOfficePurchaseModel.m in Sources */,
 				18C159751FC8208A0010ACD3 /* JobOutsourceTradeRecoredFinishViewController.m in Sources */,
 				E2E5B3591FB0675B00205F70 /* UIView+Animate.m in Sources */,
+				04AA259720E5C81F0028A1C4 /* UIButton+WKTouchEdges.m in Sources */,
 				18C15A6D1FC8208B0010ACD3 /* RefundViewController.m in Sources */,
 				18C159881FC8208A0010ACD3 /* DeliverRecoredViewController.m in Sources */,
 				E2E5B1691FB0675A00205F70 /* SMKCycleScrollView.m in Sources */,

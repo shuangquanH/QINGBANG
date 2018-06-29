@@ -43,7 +43,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+        
     self.afterSaleImageArray = [NSMutableArray arrayWithObjects:@"", @"", @"", nil];
     
     [self layoutNavigation];
@@ -179,7 +179,8 @@
         NSDictionary *param = @{
                                 @"apply_images": images,
                                 @"desc": _afterSaleText,
-                                @"orderNum": self.orderInfo.orderInfo.orderNum
+                                @"orderNum": self.orderInfo.orderInfo.orderNum,
+                                @"orderId": @([self.orderInfo.orderInfo.ID longLongValue])
                                 };
         [SQRequest post:KAPI_APPLYAFTERSALE param:param success:^(id response) {
             if ([response[@"code"] longLongValue] == 0) {

@@ -188,7 +188,7 @@
     SQDecorationOrderDetailVC *vc = [[SQDecorationOrderDetailVC alloc] init];
     vc.orderListInfo = [self.orderList objectAtIndex:indexPath.section];
     [self.navigationController pushViewController:vc animated:YES];
-    
+    //订单详情中订单操作后的回调，需要对列表进行刷新
     vc.orderRefreshBlock = ^(WKDecorationOrderListModel *orderInfo) {
         if (!orderInfo) {//删除订单
             [self.orderList removeObjectAtIndex:indexPath.section];
