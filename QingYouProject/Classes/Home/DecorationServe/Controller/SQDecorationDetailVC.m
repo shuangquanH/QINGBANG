@@ -15,14 +15,13 @@
 #import "SQSaveWebImage.h"
 
 
+
 @interface SQDecorationDetailVC () <YGSegmentViewDelegate, decorationDetailBottomViewDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) YGSegmentView       *seg;
 @property (nonatomic, strong) SQDecorationDetailBottomView       *bottomView;
 @property (nonatomic, strong) SQLinkJSWebView       *webView;
-@property (nonatomic, copy) NSString       *skuId;
-@property (nonatomic, assign) CGFloat       productInfoHeight;
-@property (nonatomic, assign) CGFloat       priceSheetHeight;
+@property (nonatomic, strong) SQDecorationDetailModel       *detailModel;
 
 @end
 
@@ -52,10 +51,10 @@
             [self scrollAnimationWithPoint:CGPointZero];
             break;
         case 1:
-            [self scrollAnimationWithPoint:CGPointMake(0, self.productInfoHeight)];
+            [self scrollAnimationWithPoint:CGPointMake(0, self.detailModel.productInfoHeight)];
             break;
         case 2:
-            [self scrollAnimationWithPoint:CGPointMake(0, self.priceSheetHeight)];
+            [self scrollAnimationWithPoint:CGPointMake(0, self.detailModel.priceSheetHeight)];
             break;
         default:
             break;
@@ -69,16 +68,16 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (scrollView.contentOffset.y<self.productInfoHeight&&
+    if (scrollView.contentOffset.y<self.detailModel.productInfoHeight&&
         self.seg.selectedIndex!=0) {
         [self.seg selectButtonWithIndex:0];
         
-    } else if (scrollView.contentOffset.y<self.priceSheetHeight&&
-               scrollView.contentOffset.y>self.productInfoHeight&&
+    } else if (scrollView.contentOffset.y<self.detailModel.priceSheetHeight&&
+               scrollView.contentOffset.y>self.detailModel.productInfoHeight&&
                self.seg.selectedIndex!=1) {
         [self.seg selectButtonWithIndex:1];
         
-    } else if (scrollView.contentOffset.y>self.priceSheetHeight&&
+    } else if (scrollView.contentOffset.y>self.detailModel.priceSheetHeight&&
                self.seg.selectedIndex!=2){
         [self.seg selectButtonWithIndex:2];
     }
@@ -86,28 +85,19 @@
 
 
 
-
 - (void)rightButtonItemAciton {
-    [YGAppTool shareWithShareUrl:@"dd" shareTitle:@"分享" shareDetail:@"" shareImageUrl:@"" shareController:self];
+    [YGAppTool shareWithShareUrl:self.detailModel.shareUrl shareTitle:self.detailModel.title shareDetail:@"青网科技园，让创业更简单" shareImageUrl:self.detailModel.imageUrl shareController:self];
 }
 
 
-- (void)clickedCollectionBtn {
-    
-}
--(void)clickedContactButton {
-    
-}
 - (void)clickedPayButton {
-    if (self.skuId) {
+    if (self.detailModel.productSkuId) {
         SQConfirmDecorationOrderVC  *vc = [[SQConfirmDecorationOrderVC alloc] init];
-        vc.skuId = self.skuId;
+        vc.detailModel = self.detailModel;
         [self.navigationController pushViewController:vc animated:YES];
         
-    } else {
-        [self.webView ocCallJsWithMethodName:@"vum.changedialog()" back:^(NSString *methodName, id  _Nullable returnValue) {
-            NSLog(@"%@", methodName);
-        }];
+    } else {//调起选择sku的弹框
+        [self.webView ocCallJsWithMethodName:@"vum.changedialog()" back:nil];
     }
 }
 
@@ -145,18 +135,16 @@
         _webView.scrollView.delegate = self;
         [_webView loadWebWithUrl:self.styleModel.linkurl];
         
-        NSArray *regisArr = @[@"GETHTMLHEIGHTFORIOS", @"CHOOSESKUPARAMFORIOS", @"DOWNLOADIMAGEFORIOS"];
+        NSArray *regisArr = @[@"DOWNLOADIMAGEFORIOS", @"GETPRODUCTINFOFORIOS"];
         
         WeakSelf(weakSelf);
         [_webView registJSFunctionWithName:regisArr back:^(NSString *methodName, id  _Nullable paramValue) {
             [weakSelf.view bringSubviewToFront:weakSelf.bottomView];
-            if ([methodName isEqualToString:@"CHOOSESKUPARAMFORIOS"]) {
-                weakSelf.skuId = [NSString stringWithFormat:@"%@", paramValue];
-            } else if ([methodName isEqualToString:@"GETHTMLHEIGHTFORIOS"]) {
-                weakSelf.productInfoHeight = [paramValue[@"productInfoHeight"] floatValue];
-                weakSelf.priceSheetHeight = [paramValue[@"priceSheetHeight"] floatValue];
-            } else if ([methodName isEqualToString:@"DOWNLOADIMAGEFORIOS"]) {
+            if ([methodName isEqualToString:@"DOWNLOADIMAGEFORIOS"]) {
                 [SQSaveWebImage saveImageWithUrl:paramValue];
+            } else if ([methodName isEqualToString:@"GETPRODUCTINFOFORIOS"]) {
+                SQDecorationDetailModel *model = [SQDecorationDetailModel yy_modelWithJSON:paramValue];
+                weakSelf.detailModel = model;
             }
         }];
     }

@@ -45,6 +45,7 @@
 
 - (void)setModel:(SQDecorationStyleModel *)model {
     [productImage setImageWithUrl:model.imageUrl];
+    [productImage setImageWithUrl:model.imageUrl placeHolder:[UIImage imageNamed:@"placeholderfigure_rectangle_600x300"]];
 //    [self layoutIfNeeded];
 }
 

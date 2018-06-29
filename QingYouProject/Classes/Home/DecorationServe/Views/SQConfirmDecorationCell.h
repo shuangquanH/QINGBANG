@@ -7,6 +7,8 @@
 //  确认订单cell和支付方式view
 
 #import <UIKit/UIKit.h>
+#import "SQDecorationDetailModel.h"
+
 
 typedef enum : NSUInteger {
     SQPayByNull,
@@ -19,6 +21,8 @@ typedef enum : NSUInteger {
 
 /** 确认订单cell  */
 @interface SQConfirmDecorationCell : UIView
+
+@property (nonatomic, strong) SQDecorationDetailModel       *detailModel;
 
 @property (nonatomic, copy) NSString       *leaveMessageStr;
 

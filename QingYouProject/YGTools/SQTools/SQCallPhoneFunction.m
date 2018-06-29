@@ -12,8 +12,14 @@
 
 + (void)callServicePhone {
     [self callWithPhoem:KSERVICE_PHONE];
-
+    
 }
++ (void)callServicePhoneWithPopver {
+    [self callWithPhoem:KSERVICE_PHONE withPopverTitle:@"是否拨打客服电话?"];
+}
+
+
+
 + (void)callWithPhoem:(NSString *)phone {
     NSString *callPhone = [NSString stringWithFormat:@"telprompt://%@", phone];
     CGFloat version = [[[UIDevice currentDevice]systemVersion]floatValue];
@@ -24,5 +30,18 @@
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone]];
     }
 }
+
++ (void)callWithPhoem:(NSString *)phone withPopverTitle:(NSString *)title {
+    [YGAlertView showAlertWithTitle:title buttonTitlesArray:@[@"取消", @"确定"] buttonColorsArray:@[kCOLOR_333, KCOLOR_MAIN] handler:^(NSInteger buttonIndex) {
+        if (buttonIndex!=0) {
+            [self callWithPhoem:phone];
+        }
+        
+    }];
+
+
+}
+
+
 
 @end

@@ -82,12 +82,7 @@
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
     AudioServicesPlaySystemSound(1104);
     if (viewController==self.viewControllers.lastObject) {
-        [YGAlertView showAlertWithTitle:@"是否要拨打客服电话？" buttonTitlesArray:@[@"YES", @"NO"] buttonColorsArray:@[KCOLOR_MAIN,kCOLOR_666] handler:^(NSInteger buttonIndex) {
-            if (buttonIndex==0) {
-                [SQCallPhoneFunction callServicePhone];
-            }
-        }];
-        
+        [SQCallPhoneFunction callServicePhoneWithPopver];
         return NO;
     } else {
         return YES;
