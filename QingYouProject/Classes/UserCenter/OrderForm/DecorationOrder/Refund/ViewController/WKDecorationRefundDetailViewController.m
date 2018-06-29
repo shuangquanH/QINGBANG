@@ -176,7 +176,7 @@
                                             
                                             //处理回调
                                             self.orderDetailInfo.orderInfo.refund = YES;
-                                            self.orderDetailInfo.orderInfo.isInRefund = NO;
+                                            self.orderDetailInfo.orderInfo.inRefund = NO;
                                             if (self.refundReback) {
                                                 self.refundReback();
                                             }

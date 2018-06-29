@@ -23,6 +23,7 @@ static WKDecorationOrderAlertView *_instance;
     UILabel *_detailLabel;
     NSMutableArray<UIButton *> *_buttons;
 }
+
 + (WKDecorationOrderAlertView *)alertWithDetail:(NSString *)detail titles:(NSArray<NSString *> *)titles bgColors:(NSArray<UIColor *> *)bgColor handler:(void (^)(NSInteger))handler {
     
     if (!_instance) {
@@ -74,20 +75,19 @@ static WKDecorationOrderAlertView *_instance;
         UIButton *btn;
         if (_buttons.count > i) {
             btn = [_buttons objectAtIndex:i];
-            [btn setTitle:titles[i] forState:UIControlStateNormal];
-            [btn setBackgroundColor:bgColors[i]];
         }
         else {
             btn = [UIButton buttonWithType:UIButtonTypeCustom];
             btn.titleLabel.font = KFONT(38);
-            [btn setTitleColor:KCOLOR_WHITE forState:UIControlStateNormal];
-            btn.backgroundColor = bgColors[i];
             btn.layer.cornerRadius = KSCAL(20);
             btn.layer.masksToBounds = YES;
+            [btn setTitleColor:KCOLOR_WHITE forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(click_actionButton:) forControlEvents:UIControlEventTouchUpInside];
             [_buttons addObject:btn];
             [self addSubview:btn];
         }
+        [btn setTitle:titles[i] forState:UIControlStateNormal];
+        [btn setBackgroundColor:bgColors[i]];
         btn.tag = i;
         
         [btn mas_remakeConstraints:^(MASConstraintMaker *make) {

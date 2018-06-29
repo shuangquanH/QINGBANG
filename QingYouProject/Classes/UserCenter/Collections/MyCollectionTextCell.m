@@ -17,7 +17,7 @@
     
     self.cancelButton.clipsToBounds = YES;
     self.cancelButton.layer.borderWidth = 1;
-    self.cancelButton.layer.borderColor = colorWithMainColor.CGColor;
+    self.cancelButton.layer.borderColor = KCOLOR_MAIN.CGColor;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
