@@ -28,13 +28,10 @@
             tmpStr = [[NSMutableAttributedString alloc] init];
             for (int i = 0; i < self.skuAttrList.count; i++) {
                 WKDecorationPropertyModel *m = self.skuAttrList[i];
-                NSString *propertyStr = [NSString stringWithFormat:@"%@: %@", m.propertyName, m.propertyValue];
+                NSString *propertyStr = [NSString stringWithFormat:@"%@:%@", m.propertyName, m.propertyValue];
                 [tmpStr appendAttributedString:[[NSAttributedString alloc] initWithString:propertyStr]];
-                if (i % 2 == 0) {//空格
-                    [tmpStr appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
-                }
-                if (i % 2 == 1 && (i != self.skuAttrList.count-1)) {//每两个属性进行换行
-                    [tmpStr appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n"]];
+                if (i != self.skuAttrList.count - 1) {
+                   [tmpStr appendAttributedString:[[NSAttributedString alloc] initWithString:@";"]];
                 }
             }
         }
@@ -59,6 +56,12 @@
         _skuProductPriceAttributeString = [estimatePrice copy];
     }
     return _skuProductPriceAttributeString;
+}
+
+- (void)setSkuAttrList:(NSArray<WKDecorationPropertyModel *> *)skuAttrList {
+    if (!skuAttrList.count) {
+        return;
+    }
 }
 
 
