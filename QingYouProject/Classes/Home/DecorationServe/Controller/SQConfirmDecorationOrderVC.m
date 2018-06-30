@@ -49,8 +49,11 @@
     [SQRequest post:KAPI_INVOICEADDRESSLIST param:nil success:^(id response) {
         if ([response[@"code"] longLongValue] == 0) {
             NSArray *addresslist = [NSArray yy_modelArrayWithClass:[WKInvoiceAddressModel class] json:response[@"data"][@"addressList"]];
-            self.chooseAddressView.model = addresslist.firstObject;
-
+            for (WKInvoiceAddressModel *tmodel in addresslist) {
+                if (tmodel.isdef) {
+                    self.chooseAddressView.model = tmodel;
+                }
+            }
         } else {
             [YGAppTool showToastWithText:response[@"msg"]];
         }
