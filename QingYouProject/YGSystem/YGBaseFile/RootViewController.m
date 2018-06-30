@@ -100,8 +100,8 @@
 
 //一键刷新加载
 - (void)createRefreshWithScrollView:(UITableView *)tableView containFooter:(BOOL)containFooter {
-    //tableView.mj_header = [CYGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeaderAction)];
-    tableView.mj_header = [CYNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeaderAction)];
+    tableView.mj_header = [CYGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeaderAction)];
+//    tableView.mj_header = [CYNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeaderAction)];
     if (containFooter) {
         tableView.mj_footer = [CYNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooterAction)];
         tableView.mj_footer.automaticallyHidden = YES;

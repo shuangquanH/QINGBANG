@@ -22,7 +22,6 @@
     [super viewDidLoad];
     [self configUI];
     [self getServerPhone];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
 
 - (void)getServerPhone {

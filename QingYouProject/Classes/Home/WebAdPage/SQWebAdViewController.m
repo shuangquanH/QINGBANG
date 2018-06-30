@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.naviTitle = @"广告页面";
+//    self.naviTitle = @"广告页面";
     [self.view addSubview:self.webView];
     [_webView loadWebWithUrl:self.funcs_target_params];
 }

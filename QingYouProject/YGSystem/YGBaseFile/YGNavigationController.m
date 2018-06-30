@@ -8,7 +8,9 @@
 
 #import "YGNavigationController.h"
 
-@interface YGNavigationController ()
+@interface YGNavigationController () <UINavigationControllerDelegate>
+
+@property (nonatomic, strong) NSArray       *showDefaultStatusBarControllerArr;
 
 @end
 
@@ -16,6 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.delegate = self;
     self.navigationBar.translucent = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationBar.barTintColor = kCOLOR_333;
@@ -24,6 +27,16 @@
     NSMutableDictionary *dict=[NSMutableDictionary dictionary];
     [dict setObject:color forKey:NSForegroundColorAttributeName];
     self.navigationBar.titleTextAttributes = dict;
+}
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    
+    NSString *controlClass = NSStringFromClass([viewController class]);
+    if ([self.showDefaultStatusBarControllerArr containsObject:controlClass]) {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    } else {
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+    }
 }
 
 
@@ -41,9 +54,13 @@
         UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
         [viewController.navigationItem setLeftBarButtonItem:leftItem];
     }
-    
-    
     [super pushViewController:viewController animated:animated];
+}
+- (NSArray *)showDefaultStatusBarControllerArr {
+    if (!_showDefaultStatusBarControllerArr) {
+        _showDefaultStatusBarControllerArr = @[@"OfficePurchaseDetailViewController", @"SQChooseGardenVC"];
+    }
+    return _showDefaultStatusBarControllerArr;
 }
 
 @end

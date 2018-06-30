@@ -24,11 +24,6 @@
 #define commentCellCount 3 //该页面展示几条评论cell
 
 
-
-
-
-
-
 @interface OfficePurchaseDetailViewController ()<UITableViewDelegate,UITableViewDataSource,OfficePurchaseHeaderViewDelegate,WKNavigationDelegate,ChooseGoodsWithCategoriesViewDelegate,UIScrollViewDelegate>
 {
     UIView          *_fadeNavibar; //假navi
@@ -82,6 +77,14 @@
 
 @implementation OfficePurchaseDetailViewController
 
+
+- (NSString *)commodityID {
+    if (_commodityID) {
+        return _commodityID;
+    } else {
+        return self.funcs_target_params;
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
   
