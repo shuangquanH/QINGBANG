@@ -7,6 +7,10 @@
 //
 
 #import "YGNavigationController.h"
+#import "NSString+SQJudge.h"
+
+#import "OfficePurchaseDetailViewController.h"
+#import "FinacialAccountingDetailViewController.h"
 
 @interface YGNavigationController () <UINavigationControllerDelegate>
 

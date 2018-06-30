@@ -11,6 +11,12 @@
 #import "CheckUserInfoViewController.h"
 #import "UpLoadIDFatherViewController.h"
 
+#import "NSString+SQJudge.h"
+
+#import "OfficePurchaseDetailViewController.h"
+#import "FinacialAccountingDetailViewController.h"
+
+
 /** 水电缴费的type  */
 #define KHOUSERENTTYPE @"1"
 /** 跳转列表的plist文件  */
@@ -27,10 +33,33 @@
         NSArray     *pushControlArray = [NSArray arrayWithContentsOfFile: plistFile];
         
         for (NSDictionary *dic in pushControlArray) {
+            
             if ([target isEqualToString:dic[@"targetTpye"]]) {
+                
                 Class controllerClass = NSClassFromString(dic[@"targetController"]);
                 RootViewController *viewController = [[controllerClass alloc] init];
                 viewController.funcs_target_params = dic[@"funcs_target_params"];
+                
+                if (viewController.funcs_target_params) {
+                    
+                    if ([dic[@"targetController"] isEqualToString:@"OfficePurchaseViewController"]) {
+                        OfficePurchaseDetailViewController * detailVC = [[OfficePurchaseDetailViewController alloc] init];
+                        detailVC.commodityID = viewController.funcs_target_params;
+                        [vc.navigationController pushViewController:detailVC animated:YES];
+                        return;
+                        
+                    } else if ([dic[@"targetController"] isEqualToString:@"IntegrationIndustryCommerceController"]) {
+                        FinacialAccountingDetailViewController *detailVC = [[FinacialAccountingDetailViewController alloc]init];
+                        detailVC.pageType = @"IntegrationIndustryCommerceController";
+                        detailVC.hidesBottomBarWhenPushed = YES;
+                        detailVC.cellWithID = viewController.funcs_target_params;
+                        [vc.navigationController pushViewController:detailVC animated:YES];
+                        return;
+                    }
+                }
+                
+                
+                
                 bool    needlogin = [dic[@"needLogin"] boolValue];
                 if (needlogin) {
                     if ([vc loginOrNot]) {
@@ -39,6 +68,7 @@
                 } else {
                     [vc.navigationController pushViewController:viewController animated:YES];
                 }
+                
             }
         }
     }
