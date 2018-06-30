@@ -32,7 +32,7 @@
 
 - (void)startApplication:(UIApplication *)appcation withOptions:(NSDictionary *)launchOptions {
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
-    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
     /** UMengShareSDK  */
     //打开调试日志
     [[UMSocialManager defaultManager] openLog:YES];

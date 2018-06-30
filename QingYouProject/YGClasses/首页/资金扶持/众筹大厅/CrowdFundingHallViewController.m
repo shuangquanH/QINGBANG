@@ -49,7 +49,7 @@
     UIView *titleButtonView  = [[UIView alloc] initWithFrame:CGRectMake(YGScreenWidth/4+10,YGNaviBarHeight-30,YGScreenWidth/2,30)];
     
     _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, titleButtonView.width, titleButtonView.height)];
-    _titleLabel.textColor = colorWithBlack;
+    _titleLabel.textColor = KCOLOR_WHITE;
     _titleLabel.font = [UIFont systemFontOfSize:YGFontSizeBigThree];
     _titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     _titleLabel.text = @"众筹大厅";

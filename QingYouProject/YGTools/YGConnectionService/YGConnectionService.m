@@ -140,8 +140,7 @@ static YGConnectionService *sConnectionService;
     [_hudView addSubview:_loadImageView];
     
     NSMutableArray *imgArray = [[NSMutableArray alloc]init];
-    for (int i = 1; i<=38; i++)
-    {
+    for (int i = 1; i<=10; i++) {
         [imgArray addObject:[UIImage imageNamed:[NSString stringWithFormat:@"loading_animation_load_%d",i]]];
     }
     _loadImageView.animationImages = imgArray;

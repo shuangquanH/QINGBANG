@@ -447,7 +447,12 @@
 {
     if(_financeList.count == 0 && buttonIndex ==1)
         return;
-    
+    if (buttonIndex==0) {
+        [UIView  animateWithDuration:0.2 animations:^{
+            _tabelView.contentOffset = CGPointZero;
+        }];
+        return;
+    }
     [_tabelView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:buttonIndex] atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 #pragma mark -----------点击事件
