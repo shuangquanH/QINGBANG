@@ -25,4 +25,8 @@
 
 - (UIViewController *)getCellViewController;;
 
+
+/** 滑动动画  */
+- (void)startScrollAnimation;
+
 @end

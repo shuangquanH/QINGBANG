@@ -127,6 +127,14 @@
     SQHomeFuncsModel    *funmodel = self.model.funcs[indexPath.row];
     [self tapedFuncsWithModel:funmodel];
 }
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSArray *array =  collectionView.indexPathsForVisibleItems;
+    if (array.count ==0)return;
+    NSIndexPath *firstIndexPath = array[0];
+    if (firstIndexPath.row < indexPath.row) {
+        [(SQBaseCollectionViewCell *)cell startScrollAnimation];
+    }
+}
 
 //点击了功能按钮
 - (void)tapedFuncsWithModel:(id)model {

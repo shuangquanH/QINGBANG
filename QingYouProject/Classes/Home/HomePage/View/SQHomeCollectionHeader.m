@@ -31,6 +31,7 @@
 
 @implementation SQHomeCollectionHeader
 
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -41,6 +42,7 @@
     }
     return self;
 }
+
 
 
 //首页banner
