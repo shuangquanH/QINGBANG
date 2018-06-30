@@ -116,9 +116,8 @@
 }
 
 - (void)setupTextWithOrderInfo:(WKDecorationOrderListModel *)orderInfo {
-    [orderImage sd_setImageWithURL:[NSURL URLWithString:[orderInfo.skuDetails.skuImgUrl componentsSeparatedByString:@","].firstObject] placeholderImage:nil];
     
-    
+    [orderImage sd_setImageWithURL:[NSURL URLWithString:[orderInfo.skuDetails.skuImgUrl componentsSeparatedByString:@","].firstObject] placeholderImage:[UIImage imageNamed:@"placeholderfigure_rectangle_420x300"]];
     
     orderTitle.attributedText = orderInfo.skuProductNameAttributeString;
     orderTitle.lineBreakMode = NSLineBreakByTruncatingTail;

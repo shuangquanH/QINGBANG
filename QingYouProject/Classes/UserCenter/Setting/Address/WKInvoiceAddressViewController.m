@@ -178,6 +178,7 @@ static NSString *functionCellIdentifier = @"WKInvoiceFunctionCell";
     WKInvoiceAddressModel *model = [_dataArray objectAtIndex:indexPath.section];
     if (self.addressSelecter) {
         self.addressSelecter(model);
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 #pragma mark - WKInvoiceFunctionCellDelegate

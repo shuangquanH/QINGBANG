@@ -39,12 +39,9 @@
 
 @implementation SQConfirmDecorationOrderVC
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self requestData];
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self requestData];
 }
 
 - (void)requestData {

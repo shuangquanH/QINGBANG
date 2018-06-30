@@ -71,7 +71,7 @@
         
         payButton = [UIButton buttonWithType:UIButtonTypeCustom];
         payButton.userInteractionEnabled = NO;
-        [payButton setTitle:@"支付定金" forState:UIControlStateNormal];
+        [payButton setTitle:@"立即预定" forState:UIControlStateNormal];
         [payButton setTitleColor:KCOLOR_WHITE forState:UIControlStateNormal];
         payButton.titleLabel.font = KFONT(30);
         [self addSubview:payButton];
