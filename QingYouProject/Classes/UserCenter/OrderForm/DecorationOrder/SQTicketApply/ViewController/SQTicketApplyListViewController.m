@@ -46,7 +46,6 @@
     _currentPage = 1;
     _pageSize = 10;
     
-    //[SQRequest setApiAddress:KAPI_ADDRESS_TEST_MH];
     [self refreshActionWithIsRefreshHeaderAction:YES];
 }
 

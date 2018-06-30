@@ -21,16 +21,16 @@
 - (NSAttributedString *)skuProductDescAttributeString {
     if (!_skuProductDescAttributeString) {
         NSMutableAttributedString *tmpStr;
-        if (!self.skuAttrList.count) {
+        if (!self.propertyList.count) {
             tmpStr = [[NSMutableAttributedString alloc] initWithString:@"暂无商品描述信息"];
         }
         else {
             tmpStr = [[NSMutableAttributedString alloc] init];
-            for (int i = 0; i < self.skuAttrList.count; i++) {
-                WKDecorationPropertyModel *m = self.skuAttrList[i];
+            for (int i = 0; i < self.propertyList.count; i++) {
+                WKDecorationPropertyModel *m = self.propertyList[i];
                 NSString *propertyStr = [NSString stringWithFormat:@"%@:%@", m.propertyName, m.propertyValue];
                 [tmpStr appendAttributedString:[[NSAttributedString alloc] initWithString:propertyStr]];
-                if (i != self.skuAttrList.count - 1) {
+                if (i != self.propertyList.count - 1) {
                    [tmpStr appendAttributedString:[[NSAttributedString alloc] initWithString:@";"]];
                 }
             }

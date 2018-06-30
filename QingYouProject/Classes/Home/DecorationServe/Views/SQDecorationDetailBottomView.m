@@ -57,24 +57,17 @@
 //            make.left.equalTo(collectBtn.mas_right);
 //            make.centerY.equalTo(collectBtn);
 //        }];
-        
-        rightLine = [[SQBaseImageView alloc] init];
-        rightLine.image = [UIImage imageNamed:@"tab_line"];
-        [self addSubview:rightLine];
-        
-        [rightLine mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(contactBtn.mas_right);
-            make.centerY.equalTo(self);
-        }];
-        
-        
-        
+
         payButton = [UIButton buttonWithType:UIButtonTypeCustom];
         payButton.userInteractionEnabled = NO;
         [payButton setTitle:@"立即预定" forState:UIControlStateNormal];
         [payButton setTitleColor:KCOLOR_WHITE forState:UIControlStateNormal];
         payButton.titleLabel.font = KFONT(30);
         [self addSubview:payButton];
+        
+        rightLine = [[SQBaseImageView alloc] init];
+        rightLine.image = [UIImage imageNamed:@"tab_line"];
+        [self addSubview:rightLine];
         
 //        [collectBtn mas_makeConstraints:^(MASConstraintMaker *make) {
 //            make.top.equalTo(self).offset(KSCAL(20));
@@ -83,17 +76,23 @@
 //            make.width.mas_equalTo(KSCAL(0));
 //        }];
         
+        
         [contactBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self);
-            make.right.equalTo(self.mas_centerX);
-            make.bottom.equalTo(self).offset(-KSCAL(20));
+            make.left.bottom.mas_equalTo(0);
+            make.top.mas_equalTo(6);
         }];
-        
+
         [payButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(rightLine.mas_right);
-            make.top.bottom.right.equalTo(self);
+            make.top.bottom.right.mas_equalTo(0);
         }];
+        [@[contactBtn, payButton] mas_distributeViewsAlongAxis:MASAxisTypeHorizontal withFixedSpacing:0.0 leadSpacing:0 tailSpacing:0];
+
         
+        [rightLine mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(self);
+            make.top.mas_equalTo(KSCAL(8));
+            make.width.mas_equalTo(0.5);
+        }];
         
 //        [collectBtn addTarget:self action:@selector(collectionAction) forControlEvents:UIControlEventTouchUpInside];
         [contactBtn addTarget:self action:@selector(contactAction) forControlEvents:UIControlEventTouchUpInside];
@@ -107,12 +106,12 @@
     if ([detailModel.isOnSale isEqualToString:@"yes"]) {
         rightLine.hidden = NO;
         payButton.backgroundColor = KCOLOR_MAIN;
-        [payButton setTitle:@"支付定金   " forState:UIControlStateNormal];
+        [payButton setTitle:@"立即预定" forState:UIControlStateNormal];
         payButton.userInteractionEnabled = YES;
     } else {
         rightLine.hidden = YES;
         payButton.backgroundColor = kCOLOR_999;
-        [payButton setTitle:@"(已下架)立即预定   " forState:UIControlStateNormal];
+        [payButton setTitle:@"(已下架)立即预定" forState:UIControlStateNormal];
         payButton.userInteractionEnabled = NO;
     }
 }

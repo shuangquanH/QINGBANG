@@ -46,6 +46,9 @@
     _tableView.estimatedSectionHeaderHeight = 0.0;
     _tableView.estimatedSectionFooterHeight = 0.0;
     [self.view addSubview:_tableView];
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(0);
+    }];
     
     [self createRefreshWithScrollView:_tableView containFooter:YES];
     [self.tableView.mj_header beginRefreshing];
@@ -60,7 +63,7 @@
     }
     [SQRequest post:KAPI_AFTERSALERECORD param:@{@"currentPage": @(tmpPage), @"pageSize": @(10)} success:^(id response) {
         if ([response[@"code"] longLongValue] == 0) {
-            NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKAfterSaleModel class] json:response[@"data"][@"record_list"]];
+            NSArray *tmp = [NSArray yy_modelArrayWithClass:[WKAfterSaleModel class] json:response[@"data"][@"afterSaleList"]];
             if (headerAction) {
                 [self.afterSaleList removeAllObjects];
                 [self.afterSaleList addObjectsFromArray:tmp];
@@ -93,8 +96,11 @@
 }
 
 #pragma mark - UITableViewDataSource
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.afterSaleList.count;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WKAfterSaleRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
@@ -102,7 +108,7 @@
         cell = [[WKAfterSaleRecordCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         cell.delegate = self;
     }
-    [cell configInfo:self.afterSaleList[indexPath.row]];
+    [cell configInfo:self.afterSaleList[indexPath.section]];
     return cell;
 }
 
@@ -110,12 +116,18 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return KSCAL(20);
 }
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return [UIView new];
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return CGFLOAT_MIN;
 }
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return nil;
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    WKAfterSaleModel *info = self.afterSaleList[indexPath.row];
+    WKAfterSaleModel *info = self.afterSaleList[indexPath.section];
     if (info.cellHeight == 0) {
         info.cellHeight = [WKAfterSaleRecordCell cellHeightWithSaleInfo:info];
     }
@@ -124,7 +136,7 @@
 
 #pragma mark - WKAfterSaleRecordCellDelegate
 - (void)recordCell:(WKAfterSaleRecordCell *)recordCell didSelectImageIndex:(NSInteger)imageIndex withSaleInfo:(WKAfterSaleModel *)saleInfo withTargetView:(UIView *)targetView {
-    [self.imageDisplayView showWithImageUrls:[saleInfo.images componentsSeparatedByString:@","] selectIndex:imageIndex captureView:targetView];
+    [self.imageDisplayView showWithImageUrls:[saleInfo.vouchImageUrl componentsSeparatedByString:@","] selectIndex:imageIndex captureView:targetView];
 }
 
 #pragma mark - lazy load

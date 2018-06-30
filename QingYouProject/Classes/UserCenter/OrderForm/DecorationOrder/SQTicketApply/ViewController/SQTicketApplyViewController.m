@@ -40,7 +40,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.naviTitle = @"开票申请";
     
     [self sendDefaultInfoReqeust];
@@ -149,8 +149,8 @@
         [YGNetService dissmissLoadingView];
         if ([response[@"code"] longLongValue] == 0) {
             [YGAppTool showToastWithText:@"申请成功，等待审核"];
-            self.orderDetailInfo.orderInfo.invoice = YES;
-            [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.5];
+            self.orderDetailInfo.orderInfo.invoice = NO;
+            [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.0];
         } else {
             [YGAppTool showToastWithText:response[@"msg"]];
         }
@@ -208,7 +208,8 @@
     if (indexPath.section == 1 && indexPath.row == 1) {//邮寄地址
         if (self.postInfo.detail.length) {
             cell.detailTextLabel.textColor = kCOLOR_666;
-            cell.detailTextLabel.text = self.postInfo.detail;
+            NSString *addresss = [NSString stringWithFormat:@"%@%@%@", self.postInfo.provName?:@"", self.postInfo.cityName?:@"", self.postInfo.detail?:@""];
+            cell.detailTextLabel.text = addresss;
         }
         else {
             cell.detailTextLabel.textColor = colorWithPlaceholder;
