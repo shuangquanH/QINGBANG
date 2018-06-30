@@ -17,6 +17,9 @@
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{@"ID" : @"id"};
 }
++ (NSDictionary *)modelContainerPropertyGenericClass {
+    return @{@"propertyList": [WKDecorationPropertyModel class]};
+}
 
 - (NSAttributedString *)skuProductDescAttributeString {
     if (!_skuProductDescAttributeString) {

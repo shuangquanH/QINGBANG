@@ -133,8 +133,8 @@
             skuProductPriceAttributeString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"¥ %@", orderInfo.skuDetails.skuPrice]];
         } else {
             skuProductPriceAttributeString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"¥ %@（预估价）", orderInfo.skuDetails.skuPrice]];
-            [skuProductPriceAttributeString setAttributes:@{NSForegroundColorAttributeName: kCOLOR_PRICE_RED} range:NSMakeRange(0, 2+orderInfo.skuDetails.skuPrice.length)];
         }
+        [skuProductPriceAttributeString setAttributes:@{NSForegroundColorAttributeName: kCOLOR_PRICE_RED} range:NSMakeRange(0, 2+orderInfo.skuDetails.skuPrice.length)];
     }
     orderPrice.attributedText = skuProductPriceAttributeString;
     orderPrice.lineBreakMode = NSLineBreakByTruncatingTail;
