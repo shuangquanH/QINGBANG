@@ -546,7 +546,7 @@
             _labelList = responseObject[@"labelList"];
             _url = responseObject[@"url"];
             UILabel *naviTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, YGScreenWidth - 100, 20)];
-            naviTitleLabel.textColor = colorWithBlack;
+            naviTitleLabel.textColor = KCOLOR_WHITE;
             naviTitleLabel.textAlignment = NSTextAlignmentCenter;
             naviTitleLabel.text =  responseObject[@"commerceDetail"][@"commerceName"];
             [naviTitleLabel sizeToFit];
