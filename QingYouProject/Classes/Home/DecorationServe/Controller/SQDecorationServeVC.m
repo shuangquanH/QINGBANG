@@ -51,7 +51,7 @@
 }
 
 - (void)requestData {
-    NSDictionary *param = @{@"cityid":[SQLocationManager getLocationCityId]};
+    NSDictionary *param = @{@"cityid":[SQLocationManager getLocationCityId], @"cityName":@""};
     [SQRequest post:KAPI_DECORHOME param:param success:^(id response) {
         self.model = [SQDecorationHomeModel yy_modelWithDictionary:response[@"data"]];
         self.header.model = self.model;

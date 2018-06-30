@@ -16,6 +16,8 @@
 #import "OfficePurchaseDetailViewController.h"
 #import "FinacialAccountingDetailViewController.h"
 
+#import "SQDecorationDetailVC.h"
+
 
 /** 水电缴费的type  */
 #define KHOUSERENTTYPE @"1"
@@ -24,7 +26,8 @@
 
 @implementation SQHouseRentPushTool
 
-+ (void)pushControllerWithType:(NSString    *)target controller:(RootViewController *)vc {
++ (void)pushControllerWithType:(NSString    *)target param:(NSString *)param controller:(RootViewController *)vc {
+    
     
     if ([target isEqualToString: KHOUSERENTTYPE]) {
         [self pushToHouseRentWithController:vc];
@@ -38,21 +41,31 @@
                 
                 Class controllerClass = NSClassFromString(dic[@"targetController"]);
                 RootViewController *viewController = [[controllerClass alloc] init];
-                viewController.funcs_target_params = dic[@"funcs_target_params"];
+                if (param&&![param isBlankString]) {
+                    viewController.funcs_target_params = param;                    
+                }
                 
                 if (viewController.funcs_target_params) {
+                    NSString *controllerString = dic[@"targetController"];
                     
-                    if ([dic[@"targetController"] isEqualToString:@"OfficePurchaseViewController"]) {
+                    if ([controllerString isEqualToString:@"OfficePurchaseViewController"]) {
                         OfficePurchaseDetailViewController * detailVC = [[OfficePurchaseDetailViewController alloc] init];
                         detailVC.commodityID = viewController.funcs_target_params;
                         [vc.navigationController pushViewController:detailVC animated:YES];
                         return;
                         
-                    } else if ([dic[@"targetController"] isEqualToString:@"IntegrationIndustryCommerceController"]) {
+                    } else if ([controllerString isEqualToString:@"IntegrationIndustryCommerceController"]) {
                         FinacialAccountingDetailViewController *detailVC = [[FinacialAccountingDetailViewController alloc]init];
                         detailVC.pageType = @"IntegrationIndustryCommerceController";
                         detailVC.hidesBottomBarWhenPushed = YES;
                         detailVC.cellWithID = viewController.funcs_target_params;
+                        [vc.navigationController pushViewController:detailVC animated:YES];
+                        return;
+                    } else if ([controllerString isEqualToString:@"SQDecorationServeVC"]) {
+                        SQDecorationDetailVC    *detailVC = [[SQDecorationDetailVC alloc] init];
+                        SQDecorationStyleModel *model = [SQDecorationStyleModel new];
+                        model.linkurl = param;
+                        detailVC.styleModel =  model;
                         [vc.navigationController pushViewController:detailVC animated:YES];
                         return;
                     }
@@ -72,7 +85,11 @@
             }
         }
     }
+    
+    
+    
 }
+
 
 + (void)pushToHouseRentWithController:(RootViewController *)vc {
     if ([vc loginOrNot]) {

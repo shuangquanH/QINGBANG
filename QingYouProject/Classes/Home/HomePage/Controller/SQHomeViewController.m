@@ -142,22 +142,26 @@
 //点击了功能按钮
 - (void)tapedFuncsWithModel:(id)model {
     NSString    *pushType = [NSString string];
+    NSString    *param = [NSString string];
     if ([model isKindOfClass:[SQHomeBannerModel class]]) {
         //点击了banner或者功能定制按钮
         SQHomeBannerModel   *sqmodel = model;
         pushType = sqmodel.banner_target;
+        param = sqmodel.banner_target_params;
         
     } else if ([model isKindOfClass:SQHomeHeadsModel.class]) {
         //点击了头部按钮
         SQHomeHeadsModel   *sqmodel = model;
         pushType = sqmodel.funcs_target;
+        param = sqmodel.funcs_target_params;
         
     } else if ([model isKindOfClass:SQHomeFuncsModel.class]) {
         //点击collectionView上的按钮
         SQHomeFuncsModel   *sqmodel = model;
         pushType = sqmodel.funcs_target;
+        param = sqmodel.funcs_target_params;
     }
-    [SQHouseRentPushTool pushControllerWithType:pushType controller:self];
+    [SQHouseRentPushTool pushControllerWithType:pushType param:param controller:self];
 }
 
 

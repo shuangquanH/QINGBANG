@@ -63,6 +63,7 @@
 #pragma mark ---- 重写导航条
 - (void)configAttribute
 {
+    
     UIButton *shareButton = [[UIButton alloc]initWithFrame:CGRectMake(0,0,30,30)];
 //    shareButton.imageEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
     [shareButton addTarget:self action:@selector(shareButtonAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -517,7 +518,7 @@
             _url = responseObject[@"url"];
 
             UILabel *naviTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, YGScreenWidth - 100, 20)];
-                naviTitleLabel.textColor = colorWithBlack;
+                naviTitleLabel.textColor = KCOLOR_WHITE;
                 naviTitleLabel.textAlignment = NSTextAlignmentCenter;
                 naviTitleLabel.text = responseObject[@"financeDetail"][@"financeName"];
                 [naviTitleLabel sizeToFit];
