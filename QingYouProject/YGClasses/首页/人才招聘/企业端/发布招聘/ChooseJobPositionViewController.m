@@ -261,6 +261,6 @@
 - (void)confirmToBack
 {
     [self.delegate takePositionModel:_chooseModel];
-    [self back];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

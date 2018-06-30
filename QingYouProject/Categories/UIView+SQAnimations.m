@@ -32,7 +32,7 @@
 }
 
 - (void)showExcursionAnimation {
-    CATransform3D rotation = CATransform3DMakeTranslation(0 ,50 ,20);
+    CATransform3D rotation = CATransform3DMakeTranslation(0 ,20 ,20);
     [self showCATransform3DAnimationWithRotation:rotation];
 }
 
@@ -47,18 +47,19 @@
     //    rotation =CATransform3DScale(rotation,0.9,0.9,1);
     //由远及近
     //    rotation.m34 =1.0/ -600;
+    
+    //    self.layer.shadowColor = [[UIColor blackColor] CGColor];
+    //    self.layer.shadowOffset =CGSizeMake(10,10);
+    //    self.layer.shadowOffset =CGSizeMake(0,0);
 }
 
 - (void)showCATransform3DAnimationWithRotation:(CATransform3D)rotation {
     self.layer.transform = rotation;
-    self.layer.shadowColor = [[UIColor blackColor] CGColor];
-    self.layer.shadowOffset =CGSizeMake(10,10);
-    self.alpha =0.8;
+    self.alpha =0.6;
     
     [UIView animateWithDuration:0.6 animations:^{
         self.layer.transform =CATransform3DIdentity;
         self.alpha =1;
-        self.layer.shadowOffset =CGSizeMake(0,0);
     }];
 }
 

@@ -105,7 +105,7 @@
 {
     CrowdFundingAddProjectChooseTypeModel *model =_typeArr[indexPath.row];
     [self.delegate takeTypeValueBackWithModel:model];
-    [self back];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "YGConnectionService.h"
 #import "UINavigationController+FDFullscreenPopGesture.h"
+#import "CYGifHeader.h"
 #import "CYNormalHeader.h"
 #import "CYNormalFooter.h"
 
@@ -44,7 +45,6 @@ typedef enum : NSUInteger {
 @property (nonatomic, strong) UILabel *naviTitleLabel;
 //用我设置导航栏标题
 @property (nonatomic, strong) NSString *naviTitle;
-@property (nonatomic, strong) NSMutableAttributedString       *attriTitle;
 
 /** 参数  */
 @property (nonatomic, copy) NSString       *funcs_target_params;
@@ -122,7 +122,6 @@ typedef enum : NSUInteger {
 
  @param array 数据源array
  @param view 要加到的view
- @param frameY y坐标
  @param headerAction 是否是header的事件
  */
 - (void)addNoDataImageViewWithArray:(NSArray *)array shouldAddToView:(UIView *)view headerAction:(BOOL)headerAction;
@@ -150,11 +149,6 @@ typedef enum : NSUInteger {
 - (void)configAttribute;
 
 /**
- 返回
- */
-- (void)back;
-
-/**
  判断是否登录方法（未登录返回NO，自动跳转登录页）
  */
 - (BOOL)loginOrNot;
@@ -163,7 +157,6 @@ typedef enum : NSUInteger {
 - (BOOL)isLoginWithParam:(id)param;
 
 #pragma 计时器 倒计时
-
 /**
  *接收timer变化的通知
  */
@@ -180,7 +173,7 @@ typedef enum : NSUInteger {
  */
 - (void)commonTimerDidFinishCountDown;
 
-//电话
+/** 电话  */
 - (void)contactWithCustomerServerWithType:(ContactWithServerType)type button:(UIButton *)btn;
 
 @end

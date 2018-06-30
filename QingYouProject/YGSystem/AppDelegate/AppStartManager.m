@@ -75,7 +75,6 @@
     /** 判断登录过没  */
     if ([[NSFileManager defaultManager]fileExistsAtPath:USERFILEPATH]) {
         YGSingletonMarco.user = [NSKeyedUnarchiver unarchiveObjectWithFile:USERFILEPATH];
-        YGSingletonMarco.user.userid = YGSingletonMarco.user.userId;
     }
     
     

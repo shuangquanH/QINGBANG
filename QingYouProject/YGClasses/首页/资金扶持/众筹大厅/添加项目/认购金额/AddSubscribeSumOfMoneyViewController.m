@@ -134,7 +134,7 @@
     model.forPurchasing = phoneTextField.text;
     model.describe = _textView.text;
     [self.delegate takeTypeValueBackWithModel:model];
-    [self back];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)textViewDidChange:(UITextView *)textView
 {

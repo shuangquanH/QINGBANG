@@ -148,7 +148,7 @@ static NSString *functionCellIdentifier = @"WKInvoiceFunctionCell";
         ManageMailPostModel *model = [_dataArray objectAtIndex:indexPath.section];
         if (![self.pageType isEqualToString:@"personCenter"]) {
             [self.shippingAddressViewControllerdelegate passModel:model];
-            [self back];
+            [self.navigationController popViewControllerAnimated:YES];
         }
     }
 }

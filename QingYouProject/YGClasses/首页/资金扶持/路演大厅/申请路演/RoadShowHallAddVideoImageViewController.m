@@ -546,7 +546,7 @@ _selectedAssets  = [[NSMutableArray alloc] init];
     {
         [self.delegate selectVideoImagesWithArray:_selectedPhotos];
         YGSingletonMarco.roadShowHallAddImageViewController = self;
-        [self back];
+        [self.navigationController popViewControllerAnimated:YES];
         
     }else
     {
@@ -569,7 +569,7 @@ _selectedAssets  = [[NSMutableArray alloc] init];
             {
                 [self.delegate takeBackWithCoverImage:_selectedPhotos[0] andVideoData:_videoData];
                 YGSingletonMarco.roadShowHallAddVideoViewController = self;
-                [self back];
+                [self.navigationController popViewControllerAnimated:YES];
             }
 
             
@@ -590,7 +590,7 @@ _selectedAssets  = [[NSMutableArray alloc] init];
                 
                 [self.delegate takeBackWithCoverImage:_selectedPhotos[0] andVideoData:_videoData];
                 YGSingletonMarco.roadShowHallAddVideoViewController = self;
-                [self back];
+                [self.navigationController popViewControllerAnimated:YES];
             }];
         }
     }

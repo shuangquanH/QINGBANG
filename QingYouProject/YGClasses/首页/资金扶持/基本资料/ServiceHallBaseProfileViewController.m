@@ -226,6 +226,6 @@
 - (void)didReceiveSuccessResponeseWithURLString:(NSString *)URLString parameters:(id)parameters responeseObject:(id)responseObject
 {
     [YGAppTool showToastWithText:@"申请成功"];
-    [self back];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

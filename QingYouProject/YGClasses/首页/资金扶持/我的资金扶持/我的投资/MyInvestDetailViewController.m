@@ -445,7 +445,7 @@
             }else
             {
                 [YGNetService YGPOST:REQUEST_revokeInvest parameters:@{@"pId":_projectID,@"uId":YGSingletonMarco.user.userId} showLoadingView:YES scrollView:nil success:^(id responseObject) {
-                    [self back];
+                    [self.navigationController popViewControllerAnimated:YES];
                 } failure:^(NSError *error) {
                     
                 }];

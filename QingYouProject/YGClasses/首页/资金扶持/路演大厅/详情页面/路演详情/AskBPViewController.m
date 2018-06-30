@@ -125,6 +125,6 @@
 - (void)didReceiveSuccessResponeseWithURLString:(NSString *)URLString parameters:(id)parameters responeseObject:(id)responseObject
 {
     [YGAppTool showToastWithText:@"提交信息成功，请等待工作人员与您联系"];
-    [self back];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

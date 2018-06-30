@@ -475,7 +475,7 @@
 {
     [YGNetService YGPOST:REQUEST_ApplicationRelationJober parameters:@{@"phone":YGSingletonMarco.user.phone,@"id":self.recruitmentItemId} showLoadingView:NO scrollView:nil success:^(id responseObject) {
         [YGAlertView showAlertWithTitle:@"申请成功\n处理后我们将以短信的形式\n通知您此求职者的联系方式" buttonTitlesArray:@[@"确定"] buttonColorsArray:@[colorWithMainColor] handler:^(NSInteger buttonIndex) {
-            [self back];
+            [self.navigationController popViewControllerAnimated:YES];
         }];
     } failure:^(NSError *error) {
         

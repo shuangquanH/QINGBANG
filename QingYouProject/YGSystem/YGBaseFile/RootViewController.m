@@ -13,10 +13,8 @@
 #import "SQCallPhoneFunction.h"
 
 
-@interface RootViewController ()
-{
+@interface RootViewController () {
     SEL _superCmd;
-    CYNormalHeader *_refreshGifHeader;
 }
 @end
 
@@ -48,26 +46,17 @@
 }
 //一键创建普通navigation
 - (void)setNaviTitle:(NSString *)naviTitle {
-    _naviTitle = naviTitle;
+    self.naviTitleLabel.text = naviTitle;
+}
+- (UILabel *)naviTitleLabel {
     if (!_naviTitleLabel) {
         _naviTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, YGScreenWidth - 100, 20)];
         _naviTitleLabel.textColor = KCOLOR_WHITE;
         _naviTitleLabel.textAlignment = NSTextAlignmentCenter;
         self.navigationItem.titleView = _naviTitleLabel;
     }
-    _naviTitleLabel.text = _naviTitle;
+    return _naviTitleLabel;
 }
-- (void)setAttriTitle:(NSMutableAttributedString *)attriTitle {
-    _attriTitle = attriTitle;
-    if (!_naviTitleLabel) {
-        _naviTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(50, 0, YGScreenWidth - 100, 20)];
-        _naviTitleLabel.textAlignment = NSTextAlignmentCenter;
-        self.navigationItem.titleView = _naviTitleLabel;
-    }
-    [attriTitle addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:NSMakeRange(0, attriTitle.length)];
-    _naviTitleLabel.attributedText = attriTitle;
-}
-
 
 - (void)startPostWithURLString:(NSString *)URLString
                     parameters:(id)parameters
@@ -111,9 +100,8 @@
 
 //一键刷新加载
 - (void)createRefreshWithScrollView:(UITableView *)tableView containFooter:(BOOL)containFooter {
-//    _refreshGifHeader = [CYGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeaderAction)];
-    _refreshGifHeader = [CYNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeaderAction)];
-    tableView.mj_header = _refreshGifHeader;
+    //tableView.mj_header = [CYGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeaderAction)];
+    tableView.mj_header = [CYNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHeaderAction)];
     if (containFooter) {
         tableView.mj_footer = [CYNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(refreshFooterAction)];
         tableView.mj_footer.automaticallyHidden = YES;
@@ -184,7 +172,7 @@
         return;
     }
     _noNetBaseView = [[UIView alloc] init];
-    _noNetBaseView.backgroundColor = colorWithTable;
+    _noNetBaseView.backgroundColor = self.view.backgroundColor;;
     UIButton *noNetButton = [[UIButton alloc] init];
     [noNetButton setImage:[UIImage imageNamed:@"ico_nonetwork"] forState:UIControlStateNormal];
     [noNetButton sizeToFit];
@@ -194,9 +182,8 @@
     [self.view addSubview:_noNetBaseView];
 
     if (listArray) {
-        [noNetButton addTarget:_refreshGifHeader action:@selector(beginRefreshing) forControlEvents:UIControlEventTouchUpInside];
-    }
-    else {
+        [noNetButton addTarget:self action:@selector(refreshHeaderAction) forControlEvents:UIControlEventTouchUpInside];
+    } else {
         NSString *sourceString = [NSThread callStackSymbols][1];
         NSCharacterSet *separatorSet = [NSCharacterSet characterSetWithCharactersInString:@" -[]+?.,"];
         NSMutableArray *array = [NSMutableArray arrayWithArray:[sourceString componentsSeparatedByCharactersInSet:separatorSet]];
@@ -246,11 +233,9 @@
 }
 
 - (void)commonTimerCountingDownWithLeftSeconds:(NSInteger)seconds {
-    
 }
 
 - (void)commonTimerDidFinishCountDown {
-    
 }
 
 //没dealloc就有内存泄露了需注意
@@ -258,10 +243,29 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     NSLog(@"%@ dealloc", NSStringFromClass([self class]));
 }
-//返回
-- (void)back {
-    [self.navigationController popViewControllerAnimated:YES];
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 - (void)contactWithCustomerServerWithType:(ContactWithServerType)type button:(UIButton *)btn {
     btn.userInteractionEnabled = NO;
@@ -269,7 +273,6 @@
         [SQCallPhoneFunction callServicePhoneWithPopver];
         return;
     }
-    
     [YGNetService YGPOST:@"IndoorCall" parameters:@{@"rank":[NSString stringWithFormat:@"%ld",type]} showLoadingView:NO scrollView:nil success:^(id responseObject) {
         
         btn.userInteractionEnabled = YES;
@@ -283,7 +286,6 @@
                 [self.view addSubview:callWebview];
             }
         }];
-
     } failure:^(NSError *error) {
         btn.userInteractionEnabled = YES;
         [YGAppTool showToastWithText:@"电话号码获取失败"];

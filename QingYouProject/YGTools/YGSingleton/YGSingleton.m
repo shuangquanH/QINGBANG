@@ -46,8 +46,7 @@
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:NC_TIMER_COUNT_DOWN object:nil userInfo:@{NC_TIMER_COUNT_DOWN:@(_totalTime)}];
     _totalTime --;
-    if(_totalTime == 0)
-    {
+    if(_totalTime == 0) {
         [timer invalidate];
         timer = nil;
         [[NSNotificationCenter defaultCenter] postNotificationName:NC_TIMER_FINISH object:nil userInfo:@{}];
@@ -55,8 +54,7 @@
 }
 
 
-- (void)archiveUser
-{
+- (void)archiveUser {
     // 归档
     [[NSFileManager defaultManager] removeItemAtPath:USERFILEPATH error:nil];
     [NSKeyedArchiver archiveRootObject:self.user toFile:USERFILEPATH];

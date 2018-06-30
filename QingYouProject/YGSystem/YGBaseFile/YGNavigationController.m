@@ -28,9 +28,8 @@
 
 
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    if (self.viewControllers.count>0) {    
+    if (self.viewControllers.count>0) {// 左边返回按钮
         viewController.hidesBottomBarWhenPushed = YES;
-        // 左边返回按钮
         UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
         backButton.frame = CGRectMake(0, 0, 40, 40);
         backButton.backgroundColor = [UIColor clearColor];
@@ -38,7 +37,7 @@
         backButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
         backButton.imageView.clipsToBounds = YES;
         [backButton setImageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
-        [backButton addTarget:viewController action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+        [backButton addTarget:self action:@selector(popViewControllerAnimated:) forControlEvents:UIControlEventTouchUpInside];
         UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
         [viewController.navigationItem setLeftBarButtonItem:leftItem];
     }

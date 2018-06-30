@@ -107,7 +107,7 @@
     model.isSelect = YES;
     [self.delegate takeTypeValueBackWithValue:model.title];
     [_tableView reloadData];
-    [self back];
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
 

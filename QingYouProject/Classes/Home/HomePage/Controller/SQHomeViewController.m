@@ -67,8 +67,7 @@
 }
 
 - (void)configAttribute {
-    NSMutableAttributedString   *attstr = [[NSMutableAttributedString alloc] initWithString:@"首页"];
-    self.attriTitle = attstr;
+    self.naviTitleLabel.attributedText = [[NSMutableAttributedString alloc] initWithString:@"首页"];
     self.navigationItem.titleView.userInteractionEnabled = YES;
     
     WeakSelf(sqselfweak);
@@ -195,7 +194,7 @@
         NSString    *titlestring = [NSString stringWithFormat:@"%@ %@℃ %@", name, tem, weather];
         NSMutableAttributedString   *attstr = [[NSMutableAttributedString alloc] initWithString:titlestring];
         [attstr appendImage:[UIImage imageNamed:@"home_nav_icon"] withType:SQAppendImageInLeft];
-        self.attriTitle = attstr;
+        self.naviTitleLabel.attributedText = attstr;
     }];
 }
 
