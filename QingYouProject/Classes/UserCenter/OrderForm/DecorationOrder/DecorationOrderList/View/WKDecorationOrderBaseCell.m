@@ -43,7 +43,7 @@
         orderTitle.numberOfLines = 2;
         [self.contentView addSubview:orderTitle];
         
-        orderDesc = [UILabel labelWithFont:KSCAL(28.0) textColor:kCOLOR_666];
+        orderDesc = [UILabel labelWithFont:KSCAL(25.0) textColor:kCOLOR_666];
         orderDesc.numberOfLines = 3;
         [self.contentView addSubview:orderDesc];
         
@@ -275,6 +275,7 @@
     [connectServiceBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(0);
         make.top.equalTo(dealingBgView.mas_centerY).offset(KSCAL(10));
+        make.left.mas_equalTo(35);
     }];
 }
 
