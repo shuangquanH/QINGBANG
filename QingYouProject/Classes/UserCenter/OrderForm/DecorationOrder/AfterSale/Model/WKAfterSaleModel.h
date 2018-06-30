@@ -10,15 +10,15 @@
 
 @interface WKAfterSaleModel : NSObject
 /** 售后状态 0.等待处理 1.已回复 */
-@property (nonatomic, assign) NSInteger afterSaleState;
+@property (nonatomic, assign) NSInteger status;
 /** 售后描述 */
-@property (nonatomic, copy  ) NSString *afterSaleDesc;
+@property (nonatomic, copy  ) NSString *remarks;
 /** 售后结果 */
-@property (nonatomic, copy  ) NSString *afterSaleResult;
+@property (nonatomic, copy  ) NSString *dealInfo;
 /** 发起时间 */
-@property (nonatomic, copy  ) NSString *createTime;
+@property (nonatomic, copy  ) NSString *startTime;
 /** 描述图片 */
-@property (nonatomic, copy  ) NSString *images;
+@property (nonatomic, copy  ) NSString *vouchImageUrl;
 
 @property (nonatomic, copy  ) NSString *stateDesc;
 

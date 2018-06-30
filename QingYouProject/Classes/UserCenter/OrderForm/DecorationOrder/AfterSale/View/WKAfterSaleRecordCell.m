@@ -39,10 +39,10 @@
     _saleInfo = info;
     
     _stateLab.text = info.stateDesc;
-    _timeLab.text = [NSString stringWithFormat:@"您于%@发起了售后申请：", info.createTime];
-    _problemLab.text = [NSString stringWithFormat:@"问题描述：%@", info.afterSaleDesc?:@""];
+    _timeLab.text = [NSString stringWithFormat:@"您于%@发起了售后申请：", info.startTime];
+    _problemLab.text = [NSString stringWithFormat:@"问题描述：%@", info.remarks?:@""];
     
-    NSArray *urls = [info.images componentsSeparatedByString:@","];
+    NSArray *urls = [info.vouchImageUrl componentsSeparatedByString:@","];
     if (!urls.count) {
         _imageCollectView.hidden = YES;
         _certificateTipLab.hidden = YES;
@@ -63,11 +63,11 @@
         }];
     }
     
-    if (info.afterSaleState == 0) {
+    if (info.status == 0) {
         _resultLab.text = @"";
     }
     else {
-        _resultLab.text = [NSString stringWithFormat:@"处理结果：%@", info.afterSaleResult?:@""];
+        _resultLab.text = [NSString stringWithFormat:@"处理结果：%@", info.dealInfo?:@""];
     }
 }
 
@@ -143,13 +143,13 @@
     
     CGFloat height = KSCAL(100);
     
-    NSArray *imageUrls = [saleInfo.images componentsSeparatedByString:@","];
+    NSArray *imageUrls = [saleInfo.vouchImageUrl componentsSeparatedByString:@","];
     if (imageUrls.count) {
         height += KSCAL(150);
     }
     
-    if (saleInfo.afterSaleState == 2) {
-        NSString *result = [NSString stringWithFormat:@"处理结果：%@", saleInfo.afterSaleResult];
+    if (saleInfo.status == 1) {
+        NSString *result = [NSString stringWithFormat:@"处理结果：%@", saleInfo.dealInfo];
         CGFloat resultH = [result sizeWithFont:KFONT(28) andMaxSize:CGSizeMake(KAPP_WIDTH-KSCAL(60), MAXFLOAT)].height;
         height += (resultH + KSCAL(20));
     }
@@ -159,7 +159,7 @@
     CGFloat timeH = [@"28高度" sizeWithFont:KFONT(28) andMaxSize:CGSizeMake(KAPP_WIDTH-KSCAL(60), MAXFLOAT)].height;
     height += (timeH + KSCAL(30));
     
-    NSString *problem = [NSString stringWithFormat:@"问题描述：%@", saleInfo.afterSaleDesc];
+    NSString *problem = [NSString stringWithFormat:@"问题描述：%@", saleInfo.remarks];
     CGFloat problemH = [problem sizeWithFont:KFONT(28) andMaxSize:CGSizeMake(KAPP_WIDTH-KSCAL(60), MAXFLOAT)].height;
     height += (problemH + KSCAL(20));
     

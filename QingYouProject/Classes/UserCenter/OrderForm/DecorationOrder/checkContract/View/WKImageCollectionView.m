@@ -113,7 +113,7 @@
         [((UIImageView *)view) sd_setImageWithURL:[NSURL URLWithString:url]];
     }
     else {
-        [((UIImageView *)(view.subviews.firstObject)) sd_setImageWithURL:[NSURL URLWithString:url]];
+        [((UIImageView *)(view.subviews.firstObject)) sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"placeholderfigure_rectangle_300x300"]];
     }
 }
 

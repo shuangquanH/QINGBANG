@@ -17,9 +17,9 @@ static const CGFloat kImageVerticalSpace   = 20;
 
 @implementation WKAfterSaleModel
 
-- (void)setAfterSaleState:(NSInteger)afterSaleState {
-    _afterSaleState = afterSaleState;
-    if (afterSaleState == 0) {
+- (void)setStatus:(NSInteger)status {
+    _status = status;
+    if (status == 0) {
         _stateDesc = @"售后申请已提交，等待系统处理。";
     }
     else {
@@ -41,11 +41,11 @@ static const CGFloat kImageVerticalSpace   = 20;
         _stateRect = CGRectMake(KSCAL(kLeftMargin), y, stateDescSize.width, stateDescSize.height);
         y += KSCAL(kTopMargin);
         
-        CGSize createTimeSize = [afterSaleInfo.createTime sizeWithFont:KFONT(28) andMaxSize:CGSizeMake(maxW, MAXFLOAT)];
+        CGSize createTimeSize = [afterSaleInfo.startTime sizeWithFont:KFONT(28) andMaxSize:CGSizeMake(maxW, MAXFLOAT)];
         _createTimeRect = CGRectMake(KSCAL(kLeftMargin), y, createTimeSize.width, createTimeSize.height);
         y += KSCAL(kTopMargin);
         
-        NSArray *images = [afterSaleInfo.images componentsSeparatedByString:@","];
+        NSArray *images = [afterSaleInfo.vouchImageUrl componentsSeparatedByString:@","];
         if (images.count) {
             CGFloat col = images.count % 3 == 0 ? images.count / 3 : images.count / 3 + 1;
             CGFloat imageW = (maxW - 2 * KSCAL(kImageHorizontalSpace)) / 3.0;
@@ -54,8 +54,8 @@ static const CGFloat kImageVerticalSpace   = 20;
             y += KSCAL(kTopMargin);
         }
         
-        if (afterSaleInfo.afterSaleState == 2) {
-            NSString *result = [NSString stringWithFormat:@"处理结果：%@", afterSaleInfo.afterSaleResult?:@"暂无结果"];
+        if (afterSaleInfo.status == 1) {
+            NSString *result = [NSString stringWithFormat:@"处理结果：%@", afterSaleInfo.dealInfo?:@"暂无结果"];
             CGSize resultSize = [result sizeWithFont:KFONT(28) andMaxSize:CGSizeMake(maxW, MAXFLOAT)];
             _resultRect = CGRectMake(KSCAL(kLeftMargin), y, resultSize.width, resultSize.height);
             y += KSCAL(kTopMargin);

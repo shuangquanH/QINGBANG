@@ -240,7 +240,7 @@
         [self.navigationController pushViewController:next animated:YES];
     }
     else {
-        if (self.orderDetailInfo.orderInfo.invoice) {//已经申请过发票
+        if (!self.orderDetailInfo.orderInfo.invoice) {//不可以开票
             [YGAppTool showToastWithText:@"开票申请已提交，请耐心等待！"];
             return;
         }
