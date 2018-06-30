@@ -180,7 +180,7 @@
 
 - (UIButton *)refundDetailBtn {
     if (!_refundDetailBtn) {
-        _refundDetailBtn = [UIButton buttonWithTitle:@"¥" titleFont:KSCAL(28.0) titleColor:KCOLOR_MAIN];
+        _refundDetailBtn = [UIButton buttonWithTitle:@"退款详情" titleFont:KSCAL(28.0) titleColor:KCOLOR_MAIN];
         _refundDetailBtn.layer.borderWidth = 1.0;
         _refundDetailBtn.layer.borderColor = KCOLOR_MAIN.CGColor;
         _refundDetailBtn.layer.cornerRadius = 4.0;
@@ -190,7 +190,7 @@
         [_refundDetailBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(0);
             make.left.equalTo(stagePriceLab.mas_right).offset(KSCAL(15));
-            make.size.mas_equalTo(CGSizeMake(KSCAL(50), KSCAL(50)));
+            make.size.mas_equalTo(CGSizeMake(KSCAL(140), KSCAL(50)));
         }];
     }
     return _refundDetailBtn;

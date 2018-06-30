@@ -78,6 +78,7 @@
         beizhuTextView = [[UITextField alloc] init];
         beizhuTextView.font = KFONT(28);
         beizhuTextView.placeholder = @"请输入留言,不超过200字";
+        [beizhuTextView addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
         [self addSubview:beizhuTextView];
         
         UIImageView *bottomLine = [[UIImageView alloc] init];
@@ -194,6 +195,26 @@
 
 - (NSString *)leaveMessageStr {
     return beizhuTextView.text;
+}
+
+//限制输入字数
+- (void)textFieldDidChange:(UITextField *)textField {
+    NSString *toBeString = textField.text;
+    NSString *lang = [[UIApplication sharedApplication] textInputMode].primaryLanguage;
+    if ([lang isEqualToString:@"zh-Hans"]) {
+        UITextRange *selectedRange = [textField markedTextRange];
+        UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
+        if (!position) {
+            if (toBeString.length > 200) {
+                textField.text = [toBeString substringToIndex:200];
+                [textField resignFirstResponder];
+            }
+        }
+    } else {
+        if (toBeString.length > 200) {
+            textField.text = [toBeString substringToIndex:200];
+        }
+    }
 }
 
 @end

@@ -32,7 +32,7 @@
 
 @property (nonatomic, copy  ) NSString *skuDesc;
 
-@property (nonatomic, strong) NSArray<WKDecorationPropertyModel *> *skuAttrList;
+@property (nonatomic, strong) NSArray<WKDecorationPropertyModel *> *propertyList;
 
 #pragma mark - 自己添加的参数
 //商品描述
