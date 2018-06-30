@@ -77,7 +77,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    [(SQBaseTableViewCell *)cell startScrollAnimation];
+    [cell showExcursionAnimation];
 }
 
 

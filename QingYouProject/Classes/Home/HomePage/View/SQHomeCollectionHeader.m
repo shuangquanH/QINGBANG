@@ -49,7 +49,7 @@
 - (void)addCycleView {
     CGRect frame = CGRectMake(0, 0, YGScreenWidth, KSCAL(320));
     self.cycleView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:[UIImage imageNamed:@"placeholderfigure_rectangle_600x300"]];
-    self.cycleView.contentMode = UIViewContentModeScaleAspectFill;
+    self.cycleView.bannerImageViewContentMode = UIViewContentModeScaleAspectFill;
     self.cycleView.backgroundColor = kCOLOR_BACK;
     [self addSubview:self.cycleView];
     
@@ -165,27 +165,7 @@
 
 
 
-#pragma actions
-//头部功能按钮
-- (void)btnaction:(UIButton *)sender {
-    SQHomeHeadsModel *theSelectModel = self.model.heads[sender.tag-1000];
-    
-    if (![theSelectModel.funcs_target isEqualToString:@"17"]) {
-        [self didselectButtonToPushNextPageWithModel:theSelectModel];
-        return;
-    }
-    
-    
-    self.selectedModel = self.model.heads[sender.tag-1000];
-    for (UIButton *button in self.ovalContentView.subviews) {
-        if (button==sender) {
-            sender.selected = YES;
-        } else {
-            button.selected = NO;
-        }
-    }
-    
-}
+
 
 - (void)setSelectedModel:(id)selectedModel {
     _selectedModel = selectedModel;
@@ -210,14 +190,38 @@
     
 }
 
+#pragma actions
+//头部功能按钮
+- (void)btnaction:(UIButton *)sender {
+    [sender showWaveAnimation];
+    SQHomeHeadsModel *theSelectModel = self.model.heads[sender.tag-1000];
+    
+    if (![theSelectModel.funcs_target isEqualToString:@"17"]) {
+        [self didselectButtonToPushNextPageWithModel:theSelectModel];
+        return;
+    }
+    
+    
+    self.selectedModel = self.model.heads[sender.tag-1000];
+    for (UIButton *button in self.ovalContentView.subviews) {
+        if (button==sender) {
+            sender.selected = YES;
+        } else {
+            button.selected = NO;
+        }
+    }
+    
+}
 //定制功能按钮
 - (void)cusBanTap:(UIGestureRecognizer   *)tap {
+    [tap.view showWaveAnimation];
     SQHomeBannerModel   *cusModel = self.model.cusBanners[tap.view.tag-2000];
     [self.delegate tapedFuncsWithModel:cusModel];
 }
 
 #pragma delegates
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
+    [cycleScrollView showWaveAnimation];
     if (self.delegate) {
         [self.delegate tapedFuncsWithModel:self.model.banners[index]];
     }

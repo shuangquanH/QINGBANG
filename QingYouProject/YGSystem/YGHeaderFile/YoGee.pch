@@ -22,7 +22,7 @@
 #import "Masonry.h"
 #import "YGSingleton.h"
 #import "YGUser.h"
-#import "UIView+Animate.h"
+#import "UIView+SQAnimations.h"
 #import "YGConnectionService.h"
 #import "MJExtension.h"
 //#import "YGButton.h"

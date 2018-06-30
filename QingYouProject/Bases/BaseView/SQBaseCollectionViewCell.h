@@ -22,10 +22,8 @@
  */
 + (instancetype)nibCellWithCollectionView:(UICollectionView *)collectionView forIndexPath:(NSIndexPath *)indexPath;
 
-
+/** 获取所在controller  */
 - (UIViewController *)getCellViewController;
 
-/** 滑动动画  */
-- (void)startScrollAnimation;
 
 @end

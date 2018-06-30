@@ -6,11 +6,13 @@
 //  Copyright © 2016年 ccyouge. All rights reserved.
 //
 
+#import "NSString+SQJudge.h"
 
 @implementation YGSingleton
 {
     NSInteger  _totalTime;
 }
+
 + (YGSingleton *)sharedManager
 {
     static YGSingleton *sharedAccountManagerInstance = nil;
@@ -20,6 +22,14 @@
         sharedAccountManagerInstance = [[self alloc] init];
     });
     return sharedAccountManagerInstance;
+}
+- (NSString *)servicePhoneNumber {
+    BOOL isblank = [_servicePhoneNumber isBlankString];
+    if (isblank||!_servicePhoneNumber) {
+        return @"0571-87221111";
+    } else {
+        return _servicePhoneNumber;
+    }
 }
 - (void)startTimerWithTime:(NSInteger)time;
 {

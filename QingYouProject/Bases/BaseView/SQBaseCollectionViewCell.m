@@ -52,29 +52,4 @@
     return nil;
 }
 
-- (void)startScrollAnimation {
-    
-    CATransform3D rotation;//3D旋转
-    rotation = CATransform3DMakeTranslation(0 ,50 ,20);
-//    rotation = CATransform3DRotate(rotation,M_PI, 0, 0.5, 0.0);
-//    rotation = CATransform3DMakeRotation(M_PI, 0, 0.5, 0.0);
-    //逆时针旋转
-    //rotation =CATransform3DScale(rotation,0.9,0.9,1);
-    
-    //由远及近
-    rotation.m34 =1.0/ -600;
-    
-    self.layer.transform = rotation;
-    
-    self.layer.shadowColor = [[UIColor blackColor] CGColor];
-    self.layer.shadowOffset =CGSizeMake(10,10);
-    self.alpha =0.8;
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        self.layer.transform =CATransform3DIdentity;
-        self.alpha =1;
-        self.layer.shadowOffset =CGSizeMake(0,0);
-    }];
-}
-
 @end

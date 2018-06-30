@@ -38,8 +38,8 @@
 
 //退出登录删除用户模型
 - (void)deleteUser;
-
-
+/** 客服电话  */
+- (NSString *)servicePhoneNumber;
 //开始倒计时
 - (void)startTimerWithTime:(NSInteger)time;
 @end

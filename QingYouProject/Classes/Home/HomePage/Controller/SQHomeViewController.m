@@ -73,6 +73,7 @@
     
     WeakSelf(sqselfweak);
     [self.navigationItem.titleView sq_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+        [sqselfweak.navigationItem.titleView showWaveAnimation];
         JFCityViewController *cityViewController = [[JFCityViewController alloc] init];
         cityViewController.delegate = sqselfweak;
         cityViewController.title = @"选择城市";
@@ -124,6 +125,9 @@
     return funmodel.funcsSize;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    [cell showWaveAnimation];
     SQHomeFuncsModel    *funmodel = self.model.funcs[indexPath.row];
     [self tapedFuncsWithModel:funmodel];
 }
@@ -132,7 +136,7 @@
     if (array.count ==0)return;
     NSIndexPath *firstIndexPath = array[0];
     if (firstIndexPath.row < indexPath.row) {
-        [(SQBaseCollectionViewCell *)cell startScrollAnimation];
+        [cell showExcursionAnimation];
     }
 }
 

@@ -22,11 +22,8 @@
  */
 + (instancetype)nibCellWithTableView:(UITableView *)tableView;
 
-
+/** 获取所在controller  */
 - (UIViewController *)getCellViewController;;
 
-
-/** 滑动动画  */
-- (void)startScrollAnimation;
 
 @end

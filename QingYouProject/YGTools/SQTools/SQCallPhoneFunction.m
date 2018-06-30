@@ -8,11 +8,11 @@
 
 #import "SQCallPhoneFunction.h"
 
+
 @implementation SQCallPhoneFunction
 
 + (void)callServicePhone {
     [self callWithPhoem:KSERVICE_PHONE];
-    
 }
 + (void)callServicePhoneWithPopver {
     [self callWithPhoem:KSERVICE_PHONE withPopverTitle:@"是否拨打客服电话?"];
