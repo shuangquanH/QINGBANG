@@ -116,17 +116,31 @@
 }
 
 - (void)setupTextWithOrderInfo:(WKDecorationOrderListModel *)orderInfo {
-    [orderImage sd_setImageWithURL:[NSURL URLWithString:[orderInfo.skuDetails.skuImgUrl componentsSeparatedByString:@","].firstObject] placeholderImage:nil];
     
-    orderPrice.attributedText = orderInfo.skuDetails.skuProductPriceAttributeString;
-    orderPrice.lineBreakMode = NSLineBreakByTruncatingTail;
+    [orderImage sd_setImageWithURL:[NSURL URLWithString:[orderInfo.skuDetails.skuImgUrl componentsSeparatedByString:@","].firstObject] placeholderImage:[UIImage imageNamed:@"placeholderfigure_rectangle_420x300"]];
     
     orderTitle.attributedText = orderInfo.skuProductNameAttributeString;
     orderTitle.lineBreakMode = NSLineBreakByTruncatingTail;
     
     orderDesc.attributedText = orderInfo.skuDetails.skuProductDescAttributeString;
     orderDesc.lineBreakMode = NSLineBreakByTruncatingTail;
+    
+    NSMutableAttributedString *skuProductPriceAttributeString;
+    if (!orderInfo.skuDetails.skuPrice.length) {
+        skuProductPriceAttributeString = [[NSMutableAttributedString alloc] initWithString:@""];
+    } else {
+        if (orderInfo.status == 4) {
+            skuProductPriceAttributeString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"¥ %@", orderInfo.skuDetails.skuPrice]];
+        } else {
+            skuProductPriceAttributeString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"¥ %@（预估价）", orderInfo.skuDetails.skuPrice]];
+            [skuProductPriceAttributeString setAttributes:@{NSForegroundColorAttributeName: kCOLOR_PRICE_RED} range:NSMakeRange(0, 2+orderInfo.skuDetails.skuPrice.length)];
+        }
+    }
+    orderPrice.attributedText = skuProductPriceAttributeString;
+    orderPrice.lineBreakMode = NSLineBreakByTruncatingTail;
+    
 }
+
 
 #pragma mark - SQDecorationDetailViewProtocol
 - (void)configOrderInfo:(WKDecorationOrderListModel *)orderInfo {

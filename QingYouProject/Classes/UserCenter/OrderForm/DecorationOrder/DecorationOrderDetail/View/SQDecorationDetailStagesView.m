@@ -140,7 +140,7 @@ static const CGFloat kCircleWidth = 26;
 - (void)configOrderDetailInfo:(WKDecorationOrderDetailModel *)orderDetailInfo {
     CGFloat perW = (KAPP_WIDTH - 2 * KSCAL(30)) / 6.0;
     
-    if (orderDetailInfo.orderInfo.status == 3) {//受理中，订金已支付
+    if (orderDetailInfo.orderInfo.status == 3) {//受理中，订金已支付->聚焦订金圆圈
         _shadowView.center = CGPointMake(KSCAL(30)+perW*1, KSCAL(40)+0.5);
         _centerStateLabel.text = @"待支付";
         _rightStateLabel.text = @"待支付";
@@ -148,9 +148,16 @@ static const CGFloat kCircleWidth = 26;
     }
     
     if (orderDetailInfo.orderInfo.status == 4) {//阶段款待支付
-        _centerStateLabel.text = @"待支付";
-        _shadowView.center = CGPointMake(KSCAL(30)+perW*3, KSCAL(40)+0.5);
-        _rightStateLabel.text = @"待支付";
+        //尾款已激活，进入待支付阶段->进入尾款待支付阶段
+        if ([orderDetailInfo.orderInfo.activityStageInfo.name isEqualToString:@"尾款"]) {
+            _centerStateLabel.text = @"已支付";
+            _shadowView.center = CGPointMake(KSCAL(30)+perW*5, KSCAL(40)+0.5);
+            _rightStateLabel.text = @"待支付";
+        } else {//在阶段款待付款阶段
+            _centerStateLabel.text = @"待支付";
+            _shadowView.center = CGPointMake(KSCAL(30)+perW*3, KSCAL(40)+0.5);
+            _rightStateLabel.text = @"待支付";
+        }
         return;
     }
     
