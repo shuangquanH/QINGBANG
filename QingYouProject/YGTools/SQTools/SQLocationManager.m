@@ -31,8 +31,14 @@
         }
         [_locationManager startUpdatingLocation];
     }
-    
-    
+}
++ (NSString *)getLocationCityId {
+    NSString    *cityNumber = [[NSUserDefaults standardUserDefaults] objectForKey:@"cityNumber"];
+    if (!cityNumber) {
+        return @"000000";
+    } else {
+        return cityNumber;
+    }
 }
 
 @end

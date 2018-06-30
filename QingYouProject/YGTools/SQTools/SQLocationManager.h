@@ -20,4 +20,5 @@
 
 - (void)startLocationWithDelegate:(id)delegate;
 
++ (NSString *)getLocationCityId;
 @end

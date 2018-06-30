@@ -16,6 +16,7 @@
 
 
 #import "SQDecorationHomeModel.h"
+#import "SQLocationManager.h"
 
 @interface SQDecorationServeVC () <UITableViewDelegate, UITableViewDataSource, decorationSeveHeaderDelegate>
 
@@ -50,7 +51,8 @@
 }
 
 - (void)requestData {
-    [SQRequest post:KAPI_DECORHOME param:nil success:^(id response) {
+    NSDictionary *param = @{@"cityid":[SQLocationManager getLocationCityId]};
+    [SQRequest post:KAPI_DECORHOME param:param success:^(id response) {
         self.model = [SQDecorationHomeModel yy_modelWithDictionary:response[@"data"]];
         self.header.model = self.model;
         [self endRefreshWithScrollView:self.tableview];
