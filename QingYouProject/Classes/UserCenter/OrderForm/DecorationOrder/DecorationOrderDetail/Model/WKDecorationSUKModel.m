@@ -45,18 +45,6 @@
     return _skuProductDescAttributeString;
 }
 
-- (NSAttributedString *)skuProductPriceAttributeString {
-    if (!_skuProductPriceAttributeString) {
-        if (!self.skuPrice.length) {
-            _skuProductPriceAttributeString = [[NSAttributedString alloc] initWithString:@""];
-            return _skuProductPriceAttributeString;
-        }
-        NSMutableAttributedString *estimatePrice = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"¥ %@（预估价）", self.skuPrice]];
-        [estimatePrice setAttributes:@{NSForegroundColorAttributeName: kCOLOR_PRICE_RED} range:NSMakeRange(0, 2+self.skuPrice.length)];
-        _skuProductPriceAttributeString = [estimatePrice copy];
-    }
-    return _skuProductPriceAttributeString;
-}
 
 - (void)setSkuAttrList:(NSArray<WKDecorationPropertyModel *> *)skuAttrList {
     if (!skuAttrList.count) {

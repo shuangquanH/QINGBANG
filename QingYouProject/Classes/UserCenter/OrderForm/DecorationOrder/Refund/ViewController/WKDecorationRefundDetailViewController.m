@@ -164,8 +164,7 @@
     
     [YGAlertView showAlertWithTitle:@"撤销退款后，不支持再次发起退款，确定撤销？"
                   buttonTitlesArray:@[@"确认", @"取消"]
-                  buttonColorsArray:@[[UIColor blueColor],
-                                      [UIColor redColor]]
+                  buttonColorsArray:@[KCOLOR_MAIN,kCOLOR_666]
                             handler:^(NSInteger buttonIndex) {
                                 if (buttonIndex == 0) {
                                     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];

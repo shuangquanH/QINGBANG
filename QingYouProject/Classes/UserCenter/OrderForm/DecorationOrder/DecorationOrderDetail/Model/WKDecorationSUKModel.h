@@ -37,7 +37,5 @@
 #pragma mark - 自己添加的参数
 //商品描述
 @property (nonatomic, strong) NSAttributedString *skuProductDescAttributeString;
-//预估价
-@property (nonatomic, strong) NSAttributedString *skuProductPriceAttributeString;
 
 @end
