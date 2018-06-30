@@ -27,8 +27,7 @@
 
 @implementation SQDecorationServeVC
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)configAttribute {
     self.naviTitle = @"装修直通车";
     UIBarButtonItem *itme = [self createBarbuttonWithNormalImageName:@"decorate_nav_icon"
                                                    selectedImageName:@"service_black"
@@ -38,7 +37,9 @@
     self.tableview.tableHeaderView = self.header;
     [self.view addSubview:self.tableview];
     [self createRefreshWithScrollView:self.tableview containFooter:NO];
-    
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
     [self requestData];
 }
 
@@ -52,8 +53,8 @@
     [SQRequest post:KAPI_DECORHOME param:nil success:^(id response) {
         self.model = [SQDecorationHomeModel yy_modelWithDictionary:response[@"data"]];
         self.header.model = self.model;
-        [self.tableview reloadData];
         [self endRefreshWithScrollView:self.tableview];
+        [self.tableview reloadData];
     } failure:^(NSError *error) {
         [self endRefreshWithScrollView:self.tableview];
     }];
@@ -73,8 +74,13 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self setPushtTypeWithModel:self.model.contents[indexPath.row]];
-
 }
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    [(SQBaseTableViewCell *)cell startScrollAnimation];
+}
+
+
 - (void)didSelectedBannerWithIndex:(NSInteger)index {
     [self setPushtTypeWithModel:self.model.banners[index]];
 }

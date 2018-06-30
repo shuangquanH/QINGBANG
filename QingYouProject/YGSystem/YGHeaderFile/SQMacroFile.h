@@ -46,33 +46,31 @@
 #define KSCAL(a)            ([SQIphonePx shareInstance].uiScaling*a)
 /** 字体大小 */
 #define KFONT(a)            [UIFont systemFontOfSize:KSCAL(a)]
-/** 是否是iPhoneX  */
-#define KISIPHONEX          (KAPP_HEIGHT == 812)
 
-/** app主色调 */
-#define KCOLOR_MAIN         [UIColor hexStringToColor:@"f39700"]
+
+
+
+//////////////////////////////颜色相关//////////////////////////////////////////////////
 /** 白色 */
 #define KCOLOR_WHITE         [UIColor whiteColor]
-
+/** 颜色(传string格式) */
+#define KCOLOR(a)           [UIColor hexStringToColor:a]
+/** app主色调 */
+#define KCOLOR_MAIN         [UIColor hexStringToColor:@"f39700"]
 /** 333黑色  */
 #define kCOLOR_333          [UIColor hexStringToColor:@"333333"]
 /** 666灰色  */
 #define kCOLOR_666          [UIColor hexStringToColor:@"666666"]
 /** 999灰色  */
 #define kCOLOR_999          [UIColor hexStringToColor:@"999999"]
-
-
-/** 价格红色 */
-#define kCOLOR_PRICE_RED    [UIColor hexStringToColor:@"e60012"]
-
+/** 背景色  */
+#define kCOLOR_BACK          [UIColor hexStringToColor:@"d3d3d3"]
 /** 浅灰背景颜色  */
 #define KCOLOR_LIGHTBACK    [UIColor hexStringToColor:@"F0F0F0"]
-
 /** 分割线浅灰色 */
 #define KCOLOR_LINE         [UIColor hexStringToColor:@"eeeeee"]
-
-/** 颜色(传string格式) */
-#define KCOLOR(a)           [UIColor hexStringToColor:a]
+/** 价格红色 */
+#define kCOLOR_PRICE_RED    [UIColor hexStringToColor:@"e60012"]
 
 /** 颜色和透明度(颜色为string格式，透明度为float格式) */
 #define KCOLOR_ALPHA(a,b)   [UIColor hexStringToColor:a andAlpha:b]
@@ -80,6 +78,10 @@
 /** RGB设置颜色 */
 #define kCOLOR_RGB(r, g, b) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:1.0]
 
+
+
+/** 是否是iPhoneX  */
+#define KISIPHONEX          (KAPP_HEIGHT == 812)
 /** 系统版本 */
 #define KiOS9_1Later        ([UIDevice currentDevice].systemVersion.floatValue >= 9.1f)
 #define KiOS11Later         ([UIDevice currentDevice].systemVersion.floatValue >= 11.0f)

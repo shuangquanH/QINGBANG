@@ -39,7 +39,7 @@
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal" title="取消收藏">
-                            <color key="titleColor" red="0.1764705882" green="0.74509803919999995" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="titleColor" red="0.7644813060760498" green="0.51467616891283918" blue="0.17251571484277814" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </state>
                     </button>
                 </subviews>
@@ -63,6 +63,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="placeholderfigure_rectangle_420x300" width="16" height="16"/>
+        <image name="placeholderfigure_rectangle_420x300" width="210" height="150"/>
     </resources>
 </document>

@@ -31,6 +31,7 @@
 
 @implementation SQHomeCollectionHeader
 
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -43,11 +44,13 @@
 }
 
 
+
 //首页banner
 - (void)addCycleView {
     CGRect frame = CGRectMake(0, 0, YGScreenWidth, KSCAL(320));
     self.cycleView = [SDCycleScrollView cycleScrollViewWithFrame:frame delegate:self placeholderImage:[UIImage imageNamed:@"placeholderfigure_rectangle_600x300"]];
-    self.cycleView.backgroundColor = colorWithTable;
+    self.cycleView.contentMode = UIViewContentModeScaleAspectFill;
+    self.cycleView.backgroundColor = kCOLOR_BACK;
     [self addSubview:self.cycleView];
     
 }

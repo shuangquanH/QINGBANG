@@ -18,6 +18,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:self.bounds delegate:self placeholderImage:[UIImage imageNamed:@"placeholderfigure_rectangle_600x300"]];
+        cycleScrollView.backgroundColor = kCOLOR_BACK;
         cycleScrollView.contentMode = UIViewContentModeScaleAspectFill;
         cycleScrollView.autoScroll = YES;
         cycleScrollView.infiniteLoop = YES;

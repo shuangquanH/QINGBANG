@@ -183,10 +183,10 @@
     orderPrice.text = [NSString stringWithFormat:@"¥%@(预估价)", detailModel.totalprice];
     //定金
     NSString    *earnestStr = [NSString stringWithFormat:@"定金: ¥%@", detailModel.earnest];
-    payForPrice.attributedText = [earnestStr sqAttributeStringWithCutIndex:3 withLeftFont:nil rightFont:nil leftColor:kCOLOR_333 rightColor:[UIColor redColor]];
+    payForPrice.attributedText = [earnestStr sqAttributeStringWithCutIndex:3 withLeftFont:nil rightFont:nil leftColor:kCOLOR_333 rightColor:kCOLOR_PRICE_RED];
     //总价
     NSString    *totalPriceStr = [NSString stringWithFormat:@"共计: ¥%@(定金)", detailModel.earnest];
-    totalPrice.attributedText = [totalPriceStr sqAttributeStringWithCutIndex:3 withLeftFont:nil rightFont:nil leftColor:kCOLOR_333 rightColor:[UIColor redColor]];
+    totalPrice.attributedText = [totalPriceStr sqAttributeStringWithCutIndex:3 withLeftFont:nil rightFont:nil leftColor:kCOLOR_333 rightColor:kCOLOR_PRICE_RED];
     
     
 }
@@ -337,7 +337,7 @@
 - (void)setDetailModel:(SQDecorationDetailModel *)detailModel {
     _detailModel = detailModel;
     NSString *dingjin = [NSString stringWithFormat:@"支付定金: ¥%@", detailModel.earnest];
-    zhifudingjin.attributedText = [dingjin sqAttributeStringWithCutIndex:5 withLeftFont:nil rightFont:nil leftColor:nil rightColor:[UIColor redColor]];
+    zhifudingjin.attributedText = [dingjin sqAttributeStringWithCutIndex:5 withLeftFont:nil rightFont:nil leftColor:nil rightColor:kCOLOR_PRICE_RED];
     
 }
 - (void)wxaction {
