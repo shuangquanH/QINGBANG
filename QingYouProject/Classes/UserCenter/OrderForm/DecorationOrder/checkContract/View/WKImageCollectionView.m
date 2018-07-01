@@ -8,15 +8,21 @@
 
 #import "WKImageCollectionView.h"
 
-@implementation WKImageCollectionView
+@implementation WKImageCollectionView {
+    NSInteger _lineCount;
+}
 - (instancetype)initWithMaxCount:(NSInteger)maxCount hasDeleteAction:(BOOL)hasDeleteAction {
     if (self == [super init]) {
+        _lineCount = 4;
         [self setupCollectByCount:maxCount hasDeleteAction:hasDeleteAction];
     }
     return self;
 }
 
 - (void)setupCollectByCount:(NSInteger)count hasDeleteAction:(BOOL)hasDeleteAction {
+
+    NSInteger maxRow = (count % _lineCount == 0) ? (count / _lineCount) : (count / _lineCount + 1);
+
     for (int i = 0; i < count; i++) {
         
         UIImageView *imageView = [UIImageView new];
@@ -24,7 +30,6 @@
         imageView.backgroundColor = kCOLOR_RGB(239, 239, 239);
 
         UIView *view;
-        
         if (hasDeleteAction) {
             view = [UIView new];
             [view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap_imageView:)]];
@@ -63,20 +68,24 @@
             view = imageView;
         }
         
+        NSInteger line = i % _lineCount;//列
+        NSInteger row = i / _lineCount;//行
+        
         [view mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.bottom.mas_equalTo(0);
+            make.left.mas_equalTo(line * (KSCAL(130) + KSCAL(20)));
             make.width.mas_equalTo(KSCAL(130));
-            if (i == 0) {
-                make.left.mas_equalTo(0);
-                if (!hasDeleteAction) {
-                    make.height.mas_equalTo(KSCAL(130));
-                }
-                else {
-                    make.height.mas_equalTo(KSCAL(190));
-                }
+            if (!hasDeleteAction) {
+                make.height.mas_equalTo(KSCAL(130));
+                make.top.mas_equalTo(row * (KSCAL(130) + KSCAL(20)));
+            } else {
+                make.height.mas_equalTo(KSCAL(190));
+                make.top.mas_equalTo(row * (KSCAL(190) + KSCAL(20)));
             }
-            else {
-                make.left.mas_equalTo(i * (KSCAL(130) + KSCAL(20)));
+//            if (line == _lineCount - 1) {
+//                make.right.mas_equalTo(0);
+//            }
+            if (row == maxRow - 1) {
+                make.bottom.mas_equalTo(0);
             }
         }];
     }
