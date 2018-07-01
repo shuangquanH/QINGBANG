@@ -9,6 +9,9 @@
 #import "SQAddTicketApplyInputCell.h"
 #import "UILabel+SQAttribut.h"
 
+@interface SQAddTicketApplyInputCell()<UITextFieldDelegate>
+@end
+
 @implementation SQAddTicketApplyInputCell
 {
     UITextField *_inputTF;
@@ -34,6 +37,7 @@
     _inputTF = [[UITextField alloc] init];
     _inputTF.font = KFONT(28);
     _inputTF.textColor = kCOLOR_333;
+    _inputTF.delegate = self;
     [_inputTF addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
     [self.contentView addSubview:_inputTF];
     
@@ -67,7 +71,7 @@
         if ([self.delegate respondsToSelector:@selector(cell:didEditTextField:)]) {
             [self.delegate cell:self didEditTextField:textField];
         }
-        return;
+        return; 
     }
     
     NSString *toBeString = textField.text;
@@ -104,6 +108,13 @@
     }
     _inputTF.placeholder = placeHodler;
     _inputTF.text = content;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if ([string isEqualToString:@" "]) {
+        return NO;
+    }
+    return YES;
 }
 
 - (CGSize)intrinsicContentSize {

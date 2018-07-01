@@ -36,13 +36,14 @@
     [self.contentView addSubview:_numberLab];
     
     _organizationLab = [UILabel labelWithFont:KSCAL(28) textColor:kCOLOR_666];
-    [_organizationLab setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
+    [_organizationLab setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
     [self.contentView addSubview:_organizationLab];
     
     _defaultLabel = [UILabel labelWithFont:KSCAL(28) textColor:KCOLOR_MAIN textAlignment:NSTextAlignmentLeft];
-    [_defaultLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
+    [_defaultLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
     _defaultLabel.text = @"【默认】";
     _defaultLabel.hidden = YES;
+    _defaultLabel.numberOfLines = 1;
     [self.contentView addSubview:_defaultLabel];
 
     [_organizationLab mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -55,7 +56,7 @@
     }];
     [_defaultLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(_nameLab.mas_right);
-        make.bottom.equalTo(_nameLab);
+        make.centerY.equalTo(_nameLab);
         make.right.mas_equalTo(_organizationLab.mas_left).offset(-8);
     }];
     [_numberLab mas_makeConstraints:^(MASConstraintMaker *make) {
