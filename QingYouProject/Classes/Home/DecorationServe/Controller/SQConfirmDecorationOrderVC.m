@@ -142,10 +142,12 @@
     self.bottomPayView.userInteractionEnabled = YES;
     [self.bottomPayView sq_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
         weakSelf.bottomPayView.userInteractionEnabled = NO;
-        [weakSelf.bottomPayView performSelector:@selector(setUserInteractionEnabled:) withObject:@(YES) afterDelay:3.0];
+        [weakSelf performSelector:@selector(setBottomPayViewEnabled) withObject:nil afterDelay:3.0];
         [weakSelf confirmButtonAction];
     }];
-    
+}
+- (void)setBottomPayViewEnabled{
+    self.bottomPayView.userInteractionEnabled = YES;
 }
 
 - (void)payType:(PayType)type {
@@ -165,12 +167,12 @@
     NSDictionary    *param = @{@"addressId":self.chooseAddressView.model.ID, @"payType":paytype, @"remarks":beizhu, @"skuId":self.detailModel.productSkuId};
     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
     [SQRequest post:KAPI_CREATORDER param:param success:^(id response) {
-        [YGNetService dissmissLoadingView];
         if ([response[@"code"] integerValue]==0) {
             [self pingPPPayWithResponde:response[@"data"]];
         } else {
             [YGAppTool showToastWithText:response[@"msg"]];
         }
+        [YGNetService dissmissLoadingView];
     } failure:^(NSError *error) {
         [YGNetService dissmissLoadingView];
         [YGAppTool showToastWithText:@"网络错误"];
