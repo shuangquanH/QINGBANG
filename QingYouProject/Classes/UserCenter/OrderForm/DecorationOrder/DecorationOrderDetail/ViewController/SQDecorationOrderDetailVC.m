@@ -155,7 +155,6 @@
         [YGAppTool showToastWithText:@"暂无供下载的合同文件"];
         return;
     }
-    
     NSMutableDictionary *progressDict = [NSMutableDictionary dictionary];
     NSMutableArray *loadImages = [NSMutableArray arrayWithCapacity:progressDict.allKeys.count];
     [urls enumerateObjectsUsingBlock:^(NSString *obj, NSUInteger idx, BOOL * _Nonnull stop) {
