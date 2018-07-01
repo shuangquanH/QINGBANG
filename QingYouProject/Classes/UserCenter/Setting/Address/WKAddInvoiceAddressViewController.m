@@ -97,7 +97,7 @@
         [YGAppTool showToastWithText:@"请输入姓名"];
         return;
     }
-    if (self.editAddress.name.length > 10) {
+    if (self.editAddress.name.length > 20) {
         [YGAppTool showToastWithText:@"姓名过长"];
         return;
     }
@@ -205,12 +205,15 @@
         cell.editEnable = YES;
         cell.keyboardType = UIKeyboardTypeDefault;
         [cell configTitle:@"姓名" placeHodler:@"请输入姓名" content:self.editAddress.name necessary:NO];
+        cell.limitTextCount = 20;
     } else if (indexPath.row == 1) {
         cell.editEnable = YES;
         cell.keyboardType = UIKeyboardTypeNumberPad;
         [cell configTitle:@"手机号" placeHodler:@"请输入手机号码" content:self.editAddress.phone necessary:NO];
+        cell.limitTextCount = 11;
     } else {
         cell.editEnable = NO;
+        cell.limitTextCount = 50;
         [cell configTitle:@"所在地区" placeHodler:@"请选择" content:self.areaString necessary:NO];
     }
     return cell;

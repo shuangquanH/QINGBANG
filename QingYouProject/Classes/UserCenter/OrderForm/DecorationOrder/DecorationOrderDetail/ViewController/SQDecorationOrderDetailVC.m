@@ -168,7 +168,15 @@
     hud.removeFromSuperViewOnHide = YES;
     
     for (NSString *url in urls) {
-        [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:url] options:SDWebImageDownloaderContinueInBackground progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+        NSURL *loadUrl = [NSURL URLWithString:url];
+        if (!loadUrl) {
+            [[SDWebImageDownloader sharedDownloader] cancelAllDownloads];
+            [hud hideAnimated:YES];
+            [YGAppTool showToastWithText:@"合同下载地址不正确，请咨询客服查看原因"];
+            return;
+        }
+        
+        [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:loadUrl options:SDWebImageDownloaderContinueInBackground progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 progressDict[targetURL.absoluteString] = @(receivedSize / expectedSize);
                 float currentProgress = 0;
@@ -180,12 +188,7 @@
                 hud.progress = progress;
             });
         } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
-            if (error) {//下载失败，取消所有下载
-                [[SDWebImageDownloader sharedDownloader] cancelAllDownloads];
-                [hud hideAnimated:YES];
-                [YGAppTool showToastWithText:@"合同下载失败，请稍后再试"];
-                NSLog(@"下载失败--%@", error);
-            } else {
+            if (finished && image) {
                 [loadImages addObject:image];
                 if (loadImages.count == progressDict.allKeys.count) {//下载完毕
                     NSLog(@"下载完成--%@", loadImages);
@@ -205,6 +208,11 @@
                         }];
                     }
                 }
+            } else {
+                [[SDWebImageDownloader sharedDownloader] cancelAllDownloads];
+                [hud hideAnimated:YES];
+                [YGAppTool showToastWithText:@"合同下载失败，请稍后再试"];
+                NSLog(@"下载失败--%@", error);
             }
         }];
     }

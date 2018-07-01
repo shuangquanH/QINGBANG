@@ -13,12 +13,14 @@
 {
     UITextField *_inputTF;
     UILabel *_titleLab;
+    NSString *_title;
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self == [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.editEnable = YES;
+        _title = @"文字";
         [self setupSubviews];
     }
     return self;
@@ -60,12 +62,39 @@
 }
 
 - (void)textFieldChanged:(UITextField *)textField {
+    
+    if (_limitTextCount == 0) {//没有限制输入
+        if ([self.delegate respondsToSelector:@selector(cell:didEditTextField:)]) {
+            [self.delegate cell:self didEditTextField:textField];
+        }
+        return;
+    }
+    
+    NSString *toBeString = textField.text;
+    NSString *lang = [[UIApplication sharedApplication] textInputMode].primaryLanguage;
+    if ([lang isEqualToString:@"zh-Hans"]) {
+        UITextRange *selectedRange = [textField markedTextRange];
+        UITextPosition *position = [textField positionFromPosition:selectedRange.start offset:0];
+        if (!position) {
+            if (toBeString.length > _limitTextCount) {
+                textField.text = [toBeString substringToIndex:_limitTextCount];
+                [textField resignFirstResponder];
+                [YGAppTool showToastWithText:[NSString stringWithFormat:@"输入%@已到最大长度限制", _title.length?_title:@"文字"]];
+            }
+        }
+    } else {
+        if (toBeString.length > _limitTextCount) {
+            textField.text = [toBeString substringToIndex:_limitTextCount];
+            [YGAppTool showToastWithText:[NSString stringWithFormat:@"输入%@最大长度限制", _title.length?_title:@"文字"]];
+        }
+    }
     if ([self.delegate respondsToSelector:@selector(cell:didEditTextField:)]) {
         [self.delegate cell:self didEditTextField:textField];
     }
 }
 
 - (void)configTitle:(NSString *)title placeHodler:(NSString *)placeHodler content:(NSString *)content necessary:(BOOL)necessary {
+    _title = title;
     if (necessary) {
         _titleLab.text = [NSString stringWithFormat:@"%@ ", title];
         [_titleLab appendImage:[UIImage imageNamed:@"invoicetitle_redpoint"] imageFrame:CGRectMake(0, 2, 7, 7) withType:SQAppendImageInRight];

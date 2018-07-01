@@ -87,28 +87,34 @@
     if (indexPath.row == 1) {
         [cell configTitle:@"名称" placeHodler:@"请输入抬头名称" content:self.invoiceInfo.title necessary:YES];
         cell.keyboardType = UIKeyboardTypeDefault;
+        cell.limitTextCount = 50;
         return;
     }
     
     if (self.invoiceInfo.type == 2) {//企业发票
         if (indexPath.row == 2) {
             [cell configTitle:@"税号" placeHodler:@"请输入纳税人识别号" content:self.invoiceInfo.taxNo necessary:YES];
+            cell.limitTextCount = 50;
             cell.keyboardType = UIKeyboardTypeDefault;
         }
         else if (indexPath.row == 3) {
             [cell configTitle:@"企业地址" placeHodler:@"请输入企业注册地址" content:self.invoiceInfo.address necessary:NO];
+            cell.limitTextCount = 50;
             cell.keyboardType = UIKeyboardTypeDefault;
         }
         else if (indexPath.row == 4) {
             [cell configTitle:@"电话号码" placeHodler:@"请输入企业电话号码" content:self.invoiceInfo.tel necessary:NO];
+            cell.limitTextCount = 11;
             cell.keyboardType = UIKeyboardTypeNumberPad;
         }
         else if (indexPath.row == 5) {
             [cell configTitle:@"开户银行" placeHodler:@"请输入企业开户银行" content:self.invoiceInfo.bankName necessary:NO];
+            cell.limitTextCount = 50;
             cell.keyboardType = UIKeyboardTypeDefault;
         }
         else if (indexPath.row == 6) {
             [cell configTitle:@"银行账户" placeHodler:@"请输入企业银行账户" content:self.invoiceInfo.bankNo necessary:NO];
+            cell.limitTextCount = 50;
             cell.keyboardType = UIKeyboardTypeNumberPad;
         }
     }

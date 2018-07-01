@@ -26,6 +26,8 @@
 
 @property (nonatomic, assign) UIKeyboardType keyboardType;
 
+@property (nonatomic, assign) NSUInteger limitTextCount;
+
 - (void)configTitle:(NSString *)title placeHodler:(NSString *)placeHodler content:(NSString *)content necessary:(BOOL)necessary;
 
 @end

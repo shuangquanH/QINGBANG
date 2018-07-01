@@ -66,6 +66,7 @@
     [self.view addSubview:_bgView];
     
     _inputCell = [[SQAddTicketApplyInputCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
+    _inputCell.limitTextCount = 200;
     [_inputCell configTitle:@"问题描述" placeHodler:@"请描述您的问题" content:@"" necessary:YES];
     _inputCell.delegate = self;
     [_bgView addSubview:_inputCell];

@@ -26,9 +26,13 @@
 }
 - (void)setupSubviews {
     _nameLab = [UILabel labelWithFont:KSCAL(34) textColor:kCOLOR_333];
+    _nameLab.lineBreakMode = NSLineBreakByTruncatingTail;
+    _nameLab.numberOfLines = 1;
     [self.contentView addSubview:_nameLab];
     
     _numberLab = [UILabel labelWithFont:KSCAL(24) textColor:kCOLOR_666];
+    _numberLab.lineBreakMode = NSLineBreakByTruncatingTail;
+    _numberLab.numberOfLines = 1;
     [self.contentView addSubview:_numberLab];
     
     _organizationLab = [UILabel labelWithFont:KSCAL(28) textColor:kCOLOR_666];
