@@ -16,6 +16,9 @@
 //发票管理发生数据刷新时的回调
 @property (nonatomic, copy) void (^ managerRefresh)(NSArray<WKInvoiceModel *> *invoiceList);
 
+@property (nonatomic, copy  ) void (^ invoiceListReback)(NSArray<WKInvoiceModel *> *invoiceList);
+
+
 @property (nonatomic, copy) NSString *defaultInvoiceId;
 
 - (instancetype)initWithIsTicketApplyManager:(BOOL)isTicketApplyManager;

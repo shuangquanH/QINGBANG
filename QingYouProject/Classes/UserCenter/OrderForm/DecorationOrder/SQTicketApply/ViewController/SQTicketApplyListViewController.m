@@ -164,15 +164,8 @@
         } else {
             [self.invoiceList removeAllObjects];
             [self.invoiceList addObjectsFromArray:invoiceList];
-            BOOL needClearApplyInvoice = YES;//是否需要清除申请列表默认的抬头
-            for (WKInvoiceModel *m in self.invoiceList) {
-                if ([m.ID isEqualToString:self.defaultInvoiceId]) {
-                    needClearApplyInvoice = NO;
-                    break;
-                }
-            }
-            if (needClearApplyInvoice) {
-                self.selectInvoiceBlock(nil);
+            if (self.invoiceListReback) {
+                self.invoiceListReback(invoiceList);
             }
             [self.tableView reloadData];
         }

@@ -232,6 +232,17 @@
             self.invoiceInfo = invoiceInfo;
             [self.tableView reloadData];
         };
+        next.invoiceListReback = ^(NSArray<WKInvoiceModel *> *invoiceList) {
+            if (self.invoiceInfo) {
+                for (WKInvoiceModel *m in invoiceList) {
+                    if ([m.ID isEqualToString:self.invoiceInfo.ID]) {
+                        self.invoiceInfo = nil;
+                        [self.tableView reloadData];
+                        break;
+                    }
+                }
+            }
+        };
         [self.navigationController pushViewController:next animated:YES];
         return;
     }
@@ -241,6 +252,12 @@
         vc.addressSelecter = ^(WKInvoiceAddressModel *addressInfo) {
             self.postInfo = addressInfo;
             [self.tableView reloadData];
+        };
+        vc.addressClear = ^(WKInvoiceAddressModel *addressInfo) {
+            if (self.postInfo && [self.postInfo.ID isEqualToString:addressInfo.ID]) {
+                self.postInfo = nil;
+                [self.tableView reloadData];
+            }
         };
         [self.navigationController pushViewController:vc animated:YES];
     }
