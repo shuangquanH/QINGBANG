@@ -67,6 +67,7 @@
         
         rightLine = [[SQBaseImageView alloc] init];
         rightLine.image = [UIImage imageNamed:@"tab_line"];
+        rightLine.layer.masksToBounds = YES;
         [self addSubview:rightLine];
         
 //        [collectBtn mas_makeConstraints:^(MASConstraintMaker *make) {

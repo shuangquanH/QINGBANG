@@ -9,6 +9,7 @@
 #import "SQConfirmDecorationCell.h"
 #import "UIView+SQGesture.h"
 #import "NSString+SQAttributeString.h"
+#import "UIButton+WKTouchEdges.h"
 
 #define KSPACE 20
 
@@ -247,6 +248,7 @@
         zfbBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [zfbBtn setImage:[UIImage imageNamed:@"order_list_btn1"] forState:UIControlStateNormal];
         [zfbBtn setImage:[UIImage imageNamed:@"order_list_btn_down"] forState:UIControlStateSelected];
+        [zfbBtn setEnlargeEdgeWithTop:15 right:15 bottom:15 left:15];
         [self addSubview:zfbBtn];
         
 
@@ -284,6 +286,7 @@
         wxBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [wxBtn setImage:[UIImage imageNamed:@"order_list_btn1"] forState:UIControlStateNormal];
         [wxBtn setImage:[UIImage imageNamed:@"order_list_btn_down"] forState:UIControlStateSelected];
+        [wxBtn setEnlargeEdgeWithTop:15 right:15 bottom:15 left:15];
         [self addSubview:wxBtn];
         
         

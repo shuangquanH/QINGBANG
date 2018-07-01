@@ -77,6 +77,7 @@
     
     /** 选择地址  */
     self.chooseAddressView = [[SQChooseDecorationAddressView alloc] init];
+    self.chooseAddressView.model = nil;
     [contentView addSubview:self.chooseAddressView];
     [self.chooseAddressView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.right.left.equalTo(contentView);
