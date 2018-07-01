@@ -76,10 +76,10 @@
 - (UIBarButtonItem *)createBarbuttonWithNormalImageName:(NSString *)imageName selectedImageName:(NSString *)selectImageName selector:(SEL)selector
 {
 
-    UIButton *barButton = [[UIButton alloc] init];
+    UIButton *barButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+    barButton.imageEdgeInsets = UIEdgeInsetsMake(0, 10, 0, -10);
     [barButton setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
     [barButton setImage:[UIImage imageNamed:selectImageName] forState:UIControlStateSelected];
-    [barButton sizeToFit];
     [barButton addTarget:self action:selector forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:barButton];
     return barButtonItem;

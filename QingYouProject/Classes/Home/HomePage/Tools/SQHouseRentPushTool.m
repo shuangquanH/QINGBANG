@@ -47,14 +47,15 @@
                 
                 if (viewController.funcs_target_params) {
                     NSString *controllerString = dic[@"targetController"];
-                    
                     if ([controllerString isEqualToString:@"OfficePurchaseViewController"]) {
+                        if (![vc loginOrNot]) {return;}
                         OfficePurchaseDetailViewController * detailVC = [[OfficePurchaseDetailViewController alloc] init];
                         detailVC.commodityID = viewController.funcs_target_params;
                         [vc.navigationController pushViewController:detailVC animated:YES];
                         return;
                         
                     } else if ([controllerString isEqualToString:@"IntegrationIndustryCommerceController"]) {
+                        if (![vc loginOrNot]) {return;}
                         FinacialAccountingDetailViewController *detailVC = [[FinacialAccountingDetailViewController alloc]init];
                         detailVC.pageType = @"IntegrationIndustryCommerceController";
                         detailVC.hidesBottomBarWhenPushed = YES;

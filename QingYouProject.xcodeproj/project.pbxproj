@@ -439,7 +439,6 @@
 		18C15A8E1FC8208B0010ACD3 /* ReserveRemarkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C1585F1FC820890010ACD3 /* ReserveRemarkCell.m */; };
 		18C15A8F1FC8208B0010ACD3 /* ReserveRemarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C158601FC820890010ACD3 /* ReserveRemarkCell.xib */; };
 		18C15A9E1FC8208B0010ACD3 /* ProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C158801FC820890010ACD3 /* ProgressView.m */; };
-		18C15A9F1FC8208B0010ACD3 /* SelectCityPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C158821FC820890010ACD3 /* SelectCityPopView.m */; };
 		2C6C2C411FB141B800B1CB9C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6C2C401FB141B800B1CB9C /* SystemConfiguration.framework */; };
 		2C6C2C431FB141C600B1CB9C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6C2C421FB141C600B1CB9C /* CoreTelephony.framework */; };
 		2C6C2C451FB141D000B1CB9C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C6C2C441FB141CF00B1CB9C /* libsqlite3.tbd */; };
@@ -1575,8 +1574,6 @@
 		18C158601FC820890010ACD3 /* ReserveRemarkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReserveRemarkCell.xib; sourceTree = "<group>"; };
 		18C1587F1FC820890010ACD3 /* ProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressView.h; sourceTree = "<group>"; };
 		18C158801FC820890010ACD3 /* ProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressView.m; sourceTree = "<group>"; };
-		18C158811FC820890010ACD3 /* SelectCityPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCityPopView.h; sourceTree = "<group>"; };
-		18C158821FC820890010ACD3 /* SelectCityPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCityPopView.m; sourceTree = "<group>"; };
 		2C6C2C401FB141B800B1CB9C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		2C6C2C421FB141C600B1CB9C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		2C6C2C441FB141CF00B1CB9C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -5333,8 +5330,6 @@
 				E99DE22F20B65A11009CEF88 /* SQRequest.m */,
 				18C1587F1FC820890010ACD3 /* ProgressView.h */,
 				18C158801FC820890010ACD3 /* ProgressView.m */,
-				18C158811FC820890010ACD3 /* SelectCityPopView.h */,
-				18C158821FC820890010ACD3 /* SelectCityPopView.m */,
 				E9E1E59C20C6B61C00A807BE /* SQLinkJSWebView.h */,
 				E9E1E59D20C6B61C00A807BE /* SQLinkJSWebView.m */,
 			);
@@ -6301,7 +6296,6 @@
 				18C158EB1FC820890010ACD3 /* ShopItemModel.m in Sources */,
 				E99DE1EF20AEA207009CEF88 /* SQDecorationServeCell.m in Sources */,
 				18C158E11FC820890010ACD3 /* CommercialRegistrationModel.m in Sources */,
-				18C15A9F1FC8208B0010ACD3 /* SelectCityPopView.m in Sources */,
 				18C1597C1FC8208A0010ACD3 /* MyRecruitEnterpriseMessageViewController.m in Sources */,
 				E2E5B1761FB0675A00205F70 /* TZVideoPlayerController.m in Sources */,
 				E99DE22720B59286009CEF88 /* SQHomeCollectionHeader.m in Sources */,

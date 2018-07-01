@@ -113,7 +113,7 @@
         UIButton    *btn = funcsBtnArr[i];
         CGFloat eachContentWidth = (KAPP_WIDTH-KSCAL(80))/funcsBtnArr.count;
         CGFloat btnOrginX = KSCAL(40)+i*eachContentWidth+(eachContentWidth-KSCAL(122))/2.0;
-        [btn setFrame:CGRectMake(btnOrginX, 0, KSCAL(122), KSCAL(100))];
+        [btn setFrame:CGRectMake(btnOrginX, 0, KSCAL(140), KSCAL(100))];
     }
     [self.ovalContentView removeFromSuperview];
     self.ovalContentView = tempView;

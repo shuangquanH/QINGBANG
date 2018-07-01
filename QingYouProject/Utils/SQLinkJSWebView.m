@@ -8,10 +8,6 @@
 
 #import "SQLinkJSWebView.h"
 #import "SQBaseWebViewController.h"
-////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 
 @implementation SQLinkJSWebView
 
@@ -67,8 +63,8 @@
 }
 
 - (void)dealloc {
-    NSLog(@"||||||||||webView已经销毁||||||||||");
     [self.configuration.userContentController removeAllUserScripts];
+    NSLog(@"%@  dealloc", self);
 }
 
 

@@ -32,7 +32,7 @@
 }
 - (void)configUI
 {
-    self.naviTitle = @"项目申报";
+    self.naviTitle = @"我的项目申报";
     UIView *segementBaseView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, YGScreenWidth, 40)];
     segementBaseView.backgroundColor = colorWithYGWhite;
     [self.view addSubview:segementBaseView];
