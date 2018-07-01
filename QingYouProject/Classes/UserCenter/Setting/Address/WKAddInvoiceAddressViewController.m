@@ -105,8 +105,8 @@
         [YGAppTool showToastWithText:@"请输入手机号码"];
         return;
     }
-    if ([YGAppTool isNotPhoneNumber:self.editAddress.phone]) {
-        [YGAppTool showToastWithText:@"手机号码不符合规则"];
+    if (self.editAddress.phone.length != 11) {
+        [YGAppTool showToastWithText:@"输入手机号码格式错误"];
         return;
     }
     if (!self.areaString.length) {

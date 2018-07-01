@@ -151,9 +151,9 @@
     NSString *CU = @"(^1(3[0-2]|4[5]|5[56]|7[6]|8[56])\\d{8}$)|(^1709\\d{7}$)";
     /**
      * 中国电信：China Telecom
-     * 133,153,180,181,189,177,1700
+     * 133,153,180,181,188,189,177,1700,173
      */
-    NSString *CT = @"(^1(33|53|77|8[019])\\d{8}$)|(^1700\\d{7}$)";
+    NSString *CT = @"(^1(33|53|77|73|8[0189])\\d{8}$)|(^1700\\d{7}$)";
     
     
     NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
