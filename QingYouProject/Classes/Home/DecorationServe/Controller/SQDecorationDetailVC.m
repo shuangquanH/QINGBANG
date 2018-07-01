@@ -36,7 +36,10 @@
     UIBarButtonItem *itme = [self createBarbuttonWithNormalImageName:@"Details_page_nav_icon"
                                                    selectedImageName:@"Details_page_nav_icon"
                                                             selector:@selector(rightButtonItemAciton)];
-    self.navigationItem.rightBarButtonItem = itme;
+    UIBarButtonItem *itme2 = [self createBarbuttonWithNormalImageName:@""
+                                                   selectedImageName:@""
+                                                            selector:@selector(rightButtonItemAciton)];
+    self.navigationItem.rightBarButtonItems = @[itme, itme2];
     
     self.navigationItem.titleView = self.seg;
     [self.view addSubview:self.bottomView];
@@ -140,8 +143,8 @@
         
         WeakSelf(weakSelf);
         [_webView registJSFunctionWithName:regisArr back:^(NSString *methodName, id  _Nullable paramValue) {
-            [[YGConnectionService sharedConnectionService] dissmissLoadingView];
             [weakSelf.view bringSubviewToFront:weakSelf.bottomView];
+            
             if ([methodName isEqualToString:@"DOWNLOADIMAGEFORIOS"]) {
                 [SQSaveWebImage saveImageWithUrl:paramValue];
             } else if ([methodName isEqualToString:@"GETPRODUCTINFOFORIOS"]) {
@@ -155,13 +158,10 @@
 
 - (void)showLodingAnimationView {
     [[YGConnectionService sharedConnectionService] showLoadingViewWithSuperView:YGAppDelegate.window];
-    [self performSelector:@selector(timeOut) withObject:nil afterDelay:5];
+    [self performSelector:@selector(timeOut) withObject:nil afterDelay:0.6];
 }
 - (void)timeOut {
-    if (!self.detailModel) {
-        [[YGConnectionService sharedConnectionService] dissmissLoadingView];
-        [YGAppTool showToastWithText:@"数据加载失败..."];
-    }
+    [[YGConnectionService sharedConnectionService] dissmissLoadingView];
 }
 - (void)setDetailModel:(SQDecorationDetailModel *)detailModel {
     _detailModel = detailModel;

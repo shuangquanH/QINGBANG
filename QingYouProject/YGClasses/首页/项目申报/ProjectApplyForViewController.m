@@ -23,6 +23,7 @@
 
 @property (nonatomic, strong) NSMutableArray          *dataSource;  //数据源
 @property (nonatomic, strong) LXScollTitleView *titleView;
+@property (nonatomic, assign) int       index;
 
 @end
 
@@ -48,7 +49,6 @@
     NSMutableArray *_commentArray;
     UIView *_topBaseView;
     
-    int _index;
     NSArray *_imgList;
 }
 - (void)viewDidLoad {
@@ -156,14 +156,7 @@
     
 
     
-    
-//    UIView *oldLineView = [[UIView alloc] initWithFrame:CGRectMake(_newPriceLabel.x+_newPriceLabel.width+5,_newPriceLabel.y+5, _oldPriceLabel.width+10, 1)];
-//    oldLineView.backgroundColor = colorWithLine;
-//    oldLineView.centery = _oldPriceLabel.centery;
-//    [_baseView addSubview:oldLineView];
-//
-//    /********************** 分割线 ********************/
-//
+    /********************** 分割线 ********************/
     UIView *seperateView = [[UIView alloc] initWithFrame:CGRectMake(0, _adScrollview.y+_adScrollview.height, YGScreenWidth, 10)];
     seperateView.backgroundColor = colorWithTable;
     [_baseView addSubview:seperateView];
@@ -179,7 +172,7 @@
     __weak typeof(self) weakSelf = self;
     self.titleView.selectedBlock = ^(NSInteger index){
         __weak typeof(self) strongSelf = weakSelf;
-        _index = (int)index;
+        weakSelf.index = (int)index;
         [strongSelf refreshActionWithIsRefreshHeaderAction:YES];
     };
     self.titleView.titleWidth = 110.f;

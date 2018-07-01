@@ -52,7 +52,12 @@
             for (WKInvoiceAddressModel *tmodel in addresslist) {
                 if (tmodel.isdef) {
                     self.chooseAddressView.model = tmodel;
+                } else {
+                    self.chooseAddressView.model = addresslist.firstObject;
                 }
+            }
+            if (addresslist.count == 0) {
+                self.chooseAddressView.model = [WKInvoiceAddressModel new];
             }
         } else {
             [YGAppTool showToastWithText:response[@"msg"]];

@@ -46,6 +46,9 @@
                 }
                 
                 if (viewController.funcs_target_params) {
+                    if (![vc loginOrNot]) {
+                        return;
+                    }
                     NSString *controllerString = dic[@"targetController"];
                     
                     if ([controllerString isEqualToString:@"OfficePurchaseViewController"]) {
