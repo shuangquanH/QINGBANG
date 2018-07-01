@@ -26,7 +26,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.naviTitle = @"我的订单";
+    self.naviTitle = @"会议室预定订单";
     
 }
 
