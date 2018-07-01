@@ -156,7 +156,7 @@
 
 - (void)showLodingAnimationView {
     [[YGConnectionService sharedConnectionService] showLoadingViewWithSuperView:YGAppDelegate.window];
-    [self performSelector:@selector(timeOut) withObject:nil afterDelay:0.6];
+    [self performSelector:@selector(timeOut) withObject:nil afterDelay:0.8];
 }
 - (void)timeOut {
     [[YGConnectionService sharedConnectionService] dissmissLoadingView];
