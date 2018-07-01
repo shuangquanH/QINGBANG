@@ -165,10 +165,10 @@
     NSDictionary    *param = @{@"addressId":self.chooseAddressView.model.ID, @"payType":paytype, @"remarks":beizhu, @"skuId":self.detailModel.productSkuId};
     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
     [SQRequest post:KAPI_CREATORDER param:param success:^(id response) {
+        [YGNetService dissmissLoadingView];
         if ([response[@"code"] integerValue]==0) {
             [self pingPPPayWithResponde:response[@"data"]];
         } else {
-            [YGNetService dissmissLoadingView];
             [YGAppTool showToastWithText:response[@"msg"]];
         }
     } failure:^(NSError *error) {
@@ -180,7 +180,6 @@
 
 - (void)pingPPPayWithResponde:(NSDictionary *)response {
     [Pingpp createPayment:response[@"charge"] viewController:self appURLScheme:@"qingyouhui" withCompletion:^(NSString *result, PingppError *error){
-        [YGNetService dissmissLoadingView];
         if ([result isEqualToString:@"success"]) {
             SQPaySuccessfulVC   *payvc = [[SQPaySuccessfulVC alloc] init];
             payvc.lastNav = self.navigationController;
