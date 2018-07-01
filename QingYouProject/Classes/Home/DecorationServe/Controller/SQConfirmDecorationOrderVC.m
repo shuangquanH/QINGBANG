@@ -82,7 +82,6 @@
     
     /** 选择地址  */
     self.chooseAddressView = [[SQChooseDecorationAddressView alloc] init];
-    self.chooseAddressView.model = nil;
     [contentView addSubview:self.chooseAddressView];
     [self.chooseAddressView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.right.left.equalTo(contentView);
@@ -131,6 +130,11 @@
         [weakSelf.navigationController pushViewController:vc animated:YES];
         vc.addressSelecter = ^(WKInvoiceAddressModel *model){
             weakSelf.chooseAddressView.model = model;
+        };
+        vc.addressClear = ^(WKInvoiceAddressModel *addressInfo) {
+            if (weakSelf.chooseAddressView.model && [weakSelf.chooseAddressView.model.ID isEqualToString:addressInfo.ID]) {//地址列表清除的地址和当前选择的地址相同时，清除当前地址
+                weakSelf.chooseAddressView.model = nil;
+            }
         };
     }];
     

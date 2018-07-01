@@ -206,8 +206,12 @@ static NSString *functionCellIdentifier = @"WKInvoiceFunctionCell";
     } else {//删除
         [SQRequest post:KAPI_INVOICEADDRESSDELETE param:@{@"id": model.ID} success:^(id response) {
             if ([response[@"code"] longLongValue] == 0) {
+                if (self.addressClear) {
+                    self.addressClear(_dataArray[indexPath.section]);
+                }
                 [_dataArray removeObjectAtIndex:indexPath.section];
                 [_tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationNone];
+                
             } else {
                 [YGAppTool showToastWithText:response[@"msg"]];
             }
