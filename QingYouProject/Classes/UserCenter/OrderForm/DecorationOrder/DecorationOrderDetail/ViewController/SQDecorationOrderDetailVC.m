@@ -50,7 +50,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.naviTitle = @"订单详情";
-    
+
     self.orderVM = [WKDecorationDetailViewModel new];
     self.orderVM.orderDetailDelegate = self;
     [self sendReqeust];
