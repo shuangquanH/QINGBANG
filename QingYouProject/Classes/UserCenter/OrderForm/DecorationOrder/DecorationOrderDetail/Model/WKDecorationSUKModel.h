@@ -24,7 +24,7 @@
 
 @property (nonatomic, copy  ) NSString *productId;
 
-@property (nonatomic, copy  ) NSString *skuPrice;
+@property (nonatomic, assign) float skuPrice;
 
 @property (nonatomic, copy  ) NSString *updateDate;
 
