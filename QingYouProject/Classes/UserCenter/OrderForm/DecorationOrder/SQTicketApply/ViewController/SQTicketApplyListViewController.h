@@ -18,7 +18,6 @@
 
 @property (nonatomic, copy  ) void (^ invoiceListReback)(NSArray<WKInvoiceModel *> *invoiceList);
 
-
 @property (nonatomic, copy) NSString *defaultInvoiceId;
 
 - (instancetype)initWithIsTicketApplyManager:(BOOL)isTicketApplyManager;
