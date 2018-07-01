@@ -127,7 +127,7 @@
     
     NSMutableAttributedString *skuProductPriceAttributeString;
     NSString *skuPrice = [self skuPriceWithDoublePrice:orderInfo.skuDetails.skuPrice];
-    if (orderInfo.status == 4) {
+    if (orderInfo.status == 4 || orderInfo.status == 5) {
         skuProductPriceAttributeString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"¥ %@", skuPrice]];
     } else {
         skuProductPriceAttributeString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"¥ %@（预估价）", skuPrice]];
