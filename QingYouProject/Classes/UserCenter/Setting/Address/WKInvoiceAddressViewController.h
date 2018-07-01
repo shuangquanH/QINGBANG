@@ -13,5 +13,7 @@
 @interface WKInvoiceAddressViewController : RootViewController
 
 @property (nonatomic, copy  ) void (^ addressSelecter)(WKInvoiceAddressModel *addressInfo);
+//地址被清除时回调
+@property (nonatomic, copy  ) void (^ addressClear)(WKInvoiceAddressModel *addressInfo);
 
 @end

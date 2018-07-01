@@ -98,6 +98,7 @@
 - (void)configOrderDetailInfo:(WKDecorationOrderDetailModel *)orderDetailInfo withStage:(NSInteger)stage withInDetail:(BOOL)inDetail {
     
     [self configOrderInfo:orderDetailInfo.orderInfo withStage:stage withInDetail:inDetail];
+    
     if (stage == 0 && inDetail) {//订金阶段&&在详情中
         
         if (!orderDetailInfo.orderInfo.refund && orderDetailInfo.orderInfo.status == 3) {//没有过退款记录&&处于处理中状态->显示申请退款
@@ -123,7 +124,6 @@
             }];
             return;
         }
-        
     }
     else {
         if (!_refundBtn || _refundBtn.hidden) {
