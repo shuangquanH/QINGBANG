@@ -141,6 +141,8 @@
     /** 点击提交订单按钮  */
     self.bottomPayView.userInteractionEnabled = YES;
     [self.bottomPayView sq_addTapActionWithBlock:^(UIGestureRecognizer *gestureRecoginzer) {
+        weakSelf.bottomPayView.userInteractionEnabled = NO;
+        [weakSelf.bottomPayView performSelector:@selector(setUserInteractionEnabled:) withObject:@(YES) afterDelay:3.0];
         [weakSelf confirmButtonAction];
     }];
     
@@ -164,12 +166,14 @@
     [YGNetService showLoadingViewWithSuperView:YGAppDelegate.window];
     [SQRequest post:KAPI_CREATORDER param:param success:^(id response) {
         if ([response[@"code"] integerValue]==0) {
-            [self pingPPPayWithResponde:response[@"data"]];            
+            [self pingPPPayWithResponde:response[@"data"]];
         } else {
             [YGNetService dissmissLoadingView];
+            [YGAppTool showToastWithText:response[@"msg"]];
         }
     } failure:^(NSError *error) {
         [YGNetService dissmissLoadingView];
+        [YGAppTool showToastWithText:@"网络错误"];
     }];
 }
 
