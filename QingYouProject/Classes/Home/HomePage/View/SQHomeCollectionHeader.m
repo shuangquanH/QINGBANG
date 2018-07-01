@@ -123,9 +123,9 @@
     NSString    *name = [YGSingleton sharedManager].user.userName;
     NSString    *title = [NSString string];
     if (name) {
-        title = [NSString stringWithFormat:@"hello,%@欢迎来到青邦!", name];
+        title = [NSString stringWithFormat:@"hello，%@欢迎来到青邦!", name];
     } else {
-        title = [NSString stringWithFormat:@"hello,欢迎来到青邦!"];
+        title = [NSString stringWithFormat:@"hello，欢迎来到青邦!"];
     }
     [self.infoButton setTitle:title forState:UIControlStateNormal];
     [self.infoButton setImage:nil forState:UIControlStateNormal];

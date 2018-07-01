@@ -10,6 +10,8 @@
 
 @interface UIView (SQAnimations)
 
+
+
 //q弹效果
 -(void)showQAnimate;
 
@@ -24,7 +26,6 @@
 
 /** 从下向上偏移动画  */
 - (void)showExcursionAnimation;
-
 
 
 @end

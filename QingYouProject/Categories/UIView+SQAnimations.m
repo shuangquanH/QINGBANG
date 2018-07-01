@@ -55,7 +55,7 @@
 
 - (void)showCATransform3DAnimationWithRotation:(CATransform3D)rotation {
     self.layer.transform = rotation;
-    self.alpha =0.6;
+    self.alpha =0.8;
     
     [UIView animateWithDuration:0.6 animations:^{
         self.layer.transform =CATransform3DIdentity;
@@ -75,5 +75,6 @@
     NSString *keyStr = NSStringFromClass([self class]);
     [self.layer addAnimation:transition forKey:keyStr];
 }
+
 
 @end

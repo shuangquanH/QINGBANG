@@ -43,7 +43,7 @@
     
     // 设置刷新完毕状态的动画图片
     NSMutableArray *endfreshingImages = [NSMutableArray array];
-    for (NSUInteger i = 1; i<=1; i++) {
+    for (NSUInteger i = 1; i<=10; i++) {
         UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"loading_animation_load_%zd", i]];//3张
         [refreshingImages addObject:image];
     }
