@@ -110,7 +110,7 @@
     if (index < 0 || index >= self.subviews.count) return;
     UIView *view = [self.subviews objectAtIndex:index];
     if ([view isKindOfClass:[UIImageView class]]) {
-        [((UIImageView *)view) sd_setImageWithURL:[NSURL URLWithString:url]];
+        [((UIImageView *)view) sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"placeholderfigure_rectangle_300x300"]];
     }
     else {
         [((UIImageView *)(view.subviews.firstObject)) sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"placeholderfigure_rectangle_300x300"]];

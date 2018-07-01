@@ -126,21 +126,31 @@
     orderDesc.lineBreakMode = NSLineBreakByTruncatingTail;
     
     NSMutableAttributedString *skuProductPriceAttributeString;
-    if (!orderInfo.skuDetails.skuPrice.length) {
-        skuProductPriceAttributeString = [[NSMutableAttributedString alloc] initWithString:@""];
+    NSString *skuPrice = [self skuPriceWithDoublePrice:orderInfo.skuDetails.skuPrice];
+    if (orderInfo.status == 4) {
+        skuProductPriceAttributeString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"¥ %@", skuPrice]];
     } else {
-        if (orderInfo.status == 4) {
-            skuProductPriceAttributeString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"¥ %@", orderInfo.skuDetails.skuPrice]];
-        } else {
-            skuProductPriceAttributeString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"¥ %@（预估价）", orderInfo.skuDetails.skuPrice]];
-        }
-        [skuProductPriceAttributeString setAttributes:@{NSForegroundColorAttributeName: kCOLOR_PRICE_RED} range:NSMakeRange(0, 2+orderInfo.skuDetails.skuPrice.length)];
+        skuProductPriceAttributeString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"¥ %@（预估价）", skuPrice]];
     }
+    [skuProductPriceAttributeString setAttributes:@{NSForegroundColorAttributeName: kCOLOR_PRICE_RED} range:NSMakeRange(0, 2+skuPrice.length)];
     orderPrice.attributedText = skuProductPriceAttributeString;
     orderPrice.lineBreakMode = NSLineBreakByTruncatingTail;
-    
 }
+//精确2位小数
+- (NSString *)skuPriceWithDoublePrice:(float)doublePrice {
+    
+    int noneZero = doublePrice;
+    if (noneZero == doublePrice) {
+        return [NSString stringWithFormat:@"%d", noneZero];
+    }
+    
+    int oneZero = doublePrice * 10;
+    if (oneZero == doublePrice * 10) {
+        return [NSString stringWithFormat:@"%.1f", doublePrice];
+    }
 
+    return [NSString stringWithFormat:@"%.2f", doublePrice];
+}
 
 #pragma mark - SQDecorationDetailViewProtocol
 - (void)configOrderInfo:(WKDecorationOrderListModel *)orderInfo {
