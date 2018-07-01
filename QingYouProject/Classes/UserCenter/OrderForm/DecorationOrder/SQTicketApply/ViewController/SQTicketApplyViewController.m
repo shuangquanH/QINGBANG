@@ -150,7 +150,7 @@
         if ([response[@"code"] longLongValue] == 0) {
             [YGAppTool showToastWithText:@"申请成功，等待审核"];
             self.orderDetailInfo.orderInfo.invoice = NO;
-            [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.0];
+            [self.navigationController popViewControllerAnimated:YES];
         } else {
             [YGAppTool showToastWithText:response[@"msg"]];
         }
