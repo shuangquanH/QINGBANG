@@ -106,7 +106,7 @@
         return;
     }
     if (self.editAddress.phone.length != 11) {
-        [YGAppTool showToastWithText:@"请输入手机号码格式错误"];
+        [YGAppTool showToastWithText:@"输入手机号码格式错误"];
         return;
     }
     if (!self.areaString.length) {
