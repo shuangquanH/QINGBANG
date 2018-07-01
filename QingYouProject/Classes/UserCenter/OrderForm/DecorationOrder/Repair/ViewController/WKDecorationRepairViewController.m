@@ -251,21 +251,21 @@ const CGFloat kItemHorizontalMargin = 10;
             success:^(id response) {
         [YGNetService dissmissLoadingView];
         if ([response[@"code"] longLongValue] == 0) {
-            self.repairInfo = [WKOrderRepairModel yy_modelWithJSON:response[@"repairInfo"]];
+            self.repairInfo = [WKOrderRepairModel yy_modelWithJSON:response[@"data"][@"repairInfo"]];
             [self setupSubviews];
         }
         else {
             [YGAppTool showToastWithText:response[@"msg"]];
             [self.navigationController performSelector:@selector(popViewControllerAnimated:)
                                             withObject:@(YES)
-                                            afterDelay:1.5];
+                                            afterDelay:1.0];
         }
     } failure:^(NSError *error) {
         [YGNetService dissmissLoadingView];
         [YGAppTool showToastWithText:@"网络错误，请检查网络"];
         [self.navigationController performSelector:@selector(popViewControllerAnimated:)
                                         withObject:@(YES)
-                                        afterDelay:1.5];
+                                        afterDelay:1.0];
     }];
 }
 
