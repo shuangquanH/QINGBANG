@@ -326,7 +326,7 @@ const CGFloat kItemHorizontalMargin = 10;
                     self.repairSuccess(self.orderInfo);
                 }
                 [YGAppTool showToastWithText:@"申请成功，等待人员审核"];
-                [self.navigationController performSelector:@selector(popViewControllerAnimated:) withObject:@(YES) afterDelay:1.0];
+                [self.navigationController popViewControllerAnimated:YES];
             }
             else {
                 [YGAppTool showToastWithText:response[@"msg"]];
