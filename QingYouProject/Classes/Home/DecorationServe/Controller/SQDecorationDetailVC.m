@@ -36,10 +36,7 @@
     UIBarButtonItem *itme = [self createBarbuttonWithNormalImageName:@"Details_page_nav_icon"
                                                    selectedImageName:@"Details_page_nav_icon"
                                                             selector:@selector(rightButtonItemAciton)];
-    UIBarButtonItem *itme2 = [self createBarbuttonWithNormalImageName:@""
-                                                   selectedImageName:@""
-                                                            selector:@selector(rightButtonItemAciton)];
-    self.navigationItem.rightBarButtonItems = @[itme, itme2];
+    self.navigationItem.rightBarButtonItem = itme;
     
     self.navigationItem.titleView = self.seg;
     [self.view addSubview:self.bottomView];
@@ -94,6 +91,7 @@
 
 
 - (void)clickedPayButton {
+    if (![self loginOrNot]) {return;}
     if (self.detailModel.productSkuId.length!=0) {
         SQConfirmDecorationOrderVC  *vc = [[SQConfirmDecorationOrderVC alloc] init];
         vc.detailModel = self.detailModel;
