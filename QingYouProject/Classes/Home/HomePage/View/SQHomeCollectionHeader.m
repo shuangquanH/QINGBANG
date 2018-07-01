@@ -196,20 +196,20 @@
     [sender showWaveAnimation];
     SQHomeHeadsModel *theSelectModel = self.model.heads[sender.tag-1000];
     
-    if (![theSelectModel.funcs_target isEqualToString:@"17"]) {
+//    if (![theSelectModel.funcs_target isEqualToString:@"17"]) {
         [self didselectButtonToPushNextPageWithModel:theSelectModel];
         return;
-    }
+//    }
     
     
-    self.selectedModel = self.model.heads[sender.tag-1000];
-    for (UIButton *button in self.ovalContentView.subviews) {
-        if (button==sender) {
-            sender.selected = YES;
-        } else {
-            button.selected = NO;
-        }
-    }
+//    self.selectedModel = self.model.heads[sender.tag-1000];
+//    for (UIButton *button in self.ovalContentView.subviews) {
+//        if (button==sender) {
+//            sender.selected = YES;
+//        } else {
+//            button.selected = NO;
+//        }
+//    }
     
 }
 //定制功能按钮

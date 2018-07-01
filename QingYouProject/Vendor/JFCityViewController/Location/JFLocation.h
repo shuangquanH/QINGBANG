@@ -10,6 +10,8 @@
 
 @protocol JFLocationDelegate <NSObject>
 
+@optional
+
 /// 定位中
 - (void)locating;
 
