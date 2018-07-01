@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface WKOrderRepairModel : NSObject
-/* 0表示申请提交 1表示审核失败重新提审 **/
+/* 0表示没有过申请提交 1表示审核失败重新提审 **/
 @property (nonatomic, assign) NSInteger repairState;
 @property (nonatomic, copy  ) NSString  *createDate;
 @property (nonatomic, copy  ) NSString  *reason;

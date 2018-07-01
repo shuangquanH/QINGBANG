@@ -295,7 +295,7 @@
             break;
         case WKDecorationOrderActionTypeCallService: {//联系客服
             [YGAlertView showAlertWithTitle:@"是否要拨打客服电话？"
-                          buttonTitlesArray:@[@"YES", @"NO"]
+                          buttonTitlesArray:@[@"确认", @"取消"]
                           buttonColorsArray:@[KCOLOR_MAIN,kCOLOR_666]
                                     handler:^(NSInteger buttonIndex) {
                                         if (buttonIndex == 0) {

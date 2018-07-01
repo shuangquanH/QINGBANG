@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 //地址信息
-#import "WKDecorationAddressModel.h"
+#import "WKInvoiceAddressModel.h"
 //订单信息
 #import "WKDecorationOrderListModel.h"
 
@@ -16,6 +16,6 @@
 
 @property (nonatomic, strong) WKDecorationOrderListModel *orderInfo;
 
-@property (nonatomic, strong) WKDecorationAddressModel *addressInfo;
+@property (nonatomic, strong) WKInvoiceAddressModel *addressInfo;
 
 @end
