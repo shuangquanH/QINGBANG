@@ -49,7 +49,8 @@
     [super viewDidLoad];
     self.naviTitle = @"我的订单";
     
-    [self sendUnreadBadgeReqeust];
+    //不显示未支付订单
+//    [self sendUnreadBadgeReqeust];
     
     NSString *path = [[NSBundle mainBundle]pathForResource:@"SQOrderFormListPlist" ofType:@"plist"];
     self.orderFormArr = [NSArray arrayWithContentsOfFile:path];
