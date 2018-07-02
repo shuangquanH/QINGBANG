@@ -67,6 +67,18 @@
 }
 
 - (void)configUserInfo:(YGUser *)user {
+    if (!user) {
+        [_iconImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.center.mas_equalTo(0).priorityHigh();
+            make.width.height.mas_equalTo(KSCAL(160));
+        }];
+    } else {
+        [_iconImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(0).priorityHigh();
+            make.top.mas_equalTo(KSCAL(38));
+            make.width.height.mas_equalTo(KSCAL(160));
+        }];
+    }
     _nameLab.text = user.userName;
     _signLab.text = user.description;
     [_iconImageView sd_setImageWithURL:[NSURL URLWithString:user.userImg] placeholderImage:[UIImage imageNamed:@"defaultavatar"]];
