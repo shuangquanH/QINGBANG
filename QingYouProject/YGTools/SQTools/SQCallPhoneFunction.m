@@ -7,6 +7,7 @@
 //
 
 #import "SQCallPhoneFunction.h"
+#import "WKDecorationOrderAlertView.h"
 
 
 @implementation SQCallPhoneFunction
@@ -32,14 +33,11 @@
 }
 
 + (void)callWithPhoem:(NSString *)phone withPopverTitle:(NSString *)title {
-    [YGAlertView showAlertWithTitle:title buttonTitlesArray:@[@"取消", @"确定"] buttonColorsArray:@[kCOLOR_333, KCOLOR_MAIN] handler:^(NSInteger buttonIndex) {
-        if (buttonIndex!=0) {
+    [WKDecorationOrderAlertView alertWithDetail:title titles:@[@"确定", @"取消"] bgColors:@[KCOLOR_MAIN, KCOLOR(@"98999A")] handler:^(NSInteger index) {
+        if (index == 0) {
             [self callWithPhoem:phone];
         }
-        
     }];
-
-
 }
 
 

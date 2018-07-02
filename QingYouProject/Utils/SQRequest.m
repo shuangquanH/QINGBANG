@@ -42,6 +42,7 @@
     }
                                                                failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
     {
+        [YGAppTool showToastWithText:@"当前暂无网络，请检查网络设置"];
         if (failure) {
             failure(error);
         }
