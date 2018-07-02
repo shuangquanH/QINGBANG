@@ -89,8 +89,8 @@
     }
     else {//退款失败
         _stateLabel.text = @"退款审核不通过";
-        _detailLabel.text = [NSString stringWithFormat:@"您于%@发起的退款，因%@不予通过。", self.refundInfo.createDate, self.refundInfo.comment];
-        [_detailLabel setTextColor:kCOLOR_PRICE_RED andRange:NSMakeRange(9+self.refundInfo.createDate.length, self.refundInfo.comment.length)];
+        _detailLabel.text = [NSString stringWithFormat:@"您于%@发起的退款，因%@不予通过。", self.refundInfo.createDate, self.refundInfo.remarks];
+        [_detailLabel setTextColor:kCOLOR_PRICE_RED andRange:NSMakeRange(9+self.refundInfo.createDate.length, self.refundInfo.remarks.length)];
         
         _line = [UIView new];
         _line.backgroundColor = KCOLOR_LINE;

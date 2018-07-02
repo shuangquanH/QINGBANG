@@ -16,8 +16,10 @@
 @property (nonatomic, assign) NSInteger status;
 /** 退款金额 */
 @property (nonatomic, copy  ) NSString *amount;
-/** 退款失败原因 */
+/** 退款理由 */
 @property (nonatomic, copy  ) NSString *comment;
+/** 退款失败原因 */
+@property (nonatomic, copy  ) NSString *remarks;
 /** 退款发起时间 */
 @property (nonatomic, copy  ) NSString *createDate;
 /** 退款撤销时间 */
